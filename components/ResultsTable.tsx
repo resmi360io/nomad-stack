@@ -89,6 +89,7 @@ export function ResultsTable({ quotes }: Props) {
                     <span
                       className="ml-1 text-[10px] opacity-60"
                       aria-label="Affiliate link"
+                      title="We may earn a commission if you sign up"
                     >
                       AD
                     </span>

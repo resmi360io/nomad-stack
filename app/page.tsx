@@ -1,4 +1,5 @@
 import { Calculator } from '@/components/Calculator';
+import { Footer } from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -20,6 +21,8 @@ export default function Home() {
           How we make money
         </a>
       </p>
+
+      <Footer />
     </main>
   );
 }
