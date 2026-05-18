@@ -30,6 +30,7 @@ export interface Provider {
   supportedDestinationCountries: CountryCode[];
   lastVerified: string;     // ISO date
   notes?: string;
+  caveat?: string;          // short disclaimer shown under result card
 }
 
 export const PROVIDERS: Provider[] = [
@@ -47,13 +48,17 @@ export const PROVIDERS: Provider[] = [
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     corridors: [
+      // Source: wise.com/us/send-money/send-money-to-georgia (2026-05-18)
+      // GEL is a less-liquid currency — higher variable fee than major corridors
+      // Verified: $14.74 fee on $1,000 send; $100.93 fee on $7,000 send (~1.44%)
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'GE', currency: 'GEL' },
         fixedFee: 1.04,
-        percentageFee: 0.0067,
+        percentageFee: 0.0137,
         fxMarkupBps: 50,
-        typicalHours: 2,
+        typicalHours: 48,
+        notes: '~1–2 business days for GEL',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -229,6 +234,7 @@ export const PROVIDERS: Provider[] = [
       notes: 'Estimated — verify at revolut.com for your corridor',
     },
     notes: 'Standard plan: 0.3% transfer fee (min ~$0.30, max ~$5 per transfer). FX at mid-market on weekdays within $1,000/month; +0.5% over limit; +1% weekends. Premium/Metal: higher limits, no weekend surcharge.',
+    caveat: 'Standard plan, weekday, within $1,000/month FX allowance. Weekend transfers add 1–2%.',
   },
 
   // ─── Payoneer ──────────────────────────────────────────────────────────────
@@ -246,14 +252,16 @@ export const PROVIDERS: Provider[] = [
     supportedSourceCountries: ['US', 'GB', 'EU'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     corridors: [
+      // Includes 1% receiving fee + up to 2% FX markup + $1.50 withdrawal
+      // Sources: payoneer.com/about/pricing; vaultleap.com/blog/payoneer-fees-explained-2026
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'GE', currency: 'GEL' },
-        fixedFee: 0,
-        percentageFee: 0.01,
-        fxMarkupBps: 250,
+        fixedFee: 1.50,
+        percentageFee: 0.03,
+        fxMarkupBps: 350,
         typicalHours: 72,
-        notes: '1% fee from Payoneer balance; 3% from card',
+        notes: '1% receiving fee + up to 2% FX markup + $1.50 withdrawal fee',
       },
       {
         source: { country: 'GB', currency: 'GBP' },

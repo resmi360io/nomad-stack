@@ -68,6 +68,11 @@ export function ResultsTable({ quotes }: Props) {
                     ({q.effectiveFeePercent.toFixed(2)}%) ·{' '}
                     <span className={fxQ.color}>{fxQ.label}</span>
                   </div>
+                  {q.provider.caveat && (
+                    <div className="mt-0.5 text-xs text-muted-foreground/60 italic">
+                      {q.provider.caveat}
+                    </div>
+                  )}
                 </div>
               </div>
 
