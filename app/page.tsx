@@ -9,7 +9,7 @@ export default function Home() {
           Real Cost of Receiving International Payments
         </h1>
         <p className="text-lg text-muted-foreground">
-          Compare fees across 7 ways to get paid abroad. Enter your payment details to see the true cost.
+          Wise, Revolut, Payoneer and 4 more — ranked by what actually lands in your account.
         </p>
       </header>
 

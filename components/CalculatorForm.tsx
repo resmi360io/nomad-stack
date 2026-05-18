@@ -9,7 +9,6 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from '@/components/ui/select';
 import type { CountryCode } from '@/data/providers';
 import { getCurrency } from '@/lib/calculate';
@@ -56,7 +55,9 @@ export function CalculatorForm({ onSubmit }: Props) {
             onValueChange={(v) => { if (v) setSourceCountry(v as CountryCode); }}
           >
             <SelectTrigger className="w-full">
-              <SelectValue />
+              <span data-slot="select-value" className="flex flex-1 text-left text-sm">
+                {SOURCE_OPTIONS.find(o => o.code === sourceCountry)?.label ?? sourceCountry}
+              </span>
             </SelectTrigger>
             <SelectContent>
               {SOURCE_OPTIONS.map(o => (
@@ -73,7 +74,9 @@ export function CalculatorForm({ onSubmit }: Props) {
             onValueChange={(v) => { if (v) setDestCountry(v as CountryCode); }}
           >
             <SelectTrigger className="w-full">
-              <SelectValue />
+              <span data-slot="select-value" className="flex flex-1 text-left text-sm">
+                {DEST_OPTIONS.find(o => o.code === destCountry)?.label ?? destCountry}
+              </span>
             </SelectTrigger>
             <SelectContent>
               {DEST_OPTIONS.map(o => (
