@@ -13,26 +13,27 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nomadfees.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://paidacross.com";
 
 export const metadata: Metadata = {
   title: {
-    default: "Nomad Fees — Compare International Payment Costs",
-    template: "%s | Nomad Fees",
+    default: "Paid Across — Compare International Payment Costs",
+    template: "%s | Paid Across",
   },
   description:
     "Compare the real cost of receiving international payments. Wise, Revolut, Payoneer, PayPal and more — ranked by net amount received after all fees and FX markup.",
   metadataBase: new URL(SITE_URL),
   openGraph: {
-    title: "Nomad Fees — Compare International Payment Costs",
+    title: "Paid Across — Compare International Payment Costs",
     description:
       "Compare the real cost of receiving international payments across 7 providers.",
+    url: "https://paidacross.com",
     type: "website",
-    siteName: "Nomad Fees",
+    siteName: "Paid Across",
   },
   twitter: {
-    card: "summary",
-    title: "Nomad Fees — Compare International Payment Costs",
+    card: "summary_large_image",
+    title: "Paid Across — Compare International Payment Costs",
     description:
       "Compare the real cost of receiving international payments across 7 providers.",
   },

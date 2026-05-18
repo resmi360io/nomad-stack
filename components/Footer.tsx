@@ -11,7 +11,7 @@ export function Footer() {
         </a>
         . Ranking is based on fee math only.
       </p>
-      <p className="mt-1">© {new Date().getFullYear()} Nomad Fees</p>
+      <p className="mt-1">© {new Date().getFullYear()} Paid Across</p>
     </footer>
   );
 }
