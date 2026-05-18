@@ -131,9 +131,11 @@ export const PROVIDERS: Provider[] = [
   },
 
   // ─── Revolut ───────────────────────────────────────────────────────────────
-  // Source: https://www.revolut.com/legal/fees (2026-05-17)
-  // Standard plan: 0% FX markup weekdays within monthly limit; 1% weekends
-  // Modeled as 50 bps average across weekday/weekend usage
+  // Source: https://www.revolut.com/en-US/legal/standard-fees/ (2026-05-18)
+  // Standard plan: 0.3% transfer fee per international payment (min ~$0.30, max $5)
+  // FX markup: 0% weekdays within $1,000/month limit; +0.5% over limit; +1% weekends
+  // fxMarkupBps set to 50 as conservative blended average for Standard plan
+  // (Standard limit is $1,000/month — freelancers exceeding that pay +0.5% on the rest)
   {
     slug: 'revolut',
     name: 'Revolut',
@@ -141,7 +143,7 @@ export const PROVIDERS: Provider[] = [
     website: 'https://www.revolut.com',
     affiliateLink: 'https://revolut.com/referral/[REPLACE_AFFILIATE_ID]',
     hasAffiliateProgram: true,
-    lastVerified: '2026-05-17',
+    lastVerified: '2026-05-18',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     corridors: [
@@ -149,32 +151,32 @@ export const PROVIDERS: Provider[] = [
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'GE', currency: 'GEL' },
         fixedFee: 0,
-        percentageFee: 0,
+        percentageFee: 0.003,
         fxMarkupBps: 50,
-        typicalHours: 1,
-        notes: '0% weekdays (Standard, within limit); 1% weekends',
+        typicalHours: 24,
+        notes: '0.3% transfer fee (max $5); FX at mid-market weekdays within $1,000/month; +1% weekends',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
         destination: { country: 'GE', currency: 'GEL' },
         fixedFee: 0,
-        percentageFee: 0,
+        percentageFee: 0.003,
         fxMarkupBps: 50,
-        typicalHours: 1,
+        typicalHours: 24,
       },
       {
         source: { country: 'EU', currency: 'EUR' },
         destination: { country: 'GE', currency: 'GEL' },
         fixedFee: 0,
-        percentageFee: 0,
+        percentageFee: 0.003,
         fxMarkupBps: 50,
-        typicalHours: 1,
+        typicalHours: 24,
       },
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PT', currency: 'EUR' },
         fixedFee: 0,
-        percentageFee: 0,
+        percentageFee: 0.003,
         fxMarkupBps: 50,
         typicalHours: 1,
       },
@@ -182,7 +184,7 @@ export const PROVIDERS: Provider[] = [
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'MX', currency: 'MXN' },
         fixedFee: 0,
-        percentageFee: 0,
+        percentageFee: 0.003,
         fxMarkupBps: 50,
         typicalHours: 1,
       },
@@ -190,15 +192,15 @@ export const PROVIDERS: Provider[] = [
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'TH', currency: 'THB' },
         fixedFee: 0,
-        percentageFee: 0,
+        percentageFee: 0.003,
         fxMarkupBps: 50,
-        typicalHours: 1,
+        typicalHours: 24,
       },
       {
         source: { country: 'GB', currency: 'GBP' },
         destination: { country: 'PT', currency: 'EUR' },
         fixedFee: 0,
-        percentageFee: 0,
+        percentageFee: 0.003,
         fxMarkupBps: 50,
         typicalHours: 1,
       },
@@ -206,7 +208,7 @@ export const PROVIDERS: Provider[] = [
         source: { country: 'EU', currency: 'EUR' },
         destination: { country: 'ID', currency: 'IDR' },
         fixedFee: 0,
-        percentageFee: 0,
+        percentageFee: 0.003,
         fxMarkupBps: 50,
         typicalHours: 24,
       },
@@ -214,19 +216,19 @@ export const PROVIDERS: Provider[] = [
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'ID', currency: 'IDR' },
         fixedFee: 0,
-        percentageFee: 0,
+        percentageFee: 0.003,
         fxMarkupBps: 50,
         typicalHours: 24,
       },
     ],
     fallbackFee: {
       fixedFee: 0,
-      percentageFee: 0,
+      percentageFee: 0.003,
       fxMarkupBps: 50,
       typicalHours: 24,
       notes: 'Estimated — verify at revolut.com for your corridor',
     },
-    notes: 'Premium/Metal plans have higher monthly FX limits. Over-limit adds 0.5% on weekdays.',
+    notes: 'Standard plan: 0.3% transfer fee (min ~$0.30, max ~$5 per transfer). FX at mid-market on weekdays within $1,000/month; +0.5% over limit; +1% weekends. Premium/Metal: higher limits, no weekend surcharge.',
   },
 
   // ─── Payoneer ──────────────────────────────────────────────────────────────
