@@ -48,7 +48,7 @@ export function ResultsTable({ quotes }: Props) {
       <h2 className="text-lg font-semibold">Results — ranked by net received</h2>
       {quotes.map((q, i) => {
         const fxQ = fxQualityLabel(q.fxMarkupBps);
-        const href = q.affiliateLink || q.provider.signupUrl || q.provider.website;
+        const href = q.affiliateLink || q.provider.signupUrl;
         const isAffiliate = !!q.affiliateLink;
 
         return (
@@ -86,35 +86,37 @@ export function ResultsTable({ quotes }: Props) {
                   </div>
                   <div className="text-xs text-muted-foreground">{formatHours(q.timeHours)}</div>
                 </div>
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(buttonVariants({ size: 'sm' }), 'shrink-0')}
-                  onClick={() =>
-                    posthog.capture('affiliate_click', {
-                      provider: q.provider.slug,
-                      provider_name: q.provider.name,
-                      corridor: `${q.sourceCurrency}→${q.destCurrency}`,
-                      source_currency: q.sourceCurrency,
-                      dest_currency: q.destCurrency,
-                      rank: i + 1,
-                      is_best_value: q.isBestValue,
-                      is_affiliate: isAffiliate,
-                    })
-                  }
-                >
-                  Open account →
-                  {isAffiliate && (
-                    <span
-                      className="ml-1 text-[10px] opacity-60"
-                      aria-label="Affiliate link"
-                      title="We may earn a commission if you sign up"
-                    >
-                      AD
-                    </span>
-                  )}
-                </a>
+                {href && (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(buttonVariants({ size: 'sm' }), 'shrink-0')}
+                    onClick={() =>
+                      posthog.capture('affiliate_click', {
+                        provider: q.provider.slug,
+                        provider_name: q.provider.name,
+                        corridor: `${q.sourceCurrency}→${q.destCurrency}`,
+                        source_currency: q.sourceCurrency,
+                        dest_currency: q.destCurrency,
+                        rank: i + 1,
+                        is_best_value: q.isBestValue,
+                        is_affiliate: isAffiliate,
+                      })
+                    }
+                  >
+                    Open account →
+                    {isAffiliate && (
+                      <span
+                        className="ml-1 text-[10px] opacity-60"
+                        aria-label="Affiliate link"
+                        title="We may earn a commission if you sign up"
+                      >
+                        AD
+                      </span>
+                    )}
+                  </a>
+                )}
               </div>
             </CardContent>
           </Card>

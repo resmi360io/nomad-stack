@@ -43,7 +43,7 @@ export const PROVIDERS: Provider[] = [
     name: 'Wise',
     logoUrl: '/logos/wise.svg',
     website: 'https://wise.com',
-    signupUrl: 'https://wise.com/us/signup',
+    signupUrl: 'https://wise.com',
     // TODO: replace signupUrl with affiliate URL when Wise program approved
     // Affiliate template: https://wise.com/invite/[REPLACE_AFFILIATE_ID]
     affiliateLink: '',
@@ -150,7 +150,7 @@ export const PROVIDERS: Provider[] = [
     name: 'Revolut',
     logoUrl: '/logos/revolut.svg',
     website: 'https://www.revolut.com',
-    signupUrl: 'https://www.revolut.com/our-pricing-plans',
+    signupUrl: 'https://www.revolut.com',
     // TODO: replace signupUrl with affiliate URL when Revolut program approved
     // Affiliate template: https://revolut.com/referral/[REPLACE_AFFILIATE_ID]
     affiliateLink: '',
@@ -253,7 +253,7 @@ export const PROVIDERS: Provider[] = [
     name: 'Payoneer',
     logoUrl: '/logos/payoneer.svg',
     website: 'https://www.payoneer.com',
-    signupUrl: 'https://www.payoneer.com/sign-up/',
+    signupUrl: 'https://www.payoneer.com',
     // TODO: replace signupUrl with affiliate URL when Payoneer program approved
     // Affiliate template: https://www.payoneer.com/partners/[REPLACE_AFFILIATE_ID]
     affiliateLink: '',
@@ -356,7 +356,7 @@ export const PROVIDERS: Provider[] = [
     name: 'PayPal',
     logoUrl: '/logos/paypal.svg',
     website: 'https://www.paypal.com',
-    signupUrl: 'https://www.paypal.com/us/webapps/mpp/account-selection',
+    signupUrl: 'https://www.paypal.com/us/business',
     affiliateLink: '',
     hasAffiliateProgram: false,
     lastVerified: '2026-05-17',
@@ -432,9 +432,10 @@ export const PROVIDERS: Provider[] = [
     name: 'GrabrFi',
     logoUrl: '/logos/grabrfi.svg',
     website: 'https://grabrfi.com',
-    signupUrl: 'https://www.grabrfi.com/en/signup',
+    signupUrl: 'https://www.grabrfi.com/en',
     // TODO: replace signupUrl with affiliate URL when GrabrFi program approved
     // Affiliate template: https://grabrfi.com/refer/[REPLACE_AFFILIATE_ID]
+    // TODO: use personal referral link (up to $100 USD per qualified signup) once founder opens GrabrFi account
     affiliateLink: '',
     hasAffiliateProgram: true,
     lastVerified: '2026-05-17',
@@ -500,7 +501,7 @@ export const PROVIDERS: Provider[] = [
     name: 'Western Union',
     logoUrl: '/logos/western-union.svg',
     website: 'https://www.westernunion.com',
-    signupUrl: 'https://www.westernunion.com/us/en/web/send-money/start',
+    signupUrl: 'https://www.westernunion.com',
     affiliateLink: '',
     hasAffiliateProgram: false,
     lastVerified: '2026-05-17',
