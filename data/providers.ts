@@ -22,7 +22,8 @@ export interface Provider {
   name: string;
   logoUrl: string;          // /logos/[slug].svg placeholder
   website: string;
-  affiliateLink: string;    // contains [REPLACE_AFFILIATE_ID]
+  signupUrl?: string;       // direct signup page — used as CTA until affiliate link is live
+  affiliateLink: string;    // real affiliate URL; empty until program approved
   hasAffiliateProgram: boolean;
   corridors: CorridorFee[];
   fallbackFee: Omit<CorridorFee, 'source' | 'destination'>;  // used for unsupported corridors
@@ -42,7 +43,10 @@ export const PROVIDERS: Provider[] = [
     name: 'Wise',
     logoUrl: '/logos/wise.svg',
     website: 'https://wise.com',
-    affiliateLink: 'https://wise.com/invite/[REPLACE_AFFILIATE_ID]',
+    signupUrl: 'https://wise.com/us/signup',
+    // TODO: replace signupUrl with affiliate URL when Wise program approved
+    // Affiliate template: https://wise.com/invite/[REPLACE_AFFILIATE_ID]
+    affiliateLink: '',
     hasAffiliateProgram: true,
     lastVerified: '2026-05-17',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
@@ -146,7 +150,10 @@ export const PROVIDERS: Provider[] = [
     name: 'Revolut',
     logoUrl: '/logos/revolut.svg',
     website: 'https://www.revolut.com',
-    affiliateLink: 'https://revolut.com/referral/[REPLACE_AFFILIATE_ID]',
+    signupUrl: 'https://www.revolut.com/our-pricing-plans',
+    // TODO: replace signupUrl with affiliate URL when Revolut program approved
+    // Affiliate template: https://revolut.com/referral/[REPLACE_AFFILIATE_ID]
+    affiliateLink: '',
     hasAffiliateProgram: true,
     lastVerified: '2026-05-18',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
@@ -246,7 +253,10 @@ export const PROVIDERS: Provider[] = [
     name: 'Payoneer',
     logoUrl: '/logos/payoneer.svg',
     website: 'https://www.payoneer.com',
-    affiliateLink: 'https://www.payoneer.com/partners/[REPLACE_AFFILIATE_ID]',
+    signupUrl: 'https://www.payoneer.com/sign-up/',
+    // TODO: replace signupUrl with affiliate URL when Payoneer program approved
+    // Affiliate template: https://www.payoneer.com/partners/[REPLACE_AFFILIATE_ID]
+    affiliateLink: '',
     hasAffiliateProgram: true,
     lastVerified: '2026-05-17',
     supportedSourceCountries: ['US', 'GB', 'EU'],
@@ -346,7 +356,8 @@ export const PROVIDERS: Provider[] = [
     name: 'PayPal',
     logoUrl: '/logos/paypal.svg',
     website: 'https://www.paypal.com',
-    affiliateLink: 'https://www.paypal.com/[REPLACE_AFFILIATE_ID]',
+    signupUrl: 'https://www.paypal.com/us/webapps/mpp/account-selection',
+    affiliateLink: '',
     hasAffiliateProgram: false,
     lastVerified: '2026-05-17',
     supportedSourceCountries: ['US', 'GB', 'EU'],
@@ -421,7 +432,10 @@ export const PROVIDERS: Provider[] = [
     name: 'GrabrFi',
     logoUrl: '/logos/grabrfi.svg',
     website: 'https://grabrfi.com',
-    affiliateLink: 'https://grabrfi.com/refer/[REPLACE_AFFILIATE_ID]',
+    signupUrl: 'https://www.grabrfi.com/en/signup',
+    // TODO: replace signupUrl with affiliate URL when GrabrFi program approved
+    // Affiliate template: https://grabrfi.com/refer/[REPLACE_AFFILIATE_ID]
+    affiliateLink: '',
     hasAffiliateProgram: true,
     lastVerified: '2026-05-17',
     supportedSourceCountries: ['US', 'GB', 'EU'],
@@ -486,7 +500,8 @@ export const PROVIDERS: Provider[] = [
     name: 'Western Union',
     logoUrl: '/logos/western-union.svg',
     website: 'https://www.westernunion.com',
-    affiliateLink: 'https://www.westernunion.com/[REPLACE_AFFILIATE_ID]',
+    signupUrl: 'https://www.westernunion.com/us/en/web/send-money/start',
+    affiliateLink: '',
     hasAffiliateProgram: false,
     lastVerified: '2026-05-17',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
@@ -585,6 +600,7 @@ export const PROVIDERS: Provider[] = [
     name: 'Bank Wire (SWIFT)',
     logoUrl: '/logos/bank-wire.svg',
     website: 'https://www.swift.com',
+    // No signupUrl — bank wire is a method, not a product to sign up for
     affiliateLink: '',
     hasAffiliateProgram: false,
     lastVerified: '2026-05-17',

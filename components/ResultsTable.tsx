@@ -48,7 +48,7 @@ export function ResultsTable({ quotes }: Props) {
       <h2 className="text-lg font-semibold">Results — ranked by net received</h2>
       {quotes.map((q, i) => {
         const fxQ = fxQualityLabel(q.fxMarkupBps);
-        const href = q.affiliateLink || q.provider.website;
+        const href = q.affiliateLink || q.provider.signupUrl || q.provider.website;
         const isAffiliate = !!q.affiliateLink;
 
         return (
