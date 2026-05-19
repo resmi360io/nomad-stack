@@ -29,8 +29,16 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
     posthog.init(key, {
       api_host: '/ingest',
       ui_host: process.env.NEXT_PUBLIC_POSTHOG_HOST ?? 'https://us.posthog.com',
-      capture_pageview: false, // manual via PostHogPageView
+      capture_pageview: false, // manual via PostHogPageView — avoids double-firing on SPA navigation
       capture_pageleave: true,
+      autocapture: false,
+      persistence: 'localStorage+cookie',
+      disable_session_recording: false,
+      enable_recording_console_log: true,
+      session_recording: {
+        maskAllInputs: false,
+        maskTextSelector: '[data-private]',
+      },
     });
   }, []);
 
