@@ -1,8 +1,11 @@
+'use client';
+
 import { Card, CardContent } from '@/components/ui/card';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { Quote } from '@/lib/calculate';
 import { BestValueBadge } from './BestValueBadge';
+import posthog from 'posthog-js';
 
 function fxQualityLabel(bps: number): { label: string; color: string } {
   if (bps <= 50) return { label: 'Excellent FX', color: 'text-green-600 dark:text-green-400' };
@@ -88,6 +91,18 @@ export function ResultsTable({ quotes }: Props) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(buttonVariants({ size: 'sm' }), 'shrink-0')}
+                  onClick={() =>
+                    posthog.capture('affiliate_click', {
+                      provider: q.provider.slug,
+                      provider_name: q.provider.name,
+                      corridor: `${q.sourceCurrency}→${q.destCurrency}`,
+                      source_currency: q.sourceCurrency,
+                      dest_currency: q.destCurrency,
+                      rank: i + 1,
+                      is_best_value: q.isBestValue,
+                      is_affiliate: isAffiliate,
+                    })
+                  }
                 >
                   Open account →
                   {isAffiliate && (
