@@ -556,10 +556,7 @@ export const PROVIDERS: Provider[] = [
     logoUrl: '/logos/grabrfi.svg',
     website: 'https://grabrfi.com',
     signupUrl: 'https://www.grabrfi.com/en',
-    // TODO: replace signupUrl with affiliate URL when GrabrFi program approved
-    // Affiliate template: https://grabrfi.com/refer/[REPLACE_AFFILIATE_ID]
-    // TODO: use personal referral link (up to $100 USD per qualified signup) once founder opens GrabrFi account
-    affiliateLink: '',
+    affiliateLink: 'https://app.grabrfi.com/sign-up?invite-code=kqMCKAcsollV&itm_source=app&itm_medium=referral&itm_campaign=invite_friend_promo&itm_content=ios_invite_screen',
     hasAffiliateProgram: true,
     lastVerified: '2026-05-27',
     supportedSourceCountries: ['US'],
