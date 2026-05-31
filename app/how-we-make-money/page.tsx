@@ -36,7 +36,7 @@ export default function HowWeMakeMoney() {
           Last updated: {formatIsoDate(lastUpdated)}
         </p>
         <p className="text-sm leading-relaxed text-muted-foreground">
-          As of May 29, 2026, we have not earned any affiliate commission. All
+          As of May 31, 2026, we have not earned any affiliate commission. All
           affiliate applications were submitted on or after May 27, 2026 and are
           in review with the respective providers. We update this page as
           statuses change.
