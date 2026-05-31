@@ -5,14 +5,14 @@ import { CalculatorForm } from './CalculatorForm';
 import { ResultsTable } from './ResultsTable';
 import { calculate } from '@/lib/calculate';
 import { PROVIDERS } from '@/data/providers';
-import type { CountryCode } from '@/data/providers';
+import type { CountryCode, Currency } from '@/data/providers';
 import type { Quote } from '@/lib/calculate';
 
 export function Calculator() {
   const [quotes, setQuotes] = useState<Quote[] | null>(null);
 
-  function handleSubmit(src: CountryCode, dest: CountryCode, amount: number) {
-    setQuotes(calculate(src, dest, amount, PROVIDERS));
+  function handleSubmit(src: CountryCode, dest: CountryCode, destCurrency: Currency, amount: number) {
+    setQuotes(calculate(src, dest, destCurrency, amount, PROVIDERS));
   }
 
   return (

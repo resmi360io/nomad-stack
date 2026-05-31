@@ -134,6 +134,38 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 24,
       },
+      // USD → Georgian USD bank account via SWIFT (no FX conversion)
+      // Source: wise.com help/articles/2946451 — USD SWIFT fee is $6.11
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'GE', currency: 'USD' },
+        fixedFee: 6.11,
+        percentageFee: 0.003,
+        fxMarkupBps: 0,
+        typicalHours: 48,
+        notes: 'USD SWIFT to Georgian USD bank account — no FX conversion',
+      },
+      // EUR → Georgian EUR bank account via SWIFT (non-SEPA, no FX conversion)
+      {
+        source: { country: 'EU', currency: 'EUR' },
+        destination: { country: 'GE', currency: 'EUR' },
+        fixedFee: 3.00,
+        percentageFee: 0.004,
+        fxMarkupBps: 0,
+        typicalHours: 48,
+        notes: 'EUR SWIFT to Georgian EUR bank account — no FX conversion',
+      },
+      // EUR → Portuguese EUR bank account via SEPA (no FX conversion, same-currency)
+      // Source: wise.com/help/articles/2932149 — SEPA same-currency, EU regs apply
+      {
+        source: { country: 'EU', currency: 'EUR' },
+        destination: { country: 'PT', currency: 'EUR' },
+        fixedFee: 0,
+        percentageFee: 0.0038,
+        fxMarkupBps: 0,
+        typicalHours: 2,
+        notes: 'EUR SEPA to Portugal — no FX conversion, near-instant',
+      },
     ],
     fallbackFee: {
       fixedFee: 1.50,
@@ -246,6 +278,37 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 72,
       },
+      // USD → Georgian USD bank account via SWIFT (no FX conversion)
+      // US Standard plan: $10 flat SWIFT fee (revolut.com/en-US/legal/standard-fees/)
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'GE', currency: 'USD' },
+        fixedFee: 10,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 72,
+        notes: 'USD SWIFT to Georgian USD bank account — no FX conversion',
+      },
+      // EUR → Georgian EUR bank account via SWIFT (no FX conversion)
+      {
+        source: { country: 'EU', currency: 'EUR' },
+        destination: { country: 'GE', currency: 'EUR' },
+        fixedFee: 3,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 72,
+        notes: 'EUR SWIFT to Georgian EUR bank account — no FX conversion',
+      },
+      // EUR → Portuguese EUR via SEPA (no FX, same-currency SEPA transfer)
+      {
+        source: { country: 'EU', currency: 'EUR' },
+        destination: { country: 'PT', currency: 'EUR' },
+        fixedFee: 0,
+        percentageFee: 0.003,
+        fxMarkupBps: 0,
+        typicalHours: 1,
+        notes: 'EUR SEPA to Portugal — no FX conversion',
+      },
     ],
     fallbackFee: {
       fixedFee: 3,
@@ -351,6 +414,37 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 200,
         typicalHours: 72,
       },
+      // USD → Georgian USD bank account (no FX — 1% receiving fee + $1.50 withdrawal)
+      // Source: payoneer.com/about/pricing/ — $1.50 flat for USD same-currency withdrawals
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'GE', currency: 'USD' },
+        fixedFee: 1.50,
+        percentageFee: 0.01,
+        fxMarkupBps: 0,
+        typicalHours: 72,
+        notes: '1% receiving fee + $1.50 withdrawal; no FX conversion',
+      },
+      // EUR → Georgian EUR bank account (no FX — 1% receiving fee)
+      {
+        source: { country: 'EU', currency: 'EUR' },
+        destination: { country: 'GE', currency: 'EUR' },
+        fixedFee: 0,
+        percentageFee: 0.01,
+        fxMarkupBps: 0,
+        typicalHours: 72,
+        notes: '1% receiving fee; no FX conversion',
+      },
+      // EUR → Portuguese EUR (SEPA, no FX — 1% receiving fee)
+      {
+        source: { country: 'EU', currency: 'EUR' },
+        destination: { country: 'PT', currency: 'EUR' },
+        fixedFee: 0,
+        percentageFee: 0.01,
+        fxMarkupBps: 0,
+        typicalHours: 24,
+        notes: '1% receiving fee; no FX conversion (SEPA)',
+      },
     ],
     fallbackFee: {
       fixedFee: 0,
@@ -430,6 +524,17 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 350,
         typicalHours: 24,
       },
+      // EUR → Portuguese EUR (cross-border fee applies, but no FX conversion needed)
+      // Source: paypal.com cross-border fees — 4.4% + €0.35 for personal international receiving
+      {
+        source: { country: 'EU', currency: 'EUR' },
+        destination: { country: 'PT', currency: 'EUR' },
+        fixedFee: 0.35,
+        percentageFee: 0.044,
+        fxMarkupBps: 0,
+        typicalHours: 1,
+        notes: '4.4% + €0.35 cross-border receiving fee; no FX conversion (EUR→EUR)',
+      },
     ],
     fallbackFee: {
       fixedFee: 0.30,
@@ -457,7 +562,7 @@ export const PROVIDERS: Provider[] = [
     affiliateLink: '',
     hasAffiliateProgram: true,
     lastVerified: '2026-05-27',
-    supportedSourceCountries: ['US', 'GB', 'EU'],
+    supportedSourceCountries: ['US'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     corridors: [
       {
@@ -609,6 +714,16 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 175,
         typicalHours: 24,
       },
+      // EUR → Portuguese EUR via WU (SEPA-zone, no FX conversion)
+      {
+        source: { country: 'EU', currency: 'EUR' },
+        destination: { country: 'PT', currency: 'EUR' },
+        fixedFee: 1.50,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 1,
+        notes: 'EUR SEPA transfer within SEPA zone; no FX conversion',
+      },
     ],
     fallbackFee: {
       fixedFee: 5,
@@ -708,6 +823,36 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 350,
         typicalHours: 96,
+      },
+      // USD → Georgian USD bank account via SWIFT (no FX conversion)
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'GE', currency: 'USD' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        notes: 'SWIFT wire; recipient receives USD in Georgian bank — no FX conversion',
+      },
+      // EUR → Georgian EUR bank account via SWIFT (no FX conversion)
+      {
+        source: { country: 'EU', currency: 'EUR' },
+        destination: { country: 'GE', currency: 'EUR' },
+        fixedFee: 30,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        notes: 'SWIFT wire; recipient receives EUR in Georgian bank — no FX conversion',
+      },
+      // EUR → Portuguese EUR via SEPA (no FX conversion, much cheaper than SWIFT)
+      {
+        source: { country: 'EU', currency: 'EUR' },
+        destination: { country: 'PT', currency: 'EUR' },
+        fixedFee: 2,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 1,
+        notes: 'SEPA transfer within EU; no FX conversion, near-instant',
       },
     ],
     fallbackFee: {

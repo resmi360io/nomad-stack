@@ -14,7 +14,7 @@ export interface Quote {
   isBestValue: boolean;
 }
 
-// Units of each currency per 1 USD — mid-market snapshot 2026-05-17
+// Units of each currency per 1 USD — mid-market snapshot 2026-05-27
 // TODO v2: replace with live FX API (e.g. exchangerate-api.com)
 const MID_RATES: Record<Currency, number> = {
   USD: 1.00,
@@ -37,18 +37,30 @@ const COUNTRY_CURRENCY: Record<CountryCode, Currency> = {
   ID: 'IDR',
 };
 
+// Currencies a recipient can receive in each destination country.
+// First entry is the local default. Additional entries are foreign-currency
+// bank accounts that Georgian (and other) banks commonly offer.
+const DEST_CURRENCIES_MAP: Partial<Record<CountryCode, Currency[]>> = {
+  GE: ['GEL', 'USD', 'EUR'],  // Georgian banks (TBC, BoG, etc.) support GEL, USD, and EUR accounts
+};
+
 export function getCurrency(country: CountryCode): Currency {
   return COUNTRY_CURRENCY[country];
+}
+
+export function getDestCurrencies(country: CountryCode): Currency[] {
+  return DEST_CURRENCIES_MAP[country] ?? [COUNTRY_CURRENCY[country]];
 }
 
 export function calculate(
   sourceCountry: CountryCode,
   destCountry: CountryCode,
+  destCurrency: Currency,
   amount: number,
   providers: Provider[]
 ): Quote[] {
   const sourceCurrency = COUNTRY_CURRENCY[sourceCountry];
-  const destCurrency = COUNTRY_CURRENCY[destCountry];
+  const localDestCurrency = COUNTRY_CURRENCY[destCountry];
   const midRate = MID_RATES[destCurrency] / MID_RATES[sourceCurrency];
 
   const quotes: Quote[] = [];
@@ -58,8 +70,15 @@ export function calculate(
     if (!provider.supportedDestinationCountries.includes(destCountry)) continue;
 
     const matched = provider.corridors.find(
-      c => c.source.country === sourceCountry && c.destination.country === destCountry
+      c => c.source.country === sourceCountry &&
+           c.destination.country === destCountry &&
+           c.destination.currency === destCurrency
     );
+
+    // For non-local destination currencies (e.g. USD to a Georgian USD account),
+    // only include providers with an explicit corridor — no fallback guessing.
+    if (!matched && destCurrency !== localDestCurrency) continue;
+
     const corridor = matched ?? provider.fallbackFee;
 
     const totalFee = corridor.fixedFee + amount * corridor.percentageFee;
