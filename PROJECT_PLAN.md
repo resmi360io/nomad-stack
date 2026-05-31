@@ -251,7 +251,6 @@ Update `ResultsTable.tsx`:
 [ ] Apply: Wise Platform affiliate (https://wise.com/partners)
 [ ] Apply: Revolut affiliate (via Impact/Awin)
 [ ] Apply: Payoneer affiliate (https://www.payoneer.com/affiliates/)
-[ ] Apply: Deel affiliate (https://www.deel.com/partners)
 [ ] Apply: Mercury affiliate (referral link in dashboard)
 [ ] Apply: bunq affiliate (via Awin)
 [ ] Replace [REPLACE_AFFILIATE_ID] strings in /data/providers.ts
