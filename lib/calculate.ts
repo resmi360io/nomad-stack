@@ -52,6 +52,32 @@ export function getDestCurrencies(country: CountryCode): Currency[] {
   return DEST_CURRENCIES_MAP[country] ?? [COUNTRY_CURRENCY[country]];
 }
 
+// Returns only the receiving currencies that have real corridors for (source, dest).
+// Always includes the local destination currency (which falls back to provider defaults).
+// Sorted: local currency first, then alphabetically.
+export function getAvailableDestCurrencies(
+  sourceCountry: CountryCode,
+  destCountry: CountryCode,
+  providers: Provider[]
+): Currency[] {
+  const localCurrency = COUNTRY_CURRENCY[destCountry];
+  const currencies = new Set<Currency>([localCurrency]);
+
+  for (const provider of providers) {
+    if (!provider.supportedSourceCountries.includes(sourceCountry)) continue;
+    if (!provider.supportedDestinationCountries.includes(destCountry)) continue;
+    for (const corridor of provider.corridors) {
+      if (corridor.source.country === sourceCountry && corridor.destination.country === destCountry) {
+        currencies.add(corridor.destination.currency);
+      }
+    }
+  }
+
+  return [...currencies].sort((a, b) =>
+    a === localCurrency ? -1 : b === localCurrency ? 1 : a.localeCompare(b)
+  );
+}
+
 export function calculate(
   sourceCountry: CountryCode,
   destCountry: CountryCode,

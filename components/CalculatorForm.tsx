@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -11,7 +11,8 @@ import {
   SelectTrigger,
 } from '@/components/ui/select';
 import type { CountryCode, Currency } from '@/data/providers';
-import { getCurrency, getDestCurrencies } from '@/lib/calculate';
+import { PROVIDERS } from '@/data/providers';
+import { getCurrency, getAvailableDestCurrencies } from '@/lib/calculate';
 
 const SOURCE_OPTIONS: { code: CountryCode; label: string }[] = [
   { code: 'US', label: 'United States (USD)' },
@@ -48,7 +49,17 @@ export function CalculatorForm({ onSubmit }: Props) {
   const [amount, setAmount] = useState('1000');
 
   const sourceCurrency = getCurrency(sourceCountry);
-  const availableDestCurrencies = getDestCurrencies(destCountry);
+  const availableDestCurrencies = useMemo(
+    () => getAvailableDestCurrencies(sourceCountry, destCountry, PROVIDERS),
+    [sourceCountry, destCountry]
+  );
+
+  function handleSourceChange(code: CountryCode) {
+    setSourceCountry(code);
+    // Reset receiving currency to local default when source changes
+    // (same-currency options differ per source — e.g., US→GE has USD but EU→GE has EUR)
+    setDestCurrency(getCurrency(destCountry));
+  }
 
   function handleDestCountryChange(code: CountryCode) {
     setDestCountry(code);
@@ -69,7 +80,7 @@ export function CalculatorForm({ onSubmit }: Props) {
           <Label>From</Label>
           <Select
             value={sourceCountry}
-            onValueChange={(v) => { if (v) setSourceCountry(v as CountryCode); }}
+            onValueChange={(v) => { if (v) handleSourceChange(v as CountryCode); }}
           >
             <SelectTrigger className="w-full">
               <span data-slot="select-value" className="flex flex-1 text-left text-sm">
