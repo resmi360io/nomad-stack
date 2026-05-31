@@ -734,13 +734,12 @@ export const PROVIDERS: Provider[] = [
     },
   },
 
-  // ─── Bank Wire (generic SWIFT) ─────────────────────────────────────────────
+  // ─── Bank Wire ─────────────────────────────────────────────────────────────
   // Typical international wire from major US/EU bank (Chase, BoA, HSBC, Barclays)
-  // Sending fee: $25–45; correspondent bank: $10–25 → modeled as $35 flat
-  // FX markup: 300–400 bps (use 350); transfers take 2–5 business days
+  // EU→EU routes use SEPA (€2 flat, ~1h). All other routes use SWIFT ($35 flat + 350 bps FX).
   {
     slug: 'bank-wire',
-    name: 'Bank Wire (SWIFT)',
+    name: 'Bank Wire',
     logoUrl: '/logos/bank-wire.svg',
     website: 'https://www.swift.com',
     // No signupUrl — bank wire is a method, not a product to sign up for
@@ -863,5 +862,48 @@ export const PROVIDERS: Provider[] = [
       notes: 'Typical SWIFT estimate — check with your specific bank for exact fees',
     },
     notes: 'Fees vary by bank. Correspondent bank charges may reduce received amount unpredictably.',
+    caveat: 'EU→EU routes use SEPA (cheap, ~1h). Other routes use SWIFT ($35 fee, 2–5 days, 3.5% FX).',
+  },
+
+  // ─── Paysera ────────────────────────────────────────────────────────────────
+  // Source: https://www.paysera.com/v2/en/fees/euro-transfers (2026-05-31)
+  // Source: https://www.paysera.com/v2/en/blog/paysera-bank-in-georgia (NBG license #15)
+  // Paysera issues Lithuanian IBANs (LT...) that are full SEPA members.
+  // Georgian residents can open a Paysera account and receive EUR from Eurozone
+  // clients via SEPA Credit Transfer — Paysera charges €0 to receive.
+  // Regulatory: Licensed by Bank of Lithuania (EMI) + NBG banking license since Nov 2022.
+  {
+    slug: 'paysera',
+    name: 'Paysera (LT IBAN)',
+    logoUrl: '/logos/paysera.svg',
+    website: 'https://www.paysera.com',
+    signupUrl: 'https://www.paysera.com/v2/en/registration',
+    affiliateLink: '',
+    hasAffiliateProgram: false,
+    lastVerified: '2026-05-31',
+    supportedSourceCountries: ['EU'],
+    supportedDestinationCountries: ['GE'],
+    corridors: [
+      // EUR from Eurozone → Paysera LT IBAN held by Georgian resident
+      // Sender does a normal SEPA transfer to the LT IBAN — Paysera receives it for free.
+      // Source: paysera.com/v2/en/fees/crediting-of-transfers — SEPA receiving: €0
+      {
+        source: { country: 'EU', currency: 'EUR' },
+        destination: { country: 'GE', currency: 'EUR' },
+        fixedFee: 0,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 1,
+        notes: 'Paysera issues a Lithuanian (EU) IBAN — Eurozone clients send SEPA; receiving fee €0',
+      },
+    ],
+    fallbackFee: {
+      fixedFee: 0,
+      percentageFee: 0,
+      fxMarkupBps: 0,
+      typicalHours: 1,
+    },
+    notes: 'Paysera issues a Lithuanian IBAN to Georgian residents. EU clients send via SEPA — Paysera charges €0 to receive. NBG-licensed bank in Georgia.',
+    caveat: 'You give your EU client a Lithuanian IBAN (LT…). They pay their bank\'s SEPA fee (~€0–5) separately — not deducted from your amount.',
   },
 ];
