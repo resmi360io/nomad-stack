@@ -362,11 +362,11 @@ export const PROVIDERS: Provider[] = [
   },
 
   // ─── PayPal ────────────────────────────────────────────────────────────────
-  // Source: https://www.paypal.com/us/digital-wallet/paypal-consumer-fees (updated May 19, 2026)
+  // Source: https://www.paypal.com/us/webapps/mpp/merchant-fees (2026-05-29)
   // Source: https://www.paypal.com/us/cshelp/article/what-are-the-cross-border-fees-when-selling-internationally-help550
-  // International personal transfers (bank-funded): 5% fee, min $0.99, MAX $2.99 (as of May 2026)
-  // For amounts >$60 (where $2.99 cap kicks in), model as $2.99 fixed + 0%
-  // FX markup: ~400 bps (4%) above mid-market for personal transfers
+  // Scenario: freelancer (Personal account) receiving international commercial payment
+  // Cross-border receiving fee: 4.4% + $0.30 fixed (deducted from received amount)
+  // FX markup: ~3.5% above mid-market (embedded in quoted conversion rate, not shown as line item)
   // Georgia (GEL) not reliably supported — falls back
   {
     slug: 'paypal',
@@ -376,69 +376,70 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.paypal.com/us/business',
     affiliateLink: '',
     hasAffiliateProgram: false,
-    lastVerified: '2026-05-27',
+    lastVerified: '2026-05-29',
     supportedSourceCountries: ['US', 'GB', 'EU'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PT', currency: 'EUR' },
-        fixedFee: 2.99,
-        percentageFee: 0,
-        fxMarkupBps: 400,
-        typicalHours: 1,
-        notes: 'Fee capped at $2.99 for bank-funded personal transfers >$60',
+        fixedFee: 0.30,
+        percentageFee: 0.044,
+        fxMarkupBps: 350,
+        typicalHours: 24,
+        notes: '4.4% + $0.30 cross-border receiving fee; instant to PayPal balance, 1–3 days to bank',
       },
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'MX', currency: 'MXN' },
-        fixedFee: 2.99,
-        percentageFee: 0,
-        fxMarkupBps: 400,
-        typicalHours: 1,
+        fixedFee: 0.30,
+        percentageFee: 0.044,
+        fxMarkupBps: 350,
+        typicalHours: 24,
       },
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'TH', currency: 'THB' },
-        fixedFee: 2.99,
-        percentageFee: 0,
-        fxMarkupBps: 400,
-        typicalHours: 1,
+        fixedFee: 0.30,
+        percentageFee: 0.044,
+        fxMarkupBps: 350,
+        typicalHours: 24,
       },
       {
         source: { country: 'GB', currency: 'GBP' },
         destination: { country: 'PT', currency: 'EUR' },
-        fixedFee: 2.99,
-        percentageFee: 0,
-        fxMarkupBps: 400,
-        typicalHours: 1,
+        fixedFee: 0.30,
+        percentageFee: 0.044,
+        fxMarkupBps: 350,
+        typicalHours: 24,
       },
       {
         source: { country: 'EU', currency: 'EUR' },
         destination: { country: 'ID', currency: 'IDR' },
-        fixedFee: 2.99,
-        percentageFee: 0,
-        fxMarkupBps: 400,
+        fixedFee: 0.30,
+        percentageFee: 0.044,
+        fxMarkupBps: 350,
         typicalHours: 24,
         notes: 'PayPal available in Indonesia; limited local withdrawal options',
       },
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'ID', currency: 'IDR' },
-        fixedFee: 2.99,
-        percentageFee: 0,
-        fxMarkupBps: 400,
+        fixedFee: 0.30,
+        percentageFee: 0.044,
+        fxMarkupBps: 350,
         typicalHours: 24,
       },
     ],
     fallbackFee: {
-      fixedFee: 2.99,
-      percentageFee: 0,
-      fxMarkupBps: 400,
+      fixedFee: 0.30,
+      percentageFee: 0.044,
+      fxMarkupBps: 350,
       typicalHours: 24,
       notes: 'PayPal has limited or no GEL (Georgia) support — use Wise or Revolut',
     },
-    notes: 'Georgia (GEL) not reliably supported. Transfer fee capped at $2.99 for bank-funded personal transfers. FX markup ~4% above mid-market.',
+    notes: 'Georgia (GEL) not reliably supported. Fees shown are for Personal-account cross-border receiving. FX markup ~3.5% above mid-market.',
+    caveat: 'Fees vary by account type and sender country. Shown: Personal-account international receiving (4.4% + $0.30 + 3.5% FX).',
   },
 
   // ─── GrabrFi ───────────────────────────────────────────────────────────────
