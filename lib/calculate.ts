@@ -14,18 +14,6 @@ export interface Quote {
   isBestValue: boolean;
 }
 
-// Units of each currency per 1 USD — mid-market snapshot 2026-05-27
-// TODO v2: replace with live FX API (e.g. exchangerate-api.com)
-const MID_RATES: Record<Currency, number> = {
-  USD: 1.00,
-  GBP: 0.79,
-  EUR: 0.92,
-  GEL: 2.73,
-  MXN: 17.15,
-  THB: 35.20,
-  IDR: 16250,
-};
-
 const COUNTRY_CURRENCY: Record<CountryCode, Currency> = {
   US: 'USD',
   GB: 'GBP',
@@ -83,11 +71,12 @@ export function calculate(
   destCountry: CountryCode,
   destCurrency: Currency,
   amount: number,
-  providers: Provider[]
+  providers: Provider[],
+  midRates: Record<Currency, number>
 ): Quote[] {
   const sourceCurrency = COUNTRY_CURRENCY[sourceCountry];
   const localDestCurrency = COUNTRY_CURRENCY[destCountry];
-  const midRate = MID_RATES[destCurrency] / MID_RATES[sourceCurrency];
+  const midRate = midRates[destCurrency] / midRates[sourceCurrency];
 
   const quotes: Quote[] = [];
 

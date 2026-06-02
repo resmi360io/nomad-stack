@@ -51,11 +51,11 @@ export const PROVIDERS: Provider[] = [
     // Affiliate template: https://wise.com/invite/[REPLACE_AFFILIATE_ID]
     affiliateLink: '',
     hasAffiliateProgram: true,
-    lastVerified: '2026-05-27',
+    lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     corridors: [
-      // Verified: $14.74 fee on $1,000 send (wise.com/us/send-money/send-money-to-georgia)
+      // Verified: ~$14.74 fee on $1,000 send (wise.com/us/send-money/send-money-to-georgia)
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'GE', currency: 'GEL' },
@@ -81,12 +81,13 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 2,
       },
-      // Verified: ~$7.44 fee on $1,000 USD send ($4.14 fixed + 0.33%)
+      // Verified 2026-06-02: ~$5 fee on $1,000 USD send ($0.69 fixed + 0.43%)
+      // Source: wise.com/us/pricing/send-money — range 0.43–0.57%; ~0.5% typical
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PT', currency: 'EUR' },
-        fixedFee: 4.14,
-        percentageFee: 0.0033,
+        fixedFee: 0.69,
+        percentageFee: 0.0043,
         fxMarkupBps: 0,
         typicalHours: 1,
       },
@@ -196,7 +197,7 @@ export const PROVIDERS: Provider[] = [
     // Affiliate template: https://revolut.com/referral/[REPLACE_AFFILIATE_ID]
     affiliateLink: '',
     hasAffiliateProgram: true,
-    lastVerified: '2026-05-27',
+    lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     corridors: [
@@ -227,6 +228,8 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 72,
       },
       // EUR via SEPA local network — 0.3% fee, near mid-market FX weekdays
+      // Verified 2026-06-02: revolut.com/en-US/legal/standard-fees/
+      // Shown: weekday within $1,000/month FX allowance. Out-of-allowance +0.5%; weekend +1%.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PT', currency: 'EUR' },
@@ -318,15 +321,14 @@ export const PROVIDERS: Provider[] = [
       notes: 'Estimated — verify at revolut.com for your corridor',
     },
     notes: 'Standard plan. EUR/SEPA corridors: 0.3% fee, ~instant. Other corridors via SWIFT: $3 flat fee, 3–5 days. FX at mid-market weekdays within $1,000/month; +0.5% over limit; weekends +1% (major) or +2% (GEL/THB/IDR).',
-    caveat: 'Standard plan, weekday. GEL/THB/IDR sent via SWIFT (3–5 days, $3 fee). Weekend adds +1–2% FX surcharge.',
+    caveat: 'Shown: weekday, within $1,000/month FX allowance. Out-of-allowance: +0.5%. Weekends: +1% extra. Realistic worst-case: ~1.5% all-in. GEL/THB/IDR via SWIFT ($3 fee, 3–5 days).',
   },
 
   // ─── Payoneer ──────────────────────────────────────────────────────────────
-  // Source: https://www.payoneer.com/legal/fees/ (2026-05-27)
+  // Source: https://www.payoneer.com/legal/fees/ (2026-06-02)
   // Source: https://payoneer.custhelp.com/app/answers/detail/a_id/6118 (FX/cross-border fee)
-  // Source: https://vaultleap.com/blog/payoneer-fees-explained-2026 (cross-check)
   // Receiving fee: 1% (from Payoneer balance/bank); FX markup: up to 200 bps on local bank withdrawals
-  // USD→GEL: 1% receiving fee + ~2% FX markup embedded in withdrawal rate + $1.50 withdrawal fee
+  // Cross-currency: 1% receive + up to 2% FX = ~3% all-in. $1.50 flat ONLY for same-currency withdrawals.
   {
     slug: 'payoneer',
     name: 'Payoneer',
@@ -337,18 +339,18 @@ export const PROVIDERS: Provider[] = [
     // Affiliate template: https://www.payoneer.com/partners/[REPLACE_AFFILIATE_ID]
     affiliateLink: '',
     hasAffiliateProgram: true,
-    lastVerified: '2026-05-27',
+    lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'GE', currency: 'GEL' },
-        fixedFee: 1.50,
+        fixedFee: 0,
         percentageFee: 0.01,
         fxMarkupBps: 200,
         typicalHours: 72,
-        notes: '1% receiving fee + ~2% FX markup + $1.50 withdrawal fee',
+        notes: '1% receiving fee + ~2% FX markup; $1.50 flat applies to same-currency withdrawals only',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -470,7 +472,7 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.paypal.com/us/business',
     affiliateLink: '',
     hasAffiliateProgram: false,
-    lastVerified: '2026-05-29',
+    lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID'],
     corridors: [
@@ -548,8 +550,9 @@ export const PROVIDERS: Provider[] = [
   },
 
   // ─── GrabrFi ───────────────────────────────────────────────────────────────
-  // Source: https://grabrfi.com/pricing (2026-05-27)
-  // Freelancer-focused; ~1% flat fee, mid-market-adjacent FX (100 bps markup)
+  // Source: https://grabrfi.com/pricing (2026-06-02)
+  // Freelancer-focused; USD checking product. Local-currency withdrawal: MX, GE, and select others.
+  // Does NOT support EUR delivery to Eurozone banks — no PT corridor.
   {
     slug: 'grabrfi',
     name: 'GrabrFi',
@@ -558,21 +561,13 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.grabrfi.com/en',
     affiliateLink: 'https://app.grabrfi.com/sign-up?invite-code=kqMCKAcsollV&itm_source=app&itm_medium=referral&itm_campaign=invite_friend_promo&itm_content=ios_invite_screen',
     hasAffiliateProgram: true,
-    lastVerified: '2026-05-27',
+    lastVerified: '2026-06-02',
     supportedSourceCountries: ['US'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'MX', 'TH', 'ID'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'GE', currency: 'GEL' },
-        fixedFee: 0,
-        percentageFee: 0.01,
-        fxMarkupBps: 100,
-        typicalHours: 24,
-      },
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'PT', currency: 'EUR' },
         fixedFee: 0,
         percentageFee: 0.01,
         fxMarkupBps: 100,
@@ -629,7 +624,7 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.westernunion.com',
     affiliateLink: '',
     hasAffiliateProgram: false,
-    lastVerified: '2026-05-27',
+    lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     corridors: [
@@ -658,13 +653,14 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 500,
         typicalHours: 24,
       },
-      // Confirmed ~100 bps FX spread (bestexchangerates.com)
+      // Verified 2026-06-02: ~1.5% all-in online bank-deposit (range 0.5–2.5% by method)
+      // $3 flat send fee + ~1.5% FX spread (westernunion.com US→EUR online bank)
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PT', currency: 'EUR' },
         fixedFee: 3,
         percentageFee: 0,
-        fxMarkupBps: 100,
+        fxMarkupBps: 150,
         typicalHours: 24,
       },
       // Confirmed ~150 bps FX spread, strong US→MX network (bestexchangerates.com)
@@ -733,7 +729,7 @@ export const PROVIDERS: Provider[] = [
 
   // ─── Bank Wire ─────────────────────────────────────────────────────────────
   // Typical international wire from major US/EU bank (Chase, BoA, HSBC, Barclays)
-  // EU→EU routes use SEPA (€2 flat, ~1h). All other routes use SWIFT ($35 flat + 350 bps FX).
+  // EU→EU routes use SEPA (€2 flat, ~1h). SWIFT routes: $35 flat + ~1% FX = ~3.5–4.5% effective.
   {
     slug: 'bank-wire',
     name: 'Bank Wire',
@@ -742,7 +738,7 @@ export const PROVIDERS: Provider[] = [
     // No signupUrl — bank wire is a method, not a product to sign up for
     affiliateLink: '',
     hasAffiliateProgram: false,
-    lastVerified: '2026-05-27',
+    lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     corridors: [
@@ -771,12 +767,13 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 350,
         typicalHours: 96,
       },
+      // Verified 2026-06-02: $25–45 sending fee + bank FX markup ~1%; ~3.5% effective all-in
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PT', currency: 'EUR' },
         fixedFee: 35,
         percentageFee: 0,
-        fxMarkupBps: 350,
+        fxMarkupBps: 100,
         typicalHours: 72,
       },
       {
@@ -877,7 +874,7 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.paysera.com/v2/en/registration',
     affiliateLink: '',
     hasAffiliateProgram: false,
-    lastVerified: '2026-05-31',
+    lastVerified: '2026-06-02',
     supportedSourceCountries: ['EU'],
     supportedDestinationCountries: ['GE'],
     corridors: [

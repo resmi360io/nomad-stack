@@ -40,9 +40,11 @@ const CURRENCY_LABELS: Record<Currency, string> = {
 
 interface Props {
   onSubmit: (sourceCountry: CountryCode, destCountry: CountryCode, destCurrency: Currency, amount: number) => void;
+  disabled?: boolean;
+  rateLabel?: string | null;
 }
 
-export function CalculatorForm({ onSubmit }: Props) {
+export function CalculatorForm({ onSubmit, disabled, rateLabel }: Props) {
   const [sourceCountry, setSourceCountry] = useState<CountryCode>('US');
   const [destCountry, setDestCountry] = useState<CountryCode>('GE');
   const [destCurrency, setDestCurrency] = useState<Currency>(getCurrency('GE'));
@@ -154,8 +156,11 @@ export function CalculatorForm({ onSubmit }: Props) {
                 required
               />
             </div>
-            <Button type="submit">Compare options</Button>
+            <Button type="submit" disabled={disabled}>Compare options</Button>
           </div>
+          {rateLabel && (
+            <p className="mt-2 text-xs text-muted-foreground">{rateLabel}</p>
+          )}
         </div>
       </div>
     </form>

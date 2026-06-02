@@ -7,18 +7,38 @@ import { calculate } from '@/lib/calculate';
 import { PROVIDERS } from '@/data/providers';
 import type { CountryCode, Currency } from '@/data/providers';
 import type { Quote } from '@/lib/calculate';
+import { useLiveRates } from '@/hooks/useLiveRates';
 
 export function Calculator() {
   const [quotes, setQuotes] = useState<Quote[] | null>(null);
+  const ratesState = useLiveRates();
 
   function handleSubmit(src: CountryCode, dest: CountryCode, destCurrency: Currency, amount: number) {
-    setQuotes(calculate(src, dest, destCurrency, amount, PROVIDERS));
+    if (ratesState.status !== 'ready') return;
+    setQuotes(calculate(src, dest, destCurrency, amount, PROVIDERS, ratesState.rates));
   }
+
+  const rateLabel = ratesState.status === 'ready'
+    ? `Live mid-market rates as of ${ratesState.rateDate} · open.er-api.com`
+    : ratesState.status === 'loading'
+    ? 'Loading live exchange rates…'
+    : null;
 
   return (
     <div className="space-y-6">
-      <CalculatorForm onSubmit={handleSubmit} />
-      {quotes !== null && <ResultsTable quotes={quotes} />}
+      {ratesState.status === 'error' && (
+        <p className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-2.5 text-sm text-destructive">
+          Could not load live exchange rates — please refresh and try again.
+        </p>
+      )}
+      <CalculatorForm
+        onSubmit={handleSubmit}
+        disabled={ratesState.status !== 'ready'}
+        rateLabel={rateLabel}
+      />
+      {quotes !== null && ratesState.status === 'ready' && (
+        <ResultsTable quotes={quotes} rateDate={ratesState.rateDate} />
+      )}
     </div>
   );
 }
