@@ -32,9 +32,10 @@ function formatAmount(n: number, currency: string): string {
 
 interface Props {
   quotes: Quote[];
+  rateDate: string;
 }
 
-export function ResultsTable({ quotes }: Props) {
+export function ResultsTable({ quotes, rateDate }: Props) {
   if (quotes.length === 0) {
     return (
       <p className="text-sm text-muted-foreground">
@@ -45,7 +46,10 @@ export function ResultsTable({ quotes }: Props) {
 
   return (
     <div className="space-y-3">
-      <h2 className="text-lg font-semibold">Results — ranked by net received</h2>
+      <div className="flex items-baseline justify-between gap-2">
+        <h2 className="text-lg font-semibold">Results — ranked by net received</h2>
+        <span className="text-xs text-muted-foreground whitespace-nowrap">Rate: {rateDate}</span>
+      </div>
       {quotes.map((q, i) => {
         const fxQ = fxQualityLabel(q.fxMarkupBps);
         const href = q.affiliateLink || q.provider.signupUrl;
@@ -76,6 +80,9 @@ export function ResultsTable({ quotes }: Props) {
                       {q.provider.caveat}
                     </div>
                   )}
+                  <div className="mt-0.5 text-xs text-muted-foreground/40">
+                    Fees verified {q.provider.lastVerified}
+                  </div>
                 </div>
               </div>
 
