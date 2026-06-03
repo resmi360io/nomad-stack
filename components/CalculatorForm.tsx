@@ -22,6 +22,7 @@ const SOURCE_OPTIONS: { code: CountryCode; label: string }[] = [
 
 const DEST_OPTIONS: { code: CountryCode; label: string }[] = [
   { code: 'GE', label: 'Georgia' },
+  { code: 'PK', label: 'Pakistan (PKR)' },
   { code: 'PT', label: 'Portugal (EUR)' },
   { code: 'MX', label: 'Mexico (MXN)' },
   { code: 'TH', label: 'Thailand (THB)' },
@@ -36,6 +37,7 @@ const CURRENCY_LABELS: Record<Currency, string> = {
   MXN: 'MXN – Mexican Peso',
   THB: 'THB – Thai Baht',
   IDR: 'IDR – Indonesian Rupiah',
+  PKR: 'PKR – Pakistani Rupee',
 };
 
 interface Props {
