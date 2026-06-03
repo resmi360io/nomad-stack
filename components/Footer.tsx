@@ -9,6 +9,15 @@ export function Footer() {
         >
           how we make money
         </a>
+        {' · '}
+        <a
+          href="https://github.com/resmi360io/nomad-stack"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2 hover:text-foreground"
+        >
+          fee data on GitHub
+        </a>
         . Ranking is based on fee math only.
       </p>
       <p className="mt-1">© {new Date().getFullYear()} Paid Across</p>

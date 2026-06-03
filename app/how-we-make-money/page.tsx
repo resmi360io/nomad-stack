@@ -58,7 +58,16 @@ export default function HowWeMakeMoney() {
           We only list providers we believe are legitimate and useful for digital nomads and remote
           freelancers. Fee data is sourced from each provider&apos;s public pricing pages and
           verified periodically — check the <code>lastVerified</code> dates in our data for
-          freshness.
+          freshness. The fee data behind these rankings is open-source — check it or correct it on{' '}
+          <a
+            href="https://github.com/resmi360io/nomad-stack"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-foreground"
+          >
+            GitHub
+          </a>
+          .
         </p>
       </section>
 
