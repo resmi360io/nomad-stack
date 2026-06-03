@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const corridorPages: MetadataRoute.Sitemap = CORRIDORS.map((c) => ({
     url: `${SITE_URL}/receive/${c.slug}`,
     lastModified: new Date(c.updatedDate),
-    changeFrequency: 'weekly',
+    changeFrequency: 'weekly' as const,
     priority: 0.8,
   }));
 
@@ -17,25 +17,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: SITE_URL,
       lastModified: now,
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
       priority: 1.0,
     },
     {
       url: `${SITE_URL}/receive-international-payments`,
       lastModified: now,
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
     {
       url: `${SITE_URL}/how-we-make-money`,
       lastModified: now,
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 0.4,
     },
     {
       url: `${SITE_URL}/about/author`,
       lastModified: now,
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 0.5,
     },
     ...corridorPages,
