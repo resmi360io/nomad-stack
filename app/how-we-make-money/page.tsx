@@ -30,6 +30,25 @@ const lastUpdated = getLatestAffiliateUpdate();
 export default function HowWeMakeMoney() {
   return (
     <main className="mx-auto max-w-2xl px-4 py-12 space-y-8">
+      {/* Trust statement — visible at the top, not buried */}
+      <div className="rounded-xl border bg-muted/40 px-5 py-4 text-sm leading-relaxed">
+        <p className="font-semibold mb-1">Rankings are never for sale.</p>
+        <p className="text-muted-foreground">
+          Every provider is ranked purely by the net amount you receive after all fees and FX
+          markup. No provider has paid for placement, a higher rank, or any editorial treatment.
+          The fee data driving the ranking is{' '}
+          <a
+            href="https://github.com/resmi360io/nomad-stack"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-foreground"
+          >
+            open-source on GitHub
+          </a>{' '}
+          — anyone can audit or correct it.
+        </p>
+      </div>
+
       <header className="space-y-2">
         <h1 className="text-2xl font-bold tracking-tight">How We Make Money</h1>
         <p className="text-muted-foreground">
@@ -58,16 +77,16 @@ export default function HowWeMakeMoney() {
           We only list providers we believe are legitimate and useful for digital nomads and remote
           freelancers. Fee data is sourced from each provider&apos;s public pricing pages and
           verified periodically — check the <code>lastVerified</code> dates in our data for
-          freshness. The fee data behind these rankings is open-source — check it or correct it on{' '}
+          freshness. The fee data behind these rankings is{' '}
           <a
             href="https://github.com/resmi360io/nomad-stack"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline underline-offset-2 hover:text-foreground"
+            className="underline underline-offset-2 hover:text-foreground font-medium"
           >
-            GitHub
+            open-source on GitHub
           </a>
-          .
+          {' '}— check it or correct it.
         </p>
       </section>
 
