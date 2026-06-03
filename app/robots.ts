@@ -1,10 +1,15 @@
 import type { MetadataRoute } from 'next';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://nomadfees.com';
-
 export default function robots(): MetadataRoute.Robots {
+  if (process.env.VERCEL_ENV !== 'production') {
+    return {
+      rules: { userAgent: '*', disallow: '/' },
+      sitemap: 'https://paidacross.com/sitemap.xml',
+    };
+  }
+
   return {
     rules: { userAgent: '*', allow: '/' },
-    sitemap: `${SITE_URL}/sitemap.xml`,
+    sitemap: 'https://paidacross.com/sitemap.xml',
   };
 }

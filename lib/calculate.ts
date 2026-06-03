@@ -23,6 +23,7 @@ const COUNTRY_CURRENCY: Record<CountryCode, Currency> = {
   MX: 'MXN',
   TH: 'THB',
   ID: 'IDR',
+  PK: 'PKR',
 };
 
 // Currencies a recipient can receive in each destination country.

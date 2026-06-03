@@ -25,7 +25,8 @@ export function Calculator() {
     : null;
 
   return (
-    <div className="space-y-6">
+    // min-height prevents CLS while the calculator hydrates (prevents layout shift)
+    <div className="space-y-6" style={{ minHeight: '320px' }}>
       {ratesState.status === 'error' && (
         <p className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-2.5 text-sm text-destructive">
           Could not load live exchange rates — please refresh and try again.

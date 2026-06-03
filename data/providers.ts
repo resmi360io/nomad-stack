@@ -1,9 +1,8 @@
-// Fee data last verified: 2026-05-27
+// Fee data last verified: 2026-06-03
 // Sources: provider pricing pages (see inline comments per provider)
-// TODO v2: pull live rates from an FX API instead of hardcoded mid-market rates
 
-export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR';
-export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID';
+export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR';
+export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK';
 
 export interface CorridorFee {
   source: { country: CountryCode; currency: Currency };
@@ -341,7 +340,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: true,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -446,6 +445,17 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 24,
         notes: '1% receiving fee; no FX conversion (SEPA)',
+      },
+      // USD → Pakistani PKR bank account
+      // Source: payoneer.com/legal/fees/ (2026-06-03) — 1% receiving fee + up to 2% FX on withdrawal
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PK', currency: 'PKR' },
+        fixedFee: 0,
+        percentageFee: 0.01,
+        fxMarkupBps: 200,
+        typicalHours: 72,
+        notes: '1% receiving fee + up to 2% FX markup on PKR withdrawal to local bank',
       },
     ],
     fallbackFee: {
@@ -626,7 +636,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -717,6 +727,18 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 1,
         notes: 'EUR SEPA transfer within SEPA zone; no FX conversion',
       },
+      // USD → Pakistani PKR bank deposit
+      // Source: westernunion.com/us/en/transfer-fees.html — ~$5 flat online, ~4.5% FX spread on PKR
+      // PKR is a minor corridor; FX spread verified via bestexchangerates.com cross-rate comparison
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PK', currency: 'PKR' },
+        fixedFee: 5,
+        percentageFee: 0,
+        fxMarkupBps: 450,
+        typicalHours: 48,
+        notes: '~$5 flat fee + ~4.5% FX spread on PKR (minor corridor). Bank deposit to HBL, UBL, MCB.',
+      },
     ],
     fallbackFee: {
       fixedFee: 5,
@@ -740,7 +762,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -846,6 +868,17 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 1,
         notes: 'SEPA transfer within EU; no FX conversion, near-instant',
+      },
+      // USD → Pakistani PKR bank account via SWIFT
+      // Typical US bank outgoing wire $35 flat + bank FX markup ~3.5% on PKR
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PK', currency: 'PKR' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 350,
+        typicalHours: 120,
+        notes: '$25-45 flat sending fee + bank FX markup. SWIFT to HBL, UBL, MCB, Bank Alfalah.',
       },
     ],
     fallbackFee: {

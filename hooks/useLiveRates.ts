@@ -41,6 +41,7 @@ export function useLiveRates(): RatesState {
           MXN: r.MXN,
           THB: r.THB,
           IDR: r.IDR,
+          PKR: r.PKR,
         };
         // "Mon, 02 Jun 2026 00:00:02 +0000" → "2026-06-02"
         const raw: string = data.time_last_update_utc ?? '';
