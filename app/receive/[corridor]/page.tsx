@@ -198,7 +198,10 @@ export default async function CorridorPage({
         <section aria-label="Payment cost calculator">
           <h2 className="text-xl font-semibold mb-4">Calculate your own transfer</h2>
           <div style={{ minHeight: '320px' }}>
-            <Calculator />
+            <Calculator
+              defaultSrc={corridor.sourceCountry as CountryCode}
+              defaultDest={corridor.destCountry as CountryCode}
+            />
           </div>
         </section>
 

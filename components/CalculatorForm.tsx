@@ -44,12 +44,14 @@ interface Props {
   onSubmit: (sourceCountry: CountryCode, destCountry: CountryCode, destCurrency: Currency, amount: number) => void;
   disabled?: boolean;
   rateLabel?: string | null;
+  defaultSrc?: CountryCode;
+  defaultDest?: CountryCode;
 }
 
-export function CalculatorForm({ onSubmit, disabled, rateLabel }: Props) {
-  const [sourceCountry, setSourceCountry] = useState<CountryCode>('US');
-  const [destCountry, setDestCountry] = useState<CountryCode>('GE');
-  const [destCurrency, setDestCurrency] = useState<Currency>(getCurrency('GE'));
+export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US', defaultDest = 'PK' }: Props) {
+  const [sourceCountry, setSourceCountry] = useState<CountryCode>(defaultSrc);
+  const [destCountry, setDestCountry] = useState<CountryCode>(defaultDest);
+  const [destCurrency, setDestCurrency] = useState<Currency>(getCurrency(defaultDest));
   const [amount, setAmount] = useState('1000');
 
   const sourceCurrency = getCurrency(sourceCountry);

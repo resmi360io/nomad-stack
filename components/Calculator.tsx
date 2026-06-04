@@ -9,7 +9,12 @@ import type { CountryCode, Currency } from '@/data/providers';
 import type { Quote } from '@/lib/calculate';
 import { useLiveRates } from '@/hooks/useLiveRates';
 
-export function Calculator() {
+interface Props {
+  defaultSrc?: CountryCode;
+  defaultDest?: CountryCode;
+}
+
+export function Calculator({ defaultSrc, defaultDest }: Props = {}) {
   const [quotes, setQuotes] = useState<Quote[] | null>(null);
   const ratesState = useLiveRates();
 
@@ -36,6 +41,8 @@ export function Calculator() {
         onSubmit={handleSubmit}
         disabled={ratesState.status !== 'ready'}
         rateLabel={rateLabel}
+        defaultSrc={defaultSrc}
+        defaultDest={defaultDest}
       />
       {quotes !== null && ratesState.status === 'ready' && (
         <ResultsTable quotes={quotes} rateDate={ratesState.rateDate} />
