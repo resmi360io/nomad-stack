@@ -1,8 +1,8 @@
 // Fee data last verified: 2026-06-03
 // Sources: provider pricing pages (see inline comments per provider)
 
-export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR';
-export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK';
+export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT';
+export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK' | 'BD';
 
 export interface CorridorFee {
   source: { country: CountryCode; currency: Currency };
@@ -340,7 +340,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: true,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -456,6 +456,18 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 200,
         typicalHours: 72,
         notes: '1% receiving fee + up to 2% FX markup on PKR withdrawal to local bank',
+      },
+      // USD → Bangladeshi BDT bank account
+      // Source: payoneer.com/legal/fees/ (updated Jan 2026) — 1% receiving fee + 1.2–4% FX on BDT withdrawal
+      // Modeled at ~2% FX markup as representative midpoint; bKash ATM cash-out adds 0.7%
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'BD', currency: 'BDT' },
+        fixedFee: 0,
+        percentageFee: 0.01,
+        fxMarkupBps: 200,
+        typicalHours: 72,
+        notes: '1% receiving fee + ~2% FX markup on BDT withdrawal (range 1.2–4%); bKash cash-out +0.7%',
       },
     ],
     fallbackFee: {
@@ -762,7 +774,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -879,6 +891,18 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 350,
         typicalHours: 120,
         notes: '$25-45 flat sending fee + bank FX markup. SWIFT to HBL, UBL, MCB, Bank Alfalah.',
+      },
+      // USD → Bangladeshi BDT bank account via SWIFT
+      // TT buying rate typically 1–2% below mid-market; $35 flat + possible $15-30 correspondent deduction
+      // Formal route: generates FIRC needed for export cash incentive and ERQ account funding
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'BD', currency: 'BDT' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 150,
+        typicalHours: 72,
+        notes: '$35 flat + TT buying rate ~1–2% below mid-market; generates FIRC for export incentive claims.',
       },
     ],
     fallbackFee: {
