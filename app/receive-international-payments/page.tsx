@@ -77,10 +77,11 @@ export default function ReceiveInternationalPaymentsPage() {
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed">
             The platform you use to receive international payments can cost you anywhere from
-            0.5% to 8% of each invoice. The difference between the cheapest and most expensive
-            option on a $5,000/month freelance income is over $300 a year. This guide covers
-            every major receiving corridor, what each provider actually charges, and which one
-            comes out cheapest for your specific source and destination currency.
+            0.5% to 8% of each invoice. On a single $5,000 invoice, that gap is about $375 —
+            and on $5,000 of monthly freelance income, choosing the wrong option can cost you
+            over $4,000 a year. This guide covers every major receiving corridor, what each
+            provider actually charges, and which one comes out cheapest for your specific
+            source and destination currency.
           </p>
           <p className="text-xs text-muted-foreground">
             By{' '}
