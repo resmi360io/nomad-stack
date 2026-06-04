@@ -126,6 +126,96 @@ export const CORRIDORS: Corridor[] = [
         a: 'HBL, UBL, MCB, Meezan Bank, and Bank Alfalah are the most commonly reported to work without issues. Standard Chartered Pakistan and Faysal Bank also work. The main requirement is that the account is in your legal name exactly as it appears in your Payoneer verification documents (CNIC or passport). Joint accounts or accounts with name mismatches can cause delays or rejections. Most users on freelance forums report the fastest processing with HBL and UBL.',
       },
     ],
-    siblingCorridors: [],
+    siblingCorridors: ['usd-to-bdt'],
+  },
+
+  // ─── USD → Bangladesh (BDT) ────────────────────────────────────────────────
+  {
+    slug: 'usd-to-bdt',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'BDT',
+    destCountry: 'BD',
+    country: 'Bangladesh',
+    title: 'Receive USD in Bangladesh: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in Bangladesh. Payoneer is the main option (~3–5% all-in); PayPal can\'t receive and Wise is receive-only. Live FX + worked example.',
+    h1: 'How to receive USD in Bangladesh: fees, FX spread, and what you actually net',
+    intro:
+      'Bangladeshi freelancers mostly receive via Payoneer (~3–5% all-in), with the option to withdraw to a bank account or to bKash at 0.7% ATM cash-out. PayPal cannot receive commercial payments in Bangladesh, and Wise is receive-only for recipients — a client can push BDT directly to your bank account, bKash, or Nagad, but you cannot open a Wise account.',
+    publishedDate: '2026-06-04',
+    updatedDate: '2026-06-04',
+    providers: [
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        available: true,
+        notes:
+          'The dominant route for Bangladeshi freelancers on Upwork, Fiverr, and direct invoicing. Payoneer charges 1% on incoming commercial payments. When you withdraw to a local BDT bank account, Payoneer applies an FX conversion at roughly 1.2%–4% (the official fee schedule, updated January 2026, states this range; roughly 2% is a representative midpoint). Same-currency USD-to-USD withdrawal is a flat $1.50 instead. You can also withdraw to bKash via Payoneer\'s integration with partner banks (BRAC Bank, City Bank, Q-Cash); bKash ATM cash-out costs 0.7% (7 Taka per 1,000, effective 19 March 2024). The bKash route is instant and convenient but does not generate a Foreign Inward Remittance Certificate (FIRC) — that document is required to claim the export cash incentive and fund an ERQ foreign-currency account. Annual account fee: $29.95/year, charged only if the account receives less than $6,000 in any 12 consecutive months — most active freelancers pay nothing. Typical all-in cost: 3–5%.',
+      },
+      {
+        slug: 'bank-wire',
+        name: 'Bank Wire (SWIFT)',
+        available: true,
+        notes:
+          'SWIFT wires to Bangladeshi banks (City Bank, Mutual Trust Bank, Midland Bank, Standard Chartered Bangladesh, Dutch-Bangla Bank) are the formal route that generates a Foreign Inward Remittance Certificate (FIRC), which is required to claim the export cash incentive and to fund an Exporter\'s Retention Quota (ERQ) foreign-currency account. The bank converts at the TT Buying Rate, typically 1–2% below mid-market. A typical US bank outgoing wire costs $25–45 flat, and a possible $15–30 correspondent bank deduction can reduce the amount further. On small amounts ($500–2,000) the flat fee dominates; on larger sums ($5,000+) the flat fee becomes negligible and the TT spread is competitive. City Bank, Mutual Trust Bank (MTB), and Midland Bank offer dedicated Freelancer accounts bundling a BDT current account with an ERQ sub-account.',
+      },
+      {
+        slug: 'wise',
+        name: 'Wise',
+        available: false,
+        notes:
+          'Bangladeshi residents cannot open a Wise account, cannot hold USD in a Wise wallet, and cannot get Wise receiving details to share with clients. However, Wise is available as a sending tool for your foreign client: a US client can use Wise to push BDT directly to your Bangladeshi bank account, bKash wallet, or Nagad wallet at Wise\'s mid-market rate — the client pays roughly 0.7–1.9% on their end and your receiving cost is zero. This workaround is useful for direct clients willing to set it up manually, but it does not work on freelance platforms (Upwork, Fiverr) that process payments through their own systems.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        available: false,
+        notes:
+          'PayPal commercial receiving is not available in Bangladesh. Only Xoom (a PayPal subsidiary) operates in Bangladesh, and Xoom explicitly states it supports person-to-person inbound remittance only — it does not support transactions for goods or business purposes. A freelancer cannot receive client project payments into a PayPal account in Bangladesh. Note: the Payoneer-PayPal workaround (receiving PayPal payments via Payoneer) is explicitly blocked for Bangladesh-registered Payoneer accounts — do not rely on it. There have been repeated government statements about a full PayPal launch in Bangladesh, but no commercial launch has occurred as of mid-2026. Treat PayPal as unavailable and plan billing around Payoneer and bank wire.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        available: false,
+        notes:
+          'Revolut is not licensed to operate in Bangladesh. Bangladeshi residents cannot open a Revolut account or use Revolut as a receiving method for international payments.',
+      },
+      {
+        slug: 'grabrfi',
+        name: 'GrabrFi',
+        available: false,
+        notes:
+          'GrabrFi currently supports withdrawals to Georgia, Mexico, Thailand, and Indonesia only. Bangladesh is not a supported destination.',
+      },
+    ],
+    supportedProviders: ['payoneer', 'bank-wire'],
+    faqs: [
+      {
+        q: 'What is the cheapest way to receive USD in Bangladesh?',
+        a: 'For most Bangladeshi freelancers, Payoneer to a local bank account is the cheapest widely available option at roughly 3–5% all-in (1% receiving fee plus 1.2–4% FX markup on BDT withdrawal). If your direct client is willing to cooperate, asking them to use Wise to push BDT to your bank account, bKash, or Nagad costs you nothing — the client pays roughly 0.7–1.9% on their end. This does not work on Upwork or Fiverr. For large, infrequent payments over $5,000, a SWIFT bank wire becomes cost-competitive once the flat fee is spread over the larger amount, and it generates the FIRC documentation needed for the export cash incentive.',
+      },
+      {
+        q: 'Does the 2.5% remittance incentive apply to freelancing?',
+        a: 'No. The widely-known 2.5% government cash incentive is the Wage-Earner Remittance scheme for overseas Bangladeshis sending personal remittances home — it does not apply to freelance or IT earnings. Freelancers fall under a separate export cash incentive: as of FY2025-26 (valid to 30 June 2026), the rate is 2.5% for individual freelancers and 6% for registered software/ITES firms, per Bangladesh Bank circular. This incentive is only claimable via proper banking channels with a FIRC — Payoneer-to-bKash withdrawals do not qualify. Importantly, these incentives are being phased out around Bangladesh\'s LDC graduation (scheduled November 2026) to comply with WTO rules. Verify the current rate and eligibility before relying on it.',
+      },
+      {
+        q: 'Can I keep my earnings in dollars (ERQ account)?',
+        a: 'Yes. IT/ICT service exporters and freelancers can retain 35% of export earnings in foreign currency via an Exporter\'s Retention Quota (ERQ) account; the remaining 65% auto-converts to BDT. Note: some bank websites still show 60–70% retention — that figure was cut to 35% in September 2023 and has not been restored. City Bank, Mutual Trust Bank (MTB), and Midland Bank all offer dedicated Freelancer accounts that include an ERQ foreign-currency sub-account. Retaining dollars is useful if you have USD-denominated expenses or want to avoid unfavorable conversion timing.',
+      },
+      {
+        q: 'How long does it take to receive payments in Bangladesh?',
+        a: 'Payoneer to a local BDT bank account: typically 1–3 business days after the payment clears on the sender\'s side. Payoneer to bKash: typically instant or within a few hours. SWIFT bank wire to a Bangladeshi bank: 1–3 business days in most cases; can be longer if correspondent banks are involved. Most Bangladeshi banks have improved SWIFT processing and straightforward USD→BDT wires usually settle within 2 business days.',
+      },
+      {
+        q: 'Do I have to pay income tax on foreign freelance earnings?',
+        a: 'IT and ITES freelance and business income is income-tax exempt through 30 June 2027 under the Finance Act 2024 / Income Tax Act 2023, Schedule 6. This exemption has two conditions: (a) filing an income tax return even if no tax is owed, and (b) operating cashless — all business income, expenses, and investments must move through bank transfer. Important: this covers independent freelance and business income from IT/ITES work; it does NOT apply to a salaried remote employee of a foreign employer. Rules change with each annual Finance Act — confirm against the FY2026-27 budget. Consult a Bangladeshi tax professional; this site covers transfer fees, not tax.',
+      },
+      {
+        q: 'Which is better: Payoneer to bank account or to bKash?',
+        a: 'For regular spending, Payoneer-to-bKash is instant and convenient at 0.7% ATM cash-out (7 Taka per 1,000). For larger sums or if you want to claim the export cash incentive, bank account withdrawal is better: it generates a FIRC required for incentive claims and ERQ account funding, and keeps your money in the formal banking system. A practical split: use bKash for immediate household spending, keep the rest in your bank account for savings, incentive claims, and ERQ.',
+      },
+    ],
+    siblingCorridors: ['usd-to-pkr'],
   },
 ];
