@@ -1,8 +1,8 @@
 // Fee data last verified: 2026-06-03
 // Sources: provider pricing pages (see inline comments per provider)
 
-export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT';
-export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK' | 'BD';
+export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT' | 'NGN';
+export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK' | 'BD' | 'NG';
 
 export interface CorridorFee {
   source: { country: CountryCode; currency: Currency };
@@ -340,7 +340,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: true,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -469,6 +469,18 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 72,
         notes: '1% receiving fee + ~2% FX markup on BDT withdrawal (range 1.2–4%); bKash cash-out +0.7%',
       },
+      // USD → Nigerian NGN bank account
+      // Source: payoneer.com/legal/fees/ — 1% receiving fee + up to 2% FX markup on NGN withdrawal
+      // Annual fee threshold for NG: $2,000/year (lower than some other countries)
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'NG', currency: 'NGN' },
+        fixedFee: 0,
+        percentageFee: 0.01,
+        fxMarkupBps: 200,
+        typicalHours: 72,
+        notes: '1% receiving fee + up to 2% FX markup on NGN withdrawal; $29.95/year if under $2,000/year received',
+      },
     ],
     fallbackFee: {
       fixedFee: 0,
@@ -496,7 +508,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -558,6 +570,18 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 1,
         notes: '4.4% + €0.35 cross-border receiving fee; no FX conversion (EUR→EUR)',
+      },
+      // USD → Nigerian NGN bank account via Paga (launched Jan 27 2026)
+      // PayPal reenabled NGN payouts via Paga partnership — naira-only, 2.9% + $0.30 + ~3.5% FX
+      // Source: PayPal help article (Jan 2026) + Paga payout terms
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'NG', currency: 'NGN' },
+        fixedFee: 0.30,
+        percentageFee: 0.029,
+        fxMarkupBps: 350,
+        typicalHours: 48,
+        notes: 'Via Paga (Jan 2026); 2.9% + $0.30 PayPal receiving fee + ~3.5% FX markup; naira-only payout',
       },
     ],
     fallbackFee: {
@@ -774,7 +798,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -904,6 +928,19 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 72,
         notes: '$35 flat + TT buying rate ~1–2% below mid-market; generates FIRC for export incentive claims.',
       },
+      // USD → Nigerian NGN bank account via SWIFT
+      // Nigerian banks (GTBank, Access Bank, Zenith) convert at NAFEM window rate + ~2% spread
+      // IMTO naira-only rule (CBN Mar 24 2026, effective May 1 2026) applies to licensed IMTO operators,
+      // NOT to SWIFT client-to-business wires — SWIFT USD wires are unaffected
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'NG', currency: 'NGN' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 200,
+        typicalHours: 72,
+        notes: '$35 flat + ~2% bank FX spread above NAFEM rate; SWIFT wires exempt from IMTO naira-only rule.',
+      },
     ],
     fallbackFee: {
       fixedFee: 35,
@@ -956,5 +993,150 @@ export const PROVIDERS: Provider[] = [
     },
     notes: 'Paysera issues a Lithuanian IBAN to Georgian residents. EU clients send via SEPA — Paysera charges €0 to receive. NBG-licensed bank in Georgia.',
     caveat: 'You give your EU client a Lithuanian IBAN (LT…). They pay their bank\'s SEPA fee (~€0–5) separately — not deducted from your amount.',
+  },
+
+  // ─── Cleva ─────────────────────────────────────────────────────────────────
+  // Source: https://www.getcleva.com/pricing (2026-06-14)
+  // Nigerian-focused fintech issuing virtual US bank accounts (routing + account number).
+  // Fee model: $3 flat per USD withdrawal to NGN bank account; no percentage fee; true mid-market FX.
+  // CBN-regulated. Deposits up to $10,000 eligible for NDIC protection via partner bank.
+  {
+    slug: 'cleva',
+    name: 'Cleva',
+    logoUrl: '/logos/cleva.svg',
+    website: 'https://www.getcleva.com',
+    signupUrl: 'https://www.getcleva.com',
+    affiliateLink: '',
+    hasAffiliateProgram: false,
+    lastVerified: '2026-06-14',
+    supportedSourceCountries: ['US'],
+    supportedDestinationCountries: ['NG'],
+    corridors: [
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'NG', currency: 'NGN' },
+        fixedFee: 3,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 24,
+        notes: '$3 flat per USD-to-NGN withdrawal; true mid-market FX rate; no annual account fee',
+      },
+    ],
+    fallbackFee: {
+      fixedFee: 3,
+      percentageFee: 0,
+      fxMarkupBps: 0,
+      typicalHours: 24,
+    },
+    notes: 'Cleva issues a US virtual bank account for Nigerian freelancers. Clients send a domestic ACH or wire; Cleva converts at mid-market and credits your Nigerian account. Fee: $3 flat per withdrawal. CBN-regulated.',
+  },
+
+  // ─── Grey ──────────────────────────────────────────────────────────────────
+  // Source: https://grey.co/pricing (2026-06-14)
+  // Pan-African fintech (HQ Lagos) issuing virtual USD, GBP, and EUR accounts.
+  // Fee model: 0.8% conversion fee (capped at ~$10 per transaction) + ~1% FX markup above mid-market.
+  // CBN-regulated (license 10151).
+  {
+    slug: 'grey',
+    name: 'Grey',
+    logoUrl: '/logos/grey.svg',
+    website: 'https://grey.co',
+    signupUrl: 'https://grey.co',
+    affiliateLink: '',
+    hasAffiliateProgram: false,
+    lastVerified: '2026-06-14',
+    supportedSourceCountries: ['US', 'GB', 'EU'],
+    supportedDestinationCountries: ['NG'],
+    corridors: [
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'NG', currency: 'NGN' },
+        fixedFee: 0,
+        percentageFee: 0.008,
+        fxMarkupBps: 100,
+        typicalHours: 24,
+        notes: '0.8% conversion fee (capped ~$10 per transaction) + ~1% FX markup; CBN license 10151',
+      },
+    ],
+    fallbackFee: {
+      fixedFee: 0,
+      percentageFee: 0.008,
+      fxMarkupBps: 100,
+      typicalHours: 24,
+    },
+    notes: 'Grey issues virtual USD (and GBP/EUR) accounts for Nigerian freelancers. Fee: 0.8% capped at ~$10 per transaction, plus ~1% FX markup. Supports USD, GBP, and EUR receiving. CBN-regulated (license 10151).',
+    caveat: '0.8% conversion fee capped at ~$10 per transaction. On transfers above ~$1,250 the cap kicks in and the effective rate drops.',
+  },
+
+  // ─── LemFi ─────────────────────────────────────────────────────────────────
+  // Source: https://lemfi.com/pricing (2026-06-14)
+  // Formerly Lemonade Finance. Issues virtual US accounts for Nigerian freelancers and diaspora.
+  // Fee model: zero flat fee, zero percentage fee, true mid-market FX rate.
+  // FCA-licensed (UK), FINTRAC MBO (Canada), CBN-approved for Nigeria.
+  {
+    slug: 'lemfi',
+    name: 'LemFi',
+    logoUrl: '/logos/lemfi.svg',
+    website: 'https://lemfi.com',
+    signupUrl: 'https://lemfi.com',
+    affiliateLink: '',
+    hasAffiliateProgram: false,
+    lastVerified: '2026-06-14',
+    supportedSourceCountries: ['US'],
+    supportedDestinationCountries: ['NG'],
+    corridors: [
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'NG', currency: 'NGN' },
+        fixedFee: 0,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 48,
+        notes: 'Zero fees, true mid-market FX; FCA-licensed; verify current withdrawal limits',
+      },
+    ],
+    fallbackFee: {
+      fixedFee: 0,
+      percentageFee: 0,
+      fxMarkupBps: 0,
+      typicalHours: 48,
+    },
+    notes: 'LemFi (formerly Lemonade Finance) issues a virtual US account for Nigerian freelancers. Zero fees, mid-market FX. FCA-licensed (UK), FINTRAC MBO (Canada), CBN-approved. Verify current withdrawal limits before relying on it for large amounts.',
+  },
+
+  // ─── Raenest ───────────────────────────────────────────────────────────────
+  // Source: https://raenest.com/pricing (2026-06-14)
+  // African freelancer-focused fintech issuing virtual USD and GBP accounts.
+  // Fee model: $1 flat per withdrawal + 0.5% FX markup above mid-market.
+  // CBN-licensed.
+  {
+    slug: 'raenest',
+    name: 'Raenest',
+    logoUrl: '/logos/raenest.svg',
+    website: 'https://raenest.com',
+    signupUrl: 'https://raenest.com',
+    affiliateLink: '',
+    hasAffiliateProgram: false,
+    lastVerified: '2026-06-14',
+    supportedSourceCountries: ['US', 'GB'],
+    supportedDestinationCountries: ['NG'],
+    corridors: [
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'NG', currency: 'NGN' },
+        fixedFee: 1,
+        percentageFee: 0,
+        fxMarkupBps: 50,
+        typicalHours: 24,
+        notes: '$1 flat per withdrawal + 0.5% FX markup; no percentage fee; CBN-licensed',
+      },
+    ],
+    fallbackFee: {
+      fixedFee: 1,
+      percentageFee: 0,
+      fxMarkupBps: 50,
+      typicalHours: 24,
+    },
+    notes: 'Raenest issues virtual USD and GBP accounts for African freelancers and remote workers. Fee: $1 flat per withdrawal plus a 0.5% FX markup above mid-market. No annual account fee. CBN-licensed.',
   },
 ];
