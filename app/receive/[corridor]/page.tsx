@@ -62,6 +62,7 @@ function formatHours(h: number): string {
 }
 
 function formatAmount(n: number, currency: string): string {
+  if (!isFinite(n)) return '—';
   const decimals = ['IDR', 'PKR', 'THB', 'MXN', 'BDT', 'NGN'].includes(currency) ? 0 : 2;
   return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 }

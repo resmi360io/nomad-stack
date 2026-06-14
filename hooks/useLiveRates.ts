@@ -7,8 +7,12 @@ export type RatesState =
   | { status: 'ready'; rates: Record<Currency, number>; rateDate: string }
   | { status: 'error' };
 
-const CACHE_KEY = 'paidacross_fx_rates_v1';
+const CACHE_KEY = 'paidacross_fx_rates_v2';
 const CACHE_TTL_MS = 4 * 60 * 60 * 1000; // 4 hours
+
+const REQUIRED_CURRENCIES: Currency[] = [
+  'USD', 'EUR', 'GBP', 'GEL', 'MXN', 'THB', 'IDR', 'PKR', 'BDT', 'NGN',
+];
 
 export function useLiveRates(): RatesState {
   const [state, setState] = useState<RatesState>({ status: 'loading' });
@@ -18,7 +22,8 @@ export function useLiveRates(): RatesState {
       const cached = sessionStorage.getItem(CACHE_KEY);
       if (cached) {
         const { rates, rateDate, timestamp } = JSON.parse(cached);
-        if (Date.now() - timestamp < CACHE_TTL_MS) {
+        const isComplete = REQUIRED_CURRENCIES.every(c => typeof rates[c] === 'number');
+        if (isComplete && Date.now() - timestamp < CACHE_TTL_MS) {
           setState({ status: 'ready', rates, rateDate });
           return;
         }
