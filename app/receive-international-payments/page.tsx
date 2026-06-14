@@ -33,7 +33,7 @@ const pillarJsonLd = {
       image: 'https://paidacross.com/opengraph-image',
       author: {
         '@type': 'Person',
-        name: 'M. Reeves',
+        name: 'George I.',
         url: 'https://paidacross.com/about/author',
       },
       publisher: {
@@ -86,7 +86,7 @@ export default function ReceiveInternationalPaymentsPage() {
           <p className="text-xs text-muted-foreground">
             By{' '}
             <Link href="/about/author" className="underline underline-offset-2 hover:text-foreground">
-              M. Reeves
+              George I.
             </Link>
             {' · '}
             Last updated: June 3, 2026
@@ -263,7 +263,7 @@ export default function ReceiveInternationalPaymentsPage() {
               href="/about/author"
               className="underline underline-offset-2 hover:text-foreground"
             >
-              M. Reeves
+              George I.
             </Link>{' '}
             (20+ years in international payments). Last updated: June 3, 2026.
           </p>
