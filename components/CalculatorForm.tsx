@@ -23,6 +23,7 @@ const SOURCE_OPTIONS: { code: CountryCode; label: string }[] = [
 const DEST_OPTIONS: { code: CountryCode; label: string }[] = [
   { code: 'BD', label: 'Bangladesh (BDT)' },
   { code: 'GE', label: 'Georgia' },
+  { code: 'NG', label: 'Nigeria (NGN)' },
   { code: 'PK', label: 'Pakistan (PKR)' },
   { code: 'PT', label: 'Portugal (EUR)' },
   { code: 'MX', label: 'Mexico (MXN)' },
@@ -40,6 +41,7 @@ const CURRENCY_LABELS: Record<Currency, string> = {
   IDR: 'IDR – Indonesian Rupiah',
   PKR: 'PKR – Pakistani Rupee',
   BDT: 'BDT – Bangladeshi Taka',
+  NGN: 'NGN – Nigerian Naira',
 };
 
 interface Props {

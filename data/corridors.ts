@@ -126,7 +126,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'HBL, UBL, MCB, Meezan Bank, and Bank Alfalah are the most commonly reported to work without issues. Standard Chartered Pakistan and Faysal Bank also work. The main requirement is that the account is in your legal name exactly as it appears in your Payoneer verification documents (CNIC or passport). Joint accounts or accounts with name mismatches can cause delays or rejections. Most users on freelance forums report the fastest processing with HBL and UBL.',
       },
     ],
-    siblingCorridors: ['usd-to-bdt'],
+    siblingCorridors: ['usd-to-bdt', 'usd-to-ngn'],
   },
 
   // ─── USD → Bangladesh (BDT) ────────────────────────────────────────────────
@@ -216,6 +216,124 @@ export const CORRIDORS: Corridor[] = [
         a: 'For regular spending, Payoneer-to-bKash is instant and convenient at 0.7% ATM cash-out (7 Taka per 1,000). For larger sums or if you want to claim the export cash incentive, bank account withdrawal is better: it generates a FIRC required for incentive claims and ERQ account funding, and keeps your money in the formal banking system. A practical split: use bKash for immediate household spending, keep the rest in your bank account for savings, incentive claims, and ERQ.',
       },
     ],
-    siblingCorridors: ['usd-to-pkr'],
+    siblingCorridors: ['usd-to-pkr', 'usd-to-ngn'],
+  },
+
+  // ─── USD → Nigeria (NGN) ───────────────────────────────────────────────────
+  {
+    slug: 'usd-to-ngn',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'NGN',
+    destCountry: 'NG',
+    country: 'Nigeria',
+    title: 'Receive USD in Nigeria: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in Nigeria in 2026. Cleva, Grey, LemFi, and Raenest offer near mid-market rates. Payoneer costs more. Live FX and worked example.',
+    h1: 'How to receive USD in Nigeria: fees, FX spread, and what you actually net',
+    intro:
+      'Nigerian freelancers now have strong specialist options: Cleva, Grey, LemFi, and Raenest all issue virtual US bank accounts that convert at near mid-market rates, typically 0-1.8% all-in. Payoneer works but costs roughly 3% all-in and carries a $2,000/year minimum activity threshold. PayPal returned to Nigeria in January 2026 via a Paga partnership, but stacked fees make it roughly 6-7% all-in and the most expensive widely-available option.',
+    publishedDate: '2026-06-14',
+    updatedDate: '2026-06-14',
+    providers: [
+      {
+        slug: 'lemfi',
+        name: 'LemFi',
+        available: true,
+        notes:
+          'LemFi (formerly Lemonade Finance) issues a virtual US bank account that Nigerian freelancers can share with clients as standard ACH receiving details. Fee structure: no flat fee, no percentage fee, and LemFi applies the true mid-market exchange rate with no markup, making it the theoretically cheapest option for any transfer size. Typical settlement: 1-2 business days. LemFi is FCA-licensed in the UK, holds a FINTRAC Money Business Operator licence in Canada, and operates under CBN approval in Nigeria. As it is a smaller operator than Cleva or Grey, verify current withdrawal limits before relying on it for large amounts.',
+      },
+      {
+        slug: 'raenest',
+        name: 'Raenest',
+        available: true,
+        notes:
+          'Raenest targets African freelancers and remote workers, issuing virtual USD and GBP accounts. Fee: $1 flat per withdrawal plus a 0.5% FX markup above mid-market. On a $1,000 transfer the total cost is approximately $6, or 0.6% effective. On a $500 transfer it is approximately $3.50 (0.7%). There is no annual account fee. Typical settlement: 24 hours. Raenest is CBN-licensed and also supports GBP receiving for UK clients.',
+      },
+      {
+        slug: 'cleva',
+        name: 'Cleva',
+        available: true,
+        notes:
+          'Cleva is a Nigeria-specific fintech that issues a virtual US bank account (routing number and account number) so clients can send a domestic ACH or wire as if paying a US-based contractor. Fee: $3 flat per USD-to-NGN withdrawal, no percentage fee, and Cleva applies the true mid-market rate. On a $1,000 transfer the cost is $3, or 0.3%. On a $300 transfer it becomes 1.0%, so Cleva is better suited to transfers of $500 or more. Typical settlement: within 24 hours of the ACH credit clearing (ACH from client takes 1-2 business days). No annual account fee. CBN-regulated.',
+      },
+      {
+        slug: 'grey',
+        name: 'Grey',
+        available: true,
+        notes:
+          'Grey issues virtual USD (and optionally GBP and EUR) accounts for Nigerian freelancers. Clients send a regular ACH or wire; Grey converts at approximately 1% above mid-market and charges a 0.8% conversion fee capped at roughly $10 per transaction. On a $1,000 transfer the combined cost is roughly $18, or 1.8%. On a $5,000 transfer the 0.8% cap kicks in at around $10, and the effective total is roughly $60 (1.2%). Grey is CBN-regulated (licence 10151) and supports multiple currencies, making it a good option if you also receive GBP or EUR from European clients.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        available: true,
+        notes:
+          'Payoneer works in Nigeria and is a common choice for freelancers on Upwork, Fiverr, and Toptal where Payoneer is the default platform payout method. Payoneer charges 1% on incoming commercial payments. When you withdraw to a Nigerian NGN bank account, Payoneer applies an FX conversion at up to 2% above mid-market, giving a typical all-in cost of 2.5-3.5%. Works with GTBank, Access Bank, Zenith Bank, First Bank, and UBA. Important: Payoneer charges an annual account fee of $29.95/year if the account receives less than $2,000 in any 12 consecutive months. Low-volume freelancers should track their activity level. If you are billing direct clients rather than using a platform, Cleva, LemFi, or Raenest will save you money.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal (via Paga)',
+        available: true,
+        notes:
+          'PayPal re-enabled NGN payouts in Nigeria in January 2026 via a partnership with Paga, a CBN-licensed payment company. Nigerian PayPal users can now withdraw their USD PayPal balance to a naira bank account via Paga. The combined fee is approximately 2.9% + $0.30 on the PayPal receiving side, plus roughly 3.5% FX markup on the USD-to-NGN conversion, giving an all-in cost of roughly 6-7% on a $1,000 transfer. That is the most expensive widely-available option. The main use case is if a client specifically insists on PayPal and you have no alternative. Payouts are naira-only. The Paga integration is recent (January 2026) and processing times can vary.',
+      },
+      {
+        slug: 'bank-wire',
+        name: 'Bank Wire (SWIFT)',
+        available: true,
+        notes:
+          'SWIFT wires from US banks reach major Nigerian banks (GTBank, Access Bank, Zenith Bank, First Bank, UBA) directly. The sending fee from a typical US bank is $25-45 flat; the receiving bank converts at the NAFEM (official CBN window) rate plus approximately 2% spread. On a $1,000 transfer, the combined cost of a $35 flat fee plus 2% FX is roughly 5.5%. Bank wires make sense for large, infrequent payments over $5,000 where the flat fee becomes a small fraction of the total. Note on the IMTO rule: the CBN issued a circular on March 24, 2026 (effective May 1, 2026) requiring licensed IMTO operators (Western Union, MoneyGram, and similar) to pay out in naira only. This rule does not apply to SWIFT client-to-business wires. Your Nigerian bank can still receive a USD SWIFT wire and convert it at the NAFEM rate.',
+      },
+      {
+        slug: 'wise',
+        name: 'Wise',
+        available: false,
+        notes:
+          'Nigerian residents cannot open a Wise account or obtain Wise receiving details. Wise does not support Nigeria as a destination country for account holders as of mid-2026. A foreign client can technically use Wise to send a wire directly to a Nigerian bank account by entering the account details manually, but this is not available on Upwork or Fiverr and requires client cooperation each time. Wise has not announced a Nigerian launch date.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        available: false,
+        notes:
+          'Revolut is not licensed to operate in Nigeria. Nigerian residents cannot open a Revolut account or use Revolut as a receiving method for international payments.',
+      },
+      {
+        slug: 'grabrfi',
+        name: 'GrabrFi',
+        available: false,
+        notes:
+          'GrabrFi currently supports withdrawals to Georgia, Mexico, Thailand, and Indonesia only. Nigeria is not a supported destination.',
+      },
+    ],
+    supportedProviders: ['lemfi', 'raenest', 'cleva', 'grey', 'payoneer', 'paypal', 'bank-wire'],
+    faqs: [
+      {
+        q: 'What is the cheapest way to receive USD in Nigeria?',
+        a: 'LemFi is theoretically the cheapest at zero fees and true mid-market FX, but it is a smaller operator, so verify withdrawal limits before relying on it for large amounts. Cleva ($3 flat, mid-market FX) and Raenest ($1 flat, 0.5% FX markup) are competitive and widely used. Grey (0.8% fee, 1% FX) is slightly more expensive but well-established and supports GBP and EUR too. For recurring small invoices under $500, Raenest ($1 flat) is cheaper than Cleva ($3 flat). Payoneer (1% + up to 2% FX) and PayPal via Paga (roughly 6-7% all-in) are significantly more expensive and should be reserved for situations where you have no other option.',
+      },
+      {
+        q: 'Does Wise work for Nigerian freelancers?',
+        a: 'Not directly. Nigerian residents cannot open a Wise account, so you cannot share Wise receiving details with clients. A foreign client can use Wise to push NGN to your Nigerian bank account manually, but this requires them to enter your bank details each time and is not available on freelance platforms like Upwork or Fiverr. In practice, use Cleva, Grey, LemFi, or Raenest instead: they all issue virtual US account numbers you can give clients as standard US bank receiving details.',
+      },
+      {
+        q: 'What is the IMTO naira-only rule and does it affect me?',
+        a: 'The CBN issued a circular on March 24, 2026 (effective May 1, 2026) requiring licensed International Money Transfer Operators (IMTOs) to pay all incoming remittances in naira only. This applies to Western Union, MoneyGram, and similar licensed IMTO operators. It does not apply to SWIFT bank-to-bank transfers: your Nigerian bank can still receive a USD SWIFT wire and convert it at the official NAFEM window rate. It also does not affect Cleva, Grey, LemFi, or Raenest, which operate as payment processors rather than licensed IMTOs. Your practical workflow is unaffected.',
+      },
+      {
+        q: 'How long does it take to receive USD in Nigeria?',
+        a: 'Cleva: typically within 24 hours once the US ACH credit clears (the ACH from your client takes 1-2 business days on their side). Grey: typically 24 hours. LemFi: 1-2 business days. Raenest: typically 24 hours. Payoneer to local NGN bank: typically 2-4 business days after the payment clears. SWIFT bank wire: 2-5 business days. PayPal via Paga: timing can vary given the integration is relatively new.',
+      },
+      {
+        q: 'Is Payoneer still worth using for Nigerian freelancers?',
+        a: 'Payoneer\'s main advantage is platform compatibility: if you work on Upwork or Fiverr, Payoneer is often the default and cheapest withdrawal method from the platform balance. If you are billing direct clients, Cleva, LemFi, or Raenest give better rates. Watch the annual fee threshold: if your Payoneer account receives less than $2,000 in any 12-month period, you are charged $29.95 in annual fees. For low-volume freelancers with direct clients, a fee-free option like LemFi or Cleva is clearly better.',
+      },
+      {
+        q: 'Do I have to pay tax on freelance income in Nigeria?',
+        a: 'Yes. Foreign-sourced income received in Nigeria is taxable under the Personal Income Tax Act (PITA) for individuals and the Companies Income Tax Act (CITA) for registered businesses. Freelancers assessed as individuals face progressive tax rates from 7% to 24%. Nigeria does not have a blanket income tax exemption for IT freelancers comparable to some other countries. Filing is required. Tax rules change with annual Finance Acts. Consult a Nigerian tax professional: this site covers transfer fees, not tax advice.',
+      },
+    ],
+    siblingCorridors: ['usd-to-pkr', 'usd-to-bdt'],
   },
 ];
