@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'About the author — M. Reeves',
+  title: 'About the author — George I.',
   description:
     '20+ years in international payments and transaction banking. Founder of Paid Across, a free calculator for the real cost of receiving international payments.',
   alternates: { canonical: '/about/author' },
@@ -12,7 +12,7 @@ const authorJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   '@id': 'https://paidacross.com/about/author#author',
-  name: 'M. Reeves',
+  name: 'George I.',
   url: 'https://paidacross.com/about/author',
   description:
     '20+ years in international payments and transaction banking. Founder of Paid Across.',
@@ -44,7 +44,7 @@ export default function AuthorPage() {
       <main className="mx-auto max-w-2xl px-4 py-12 space-y-8">
         <header className="space-y-2">
           <h1 className="text-2xl font-bold tracking-tight">About the author</h1>
-          <p className="text-muted-foreground">M. Reeves — payments industry, 20+ years</p>
+          <p className="text-muted-foreground">George I. — payments industry, 20+ years</p>
         </header>
 
         <section className="space-y-4 text-sm leading-relaxed">
