@@ -234,7 +234,7 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'Nigerian freelancers now have strong specialist options: Cleva, Grey, LemFi, and Raenest all issue virtual US bank accounts that convert at near mid-market rates, typically 0-1.8% all-in. Payoneer works but costs roughly 3% all-in and carries a $2,000/year minimum activity threshold. PayPal returned to Nigeria in January 2026 via a Paga partnership, but stacked fees make it roughly 6-7% all-in and the most expensive widely-available option.',
     publishedDate: '2026-06-14',
-    updatedDate: '2026-06-14',
+    updatedDate: '2026-06-17',
     providers: [
       {
         slug: 'lemfi',
@@ -248,7 +248,7 @@ export const CORRIDORS: Corridor[] = [
         name: 'Raenest',
         available: true,
         notes:
-          'Raenest targets African freelancers and remote workers, issuing virtual USD and GBP accounts. Fee: $1 flat per withdrawal plus a 0.5% FX markup above mid-market. On a $1,000 transfer the total cost is approximately $6, or 0.6% effective. On a $500 transfer it is approximately $3.50 (0.7%). There is no annual account fee. Typical settlement: 24 hours. Raenest is CBN-licensed and also supports GBP receiving for UK clients.',
+          'Raenest (also marketed as GeegPay) issues virtual USD and GBP accounts for African freelancers and remote workers. US ACH receiving details are provided via Regent Bank (Member FDIC) and are accepted by Upwork, Fiverr, and direct clients. Fee model: 1 free ACH deposit and 1 free stablecoin deposit per month; additional deposits cost $1 flat each. Beyond the deposit fee, Raenest applies a 0.5% FX markup above mid-market on the USD-to-NGN conversion. On a $1,000 transfer within the free monthly allowance, the cost is approximately $5 (0.5% effective). No annual account fee. Typical settlement: 24 hours. CBN-licensed; also supports GBP receiving for UK clients.',
       },
       {
         slug: 'cleva',
@@ -262,7 +262,7 @@ export const CORRIDORS: Corridor[] = [
         name: 'Grey',
         available: true,
         notes:
-          'Grey issues virtual USD (and optionally GBP and EUR) accounts for Nigerian freelancers. Clients send a regular ACH or wire; Grey converts at approximately 1% above mid-market and charges a 0.8% conversion fee capped at roughly $10 per transaction. On a $1,000 transfer the combined cost is roughly $18, or 1.8%. On a $5,000 transfer the 0.8% cap kicks in at around $10, and the effective total is roughly $60 (1.2%). Grey is CBN-regulated (licence 10151) and supports multiple currencies, making it a good option if you also receive GBP or EUR from European clients.',
+          'Grey issues virtual USD (and optionally GBP and EUR) accounts for Nigerian freelancers. Clients send a regular ACH or wire; Grey charges a 1% conversion fee capped at $6 per transaction, plus approximately 1% FX markup above mid-market. On a $1,000 transfer the combined cost is approximately $16 ($6 capped conversion fee + $10 FX), or 1.6% effective. On a $5,000 transfer the cost is approximately $56 ($6 cap + $50 FX), or 1.1%. Grey also offers a Visa debit card for a one-time $5 fee. Grey is CBN-regulated (licence 10151) and supports multiple currencies, making it a good option if you also receive GBP or EUR from European clients.',
       },
       {
         slug: 'payoneer',
@@ -311,7 +311,7 @@ export const CORRIDORS: Corridor[] = [
     faqs: [
       {
         q: 'What is the cheapest way to receive USD in Nigeria?',
-        a: 'LemFi is theoretically the cheapest at zero fees and true mid-market FX, but it is a smaller operator, so verify withdrawal limits before relying on it for large amounts. Cleva ($3 flat, mid-market FX) and Raenest ($1 flat, 0.5% FX markup) are competitive and widely used. Grey (0.8% fee, 1% FX) is slightly more expensive but well-established and supports GBP and EUR too. For recurring small invoices under $500, Raenest ($1 flat) is cheaper than Cleva ($3 flat). Payoneer (1% + up to 2% FX) and PayPal via Paga (roughly 6-7% all-in) are significantly more expensive and should be reserved for situations where you have no other option.',
+        a: 'LemFi is theoretically the cheapest at zero fees and true mid-market FX, but it is a smaller operator, so verify withdrawal limits before relying on it for large amounts. Cleva ($3 flat, mid-market FX) and Raenest (1 free deposit/month, then $1 flat plus 0.5% FX) are competitive and widely used. Grey (1% fee capped at $6, plus 1% FX) is slightly more expensive but well-established and supports GBP and EUR too. For recurring small invoices under $500, Raenest ($1 flat on paid deposits) is cheaper than Cleva ($3 flat). Payoneer (1% + up to 2% FX) and PayPal via Paga (roughly 6-7% all-in) are significantly more expensive and should be reserved for situations where you have no other option.',
       },
       {
         q: 'Does Wise work for Nigerian freelancers?',
