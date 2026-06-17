@@ -43,6 +43,10 @@ export async function generateMetadata({
   };
 }
 
+function toSchemaDate(iso: string): string {
+  return `${iso}T00:00:00+00:00`;
+}
+
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December',
@@ -97,8 +101,8 @@ export default async function CorridorPage({
         '@type': 'Article',
         '@id': `https://paidacross.com/receive/${corridor.slug}#article`,
         headline: corridor.h1,
-        datePublished: corridor.publishedDate,
-        dateModified: corridor.updatedDate,
+        datePublished: toSchemaDate(corridor.publishedDate),
+        dateModified: toSchemaDate(corridor.updatedDate),
         url: `https://paidacross.com/receive/${corridor.slug}`,
         image: 'https://paidacross.com/opengraph-image',
         author: {
