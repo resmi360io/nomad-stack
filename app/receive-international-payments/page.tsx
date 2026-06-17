@@ -27,8 +27,8 @@ const pillarJsonLd = {
       '@id': 'https://paidacross.com/receive-international-payments#article',
       headline:
         'How freelancers receive international payments: country-by-country cost guide 2026',
-      datePublished: '2026-06-03',
-      dateModified: '2026-06-03',
+      datePublished: '2026-06-03T00:00:00+00:00',
+      dateModified: '2026-06-03T00:00:00+00:00',
       url: 'https://paidacross.com/receive-international-payments',
       image: 'https://paidacross.com/opengraph-image',
       author: {
