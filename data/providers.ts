@@ -46,9 +46,7 @@ export const PROVIDERS: Provider[] = [
     logoUrl: '/logos/wise.svg',
     website: 'https://wise.com',
     signupUrl: 'https://wise.com',
-    // TODO: replace signupUrl with affiliate URL when Wise program approved
-    // Affiliate template: https://wise.com/invite/[REPLACE_AFFILIATE_ID]
-    affiliateLink: '',
+    affiliateLink: 'https://wise.prf.hn/click/camref:1101l5KKgS',
     hasAffiliateProgram: true,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
