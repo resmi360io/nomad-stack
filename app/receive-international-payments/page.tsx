@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Calculator } from '@/components/Calculator';
 import { CORRIDORS } from '@/data/corridors';
+import { PROVIDERS } from '@/data/providers';
 
 export const metadata: Metadata = {
   title: 'How freelancers receive international payments: country guide 2026',
@@ -61,6 +62,9 @@ const pillarJsonLd = {
 };
 
 export default function ReceiveInternationalPaymentsPage() {
+  const wiseProvider = PROVIDERS.find(p => p.slug === 'wise');
+  const wiseLink = wiseProvider?.affiliateLink || wiseProvider?.signupUrl || 'https://wise.com';
+
   return (
     <>
       <script
@@ -179,6 +183,14 @@ export default function ReceiveInternationalPaymentsPage() {
                 Best overall for most corridors where it operates. Does not support Pakistan
                 for account holders.
               </p>
+              <a
+                href={wiseLink}
+                target="_blank"
+                rel="sponsored nofollow noopener"
+                className="mt-1.5 inline-block text-xs underline underline-offset-2 hover:text-foreground"
+              >
+                Open Wise account →
+              </a>
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-1">Revolut</h3>

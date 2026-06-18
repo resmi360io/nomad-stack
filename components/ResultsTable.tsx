@@ -98,7 +98,7 @@ export function ResultsTable({ quotes, rateDate }: Props) {
                   <a
                     href={href}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel={isAffiliate ? 'sponsored nofollow noopener' : 'noopener noreferrer'}
                     className={cn(buttonVariants({ size: 'sm' }), 'shrink-0')}
                     onClick={() =>
                       posthog.capture('affiliate_click', {
