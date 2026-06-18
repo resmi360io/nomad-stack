@@ -6,6 +6,7 @@ export interface CorridorProviderEntry {
   name: string;
   available: boolean;
   notes: string;
+  customHeading?: string;
 }
 
 export interface Faq {
@@ -142,16 +143,24 @@ export const CORRIDORS: Corridor[] = [
       'Compare the real cost of receiving USD in Bangladesh. Payoneer is the main option (~3–5% all-in); PayPal can\'t receive and Wise is receive-only. Live FX + worked example.',
     h1: 'How to receive USD in Bangladesh: fees, FX spread, and what you actually net',
     intro:
-      'Bangladeshi freelancers mostly receive via Payoneer (~3–5% all-in), with the option to withdraw to a bank account or to bKash at 0.7% ATM cash-out. PayPal cannot receive commercial payments in Bangladesh, and Wise is receive-only for recipients — a client can push BDT directly to your bank account, bKash, or Nagad, but you cannot open a Wise account.',
+      'Bangladeshi freelancers receive primarily via Payoneer (~3-5% all-in for bank account withdrawal), and the most popular local step after that is Payoneer to bKash. Payoneer has a direct bKash integration that moves your balance to a bKash wallet typically within hours, though Payoneer charges a higher conversion fee for this route than for bank withdrawals (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal before withdrawing). Bank account withdrawal takes 1-3 business days and generates the Foreign Inward Remittance Certificate (FIRC) required to claim the export cash incentive. PayPal cannot receive commercial payments in Bangladesh, and Wise is not available to Bangladeshi account holders (though a foreign client using Wise can push BDT directly to your bank account, bKash wallet, or Nagad wallet).',
     publishedDate: '2026-06-04',
-    updatedDate: '2026-06-04',
+    updatedDate: '2026-06-18',
     providers: [
       {
         slug: 'payoneer',
         name: 'Payoneer',
         available: true,
         notes:
-          'The dominant route for Bangladeshi freelancers on Upwork, Fiverr, and direct invoicing. Payoneer charges 1% on incoming commercial payments. When you withdraw to a local BDT bank account, Payoneer applies an FX conversion at roughly 1.2%–4% (the official fee schedule, updated January 2026, states this range; roughly 2% is a representative midpoint). Same-currency USD-to-USD withdrawal is a flat $1.50 instead. You can also withdraw to bKash via Payoneer\'s integration with partner banks (BRAC Bank, City Bank, Q-Cash); bKash ATM cash-out costs 0.7% (7 Taka per 1,000, effective 19 March 2024). The bKash route is instant and convenient but does not generate a Foreign Inward Remittance Certificate (FIRC) — that document is required to claim the export cash incentive and fund an ERQ foreign-currency account. Annual account fee: $29.95/year, charged only if the account receives less than $6,000 in any 12 consecutive months — most active freelancers pay nothing. Typical all-in cost: 3–5%.',
+          'The dominant route for Bangladeshi freelancers on Upwork, Fiverr, and direct invoicing. Payoneer charges 1% on incoming commercial payments. When you withdraw to a local BDT bank account, Payoneer applies an FX conversion at roughly 1.2%-4% (the official fee schedule, updated January 2026, states this range; roughly 2% is a representative midpoint). Same-currency USD-to-USD withdrawal is a flat $1.50 instead. You can also withdraw directly to a bKash wallet via Payoneer\'s bKash integration; Payoneer charges a separate conversion fee for this route (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal, as this differs from the standard bank withdrawal fee). On the bKash side, cash-out charges apply when withdrawing cash via an agent; rates have changed significantly from historical figures, so check the bKash charge calculator for the current rate before assuming any specific number. The bKash route is fast but does not generate a Foreign Inward Remittance Certificate (FIRC), which is required to claim the export cash incentive and fund an ERQ foreign-currency account. Annual account fee: $29.95/year, charged only if the account receives less than $6,000 in any 12 consecutive months (most active freelancers pay nothing). Typical all-in cost for bank account withdrawal: 3-5%.',
+      },
+      {
+        slug: 'bkash-withdrawal',
+        name: 'Payoneer-to-bKash',
+        customHeading: 'How the Payoneer-to-bKash withdrawal works',
+        available: true,
+        notes:
+          'Payoneer has a direct integration with bKash that lets Bangladeshi freelancers transfer their Payoneer balance to a bKash wallet without first withdrawing to a bank account. In the Payoneer portal or app, you initiate a withdrawal, select bKash as the destination, enter your bKash-registered phone number, and confirm. The transfer typically completes within a few hours. Payoneer charges a separate conversion fee for this route: approximately 3% plus $1 per transaction as of mid-2026. This is higher than the standard bank account withdrawal route (1% plus roughly 2% FX markup), so the bKash route costs more in fees despite being faster. Always verify the current fee in the Payoneer portal before withdrawing. On the bKash side, you pay bKash\'s standard cash-out charges when withdrawing cash via an agent or ATM. Standard agent cash-out rates increased significantly from historical levels (a figure of 7 Taka per 1,000 cited in older guides is no longer current; standard agent rates were approximately 1.85% as of early 2026). Check the bKash charge calculator for the current rate. The bKash route does not generate a Foreign Inward Remittance Certificate (FIRC), so it is not eligible for the Bangladesh Bank export cash incentive. To qualify for the incentive, you must withdraw to a bank account. For Nagad: Nagad is not a direct Payoneer withdrawal destination as of mid-2026. A foreign client using Wise can push BDT to a Nagad wallet at Wise\'s mid-market rate with no receiving cost to you, but this requires your client to do it manually and does not work on Upwork or Fiverr. Rocket (Dutch-Bangla Bank mobile wallet) supports inbound personal remittances but is not a standard channel for collecting freelance client payments.',
       },
       {
         slug: 'bank-wire',
@@ -212,8 +221,12 @@ export const CORRIDORS: Corridor[] = [
         a: 'IT and ITES freelance and business income is income-tax exempt through 30 June 2027 under the Finance Act 2024 / Income Tax Act 2023, Schedule 6. This exemption has two conditions: (a) filing an income tax return even if no tax is owed, and (b) operating cashless — all business income, expenses, and investments must move through bank transfer. Important: this covers independent freelance and business income from IT/ITES work; it does NOT apply to a salaried remote employee of a foreign employer. Rules change with each annual Finance Act — confirm against the FY2026-27 budget. Consult a Bangladeshi tax professional; this site covers transfer fees, not tax.',
       },
       {
+        q: 'Can I receive Payoneer payments directly into bKash or Nagad?',
+        a: 'Yes for bKash. Payoneer has a direct bKash integration: in the Payoneer portal or app, you can initiate a withdrawal to your bKash wallet by entering your bKash-registered phone number. Payoneer charges approximately 3% plus $1 per transaction for this route as of mid-2026 (verify in the Payoneer portal before withdrawing, as this fee differs from the bank account withdrawal fee). On the bKash side, standard cash-out charges apply when withdrawing cash via an agent; check the bKash charge calculator for the current rate, as rates have changed from historical figures. This route is typically fast (a few hours) but does not generate a FIRC, so it does not qualify for the export cash incentive. For Nagad: Nagad is not a direct Payoneer withdrawal destination as of mid-2026. A foreign client using Wise can push BDT to a Nagad wallet at mid-market rate at no receiving cost to you. Rocket (Dutch-Bangla Bank wallet) supports inbound personal remittances but is not used as a freelance payment collection channel.',
+      },
+      {
         q: 'Which is better: Payoneer to bank account or to bKash?',
-        a: 'For regular spending, Payoneer-to-bKash is instant and convenient at 0.7% ATM cash-out (7 Taka per 1,000). For larger sums or if you want to claim the export cash incentive, bank account withdrawal is better: it generates a FIRC required for incentive claims and ERQ account funding, and keeps your money in the formal banking system. A practical split: use bKash for immediate household spending, keep the rest in your bank account for savings, incentive claims, and ERQ.',
+        a: 'The bank account route is cheaper for most transfers: Payoneer charges a higher conversion fee for the bKash route (approximately 3% plus $1) than for bank account withdrawals (1% plus roughly 1.2%-4% FX markup, typical all-in 3-5%). The bKash route is faster, typically settling within hours rather than 1-3 business days. For claiming the export cash incentive or funding an ERQ account, you must use the bank route: bKash withdrawals do not generate a Foreign Inward Remittance Certificate (FIRC). A practical split: use the bKash route for small, urgent withdrawals when you need cash quickly; route your main income through a bank account for savings, incentive claims, and ERQ.',
       },
     ],
     siblingCorridors: ['usd-to-pkr', 'usd-to-ngn'],

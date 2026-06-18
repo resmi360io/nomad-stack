@@ -273,7 +273,7 @@ export default async function CorridorPage({
         {availableProviders.map((p) => (
           <section key={p.slug}>
             <h2 className="text-xl font-semibold mb-2">
-              How much does {p.name} charge to receive {corridor.source} in {corridor.country}?
+              {p.customHeading ?? `How much does ${p.name} charge to receive ${corridor.source} in ${corridor.country}?`}
             </h2>
             <p className="text-muted-foreground leading-relaxed">{p.notes}</p>
           </section>
