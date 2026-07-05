@@ -26,6 +26,7 @@ const COUNTRY_CURRENCY: Record<CountryCode, Currency> = {
   PK: 'PKR',
   BD: 'BDT',
   NG: 'NGN',
+  PH: 'PHP',
 };
 
 // Currencies a recipient can receive in each destination country.

@@ -24,7 +24,7 @@ function formatHours(h: number): string {
 
 function formatAmount(n: number, currency: string): string {
   if (!isFinite(n)) return `${currency} —`;
-  const decimals = ['IDR', 'PKR', 'THB', 'MXN', 'BDT', 'NGN'].includes(currency) ? 0 : 2;
+  const decimals = ['IDR', 'PKR', 'THB', 'MXN', 'BDT', 'NGN', 'PHP'].includes(currency) ? 0 : 2;
   return `${currency} ${n.toLocaleString('en-US', {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,

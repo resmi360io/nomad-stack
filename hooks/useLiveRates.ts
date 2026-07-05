@@ -11,7 +11,7 @@ const CACHE_KEY = 'paidacross_fx_rates_v2';
 const CACHE_TTL_MS = 4 * 60 * 60 * 1000; // 4 hours
 
 const REQUIRED_CURRENCIES: Currency[] = [
-  'USD', 'EUR', 'GBP', 'GEL', 'MXN', 'THB', 'IDR', 'PKR', 'BDT', 'NGN',
+  'USD', 'EUR', 'GBP', 'GEL', 'MXN', 'THB', 'IDR', 'PKR', 'BDT', 'NGN', 'PHP',
 ];
 
 export function useLiveRates(): RatesState {
@@ -49,6 +49,7 @@ export function useLiveRates(): RatesState {
           PKR: r.PKR,
           BDT: r.BDT,
           NGN: r.NGN,
+          PHP: r.PHP,
         };
         // "Mon, 02 Jun 2026 00:00:02 +0000" → "2026-06-02"
         const raw: string = data.time_last_update_utc ?? '';

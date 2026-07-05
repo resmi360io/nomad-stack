@@ -1,8 +1,8 @@
 // Fee data last verified: 2026-06-03
 // Sources: provider pricing pages (see inline comments per provider)
 
-export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT' | 'NGN';
-export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK' | 'BD' | 'NG';
+export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT' | 'NGN' | 'PHP';
+export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK' | 'BD' | 'NG' | 'PH';
 
 export interface CorridorFee {
   source: { country: CountryCode; currency: Currency };
