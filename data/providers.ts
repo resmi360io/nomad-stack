@@ -48,9 +48,9 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://wise.com',
     affiliateLink: 'https://wise.prf.hn/click/camref:1101l5KKgS',
     hasAffiliateProgram: true,
-    lastVerified: '2026-06-02',
+    lastVerified: '2026-07-05',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PH'],
     corridors: [
       // Verified: ~$14.74 fee on $1,000 send (wise.com/us/send-money/send-money-to-georgia)
       {
@@ -131,6 +131,18 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.0046,
         fxMarkupBps: 0,
         typicalHours: 24,
+      },
+      // USD → Philippine PHP: PH residents hold a full Wise account with US ACH
+      // receiving details (free to receive), then convert USD→PHP at mid-market.
+      // Conversion fee ~0.65% typical (help-center range; verify current at wise.com/ph)
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PH', currency: 'PHP' },
+        fixedFee: 0,
+        percentageFee: 0.0065,
+        fxMarkupBps: 0,
+        typicalHours: 24,
+        notes: 'Free USD ACH receiving into Wise USD balance; ~0.65% conversion fee at mid-market on USD to PHP (verify current)',
       },
       // USD → Georgian USD bank account via SWIFT (no FX conversion)
       // Source: wise.com help/articles/2946451 — USD SWIFT fee is $6.11
@@ -338,7 +350,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: true,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -479,6 +491,17 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 72,
         notes: '1% receiving fee + up to 2% FX markup on NGN withdrawal; $29.95/year if under $2,000/year received',
       },
+      // USD → Philippine PHP bank account, GCash, or GoTyme
+      // Source: payoneer.com country guide for PH — 1% receiving + up to 2% FX on withdrawal
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PH', currency: 'PHP' },
+        fixedFee: 0,
+        percentageFee: 0.01,
+        fxMarkupBps: 200,
+        typicalHours: 48,
+        notes: '1% receiving fee + up to 2% FX markup on PHP withdrawal to bank, GCash, or GoTyme',
+      },
     ],
     fallbackFee: {
       fixedFee: 0,
@@ -506,7 +529,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG', 'PH'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -580,6 +603,17 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 350,
         typicalHours: 48,
         notes: 'Via Paga (Jan 2026); 2.9% + $0.30 PayPal receiving fee + ~3.5% FX markup; naira-only payout',
+      },
+      // USD → Philippine PHP: widely used in PH; ~4.4% + $0.30 cross-border receiving
+      // + ~3.5% FX on USD→PHP conversion. Withdrawal to GCash is free (PayPal-GCash link)
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PH', currency: 'PHP' },
+        fixedFee: 0.30,
+        percentageFee: 0.044,
+        fxMarkupBps: 350,
+        typicalHours: 48,
+        notes: '4.4% + $0.30 cross-border receiving + ~3.5% FX markup; withdrawal to GCash is free',
       },
     ],
     fallbackFee: {
@@ -796,7 +830,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -938,6 +972,19 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 200,
         typicalHours: 72,
         notes: '$35 flat + ~2% bank FX spread above NAFEM rate; SWIFT wires exempt from IMTO naira-only rule.',
+      },
+      // USD → Philippine PHP or USD (FCDU) bank account via SWIFT
+      // No forced conversion: FCDU USD accounts at BDO, BPI, Metrobank, RCBC hold dollars.
+      // Inward remittance fees vary by bank (~$6-35 + possible correspondent deduction);
+      // bank FX spread applies only when converting to PHP (estimate, not published)
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PH', currency: 'PHP' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 150,
+        typicalHours: 96,
+        notes: '$25-45 sending fee + bank inward remittance fees; no forced conversion (FCDU USD accounts); spread applies only on conversion to PHP',
       },
     ],
     fallbackFee: {

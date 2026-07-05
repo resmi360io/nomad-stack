@@ -347,6 +347,122 @@ export const CORRIDORS: Corridor[] = [
         a: 'Yes. Foreign-sourced income received in Nigeria is taxable under the Personal Income Tax Act (PITA) for individuals and the Companies Income Tax Act (CITA) for registered businesses. Freelancers assessed as individuals face progressive tax rates from 7% to 24%. Nigeria does not have a blanket income tax exemption for IT freelancers comparable to some other countries. Filing is required. Tax rules change with annual Finance Acts. Consult a Nigerian tax professional: this site covers transfer fees, not tax advice.',
       },
     ],
-    siblingCorridors: ['usd-to-pkr', 'usd-to-bdt'],
+    siblingCorridors: ['usd-to-pkr', 'usd-to-bdt', 'usd-to-php'],
+  },
+
+  // ─── USD → Philippines (PHP) ───────────────────────────────────────────────
+  {
+    slug: 'usd-to-php',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'PHP',
+    destCountry: 'PH',
+    country: 'the Philippines',
+    title: 'Receive USD in the Philippines: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in the Philippines. Wise offers mid-market rates, GCash now takes USD directly, PayPal runs 8%+. Live FX comparison.',
+    h1: 'How to receive USD in the Philippines: fees, FX spread, and what you actually net',
+    intro:
+      'Filipino freelancers are in better shape than most of the corridors we cover. Wise is fully available in the Philippines, so you can hold a real USD balance with US ACH receiving details and convert to pesos at the mid-market rate for a conversion fee typically under 1%. GCash launched its own Virtual US Account in December 2025, putting USD receiving inside a wallet most Filipinos already carry. Payoneer remains the default for Upwork and Fiverr at roughly 3% all-in, and PayPal, while everywhere, stacks a 4.4% receiving fee on top of a 3-4% FX spread. One more thing worth knowing up front: there is no forced conversion rule. You can keep your dollars in a bank FCDU account or a multi-currency wallet and convert only when the rate suits you.',
+    publishedDate: '2026-07-05',
+    updatedDate: '2026-07-05',
+    providers: [
+      {
+        slug: 'wise',
+        name: 'Wise',
+        available: true,
+        notes:
+          'This corridor is the exception among the emerging markets we cover: Philippine residents can open a full Wise account, not a receive-only workaround. You get local USD account details (a US routing number and account number) that a client or platform pays by domestic ACH for free; an incoming USD wire costs $6.11. The money sits in your USD balance until you convert, and conversion to PHP happens at the mid-market rate for a fee that typically lands under 1% (about 0.65% is representative; verify the current fee in the app before converting). Reported limits for Philippine accounts are around $10,000 per transfer or conversion and roughly 10 million PHP per month in top-ups and receipts; check current limits in the app, as we could not confirm these against a live pricing page. Signup requires a Philippine ID and proof of address.',
+      },
+      {
+        slug: 'gcash',
+        name: 'GCash Virtual US Account',
+        customHeading: 'How the GCash Virtual US Account works',
+        available: true,
+        notes:
+          'GCash launched its Virtual US Account in December 2025, powered by Meridian Payments US. A verified GCash user gets US ACH and wire receiving details inside the app, and the launch materials name Wise, Gusto, Payoneer, Deel, Upwork, and Chase as senders that work. ACH deposits carry no transfer fee and post in 1-3 business days; wires arrive same day for $15. The dollars land as USD in your GCash wallet and stay there until you choose to convert to pesos. The catch, and the reason GCash does not appear in our ranked table above: GCash has not published the FX spread it applies on that USD-to-PHP conversion. Marketing copy calls the rate competitive, which is not a number. Check the quoted rate in the app against the mid-market rate at open.er-api.com before converting a large amount. If the spread is small, this is a genuinely strong option, since you probably already have the app.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        available: true,
+        notes:
+          'The default payout method on Upwork and Fiverr, and the route most Filipino platform freelancers already use. Payoneer charges up to 1% on incoming commercial payments (minimum $1 on payments under $100). Withdrawing to a Philippine bank account, GCash, or GoTyme applies an FX conversion of up to about 2% above mid-market, so the typical all-in cost is roughly 3%. An annual account fee of $29.95 applies if the account receives less than Payoneer\'s minimum activity threshold in 12 consecutive months; the help center has cited both $2,000 and $6,000 figures at different times, so verify your account\'s threshold in the portal. If you bill direct clients rather than platforms, Wise costs meaningfully less.',
+      },
+      {
+        slug: 'bank-wire',
+        name: 'Bank Wire (SWIFT)',
+        available: true,
+        notes:
+          'BDO, BPI, Metrobank, and RCBC all offer USD savings accounts (FCDU accounts) that receive inbound SWIFT wires with no forced conversion, so you can hold dollars and convert on your own timing. The US bank sending fee is $25-45; Philippine banks charge inward remittance fees that vary by bank (commonly in the $6-35 range, and a correspondent bank may deduct its own fee in transit; check your bank\'s current schedule). The bank\'s USD-to-PHP spread applies only when you convert. Wires are the route that produces a Certificate of Inward Remittance, the document that supports VAT zero-rating of exported services, which matters if you invoice foreign clients as a registered professional. Best for large or infrequent payments where the flat fees shrink as a percentage.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        available: true,
+        notes:
+          'Available, familiar, and the most expensive mainstream way to receive client money in the Philippines. Cross-border commercial receiving runs about 4.4% plus a fixed fee, and converting the USD balance to pesos adds a currency spread of roughly 3-4% (we could not open PayPal\'s Philippine fee page directly, so treat the exact percentages as estimates and check your own transaction receipts). The redeeming feature is on the way out: PayPal links directly to GCash, and that withdrawal step is free with settlement in about 1-2 business days. Use PayPal when a client insists on it; move recurring clients to Wise or Payoneer.',
+      },
+      {
+        slug: 'western-union',
+        name: 'Western Union',
+        available: true,
+        notes:
+          'Western Union pays out to GCash, Maya, or a Philippine bank account, and the Philippines is one of its largest markets. It is built for personal remittances rather than commercial invoices, so how your transfer is classified matters if a client pays you this way; the FX spread is embedded in the quoted rate rather than shown as a line item. Compare the quoted PHP amount against the mid-market rate before accepting. Fine as a fallback, not a primary rail for freelance income.',
+      },
+      {
+        slug: 'maya',
+        name: 'Maya',
+        available: false,
+        notes:
+          'Maya has a USD wallet you can hold and convert dollars in, but we could not confirm any client-facing USD receiving details comparable to the GCash Virtual US Account or Wise. Confirmed inbound routes are third-party remittance services (Wise, Remitly, WorldRemit) and Western Union, which pay into a PHP balance. Until Maya publishes external USD receiving details, treat it as a cash-out or holding destination rather than a way to receive client payments.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        available: false,
+        notes:
+          'Philippine residents cannot open a Revolut account. A Revolut card issued in another country works for spending in the Philippines, but that does not help you receive payments as a local.',
+      },
+      {
+        slug: 'grabrfi',
+        name: 'GrabrFi',
+        available: false,
+        notes:
+          'GrabrFi accounts are limited to a fixed eligibility list of about 26 countries, mostly Latin America plus the US, UK, India, Nigeria, and a few others. The Philippines is not on the list.',
+      },
+    ],
+    supportedProviders: ['wise', 'gcash', 'payoneer', 'bank-wire', 'paypal', 'western-union'],
+    faqs: [
+      {
+        q: 'Is Wise available in the Philippines, and can I get USD account details?',
+        a: 'Yes, and this is what sets the Philippines apart from markets like Pakistan or Nigeria. Philippine residents can open a full Wise account with a local ID and proof of address. The account includes US ACH receiving details (routing and account number) you can hand to clients or connect to platforms; receiving USD by ACH is free, and an incoming wire costs $6.11. You hold the dollars in your Wise balance and convert to PHP at the mid-market rate whenever you like, paying a conversion fee that typically comes in under 1%. Reported account limits are about $10,000 per transfer and around 10 million PHP received per month; verify current limits in the app.',
+      },
+      {
+        q: 'What is the cheapest way to receive USD in the Philippines?',
+        a: 'Wise, for most people, most of the time. Free ACH receiving plus a sub-1% conversion fee at the true mid-market rate beats everything else we can verify on this corridor. The GCash Virtual US Account also receives ACH for free and might be comparable overall, but GCash does not publish its USD-to-PHP conversion spread, so we cannot rank it honestly; check the app\'s quoted rate against mid-market before converting. Payoneer runs roughly 3% all-in and earns its keep mainly as the default platform payout. PayPal is the most expensive at roughly 8% once the receiving fee and the FX spread stack. For a single large payment, a SWIFT wire into a bank USD account can be cheapest of all, since the flat fees stop mattering and you control when to convert.',
+      },
+      {
+        q: 'How does the GCash Virtual US Account work, and what does it cost?',
+        a: 'GCash launched it in December 2025 with Meridian Payments US as the banking partner. Inside the GCash app you apply through the US Accounts section, and once approved you get US ACH and wire details that US employers, platforms, and payroll services can pay like any domestic account. ACH deposits are free and take 1-3 business days; wires post same day for $15. The money arrives as USD and sits in your wallet until you convert to pesos. What GCash has not published is the FX spread on that conversion, which is the number that decides whether this beats Wise. Until they do, compare the in-app rate to the mid-market rate before converting anything sizable.',
+      },
+      {
+        q: 'How do I withdraw PayPal money to GCash, and what does it cost?',
+        a: 'The withdrawal itself is free. PayPal and GCash have a direct link: connect your GCash account in PayPal, withdraw, and the money typically lands within 1-2 business days. The cost sits earlier in the chain, where PayPal charges about 4.4% plus a fixed fee to receive a cross-border commercial payment and then applies a 3-4% spread when converting USD to pesos. By the time the money reaches GCash, roughly 8% of the invoice is gone. The free withdrawal is nice; it does not fix the economics.',
+      },
+      {
+        q: 'Do I have to convert my dollars to pesos, or can I keep a USD account?',
+        a: 'You can keep dollars. The BSP imposes no mandatory conversion on inward remittances: banks offer USD savings accounts (FCDU accounts) at BDO, BPI, Metrobank, RCBC and others, and both Wise and GCash let you hold a USD balance and convert when you choose. Banks will ask the purpose of inbound commercial transfers (a one-line answer like "payment for design services per contract" is normal) and report transactions of $10,000 or more to the BSP and the Anti-Money Laundering Council, which is routine reporting, not a restriction. Holding USD is genuinely useful if you have dollar expenses or simply do not like the current rate.',
+      },
+      {
+        q: 'Do I need to register with the BIR as a freelancer, and how much tax will I pay?',
+        a: 'Yes, register as a self-employed professional. You then pick one of two regimes. The 8% flat option taxes gross receipts at 8% (with the first 250,000 PHP exempt for pure freelancers) and replaces both the graduated income tax and the 3% percentage tax; it is available while your gross receipts stay under 3 million PHP a year. The alternative is the graduated 0-35% schedule, usually paired with the 40% Optional Standard Deduction. Services exported to nonresident clients and paid in foreign currency can also qualify for VAT zero-rating under Section 108(B)(2) of the Tax Code, which is why keeping each bank Certificate of Inward Remittance matters. Thresholds shift with tax reform bills, so confirm the current numbers with the BIR or a Philippine accountant. This site covers transfer fees, not tax advice.',
+      },
+      {
+        q: 'Can I receive USD directly into GCash or Maya?',
+        a: 'GCash, yes: the Virtual US Account gives you ACH and wire details inside the app, and dollars land in your wallet as USD. Maya, not in the same way. Maya offers a USD wallet for holding and converting, but we could not confirm client-facing USD receiving details you could hand to a US payer; confirmed routes into Maya are remittance services like Wise, Remitly, WorldRemit, and Western Union, which arrive as pesos. If receiving USD into a wallet is the goal, GCash currently has the feature and Maya does not.',
+      },
+    ],
+    siblingCorridors: ['usd-to-ngn', 'usd-to-bdt'],
   },
 ];
