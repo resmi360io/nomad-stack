@@ -25,6 +25,7 @@ const DEST_OPTIONS: { code: CountryCode; label: string }[] = [
   { code: 'GE', label: 'Georgia' },
   { code: 'NG', label: 'Nigeria (NGN)' },
   { code: 'PK', label: 'Pakistan (PKR)' },
+  { code: 'PH', label: 'Philippines (PHP)' },
   { code: 'PT', label: 'Portugal (EUR)' },
   { code: 'MX', label: 'Mexico (MXN)' },
   { code: 'TH', label: 'Thailand (THB)' },
@@ -42,6 +43,7 @@ const CURRENCY_LABELS: Record<Currency, string> = {
   PKR: 'PKR – Pakistani Rupee',
   BDT: 'BDT – Bangladeshi Taka',
   NGN: 'NGN – Nigerian Naira',
+  PHP: 'PHP – Philippine Peso',
 };
 
 interface Props {
