@@ -457,7 +457,7 @@ export const PROVIDERS: Provider[] = [
       },
       // USD → Bangladeshi BDT bank account
       // Source: payoneer.com/legal/fees/ (updated Jan 2026) — 1% receiving fee + 1.2–4% FX on BDT withdrawal
-      // Modeled at ~2% FX markup as representative midpoint; bKash ATM cash-out adds 0.7%
+      // Modeled at ~2% FX markup as representative midpoint; Payoneer-to-bKash route costs ~3% + $1 instead
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'BD', currency: 'BDT' },
@@ -465,7 +465,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 200,
         typicalHours: 72,
-        notes: '1% receiving fee + ~2% FX markup on BDT withdrawal (range 1.2–4%); bKash cash-out +0.7%',
+        notes: '1% receiving fee + ~2% FX markup on BDT withdrawal (range 1.2–4%); bKash route ~3% + $1 instead',
       },
       // USD → Nigerian NGN bank account
       // Source: payoneer.com/legal/fees/ — 1% receiving fee + up to 2% FX markup on NGN withdrawal
@@ -668,7 +668,7 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.westernunion.com',
     affiliateLink: '',
     hasAffiliateProgram: false,
-    lastVerified: '2026-06-02',
+    lastVerified: '2026-07-05',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK'],
     corridors: [
@@ -767,11 +767,11 @@ export const PROVIDERS: Provider[] = [
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PK', currency: 'PKR' },
-        fixedFee: 5,
+        fixedFee: 0,
         percentageFee: 0,
-        fxMarkupBps: 450,
+        fxMarkupBps: 200,
         typicalHours: 48,
-        notes: '~$5 flat fee + ~4.5% FX spread on PKR (minor corridor). Bank deposit to HBL, UBL, MCB.',
+        notes: '$0 online fee for bank deposits over $200 (Pakistan Remittance Initiative) + ~2% FX spread. Bank deposit to HBL, UBL, MCB.',
       },
     ],
     fallbackFee: {
@@ -1006,7 +1006,7 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.getcleva.com',
     affiliateLink: '',
     hasAffiliateProgram: false,
-    lastVerified: '2026-06-14',
+    lastVerified: '2026-07-05',
     supportedSourceCountries: ['US'],
     supportedDestinationCountries: ['NG'],
     corridors: [
@@ -1017,7 +1017,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 24,
-        notes: '$3 flat per USD-to-NGN withdrawal; true mid-market FX rate; no annual account fee',
+        notes: 'Two-tier ACH deposit fee: $1 under $300, $3 at $300 or more; conversion/withdrawal free at mid-market; modeled at $3 for the $1,000 example',
       },
     ],
     fallbackFee: {
@@ -1026,13 +1026,16 @@ export const PROVIDERS: Provider[] = [
       fxMarkupBps: 0,
       typicalHours: 24,
     },
-    notes: 'Cleva issues a US virtual bank account for Nigerian freelancers. Clients send a domestic ACH or wire; Cleva converts at mid-market and credits your Nigerian account. Fee: $3 flat per withdrawal. CBN-regulated.',
+    notes: 'Cleva issues a US virtual bank account for Nigerian freelancers. Clients send a domestic ACH or wire; Cleva charges a deposit fee on the incoming ACH ($1 for deposits under $300, $3 for deposits of $300 or more), then converts at mid-market and credits your Nigerian account with no separate withdrawal fee. CBN-regulated.',
   },
 
   // ─── Grey ──────────────────────────────────────────────────────────────────
-  // Source: https://grey.co/pricing (2026-06-14)
+  // Source: grey.co/blog/fees-and-charges-on-grey + support.grey.co (2026-07-05)
   // Pan-African fintech (HQ Lagos) issuing virtual USD, GBP, and EUR accounts.
-  // Fee model: 0.8% conversion fee (capped at ~$10 per transaction) + ~1% FX markup above mid-market.
+  // Fee model: 0.8% deposit fee (min $2, max $10) on incoming USD + 1% conversion fee
+  // (capped at $6 per transaction) + ~1% FX markup above mid-market.
+  // Modeled below as $6 fixed (capped conversion, transfers >= $600) + 0.8% + 100 bps;
+  // exact only near $1,000 since both caps cannot be expressed in this fee model.
   // CBN-regulated (license 10151).
   {
     slug: 'grey',
@@ -1042,28 +1045,28 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://grey.co',
     affiliateLink: '',
     hasAffiliateProgram: false,
-    lastVerified: '2026-06-14',
+    lastVerified: '2026-07-05',
     supportedSourceCountries: ['US', 'GB', 'EU'],
     supportedDestinationCountries: ['NG'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'NG', currency: 'NGN' },
-        fixedFee: 0,
+        fixedFee: 6,
         percentageFee: 0.008,
         fxMarkupBps: 100,
         typicalHours: 24,
-        notes: '0.8% conversion fee (capped ~$10 per transaction) + ~1% FX markup; CBN license 10151',
+        notes: '0.8% deposit fee (min $2, max $10) + 1% conversion fee capped at $6 + ~1% FX markup; CBN license 10151',
       },
     ],
     fallbackFee: {
-      fixedFee: 0,
+      fixedFee: 6,
       percentageFee: 0.008,
       fxMarkupBps: 100,
       typicalHours: 24,
     },
-    notes: 'Grey issues virtual USD (and GBP/EUR) accounts for Nigerian freelancers. Fee: 0.8% capped at ~$10 per transaction, plus ~1% FX markup. Supports USD, GBP, and EUR receiving. CBN-regulated (license 10151).',
-    caveat: '0.8% conversion fee capped at ~$10 per transaction. On transfers above ~$1,250 the cap kicks in and the effective rate drops.',
+    notes: 'Grey issues virtual USD (and GBP/EUR) accounts for Nigerian freelancers. Fees: 0.8% deposit fee (min $2, max $10) on incoming USD, plus a 1% conversion fee capped at $6 per transaction, plus ~1% FX markup. Roughly 2.4% all-in on $1,000. Supports USD, GBP, and EUR receiving. CBN-regulated (license 10151).',
+    caveat: 'Two capped fees apply: 0.8% deposit fee (max $10) and 1% conversion fee (max $6). On larger transfers both caps kick in and the effective rate drops.',
   },
 
   // ─── LemFi ─────────────────────────────────────────────────────────────────
@@ -1135,6 +1138,6 @@ export const PROVIDERS: Provider[] = [
       fxMarkupBps: 50,
       typicalHours: 24,
     },
-    notes: 'Raenest issues virtual USD and GBP accounts for African freelancers and remote workers. Fee: $1 flat per withdrawal plus a 0.5% FX markup above mid-market. No annual account fee. CBN-licensed.',
+    notes: 'Raenest issues virtual USD and GBP accounts for African freelancers and remote workers. Modeled here as $1 flat per deposit plus a 0.5% FX markup above mid-market. Raenest has revised its deposit fee structure several times recently; verify the current free-deposit allowance at raenest.com/pricing. No annual account fee. CBN-licensed.',
   },
 ];

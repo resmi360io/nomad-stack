@@ -46,30 +46,30 @@ export const CORRIDORS: Corridor[] = [
       'Compare the real cost of receiving USD in Pakistan. Payoneer charges ~3% all-in; PayPal and Wise are not available. Live FX rates, worked example, and provider comparison.',
     h1: 'How to receive USD in Pakistan: fees, FX spread, and what you actually net',
     intro:
-      'Pakistani freelancers have fewer options than most -- PayPal is blocked for receiving and Pakistani residents cannot open a Wise account. Payoneer is the dominant choice at roughly 3% all-in (1% fee + up to 2% FX markup on PKR withdrawal). Western Union works but the FX spread on Pakistani rupee is typically 4--5%, making it significantly more expensive on recurring payments.',
+      'Pakistani freelancers have fewer options than most -- PayPal has never launched in Pakistan and Pakistani residents cannot open a Wise account for receiving. Payoneer is the dominant choice at up to about 3% all-in (1% fee + up to 2% FX markup on PKR withdrawal). Western Union is cheaper than commonly assumed (around 2% FX spread and a $0 online fee for bank deposits over $200 under the Pakistan Remittance Initiative), though Payoneer remains the standard for recurring client payments.',
     publishedDate: '2026-06-03',
-    updatedDate: '2026-06-03',
+    updatedDate: '2026-07-05',
     providers: [
       {
         slug: 'payoneer',
         name: 'Payoneer',
         available: true,
         notes:
-          'The dominant choice for Pakistani freelancers receiving from Upwork, Fiverr, Toptal, and direct US clients. Payoneer charges 1% on incoming commercial payments (from clients, not marketplace withdrawals -- some marketplace rates differ). When you withdraw your Payoneer balance to a local PKR bank account, Payoneer applies an FX conversion at up to 2% above mid-market, giving a typical all-in cost of 2.5--3.5%. Requires identity verification (CNIC or passport). Works reliably with HBL, UBL, MCB, Meezan, and Standard Chartered Pakistan. There is a $1.50 flat fee for same-currency USD withdrawals to a USD-denominated Pakistani bank account, but this does not apply to cross-currency PKR withdrawals.',
+          'The dominant choice for Pakistani freelancers receiving from Upwork, Fiverr, Toptal, and direct US clients. Payoneer charges 1% on incoming commercial payments. When you withdraw your Payoneer balance to a local PKR bank account, Payoneer applies an FX conversion at up to 2% above mid-market, giving a typical all-in cost of up to about 3% (1% receiving fee plus up to 2% FX markup). Requires identity verification (CNIC or passport). Works reliably with HBL, UBL, MCB, and Meezan Bank; HBL and Meezan have official real-time withdrawal integrations with Payoneer.',
       },
       {
         slug: 'western-union',
         name: 'Western Union',
         available: true,
         notes:
-          'Available for bank deposit to major Pakistani banks. Western Union quotes a send fee of approximately $5 for online USD bank-deposit transfers to Pakistan, but the bigger cost is the FX spread -- PKR is classified as a minor corridor and Western Union\'s quoted exchange rate is typically 4--5% below the mid-market rate. On a $1,000 transfer at a 4.5% FX spread plus $5 flat fee, you effectively lose around $50--55. This is more than double the Payoneer cost. Western Union is useful if your client insists on it, but it is not the cheapest option for recurring payments.',
+          'Available for bank deposit to major Pakistani banks, and cheaper than its reputation suggests. Pakistan is a Pakistan Remittance Initiative (PRI) corridor: Western Union charges a $0 online transfer fee for bank deposits over $200, and its USD-to-PKR exchange rate markup is roughly 2% below mid-market. On a $1,000 transfer you effectively lose around $20. That is still more than Payoneer for recurring commercial payments, and PRI terms are aimed at personal remittances, so verify how your transfer is classified before relying on it for client invoices.',
       },
       {
         slug: 'bank-wire',
         name: 'Bank Wire (SWIFT)',
         available: true,
         notes:
-          'SWIFT wires reach all major Pakistani banks (HBL, UBL, MCB, Allied Bank, Bank Alfalah). The problem is the flat fee: most US banks charge $25--45 to send an outgoing international wire, and some Pakistani banks charge a separate incoming SWIFT fee of $5--15. On a $1,000 transfer, the combined flat fees alone represent 3--6% of the amount. The bank\'s FX spread on converting USD to PKR adds another 2--4%. Bank wires make sense for large one-time payments over $5,000 where the flat fee becomes a smaller percentage, but they are impractical for regular freelance invoices.',
+          'SWIFT wires reach all major Pakistani banks (HBL, UBL, MCB, Allied Bank, Bank Alfalah). The problem is the flat fee: most US banks charge $25--45 to send an outgoing international wire, and incoming charges on the Pakistani side vary by bank and transfer type (check your bank\'s current schedule of charges). On a $1,000 transfer, the sending fee alone represents 2.5--4.5% of the amount. The bank\'s FX spread on converting USD to PKR typically adds a few percent more; banks do not publish exact spreads. Bank wires make sense for large one-time payments over $5,000 where the flat fee becomes a smaller percentage, but they are impractical for regular freelance invoices.',
       },
       {
         slug: 'wise',
@@ -90,14 +90,14 @@ export const CORRIDORS: Corridor[] = [
         name: 'PayPal',
         available: false,
         notes:
-          'PayPal does not support receiving commercial payments in Pakistan. While Pakistani users can create a PayPal account, incoming international payments from clients are blocked or indefinitely held. This restriction has been in place since 2013 and has not been lifted. Do not list a PayPal address as a payment method for your international clients -- you will not receive the money.',
+          'PayPal has never officially launched in Pakistan. Pakistan is not in PayPal\'s supported-country list, so Pakistani residents cannot open a standard PayPal account with a local address, phone number, or bank account at all, and no receiving functionality exists. Government overtures to bring PayPal to Pakistan have not produced a launch as of 2026. Do not list PayPal as a payment method for your international clients -- you will not receive the money.',
       },
       {
         slug: 'grabrfi',
         name: 'GrabrFi',
         available: false,
         notes:
-          'GrabrFi currently supports withdrawals to Georgia, Mexico, Thailand, and Indonesia only. Pakistan is not a supported destination.',
+          'GrabrFi accounts are limited to a fixed eligibility list of about 27 countries (mostly Latin America plus the US, UK, India, Nigeria, and a few others). Pakistan is not a supported country.',
       },
     ],
     supportedProviders: ['payoneer', 'western-union', 'bank-wire'],
@@ -108,23 +108,23 @@ export const CORRIDORS: Corridor[] = [
       },
       {
         q: 'Is PayPal available for freelancers in Pakistan?',
-        a: 'No. PayPal does not support receiving commercial payments in Pakistan. Incoming payments from international clients are blocked or held indefinitely. This has been the case since 2013 when PayPal restricted Pakistani accounts following compliance issues. As of 2026, PayPal has not restored receiving functionality for Pakistan. If a client sends you money via PayPal, do not expect to be able to withdraw it. Use Payoneer or bank wire instead.',
+        a: 'No. PayPal has never officially launched in Pakistan. Pakistan is absent from PayPal\'s supported-country list, so you cannot open a standard PayPal account with a Pakistani address, phone number, or bank account, and no receiving functionality exists. Despite repeated government efforts to bring PayPal to Pakistan, no launch has occurred as of 2026. If a client offers to pay via PayPal, ask for Payoneer or a bank wire instead.',
       },
       {
         q: 'What is the cheapest way to receive USD in Pakistan?',
-        a: 'For Pakistani residents, Payoneer is the cheapest widely-available option at roughly 2.5--3.5% all-in (1% receiving fee plus up to 2% FX markup on PKR withdrawal). The even cheaper approach -- if your client is cooperative -- is to ask them to send via Wise directly to your Pakistani bank account. In that scenario, the recipient cost is zero and the client pays roughly 0.5--1.5% on their end. This does not work on platforms like Upwork or Fiverr that have their own payment processing, but it works for direct clients who invoice you.',
+        a: 'For Pakistani residents, Payoneer is the cheapest widely-available option at up to about 3% all-in (1% receiving fee plus up to 2% FX markup on PKR withdrawal). The even cheaper approach -- if your client is cooperative -- is to ask them to send via Wise directly to your Pakistani bank account. In that scenario, the recipient cost is zero and the client pays roughly 0.5--1.5% on their end. This does not work on platforms like Upwork or Fiverr that have their own payment processing, but it works for direct clients who invoice you.',
       },
       {
         q: 'How long does it take to receive international payments in Pakistan?',
-        a: 'Payoneer to a local PKR bank account: typically 2--5 business days after the payment clears on the sender\'s side. Payoneer balance to balance is near-instant. Western Union bank deposit: 1--3 business days. SWIFT wire from a US bank to a Pakistani bank: 3--7 business days, sometimes longer if intermediate correspondent banks add delays. The Pakistan banking system adds no unusual delays compared to other developing-country corridors.',
+        a: 'Payoneer to a local PKR bank account: within minutes via the real-time HBL or Meezan Bank app integrations, or typically 1--2 business days for standard bank withdrawals. Payoneer balance to balance is near-instant. Western Union bank deposit: 1--3 business days. SWIFT wire from a US bank to a Pakistani bank: 3--7 business days, sometimes longer if intermediate correspondent banks add delays. The Pakistan banking system adds no unusual delays compared to other developing-country corridors.',
       },
       {
         q: 'Do I need to declare international freelance income to FBR?',
-        a: 'Yes. Income received from foreign clients is taxable in Pakistan and must be declared to the Federal Board of Revenue (FBR). As of the 2024--25 fiscal year, IT and IT-enabled services export income has a reduced tax rate, and there is a withholding tax exemption certificate process for registered exporters. Rules change with each annual budget. Consult a Pakistani tax professional -- this site covers fees, not tax, and the regulatory landscape changes too frequently to summarize reliably.',
+        a: 'Yes. Income received from foreign clients is taxable in Pakistan and must be declared to the Federal Board of Revenue (FBR). Under Section 154A of the Income Tax Ordinance, IT and IT-enabled services export proceeds are subject to a 0.25% final withholding tax for exporters registered with the Pakistan Software Export Board (PSEB), versus roughly 1% if unregistered, conditional on receiving proceeds through banking channels. The Finance Act 2026 extended the 0.25% rate through Tax Year 2029. Rules change with each annual budget. Consult a Pakistani tax professional -- this site covers fees, not tax, and the regulatory landscape changes too frequently to summarize reliably.',
       },
       {
         q: 'Which Pakistani banks work best with Payoneer?',
-        a: 'HBL, UBL, MCB, Meezan Bank, and Bank Alfalah are the most commonly reported to work without issues. Standard Chartered Pakistan and Faysal Bank also work. The main requirement is that the account is in your legal name exactly as it appears in your Payoneer verification documents (CNIC or passport). Joint accounts or accounts with name mismatches can cause delays or rejections. Most users on freelance forums report the fastest processing with HBL and UBL.',
+        a: 'HBL, UBL, MCB, Meezan Bank, and Bank Alfalah are the most commonly reported to work without issues; Faysal Bank is also frequently mentioned. HBL and Meezan Bank have official real-time withdrawal integrations with Payoneer, making them the fastest routes. The main requirement is that the account is in your legal name exactly as it appears in your Payoneer verification documents (CNIC or passport). Joint accounts or accounts with name mismatches can cause delays or rejections.',
       },
     ],
     siblingCorridors: ['usd-to-bdt', 'usd-to-ngn'],
@@ -145,14 +145,14 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'Bangladeshi freelancers receive primarily via Payoneer (~3-5% all-in for bank account withdrawal), and the most popular local step after that is Payoneer to bKash. Payoneer has a direct bKash integration that moves your balance to a bKash wallet typically within hours, though Payoneer charges a higher conversion fee for this route than for bank withdrawals (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal before withdrawing). Bank account withdrawal takes 1-3 business days and generates the Foreign Inward Remittance Certificate (FIRC) required to claim the export cash incentive. PayPal cannot receive commercial payments in Bangladesh, and Wise is not available to Bangladeshi account holders (though a foreign client using Wise can push BDT directly to your bank account, bKash wallet, or Nagad wallet).',
     publishedDate: '2026-06-04',
-    updatedDate: '2026-06-18',
+    updatedDate: '2026-07-05',
     providers: [
       {
         slug: 'payoneer',
         name: 'Payoneer',
         available: true,
         notes:
-          'The dominant route for Bangladeshi freelancers on Upwork, Fiverr, and direct invoicing. Payoneer charges 1% on incoming commercial payments. When you withdraw to a local BDT bank account, Payoneer applies an FX conversion at roughly 1.2%-4% (the official fee schedule, updated January 2026, states this range; roughly 2% is a representative midpoint). Same-currency USD-to-USD withdrawal is a flat $1.50 instead. You can also withdraw directly to a bKash wallet via Payoneer\'s bKash integration; Payoneer charges a separate conversion fee for this route (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal, as this differs from the standard bank withdrawal fee). On the bKash side, cash-out charges apply when withdrawing cash via an agent; rates have changed significantly from historical figures, so check the bKash charge calculator for the current rate before assuming any specific number. The bKash route is fast but does not generate a Foreign Inward Remittance Certificate (FIRC), which is required to claim the export cash incentive and fund an ERQ foreign-currency account. Annual account fee: $29.95/year, charged only if the account receives less than $6,000 in any 12 consecutive months (most active freelancers pay nothing). Typical all-in cost for bank account withdrawal: 3-5%.',
+          'The dominant route for Bangladeshi freelancers on Upwork, Fiverr, and direct invoicing. Payoneer charges 1% on incoming commercial payments. When you withdraw to a local BDT bank account, Payoneer applies an FX conversion at roughly 1.2%-4% (the official fee schedule, updated January 2026, states this range; roughly 2% is a representative midpoint). Same-currency USD-to-USD withdrawal is a flat $1.50 instead. You can also withdraw directly to a bKash wallet via Payoneer\'s bKash integration; Payoneer charges a separate conversion fee for this route (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal, as this differs from the standard bank withdrawal fee). On the bKash side, cash-out charges apply when withdrawing cash via an agent; rates have changed significantly from historical figures, so check the bKash charge calculator for the current rate before assuming any specific number. The bKash route is fast but does not generate a Foreign Inward Remittance Certificate (FIRC), which is required to claim the export cash incentive and fund an ERQ foreign-currency account. Annual account fee: $29.95/year, charged only if the account receives less than Payoneer\'s minimum activity threshold in any 12 consecutive months; the commonly cited default threshold is $2,000, but published figures vary by market, so verify the current Bangladesh threshold in the Payoneer portal. Typical all-in cost for bank account withdrawal: 3-5%.',
       },
       {
         slug: 'bkash-withdrawal',
@@ -181,7 +181,7 @@ export const CORRIDORS: Corridor[] = [
         name: 'PayPal',
         available: false,
         notes:
-          'PayPal commercial receiving is not available in Bangladesh. Only Xoom (a PayPal subsidiary) operates in Bangladesh, and Xoom explicitly states it supports person-to-person inbound remittance only — it does not support transactions for goods or business purposes. A freelancer cannot receive client project payments into a PayPal account in Bangladesh. Note: the Payoneer-PayPal workaround (receiving PayPal payments via Payoneer) is explicitly blocked for Bangladesh-registered Payoneer accounts — do not rely on it. There have been repeated government statements about a full PayPal launch in Bangladesh, but no commercial launch has occurred as of mid-2026. Treat PayPal as unavailable and plan billing around Payoneer and bank wire.',
+          'PayPal commercial receiving is not available in Bangladesh. Only Xoom (a PayPal subsidiary) operates in Bangladesh, and Xoom explicitly states it supports person-to-person inbound remittance only — it does not support transactions for goods or business purposes. A freelancer cannot receive client project payments into a PayPal account in Bangladesh. Note: the availability of the Payoneer-PayPal workaround (receiving PayPal payments via Payoneer) for Bangladesh-registered accounts is unclear as of mid-2026; reports conflict on whether Payoneer\'s PayPal-receiving rollout covers Bangladesh, so check your own Payoneer dashboard for a PayPal option rather than relying on it. There have been repeated government statements about a full PayPal launch in Bangladesh, but no commercial launch has occurred as of mid-2026. Treat PayPal as unavailable and plan billing around Payoneer and bank wire.',
       },
       {
         slug: 'revolut',
@@ -195,7 +195,7 @@ export const CORRIDORS: Corridor[] = [
         name: 'GrabrFi',
         available: false,
         notes:
-          'GrabrFi currently supports withdrawals to Georgia, Mexico, Thailand, and Indonesia only. Bangladesh is not a supported destination.',
+          'GrabrFi accounts are limited to a fixed eligibility list of about 27 countries (mostly Latin America plus the US, UK, India, Nigeria, and a few others). Bangladesh is not a supported country.',
       },
     ],
     supportedProviders: ['payoneer', 'bank-wire'],
@@ -206,7 +206,7 @@ export const CORRIDORS: Corridor[] = [
       },
       {
         q: 'Does the 2.5% remittance incentive apply to freelancing?',
-        a: 'No. The widely-known 2.5% government cash incentive is the Wage-Earner Remittance scheme for overseas Bangladeshis sending personal remittances home — it does not apply to freelance or IT earnings. Freelancers fall under a separate export cash incentive: as of FY2025-26 (valid to 30 June 2026), the rate is 2.5% for individual freelancers and 6% for registered software/ITES firms, per Bangladesh Bank circular. This incentive is only claimable via proper banking channels with a FIRC — Payoneer-to-bKash withdrawals do not qualify. Importantly, these incentives are being phased out around Bangladesh\'s LDC graduation (scheduled November 2026) to comply with WTO rules. Verify the current rate and eligibility before relying on it.',
+        a: 'No. The widely-known 2.5% government cash incentive is the Wage-Earner Remittance scheme for overseas Bangladeshis sending personal remittances home — it does not apply to freelance or IT earnings. Freelancers fall under a separate export cash incentive: as of FY2025-26 (valid to 30 June 2026), the rate is 2.5% for individual freelancers and 6% for registered software/ITES firms, per Bangladesh Bank circular. This incentive is only claimable via proper banking channels with a FIRC — Payoneer-to-bKash withdrawals do not qualify. Importantly, these incentives are expected to be phased out around Bangladesh\'s LDC graduation to comply with WTO rules; the graduation date, originally set for November 2026, was extended to 24 November 2029 following a June 2026 UN decision. Verify the current rate and eligibility before relying on it.',
       },
       {
         q: 'Can I keep my earnings in dollars (ERQ account)?',
@@ -245,9 +245,9 @@ export const CORRIDORS: Corridor[] = [
       'Compare the real cost of receiving USD in Nigeria in 2026. Cleva, Grey, LemFi, and Raenest offer near mid-market rates. Payoneer costs more. Live FX and worked example.',
     h1: 'How to receive USD in Nigeria: fees, FX spread, and what you actually net',
     intro:
-      'Nigerian freelancers now have strong specialist options: Cleva, Grey, LemFi, and Raenest all issue virtual US bank accounts that convert at near mid-market rates, typically 0-1.8% all-in. Payoneer works but costs roughly 3% all-in and carries a $2,000/year minimum activity threshold. PayPal returned to Nigeria in January 2026 via a Paga partnership, but stacked fees make it roughly 6-7% all-in and the most expensive widely-available option.',
+      'Nigerian freelancers now have strong specialist options: Cleva, Grey, LemFi, and Raenest all issue virtual US bank accounts that convert at near mid-market rates, typically 0-1.8% all-in. Payoneer works but costs roughly 3% all-in and carries a $2,000/year minimum activity threshold. PayPal returned to Nigeria in January 2026 via a Paga partnership, but stacked fees make it roughly 6-7% or more all-in and the most expensive widely-available option.',
     publishedDate: '2026-06-14',
-    updatedDate: '2026-06-17',
+    updatedDate: '2026-07-05',
     providers: [
       {
         slug: 'lemfi',
@@ -261,21 +261,21 @@ export const CORRIDORS: Corridor[] = [
         name: 'Raenest',
         available: true,
         notes:
-          'Raenest (also marketed as GeegPay) issues virtual USD and GBP accounts for African freelancers and remote workers. US ACH receiving details are provided via Regent Bank (Member FDIC) and are accepted by Upwork, Fiverr, and direct clients. Fee model: 1 free ACH deposit and 1 free stablecoin deposit per month; additional deposits cost $1 flat each. Beyond the deposit fee, Raenest applies a 0.5% FX markup above mid-market on the USD-to-NGN conversion. On a $1,000 transfer within the free monthly allowance, the cost is approximately $5 (0.5% effective). No annual account fee. Typical settlement: 24 hours. CBN-licensed; also supports GBP receiving for UK clients.',
+          'Raenest (also marketed as GeegPay) issues virtual USD and GBP accounts for African freelancers and remote workers. US ACH receiving details are provided via Regent Bank (Member FDIC) and are accepted by Upwork, Fiverr, and direct clients. Fee model as of our last check: 1 free ACH deposit and 1 free stablecoin deposit per month, with additional deposits at $1 flat each; Raenest has revised its deposit and conversion fees several times recently, so verify the current allowance at raenest.com/pricing. Beyond deposit fees, Raenest applies a 0.5% FX markup above mid-market on the USD-to-NGN conversion. On a $1,000 transfer within the free monthly allowance, the cost is approximately $5 (0.5% effective). No annual account fee. Typical settlement: 24 hours. CBN-licensed IMTO; also supports GBP receiving for UK clients.',
       },
       {
         slug: 'cleva',
         name: 'Cleva',
         available: true,
         notes:
-          'Cleva is a Nigeria-specific fintech that issues a virtual US bank account (routing number and account number) so clients can send a domestic ACH or wire as if paying a US-based contractor. Fee: $3 flat per USD-to-NGN withdrawal, no percentage fee, and Cleva applies the true mid-market rate. On a $1,000 transfer the cost is $3, or 0.3%. On a $300 transfer it becomes 1.0%, so Cleva is better suited to transfers of $500 or more. Typical settlement: within 24 hours of the ACH credit clearing (ACH from client takes 1-2 business days). No annual account fee. CBN-regulated.',
+          'Cleva is a Nigeria-specific fintech that issues a virtual US bank account (routing number and account number) so clients can send a domestic ACH or wire as if paying a US-based contractor. Fee: a two-tier deposit fee on the incoming ACH ($1 for deposits under $300, $3 for deposits of $300 or more); converting and withdrawing to your Nigerian bank account is free at the true mid-market rate. On a $1,000 transfer the total cost is the $3 deposit fee, or 0.3%. On a $200 transfer the deposit fee drops to $1 (0.5%). Typical settlement: within 24 hours of the ACH credit clearing (ACH from client takes 1-2 business days). No annual account fee. CBN-licensed IMTO.',
       },
       {
         slug: 'grey',
         name: 'Grey',
         available: true,
         notes:
-          'Grey issues virtual USD (and optionally GBP and EUR) accounts for Nigerian freelancers. Clients send a regular ACH or wire; Grey charges a 1% conversion fee capped at $6 per transaction, plus approximately 1% FX markup above mid-market. On a $1,000 transfer the combined cost is approximately $16 ($6 capped conversion fee + $10 FX), or 1.6% effective. On a $5,000 transfer the cost is approximately $56 ($6 cap + $50 FX), or 1.1%. Grey also offers a Visa debit card for a one-time $5 fee. Grey is CBN-regulated (licence 10151) and supports multiple currencies, making it a good option if you also receive GBP or EUR from European clients.',
+          'Grey issues virtual USD (and optionally GBP and EUR) accounts for Nigerian freelancers. Clients send a regular ACH or wire; Grey charges a 0.8% deposit fee (minimum $2, maximum $10) on the incoming USD, plus a 1% conversion fee capped at $6 per transaction, plus approximately 1% FX markup above mid-market. On a $1,000 transfer the combined cost is approximately $24 ($8 deposit fee + $6 capped conversion fee + $10 FX), or about 2.4% effective. On a $5,000 transfer the cost is approximately $66 ($10 deposit cap + $6 conversion cap + $50 FX), or 1.3%. Grey also offers a Visa debit card for a one-time $5 fee. Grey is CBN-regulated (licence 10151) and supports multiple currencies, making it a good option if you also receive GBP or EUR from European clients.',
       },
       {
         slug: 'payoneer',
@@ -289,7 +289,7 @@ export const CORRIDORS: Corridor[] = [
         name: 'PayPal (via Paga)',
         available: true,
         notes:
-          'PayPal re-enabled NGN payouts in Nigeria in January 2026 via a partnership with Paga, a CBN-licensed payment company. Nigerian PayPal users can now withdraw their USD PayPal balance to a naira bank account via Paga. The combined fee is approximately 2.9% + $0.30 on the PayPal receiving side, plus roughly 3.5% FX markup on the USD-to-NGN conversion, giving an all-in cost of roughly 6-7% on a $1,000 transfer. That is the most expensive widely-available option. The main use case is if a client specifically insists on PayPal and you have no alternative. Payouts are naira-only. The Paga integration is recent (January 2026) and processing times can vary.',
+          'PayPal re-enabled NGN payouts in Nigeria in January 2026 via a partnership with Paga, a CBN-licensed payment company. Nigerian PayPal users can now withdraw their USD PayPal balance to a naira bank account via Paga. The combined fee is approximately 2.9% + $0.30 on the PayPal receiving side, plus roughly 3.5% FX markup on the USD-to-NGN conversion, giving an estimated all-in cost of roughly 6-7% on a $1,000 transfer, possibly more if Paga applies an additional spread on the conversion. That is the most expensive widely-available option. The main use case is if a client specifically insists on PayPal and you have no alternative. Payouts are naira-only. The Paga integration is recent (January 2026) and processing times can vary.',
       },
       {
         slug: 'bank-wire',
@@ -303,7 +303,7 @@ export const CORRIDORS: Corridor[] = [
         name: 'Wise',
         available: false,
         notes:
-          'Nigerian residents cannot open a Wise account or obtain Wise receiving details. Wise does not support Nigeria as a destination country for account holders as of mid-2026. A foreign client can technically use Wise to send a wire directly to a Nigerian bank account by entering the account details manually, but this is not available on Upwork or Fiverr and requires client cooperation each time. Wise has not announced a Nigerian launch date.',
+          'Nigerians can reportedly open a Wise personal account, but it is heavily restricted: no NGN balance, no physical card, and critically no local receiving details you can share with clients or freelance platforms, so Wise cannot serve as a virtual receiving account the way Cleva, Grey, LemFi, or Raenest can. A foreign client can use Wise to send money directly to a Nigerian bank account by entering the account details manually, but this is not available on Upwork or Fiverr and requires client cooperation each time.',
       },
       {
         slug: 'revolut',
@@ -317,22 +317,22 @@ export const CORRIDORS: Corridor[] = [
         name: 'GrabrFi',
         available: false,
         notes:
-          'GrabrFi currently supports withdrawals to Georgia, Mexico, Thailand, and Indonesia only. Nigeria is not a supported destination.',
+          'GrabrFi advertises USD virtual accounts with NGN withdrawal for Nigerian freelancers, but we have not yet verified its current fees and withdrawal mechanism against its official pricing, so it is not included in the ranked comparison above. If you use GrabrFi, verify current fees on grabrfi.com before relying on it.',
       },
     ],
     supportedProviders: ['lemfi', 'raenest', 'cleva', 'grey', 'payoneer', 'paypal', 'bank-wire'],
     faqs: [
       {
         q: 'What is the cheapest way to receive USD in Nigeria?',
-        a: 'LemFi is theoretically the cheapest at zero fees and true mid-market FX, but it is a smaller operator, so verify withdrawal limits before relying on it for large amounts. Cleva ($3 flat, mid-market FX) and Raenest (1 free deposit/month, then $1 flat plus 0.5% FX) are competitive and widely used. Grey (1% fee capped at $6, plus 1% FX) is slightly more expensive but well-established and supports GBP and EUR too. For recurring small invoices under $500, Raenest ($1 flat on paid deposits) is cheaper than Cleva ($3 flat). Payoneer (1% + up to 2% FX) and PayPal via Paga (roughly 6-7% all-in) are significantly more expensive and should be reserved for situations where you have no other option.',
+        a: 'LemFi is theoretically the cheapest at zero fees and true mid-market FX, but it is a smaller operator, so verify withdrawal limits before relying on it for large amounts. Cleva ($1 deposit fee under $300, $3 at $300 or more, then free mid-market conversion) and Raenest (1 free deposit/month, then $1 flat, plus 0.5% FX) are competitive and widely used. Grey (0.8% deposit fee plus 1% conversion fee capped at $6, plus about 1% FX, roughly 2.4% all-in on $1,000) is more expensive but well-established and supports GBP and EUR too. Payoneer (1% + up to 2% FX) and PayPal via Paga (roughly 6-7% or more all-in) are significantly more expensive and should be reserved for situations where you have no other option.',
       },
       {
         q: 'Does Wise work for Nigerian freelancers?',
-        a: 'Not directly. Nigerian residents cannot open a Wise account, so you cannot share Wise receiving details with clients. A foreign client can use Wise to push NGN to your Nigerian bank account manually, but this requires them to enter your bank details each time and is not available on freelance platforms like Upwork or Fiverr. In practice, use Cleva, Grey, LemFi, or Raenest instead: they all issue virtual US account numbers you can give clients as standard US bank receiving details.',
+        a: 'Not for receiving. Nigerians can reportedly open a restricted Wise personal account, but it comes without local receiving details you can share with clients or freelance platforms, so it cannot work as a virtual receiving account. A foreign client can use Wise to push NGN to your Nigerian bank account manually, but this requires them to enter your bank details each time and is not available on freelance platforms like Upwork or Fiverr. In practice, use Cleva, Grey, LemFi, or Raenest instead: they all issue virtual US account numbers you can give clients as standard US bank receiving details.',
       },
       {
         q: 'What is the IMTO naira-only rule and does it affect me?',
-        a: 'The CBN issued a circular on March 24, 2026 (effective May 1, 2026) requiring licensed International Money Transfer Operators (IMTOs) to pay all incoming remittances in naira only. This applies to Western Union, MoneyGram, and similar licensed IMTO operators. It does not apply to SWIFT bank-to-bank transfers: your Nigerian bank can still receive a USD SWIFT wire and convert it at the official NAFEM window rate. It also does not affect Cleva, Grey, LemFi, or Raenest, which operate as payment processors rather than licensed IMTOs. Your practical workflow is unaffected.',
+        a: 'The CBN issued a circular on March 24, 2026 (effective May 1, 2026) requiring licensed International Money Transfer Operators (IMTOs) to pay all incoming remittances in naira only. This applies to Western Union, MoneyGram, and similar licensed IMTO operators. It does not apply to SWIFT bank-to-bank transfers: your Nigerian bank can still receive a USD SWIFT wire and convert it at the official NAFEM window rate. LemFi, Raenest, and Cleva each hold CBN IMTO licences, so the naira-only settlement rule technically covers them too, but in practice this changes nothing for freelancers because these platforms already convert and pay out in naira rather than USD cash. Your practical workflow is unaffected.',
       },
       {
         q: 'How long does it take to receive USD in Nigeria?',
