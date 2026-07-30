@@ -48,7 +48,7 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'Pakistani freelancers have fewer options than most -- PayPal has never launched in Pakistan and Pakistani residents cannot open a Wise account for receiving. Payoneer is the dominant choice at up to about 3% all-in (1% fee + up to 2% FX markup on PKR withdrawal). Western Union is cheaper than commonly assumed (around 2% FX spread and a $0 online fee for bank deposits over $200 under the Pakistan Remittance Initiative), though Payoneer remains the standard for recurring client payments.',
     publishedDate: '2026-06-03',
-    updatedDate: '2026-07-05',
+    updatedDate: '2026-07-30',
     providers: [
       {
         slug: 'payoneer',
@@ -97,7 +97,7 @@ export const CORRIDORS: Corridor[] = [
         name: 'GrabrFi',
         available: false,
         notes:
-          'GrabrFi accounts are limited to a fixed eligibility list of about 27 countries (mostly Latin America plus the US, UK, India, Nigeria, and a few others). Pakistan is not a supported country.',
+          'GrabrFi accounts are limited to a fixed, short eligibility list of countries (mostly Latin America plus the US, UK, India, Nigeria, and a few others; the exact count has varied across GrabrFi\'s own published lists). Pakistan is not a supported country.',
       },
     ],
     supportedProviders: ['payoneer', 'western-union', 'bank-wire'],
@@ -145,14 +145,14 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'Bangladeshi freelancers receive primarily via Payoneer (~3-5% all-in for bank account withdrawal), and the most popular local step after that is Payoneer to bKash. Payoneer has a direct bKash integration that moves your balance to a bKash wallet typically within hours, though Payoneer charges a higher conversion fee for this route than for bank withdrawals (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal before withdrawing). Bank account withdrawal takes 1-3 business days and generates the Foreign Inward Remittance Certificate (FIRC) required to claim the export cash incentive. PayPal cannot receive commercial payments in Bangladesh, and Wise is not available to Bangladeshi account holders (though a foreign client using Wise can push BDT directly to your bank account, bKash wallet, or Nagad wallet).',
     publishedDate: '2026-06-04',
-    updatedDate: '2026-07-05',
+    updatedDate: '2026-07-30',
     providers: [
       {
         slug: 'payoneer',
         name: 'Payoneer',
         available: true,
         notes:
-          'The dominant route for Bangladeshi freelancers on Upwork, Fiverr, and direct invoicing. Payoneer charges 1% on incoming commercial payments. When you withdraw to a local BDT bank account, Payoneer applies an FX conversion at roughly 1.2%-4% (the official fee schedule, updated January 2026, states this range; roughly 2% is a representative midpoint). Same-currency USD-to-USD withdrawal is a flat $1.50 instead. You can also withdraw directly to a bKash wallet via Payoneer\'s bKash integration; Payoneer charges a separate conversion fee for this route (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal, as this differs from the standard bank withdrawal fee). On the bKash side, cash-out charges apply when withdrawing cash via an agent; rates have changed significantly from historical figures, so check the bKash charge calculator for the current rate before assuming any specific number. The bKash route is fast but does not generate a Foreign Inward Remittance Certificate (FIRC), which is required to claim the export cash incentive and fund an ERQ foreign-currency account. Annual account fee: $29.95/year, charged only if the account receives less than Payoneer\'s minimum activity threshold in any 12 consecutive months; the commonly cited default threshold is $2,000, but published figures vary by market, so verify the current Bangladesh threshold in the Payoneer portal. Typical all-in cost for bank account withdrawal: 3-5%.',
+          'The dominant route for Bangladeshi freelancers on Upwork, Fiverr, and direct invoicing. Payoneer charges 1% on incoming commercial payments. When you withdraw to a local BDT bank account, Payoneer applies an FX conversion at roughly 1.2%-4% (the official fee schedule, updated January 2026, states this range; roughly 2% is a representative midpoint). Same-currency USD-to-USD withdrawal is a flat $1.50 instead. You can also withdraw directly to a bKash wallet via Payoneer\'s bKash integration; Payoneer charges a separate conversion fee for this route (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal, as this differs from the standard bank withdrawal fee). On the bKash side, cash-out charges apply when withdrawing cash via an agent; rates have changed significantly from historical figures, so check the bKash charge calculator for the current rate before assuming any specific number. The bKash route is fast but does not generate a Foreign Inward Remittance Certificate (FIRC), which is required to claim the export cash incentive and fund an ERQ foreign-currency account. Annual account fee: $29.95/year, charged only if the account receives less than Payoneer\'s minimum activity threshold in any 12 consecutive months; Payoneer\'s help center currently states $6,000, though it has cited $2,000 elsewhere, so verify the current Bangladesh threshold in the Payoneer portal. Typical all-in cost for bank account withdrawal: 3-5%.',
       },
       {
         slug: 'bkash-withdrawal',
@@ -195,7 +195,7 @@ export const CORRIDORS: Corridor[] = [
         name: 'GrabrFi',
         available: false,
         notes:
-          'GrabrFi accounts are limited to a fixed eligibility list of about 27 countries (mostly Latin America plus the US, UK, India, Nigeria, and a few others). Bangladesh is not a supported country.',
+          'GrabrFi accounts are limited to a fixed, short eligibility list of countries (mostly Latin America plus the US, UK, India, Nigeria, and a few others; the exact count has varied across GrabrFi\'s own published lists). Bangladesh is not a supported country.',
       },
     ],
     supportedProviders: ['payoneer', 'bank-wire'],
@@ -206,7 +206,7 @@ export const CORRIDORS: Corridor[] = [
       },
       {
         q: 'Does the 2.5% remittance incentive apply to freelancing?',
-        a: 'No. The widely-known 2.5% government cash incentive is the Wage-Earner Remittance scheme for overseas Bangladeshis sending personal remittances home — it does not apply to freelance or IT earnings. Freelancers fall under a separate export cash incentive: as of FY2025-26 (valid to 30 June 2026), the rate is 2.5% for individual freelancers and 6% for registered software/ITES firms, per Bangladesh Bank circular. This incentive is only claimable via proper banking channels with a FIRC — Payoneer-to-bKash withdrawals do not qualify. Importantly, these incentives are expected to be phased out around Bangladesh\'s LDC graduation to comply with WTO rules; the graduation date, originally set for November 2026, was extended to 24 November 2029 following a June 2026 UN decision. Verify the current rate and eligibility before relying on it.',
+        a: 'No. The widely-known 2.5% government cash incentive is the Wage-Earner Remittance scheme for overseas Bangladeshis sending personal remittances home — it does not apply to freelance or IT earnings. Freelancers fall under a separate export cash incentive: Bangladesh Bank confirmed unchanged rates for FY2026-27 (covering earnings from 1 July 2026 to 30 June 2027) at 2.5% for individual freelancers and 6% for registered software/ITES firms. This incentive is only claimable via proper banking channels with a FIRC — Payoneer-to-bKash withdrawals do not qualify. Importantly, these incentives are expected to be phased out around Bangladesh\'s LDC graduation to comply with WTO rules. Bangladesh\'s graduation date is still officially 24 November 2026; the UN Committee for Development Policy recommended in mid-2026 extending it to around 24 November 2029, but that recommendation needs UN General Assembly approval, expected around September 2026, before it is final. Verify the current rate and eligibility before relying on it.',
       },
       {
         q: 'Can I keep my earnings in dollars (ERQ account)?',
@@ -245,23 +245,23 @@ export const CORRIDORS: Corridor[] = [
       'Compare the real cost of receiving USD in Nigeria in 2026. Cleva, Grey, LemFi, and Raenest offer near mid-market rates. Payoneer costs more. Live FX and worked example.',
     h1: 'How to receive USD in Nigeria: fees, FX spread, and what you actually net',
     intro:
-      'Nigerian freelancers now have strong specialist options: Cleva, Grey, LemFi, and Raenest all issue virtual US bank accounts that convert at near mid-market rates, typically 0-1.8% all-in. Payoneer works but costs roughly 3% all-in and carries a $2,000/year minimum activity threshold. PayPal returned to Nigeria in January 2026 via a Paga partnership, but stacked fees make it roughly 6-7% or more all-in and the most expensive widely-available option.',
+      'Nigerian freelancers now have strong specialist options: Cleva, Grey, LemFi, and Raenest all issue virtual US bank accounts that convert at near mid-market rates, typically 0-2.4% all-in. Payoneer works but costs roughly 3% all-in and carries a minimum activity threshold (currently $6,000/year per Payoneer\'s help center) below which an annual fee applies. PayPal returned to Nigeria in January 2026 via a Paga partnership, but stacked fees make it roughly 6-7% or more all-in and the most expensive widely-available option.',
     publishedDate: '2026-06-14',
-    updatedDate: '2026-07-05',
+    updatedDate: '2026-07-30',
     providers: [
       {
         slug: 'lemfi',
         name: 'LemFi',
         available: true,
         notes:
-          'LemFi (formerly Lemonade Finance) issues a virtual US bank account that Nigerian freelancers can share with clients as standard ACH receiving details. Fee structure: no flat fee, no percentage fee, and LemFi applies the true mid-market exchange rate with no markup, making it the theoretically cheapest option for any transfer size. Typical settlement: 1-2 business days. LemFi is FCA-licensed in the UK, holds a FINTRAC Money Business Operator licence in Canada, and operates under CBN approval in Nigeria. As it is a smaller operator than Cleva or Grey, verify current withdrawal limits before relying on it for large amounts.',
+          'LemFi (formerly Lemonade Finance) issues a virtual US bank account that Nigerian freelancers can share with clients as standard ACH receiving details. Fee structure: no flat fee, no percentage fee, and LemFi applies the true mid-market exchange rate with no markup, making it the theoretically cheapest option for any transfer size. Typical settlement: 1-2 business days. LemFi is FCA-licensed in the UK, is registered with FINTRAC as a Money Service Business (MSB) in Canada, and operates under CBN approval in Nigeria. As it is a smaller operator than Cleva or Grey, verify current withdrawal limits before relying on it for large amounts.',
       },
       {
         slug: 'raenest',
         name: 'Raenest',
         available: true,
         notes:
-          'Raenest (also marketed as GeegPay) issues virtual USD and GBP accounts for African freelancers and remote workers. US ACH receiving details are provided via Regent Bank (Member FDIC) and are accepted by Upwork, Fiverr, and direct clients. Fee model as of our last check: 1 free ACH deposit and 1 free stablecoin deposit per month, with additional deposits at $1 flat each; Raenest has revised its deposit and conversion fees several times recently, so verify the current allowance at raenest.com/pricing. Beyond deposit fees, Raenest applies a 0.5% FX markup above mid-market on the USD-to-NGN conversion. On a $1,000 transfer within the free monthly allowance, the cost is approximately $5 (0.5% effective). No annual account fee. Typical settlement: 24 hours. CBN-licensed IMTO; also supports GBP receiving for UK clients.',
+          'Raenest (also marketed as GeegPay) issues virtual USD and GBP accounts for African freelancers and remote workers. US ACH receiving details are provided via Regent Bank (Member FDIC) and are accepted by Upwork, Fiverr, and direct clients. Fee model: since 6 January 2026, Raenest gives 4 free deposits per month shared across USD, GBP, EUR, USDT, and USDC; once that allowance is used, ACH and stablecoin deposits cost $1 flat each and other deposit methods carry a 0.8% fee capped at $10. The USD-to-NGN conversion charge is 0.5%, capped between $0.25 and $2.70 per conversion, so it does not scale with transfer size the way an uncapped FX markup would. On a $1,000 transfer within the free monthly deposit allowance, the total cost is the capped conversion fee of about $2.70 (roughly 0.27% effective). Raenest has revised these fees several times recently, so verify the current allowance at raenest.com/pricing. No annual account fee. Typical settlement: 24 hours. CBN-licensed IMTO; also supports GBP receiving for UK clients.',
       },
       {
         slug: 'cleva',
@@ -282,14 +282,14 @@ export const CORRIDORS: Corridor[] = [
         name: 'Payoneer',
         available: true,
         notes:
-          'Payoneer works in Nigeria and is a common choice for freelancers on Upwork, Fiverr, and Toptal where Payoneer is the default platform payout method. Payoneer charges 1% on incoming commercial payments. When you withdraw to a Nigerian NGN bank account, Payoneer applies an FX conversion at up to 2% above mid-market, giving a typical all-in cost of 2.5-3.5%. Works with GTBank, Access Bank, Zenith Bank, First Bank, and UBA. Important: Payoneer charges an annual account fee of $29.95/year if the account receives less than $2,000 in any 12 consecutive months. Low-volume freelancers should track their activity level. If you are billing direct clients rather than using a platform, Cleva, LemFi, or Raenest will save you money.',
+          'Payoneer works in Nigeria and is a common choice for freelancers on Upwork, Fiverr, and Toptal where Payoneer is the default platform payout method. Payoneer charges 1% on incoming commercial payments. When you withdraw to a Nigerian NGN bank account, Payoneer applies an FX conversion at up to 2% above mid-market, giving a typical all-in cost of 2.5-3.5%. Works with GTBank, Access Bank, Zenith Bank, First Bank, and UBA. Important: Payoneer charges an annual account fee of $29.95/year if the account receives less than its minimum activity threshold in any 12 consecutive months. Payoneer\'s help center currently states $6,000 (it has cited $2,000 elsewhere), so check the figure that applies to your account in the portal. Low-volume freelancers should track their activity level. If you are billing direct clients rather than using a platform, Cleva, LemFi, or Raenest will save you money.',
       },
       {
         slug: 'paypal',
         name: 'PayPal (via Paga)',
         available: true,
         notes:
-          'PayPal re-enabled NGN payouts in Nigeria in January 2026 via a partnership with Paga, a CBN-licensed payment company. Nigerian PayPal users can now withdraw their USD PayPal balance to a naira bank account via Paga. The combined fee is approximately 2.9% + $0.30 on the PayPal receiving side, plus roughly 3.5% FX markup on the USD-to-NGN conversion, giving an estimated all-in cost of roughly 6-7% on a $1,000 transfer, possibly more if Paga applies an additional spread on the conversion. That is the most expensive widely-available option. The main use case is if a client specifically insists on PayPal and you have no alternative. Payouts are naira-only. The Paga integration is recent (January 2026) and processing times can vary.',
+          'PayPal re-enabled NGN payouts in Nigeria in January 2026 via a partnership with Paga, a CBN-licensed payment company. Nigerian PayPal users can now withdraw their USD PayPal balance to a naira bank account via Paga. The combined fee is approximately 2.9% + $0.30 on the PayPal receiving side, plus roughly 3.5% FX markup on the USD-to-NGN conversion, giving an estimated all-in cost of roughly 6-7% on a $1,000 transfer. Treat that as a floor rather than a ceiling: Paga does not publish its own conversion spread or withdrawal fee, and third-party reports of the real total run higher. That makes it the most expensive widely-available option. The main use case is if a client specifically insists on PayPal and you have no alternative. Payouts are naira-only. The Paga integration is recent (January 2026) and processing times can vary.',
       },
       {
         slug: 'bank-wire',
@@ -324,7 +324,7 @@ export const CORRIDORS: Corridor[] = [
     faqs: [
       {
         q: 'What is the cheapest way to receive USD in Nigeria?',
-        a: 'LemFi is theoretically the cheapest at zero fees and true mid-market FX, but it is a smaller operator, so verify withdrawal limits before relying on it for large amounts. Cleva ($1 deposit fee under $300, $3 at $300 or more, then free mid-market conversion) and Raenest (1 free deposit/month, then $1 flat, plus 0.5% FX) are competitive and widely used. Grey (0.8% deposit fee plus 1% conversion fee capped at $6, plus about 1% FX, roughly 2.4% all-in on $1,000) is more expensive but well-established and supports GBP and EUR too. Payoneer (1% + up to 2% FX) and PayPal via Paga (roughly 6-7% or more all-in) are significantly more expensive and should be reserved for situations where you have no other option.',
+        a: 'LemFi is theoretically the cheapest at zero fees and true mid-market FX, but it is a smaller operator, so verify withdrawal limits before relying on it for large amounts. Cleva ($1 deposit fee under $300, $3 at $300 or more, then free mid-market conversion) and Raenest (4 free deposits/month, then $1 flat, plus a 0.5% conversion fee capped at $2.70) are competitive and widely used. Grey (0.8% deposit fee plus 1% conversion fee capped at $6, plus about 1% FX, roughly 2.4% all-in on $1,000) is more expensive but well-established and supports GBP and EUR too. Payoneer (1% + up to 2% FX) and PayPal via Paga (roughly 6-7% or more all-in) are significantly more expensive and should be reserved for situations where you have no other option.',
       },
       {
         q: 'Does Wise work for Nigerian freelancers?',
@@ -340,7 +340,7 @@ export const CORRIDORS: Corridor[] = [
       },
       {
         q: 'Is Payoneer still worth using for Nigerian freelancers?',
-        a: 'Payoneer\'s main advantage is platform compatibility: if you work on Upwork or Fiverr, Payoneer is often the default and cheapest withdrawal method from the platform balance. If you are billing direct clients, Cleva, LemFi, or Raenest give better rates. Watch the annual fee threshold: if your Payoneer account receives less than $2,000 in any 12-month period, you are charged $29.95 in annual fees. For low-volume freelancers with direct clients, a fee-free option like LemFi or Cleva is clearly better.',
+        a: 'Payoneer\'s main advantage is platform compatibility: if you work on Upwork or Fiverr, Payoneer is often the default and cheapest withdrawal method from the platform balance. If you are billing direct clients, Cleva, LemFi, or Raenest give better rates. Watch the annual fee threshold: if your Payoneer account receives less than the minimum activity threshold in any 12-month period, you are charged $29.95 in annual fees. Payoneer\'s help center currently puts that threshold at $6,000, though it has published $2,000 elsewhere, so confirm the figure for your account in the portal. For low-volume freelancers with direct clients, a fee-free option like LemFi or Cleva is clearly better.',
       },
       {
         q: 'Do I have to pay tax on freelance income in Nigeria?',
@@ -363,9 +363,9 @@ export const CORRIDORS: Corridor[] = [
       'Compare the real cost of receiving USD in the Philippines. Wise offers mid-market rates, GCash now takes USD directly, PayPal runs 8%+. Live FX comparison.',
     h1: 'How to receive USD in the Philippines: fees, FX spread, and what you actually net',
     intro:
-      'Filipino freelancers are in better shape than most of the corridors we cover. Wise is fully available in the Philippines, so you can hold a real USD balance with US ACH receiving details and convert to pesos at the mid-market rate for a conversion fee typically under 1%. GCash launched its own Virtual US Account in December 2025, putting USD receiving inside a wallet most Filipinos already carry. Payoneer remains the default for Upwork and Fiverr at roughly 3% all-in, and PayPal, while everywhere, stacks a 4.4% receiving fee on top of a 3-4% FX spread. One more thing worth knowing up front: there is no forced conversion rule. You can keep your dollars in a bank FCDU account or a multi-currency wallet and convert only when the rate suits you.',
+      'Filipino freelancers are in better shape than most of the corridors we cover. Wise is fully available in the Philippines, so you can hold a real USD balance with US ACH receiving details and convert to pesos at the mid-market rate for a conversion fee typically under 1%. GCash launched its own Virtual US Account in November 2025, putting USD receiving inside a wallet most Filipinos already carry. Payoneer remains the default for Upwork and Fiverr at roughly 3% all-in, and PayPal, while everywhere, stacks a 4.4% receiving fee on top of a 3-4% FX spread. One more thing worth knowing up front: there is no forced conversion rule. You can keep your dollars in a bank FCDU account or a multi-currency wallet and convert only when the rate suits you.',
     publishedDate: '2026-07-05',
-    updatedDate: '2026-07-05',
+    updatedDate: '2026-07-30',
     providers: [
       {
         slug: 'wise',
@@ -380,14 +380,14 @@ export const CORRIDORS: Corridor[] = [
         customHeading: 'How the GCash Virtual US Account works',
         available: true,
         notes:
-          'GCash launched its Virtual US Account in December 2025, powered by Meridian Payments US. A verified GCash user gets US ACH and wire receiving details inside the app, and the launch materials name Wise, Gusto, Payoneer, Deel, Upwork, and Chase as senders that work. ACH deposits carry no transfer fee and post in 1-3 business days; wires arrive same day for $15. The dollars land as USD in your GCash wallet and stay there until you choose to convert to pesos. The catch, and the reason GCash does not appear in our ranked table above: GCash has not published the FX spread it applies on that USD-to-PHP conversion. Marketing copy calls the rate competitive, which is not a number. Check the quoted rate in the app against the mid-market rate at open.er-api.com before converting a large amount. If the spread is small, this is a genuinely strong option, since you probably already have the app.',
+          'GCash launched its Virtual US Account in November 2025 (with wider in-app rollout through December), powered by Meridian Payments US. A verified GCash user gets US ACH and wire receiving details inside the app, and the launch materials name Wise, Gusto, Payoneer, Deel, Upwork, and Chase as senders that work. ACH deposits carry no transfer fee and post in 1-3 business days; wires arrive same day for $15. The dollars land as USD in your GCash wallet and stay there until you choose to convert to pesos. The catch, and the reason GCash does not appear in our ranked table above: GCash has not published the FX spread it applies on that USD-to-PHP conversion. Marketing copy calls the rate competitive, which is not a number. Check the quoted rate in the app against the mid-market rate at open.er-api.com before converting a large amount. If the spread is small, this is a genuinely strong option, since you probably already have the app.',
       },
       {
         slug: 'payoneer',
         name: 'Payoneer',
         available: true,
         notes:
-          'The default payout method on Upwork and Fiverr, and the route most Filipino platform freelancers already use. Payoneer charges up to 1% on incoming commercial payments (minimum $1 on payments under $100). Withdrawing to a Philippine bank account, GCash, or GoTyme applies an FX conversion of up to about 2% above mid-market, so the typical all-in cost is roughly 3%. An annual account fee of $29.95 applies if the account receives less than Payoneer\'s minimum activity threshold in 12 consecutive months; the help center has cited both $2,000 and $6,000 figures at different times, so verify your account\'s threshold in the portal. If you bill direct clients rather than platforms, Wise costs meaningfully less.',
+          'The default payout method on Upwork and Fiverr, and the route most Filipino platform freelancers already use. Payoneer charges up to 1% on incoming commercial payments (minimum $1 on payments under $100). Withdrawing to a Philippine bank account or GoTyme applies an FX conversion of up to about 2% above mid-market, so the typical all-in cost is roughly 3%. Routing a withdrawal straight into GCash may add a separate GCash-side cash-in fee on top of that; reported figures conflict (a flat 1% in GCash\'s Payoneer cash-in help article, versus a monthly free allowance then 2% elsewhere), so check the current rate in the app before assuming the bank figure applies. An annual account fee of $29.95 applies if the account receives less than Payoneer\'s minimum activity threshold in 12 consecutive months; the help center has cited both $2,000 and $6,000 figures at different times, so verify your account\'s threshold in the portal. If you bill direct clients rather than platforms, Wise costs meaningfully less.',
       },
       {
         slug: 'bank-wire',
@@ -401,7 +401,7 @@ export const CORRIDORS: Corridor[] = [
         name: 'PayPal',
         available: true,
         notes:
-          'Available, familiar, and the most expensive mainstream way to receive client money in the Philippines. Cross-border commercial receiving runs about 4.4% plus a fixed fee, and converting the USD balance to pesos adds a currency spread of roughly 3-4% (we could not open PayPal\'s Philippine fee page directly, so treat the exact percentages as estimates and check your own transaction receipts). The redeeming feature is on the way out: PayPal links directly to GCash, and that withdrawal step is free with settlement in about 1-2 business days. Use PayPal when a client insists on it; move recurring clients to Wise or Payoneer.',
+          'Available, familiar, and the most expensive mainstream way to receive client money in the Philippines. Cross-border commercial receiving runs about 4.4% plus a fixed fee, and converting the USD balance to pesos adds a currency spread of roughly 3-4% (we could not open PayPal\'s Philippine fee page directly, so treat the exact percentages as estimates and check your own transaction receipts). PayPal links directly to GCash, which used to make the withdrawal step free, but that changed on 7 March 2026: GCash now charges a flat 1% cash-in fee on PayPal transfers, on top of everything above. Settlement still takes about 1-2 business days. Use PayPal when a client insists on it; move recurring clients to Wise or Payoneer.',
       },
       {
         slug: 'western-union',
@@ -429,7 +429,7 @@ export const CORRIDORS: Corridor[] = [
         name: 'GrabrFi',
         available: false,
         notes:
-          'GrabrFi accounts are limited to a fixed eligibility list of about 26 countries, mostly Latin America plus the US, UK, India, Nigeria, and a few others. The Philippines is not on the list.',
+          'GrabrFi accounts are limited to a fixed, short eligibility list of countries, mostly Latin America plus the US, UK, India, Nigeria, and a few others (the exact count has varied across GrabrFi\'s own published lists). The Philippines is not on the list.',
       },
     ],
     supportedProviders: ['wise', 'gcash', 'payoneer', 'bank-wire', 'paypal', 'western-union'],
@@ -444,11 +444,11 @@ export const CORRIDORS: Corridor[] = [
       },
       {
         q: 'How does the GCash Virtual US Account work, and what does it cost?',
-        a: 'GCash launched it in December 2025 with Meridian Payments US as the banking partner. Inside the GCash app you apply through the US Accounts section, and once approved you get US ACH and wire details that US employers, platforms, and payroll services can pay like any domestic account. ACH deposits are free and take 1-3 business days; wires post same day for $15. The money arrives as USD and sits in your wallet until you convert to pesos. What GCash has not published is the FX spread on that conversion, which is the number that decides whether this beats Wise. Until they do, compare the in-app rate to the mid-market rate before converting anything sizable.',
+        a: 'GCash introduced it in November 2025 with Meridian Payments US as the banking partner, with wider in-app rollout through December. Inside the GCash app you apply through the US Accounts section, and once approved you get US ACH and wire details that US employers, platforms, and payroll services can pay like any domestic account. ACH deposits are free and take 1-3 business days; wires post same day for $15. The money arrives as USD and sits in your wallet until you convert to pesos. What GCash has not published is the FX spread on that conversion, which is the number that decides whether this beats Wise. Until they do, compare the in-app rate to the mid-market rate before converting anything sizable.',
       },
       {
         q: 'How do I withdraw PayPal money to GCash, and what does it cost?',
-        a: 'The withdrawal itself is free. PayPal and GCash have a direct link: connect your GCash account in PayPal, withdraw, and the money typically lands within 1-2 business days. The cost sits earlier in the chain, where PayPal charges about 4.4% plus a fixed fee to receive a cross-border commercial payment and then applies a 3-4% spread when converting USD to pesos. By the time the money reaches GCash, roughly 8% of the invoice is gone. The free withdrawal is nice; it does not fix the economics.',
+        a: 'The withdrawal used to be free, but since 7 March 2026 GCash charges a flat 1% cash-in fee on PayPal transfers. PayPal and GCash still have a direct link: connect your GCash account in PayPal, withdraw, and the money typically lands within 1-2 business days. Most of the cost sits earlier in the chain, where PayPal charges about 4.4% plus a fixed fee to receive a cross-border commercial payment and then applies a 3-4% spread when converting USD to pesos. Stack the 1% cash-in fee on top and roughly 9% of the invoice is gone by the time it reaches your wallet.',
       },
       {
         q: 'Do I have to convert my dollars to pesos, or can I keep a USD account?',
