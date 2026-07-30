@@ -481,7 +481,8 @@ export const PROVIDERS: Provider[] = [
       },
       // USD → Nigerian NGN bank account
       // Source: payoneer.com/legal/fees/ — 1% receiving fee + up to 2% FX markup on NGN withdrawal
-      // Annual fee threshold for NG: $2,000/year (lower than some other countries)
+      // Annual fee threshold: help center currently states $6,000/year received
+      // (it has published $2,000 elsewhere); verify per-account in the portal
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'NG', currency: 'NGN' },
@@ -489,7 +490,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 200,
         typicalHours: 72,
-        notes: '1% receiving fee + up to 2% FX markup on NGN withdrawal; $29.95/year if under $2,000/year received',
+        notes: '1% receiving fee + up to 2% FX markup on NGN withdrawal; $29.95/year if under the activity threshold (help center currently $6,000/year)',
       },
       // USD → Philippine PHP bank account, GCash, or GoTyme
       // Source: payoneer.com country guide for PH — 1% receiving + up to 2% FX on withdrawal
@@ -500,7 +501,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 200,
         typicalHours: 48,
-        notes: '1% receiving fee + up to 2% FX markup on PHP withdrawal to bank, GCash, or GoTyme',
+        notes: '1% receiving fee + up to 2% FX markup on PHP withdrawal to bank or GoTyme; GCash payouts may add a separate GCash-side cash-in fee (reports conflict, verify in app)',
       },
     ],
     fallbackFee: {
@@ -605,7 +606,8 @@ export const PROVIDERS: Provider[] = [
         notes: 'Via Paga (Jan 2026); 2.9% + $0.30 PayPal receiving fee + ~3.5% FX markup; naira-only payout',
       },
       // USD → Philippine PHP: widely used in PH; ~4.4% + $0.30 cross-border receiving
-      // + ~3.5% FX on USD→PHP conversion. Withdrawal to GCash is free (PayPal-GCash link)
+      // + ~3.5% FX on USD→PHP conversion. GCash charges a flat 1% cash-in fee on
+      // PayPal transfers since 2026-03-07 (not modeled below; applies to the GCash route)
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PH', currency: 'PHP' },
@@ -613,7 +615,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.044,
         fxMarkupBps: 350,
         typicalHours: 48,
-        notes: '4.4% + $0.30 cross-border receiving + ~3.5% FX markup; withdrawal to GCash is free',
+        notes: '4.4% + $0.30 cross-border receiving + ~3.5% FX markup; GCash adds a flat 1% cash-in fee on PayPal transfers (since 2026-03-07)',
       },
     ],
     fallbackFee: {
@@ -1149,14 +1151,19 @@ export const PROVIDERS: Provider[] = [
       fxMarkupBps: 0,
       typicalHours: 48,
     },
-    notes: 'LemFi (formerly Lemonade Finance) issues a virtual US account for Nigerian freelancers. Zero fees, mid-market FX. FCA-licensed (UK), FINTRAC MBO (Canada), CBN-approved. Verify current withdrawal limits before relying on it for large amounts.',
+    notes: 'LemFi (formerly Lemonade Finance) issues a virtual US account for Nigerian freelancers. Zero fees, mid-market FX. FCA-licensed (UK), FINTRAC-registered Money Service Business (Canada), CBN-approved. Verify current withdrawal limits before relying on it for large amounts.',
   },
 
   // ─── Raenest ───────────────────────────────────────────────────────────────
-  // Source: https://raenest.com/pricing (2026-06-14)
+  // Source: help.raenest.com fees collection (verified 2026-07-30)
   // African freelancer-focused fintech issuing virtual USD and GBP accounts.
-  // Fee model: $1 flat per withdrawal + 0.5% FX markup above mid-market.
-  // CBN-licensed.
+  // Fee model: 4 free deposits/month shared across USD/GBP/EUR/USDT/USDC (since
+  // 2026-01-06), then $1 flat per ACH or stablecoin deposit. Conversion is a
+  // 0.5% fee CAPPED between $0.25 and $2.70 per conversion, not an uncapped spread.
+  // Modeled below as a $2.70 fixed fee (the cap, which binds at and above ~$540)
+  // with 0 bps markup, assuming a deposit within the free monthly allowance.
+  // Understates cost below ~$540, where the uncapped 0.5% still applies.
+  // CBN-licensed IMTO.
   {
     slug: 'raenest',
     name: 'Raenest',
@@ -1165,26 +1172,27 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://raenest.com',
     affiliateLink: '',
     hasAffiliateProgram: false,
-    lastVerified: '2026-06-14',
+    lastVerified: '2026-07-30',
     supportedSourceCountries: ['US', 'GB'],
     supportedDestinationCountries: ['NG'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'NG', currency: 'NGN' },
-        fixedFee: 1,
+        fixedFee: 2.70,
         percentageFee: 0,
-        fxMarkupBps: 50,
+        fxMarkupBps: 0,
         typicalHours: 24,
-        notes: '$1 flat per withdrawal + 0.5% FX markup; no percentage fee; CBN-licensed',
+        notes: '0.5% conversion fee capped at $2.70 (min $0.25); 4 free deposits/month, then $1 flat each; CBN-licensed IMTO',
       },
     ],
     fallbackFee: {
-      fixedFee: 1,
+      fixedFee: 2.70,
       percentageFee: 0,
-      fxMarkupBps: 50,
+      fxMarkupBps: 0,
       typicalHours: 24,
     },
-    notes: 'Raenest issues virtual USD and GBP accounts for African freelancers and remote workers. Modeled here as $1 flat per deposit plus a 0.5% FX markup above mid-market. Raenest has revised its deposit fee structure several times recently; verify the current free-deposit allowance at raenest.com/pricing. No annual account fee. CBN-licensed.',
+    notes: 'Raenest issues virtual USD and GBP accounts for African freelancers and remote workers. Since January 2026: 4 free deposits per month shared across USD, GBP, EUR, USDT and USDC, then $1 flat per ACH or stablecoin deposit. The USD-to-NGN conversion fee is 0.5% capped between $0.25 and $2.70 per conversion, so cost does not scale with transfer size above about $540. Verify the current allowance at raenest.com/pricing. No annual account fee. CBN-licensed IMTO.',
+    caveat: 'Conversion fee is capped at $2.70, so the effective rate falls as the transfer size rises.',
   },
 ];
