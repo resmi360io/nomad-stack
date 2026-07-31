@@ -1162,7 +1162,8 @@ export const PROVIDERS: Provider[] = [
   // 0.5% fee CAPPED between $0.25 and $2.70 per conversion, not an uncapped spread.
   // Modeled below as a $2.70 fixed fee (the cap, which binds at and above ~$540)
   // with 0 bps markup, assuming a deposit within the free monthly allowance.
-  // Understates cost below ~$540, where the uncapped 0.5% still applies.
+  // Overstates cost below ~$540, where the real fee is 0.5% of the amount
+  // (floor $0.25), which is less than the modeled $2.70.
   // CBN-licensed IMTO.
   {
     slug: 'raenest',
