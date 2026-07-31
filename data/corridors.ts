@@ -401,7 +401,7 @@ export const CORRIDORS: Corridor[] = [
         name: 'PayPal',
         available: true,
         notes:
-          'Available, familiar, and the most expensive mainstream way to receive client money in the Philippines. Cross-border commercial receiving runs about 4.4% plus a fixed fee, and converting the USD balance to pesos adds a currency spread of roughly 3-4% (we could not open PayPal\'s Philippine fee page directly, so treat the exact percentages as estimates and check your own transaction receipts). PayPal links directly to GCash, which used to make the withdrawal step free, but that changed on 7 March 2026: GCash now charges a flat 1% cash-in fee on PayPal transfers, on top of everything above. Settlement still takes about 1-2 business days. Use PayPal when a client insists on it; move recurring clients to Wise or Payoneer.',
+          'Available, familiar, and the most expensive mainstream way to receive client money in the Philippines. Cross-border commercial receiving runs about 4.4% plus a fixed fee, and converting the USD balance to pesos adds a currency spread of roughly 3-4% (we could not open PayPal\'s Philippine fee page directly, so treat the exact percentages as estimates and check your own transaction receipts). PayPal links directly to GCash, and since 7 March 2026 GCash charges a flat 1% cash-in fee on all PayPal transfers, on top of everything above. Settlement still takes about 1-2 business days. Use PayPal when a client insists on it; move recurring clients to Wise or Payoneer.',
       },
       {
         slug: 'western-union',
@@ -448,7 +448,7 @@ export const CORRIDORS: Corridor[] = [
       },
       {
         q: 'How do I withdraw PayPal money to GCash, and what does it cost?',
-        a: 'The withdrawal used to be free, but since 7 March 2026 GCash charges a flat 1% cash-in fee on PayPal transfers. PayPal and GCash still have a direct link: connect your GCash account in PayPal, withdraw, and the money typically lands within 1-2 business days. Most of the cost sits earlier in the chain, where PayPal charges about 4.4% plus a fixed fee to receive a cross-border commercial payment and then applies a 3-4% spread when converting USD to pesos. Stack the 1% cash-in fee on top and roughly 9% of the invoice is gone by the time it reaches your wallet.',
+        a: 'Since 7 March 2026 GCash charges a flat 1% cash-in fee on PayPal transfers, whatever the amount. PayPal and GCash still have a direct link: connect your GCash account in PayPal, withdraw, and the money typically lands within 1-2 business days. Most of the cost sits earlier in the chain, where PayPal charges about 4.4% plus a fixed fee to receive a cross-border commercial payment and then applies a 3-4% spread when converting USD to pesos. Stack the 1% cash-in fee on top and roughly 9% of the invoice is gone by the time it reaches your wallet.',
       },
       {
         q: 'Do I have to convert my dollars to pesos, or can I keep a USD account?',
