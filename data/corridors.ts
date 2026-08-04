@@ -48,7 +48,7 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'Pakistani freelancers have fewer options than most -- PayPal has never launched in Pakistan and Pakistani residents cannot open a Wise account for receiving. Payoneer is the dominant choice at up to about 3% all-in (1% fee + up to 2% FX markup on PKR withdrawal). Western Union is cheaper than commonly assumed (around 2% FX spread and a $0 online fee for bank deposits over $200 under the Pakistan Remittance Initiative), though Payoneer remains the standard for recurring client payments.',
     publishedDate: '2026-06-03',
-    updatedDate: '2026-07-30',
+    updatedDate: '2026-08-04',
     providers: [
       {
         slug: 'payoneer',
@@ -145,7 +145,7 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'Bangladeshi freelancers receive primarily via Payoneer (~3-5% all-in for bank account withdrawal), and the most popular local step after that is Payoneer to bKash. Payoneer has a direct bKash integration that moves your balance to a bKash wallet typically within hours, though Payoneer charges a higher conversion fee for this route than for bank withdrawals (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal before withdrawing). Bank account withdrawal takes 1-3 business days and generates the Foreign Inward Remittance Certificate (FIRC) required to claim the export cash incentive. PayPal cannot receive commercial payments in Bangladesh, and Wise is not available to Bangladeshi account holders (though a foreign client using Wise can push BDT directly to your bank account, bKash wallet, or Nagad wallet).',
     publishedDate: '2026-06-04',
-    updatedDate: '2026-07-30',
+    updatedDate: '2026-08-04',
     providers: [
       {
         slug: 'payoneer',
@@ -181,7 +181,7 @@ export const CORRIDORS: Corridor[] = [
         name: 'PayPal',
         available: false,
         notes:
-          'PayPal commercial receiving is not available in Bangladesh. Only Xoom (a PayPal subsidiary) operates in Bangladesh, and Xoom explicitly states it supports person-to-person inbound remittance only: it does not support transactions for goods or business purposes. A freelancer cannot receive client project payments into a PayPal account in Bangladesh. Note: the availability of the Payoneer-PayPal workaround (receiving PayPal payments via Payoneer) for Bangladesh-registered accounts is unclear as of mid-2026; reports conflict on whether Payoneer\'s PayPal-receiving rollout covers Bangladesh, so check your own Payoneer dashboard for a PayPal option rather than relying on it. There have been repeated government statements about a full PayPal launch in Bangladesh, but no commercial launch has occurred as of mid-2026. Treat PayPal as unavailable and plan billing around Payoneer and bank wire.',
+          'PayPal commercial receiving is not available in Bangladesh. Only Xoom (a PayPal subsidiary) operates in Bangladesh, and Xoom explicitly states it supports person-to-person inbound remittance only: it does not support transactions for goods or business purposes. A freelancer cannot receive client project payments into a PayPal account in Bangladesh. Note: the availability of the Payoneer-PayPal workaround (receiving PayPal payments via Payoneer) for Bangladesh-registered accounts is unclear as of mid-2026; reports conflict on whether Payoneer\'s PayPal-receiving rollout covers Bangladesh, so check your own Payoneer dashboard for a PayPal option rather than relying on it. Government statements about a full PayPal launch have recurred for years, and on 29 July 2026 Bangladesh Bank issued a circular letting banks partner with cross-border digital payment providers and open Digital Value Accounts (stored-value wallets) for customers, with each partnership needing prior clearance from the central bank\'s Foreign Exchange Policy Department; news coverage names PayPal and Payoneer as the obvious candidates. That is a regulatory pathway, not a launch: no bank has announced a live PayPal service under it as of early August 2026, and early reporting frames the framework mainly around outward payments rather than receiving client income. Treat PayPal as unavailable for receiving and plan billing around Payoneer and bank wire, and watch for a bank announcement under this framework.',
       },
       {
         slug: 'revolut',
@@ -206,11 +206,11 @@ export const CORRIDORS: Corridor[] = [
       },
       {
         q: 'Does the 2.5% remittance incentive apply to freelancing?',
-        a: 'No. The widely-known 2.5% government cash incentive is the Wage-Earner Remittance scheme for overseas Bangladeshis sending personal remittances home: it does not apply to freelance or IT earnings. Freelancers fall under a separate export cash incentive: Bangladesh Bank confirmed unchanged rates for FY2026-27 (covering earnings from 1 July 2026 to 30 June 2027) at 2.5% for individual freelancers and 6% for registered software/ITES firms. This incentive is only claimable via proper banking channels with a FIRC. Payoneer-to-bKash withdrawals do not qualify. Importantly, these incentives are expected to be phased out around Bangladesh\'s LDC graduation to comply with WTO rules. Bangladesh\'s graduation date is still officially 24 November 2026; the UN Committee for Development Policy recommended in mid-2026 extending it to around 24 November 2029, but that recommendation needs UN General Assembly approval, expected around September 2026, before it is final. Verify the current rate and eligibility before relying on it.',
+        a: 'No. The widely-known 2.5% government cash incentive is the Wage-Earner Remittance scheme for overseas Bangladeshis sending personal remittances home: it does not apply to freelance or IT earnings. Freelancers fall under a separate export cash incentive: Bangladesh Bank confirmed unchanged rates for FY2026-27 (covering earnings from 1 July 2026 to 30 June 2027) at 2.5% for individual freelancers and 6% for registered software/ITES firms. This incentive is only claimable via proper banking channels with a FIRC. Payoneer-to-bKash withdrawals do not qualify. Importantly, these incentives are expected to be phased out around Bangladesh\'s LDC graduation to comply with WTO rules. Bangladesh\'s graduation date is still officially 24 November 2026. The UN Committee for Development Policy recommended deferring it to 24 November 2029, and on 22 July 2026 the UN Economic and Social Council adopted a consensus decision referring the request to the UN General Assembly and asking it to decide before 24 November 2026. The Assembly\'s new session opens in September 2026, so the final answer is expected in the autumn. Verify the current rate and eligibility before relying on it.',
       },
       {
         q: 'Can I keep my earnings in dollars (ERQ account)?',
-        a: 'Yes. IT/ICT service exporters and freelancers can retain 35% of export earnings in foreign currency via an Exporter\'s Retention Quota (ERQ) account; the remaining 65% auto-converts to BDT. Note: some bank websites still show 60–70% retention: that figure was cut to 35% in September 2023 and has not been restored. City Bank, Mutual Trust Bank (MTB), and Midland Bank all offer dedicated Freelancer accounts that include an ERQ foreign-currency sub-account. Retaining dollars is useful if you have USD-denominated expenses or want to avoid unfavorable conversion timing.',
+        a: 'Yes, and the limit went up recently. A Bangladesh Bank Foreign Exchange Policy Department circular dated 22 July 2026 lets freelancers in the ICT sector retain up to 50% of export earnings in foreign currency via an Exporter\'s Retention Quota (ERQ) account, and up to 30% for other service exporters; the remainder auto-converts to BDT. The previous ICT ceiling was 35%, itself a cut from 60-70% made in September 2023, so a bank website still showing either figure is out of date. Bangladeshi outlets including the state news agency BSS report the change consistently, but it is very recent: confirm with your bank that it has implemented the new limit before counting on it, and if you export through a registered ICT company rather than as an individual freelancer, ask which of the two percentages applies to you. The same circular also lets freelancers use platform statements, invoices, and emails as proof of foreign income, sets a $20,000 threshold below which inward remittances can be credited without a formal declaration, and sets a $10,000 per-transaction limit for payments through Online Payment Gateway Service Providers (OPGSPs). City Bank, Mutual Trust Bank (MTB), and Midland Bank all offer dedicated Freelancer accounts that include an ERQ foreign-currency sub-account. Retaining dollars is useful if you have USD-denominated expenses or want to avoid unfavorable conversion timing.',
       },
       {
         q: 'How long does it take to receive payments in Bangladesh?',
@@ -245,16 +245,16 @@ export const CORRIDORS: Corridor[] = [
       'Compare the real cost of receiving USD in Nigeria in 2026. Cleva, Grey, LemFi, and Raenest offer near mid-market rates. Payoneer costs more. Live FX and worked example.',
     h1: 'How to receive USD in Nigeria: fees, FX spread, and what you actually net',
     intro:
-      'Nigerian freelancers now have strong specialist options: Cleva, Grey, LemFi, and Raenest all issue virtual US bank accounts that convert at near mid-market rates, typically 0-2.4% all-in. Payoneer works but costs roughly 3% all-in and carries a minimum activity threshold (currently $6,000/year per Payoneer\'s help center) below which an annual fee applies. PayPal returned to Nigeria in January 2026 via a Paga partnership, but stacked fees make it roughly 6-7% or more all-in and the most expensive widely-available option.',
+      'Nigerian freelancers now have strong specialist options: Cleva, Grey, LemFi, and Raenest all issue virtual US bank accounts that convert at near mid-market rates, typically 0.3-2.4% all-in on published fees. Payoneer works but costs roughly 3% all-in and carries a minimum activity threshold (currently $6,000/year per Payoneer\'s help center) below which an annual fee applies. PayPal returned to Nigeria in January 2026 via a Paga partnership, but stacked fees make it roughly 6-7% or more all-in and the most expensive widely-available option.',
     publishedDate: '2026-06-14',
-    updatedDate: '2026-07-30',
+    updatedDate: '2026-08-04',
     providers: [
       {
         slug: 'lemfi',
         name: 'LemFi',
         available: true,
         notes:
-          'LemFi (formerly Lemonade Finance) issues a virtual US bank account that Nigerian freelancers can share with clients as standard ACH receiving details. Fee structure: no flat fee, no percentage fee, and LemFi applies the true mid-market exchange rate with no markup, making it the theoretically cheapest option for any transfer size. Typical settlement: 1-2 business days. LemFi is FCA-licensed in the UK, is registered with FINTRAC as a Money Service Business (MSB) in Canada, and operates under CBN approval in Nigeria. As it is a smaller operator than Cleva or Grey, verify current withdrawal limits before relying on it for large amounts.',
+          'LemFi (formerly Lemonade Finance) issues a virtual US bank account that Nigerian freelancers can share with clients as standard ACH receiving details. Fee structure: no flat fee and no percentage fee on this corridor, but the LemFi terms of service state that its exchange rate is a mark-up on the wholesale market rate, so the cost sits inside the quoted rate rather than in a visible fee. LemFi does not publish the size of that mark-up, and we could not open its pricing or terms pages directly to check, so we are not putting a number on it. The comparison table above still models LemFi at zero cost because we have no verified spread figure to use instead, so treat its position there as a floor rather than a measured all-in cost, and compare the rate quoted in the app against a mid-market reference before assuming LemFi is the cheapest option for your transfer. Typical settlement: 1-2 business days. LemFi is FCA-licensed in the UK, is registered with FINTRAC as a Money Service Business (MSB) in Canada, and operates under CBN approval in Nigeria. As it is a smaller operator than Cleva or Grey, verify current withdrawal limits before relying on it for large amounts.',
       },
       {
         slug: 'raenest',
@@ -275,7 +275,7 @@ export const CORRIDORS: Corridor[] = [
         name: 'Grey',
         available: true,
         notes:
-          'Grey issues virtual USD (and optionally GBP and EUR) accounts for Nigerian freelancers. Clients send a regular ACH or wire; Grey charges a 0.8% deposit fee (minimum $2, maximum $10) on the incoming USD, plus a 1% conversion fee capped at $6 per transaction, plus approximately 1% FX markup above mid-market. On a $1,000 transfer the combined cost is approximately $24 ($8 deposit fee + $6 capped conversion fee + $10 FX), or about 2.4% effective. On a $5,000 transfer the cost is approximately $66 ($10 deposit cap + $6 conversion cap + $50 FX), or 1.3%. Grey also offers a Visa debit card for a one-time $5 fee. Grey is CBN-regulated (licence 10151) and supports multiple currencies, making it a good option if you also receive GBP or EUR from European clients.',
+          'Grey issues virtual USD (and optionally GBP and EUR) accounts for Nigerian freelancers. Clients send a regular ACH or wire; Grey charges a 0.8% deposit fee (minimum $2, maximum $10) on the incoming USD, plus a 1% conversion fee capped at $6 per transaction, plus approximately 1% FX markup above mid-market. On a $1,000 transfer the combined cost is approximately $24 ($8 deposit fee + $6 capped conversion fee + $10 FX), or about 2.4% effective. On a $5,000 transfer the cost is approximately $66 ($10 deposit cap + $6 conversion cap + $50 FX), or 1.3%. Grey also offers a Visa debit card for a one-time $5 fee. Grey supports multiple currencies, making it a good option if you also receive GBP or EUR from European clients.',
       },
       {
         slug: 'payoneer',
@@ -324,7 +324,7 @@ export const CORRIDORS: Corridor[] = [
     faqs: [
       {
         q: 'What is the cheapest way to receive USD in Nigeria?',
-        a: 'LemFi is theoretically the cheapest at zero fees and true mid-market FX, but it is a smaller operator, so verify withdrawal limits before relying on it for large amounts. Cleva ($1 deposit fee under $300, $3 at $300 or more, then free mid-market conversion) and Raenest (4 free deposits/month, then $1 flat, plus a 0.5% conversion fee capped at $2.70) are competitive and widely used. Grey (0.8% deposit fee plus 1% conversion fee capped at $6, plus about 1% FX, roughly 2.4% all-in on $1,000) is more expensive but well-established and supports GBP and EUR too. Payoneer (1% + up to 2% FX) and PayPal via Paga (roughly 6-7% or more all-in) are significantly more expensive and should be reserved for situations where you have no other option.',
+        a: 'Cleva and Raenest are the cheapest options we can actually verify. Cleva charges a $1 deposit fee under $300 or $3 at $300 or more, then converts at mid-market for free, so roughly 0.3% on $1,000. Raenest gives 4 free deposits a month, then $1 flat, plus a 0.5% conversion fee capped at $2.70, so roughly 0.27% on $1,000. LemFi charges no flat or percentage fee and often looks cheapest, but its terms of service say the exchange rate carries a mark-up on the wholesale rate and it does not publish the size, so compare the rate it quotes in the app against a mid-market reference before assuming it wins. Grey (0.8% deposit fee plus 1% conversion fee capped at $6, plus about 1% FX, roughly 2.4% all-in on $1,000) is more expensive but well-established and supports GBP and EUR too. Payoneer (1% + up to 2% FX) and PayPal via Paga (roughly 6-7% or more all-in) are significantly more expensive and should be reserved for situations where you have no other option.',
       },
       {
         q: 'Does Wise work for Nigerian freelancers?',
@@ -340,7 +340,7 @@ export const CORRIDORS: Corridor[] = [
       },
       {
         q: 'Is Payoneer still worth using for Nigerian freelancers?',
-        a: 'Payoneer\'s main advantage is platform compatibility: if you work on Upwork or Fiverr, Payoneer is often the default and cheapest withdrawal method from the platform balance. If you are billing direct clients, Cleva, LemFi, or Raenest give better rates. Watch the annual fee threshold: if your Payoneer account receives less than the minimum activity threshold in any 12-month period, you are charged $29.95 in annual fees. Payoneer\'s help center currently puts that threshold at $6,000, though it has published $2,000 elsewhere, so confirm the figure for your account in the portal. For low-volume freelancers with direct clients, a fee-free option like LemFi or Cleva is clearly better.',
+        a: 'Payoneer\'s main advantage is platform compatibility: if you work on Upwork or Fiverr, Payoneer is often the default and cheapest withdrawal method from the platform balance. If you are billing direct clients, Cleva, LemFi, or Raenest give better rates. Watch the annual fee threshold: if your Payoneer account receives less than the minimum activity threshold in any 12-month period, you are charged $29.95 in annual fees. Payoneer\'s help center currently puts that threshold at $6,000, though it has published $2,000 elsewhere, so confirm the figure for your account in the portal. For low-volume freelancers with direct clients, a lower-cost option like Cleva, Raenest, or LemFi is clearly better.',
       },
       {
         q: 'Do I have to pay tax on freelance income in Nigeria?',
@@ -365,7 +365,7 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'Filipino freelancers are in better shape than most of the corridors we cover. Wise is fully available in the Philippines, so you can hold a real USD balance with US ACH receiving details and convert to pesos at the mid-market rate for a conversion fee typically under 1%. GCash launched its own Virtual US Account in November 2025, putting USD receiving inside a wallet most Filipinos already carry. Payoneer remains the default for Upwork and Fiverr at roughly 3% all-in, and PayPal, while everywhere, stacks a 4.4% receiving fee on top of a 3-4% FX spread. One more thing worth knowing up front: there is no forced conversion rule. You can keep your dollars in a bank FCDU account or a multi-currency wallet and convert only when the rate suits you.',
     publishedDate: '2026-07-05',
-    updatedDate: '2026-07-30',
+    updatedDate: '2026-08-04',
     providers: [
       {
         slug: 'wise',
