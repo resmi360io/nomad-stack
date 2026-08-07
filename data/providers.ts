@@ -501,7 +501,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 200,
         typicalHours: 48,
-        notes: '1% receiving fee + up to 2% FX markup on PHP withdrawal to bank or GoTyme; GCash payouts may add a separate GCash-side cash-in fee (reports conflict, verify in app)',
+        notes: '1% receiving fee + up to 2% FX markup on PHP withdrawal to bank or GoTyme; GCash payouts may add a GCash-side cash-in fee, reportedly free to PHP 8,000/month then 2% above (verify in app)',
       },
     ],
     fallbackFee: {
@@ -606,8 +606,10 @@ export const PROVIDERS: Provider[] = [
         notes: 'Via Paga (Jan 2026); 2.9% + $0.30 PayPal receiving fee + ~3.5% FX markup; naira-only payout',
       },
       // USD → Philippine PHP: widely used in PH; ~4.4% + $0.30 cross-border receiving
-      // + ~3.5% FX on USD→PHP conversion. GCash charges a flat 1% cash-in fee on
-      // PayPal transfers since 2026-03-07 (not modeled below; applies to the GCash route)
+      // + ~3.5% FX on USD→PHP conversion. GCash's published cash-in schedule puts PayPal
+      // cash-ins at free up to PHP 8,000/month then 2% above (not the flat 1% since
+      // 2026-03-07 that some blogs report, which appears to describe linked bank account
+      // cash-in); not modeled below, applies to the GCash route
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PH', currency: 'PHP' },
@@ -615,7 +617,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.044,
         fxMarkupBps: 350,
         typicalHours: 48,
-        notes: '4.4% + $0.30 cross-border receiving + ~3.5% FX markup; GCash adds a flat 1% cash-in fee on PayPal transfers (since 2026-03-07)',
+        notes: '4.4% + $0.30 cross-border receiving + ~3.5% FX markup; GCash\'s PayPal cash-in is reportedly free up to PHP 8,000/month then 2% above (verify in app; a widely repeated flat-1% figure appears to describe linked bank account cash-in)',
       },
     ],
     fallbackFee: {
@@ -623,7 +625,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0.044,
       fxMarkupBps: 350,
       typicalHours: 24,
-      notes: 'PayPal has limited or no GEL (Georgia) support — use Wise or Revolut',
+      notes: 'PayPal has limited or no GEL (Georgia) support; use Wise or Revolut',
     },
     notes: 'Georgia (GEL) not reliably supported. Fees shown are for Personal-account cross-border receiving. FX markup ~3.5% above mid-market.',
     caveat: 'Fees vary by account type and sender country. Shown: Personal-account international receiving (4.4% + $0.30 + 3.5% FX).',
