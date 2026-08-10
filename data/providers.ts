@@ -501,7 +501,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 200,
         typicalHours: 48,
-        notes: '1% receiving fee + up to 2% FX markup on PHP withdrawal to bank or GoTyme; GCash payouts may add a separate GCash-side cash-in fee (reports conflict, verify in app)',
+        notes: '1% receiving fee + up to 2% FX markup on PHP withdrawal to bank or GoTyme; GCash payouts may add a GCash-side cash-in fee, reportedly free to PHP 8,000/month then 2% above (verify in app)',
       },
     ],
     fallbackFee: {
@@ -606,8 +606,10 @@ export const PROVIDERS: Provider[] = [
         notes: 'Via Paga (Jan 2026); 2.9% + $0.30 PayPal receiving fee + ~3.5% FX markup; naira-only payout',
       },
       // USD → Philippine PHP: widely used in PH; ~4.4% + $0.30 cross-border receiving
-      // + ~3.5% FX on USD→PHP conversion. GCash charges a flat 1% cash-in fee on
-      // PayPal transfers since 2026-03-07 (not modeled below; applies to the GCash route)
+      // + ~3.5% FX on USD→PHP conversion. GCash's published cash-in schedule puts PayPal
+      // cash-ins at free up to PHP 8,000/month then 2% above (not the flat 1% since
+      // 2026-03-07 that some blogs report, which appears to describe linked bank account
+      // cash-in); not modeled below, applies to the GCash route
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PH', currency: 'PHP' },
@@ -615,7 +617,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.044,
         fxMarkupBps: 350,
         typicalHours: 48,
-        notes: '4.4% + $0.30 cross-border receiving + ~3.5% FX markup; GCash adds a flat 1% cash-in fee on PayPal transfers (since 2026-03-07)',
+        notes: '4.4% + $0.30 cross-border receiving + ~3.5% FX markup; GCash\'s PayPal cash-in is reportedly free up to PHP 8,000/month then 2% above (verify in app; a widely repeated flat-1% figure appears to describe linked bank account cash-in)',
       },
     ],
     fallbackFee: {
@@ -623,7 +625,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0.044,
       fxMarkupBps: 350,
       typicalHours: 24,
-      notes: 'PayPal has limited or no GEL (Georgia) support — use Wise or Revolut',
+      notes: 'PayPal has limited or no GEL (Georgia) support; use Wise or Revolut',
     },
     notes: 'Georgia (GEL) not reliably supported. Fees shown are for Personal-account cross-border receiving. FX markup ~3.5% above mid-market.',
     caveat: 'Fees vary by account type and sender country. Shown: Personal-account international receiving (4.4% + $0.30 + 3.5% FX).',
@@ -1085,7 +1087,8 @@ export const PROVIDERS: Provider[] = [
   // (capped at $6 per transaction) + ~1% FX markup above mid-market.
   // Modeled below as $6 fixed (capped conversion, transfers >= $600) + 0.8% + 100 bps;
   // exact only near $1,000 since both caps cannot be expressed in this fee model.
-  // CBN-regulated (license 10151).
+  // Nigeria regulatory status not established. A previous 'CBN-regulated (license 10151)'
+  // claim was removed on 2026-08-04 after it could not be traced to any source.
   {
     slug: 'grey',
     name: 'Grey',
@@ -1105,7 +1108,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.008,
         fxMarkupBps: 100,
         typicalHours: 24,
-        notes: '0.8% deposit fee (min $2, max $10) + 1% conversion fee capped at $6 + ~1% FX markup; CBN license 10151',
+        notes: '0.8% deposit fee (min $2, max $10) + 1% conversion fee capped at $6 + ~1% FX markup',
       },
     ],
     fallbackFee: {
@@ -1114,14 +1117,17 @@ export const PROVIDERS: Provider[] = [
       fxMarkupBps: 100,
       typicalHours: 24,
     },
-    notes: 'Grey issues virtual USD (and GBP/EUR) accounts for Nigerian freelancers. Fees: 0.8% deposit fee (min $2, max $10) on incoming USD, plus a 1% conversion fee capped at $6 per transaction, plus ~1% FX markup. Roughly 2.4% all-in on $1,000. Supports USD, GBP, and EUR receiving. CBN-regulated (license 10151).',
+    notes: 'Grey issues virtual USD (and GBP/EUR) accounts for Nigerian freelancers. Fees: 0.8% deposit fee (min $2, max $10) on incoming USD, plus a 1% conversion fee capped at $6 per transaction, plus ~1% FX markup. Roughly 2.4% all-in on $1,000. Supports USD, GBP, and EUR receiving.',
     caveat: 'Two capped fees apply: 0.8% deposit fee (max $10) and 1% conversion fee (max $6). On larger transfers both caps kick in and the effective rate drops.',
   },
 
   // ─── LemFi ─────────────────────────────────────────────────────────────────
   // Source: https://lemfi.com/pricing (2026-06-14)
   // Formerly Lemonade Finance. Issues virtual US accounts for Nigerian freelancers and diaspora.
-  // Fee model: zero flat fee, zero percentage fee, true mid-market FX rate.
+  // Fee model: zero flat fee, zero percentage fee. Modeled at 0 bps FX markup, but the
+  // LemFi terms of service describe the quoted rate as a mark-up on the wholesale rate
+  // and do not publish its size, so 0 bps is a floor rather than a verified figure
+  // (flagged 2026-08-04, needs a human decision on unranking or modeling a spread).
   // FCA-licensed (UK), FINTRAC MBO (Canada), CBN-approved for Nigeria.
   {
     slug: 'lemfi',
@@ -1142,7 +1148,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 48,
-        notes: 'Zero fees, true mid-market FX; FCA-licensed; verify current withdrawal limits',
+        notes: 'Zero flat and percentage fees; FX markup not published, modeled at 0 bps as a floor; FCA-licensed; verify current withdrawal limits',
       },
     ],
     fallbackFee: {
@@ -1151,7 +1157,7 @@ export const PROVIDERS: Provider[] = [
       fxMarkupBps: 0,
       typicalHours: 48,
     },
-    notes: 'LemFi (formerly Lemonade Finance) issues a virtual US account for Nigerian freelancers. Zero fees, mid-market FX. FCA-licensed (UK), FINTRAC-registered Money Service Business (Canada), CBN-approved. Verify current withdrawal limits before relying on it for large amounts.',
+    notes: 'LemFi (formerly Lemonade Finance) issues a virtual US account for Nigerian freelancers. No flat fee and no percentage fee on this corridor, but the LemFi terms of service say the exchange rate is a mark-up on the wholesale rate and the size of that mark-up is not published, so the zero-cost fee model here understates the real cost by an unknown amount. FCA-licensed (UK), FINTRAC-registered Money Service Business (Canada), CBN-approved. Compare the in-app rate against a mid-market reference, and verify current withdrawal limits before relying on it for large amounts.',
   },
 
   // ─── Raenest ───────────────────────────────────────────────────────────────
