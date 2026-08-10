@@ -606,10 +606,10 @@ export const PROVIDERS: Provider[] = [
         notes: 'Via Paga (Jan 2026); 2.9% + $0.30 PayPal receiving fee + ~3.5% FX markup; naira-only payout',
       },
       // USD → Philippine PHP: widely used in PH; ~4.4% + $0.30 cross-border receiving
-      // + ~3.5% FX on USD→PHP conversion. GCash's published cash-in schedule puts PayPal
-      // cash-ins at free up to PHP 8,000/month then 2% above (not the flat 1% since
-      // 2026-03-07 that some blogs report, which appears to describe linked bank account
-      // cash-in); not modeled below, applies to the GCash route
+      // + ~3.5% FX on USD→PHP conversion. GCash charges a cash-in fee on the PayPal-to-GCash
+      // step and prices it by funding source (PayPal vs Payoneer vs linked bank vs OTC).
+      // help.gcash.com is egress-blocked for our agents and the blog figures conflict, so we
+      // publish no number for it; not modeled below.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PH', currency: 'PHP' },
@@ -617,7 +617,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.044,
         fxMarkupBps: 350,
         typicalHours: 48,
-        notes: '4.4% + $0.30 cross-border receiving + ~3.5% FX markup; GCash\'s PayPal cash-in is reportedly free up to PHP 8,000/month then 2% above (verify in app; a widely repeated flat-1% figure appears to describe linked bank account cash-in)',
+        notes: '4.4% + $0.30 cross-border receiving + ~3.5% FX markup; GCash adds a cash-in fee on the PayPal-to-GCash step, priced by funding source and not confirmed from a GCash primary source (verify in app; not modeled here)',
       },
     ],
     fallbackFee: {
@@ -800,8 +800,10 @@ export const PROVIDERS: Provider[] = [
         notes: 'EUR SEPA transfer within SEPA zone; no FX conversion',
       },
       // USD → Pakistani PKR bank deposit
-      // Source: westernunion.com/us/en/transfer-fees.html — ~$5 flat online, ~4.5% FX spread on PKR
-      // PKR is a minor corridor; FX spread verified via bestexchangerates.com cross-rate comparison
+      // Source: PRI corridor pricing on westernunion.com country pages (rechecked 2026-08-10) -- $0 online fee for bank deposits over $200
+      // Scope caveat: PRI is a home remittance scheme; WU publishes no commercial rate for this corridor, so 0 fee + 200bps are personal remittance terms
+      // SBP EPD Circular Letter No. 12 of 2026 ended the TT Charges Incentive Scheme from 2026-07-01 but directs ADs to keep qualifying home remittances free of cost
+      // PKR is a minor corridor; the ~2% FX spread is an estimate from third-party cross-rate comparison, not a WU-published figure
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PK', currency: 'PKR' },
@@ -809,7 +811,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 200,
         typicalHours: 48,
-        notes: '$0 online fee for bank deposits over $200 (Pakistan Remittance Initiative) + ~2% FX spread. Bank deposit to HBL, UBL, MCB.',
+        notes: '$0 online fee for bank deposits over $200 (Pakistan Remittance Initiative) + ~2% FX spread, both personal remittance terms. PRI is a home remittance scheme and does not cover business transfers; WU commercial pricing for this corridor is unpublished. Bank deposit to HBL, UBL, MCB.',
       },
     ],
     fallbackFee: {
