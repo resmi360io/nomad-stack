@@ -967,7 +967,7 @@ export const PROVIDERS: Provider[] = [
         notes: '$35 flat + TT buying rate ~1–2% below mid-market; generates FIRC for export incentive claims.',
       },
       // USD → Nigerian NGN bank account via SWIFT
-      // Nigerian banks (GTBank, Access Bank, Zenith) convert at NAFEM window rate + ~2% spread
+      // Nigerian banks (GTBank, Access Bank, Zenith) convert at NFEM window rate + ~2% spread
       // IMTO naira-only rule (CBN Mar 24 2026, effective May 1 2026) applies to licensed IMTO operators,
       // NOT to SWIFT client-to-business wires — SWIFT USD wires are unaffected
       {
@@ -977,7 +977,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 200,
         typicalHours: 72,
-        notes: '$35 flat + ~2% bank FX spread above NAFEM rate; SWIFT wires exempt from IMTO naira-only rule.',
+        notes: '$35 flat + ~2% bank FX spread above NFEM rate; SWIFT wires exempt from IMTO naira-only rule.',
       },
       // USD → Philippine PHP or USD (FCDU) bank account via SWIFT
       // No forced conversion: FCDU USD accounts at BDO, BPI, Metrobank, RCBC hold dollars.
@@ -1049,7 +1049,8 @@ export const PROVIDERS: Provider[] = [
   // ─── Cleva ─────────────────────────────────────────────────────────────────
   // Source: https://www.getcleva.com/pricing (2026-06-14)
   // Nigerian-focused fintech issuing virtual US bank accounts (routing + account number).
-  // Fee model: $3 flat per USD withdrawal to NGN bank account; no percentage fee; true mid-market FX.
+  // Fee model: two-tier ACH deposit fee ($1 under $300, $3 at $300 or more); no percentage fee;
+  // conversion and NGN withdrawal free at Cleva's quoted rate.
   // CBN-regulated. Deposits up to $10,000 eligible for NDIC protection via partner bank.
   {
     slug: 'cleva',

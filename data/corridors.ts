@@ -247,7 +247,7 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'Nigerian freelancers now have strong specialist options: Cleva, Grey, LemFi, and Raenest all issue virtual US bank accounts that convert at near mid-market rates, typically 0.3-2.4% all-in on published fees. Payoneer works but costs roughly 3% all-in and carries a minimum activity threshold (currently $6,000/year per Payoneer\'s help center) below which an annual fee applies. PayPal returned to Nigeria in January 2026 via a Paga partnership, but stacked fees make it roughly 6-7% or more all-in and the most expensive widely-available option.',
     publishedDate: '2026-06-14',
-    updatedDate: '2026-08-04',
+    updatedDate: '2026-08-10',
     providers: [
       {
         slug: 'lemfi',
@@ -296,7 +296,7 @@ export const CORRIDORS: Corridor[] = [
         name: 'Bank Wire (SWIFT)',
         available: true,
         notes:
-          'SWIFT wires from US banks reach major Nigerian banks (GTBank, Access Bank, Zenith Bank, First Bank, UBA) directly. The sending fee from a typical US bank is $25-45 flat; the receiving bank converts at the NAFEM (official CBN window) rate plus approximately 2% spread. On a $1,000 transfer, the combined cost of a $35 flat fee plus 2% FX is roughly 5.5%. Bank wires make sense for large, infrequent payments over $5,000 where the flat fee becomes a small fraction of the total. Note on the IMTO rule: the CBN issued a circular on March 24, 2026 (effective May 1, 2026) requiring licensed IMTO operators (Western Union, MoneyGram, and similar) to pay out in naira only. This rule does not apply to SWIFT client-to-business wires. Your Nigerian bank can still receive a USD SWIFT wire and convert it at the NAFEM rate.',
+          'SWIFT wires from US banks reach major Nigerian banks (GTBank, Access Bank, Zenith Bank, First Bank, UBA) directly. The sending fee from a typical US bank is $25-45 flat; the receiving bank converts at the NFEM (official CBN window) rate plus approximately 2% spread. On a $1,000 transfer, the combined cost of a $35 flat fee plus 2% FX is roughly 5.5%. Bank wires make sense for large, infrequent payments over $5,000 where the flat fee becomes a small fraction of the total. Note on the IMTO rule: the CBN issued a circular on March 24, 2026 (effective May 1, 2026) requiring licensed IMTO operators (Western Union, MoneyGram, and similar) to pay out in naira only. This rule does not apply to SWIFT client-to-business wires. Your Nigerian bank can still receive a USD SWIFT wire and convert it at the NFEM rate.',
       },
       {
         slug: 'wise',
@@ -332,7 +332,7 @@ export const CORRIDORS: Corridor[] = [
       },
       {
         q: 'What is the IMTO naira-only rule and does it affect me?',
-        a: 'The CBN issued a circular on March 24, 2026 (effective May 1, 2026) requiring licensed International Money Transfer Operators (IMTOs) to pay all incoming remittances in naira only. This applies to Western Union, MoneyGram, and similar licensed IMTO operators. It does not apply to SWIFT bank-to-bank transfers: your Nigerian bank can still receive a USD SWIFT wire and convert it at the official NAFEM window rate. LemFi, Raenest, and Cleva each hold CBN IMTO licences, so the naira-only settlement rule technically covers them too, but in practice this changes nothing for freelancers because these platforms already convert and pay out in naira rather than USD cash. Your practical workflow is unaffected.',
+        a: 'The CBN issued a circular on March 24, 2026 (effective May 1, 2026) requiring licensed International Money Transfer Operators (IMTOs) to pay all incoming remittances in naira only. This applies to Western Union, MoneyGram, and similar licensed IMTO operators. It does not apply to SWIFT bank-to-bank transfers: your Nigerian bank can still receive a USD SWIFT wire and convert it at the official NFEM window rate. LemFi, Raenest, and Cleva each hold CBN IMTO licences, so the naira-only settlement rule technically covers them too, but in practice this changes nothing for freelancers because these platforms already convert and pay out in naira rather than USD cash. Your practical workflow is unaffected.',
       },
       {
         q: 'How long does it take to receive USD in Nigeria?',
@@ -344,7 +344,7 @@ export const CORRIDORS: Corridor[] = [
       },
       {
         q: 'Do I have to pay tax on freelance income in Nigeria?',
-        a: 'Yes. Foreign-sourced income received in Nigeria is taxable under the Personal Income Tax Act (PITA) for individuals and the Companies Income Tax Act (CITA) for registered businesses. Freelancers assessed as individuals face progressive tax rates from 7% to 24%. Nigeria does not have a blanket income tax exemption for IT freelancers comparable to some other countries. Filing is required. Tax rules change with annual Finance Acts. Consult a Nigerian tax professional: this site covers transfer fees, not tax advice.',
+        a: 'Yes. Income from foreign clients is taxable in Nigeria and filing is required. The statutory basis changed recently: Nigeria consolidated its main tax laws into a single statute, the Nigeria Tax Act, which took effect on 1 January 2026 and replaced the separate Personal Income Tax Act and Companies Income Tax Act framework that previously applied. The individual rate bands were revised at the same time. We could not open a Nigerian government source to confirm the current band table, so we are not publishing rate figures here. Check your current band, the reliefs available to you, and how income earned abroad is treated with FIRS or a Nigerian tax professional. Nigeria does not have a blanket income tax exemption for IT freelancers comparable to some other countries. Consult a Nigerian tax professional: this site covers transfer fees, not tax advice.',
       },
     ],
     siblingCorridors: ['usd-to-pkr', 'usd-to-bdt', 'usd-to-php'],
