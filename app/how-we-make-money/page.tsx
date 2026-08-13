@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/how-we-make-money' },
 };
 
-const PAGE_UPDATED = '2026-06-18';
+const PAGE_UPDATED = '2026-08-13';
 
 const pageJsonLd = {
   '@context': 'https://schema.org',
@@ -24,7 +24,7 @@ const pageJsonLd = {
       '@id': 'https://paidacross.com/how-we-make-money#page',
       name: 'How we make money — Paid Across',
       datePublished: '2026-06-03T00:00:00+00:00',
-      dateModified: '2026-06-18T00:00:00+00:00',
+      dateModified: '2026-08-13T00:00:00+00:00',
       url: 'https://paidacross.com/how-we-make-money',
       description:
         'How Paid Across earns affiliate commissions, how provider rankings are decided by fee math alone, and how fee data is sourced and verified.',
@@ -129,11 +129,15 @@ export default function HowWeMakeMoney() {
         <section className="space-y-4 text-sm leading-relaxed">
           <h2 className="text-lg font-semibold">How this site earns money</h2>
           <p>
-            This site is free to use. We earn affiliate commissions when readers sign up for
-            certain providers through links on this site. The only active affiliate relationship
-            is with <strong>Wise</strong>, via the Partnerize affiliate network. When you click
-            a Wise link on this site and sign up, Wise pays us a commission. There is no extra
-            cost to you and the rate you receive is not affected.
+            This site is free to use. We earn money when readers sign up for certain providers
+            through links on this site. Two providers can pay us for a signup, and both are
+            disclosed here. <strong>Wise</strong> pays a commission through the Partnerize
+            affiliate network when you click a Wise link here and open an account.{' '}
+            <strong>GrabrFi</strong> is a personal referral link rather than a formal affiliate
+            program, but we benefit either way: GrabrFi&apos;s referral program can pay us a bonus
+            when someone signs up through our link and funds an account. Both links carry the
+            same &ldquo;AD&rdquo; label on comparison cards. Neither adds any cost to you, and
+            neither affects the rate you receive.
           </p>
           <p>
             Not every provider we list has an affiliate program, and we list and rank providers
@@ -241,17 +245,19 @@ export default function HowWeMakeMoney() {
         >
           <h2 className="text-base font-semibold">Affiliate disclosure</h2>
           <p>
-            Some links on paidacross.com are affiliate links. If you click one and sign up for
-            the provider, we may earn a commission. The commission is paid by the provider, not
-            by you, and does not increase the cost you pay for the service.
+            Some links on paidacross.com are affiliate or referral links. If you click one and
+            sign up for the provider, we may earn a commission or a referral bonus. Either way it
+            is paid by the provider, not by you, and it does not increase the cost you pay for
+            the service.
           </p>
           <p>
-            Affiliate links on this site are identified by a small &ldquo;AD&rdquo; label next
-            to the button on comparison cards. Links without the label are not affiliate links.
+            Affiliate and referral links on this site are identified by a small
+            &ldquo;AD&rdquo; label next to the button on comparison cards. Links without the
+            label earn us nothing.
           </p>
           <p>
-            Affiliate relationships do not affect rankings, recommendations, or any editorial
-            content on this site. Providers are ranked by the net received amount after all fees
+            Affiliate and referral relationships do not affect rankings, recommendations, or
+            any editorial content on this site. Providers are ranked by the net received amount after all fees
             and FX markup, calculated identically regardless of whether a commercial relationship
             exists. A full list of every commercial relationship and its current status is in the
             table below.
