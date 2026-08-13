@@ -29,7 +29,7 @@ const pillarJsonLd = {
       headline:
         'How freelancers receive international payments: country-by-country cost guide 2026',
       datePublished: '2026-06-03T00:00:00+00:00',
-      dateModified: '2026-06-03T00:00:00+00:00',
+      dateModified: '2026-08-13T00:00:00+00:00',
       url: 'https://paidacross.com/receive-international-payments',
       image: 'https://paidacross.com/opengraph-image',
       author: {
@@ -93,7 +93,7 @@ export default function ReceiveInternationalPaymentsPage() {
               George I.
             </Link>
             {' · '}
-            Last updated: June 3, 2026
+            Last updated: August 13, 2026
           </p>
         </header>
 
@@ -179,9 +179,10 @@ export default function ReceiveInternationalPaymentsPage() {
               <h3 className="font-semibold text-foreground mb-1">Wise</h3>
               <p>
                 Uses the real mid-market exchange rate with zero FX markup, charging only a
-                transparent percentage fee (typically 0.4–1.4% depending on the corridor).
-                Best overall for most corridors where it operates. Does not support Pakistan
-                for account holders.
+                transparent percentage fee (typically 0.4–1.5% depending on the corridor).
+                Best overall for most corridors where it operates, including the Philippines,
+                where residents can open a full account with US ACH receiving details and
+                convert to pesos at mid-market. Does not support Pakistan for account holders.
               </p>
               <a
                 href={wiseLink}
@@ -220,9 +221,12 @@ export default function ReceiveInternationalPaymentsPage() {
             <div>
               <h3 className="font-semibold text-foreground mb-1">Western Union</h3>
               <p>
-                Available in almost every country, including restricted markets. However, the
-                FX spread on minor corridors (GEL, PKR) is typically 4–5% above mid-market,
-                which makes it expensive compared to Payoneer for recurring payments.
+                Available in almost every country, including restricted markets. On a minor
+                corridor like GEL the FX spread is typically 4–5% above mid-market, which makes
+                it expensive compared to Payoneer for recurring payments. Pakistan looks cheaper
+                (no online fee on bank deposits over $200, and roughly a 2% spread), but that is
+                Pakistan Remittance Initiative pricing for personal home remittances, not a
+                published commercial rate for client invoices.
               </p>
             </div>
             <div>
@@ -277,7 +281,7 @@ export default function ReceiveInternationalPaymentsPage() {
             >
               George I.
             </Link>{' '}
-            (20+ years in international payments). Last updated: June 3, 2026.
+            (20+ years in international payments). Last updated: August 13, 2026.
           </p>
           <p>
             Fees are estimates based on publicly available pricing. Verify with your provider

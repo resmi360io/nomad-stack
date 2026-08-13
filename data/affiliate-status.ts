@@ -22,7 +22,7 @@ export type AffiliateStatusEntry = {
 };
 
 export const AFFILIATE_STATUS: AffiliateStatusEntry[] = [
-  { provider: 'Wise',     status: 'approved',          statusLabel: 'Approved — link live',       platform: 'Partnerize', lastUpdated: '2026-06-17' },
+  { provider: 'Wise',     status: 'approved',          statusLabel: 'Approved, link live',       platform: 'Partnerize', lastUpdated: '2026-06-17' },
   { provider: 'Revolut',  status: 'pending',           statusLabel: 'Application pending',        platform: 'Impact.com', lastUpdated: '2026-05-31' },
   { provider: 'Payoneer', status: 'pending',           statusLabel: 'Application pending',                                lastUpdated: '2026-05-31' },
   { provider: 'GrabrFi',  status: 'personal-referral', statusLabel: 'Personal referral link active',                     lastUpdated: '2026-05-31' },

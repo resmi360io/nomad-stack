@@ -118,7 +118,7 @@ export function ResultsTable({ quotes, rateDate }: Props) {
                       <span
                         className="ml-1 text-[10px] opacity-60"
                         aria-label="Affiliate link"
-                        title="We may earn a commission if you sign up"
+                        title="We may earn a commission or referral bonus if you sign up"
                       >
                         AD
                       </span>

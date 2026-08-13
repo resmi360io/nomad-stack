@@ -1,4 +1,4 @@
-// Fee data last verified: 2026-06-03
+// Fee data last verified: 2026-07-30
 // Sources: provider pricing pages (see inline comments per provider)
 
 export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT' | 'NGN' | 'PHP';
