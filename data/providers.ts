@@ -1043,7 +1043,7 @@ export const PROVIDERS: Provider[] = [
       typicalHours: 1,
     },
     notes: 'Paysera issues a Lithuanian IBAN to Georgian residents. EU clients send via SEPA — Paysera charges €0 to receive. NBG-licensed bank in Georgia.',
-    caveat: 'You give your EU client a Lithuanian IBAN (LT…). They pay their bank\'s SEPA fee (~€0–5) separately — not deducted from your amount.',
+    caveat: 'You give your EU client a Lithuanian IBAN (LT…). They pay their bank\'s SEPA fee (~€0–5) separately, not deducted from your amount.',
   },
 
   // ─── Cleva ─────────────────────────────────────────────────────────────────

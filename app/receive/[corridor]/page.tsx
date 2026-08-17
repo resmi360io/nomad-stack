@@ -288,7 +288,7 @@ export default async function CorridorPage({
             <div className="space-y-4">
               {unavailableProviders.map((p) => (
                 <div key={p.slug} className="rounded-lg border border-muted bg-muted/20 px-4 py-3">
-                  <p className="font-medium text-sm mb-1">{p.name} — not available</p>
+                  <p className="font-medium text-sm mb-1">{p.name}: not available</p>
                   <p className="text-xs text-muted-foreground leading-relaxed">{p.notes}</p>
                 </div>
               ))}

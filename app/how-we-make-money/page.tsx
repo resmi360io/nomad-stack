@@ -22,7 +22,7 @@ const pageJsonLd = {
     {
       '@type': 'WebPage',
       '@id': 'https://paidacross.com/how-we-make-money#page',
-      name: 'How we make money — Paid Across',
+      name: 'How we make money: Paid Across',
       datePublished: '2026-06-03T00:00:00+00:00',
       dateModified: '2026-08-13T00:00:00+00:00',
       url: 'https://paidacross.com/how-we-make-money',

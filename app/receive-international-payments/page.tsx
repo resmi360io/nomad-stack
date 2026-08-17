@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'How freelancers receive international payments: country-by-country cost guide 2026',
     description:
-      'Country-by-country breakdown of what it really costs to receive international payments. Wise, Payoneer, Revolut, Western Union, bank wire — ranked by net received.',
+      'Country-by-country breakdown of what it really costs to receive international payments. Wise, Payoneer, Revolut, Western Union, bank wire, ranked by net received.',
     url: '/receive-international-payments',
     type: 'article',
   },
@@ -81,7 +81,7 @@ export default function ReceiveInternationalPaymentsPage() {
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed">
             The platform you use to receive international payments can cost you anywhere from
-            0.5% to 8% of each invoice. On a single $5,000 invoice, that gap is about $375 —
+            0.5% to 8% of each invoice. On a single $5,000 invoice, that gap is about $375,
             and on $5,000 of monthly freelance income, choosing the wrong option can cost you
             over $4,000 a year. This guide covers every major receiving corridor, what each
             provider actually charges, and which one comes out cheapest for your specific
@@ -112,7 +112,7 @@ export default function ReceiveInternationalPaymentsPage() {
             Most providers charge in two layers: a percentage fee on the payment (usually 0.5–4%)
             and an FX markup on the exchange rate (usually 0–5% above mid-market, but rarely
             disclosed as a line item). The total cost is the sum of both. A provider quoting
-            &ldquo;no fee&rdquo; often makes it back in FX — and a provider with a visible 1% fee
+            &ldquo;no fee&rdquo; often makes it back in FX, and a provider with a visible 1% fee
             and a 0% FX markup can be cheaper than one with &ldquo;no fee&rdquo; and a 3% spread.
           </p>
           <p className="text-muted-foreground leading-relaxed">
@@ -213,7 +213,7 @@ export default function ReceiveInternationalPaymentsPage() {
             <div>
               <h3 className="font-semibold text-foreground mb-1">PayPal</h3>
               <p>
-                4.4% + $0.30 cross-border receiving fee, plus ~3.5% FX markup — making it the
+                4.4% + $0.30 cross-border receiving fee, plus ~3.5% FX markup, making it the
                 most expensive option in most corridors. Not supported for receiving in Pakistan.
                 Convenience does not justify the cost for most freelancers.
               </p>
@@ -255,7 +255,7 @@ export default function ReceiveInternationalPaymentsPage() {
             >
               open.er-api.com
             </a>{' '}
-            — no bank rates, no guesses. Provider ranking is determined entirely by net received
+            with no bank rates and no guesses. Provider ranking is determined entirely by net received
             amount after all fees and FX markup. There is no paid placement.
           </p>
           <p className="text-xs text-muted-foreground mt-3">
@@ -267,7 +267,7 @@ export default function ReceiveInternationalPaymentsPage() {
             >
               Fee data is open-source on GitHub
             </Link>{' '}
-            — corrections with a source link are welcome.
+            and corrections with a source link are welcome.
           </p>
         </section>
 
