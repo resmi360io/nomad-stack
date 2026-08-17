@@ -2,10 +2,23 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'About the author — George I.',
+  title: 'About the author: George I.',
   description:
     '20+ years in international payments and transaction banking. Founder of Paid Across, a free calculator for the real cost of receiving international payments.',
   alternates: { canonical: '/about/author' },
+  openGraph: {
+    title: 'About the author: George I.',
+    description:
+      '20+ years in international payments and transaction banking. Founder of Paid Across, a free calculator for the real cost of receiving international payments.',
+    url: '/about/author',
+    type: 'profile',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About the author: George I.',
+    description:
+      '20+ years in international payments and transaction banking. Founder of Paid Across.',
+  },
 };
 
 const authorJsonLd = {
@@ -44,7 +57,7 @@ export default function AuthorPage() {
       <main className="mx-auto max-w-2xl px-4 py-12 space-y-8">
         <header className="space-y-2">
           <h1 className="text-2xl font-bold tracking-tight">About the author</h1>
-          <p className="text-muted-foreground">George I. — payments industry, 20+ years</p>
+          <p className="text-muted-foreground">George I., payments industry, 20+ years</p>
         </header>
 
         <section className="space-y-4 text-sm leading-relaxed">
@@ -58,7 +71,7 @@ export default function AuthorPage() {
           </p>
           <p>
             Paid Across started as a personal spreadsheet. I was watching colleagues and
-            friends — developers, designers, consultants — quietly lose 3–8% of every
+            friends (developers, designers, consultants) quietly lose 3–8% of every
             international invoice to fees and FX spread. Not because the providers were
             dishonest, but because the cost structure was opaque. Most people do not know the
             difference between a percentage fee and an FX markup, and they certainly do not

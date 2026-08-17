@@ -48,7 +48,7 @@ export function ResultsTable({ quotes, rateDate }: Props) {
   return (
     <div className="space-y-3">
       <div className="flex items-baseline justify-between gap-2">
-        <h2 className="text-lg font-semibold">Results — ranked by net received</h2>
+        <h2 className="text-lg font-semibold">Results: ranked by net received</h2>
         <span className="text-xs text-muted-foreground whitespace-nowrap">Rate: {rateDate}</span>
       </div>
       {quotes.map((q, i) => {

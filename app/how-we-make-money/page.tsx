@@ -12,6 +12,19 @@ export const metadata: Metadata = {
   description:
     'How Paid Across earns affiliate commissions, how provider rankings are decided by fee math alone, and how fee data is sourced and verified.',
   alternates: { canonical: '/how-we-make-money' },
+  openGraph: {
+    title: 'How we make money',
+    description:
+      'How Paid Across earns affiliate commissions, how provider rankings are decided by fee math alone, and how fee data is sourced and verified.',
+    url: '/how-we-make-money',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'How we make money',
+    description:
+      'How Paid Across earns affiliate commissions, how rankings are decided by fee math alone, and how fee data is verified.',
+  },
 };
 
 const PAGE_UPDATED = '2026-08-13';
@@ -22,7 +35,7 @@ const pageJsonLd = {
     {
       '@type': 'WebPage',
       '@id': 'https://paidacross.com/how-we-make-money#page',
-      name: 'How we make money — Paid Across',
+      name: 'How we make money: Paid Across',
       datePublished: '2026-06-03T00:00:00+00:00',
       dateModified: '2026-08-13T00:00:00+00:00',
       url: 'https://paidacross.com/how-we-make-money',

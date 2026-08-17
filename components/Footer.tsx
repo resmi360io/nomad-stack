@@ -2,7 +2,7 @@ export function Footer() {
   return (
     <footer className="border-t py-6 text-center text-xs text-muted-foreground">
       <p>
-        Some links on this page are affiliate links —{' '}
+        Some links on this page are affiliate links:{' '}
         <a
           href="/how-we-make-money"
           className="underline underline-offset-2 hover:text-foreground"

@@ -22,16 +22,17 @@ const SITE_URL = "https://paidacross.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "/" },
   title: {
-    default: "Paid Across — real cost of receiving international payments",
+    default: "Paid Across: real cost of receiving international payments",
     template: "%s | Paid Across",
   },
   description:
-    "Compare the real cost of receiving international payments. Wise, Revolut, Payoneer, PayPal and more — ranked by net amount received after all fees and FX markup.",
+    "Compare the real cost of receiving international payments. Wise, Revolut, Payoneer, PayPal and more, ranked by net amount received after all fees and FX markup.",
   openGraph: {
-    title: "Paid Across — real cost of receiving international payments",
+    title: "Paid Across: real cost of receiving international payments",
     description:
-      "Compare Wise, Revolut, Payoneer, PayPal and more on the net amount you actually receive — fees and FX combined.",
+      "Compare Wise, Revolut, Payoneer, PayPal and more on the net amount you actually receive, fees and FX combined.",
     url: SITE_URL,
     type: "website",
     siteName: "Paid Across",
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Paid Across — real cost of receiving international payments",
+    title: "Paid Across: real cost of receiving international payments",
     description:
       "Compare Wise, Revolut, Payoneer, PayPal and more on the net amount you actually receive.",
   },

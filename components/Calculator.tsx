@@ -34,7 +34,7 @@ export function Calculator({ defaultSrc, defaultDest }: Props = {}) {
     <div className="space-y-6" style={{ minHeight: '320px' }}>
       {ratesState.status === 'error' && (
         <p className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-2.5 text-sm text-destructive">
-          Could not load live exchange rates — please refresh and try again.
+          Could not load live exchange rates. Please refresh and try again.
         </p>
       )}
       <CalculatorForm
