@@ -269,6 +269,23 @@ export default async function CorridorPage({
           </section>
         )}
 
+        {/* Live rates unavailable: say so rather than silently dropping the table */}
+        {!quotes && (
+          <section>
+            <h2 className="text-xl font-semibold mb-1">
+              Provider comparison: receiving $1,000 USD in {corridor.country}
+            </h2>
+            <div className="rounded-xl border bg-muted/30 px-5 py-4 text-sm text-muted-foreground leading-relaxed">
+              <p>
+                We could not reach our exchange-rate source when this page was last generated, so
+                the ranked comparison is not shown. The provider fees below are unaffected and
+                still current. Use the calculator above, which fetches rates in your browser, or
+                reload in a little while: this page refreshes hourly.
+              </p>
+            </div>
+          </section>
+        )}
+
         {/* Available provider deep-dives */}
         {availableProviders.map((p) => (
           <section key={p.slug}>
