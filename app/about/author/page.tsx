@@ -6,6 +6,19 @@ export const metadata: Metadata = {
   description:
     '20+ years in international payments and transaction banking. Founder of Paid Across, a free calculator for the real cost of receiving international payments.',
   alternates: { canonical: '/about/author' },
+  openGraph: {
+    title: 'About the author: George I.',
+    description:
+      '20+ years in international payments and transaction banking. Founder of Paid Across, a free calculator for the real cost of receiving international payments.',
+    url: '/about/author',
+    type: 'profile',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About the author: George I.',
+    description:
+      '20+ years in international payments and transaction banking. Founder of Paid Across.',
+  },
 };
 
 const authorJsonLd = {

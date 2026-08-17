@@ -127,7 +127,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'HBL, UBL, MCB, Meezan Bank, and Bank Alfalah are the most commonly reported to work without issues; Faysal Bank is also frequently mentioned. HBL and Meezan Bank have official real-time withdrawal integrations with Payoneer, making them the fastest routes. The main requirement is that the account is in your legal name exactly as it appears in your Payoneer verification documents (CNIC or passport). Joint accounts or accounts with name mismatches can cause delays or rejections.',
       },
     ],
-    siblingCorridors: ['usd-to-bdt', 'usd-to-ngn'],
+    siblingCorridors: ['usd-to-bdt', 'usd-to-ngn', 'usd-to-php'],
   },
 
   // ─── USD → Bangladesh (BDT) ────────────────────────────────────────────────
@@ -229,7 +229,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'The bank account route is cheaper for most transfers: Payoneer charges a higher conversion fee for the bKash route (approximately 3% plus $1) than for bank account withdrawals (1% plus roughly 1.2%-4% FX markup, typical all-in 3-5%). The bKash side adds a cash-out charge on top: 18.50 Taka per 1,000 (1.85%) at a standard agent, or 7 Taka per 1,000 (0.70%) if you withdraw Payoneer-received funds at a BRAC Bank, City Bank or participating Q-Cash ATM. Even at the cheaper ATM rate the bank route usually still comes out ahead at a typical 2% FX markup (roughly 3% all-in against roughly 3.8%), but the two are close, and if your Payoneer FX lands near the top of its 1.2%-4% range the bKash-plus-ATM route can match it. If you do use bKash, cash out at one of those ATMs rather than at an agent. The bKash route is faster, typically settling within hours rather than 1-3 business days. For claiming the export cash incentive or funding an ERQ account, you must use the bank route: bKash withdrawals do not generate a Foreign Inward Remittance Certificate (FIRC). A practical split: use the bKash route for small, urgent withdrawals when you need cash quickly; route your main income through a bank account for savings, incentive claims, and ERQ.',
       },
     ],
-    siblingCorridors: ['usd-to-pkr', 'usd-to-ngn'],
+    siblingCorridors: ['usd-to-pkr', 'usd-to-ngn', 'usd-to-php'],
   },
 
   // ─── USD → Nigeria (NGN) ───────────────────────────────────────────────────
@@ -467,6 +467,6 @@ export const CORRIDORS: Corridor[] = [
         a: 'GCash, yes: the Virtual US Account gives you ACH and wire details inside the app, and dollars land in your wallet as USD. Maya, not in the same way. Maya offers a USD wallet for holding and converting, but we could not confirm client-facing USD receiving details you could hand to a US payer; confirmed routes into Maya are remittance services like Wise, Remitly, WorldRemit, and Western Union, which arrive as pesos. If receiving USD into a wallet is the goal, GCash currently has the feature and Maya does not.',
       },
     ],
-    siblingCorridors: ['usd-to-ngn', 'usd-to-bdt'],
+    siblingCorridors: ['usd-to-ngn', 'usd-to-bdt', 'usd-to-pkr'],
   },
 ];

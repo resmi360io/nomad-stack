@@ -18,6 +18,12 @@ export const metadata: Metadata = {
     url: '/receive-international-payments',
     type: 'article',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'How freelancers receive international payments: country guide 2026',
+    description:
+      'Country-by-country breakdown of what it really costs to receive international payments, ranked by net received.',
+  },
 };
 
 const pillarJsonLd = {

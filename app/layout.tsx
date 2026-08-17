@@ -22,6 +22,7 @@ const SITE_URL = "https://paidacross.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "/" },
   title: {
     default: "Paid Across: real cost of receiving international payments",
     template: "%s | Paid Across",
