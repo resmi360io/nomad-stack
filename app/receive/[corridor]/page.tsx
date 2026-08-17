@@ -159,6 +159,16 @@ export default async function CorridorPage({
     ],
   };
 
+  // Oldest lastVerified across the providers this corridor actually quotes. Guarded because
+  // supportedProviders holds slugs and some (gcash on PHP) have no entry in PROVIDERS at all.
+  const corridorProviderDates = corridor.supportedProviders
+    .map((slug) => PROVIDERS.find((p) => p.slug === slug)?.lastVerified)
+    .filter((d): d is string => typeof d === 'string');
+  const oldestFeeVerified =
+    corridorProviderDates.length > 0
+      ? corridorProviderDates.reduce((a, b) => (a < b ? a : b))
+      : null;
+
   const availableProviders = corridor.providers.filter((p) => p.available);
   const unavailableProviders = corridor.providers.filter((p) => !p.available);
 
@@ -177,7 +187,7 @@ export default async function CorridorPage({
             <ol className="flex items-center gap-1">
               <li><Link href="/" className="hover:text-foreground">Home</Link></li>
               <li aria-hidden="true">›</li>
-              <li><Link href="/receive-international-payments" className="hover:text-foreground">Receiving corridors</Link></li>
+              <li><Link href="/receive-international-payments" className="hover:text-foreground">Receiving international payments</Link></li>
               <li aria-hidden="true">›</li>
               <li className="text-foreground">{corridor.country}</li>
             </ol>
@@ -332,7 +342,10 @@ export default async function CorridorPage({
             periodically.
           </p>
           <p className="text-xs text-muted-foreground mt-3">
-            Fee data last verified: {corridor.updatedDate} ·{' '}
+            {oldestFeeVerified
+              ? `Fee data for this corridor last verified ${oldestFeeVerified} or later; each provider card shows its own date.`
+              : 'Fee data verification dates are shown on each provider card.'}{' '}
+            ·{' '}
             <a
               href="https://github.com/resmi360io/nomad-stack"
               target="_blank"
