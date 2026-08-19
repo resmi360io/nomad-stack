@@ -501,7 +501,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 200,
         typicalHours: 48,
-        notes: '1% receiving fee + up to 2% FX markup on PHP withdrawal to bank or GoTyme; GCash payouts may add a GCash-side cash-in fee, reportedly free to PHP 8,000/month then 2% above (verify in app)',
+        notes: '1% receiving fee + up to 2% FX markup on PHP withdrawal to bank or GoTyme; GCash payouts may add a GCash-side cash-in fee, priced by funding source and not confirmed from a GCash primary source (the PHP 8,000/month free figure is the over-the-counter schedule, not the Payoneer one); verify in app',
       },
     ],
     fallbackFee: {
@@ -617,7 +617,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.044,
         fxMarkupBps: 350,
         typicalHours: 48,
-        notes: '4.4% + $0.30 cross-border receiving + ~3.5% FX markup; GCash adds a cash-in fee on the PayPal-to-GCash step, priced by funding source and not confirmed from a GCash primary source (verify in app; not modeled here)',
+        notes: '4.4% + $0.30 cross-border receiving + ~3.5% FX markup; GCash adds a cash-in fee on the PayPal-to-GCash step, priced by funding source and reported at about 1% for PayPal-funded cash-ins on ordinary amounts (not confirmed from a GCash primary source; large-amount behaviour unclear; verify in app; not modeled here)',
       },
     ],
     fallbackFee: {
