@@ -28,6 +28,27 @@ function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
   )
 }
 
+// Field-level label for a Select. Base UI registers its id on the root store and
+// SelectTrigger picks it up as aria-labelledby, so the visible label is
+// programmatically associated with the combobox (WCAG 1.3.1, 4.1.2).
+// Must be rendered inside <Select>. Distinct from SelectLabel, which is the
+// shadcn name for a group heading inside the listbox.
+function SelectFieldLabel({
+  className,
+  ...props
+}: SelectPrimitive.Label.Props) {
+  return (
+    <SelectPrimitive.Label
+      data-slot="select-field-label"
+      className={cn(
+        "flex items-center gap-2 text-sm leading-none font-medium select-none",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
 function SelectTrigger({
   className,
   size = "default",
@@ -191,6 +212,7 @@ export {
   Select,
   SelectContent,
   SelectGroup,
+  SelectFieldLabel,
   SelectItem,
   SelectLabel,
   SelectScrollDownButton,

@@ -33,7 +33,10 @@ export function Calculator({ defaultSrc, defaultDest }: Props = {}) {
     // min-height prevents CLS while the calculator hydrates (prevents layout shift)
     <div className="space-y-6" style={{ minHeight: '320px' }}>
       {ratesState.status === 'error' && (
-        <p className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-2.5 text-sm text-destructive">
+        <p
+          role="alert"
+          className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-2.5 text-sm text-destructive"
+        >
           Could not load live exchange rates. Please refresh and try again.
         </p>
       )}
@@ -44,6 +47,17 @@ export function Calculator({ defaultSrc, defaultDest }: Props = {}) {
         defaultSrc={defaultSrc}
         defaultDest={defaultDest}
       />
+      {/* Persistent live region: submitting the form swaps the table in silently
+          otherwise, so a screen reader user is told nothing (WCAG 4.1.3). The
+          region announces a summary; the table itself is left non-live so it is
+          not read out in full on every submit. */}
+      <div role="status" aria-live="polite" className="sr-only">
+        {quotes !== null && ratesState.status === 'ready'
+          ? quotes.length === 0
+            ? 'No providers support this corridor.'
+            : `Results updated: ${quotes.length} provider${quotes.length === 1 ? '' : 's'} compared, ranked by net received. Best value: ${quotes[0].provider.name}.`
+          : ''}
+      </div>
       {quotes !== null && ratesState.status === 'ready' && (
         <ResultsTable quotes={quotes} rateDate={ratesState.rateDate} />
       )}

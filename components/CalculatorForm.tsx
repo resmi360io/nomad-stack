@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
+  SelectFieldLabel,
   SelectItem,
   SelectTrigger,
 } from '@/components/ui/select';
@@ -89,11 +90,11 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
     <form onSubmit={handleSubmit} className="rounded-xl border bg-card p-6 shadow-sm">
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-1.5">
-          <Label>From</Label>
           <Select
             value={sourceCountry}
             onValueChange={(v) => { if (v) handleSourceChange(v as CountryCode); }}
           >
+            <SelectFieldLabel>From</SelectFieldLabel>
             <SelectTrigger className="w-full">
               <span data-slot="select-value" className="flex flex-1 text-left text-sm">
                 {SOURCE_OPTIONS.find(o => o.code === sourceCountry)?.label ?? sourceCountry}
@@ -108,11 +109,11 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
         </div>
 
         <div className="space-y-1.5">
-          <Label>To</Label>
           <Select
             value={destCountry}
             onValueChange={(v) => { if (v) handleDestCountryChange(v as CountryCode); }}
           >
+            <SelectFieldLabel>To</SelectFieldLabel>
             <SelectTrigger className="w-full">
               <span data-slot="select-value" className="flex flex-1 text-left text-sm">
                 {DEST_OPTIONS.find(o => o.code === destCountry)?.label ?? destCountry}
@@ -128,11 +129,11 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
 
         {availableDestCurrencies.length > 1 && (
           <div className="space-y-1.5 sm:col-span-2">
-            <Label>Recipient receives in</Label>
             <Select
               value={destCurrency}
               onValueChange={(v) => { if (v) setDestCurrency(v as Currency); }}
             >
+              <SelectFieldLabel>Recipient receives in</SelectFieldLabel>
               <SelectTrigger className="w-full">
                 <span data-slot="select-value" className="flex flex-1 text-left text-sm">
                   {CURRENCY_LABELS[destCurrency] ?? destCurrency}

@@ -8,10 +8,10 @@ import { BestValueBadge } from './BestValueBadge';
 import posthog from 'posthog-js';
 
 function fxQualityLabel(bps: number): { label: string; color: string } {
-  if (bps <= 50) return { label: 'Excellent FX', color: 'text-green-600 dark:text-green-400' };
-  if (bps <= 150) return { label: 'Good FX', color: 'text-emerald-600 dark:text-emerald-400' };
-  if (bps <= 300) return { label: 'Fair FX', color: 'text-amber-600 dark:text-amber-400' };
-  return { label: 'Poor FX', color: 'text-red-600 dark:text-red-400' };
+  if (bps <= 50) return { label: 'Excellent FX', color: 'text-green-700 dark:text-green-400' };
+  if (bps <= 150) return { label: 'Good FX', color: 'text-emerald-700 dark:text-emerald-400' };
+  if (bps <= 300) return { label: 'Fair FX', color: 'text-amber-700 dark:text-amber-400' };
+  return { label: 'Poor FX', color: 'text-red-700 dark:text-red-400' };
 }
 
 function formatHours(h: number): string {
