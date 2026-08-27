@@ -138,11 +138,15 @@ export default function ReceiveInternationalPaymentsPage() {
           </p>
           <div className="overflow-hidden rounded-xl border">
             <table className="w-full text-sm">
+              <caption className="sr-only">
+                Corridor guides: destination country, how many providers work there,
+                and a link to the full cost comparison
+              </caption>
               <thead>
                 <tr className="border-b bg-muted/50 text-left text-xs font-medium text-muted-foreground">
-                  <th className="px-4 py-2.5">Corridor</th>
-                  <th className="px-4 py-2.5">Providers that work</th>
-                  <th className="px-4 py-2.5">Cheapest option</th>
+                  <th scope="col" className="px-4 py-2.5">Corridor</th>
+                  <th scope="col" className="px-4 py-2.5">Providers that work</th>
+                  <th scope="col" className="px-4 py-2.5">Cheapest option</th>
                 </tr>
               </thead>
               <tbody>

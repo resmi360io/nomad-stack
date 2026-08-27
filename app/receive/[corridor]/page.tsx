@@ -241,13 +241,17 @@ export default async function CorridorPage({
             )}
             <div className="overflow-x-auto rounded-xl border">
               <table className="w-full text-sm">
+                <caption className="sr-only">
+                  Provider comparison: receiving $1,000 USD in {corridor.country},
+                  ranked by net received
+                </caption>
                 <thead>
                   <tr className="border-b bg-muted/50 text-left text-xs font-medium text-muted-foreground">
-                    <th className="px-4 py-2.5">Provider</th>
-                    <th className="px-4 py-2.5">Net received ({corridor.destination})</th>
-                    <th className="px-4 py-2.5">Effective fee</th>
-                    <th className="px-4 py-2.5">FX margin</th>
-                    <th className="px-4 py-2.5">Speed</th>
+                    <th scope="col" className="px-4 py-2.5">Provider</th>
+                    <th scope="col" className="px-4 py-2.5">Net received ({corridor.destination})</th>
+                    <th scope="col" className="px-4 py-2.5">Effective fee</th>
+                    <th scope="col" className="px-4 py-2.5">FX margin</th>
+                    <th scope="col" className="px-4 py-2.5">Speed</th>
                   </tr>
                 </thead>
                 <tbody>
