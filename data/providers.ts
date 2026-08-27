@@ -48,9 +48,12 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://wise.com',
     affiliateLink: 'https://wise.prf.hn/click/camref:1101l5KKgS',
     hasAffiliateProgram: true,
-    lastVerified: '2026-07-05',
+    lastVerified: '2026-08-27',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PH'],
+    // Wise balance availability excludes Indonesia (receiving/holding ended 23 May 2024)
+    // and Mexico (residents cannot open currency balances). Both removed as destinations.
+    // MX stays in supportedSourceCountries: Mexican residents can still send, not hold.
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'TH', 'PH'],
     corridors: [
       // Verified: ~$14.74 fee on $1,000 send (wise.com/us/send-money/send-money-to-georgia)
       {
@@ -88,16 +91,13 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 1,
       },
-      // Verified: ~$9.17 fee on $1,000 USD send — updated Jan 2026
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'MX', currency: 'MXN' },
-        fixedFee: 1.17,
-        percentageFee: 0.008,
-        fxMarkupBps: 0,
-        typicalHours: 1,
-      },
       // Verified: ~$4.80 fee on $1,000 USD send ($0.69 fixed + 0.41%)
+      // Wise is migrating Thai-address personal customers onto its Bank of Thailand
+      // licensed local entity. After migration, third-party payments arriving into
+      // foreign-currency receiving details are automatically converted to THB on arrival,
+      // so a Thai-resident freelancer can still be paid but can no longer hold the USD.
+      // Reported timing: accounts opened after 21 January 2026 migrate by around August
+      // 2026, accounts opened before that date from around October 2026. Verify current.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'TH', currency: 'THB' },
@@ -105,7 +105,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.0041,
         fxMarkupBps: 0,
         typicalHours: 24,
-        notes: 'Typically 1–2 business days for THB',
+        notes: 'Typically 1 to 2 business days for THB. Client payments in USD are auto-converted to THB on arrival once your account moves to Wise Thailand, so you cannot hold dollars. Verify current.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -114,23 +114,6 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.0035,
         fxMarkupBps: 0,
         typicalHours: 1,
-      },
-      // Verified: ~$5.31 fee on $1,000 USD send ($0.69 fixed + 0.46%)
-      {
-        source: { country: 'EU', currency: 'EUR' },
-        destination: { country: 'ID', currency: 'IDR' },
-        fixedFee: 0.69,
-        percentageFee: 0.0046,
-        fxMarkupBps: 0,
-        typicalHours: 24,
-      },
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'ID', currency: 'IDR' },
-        fixedFee: 0.69,
-        percentageFee: 0.0046,
-        fxMarkupBps: 0,
-        typicalHours: 24,
       },
       // USD → Philippine PHP: PH residents hold a full Wise account with US ACH
       // receiving details (free to receive), then convert USD→PHP at mid-market.
@@ -206,9 +189,11 @@ export const PROVIDERS: Provider[] = [
     // Affiliate template: https://revolut.com/referral/[REPLACE_AFFILIATE_ID]
     affiliateLink: '',
     hasAffiliateProgram: true,
-    lastVerified: '2026-06-02',
-    supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
+    lastVerified: '2026-08-27',
+    // Revolut personal sign-up excludes Georgia, Thailand and Indonesia, so residents
+    // there cannot hold an account. Mexico retained: Revolut Bank Mexico is live.
+    supportedSourceCountries: ['US', 'GB', 'EU', 'PT', 'MX'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX'],
     corridors: [
       // GEL not available on Revolut local network — sent via SWIFT ($3 flat fee, 0 bps FX weekday)
       {
@@ -247,7 +232,11 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 24,
       },
-      // MXN via SWIFT (Revolut US does not yet have a local MXN network)
+      // MXN: Revolut Bank S.A. Institucion de Banca Multiple launched full banking
+      // operations in Mexico on 27 January 2026 under a CNBV licence, with IPAB deposit
+      // protection and local CLABE / SPEI details. The $3 SWIFT row below predates that
+      // launch and has not been rechecked against Revolut Mexico's current pricing.
+      // Verify current before relying on this row.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'MX', currency: 'MXN' },
@@ -329,8 +318,8 @@ export const PROVIDERS: Provider[] = [
       typicalHours: 72,
       notes: 'Estimated — verify at revolut.com for your corridor',
     },
-    notes: 'Standard plan. EUR/SEPA corridors: 0.3% fee, ~instant. Other corridors via SWIFT: $3 flat fee, 3–5 days. FX at mid-market weekdays within $1,000/month; +0.5% over limit; weekends +1% (major) or +2% (GEL/THB/IDR).',
-    caveat: 'Shown: weekday, within $1,000/month FX allowance. Out-of-allowance: +0.5%. Weekends: +1% extra. Realistic worst-case: ~1.5% all-in. GEL/THB/IDR via SWIFT ($3 fee, 3–5 days).',
+    notes: 'Standard plan. EUR/SEPA corridors: 0.3% transfer fee, near instant. Other corridors via SWIFT: $3 flat fee, 3 to 5 days. FX at mid-market on weekdays within the $1,000/month exchange allowance; +0.5% above the allowance; +1% on weekends.',
+    caveat: 'Shown: weekday, within the $1,000/month FX allowance. Above the allowance: +0.5%. Weekends: +1% extra. Realistic worst case about 1.5% all-in. Revolut accounts are not available to residents of Georgia, Thailand or Indonesia.',
   },
 
   // ─── Payoneer ──────────────────────────────────────────────────────────────
@@ -528,7 +517,7 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.paypal.com/us/business',
     affiliateLink: '',
     hasAffiliateProgram: false,
-    lastVerified: '2026-06-02',
+    lastVerified: '2026-08-27',
     supportedSourceCountries: ['US', 'GB', 'EU'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG', 'PH'],
     corridors: [
@@ -549,6 +538,12 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 350,
         typicalHours: 24,
       },
+      // Thailand: the 2022 relaunch removed commercial receiving from personal accounts.
+      // Personal-account identity verification runs through NDID, which requires a 13-digit
+      // Thai national ID, so foreign residents of Thailand cannot hold a personal Thai
+      // PayPal account at all. A Thai-registered business account is the reported route for
+      // freelance income. The fee row below is the generic personal-account model and does
+      // not describe that route. Verify current before relying on it.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'TH', currency: 'THB' },
@@ -556,6 +551,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.044,
         fxMarkupBps: 350,
         typicalHours: 24,
+        notes: 'Thai personal accounts cannot receive commercial payments since the 2022 relaunch, and NDID verification requires a Thai national ID, so foreign residents cannot open one. A Thai-registered business account is the reported route. Verify current.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -633,8 +629,10 @@ export const PROVIDERS: Provider[] = [
 
   // ─── GrabrFi ───────────────────────────────────────────────────────────────
   // Source: https://grabrfi.com/pricing (2026-06-02)
-  // Freelancer-focused; USD checking product. Local-currency withdrawal: MX, GE, and select others.
-  // Does NOT support EUR delivery to Eurozone banks — no PT corridor.
+  // Freelancer-focused; USD checking product. Account eligibility is a fixed list of
+  // countries keyed to your government-issued ID, and it excludes Georgia, Thailand and
+  // Indonesia. Portugal is on the eligibility list but GrabrFi EUR payout to a Portuguese
+  // bank is unconfirmed, so PT is not listed as a destination. Local-currency withdrawal: MX.
   {
     slug: 'grabrfi',
     name: 'GrabrFi',
@@ -643,18 +641,10 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.grabrfi.com/en',
     affiliateLink: 'https://app.grabrfi.com/sign-up?invite-code=kqMCKAcsollV&itm_source=app&itm_medium=referral&itm_campaign=invite_friend_promo&itm_content=ios_invite_screen',
     hasAffiliateProgram: true,
-    lastVerified: '2026-06-02',
+    lastVerified: '2026-08-27',
     supportedSourceCountries: ['US'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'MX', 'TH', 'ID'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'MX'],
     corridors: [
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'GE', currency: 'GEL' },
-        fixedFee: 0,
-        percentageFee: 0.01,
-        fxMarkupBps: 100,
-        typicalHours: 24,
-      },
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'MX', currency: 'MXN' },
@@ -662,22 +652,6 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 100,
         typicalHours: 24,
-      },
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'TH', currency: 'THB' },
-        fixedFee: 0,
-        percentageFee: 0.01,
-        fxMarkupBps: 100,
-        typicalHours: 48,
-      },
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'ID', currency: 'IDR' },
-        fixedFee: 0,
-        percentageFee: 0.01,
-        fxMarkupBps: 100,
-        typicalHours: 48,
       },
     ],
     fallbackFee: {
@@ -763,7 +737,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 150,
         typicalHours: 24,
-        notes: 'Transfer fee currently $0 promo (expires ~Jul 2026); $5 standard fee shown',
+        notes: '$5 standard transfer fee shown. A $0 promotional fee was previously advertised with an expiry around July 2026; that date has passed and the promotion has not been rechecked. Verify current.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
