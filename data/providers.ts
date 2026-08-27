@@ -136,7 +136,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.003,
         fxMarkupBps: 0,
         typicalHours: 48,
-        notes: 'USD SWIFT to Georgian USD bank account — no FX conversion',
+        notes: 'USD SWIFT to Georgian USD bank account; no FX conversion',
       },
       // EUR → Georgian EUR bank account via SWIFT (non-SEPA, no FX conversion)
       {
@@ -146,7 +146,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.004,
         fxMarkupBps: 0,
         typicalHours: 48,
-        notes: 'EUR SWIFT to Georgian EUR bank account — no FX conversion',
+        notes: 'EUR SWIFT to Georgian EUR bank account; no FX conversion',
       },
       // EUR → Portuguese EUR bank account via SEPA (no FX conversion, same-currency)
       // Source: wise.com/help/articles/2932149 — SEPA same-currency, EU regs apply
@@ -157,7 +157,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.0038,
         fxMarkupBps: 0,
         typicalHours: 2,
-        notes: 'EUR SEPA to Portugal — no FX conversion, near-instant',
+        notes: 'EUR SEPA to Portugal; no FX conversion, near-instant',
       },
     ],
     fallbackFee: {
@@ -165,7 +165,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0.0069,
       fxMarkupBps: 0,
       typicalHours: 24,
-      notes: 'Estimated — verify at wise.com for your corridor',
+      notes: 'Estimated; verify at wise.com for your corridor',
     },
   },
 
@@ -195,32 +195,6 @@ export const PROVIDERS: Provider[] = [
     supportedSourceCountries: ['US', 'GB', 'EU', 'PT', 'MX'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX'],
     corridors: [
-      // GEL not available on Revolut local network — sent via SWIFT ($3 flat fee, 0 bps FX weekday)
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'GE', currency: 'GEL' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-        notes: 'Via SWIFT; 3–5 business days. +2% FX surcharge on weekends.',
-      },
-      {
-        source: { country: 'GB', currency: 'GBP' },
-        destination: { country: 'GE', currency: 'GEL' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-      },
-      {
-        source: { country: 'EU', currency: 'EUR' },
-        destination: { country: 'GE', currency: 'GEL' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-      },
       // EUR via SEPA local network — 0.3% fee, near mid-market FX weekdays
       // Verified 2026-06-02: revolut.com/en-US/legal/standard-fees/
       // Shown: weekday within $1,000/month FX allowance. Out-of-allowance +0.5%; weekend +1%.
@@ -245,15 +219,6 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 72,
       },
-      // THB via SWIFT
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'TH', currency: 'THB' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-      },
       {
         source: { country: 'GB', currency: 'GBP' },
         destination: { country: 'PT', currency: 'EUR' },
@@ -261,44 +226,6 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.003,
         fxMarkupBps: 0,
         typicalHours: 24,
-      },
-      // IDR via SWIFT
-      {
-        source: { country: 'EU', currency: 'EUR' },
-        destination: { country: 'ID', currency: 'IDR' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-      },
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'ID', currency: 'IDR' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-      },
-      // USD → Georgian USD bank account via SWIFT (no FX conversion)
-      // US Standard plan: $10 flat SWIFT fee (revolut.com/en-US/legal/standard-fees/)
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'GE', currency: 'USD' },
-        fixedFee: 10,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-        notes: 'USD SWIFT to Georgian USD bank account — no FX conversion',
-      },
-      // EUR → Georgian EUR bank account via SWIFT (no FX conversion)
-      {
-        source: { country: 'EU', currency: 'EUR' },
-        destination: { country: 'GE', currency: 'EUR' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-        notes: 'EUR SWIFT to Georgian EUR bank account — no FX conversion',
       },
       // EUR → Portuguese EUR via SEPA (no FX, same-currency SEPA transfer)
       {
@@ -308,7 +235,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.003,
         fxMarkupBps: 0,
         typicalHours: 1,
-        notes: 'EUR SEPA to Portugal — no FX conversion',
+        notes: 'EUR SEPA to Portugal; no FX conversion',
       },
     ],
     fallbackFee: {
@@ -316,7 +243,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0,
       fxMarkupBps: 0,
       typicalHours: 72,
-      notes: 'Estimated — verify at revolut.com for your corridor',
+      notes: 'Estimated; verify at revolut.com for your corridor',
     },
     notes: 'Standard plan. EUR/SEPA corridors: 0.3% transfer fee, near instant. Other corridors via SWIFT: $3 flat fee, 3 to 5 days. FX at mid-market on weekdays within the $1,000/month exchange allowance; +0.5% above the allowance; +1% on weekends.',
     caveat: 'Shown: weekday, within the $1,000/month FX allowance. Above the allowance: +0.5%. Weekends: +1% extra. Realistic worst case about 1.5% all-in. Revolut accounts are not available to residents of Georgia, Thailand or Indonesia.',
@@ -498,7 +425,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0.01,
       fxMarkupBps: 200,
       typicalHours: 96,
-      notes: 'Estimated — verify at payoneer.com for your corridor',
+      notes: 'Estimated; verify at payoneer.com for your corridor',
     },
   },
 
@@ -659,7 +586,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0.01,
       fxMarkupBps: 100,
       typicalHours: 48,
-      notes: 'GrabrFi coverage expanding — verify at grabrfi.com for your corridor',
+      notes: 'GrabrFi coverage expanding; verify at grabrfi.com for your corridor',
     },
   },
 
@@ -793,7 +720,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0,
       fxMarkupBps: 400,
       typicalHours: 24,
-      notes: 'Estimated — verify at westernunion.com for your corridor',
+      notes: 'Estimated; verify at westernunion.com for your corridor',
     },
   },
 
@@ -895,7 +822,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 96,
-        notes: 'SWIFT wire; recipient receives USD in Georgian bank — no FX conversion',
+        notes: 'SWIFT wire; recipient receives USD in Georgian bank; no FX conversion',
       },
       // EUR → Georgian EUR bank account via SWIFT (no FX conversion)
       {
@@ -905,7 +832,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 96,
-        notes: 'SWIFT wire; recipient receives EUR in Georgian bank — no FX conversion',
+        notes: 'SWIFT wire; recipient receives EUR in Georgian bank; no FX conversion',
       },
       // EUR → Portuguese EUR via SEPA (no FX conversion, much cheaper than SWIFT)
       {
@@ -972,7 +899,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0,
       fxMarkupBps: 350,
       typicalHours: 96,
-      notes: 'Typical SWIFT estimate — check with your specific bank for exact fees',
+      notes: 'Typical SWIFT estimate; check with your specific bank for exact fees',
     },
     notes: 'Fees vary by bank. Correspondent bank charges may reduce received amount unpredictably.',
     caveat: 'EU→EU routes use SEPA (cheap, ~1h). Other routes use SWIFT ($35 fee, 2–5 days, 3.5% FX).',
@@ -1007,7 +934,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 1,
-        notes: 'Paysera issues a Lithuanian (EU) IBAN — Eurozone clients send SEPA; receiving fee €0',
+        notes: 'Paysera issues a Lithuanian (EU) IBAN; Eurozone clients send SEPA; receiving fee €0',
       },
     ],
     fallbackFee: {
@@ -1016,7 +943,7 @@ export const PROVIDERS: Provider[] = [
       fxMarkupBps: 0,
       typicalHours: 1,
     },
-    notes: 'Paysera issues a Lithuanian IBAN to Georgian residents. EU clients send via SEPA — Paysera charges €0 to receive. NBG-licensed bank in Georgia.',
+    notes: 'Paysera issues a Lithuanian IBAN to Georgian residents. EU clients send via SEPA; Paysera charges €0 to receive. NBG-licensed bank in Georgia.',
     caveat: 'You give your EU client a Lithuanian IBAN (LT…). They pay their bank\'s SEPA fee (~€0–5) separately, not deducted from your amount.',
   },
 
