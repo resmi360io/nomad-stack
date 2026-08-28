@@ -254,9 +254,12 @@ export default function ReceiveInternationalPaymentsPage() {
         <section className="rounded-xl border bg-muted/30 px-6 py-5">
           <h2 className="text-base font-semibold mb-2">Methodology</h2>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Every number in this guide and on the calculator is sourced from the provider&apos;s
-            own public pricing page. Fee data is verified by date and source is linked.
-            Exchange rates are live mid-market from{' '}
+            Fees come from each provider&apos;s own public pricing page, verified by date with
+            the source linked. FX spreads are different: several providers do not publish one
+            at all, so where we could not source a figure we estimate it, mark that row
+            &ldquo;FX estimated&rdquo;, and bar it from the best-value badge, which only ever
+            sits on a provider whose spread we can point at. Exchange rates are live mid-market
+            from{' '}
             <a
               href="https://open.er-api.com"
               target="_blank"
@@ -265,7 +268,7 @@ export default function ReceiveInternationalPaymentsPage() {
             >
               open.er-api.com
             </a>{' '}
-            with no bank rates and no guesses. Provider ranking is determined entirely by net received
+            with no bank rates. Provider ranking is determined entirely by net received
             amount after all fees and FX markup. There is no paid placement.
           </p>
           <p className="text-xs text-muted-foreground mt-3">
