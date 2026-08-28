@@ -246,7 +246,7 @@ export const PROVIDERS: Provider[] = [
       notes: 'Estimated; verify at revolut.com for your corridor',
     },
     notes: 'Standard plan. EUR/SEPA corridors: 0.3% transfer fee, near instant. Other corridors via SWIFT: $3 flat fee, 3 to 5 days. FX at mid-market on weekdays within the $1,000/month exchange allowance; +0.5% above the allowance; +1% on weekends.',
-    caveat: 'Shown: weekday, within the $1,000/month FX allowance. Above the allowance: +0.5%. Weekends: +1% extra. Realistic worst case about 1.5% all-in. Revolut accounts are not available to residents of Georgia, Thailand or Indonesia.',
+    caveat: 'Shown: weekday, within the $1,000/month FX allowance. Above the allowance: +0.5%. Weekends: +1% extra. Those allowance figures are from Revolut US; the European entity publishes different ones, so a EEA-resident account may differ. The allowance is not modelled in the rates above, which show the transfer fee only. Revolut accounts are not available to residents of Georgia, Thailand or Indonesia.',
   },
 
   // ─── Payoneer ──────────────────────────────────────────────────────────────
@@ -638,12 +638,15 @@ export const PROVIDERS: Provider[] = [
       },
       // Verified 2026-06-02: ~1.5% all-in online bank-deposit (range 0.5–2.5% by method)
       // $3 flat send fee + ~1.5% FX spread (westernunion.com US→EUR online bank)
+      // 100 bps per the cited bestexchangerates USD to EUR check above; the row
+      // previously carried 150 bps, which matched no source in this file and
+      // disagreed with both the header comment and the GBP → PT row.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PT', currency: 'EUR' },
         fixedFee: 3,
         percentageFee: 0,
-        fxMarkupBps: 150,
+        fxMarkupBps: 100,
         typicalHours: 24,
       },
       // Confirmed ~150 bps FX spread, strong US→MX network (bestexchangerates.com)
@@ -788,6 +791,21 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 350,
         typicalHours: 96,
+      },
+      // USD → Thai foreign currency deposit (FCD) account via SWIFT (no FX conversion).
+      // Mirrors the USD → GE/USD row: the Bank of Thailand does not require inbound
+      // foreign currency to be converted, so a dollar wire into an FCD account converts
+      // nothing and the spread applies only when the holder chooses to sell.
+      // Does not model the Thai inward remittance commission (reported 0.25%, floor and
+      // ceiling by bank), which is charged on top. Verify current.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'TH', currency: 'USD' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        notes: 'SWIFT wire; recipient receives USD in a Thai FCD account; no FX conversion. Bank inward remittance commission applies on top and is not modelled.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
