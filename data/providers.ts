@@ -48,9 +48,12 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://wise.com',
     affiliateLink: 'https://wise.prf.hn/click/camref:1101l5KKgS',
     hasAffiliateProgram: true,
-    lastVerified: '2026-07-05',
+    lastVerified: '2026-08-27',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PH'],
+    // Wise balance availability excludes Indonesia (receiving/holding ended 23 May 2024)
+    // and Mexico (residents cannot open currency balances). Both removed as destinations.
+    // MX stays in supportedSourceCountries: Mexican residents can still send, not hold.
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'TH', 'PH'],
     corridors: [
       // Verified: ~$14.74 fee on $1,000 send (wise.com/us/send-money/send-money-to-georgia)
       {
@@ -88,16 +91,13 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 1,
       },
-      // Verified: ~$9.17 fee on $1,000 USD send — updated Jan 2026
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'MX', currency: 'MXN' },
-        fixedFee: 1.17,
-        percentageFee: 0.008,
-        fxMarkupBps: 0,
-        typicalHours: 1,
-      },
       // Verified: ~$4.80 fee on $1,000 USD send ($0.69 fixed + 0.41%)
+      // Wise is migrating Thai-address personal customers onto its Bank of Thailand
+      // licensed local entity. After migration, third-party payments arriving into
+      // foreign-currency receiving details are automatically converted to THB on arrival,
+      // so a Thai-resident freelancer can still be paid but can no longer hold the USD.
+      // Reported timing: accounts opened after 21 January 2026 migrate by around August
+      // 2026, accounts opened before that date from around October 2026. Verify current.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'TH', currency: 'THB' },
@@ -105,7 +105,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.0041,
         fxMarkupBps: 0,
         typicalHours: 24,
-        notes: 'Typically 1–2 business days for THB',
+        notes: 'Typically 1 to 2 business days for THB. Client payments in USD are auto-converted to THB on arrival once your account moves to Wise Thailand, so you cannot hold dollars. Verify current.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -114,23 +114,6 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.0035,
         fxMarkupBps: 0,
         typicalHours: 1,
-      },
-      // Verified: ~$5.31 fee on $1,000 USD send ($0.69 fixed + 0.46%)
-      {
-        source: { country: 'EU', currency: 'EUR' },
-        destination: { country: 'ID', currency: 'IDR' },
-        fixedFee: 0.69,
-        percentageFee: 0.0046,
-        fxMarkupBps: 0,
-        typicalHours: 24,
-      },
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'ID', currency: 'IDR' },
-        fixedFee: 0.69,
-        percentageFee: 0.0046,
-        fxMarkupBps: 0,
-        typicalHours: 24,
       },
       // USD → Philippine PHP: PH residents hold a full Wise account with US ACH
       // receiving details (free to receive), then convert USD→PHP at mid-market.
@@ -153,7 +136,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.003,
         fxMarkupBps: 0,
         typicalHours: 48,
-        notes: 'USD SWIFT to Georgian USD bank account — no FX conversion',
+        notes: 'USD SWIFT to Georgian USD bank account; no FX conversion',
       },
       // EUR → Georgian EUR bank account via SWIFT (non-SEPA, no FX conversion)
       {
@@ -163,7 +146,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.004,
         fxMarkupBps: 0,
         typicalHours: 48,
-        notes: 'EUR SWIFT to Georgian EUR bank account — no FX conversion',
+        notes: 'EUR SWIFT to Georgian EUR bank account; no FX conversion',
       },
       // EUR → Portuguese EUR bank account via SEPA (no FX conversion, same-currency)
       // Source: wise.com/help/articles/2932149 — SEPA same-currency, EU regs apply
@@ -174,7 +157,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.0038,
         fxMarkupBps: 0,
         typicalHours: 2,
-        notes: 'EUR SEPA to Portugal — no FX conversion, near-instant',
+        notes: 'EUR SEPA to Portugal; no FX conversion, near-instant',
       },
     ],
     fallbackFee: {
@@ -182,7 +165,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0.0069,
       fxMarkupBps: 0,
       typicalHours: 24,
-      notes: 'Estimated — verify at wise.com for your corridor',
+      notes: 'Estimated; verify at wise.com for your corridor',
     },
   },
 
@@ -206,36 +189,12 @@ export const PROVIDERS: Provider[] = [
     // Affiliate template: https://revolut.com/referral/[REPLACE_AFFILIATE_ID]
     affiliateLink: '',
     hasAffiliateProgram: true,
-    lastVerified: '2026-06-02',
-    supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
+    lastVerified: '2026-08-27',
+    // Revolut personal sign-up excludes Georgia, Thailand and Indonesia, so residents
+    // there cannot hold an account. Mexico retained: Revolut Bank Mexico is live.
+    supportedSourceCountries: ['US', 'GB', 'EU', 'PT', 'MX'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX'],
     corridors: [
-      // GEL not available on Revolut local network — sent via SWIFT ($3 flat fee, 0 bps FX weekday)
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'GE', currency: 'GEL' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-        notes: 'Via SWIFT; 3–5 business days. +2% FX surcharge on weekends.',
-      },
-      {
-        source: { country: 'GB', currency: 'GBP' },
-        destination: { country: 'GE', currency: 'GEL' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-      },
-      {
-        source: { country: 'EU', currency: 'EUR' },
-        destination: { country: 'GE', currency: 'GEL' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-      },
       // EUR via SEPA local network — 0.3% fee, near mid-market FX weekdays
       // Verified 2026-06-02: revolut.com/en-US/legal/standard-fees/
       // Shown: weekday within $1,000/month FX allowance. Out-of-allowance +0.5%; weekend +1%.
@@ -247,19 +206,14 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 24,
       },
-      // MXN via SWIFT (Revolut US does not yet have a local MXN network)
+      // MXN: Revolut Bank S.A. Institucion de Banca Multiple launched full banking
+      // operations in Mexico on 27 January 2026 under a CNBV licence, with IPAB deposit
+      // protection and local CLABE / SPEI details. The $3 SWIFT row below predates that
+      // launch and has not been rechecked against Revolut Mexico's current pricing.
+      // Verify current before relying on this row.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'MX', currency: 'MXN' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-      },
-      // THB via SWIFT
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'TH', currency: 'THB' },
         fixedFee: 3,
         percentageFee: 0,
         fxMarkupBps: 0,
@@ -273,44 +227,6 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 24,
       },
-      // IDR via SWIFT
-      {
-        source: { country: 'EU', currency: 'EUR' },
-        destination: { country: 'ID', currency: 'IDR' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-      },
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'ID', currency: 'IDR' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-      },
-      // USD → Georgian USD bank account via SWIFT (no FX conversion)
-      // US Standard plan: $10 flat SWIFT fee (revolut.com/en-US/legal/standard-fees/)
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'GE', currency: 'USD' },
-        fixedFee: 10,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-        notes: 'USD SWIFT to Georgian USD bank account — no FX conversion',
-      },
-      // EUR → Georgian EUR bank account via SWIFT (no FX conversion)
-      {
-        source: { country: 'EU', currency: 'EUR' },
-        destination: { country: 'GE', currency: 'EUR' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-        notes: 'EUR SWIFT to Georgian EUR bank account — no FX conversion',
-      },
       // EUR → Portuguese EUR via SEPA (no FX, same-currency SEPA transfer)
       {
         source: { country: 'EU', currency: 'EUR' },
@@ -319,7 +235,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.003,
         fxMarkupBps: 0,
         typicalHours: 1,
-        notes: 'EUR SEPA to Portugal — no FX conversion',
+        notes: 'EUR SEPA to Portugal; no FX conversion',
       },
     ],
     fallbackFee: {
@@ -327,10 +243,10 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0,
       fxMarkupBps: 0,
       typicalHours: 72,
-      notes: 'Estimated — verify at revolut.com for your corridor',
+      notes: 'Estimated; verify at revolut.com for your corridor',
     },
-    notes: 'Standard plan. EUR/SEPA corridors: 0.3% fee, ~instant. Other corridors via SWIFT: $3 flat fee, 3–5 days. FX at mid-market weekdays within $1,000/month; +0.5% over limit; weekends +1% (major) or +2% (GEL/THB/IDR).',
-    caveat: 'Shown: weekday, within $1,000/month FX allowance. Out-of-allowance: +0.5%. Weekends: +1% extra. Realistic worst-case: ~1.5% all-in. GEL/THB/IDR via SWIFT ($3 fee, 3–5 days).',
+    notes: 'Standard plan. EUR/SEPA corridors: 0.3% transfer fee, near instant. Other corridors via SWIFT: $3 flat fee, 3 to 5 days. FX at mid-market on weekdays within the $1,000/month exchange allowance; +0.5% above the allowance; +1% on weekends.',
+    caveat: 'Shown: weekday, within the $1,000/month FX allowance. Above the allowance: +0.5%. Weekends: +1% extra. Those allowance figures are from Revolut US; the European entity publishes different ones, so a EEA-resident account may differ. The allowance is not modelled in the rates above, which show the transfer fee only. Revolut accounts are not available to residents of Georgia, Thailand or Indonesia.',
   },
 
   // ─── Payoneer ──────────────────────────────────────────────────────────────
@@ -509,7 +425,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0.01,
       fxMarkupBps: 200,
       typicalHours: 96,
-      notes: 'Estimated — verify at payoneer.com for your corridor',
+      notes: 'Estimated; verify at payoneer.com for your corridor',
     },
   },
 
@@ -528,7 +444,7 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.paypal.com/us/business',
     affiliateLink: '',
     hasAffiliateProgram: false,
-    lastVerified: '2026-06-02',
+    lastVerified: '2026-08-27',
     supportedSourceCountries: ['US', 'GB', 'EU'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG', 'PH'],
     corridors: [
@@ -549,6 +465,12 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 350,
         typicalHours: 24,
       },
+      // Thailand: the 2022 relaunch removed commercial receiving from personal accounts.
+      // Personal-account identity verification runs through NDID, which requires a 13-digit
+      // Thai national ID, so foreign residents of Thailand cannot hold a personal Thai
+      // PayPal account at all. A Thai-registered business account is the reported route for
+      // freelance income. The fee row below is the generic personal-account model and does
+      // not describe that route. Verify current before relying on it.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'TH', currency: 'THB' },
@@ -556,6 +478,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.044,
         fxMarkupBps: 350,
         typicalHours: 24,
+        notes: 'Thai personal accounts cannot receive commercial payments since the 2022 relaunch, and NDID verification requires a Thai national ID, so foreign residents cannot open one. A Thai-registered business account is the reported route. Verify current.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -633,8 +556,10 @@ export const PROVIDERS: Provider[] = [
 
   // ─── GrabrFi ───────────────────────────────────────────────────────────────
   // Source: https://grabrfi.com/pricing (2026-06-02)
-  // Freelancer-focused; USD checking product. Local-currency withdrawal: MX, GE, and select others.
-  // Does NOT support EUR delivery to Eurozone banks — no PT corridor.
+  // Freelancer-focused; USD checking product. Account eligibility is a fixed list of
+  // countries keyed to your government-issued ID, and it excludes Georgia, Thailand and
+  // Indonesia. Portugal is on the eligibility list but GrabrFi EUR payout to a Portuguese
+  // bank is unconfirmed, so PT is not listed as a destination. Local-currency withdrawal: MX.
   {
     slug: 'grabrfi',
     name: 'GrabrFi',
@@ -643,18 +568,10 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.grabrfi.com/en',
     affiliateLink: 'https://app.grabrfi.com/sign-up?invite-code=kqMCKAcsollV&itm_source=app&itm_medium=referral&itm_campaign=invite_friend_promo&itm_content=ios_invite_screen',
     hasAffiliateProgram: true,
-    lastVerified: '2026-06-02',
+    lastVerified: '2026-08-27',
     supportedSourceCountries: ['US'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'MX', 'TH', 'ID'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'MX'],
     corridors: [
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'GE', currency: 'GEL' },
-        fixedFee: 0,
-        percentageFee: 0.01,
-        fxMarkupBps: 100,
-        typicalHours: 24,
-      },
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'MX', currency: 'MXN' },
@@ -663,29 +580,13 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 100,
         typicalHours: 24,
       },
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'TH', currency: 'THB' },
-        fixedFee: 0,
-        percentageFee: 0.01,
-        fxMarkupBps: 100,
-        typicalHours: 48,
-      },
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'ID', currency: 'IDR' },
-        fixedFee: 0,
-        percentageFee: 0.01,
-        fxMarkupBps: 100,
-        typicalHours: 48,
-      },
     ],
     fallbackFee: {
       fixedFee: 0,
       percentageFee: 0.01,
       fxMarkupBps: 100,
       typicalHours: 48,
-      notes: 'GrabrFi coverage expanding — verify at grabrfi.com for your corridor',
+      notes: 'GrabrFi coverage expanding; verify at grabrfi.com for your corridor',
     },
   },
 
@@ -737,12 +638,15 @@ export const PROVIDERS: Provider[] = [
       },
       // Verified 2026-06-02: ~1.5% all-in online bank-deposit (range 0.5–2.5% by method)
       // $3 flat send fee + ~1.5% FX spread (westernunion.com US→EUR online bank)
+      // 100 bps per the cited bestexchangerates USD to EUR check above; the row
+      // previously carried 150 bps, which matched no source in this file and
+      // disagreed with both the header comment and the GBP → PT row.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PT', currency: 'EUR' },
         fixedFee: 3,
         percentageFee: 0,
-        fxMarkupBps: 150,
+        fxMarkupBps: 100,
         typicalHours: 24,
       },
       // Confirmed ~150 bps FX spread, strong US→MX network (bestexchangerates.com)
@@ -763,7 +667,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 150,
         typicalHours: 24,
-        notes: 'Transfer fee currently $0 promo (expires ~Jul 2026); $5 standard fee shown',
+        notes: '$5 standard transfer fee shown. A $0 promotional fee was previously advertised with an expiry around July 2026; that date has passed and the promotion has not been rechecked. Verify current.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -819,7 +723,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0,
       fxMarkupBps: 400,
       typicalHours: 24,
-      notes: 'Estimated — verify at westernunion.com for your corridor',
+      notes: 'Estimated; verify at westernunion.com for your corridor',
     },
   },
 
@@ -888,6 +792,21 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 350,
         typicalHours: 96,
       },
+      // USD → Thai foreign currency deposit (FCD) account via SWIFT (no FX conversion).
+      // Mirrors the USD → GE/USD row: the Bank of Thailand does not require inbound
+      // foreign currency to be converted, so a dollar wire into an FCD account converts
+      // nothing and the spread applies only when the holder chooses to sell.
+      // Does not model the Thai inward remittance commission (reported 0.25%, floor and
+      // ceiling by bank), which is charged on top. Verify current.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'TH', currency: 'USD' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        notes: 'SWIFT wire; recipient receives USD in a Thai FCD account; no FX conversion. Bank inward remittance commission applies on top and is not modelled.',
+      },
       {
         source: { country: 'GB', currency: 'GBP' },
         destination: { country: 'PT', currency: 'EUR' },
@@ -921,7 +840,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 96,
-        notes: 'SWIFT wire; recipient receives USD in Georgian bank — no FX conversion',
+        notes: 'SWIFT wire; recipient receives USD in Georgian bank; no FX conversion',
       },
       // EUR → Georgian EUR bank account via SWIFT (no FX conversion)
       {
@@ -931,7 +850,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 96,
-        notes: 'SWIFT wire; recipient receives EUR in Georgian bank — no FX conversion',
+        notes: 'SWIFT wire; recipient receives EUR in Georgian bank; no FX conversion',
       },
       // EUR → Portuguese EUR via SEPA (no FX conversion, much cheaper than SWIFT)
       {
@@ -998,7 +917,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0,
       fxMarkupBps: 350,
       typicalHours: 96,
-      notes: 'Typical SWIFT estimate — check with your specific bank for exact fees',
+      notes: 'Typical SWIFT estimate; check with your specific bank for exact fees',
     },
     notes: 'Fees vary by bank. Correspondent bank charges may reduce received amount unpredictably.',
     caveat: 'EU→EU routes use SEPA (cheap, ~1h). Other routes use SWIFT ($35 fee, 2–5 days, 3.5% FX).',
@@ -1033,7 +952,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 1,
-        notes: 'Paysera issues a Lithuanian (EU) IBAN — Eurozone clients send SEPA; receiving fee €0',
+        notes: 'Paysera issues a Lithuanian (EU) IBAN; Eurozone clients send SEPA; receiving fee €0',
       },
     ],
     fallbackFee: {
@@ -1042,7 +961,7 @@ export const PROVIDERS: Provider[] = [
       fxMarkupBps: 0,
       typicalHours: 1,
     },
-    notes: 'Paysera issues a Lithuanian IBAN to Georgian residents. EU clients send via SEPA — Paysera charges €0 to receive. NBG-licensed bank in Georgia.',
+    notes: 'Paysera issues a Lithuanian IBAN to Georgian residents. EU clients send via SEPA; Paysera charges €0 to receive. NBG-licensed bank in Georgia.',
     caveat: 'You give your EU client a Lithuanian IBAN (LT…). They pay their bank\'s SEPA fee (~€0–5) separately, not deducted from your amount.',
   },
 

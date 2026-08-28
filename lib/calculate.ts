@@ -34,6 +34,7 @@ const COUNTRY_CURRENCY: Record<CountryCode, Currency> = {
 // bank accounts that Georgian (and other) banks commonly offer.
 const DEST_CURRENCIES_MAP: Partial<Record<CountryCode, Currency[]>> = {
   GE: ['GEL', 'USD', 'EUR'],  // Georgian banks (TBC, BoG, etc.) support GEL, USD, and EUR accounts
+  TH: ['THB', 'USD'],        // Thai banks offer foreign currency deposit (FCD) accounts in USD
 };
 
 export function getCurrency(country: CountryCode): Currency {
