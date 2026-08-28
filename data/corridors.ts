@@ -472,6 +472,433 @@ export const CORRIDORS: Corridor[] = [
         a: 'GCash, yes: the Virtual US Account gives you ACH and wire details inside the app, and dollars land in your wallet as USD. Maya, not in the same way. Maya offers a USD wallet for holding and converting, but we could not confirm client-facing USD receiving details you could hand to a US payer; confirmed routes into Maya are remittance services like Wise, Remitly, WorldRemit, and Western Union, which arrive as pesos. If receiving USD into a wallet is the goal, GCash currently has the feature and Maya does not.',
       },
     ],
-    siblingCorridors: ['usd-to-ngn', 'usd-to-bdt', 'usd-to-pkr'],
+    siblingCorridors: ['usd-to-idr', 'usd-to-thb', 'usd-to-bdt'],
+  },
+  // ─── USD → Georgia (GEL) ───────────────────────────────────────────────────
+  {
+    slug: 'usd-to-gel',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'GEL',
+    destCountry: 'GE',
+    country: 'Georgia',
+    title: 'Receive USD in Georgia: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in Georgia. Georgian banks let you hold dollars without converting, and tax is assessed in lari at the day\'s rate.',
+    h1: 'How to receive USD in Georgia: holding dollars, converting to lari, and the 1% question',
+    intro:
+      'If you live in Georgia and bill foreign clients in dollars, the biggest lever is not which app you pick. It is whether you convert at all. TBC and Bank of Georgia both run USD and EUR sub-accounts alongside your lari one, so a client wire can land as dollars and sit there until you want lari. We found no sign of a rule that forces you to sell foreign currency, and Georgia is consistently described as having no currency controls, though we could not open the National Bank or any bank tariff page to confirm it, so treat that as settled practice rather than a citation. Read the first comparison below with that in mind: it prices converting a thousand dollars into lari, which is the thing this page is telling you that you may not need to do. The second table prices receiving dollars as dollars. When you do want lari, Wise is the cheapest of the four at roughly 1.5% all in on a thousand dollars, taken as a visible fee on the mid-market rate. Payoneer is the fallback if your money arrives through Upwork or Fiverr, though check the payout screen before you count on it, because we could not confirm that Payoneer converts to lari at all. Revolut and GrabrFi do not open accounts for Georgian residents, so treat them as something a client might send from rather than something you receive into. One more thing that catches people: if you hold Small Business Status, your 1% is calculated on the lari equivalent at the National Bank rate for the day each payment lands. That is an accounting conversion, not a real one. You can owe tax in lari and still be holding the dollars. Small Business Status is a separate application and consulting is on the excluded list, so do not assume the 1% is yours before you have it.',
+    publishedDate: '2026-08-28',
+    updatedDate: '2026-08-28',
+    altReceivingNote:
+      'Georgian banks issue USD and EUR sub-accounts alongside your lari account, so a dollar wire can be credited as dollars and left alone. This is what that costs. Note that the conversion spread is deferred rather than escaped: you pay your bank\'s rate whenever you eventually sell dollars for lari, and that gap is not shown to you as a fee.',
+    providers: [
+      {
+        slug: 'bank-wire',
+        name: 'Georgian bank account (SWIFT)',
+        customHeading: 'Receiving straight into a Georgian USD account',
+        available: true,
+        notes:
+          'This is the route the rest of the page keeps pointing back to, so we describe it first. Be aware that it is also the last row in the lari comparison above, and for a reason worth understanding: that table prices a thousand dollars converted into lari, and a bank is the expensive way to do that. The second table prices the thing described here, which is a dollar wire landing in a dollar account and staying there. TBC and Bank of Georgia both issue USD and EUR IBANs alongside your lari account, and at Bank of Georgia the foreign currency sub-accounts are reported to be free to hold. Credo is a smaller bank that foreigners often find easier to open with, though we could not confirm that it offers foreign currency sub-accounts, and we have seen at least one report of a Credo account turning out to be unsuitable for SWIFT, so confirm both before you give the details to a client. A dollar wire into a dollar account converts nothing, so there is no conversion spread at that moment. What it does cost is the inbound side: your bank may take an incoming SWIFT commission, and a correspondent bank in the middle often deducts something, commonly reported in the ten to twenty-five dollar range, that nobody warns you about in advance. TBC is reported to offer an option where the sender pays the charges so you receive the full amount. We could not open any Georgian bank tariff page, so we are not publishing a figure for the receiving side. Ask your branch for the current tariff. The catch to be honest about is that the spread is deferred, not escaped. When you eventually sell dollars for lari you pay whatever your bank\'s rate of the day is. Banks do publish a daily buy and sell rate, so you can see the rate, but the gap against the mid-market rate is not shown as a line item and you have to work it out yourself.',
+      },
+      {
+        slug: 'wise',
+        name: 'Wise',
+        available: true,
+        notes:
+          'The cheapest widely available way to turn dollars into lari, and the cheapest of the four in the lari comparison above. Wise opens accounts to Georgian residents and prices a USD to GEL transfer at roughly 1.5% all in on a thousand dollars, taken as a transparent fee on top of the real mid-market rate, with lari delivered to a Georgian bank account in about one to two business days. The percentage falls a little on larger amounts. The important unknown is on the receiving side. Wise gives US account details, a routing number and an account number, only to residents of a limited set of countries, and we could not confirm whether Georgia is one of them. That matters more than the fee: with USD details your client pays you by free domestic ACH, and without them your client has to send an international transfer instead, which changes both the cost and who pays it. Open the app and look at whether a USD balance with account details is actually offered to you before you plan around it. Reports also conflict on whether you can hold a lari balance in Wise and whether the Wise card is available to Georgian residents, so we are not making a claim either way. We could not open wise.com from our side, so verify the current fee in the app.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        available: true,
+        notes:
+          'Widely used in Georgia, almost entirely because it is the default payout on Upwork, Fiverr and similar platforms. Payoneer charges up to 1% on incoming commercial payments, and that part is well established. Everything after it is murkier than the usual Payoneer story, and in a way that matters. The reporting we could reach says Payoneer\'s currency conversion does not cover the lari, which if correct means there is no such thing as a Payoneer withdrawal in lari and the realistic route is receiving dollars and moving them into your Georgian dollar account. Separately, Payoneer\'s cheap flat rate for same-currency withdrawals requires the destination account to be in a country where that currency is the official one, and dollars in Georgia do not meet that test, so the flat rate people quote does not apply here. We could not open Payoneer\'s pricing pages to settle either point, and the Payoneer line in the lari comparison above is modelled on a lari withdrawal we have not been able to confirm exists. Read the cost off your own payout screen rather than treating it as a number you can plan with.',
+      },
+      {
+        slug: 'western-union',
+        name: 'Western Union',
+        available: true,
+        notes:
+          'Available as a bank deposit rail into Georgia. Western Union advertises a free first online transfer to Georgian bank accounts, which is a promotion rather than a price, and we could not confirm how long it runs. The cost that matters is the one built into the exchange rate rather than the fee line, and Western Union does not disclose it as a separate item. Our own model uses a five percent spread for this corridor. That figure came from a general assumption about minor corridors rather than a quote we pulled for Georgia, which is why the comparison above marks it as estimated and why it cannot take the best value badge. Treat the Western Union row as an upper bound and get a live quote before you use it. The caveat that actually matters for a freelancer is different: this is consumer remittance pricing, built for someone sending money to family, not a published commercial rate for a client settling an invoice. How your transfer is classified is your client\'s decision, not yours, and it is the sender who chooses the fee and the rate. Fine as an occasional route, not a rail to build your invoicing on.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        available: false,
+        notes:
+          'Georgian residents cannot open a Revolut account, and the Revolut card is not available in Georgia either. A client in the US or the EU can still push a payment from their own Revolut account to your Georgian IBAN, which arrives as an ordinary international transfer, but that is your client using Revolut rather than you. Do not plan on holding a balance there.',
+      },
+      {
+        slug: 'grabrfi',
+        name: 'GrabrFi',
+        available: false,
+        notes:
+          'GrabrFi opens accounts only to residents of a fixed list of countries, and Georgia is not on it, so this is not a route you can receive into. Local currency withdrawal is available in a shorter list still. We could not open GrabrFi\'s own eligibility page, so if you see it recommended for Georgia anywhere, check the signup flow before you believe it.',
+      },
+      {
+        slug: 'paysera',
+        name: 'Paysera',
+        available: false,
+        notes:
+          'Not an option for dollars, but worth knowing about if any of your clients are in Europe. Paysera issues a Lithuanian IBAN that receives euros over SEPA at no cost, and it is reported to hold a National Bank of Georgia licence, which is why Georgian freelancers use it as a euro rail. We could not open the NBG register to confirm the licence. For a US client paying in dollars it does not help, which is why it is listed here rather than in the comparison above.',
+      },
+    ],
+    supportedProviders: ['wise', 'payoneer', 'western-union', 'bank-wire'],
+    faqs: [
+      {
+        q: 'Can I receive USD in Georgia without converting to lari?',
+        a: 'Yes, and for a lot of freelancers this is the right answer. Georgian banks issue USD and EUR sub-accounts alongside your lari account, so a dollar wire from a client can be credited as dollars and stay that way. We found no sign of a rule that forces you to sell foreign currency, and Georgia is consistently described as having no currency controls, though we could not open the National Bank to confirm that directly. Holding dollars makes sense if your own costs are in dollars, if you are saving, or if you simply do not want to convert on your client\'s schedule rather than your own. Two trade-offs. The first is that you have deferred the spread rather than avoided it: whenever you do sell dollars for lari, your bank applies its own rate for that day, and the gap against the mid-market rate is not shown to you as a fee. The second is that holding dollars does not defer the tax. Your turnover is declared in lari at the National Bank rate for the day each payment arrived, whether or not you converted anything, and if you are on the monthly regime the tax is payable in lari every month, so you will need some lari on hand even in a month where you converted nothing.',
+      },
+      {
+        q: 'Is the money safe if I just leave dollars sitting in a Georgian bank?',
+        a: 'Deposits in Georgian banks are covered by a deposit insurance scheme, and the reported ceiling was raised to 50,000 lari per depositor per bank from April 2026, up from 30,000. Two details matter if you are using a Georgian account as a dollar savings pot. The limit is per bank, so a balance above it is only as safe as the bank itself. And a foreign currency deposit is reported to be compensated in lari at the National Bank rate on the day of the insured event, not in dollars, so the cover is a lari amount even though your balance is in dollars. We could not open the deposit insurance agency to confirm either figure, so verify the current limit before you decide how much to leave in one place.',
+      },
+      {
+        q: 'How is my USD income converted for the 1% tax?',
+        a: 'At the National Bank of Georgia official rate for the date each payment is received, calculated per payment rather than as one lump at year end. This is an accounting conversion and not a real one, which is the part that confuses people: you can declare and pay tax on a lari figure while the dollars are still sitting in your account untouched. If clients pay you several times in a month, each receipt is converted at that day\'s rate, so the arithmetic needs to match rather than use a monthly average. Declarations are filed monthly through rs.ge, and both the filing and the payment are due by the fifteenth of the following month. The usual advice we saw is that money landing in Wise, Payoneer or PayPal counts as received when it arrives there rather than when you move it to a Georgian bank, which would matter for the date you use, but we could not confirm that from the Revenue Service itself. We could not open rs.ge from our side, so confirm the current filing rules with an accountant rather than treating this as authoritative.',
+      },
+      {
+        q: 'How much can I earn before I lose the 1% small business status?',
+        a: 'The reported ceiling is 500,000 lari of turnover in a calendar year. Cross it and the rate on your turnover goes to 3% from the month you crossed, for the remainder of that tax year. Cross it in two consecutive years and Small Business Status is reported to be revoked, which drops you to the standard 20% personal income tax. Two things people miss. Registering as an Individual Entrepreneur does not by itself give you the 1% rate: Small Business Status is a separate application to the Revenue Service, and if you skip it you are simply an IE paying 20%. And the timing of that application matters. The rules changed in 2026, through a Ministry of Finance order on special tax regimes reported as published in February and effective in March, which reworked when status starts and how income earned before it starts is taxed. The version we saw describes a fifteen day window to apply after a triggering event, with income earned earlier in the year taxed at the standard 20% if you miss it. We could not open the tax authority or the legal text, so verify the ceiling, the deadline and the current rules with a Georgian accountant before planning around any of them.',
+      },
+      {
+        q: 'Does consulting disqualify me from the 1% tax?',
+        a: 'Possibly, and this is the live risk for a lot of the people reading this page. The list of activities excluded from Small Business Status includes consulting, alongside licensed activities, currency exchange, medical, architectural, legal, notarial and audit work, gambling and personnel supply. What nobody can tell you crisply is where consulting ends and ordinary freelance service work begins, because the law does not draw that line sharply. One reading we saw treats technical and software advice as fine while investment and financial advice is not, but that is commentary from a service provider rather than a ruling, and we would not want you to rely on it. If your work could reasonably be described as advisory, this is worth thirty minutes with a Georgian accountant before you register, not after. Getting the activity code wrong at registration is a great deal more expensive to fix later.',
+      },
+      {
+        q: 'Can I open a Wise account in Georgia, and will I get USD account details?',
+        a: 'The account, yes: Wise opens accounts to Georgian residents and runs a Georgian site. The account details are the open question, and they are the part that actually decides your cost. Wise issues US account details, a routing number and an account number that accept a free domestic ACH, only to residents of a limited set of countries, and we could not confirm whether Georgia is one of them. If you get them, a US client pays you like a domestic supplier and it costs nothing to receive. If you do not, your client has to send an international transfer instead, which is slower and carries a fee somebody has to pay. Open the app and look at what is actually offered under a USD balance before you send details to a client. Reports also disagree about whether Wise lets you hold a lari balance and whether the Wise card works for Georgian residents, so we are not claiming either way.',
+      },
+      {
+        q: 'Do I need to register for VAT if all my clients are abroad?',
+        a: 'We could not resolve this one and would rather say so than guess. Georgian VAT registration is reported to become mandatory above 100,000 lari of taxable supplies in any rolling twelve months. What is genuinely unclear from the sources we could reach is how services exported to non-resident clients are treated: some describe them as zero-rated, others as falling outside the scope of Georgian VAT altogether, and those are different treatments with different consequences for whether that revenue counts toward the threshold at all. That distinction decides whether a freelancer billing 150,000 lari to foreign clients needs to register or not, which is not a detail. The tax authority and legal text sites are blocked from our side, so we cannot settle it. Ask a Georgian accountant specifically about place of supply for your service type, and get the answer in writing.',
+      },
+      {
+        q: 'What will the bank ask for when a client transfer arrives?',
+        a: 'Standard anti-money-laundering questions, and they get more thorough as the amount goes up. Expect to be asked for the contract or the invoice behind the payment, and to show that you actually carry on the business activity you say you do. The single most useful habit is making sure the payment purpose your client writes on the transfer matches what your invoice says, because a mismatch is what triggers a slow manual review. We found no sign of a Georgian equivalent of the remittance certificate that some countries issue, so as far as we can tell your evidence of foreign income is the bank statement plus the matching invoice, and that is what your accountant and the Revenue Service will work from. Keep both filed per payment rather than reconstructing them at year end.',
+      },
+      {
+        q: 'How much cash can I bring into Georgia without declaring it?',
+        a: 'The reported threshold is 30,000 lari or the equivalent in another currency, above which you must declare the money to customs when crossing the border, with penalties for failing to. This one is worth mentioning only because people find the figure and assume it is a limit on bank transfers. It is not. It applies to physical cash and other bearer instruments you carry across the border in person, and it has nothing whatsoever to do with a client wiring dollars into your account. There is no transfer ceiling of that kind in Georgia. We could not open the customs code itself, so treat the exact figure as one to verify if you are actually planning to travel with cash.',
+      },
+    ],
+    siblingCorridors: ['usd-to-eur-portugal', 'usd-to-thb', 'usd-to-pkr'],
+  },
+  // ─── USD → Portugal (EUR) ──────────────────────────────────────────────────
+  {
+    slug: 'usd-to-eur-portugal',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'EUR',
+    destCountry: 'PT',
+    country: 'Portugal',
+    title: 'Receive USD in Portugal: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in Portugal. Wise and Revolut are both fully available, so most of your cost is the USD to EUR conversion.',
+    h1: 'How to receive USD in Portugal: conversion costs, invoicing, and what you actually keep',
+    intro:
+      'Portugal is a euro country inside SEPA, so the hard part of this corridor is not moving the money. Once euros exist, they reach a Portuguese IBAN in seconds for nothing. On the two accounts worth using, almost all of your cost is the USD to EUR conversion, and who does it cheapest depends on how much you convert in a month and which day you do it. Wise and Revolut are both fully available to Portuguese residents, which is rare among the corridors we cover, and on a small weekday conversion Revolut can come out ahead on the fees we model. The platform routes work differently: Payoneer and PayPal both charge you to receive the dollars before any conversion happens. Payoneer earns its place as the Upwork and Fiverr default rather than on price, PayPal is the expensive habit worth breaking, and a bank wire only makes sense on large payments. One thing to know up front: there is no forced conversion and no remittance certificate regime here, because capital moves freely inside the EU. Your proof of foreign income is the fatura-recibo you issue through the Portal das Financas, not a document your bank hands you.',
+    publishedDate: '2026-08-28',
+    updatedDate: '2026-08-28',
+    providers: [
+      {
+        slug: 'wise',
+        name: 'Wise',
+        available: true,
+        notes:
+          'Portugal is one of the corridors where Wise works the way the marketing says it does. You open a full account with a Portuguese ID and proof of address, and you get US account details, a routing number and an account number, that a US client pays by ordinary domestic ACH. Receiving that ACH is reported to be free, while an incoming US dollar wire is reported to carry a fixed fee of a few dollars, so ask for ACH. The dollars sit in your USD balance until you decide to convert, and the conversion runs at the real mid-market rate for a fee shown on screen before you confirm. Two details trip people up. Your euro details are normally a Belgian IBAN beginning BE, issued by Wise Europe SA, not a Portuguese PT50 IBAN. Some Portuguese clients and accounting systems push back on that, and they are not entitled to: refusing a valid EEA IBAN for a euro transfer is IBAN discrimination under Article 9 of the SEPA Regulation, and Banco de Portugal describes itself as the national authority that monitors the SEPA Regulation in Portugal and takes reports of non-compliance. The second is timing. The conversion is quick, but your client\'s ACH still takes one to three business days to arrive before you can convert anything. The conversion fee we model here was last checked against Wise\'s own pricing page in June 2026 and we could not reopen wise.com to recheck it for this page, so treat it as the last figure we confirmed rather than today\'s quote. Check the fee the app shows you before converting.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        available: true,
+        notes:
+          'Also fully available to Portuguese residents, and on the fees we model it can undercut Wise on small weekday conversions, which is unusual enough to be worth understanding. Two separate charges matter. The first is a transfer fee: our comparison models 0.3% on this route, taken from Revolut\'s published international transfer pricing for US-originated transfers. The second is currency exchange, which Revolut prices by allowance rather than by a flat percentage: on the Standard plan a monthly amount of exchange is reported to be free at the interbank rate, with a percentage charge above that allowance and a further percentage charge on exchanges made over the weekend. Paid plans are reported to raise or remove the allowance. So the honest answer is that it depends on your invoice size and which day you press the button. One modest invoice a month, converted midweek, is cheap but not free. Several thousand euros a month and you are paying the over-allowance rate on most of it, which puts you behind Wise. We could not open Revolut\'s Portuguese pricing pages for this page, and the published numbers differ between Revolut\'s US and European entities, so treat the allowance size and the percentages as unconfirmed and read the current ones in the app. The other thing we could not confirm is more practical: whether a Portugal-resident Revolut account gives you US account details that accept a domestic ACH, or only a SWIFT route. Check what the app shows under your USD balance before you hand anything to a client, because a SWIFT-only route changes the arithmetic.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        available: true,
+        notes:
+          'The reason to use Payoneer in Portugal is Upwork and Fiverr, where it is often the default payout. As a way to bill direct clients it is the expensive option here. Payoneer charges up to 1% to receive into your local receiving details, then up to 2% above mid-market when you move dollars into a euro bank account, so roughly 3% all in. Both legs are "up to" rather than fixed, which means the rate you actually get is the rate in the portal on the day, and Payoneer\'s disclosed maximum is not a quote. There is also an annual account fee of $29.95 if the account receives less than Payoneer\'s minimum activity threshold over twelve consecutive months, and Payoneer\'s own material has quoted two different thresholds at different times, so verify yours in the portal. If your income is direct invoices rather than platform work, Wise or Revolut will keep more of it.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        available: true,
+        notes:
+          'Available, familiar, and the one to talk your recurring clients out of. A US client paying a Portugal-based seller is a cross-border transaction from outside the EEA, so PayPal\'s international surcharge applies on top of its commercial transaction rate, and a currency conversion charge applies on top of that when the dollars become euros. PayPal publishes a Portuguese merchant fee schedule, and that document is the only thing that settles the actual percentages for a seller here. We could not open it, so every PayPal percentage on this page is an estimate carried over from PayPal\'s US schedule and should be treated as one. Check your own transaction receipts, where the receiving fee and the conversion are itemised separately. What we can say confidently is the shape rather than the size: this is the most expensive mainstream route on this corridor by a wide margin, and the conversion charge is the half people forget to count.',
+      },
+      {
+        slug: 'western-union',
+        name: 'Western Union',
+        available: true,
+        notes:
+          'It exists, it pays into Portuguese bank accounts, and on this corridor it has no real use case. Western Union is built for people sending money to family, not for clients settling commercial invoices, which is the same classification mismatch we flag on the Pakistan page. On a corridor where two properly licensed multi-currency accounts are available to you, there is no version of this that wins. Western Union also states that fees vary by amount, payout method and channel, and it does not disclose its exchange rate margin as a separate line, so verify the quoted euro amount against the mid-market rate before accepting anything.',
+      },
+      {
+        slug: 'bank-wire',
+        name: 'Bank Wire (SWIFT)',
+        available: true,
+        notes:
+          'The old route, and still the right one occasionally. A US bank charges roughly $25 to $45 to send, a correspondent bank may take a cut in transit, and your Portuguese bank charges its own inbound foreign transfer commission, published in its precario, before converting. On a $1,000 invoice those flat costs are brutal. On a $20,000 project payment they round to nothing, and the wire produces the cleanest paper trail your accountant will ever see. The trap is automatic conversion: dollars arriving into a euro-only account are converted at whatever rate the bank applies that morning, and you do not get to wait for a better one. Portuguese banks do offer dollar accounts, but they carry maintenance fees, so price that against what timing your own conversions would save you. We could not open any Portuguese bank\'s precario, so the receiving-side commission is not modelled in the comparison above and the FX spread we show is likely optimistic for a retail customer.',
+      },
+      {
+        slug: 'grabrfi',
+        name: 'GrabrFi',
+        available: false,
+        notes:
+          'GrabrFi opens accounts against a fixed eligibility list keyed to your government-issued ID, and Portugal is reported to be on that list, so opening a US dollar account may well be possible. What we could not confirm is the other half: whether GrabrFi pays out euros to a Portuguese IBAN. Until that is confirmed we do not model it on this corridor, so treat it as unproven here rather than as a route we know works.',
+      },
+    ],
+    supportedProviders: ['wise', 'revolut', 'payoneer', 'paypal', 'western-union', 'bank-wire'],
+    faqs: [
+      {
+        q: 'Wise or Revolut for receiving dollars in Portugal, which is actually cheaper?',
+        a: 'It depends on how much you convert and when, which is why nobody gives you a straight answer. Wise charges a small fixed fee plus a percentage of the amount, at the real mid-market rate, and the percentage moves a little with the size and the route rather than with the day of the week. Revolut charges a transfer fee on the route, which we model at 0.3%, and prices the currency exchange separately: Standard users are reported to get a monthly allowance of exchange at the interbank rate, with a percentage charge above it and a further charge on weekend conversions. On the fees we model, one modest invoice a month converted midweek comes out cheaper on Revolut than on Wise, though not free. A freelancer converting several thousand euros a month blows through the allowance and pays the over-allowance rate on most of it, at which point Wise is usually cheaper and considerably more predictable. We could not open either provider\'s Portuguese pricing pages for this page, and Revolut\'s published numbers differ between its US and European entities, so check both in-app for a conversion of your actual size before committing. If you want one answer and no arithmetic, Wise is the safer default.',
+      },
+      {
+        q: 'Can I get US account details as a Portugal resident, so my client can pay by ACH?',
+        a: 'With Wise, yes. A full Wise account opened with a Portuguese ID gives you US account details, a routing number and an account number, and a US client pays them like any domestic account. Receiving that ACH is reported to be free, and the money lands in your USD balance as dollars. With Revolut we could not confirm it. Revolut does issue USD details to accounts in some markets, but whether a Portugal-resident account gets ACH-capable details or only a SWIFT route is something we could not establish from a source we could open, and it matters: a SWIFT route means your client pays a wire fee and the money takes days rather than hours. Look under your USD balance in the app and confirm what kind of details you have before you send them to anyone.',
+      },
+      {
+        q: 'Do I charge IVA to a US client, and what do I put on the invoice?',
+        a: 'You do not charge Portuguese IVA to a US client, but the reason is not the one most people give. Reverse charge, autoliquidacao, is the EU business-to-business mechanism and it does not apply to a US client at all. Services supplied to a business established outside the EU are simply not located in Portugal under the general business-to-business rule in paragraph 6 of Article 6 of the CIVA, so they fall outside the scope of Portuguese VAT, and the invoice carries a non-taxation mention citing that article rather than a reverse charge note. The supply is still reported on your periodic IVA return even though no tax is charged on it. Services to a non-business person outside the EU sit under a different paragraph of the same article. Portuguese practice also requires you to hold evidence that a non-EU client is genuinely a business rather than taking their word for it. Separately from all of this there is the small-business exemption in Article 53 of the CIVA, reported to sit at 15,000 euros of prior-year turnover, which decides whether you are inside the IVA system at all, and how foreign-client income counts towards that threshold is not something we could confirm from a source we could open. The exact wording and your own IVA position matter to the tax authority and vary by which paragraph applies to you, so get both from a Portuguese accountant rather than from a template you found online. This site covers transfer costs, not tax advice.',
+      },
+      {
+        q: 'Is my coefficient 0.75 or 0.35 in the regime simplificado?',
+        a: 'This decides how much of your income is taxed at all, and a lot of guides state 0.75 as though it applied to every freelancer. It does not. The 0.75 coefficient applies to professional activities specifically listed in the table referenced by Article 151 of the CIRS. Other service provision that is not in that table takes 0.35 instead. Which activity code you registered under when you opened activity is what settles it. There is also a condition people miss, and it attaches to both coefficients rather than only to 0.75: the presumed expense allowance built into them is only fully recognised if you can justify expenses, largely through e-Fatura, amounting to a set share of your gross income, otherwise part of the allowance is added back to your taxable income. First-year and second-year reductions to the coefficients are also reported to apply, with conditions. We could not open the Ordem dos Contabilistas Certificados or the tax authority pages directly, so confirm your own coefficient and the current conditions with a Portuguese accountant before you plan around either figure.',
+      },
+      {
+        q: 'Does my US client have to withhold the 23% retencao na fonte?',
+        a: 'No. A US client with no establishment in Portugal has no obligation to withhold Portuguese IRS, so you issue the receipt marked as being without withholding and you receive the full invoice amount. The 23% people are thinking of is what a Portuguese business client with organised accounting withholds on a domestic invoice and pays to the tax authority on your behalf, and it is the rate for the professional activities listed in the table referenced by Article 151 of the CIRS. Other activities are reported to carry a different and lower rate, and there is also a reported exemption from withholding for freelancers below an annual turnover threshold, so 23% is not automatically your number even on domestic work. That money is not lost when it is withheld, it is a payment on account against your eventual IRS bill, but with foreign clients it simply never happens. The practical consequence is that your tax is not being prepaid during the year, so budget for the full amount at settlement rather than being surprised by it.',
+      },
+      {
+        q: 'What do I pay to Seguranca Social on this income?',
+        a: 'This is the cost that surprises people more than IRS, and it is the one thing this page would otherwise leave out. Contributions for the self-employed are reported to be charged at 21.4% on a relevant income base of 70% of your service invoices, declared quarterly, with a minimum monthly contribution and a ceiling tied to the IAS. There is also a reported exemption from contributions for the first twelve months after you open activity for the first time, which you can waive if you would rather start building social protection sooner. Foreign clients change nothing here: income from a US client counts exactly like income from a Portuguese one. We could not open Seguranca Social pages directly, so confirm the current rate, the base and your own exemption status before you budget around them.',
+      },
+      {
+        q: 'Do I qualify for IFICI, the NHR replacement, as a freelancer with US clients?',
+        a: 'Probably not, and this is the single most misreported item we found on this corridor. The original NHR is closed to new entrants and IFICI replaced it, offering a flat rate on Portuguese-source employment and self-employment income from qualifying activities for ten years, plus exemption on most foreign-source income other than pensions. Eligibility requires that you were not Portuguese tax resident in the previous five years, that you have not used NHR or another Portuguese incentive, and that you register with the tax authority by a deadline in January of the year after you become resident. The part almost every guide omits is that the qualifying activity generally has to be carried out within an eligible entity, and the eligible list is specific: certified startups, companies benefiting from investment-support tax regimes, exporters in listed sector codes, entities certified for research and development, and public research units and higher education institutions. Plain freelancing for foreign clients on recibos verdes generally does not qualify on its own, even when your profession appears on the qualifying list, because there is no eligible Portuguese entity in the picture. Working through or for one, as an employee or as a service provider, is the route that can qualify. We could not open the legal text, the implementing portaria or the tax authority page, so treat this as a strong signal to get advice rather than a ruling, and do not build a relocation plan on a blog post that says your job title is on a list.',
+      },
+      {
+        q: 'Do I have to report incoming transfers to Banco de Portugal?',
+        a: 'Almost certainly not at freelance scale. Portugal has no exchange controls and no forced conversion on inward transfers. Banco de Portugal does run a statistical reporting regime for external transactions and positions, but natural persons are reported to have been taken out of its scope back in 2013, and the exemption threshold for the entities that remain in scope is reported to have been raised to 250,000 euros of external operations a year. We could not open Banco de Portugal\'s own page to confirm either point, so if you trade through a company rather than as a sole trader, check it with your accountant. Separately, your bank applies ordinary anti-money-laundering checks and may ask the purpose of a larger inbound transfer. A copy of the invoice and the client contract answers that in one email. Keep the fatura-recibo for every client payment regardless, since that is your actual evidence of foreign income, not anything the bank issues.',
+      },
+      {
+        q: 'My client will only pay by bank wire. Will my Portuguese bank convert it automatically?',
+        a: 'If the account is euro-only, yes, and at whatever rate the bank applies that morning. You do not get to wait for a better one, and the retail spread a Portuguese bank applies is usually well above what Wise or Revolut charge. On top of that the bank takes an inbound foreign transfer commission from its published precario, and a correspondent bank may have already deducted its own fee in transit, which is why the amount that lands is often less than the amount your client sent. On a large payment a wire is still defensible, since the flat costs shrink as a percentage and it produces excellent documentation. If you take dollar wires regularly, ask your bank about a dollar-denominated account so the conversion becomes your decision rather than theirs, and weigh its maintenance fee against what timing your own conversions would save.',
+      },
+    ],
+    siblingCorridors: ['usd-to-gel', 'usd-to-thb', 'usd-to-php'],
+  },
+  // ─── USD → Thailand (THB) ──────────────────────────────────────────────────
+  {
+    slug: 'usd-to-thb',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'THB',
+    destCountry: 'TH',
+    country: 'Thailand',
+    title: 'Receive USD in Thailand: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in Thailand. Wise is moving Thai customers to automatic baht conversion, and PayPal personal accounts cannot receive.',
+    h1: 'How to receive USD in Thailand: what the Wise change means and what still works',
+    intro:
+      'Thailand used to be the easy one. Open a Wise account, give clients your US routing number, sit on the dollars, convert when the rate looked good. That is ending. Wise now serves customers with a Thai registered address through a locally licensed entity, and reports say that once you are moved, client payments landing in your USD details are converted to baht the moment they arrive. You can still be paid. You just cannot hold the dollars. PayPal is not the fallback either: personal accounts in Thailand lost the ability to receive payments in the 2022 relaunch, and because verification runs through a Thai national ID system, foreign residents cannot open one at all. What is left is Payoneer at roughly 3% all in, Wise at well under 1% with the conversion timing taken out of your hands, and a SWIFT wire into a Thai foreign currency deposit account if holding dollars matters more to you than fees. We should say plainly that Wise pays us a commission when someone signs up through this site, and that the Thailand change is a downgrade for anyone who wanted to park dollars. It is still the cheapest way to turn client dollars into baht. It is no longer a place to keep them.',
+    publishedDate: '2026-08-28',
+    updatedDate: '2026-08-28',
+    altReceivingNote:
+      'Thai banks offer foreign currency deposit accounts, commonly called FCD accounts, and the Bank of Thailand does not require inbound foreign currency to be converted. A dollar wire credited to one converts nothing, so you choose when to sell. This is what that costs. Note that the Thai inward remittance commission, reported at 0.25% with a floor and ceiling that vary by bank, is charged on top and is not modelled here.',
+    providers: [
+      {
+        slug: 'wise',
+        name: 'Wise',
+        customHeading: 'Wise in Thailand: cheapest to convert, no longer a place to hold',
+        available: true,
+        notes:
+          'Still the cheapest route from client dollars to baht, and still the one changing under your feet. Wise now serves personal customers with a Thai registered address through a locally incorporated entity licensed by the Bank of Thailand. What is reported consistently, including in summaries of Wise\'s own help article that we could not open directly, is this: after the move, a non-baht payment arriving from someone else into your foreign currency receiving details, including your US routing number or a UK IBAN, is converted to baht, added to your THB balance, and charged a conversion fee. Money you add yourself from your own overseas bank account into a foreign currency balance is described as working as before, so the forced conversion targets exactly the case this page is about, which is a client paying you. The dates are not really in dispute, they have moved. Accounts opened after 21 January 2026 were being rolled onto the new rules progressively through August 2026, so if you signed up this year you may already be on them. Accounts opened before 21 January 2026 were due to move on 3 August 2026, and Wise is reported to have pushed that back at the end of July to October 2026, with verification documents requested in September. We could not open wise.com from our side to confirm any of it first hand, so check your own account rather than our dates. Two consequences people miss: moving money back out of baht is reported to carry daily caps, and once your balance is baht, paying out to a non-baht account means two conversions instead of one. One wrinkle worth checking yourself: the move is keyed to the registered address on your account rather than your nationality, so a foreign resident who still has a home country address on file may not be in the first wave. Look at the address in your Wise profile rather than assuming. Reports also say a DTV or ED visa is accepted for the Thai verification, which is more than the major Thai banks will accept for opening an account. Wise connected directly to PromptPay in May 2026, so a converted balance can land on a phone number.',
+      },
+      {
+        slug: 'bank-wire',
+        name: 'Bank wire and Thai FCD account',
+        customHeading: 'The only route that still lets you hold dollars',
+        available: true,
+        notes:
+          'A foreign currency deposit account at a Thai bank is now the main reason to take a SWIFT wire rather than use Wise, and that is a genuine change in this corridor. Bangkok Bank, Kasikornbank and SCB all offer FCD accounts, in both resident and non-resident versions, and a dollar wire credited to one converts nothing on arrival. There is no blanket national rule forcing inbound foreign currency into baht, which is why a Thai bank can hold your dollars. Be careful with the conclusion though: Wise attributes its own change to the Thai regulatory requirements that come with the licence its local entity holds, and that is not a banking licence, so the fairer reading is that a bank and a licensed payment provider are allowed to do different things rather than that Wise simply chose this. What it costs: your client\'s US bank charges roughly $25 to $45 to send, and the major Thai banks publish an inward remittance commission of 0.25% with a floor and a ceiling, reported at a 200 baht minimum and 500 baht maximum at Bangkok Bank and a 300 baht minimum and the same 500 baht maximum at SCB. A correspondent bank may also deduct something in transit. We could not open any Thai bank tariff page, so treat those figures as reported rather than confirmed, and note that the comparison tables on this page do not model the commission at all. The other thing to know is that opening any Thai bank account as a foreigner now effectively requires a long stay non-immigrant visa. Tourist visas no longer work at the major banks, and reports for 2026 say the banks classify the Destination Thailand Visa as a tourist visa for this purpose, so a DTV on its own is unlikely to get you an account. Requirements still vary branch by branch in a way no published policy captures.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        available: true,
+        notes:
+          'The default payout on Upwork and Fiverr, and the most predictable option here now that Wise is changing. Payoneer charges up to 1% on incoming commercial payments and up to 2% above mid-market when it converts dollars to baht on withdrawal, so roughly 3% all in. That is many times what our model has Wise charging on this corridor, and you are paying it for the platform integration rather than for the rate. Bangkok Bank publishes its own guide to receiving Payoneer withdrawals, which is about as close to institutional confirmation as this corridor gets. On speed, our comparison models about two days and that is optimistic. Payoneer\'s own material describes funds arriving within three to five business days of a withdrawal, and linking a bank account for the first time adds its own verification wait on top. We could not open payoneer.com from our side to confirm either figure. Whether a foreigner on a long stay visa can open a Payoneer account in Thailand is something we could not establish either way. Nothing we found says Thai nationality is required, and nothing says it is not, so if you are not Thai, confirm before you route a client to it.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        customHeading: 'Why PayPal probably is not an option for you in Thailand',
+        available: true,
+        notes:
+          'This one needs reading carefully, because PayPal being available in Thailand and PayPal being usable by you are different questions. The 2022 relaunch removed the ability to receive payments from personal accounts in Thailand. Withdrawing an existing balance to a bank account was reported to continue, but receiving stopped, so a Thai freelancer cannot invoice a client into a personal PayPal account any more. For foreign residents it goes further: identity verification for personal accounts runs through Thailand\'s national digital ID system, which requires a thirteen digit Thai national ID, and a foreign passport, work permit, pink ID card or permanent residence permit are all reported as not accepted, so foreigners cannot hold a personal Thai PayPal account at all. The route that remains is a business account under a Thai registered company, which is reported not to need the national ID enrolment. We could not open paypal.com from our side, and we found no Thailand specific merchant fee schedule, so the percentages in our comparison are PayPal\'s generic cross-border pricing rather than anything confirmed for a Thai business account. Treat the number in the table as a placeholder and price your own account.',
+      },
+      {
+        slug: 'western-union',
+        name: 'Western Union',
+        available: true,
+        notes:
+          'Western Union\'s cost on this corridor is not one number, and the honest thing is to show you the range rather than pick a point in it. Third party rate trackers put the dollar to baht spread around 1.5% below mid-market, which is what our comparison models. The World Bank\'s remittance price survey carries more than one Western Union entry for United States to Thailand, and the entries we saw quoted differed sharply, from an exchange rate margin of roughly 2% with total cost near 2.5% on one, to a margin above 5% with total cost above 7% on another. That is not two sources contradicting each other so much as Western Union pricing different products and delivery methods very differently, and a small transfer through the wrong one costing several times what a larger one through the right one costs. We could not open westernunion.com or the World Bank pages from our side to check any of these figures directly, so read the spread in our table as the cheap end of a wide range, not as a quote. The transfer fee is promotion driven and moves. Beyond the pricing, the same caution applies as on our Pakistan page: this is a consumer remittance product scoped and priced for someone sending money to family, and a client settling a commercial invoice through it is not the use case. Price your own transfer before accepting one.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        available: false,
+        notes:
+          'Revolut does not open accounts to residents of Thailand, and the card is not available here either. A client abroad can still push a payment from their own Revolut account into your Thai bank account, but that arrives as an ordinary international transfer and you pay the Thai inward remittance commission on it. If you have seen Revolut listed as an option for Thailand, including in our own calculator before today, that was wrong and we have corrected it.',
+      },
+      {
+        slug: 'grabrfi',
+        name: 'GrabrFi',
+        available: false,
+        notes:
+          'Thailand does not appear on GrabrFi\'s published list of countries where you can open an account, which is keyed to your government issued ID. We previously listed GrabrFi as supporting Thailand and were showing it in the comparison here. That was wrong, and since we carry a referral link for GrabrFi, it is the kind of wrong that we benefit from, so it is worth stating plainly rather than quietly removing.',
+      },
+    ],
+    supportedProviders: ['wise', 'payoneer', 'paypal', 'western-union', 'bank-wire'],
+    faqs: [
+      {
+        q: 'Can I still hold USD in my Wise account in Thailand?',
+        a: 'For now, and probably not for much longer. Wise is moving personal customers with a Thai registered address onto a locally incorporated entity licensed by the Bank of Thailand, and the reported consequence is that once you are moved, payments arriving from someone else into your foreign currency receiving details are converted to baht on arrival and charged a conversion fee. Money you add yourself from your own overseas bank account is described as working as before, so the restriction targets client payments specifically. The reported timing depends on when you signed up. Accounts opened after 21 January 2026 were being moved progressively through August 2026. Accounts opened before that date were due to move on 3 August 2026, and Wise is reported to have pushed that back at the end of July to October 2026, with verification documents requested in September. We could not open the Wise help article to confirm the dates ourselves, and older write ups still quote a May 2026 date that has since been superseded, so check your own account rather than planning around a date you read here. The move is keyed to your registered address, not your nationality, which is worth knowing if you are a foreign resident.',
+      },
+      {
+        q: 'Can foreigners use PayPal in Thailand?',
+        a: 'Not with a personal account. Verification for personal accounts in Thailand runs through the national digital ID system, which requires a thirteen digit Thai national ID. A foreign passport, work permit, pink ID card and even Thai permanent residence are all reported as not accepted, so a foreign resident cannot complete verification at all. Thai nationals who verified before the 2022 deadline kept their accounts, but personal accounts lost the ability to receive payments in the relaunch, so a personal account is for paying merchants rather than for getting paid. The only route we could identify for freelance income is a business account under a Thai registered company, which is reported not to require the national ID. If your plan was to invoice clients through PayPal as an individual living in Thailand, that plan does not work.',
+      },
+      {
+        q: 'Do I pay Thai tax if I work remotely for a foreign client?',
+        a: 'Probably yes, and probably not for the reason you have been reading about. Almost every article on this topic is about remitted foreign income, because that is what changed in 2024 and what generates the arguments. That is likely the wrong rule for you. Under the Revenue Code, income from work performed in Thailand is Thai source income, and Thai source income is taxable whether it is paid to you in Thailand or abroad and whether or not you ever bring it into the country. Source follows where the work is done, not where your client sits or where the money lands. Thai advisers make the point directly: working in Thailand while being paid into an overseas account does not make the income foreign source. So if you are physically in Thailand doing the work, the ordinary reading is that none of the remittance timing arguments help you. The remittance rules apply to genuinely foreign income, such as work done abroad, a foreign rental property or an offshore portfolio. Two things people get backwards. Thai source income is not switched on by the 180 day test: that test decides whether you are a Thai tax resident, counted cumulatively across a calendar year and on any visa, which is what brings remitted foreign income into scope, while Thai source income is assessable even if you stay under it. And separately from tax, Thai labour law is reported to treat any paid work performed in Thailand as requiring a work permit, even when the employer and the clients are abroad. We are not able to tell you which side of these lines your particular arrangement falls on, and it is worth an hour with a Thai tax adviser rather than an afternoon on an expat forum.',
+      },
+      {
+        q: 'What is the current state of the rule on money I transfer into Thailand?',
+        a: 'Unsettled, which is itself the useful answer. Revenue Department orders effective 1 January 2024 changed the interpretation so that foreign source income earned from that date, and remitted by a Thai tax resident in any later year, is assessable in the year you bring it in. Income earned before 2024 sits under the older treatment. Since then a relief measure has been drafted that would exempt foreign source income remitted in the year it was earned or the following calendar year, which would matter a great deal to anyone timing transfers. It needs Cabinet approval, Council of State review and publication in the Royal Gazette, and on the most recent information we could find it had not been published, which is the step that makes it law. Reporting through 2026 also places it in the political queue rather than close to the line: with the House dissolved, pending items of this kind are described as paused until a new government is formed. So it is drafted, widely reported, and not in force as far as we can tell. Do not plan around it as though it were settled, and do not assume it is dead either. Verify the current position before making a decision that depends on it.',
+      },
+      {
+        q: 'Can I open a USD account in Thailand?',
+        a: 'Yes, and it is now the main reason to take a wire instead of using Wise. Thai banks offer foreign currency deposit accounts, commonly called FCD accounts, in both resident and non-resident versions, and Bangkok Bank, Kasikornbank and SCB all publish them. A dollar wire credited to one converts nothing, so you hold the currency and choose your own moment to sell it. Residents are reported to be able to deposit foreign currency received from abroad without a limit, and there is no end of day balance cap, though depositing physical foreign banknotes is capped, with a daily figure of about USD 15,000 across all accounts and all banks appearing in Thai bank product sheets. One trade off to know about: the FET form that banks issue is a record of converting foreign currency into baht, so money that sits in an FCD unconverted does not generate one, which matters if you are building a paper trail for a condominium purchase. The practical obstacle is not the FCD account itself but the underlying bank relationship. As a foreigner you now generally need a long stay non-immigrant visa to open any Thai bank account, tourist visas no longer work at the major banks, and reports for 2026 say the Destination Thailand Visa is treated as a tourist visa for this purpose. Requirements vary noticeably between branches, so ask at more than one if the first says no.',
+      },
+      {
+        q: 'How much does my Thai bank charge to receive money from abroad?',
+        a: 'The figure reported consistently across the major banks is an inward remittance commission of 0.25% of the amount, with a floor and a ceiling. Bangkok Bank is reported at a 200 baht minimum and 500 baht maximum, SCB at a 300 baht minimum and the same 500 baht maximum. Because of that floor and ceiling, small transfers effectively pay a flat minimum and large ones pay a flat maximum, which means the percentage cost falls sharply as the amount rises. On a thousand dollar invoice you are paying the floor, and on a twenty thousand dollar payment the same ceiling applies, which is why wires suit large irregular payments and suit small monthly invoices badly. A correspondent bank in the middle may also deduct its own fee before the money arrives, which nobody warns you about in advance. Our comparison does not model this commission or a correspondent deduction, so treat the wire figures there as covering the sending side only. We could not open any Thai bank tariff page from our side, so verify the current commission with your own bank.',
+      },
+      {
+        q: 'What is a FET form and do I need one?',
+        a: 'It is Thailand\'s closest equivalent to the inward remittance certificate that some other countries issue, and it is the document to ask for at the time rather than chase later. A Foreign Exchange Transaction form is issued by the receiving Thai bank and is reported to be required at fifty thousand dollars or equivalent in a single transaction, documenting the inbound money, the conversion into baht and the stated purpose. Below that threshold banks will normally issue a credit advice or a bank letter instead if you ask. You want one because it is the proof of inbound foreign funds that comes up when buying a condominium, and it is useful evidence if the Revenue Department or immigration ever asks where money came from. Note how that interacts with holding dollars: because the form records a conversion into baht, money parked in an FCD account and never converted will not produce one. Separately, banks are reported to require a purpose to be stated on inbound remittances regardless of size. Make sure your client\'s payment carries something like payment for services rather than gift or family support, because the purpose code follows the money and a wrong one is awkward to unpick later.',
+      },
+    ],
+    siblingCorridors: ['usd-to-idr', 'usd-to-php', 'usd-to-gel'],
+  },
+  // ─── USD → Indonesia (IDR) ─────────────────────────────────────────────────
+  {
+    slug: 'usd-to-idr',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'IDR',
+    destCountry: 'ID',
+    country: 'Indonesia',
+    title: 'Receive USD in Indonesia: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in Indonesia. Wise stopped letting residents hold balances in 2024 and Revolut does not accept Indonesian residents.',
+    h1: 'How to receive USD in Indonesia: why the usual advice is wrong, and what actually works',
+    intro:
+      'Indonesia is a harder corridor than it looks, and most of the guides you will find are wrong in the same two ways. They tell you to receive dollars into Wise, and they list Revolut as an option. Neither works. Wise stopped letting Indonesian residents hold a balance or use receiving account details in May 2024, reportedly because it did not hold the Bank Indonesia licence that would require, so you cannot hand a client Wise USD details from Jakarta. Revolut has never opened accounts to Indonesian residents at all. What is left is Payoneer for platform work, PayPal for the clients who insist on it, and a plain SWIFT wire into a rupiah or dollar account at one of the big banks. Wise still matters, just from the other side of the transaction: your client can send dollars through their own Wise account straight to your Indonesian bank, they pay the fee, and it costs you nothing to receive. Nothing forces you to convert inbound dollars either, so a rekening valas is a real option if you would rather hold the currency and pick your moment. The other thing that changed this year is tax, and not in your favour if you provide services.',
+    publishedDate: '2026-08-28',
+    updatedDate: '2026-08-28',
+    providers: [
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        customHeading: 'Payoneer: the practical default now that Wise is out',
+        available: true,
+        notes:
+          'With Wise unable to give you receiving details, Payoneer becomes the realistic way to hand a US client something that looks like a domestic account. Sign-up takes a KTP or passport, a residential address and Indonesian bank details for the withdrawal leg. Payoneer charges up to 1% on incoming commercial payments funded by bank debit, and more if your client pays by card, then up to 2% above mid-market when it converts dollars to rupiah on withdrawal, so roughly 3% all in on a bank-funded payment. That conversion cost is embedded in the rate rather than shown as a line item, which is why people underestimate it. Withdrawals to BCA, Mandiri, BRI and the other large banks are reported to take three to five business days, and our comparison above models three days, which is the fast end of that range. There is also an annual account fee if your receipts fall below a minimum activity threshold over twelve consecutive months, and Payoneer\'s own material has quoted different thresholds at different times, so check yours in the portal rather than trusting a number from a blog. We could not open payoneer.com from our side, so all of these figures are reported rather than confirmed.',
+      },
+      {
+        slug: 'bank-wire',
+        name: 'Bank wire and rekening valas',
+        customHeading: 'Holding dollars instead of converting them',
+        available: true,
+        notes:
+          'BCA, Mandiri, BNI and BRI all accept inbound SWIFT, and all of them sell foreign currency savings accounts, a rekening valas, to residents. This is the differentiated option on this corridor and it is worth understanding before you default to a wallet. A dollar wire credited to a rekening valas converts nothing, so there is no spread at the moment of receipt and you decide when to sell. Reported holding costs are modest, with opening deposits around a hundred dollars and monthly administration of roughly a dollar at the banks that publish it, though we could not open any bank page to confirm and found nothing usable for BRI at all. Against that, your client\'s US bank charges roughly $25 to $45 to send, and the Indonesian receiving side takes its own fee. Be careful with the inbound numbers circulating online: several of the figures quoted for Mandiri and BNI in search results are actually their outward remittance schedules, which are a different and more expensive thing. The FX spread shown in our comparison assumes conversion on arrival and is an estimate, since no Indonesian bank publishes its spread. If you route the wire into a valas account, that part of the cost is simply deferred until you convert.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        available: true,
+        notes:
+          'Available and expensive, with one Indonesia-specific catch worth knowing before you rely on it: withdrawals to an Indonesian bank are consistently reported to arrive in rupiah, with no option to pull dollars out to a local foreign currency account. If that holds, the conversion is compulsory and happens on PayPal\'s terms rather than yours. We could not open PayPal\'s Indonesian pages to confirm it, so check in your own account before you plan around it. The cost stacks the usual way, a cross-border commercial receiving fee of around 4.4% plus a small fixed amount, then a currency conversion charge on top, which the fee wording we found puts at 3% above the base rate when you convert a balance before withdrawing, and higher when the conversion happens inside a transaction. Our comparison models 3.5%, which is a midpoint rather than a figure quoted for Indonesia. Call it roughly 8% before the money reaches your bank, and treat that as an estimate rather than a quote. Withdrawal itself is reported as free at or above Rp1,500,000 and around Rp16,000 below that, taking two to four business days. Use PayPal when a client insists on it and move recurring clients somewhere else.',
+      },
+      {
+        slug: 'western-union',
+        name: 'Western Union',
+        available: true,
+        notes:
+          'Pays out to Indonesian bank accounts, and it is the one provider here where we could not find a rate or a spread quoted for this corridor from any source we could open. Western Union does publish a send page for the United States to Indonesia, but no markup. Generic 2026 write-ups put Western Union bank deposit markups somewhere between about 0.5% and 2.5% depending on corridor and payout method, which is too wide to rank on. That is why the comparison above marks the Western Union row as estimated and why it cannot take the best value badge, even though it sorts first on net received. The structural point matters more than the number anyway: this is a personal remittance product, built and priced for someone sending money to family, and a client paying a commercial invoice through it raises the same classification question we flag on the Pakistan page. If you use it, compare the quoted rupiah amount against the mid-market rate before you accept.',
+      },
+      {
+        slug: 'wise',
+        name: 'Wise',
+        customHeading: 'Wise: not a receiving option here, but still useful from the sender side',
+        available: false,
+        notes:
+          'This is the correction that matters most on this page, because it is what almost every competing guide gets wrong. Indonesian residents cannot receive money into a Wise account, cannot hold a balance and cannot get receiving account details. Wise ended all three for Indonesia-registered customers on 23 May 2024, reportedly because it does not hold the Bank Indonesia electronic money licence that holding customer balances requires. Its Indonesian entity remains licensed for remittance, which is the source of the confusion: Wise still works in Indonesia, just not in the direction you need. So there is no version of this where you hand a US client Wise USD details from here. What does work is the reverse: your client sends dollars from their own Wise account to your Indonesian bank account, or to a DANA, GoPay, OVO or ShopeePay wallet, at the real mid-market rate. They pay the fee. Your receiving cost is zero. That is genuinely the cheapest way to be paid in this corridor, and it costs you nothing but the awkwardness of asking a client to use a specific service. Worth asking.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        available: false,
+        notes:
+          'Indonesia is not on Revolut\'s list of countries where you can sign up, for personal or business accounts, and Indonesian residents cannot open one. An account opened while you lived in a supported country may survive a move, but that is a question about your residency history rather than about availability here. We previously listed Revolut as available for Indonesia in our calculator, and it was ranking first. That was wrong and we have removed it.',
+      },
+      {
+        slug: 'grabrfi',
+        name: 'GrabrFi',
+        available: false,
+        notes:
+          'GrabrFi ties account eligibility to a government issued ID from a fixed list of countries, and Indonesia is not on it. Indonesia separately appears on GrabrFi\'s list of countries where its dollar debit card does not work. We had Indonesia listed as supported and were showing GrabrFi in the comparison here alongside a referral link we earn from, which makes this a correction worth stating rather than quietly making.',
+      },
+    ],
+    supportedProviders: ['payoneer', 'paypal', 'western-union', 'bank-wire'],
+    faqs: [
+      {
+        q: 'Can I still use Wise to receive money in Indonesia?',
+        a: 'No, and this is the single most common piece of outdated advice about this corridor. Since 23 May 2024, customers registered in Indonesia cannot receive money into a Wise account, cannot hold a balance and cannot use receiving account details. The reported reason is that holding customer balances requires a Bank Indonesia electronic money licence that Wise does not have, while its Indonesian entity stays licensed for remittance. That distinction is why so many guides still list Wise as an option: Wise genuinely does still operate in Indonesia, but only for sending money out and for delivering money in from someone else. The workaround is real and worth using. Ask your client to pay you through their own Wise account. They send dollars, Wise converts at the mid-market rate, rupiah lands in your Indonesian bank account or your e-wallet, and your side of that transaction costs nothing.',
+      },
+      {
+        q: 'Is Revolut available in Indonesia?',
+        a: 'No. Indonesia is not on Revolut\'s sign-up list for personal or business accounts, and residents cannot open one. If you opened an account while living in a country Revolut supports and then moved, that account may continue to work, but that is about where you were when you signed up rather than about Indonesia being supported. We list this plainly because our own calculator had Revolut ranked first for Indonesia until we corrected it, and because several of the guides ranking for this question still list it as an option. Treat any article recommending Revolut for an Indonesian freelancer as evidence that its author did not check.',
+      },
+      {
+        q: 'Can I keep my dollars instead of converting to rupiah?',
+        a: 'Yes. We found no rule requiring an individual to convert inbound dollars from services income, and Indonesian banks openly sell foreign currency savings accounts, rekening valas, to residents. It is worth saying that proving a negative from search results is not the same as reading the regulation, and we could not open Bank Indonesia\'s site, so verify the current position if a lot of money depends on it. The rule people confuse this with is the export proceeds retention requirement. Government Regulation 8 of 2025 obliges exporters of natural resources to park 100% of their export proceeds in the Indonesian financial system for twelve months, and it took effect on 1 March 2025. It applies to mining other than oil and gas, plantations, forestry and fisheries, and only above an export value of around USD 250,000. Service exports sit outside it, so it has nothing to do with a freelancer invoicing a foreign client. A separate rule is worth knowing if you plan to build a dollar balance: from 1 July 2026 Bank Indonesia lowered the amount of foreign currency a customer can buy against rupiah without supporting documents to around USD 10,000 a month, and lowered the documentation threshold for transferring foreign currency abroad to around USD 25,000. Neither of those bites on dollars you simply receive and keep, but both bite if you buy dollars with rupiah or send dollars back out. One thing that is reported to be non negotiable: PayPal withdrawals to an Indonesian bank arrive in rupiah, so if holding dollars is the goal, PayPal cannot do it and a wire into a valas account is the route.',
+      },
+      {
+        q: 'Can freelancers still use the 0.5% final tax (PPh final UMKM) in 2026?',
+        a: 'This changed in 2026 and probably not in your favour. Government Regulation 20 of 2026, signed on 22 April 2026, did two generous things and one restrictive one. It removed the seven year time limit that used to cap how long an individual could use the 0.5% final tax on turnover, so for individuals the scheme now runs indefinitely. It kept the Rp4.8 billion turnover ceiling and kept the rule that the first Rp500 million of an individual\'s annual turnover is not taxed. But it also excluded income from services connected to independent professional work, pekerjaan bebas, from the scheme. Published summaries of the excluded list are not identical to one another, and the versions we found name lawyers, accountants, architects, doctors, consultants, notaries, land deed officials, appraisers and actuaries, plus artists and performers, athletes, teachers and trainers, authors, researchers and translators, online content creators such as influencers, bloggers and vloggers, intermediaries and insurance agents. There is transitional relief: individuals already in the scheme who are caught by the new exclusion are reported to be able to stay on it until the end of the 2026 tax year, with the ordinary regime applying from 2027. Whether a software developer or a designer sits inside pekerjaan bebas is not settled by anything we could read, and we are not going to tell you that you qualify. The exposure is in two catch-all phrases, konsultan and tenaga ahli sejenis lainnya, which are broad enough to reach a freelancer selling expert services in their own name, and other parts of Indonesia\'s income tax rules have long treated computer and application systems services as independent professional work. Plan on the assumption that you may be excluded rather than on the assumption that you are safe. One more change worth knowing: the regulation tests the Rp4.8 billion ceiling on combined turnover across a married couple and any single owner companies either of them has set up, so a spouse\'s business can push you over. We could not open the tax authority pages or the regulation text, so take this to a konsultan pajak before you file.',
+      },
+      {
+        q: 'Will my bank ask what the incoming transfer is for?',
+        a: 'Yes, and it is routine rather than suspicious. Indonesian banks attach a purpose code to incoming foreign currency credits for Bank Indonesia reporting, so expect to be asked what the money is for and answer with something specific like payment for software development services per invoice. That reporting is an obligation on the bank rather than on you, and on the information we found it covers foreign exchange flows generally rather than only large ones, so splitting a payment to duck a reporting line does not achieve anything. Do not read that as meaning Indonesia has no thresholds anywhere: separate Bank Indonesia rules that changed on 1 July 2026 set documentation thresholds on buying foreign currency against rupiah and on transferring foreign currency abroad. Keep the credit advice the bank issues, the invoice and a written contract with the client. Indonesia has no equivalent of the inward remittance certificate that some countries issue, so that document set is your evidence of foreign income. We could not confirm whether Indonesian banks issue a standard named certificate on request, so ask yours.',
+      },
+      {
+        q: 'Can I receive money from abroad directly into GoPay, OVO or DANA?',
+        a: 'Indirectly, and only through a sender who uses Wise. Wise pays out to DANA, GoPay, OVO and ShopeePay using an Indonesian mobile number, so a client sending you money through their own Wise account can deliver rupiah straight to a wallet. Payoneer and PayPal, as far as we could establish, do not pay out to Indonesian e-wallets at all, so with those you are withdrawing to a bank account regardless. Be aware of the ceilings before you plan around this. Wise is reported to cap wallet payouts far below its bank transfer cap, and on top of that each wallet has its own monthly limits set by your verification tier, which are low enough that a single decent invoice can exceed them. Wallets are a convenience for small amounts, not a way to bank freelance income.',
+      },
+      {
+        q: 'Do I have to charge VAT to a foreign client?',
+        a: 'Generally no, because exported services are zero rated, but the mechanics are where people come unstuck. A ministerial regulation sets a 0% rate on exported taxable services and the covered list includes technology and information services such as system analysis, system design, application and website development and IT security, along with a range of consulting categories. Most freelancers never reach the question anyway, because registering as a taxable entrepreneur only becomes compulsory above a turnover threshold that is far above typical freelance income. Two cautions. Zero rated is not the same as outside scope, and the filing mechanics attached to claiming it, including a written agreement and a specific export notification, are the part we could not verify before our research ran out of budget, so we are deliberately not describing the steps. Get those from an Indonesian tax adviser rather than from us.',
+      },
+    ],
+    siblingCorridors: ['usd-to-thb', 'usd-to-php', 'usd-to-pkr'],
   },
 ];
