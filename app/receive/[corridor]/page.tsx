@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { CORRIDORS } from '@/data/corridors';
 import { fetchRatesServer } from '@/lib/fetchRates';
 import { PROVIDERS } from '@/data/providers';
-import { calculate } from '@/lib/calculate';
+import { calculate, getDestCurrencies } from '@/lib/calculate';
 import type { CountryCode, Currency } from '@/data/providers';
 import { Calculator } from '@/components/Calculator';
 
@@ -93,6 +93,27 @@ export default async function CorridorPage({
           ratesResult.rates,
         )
       : null;
+
+  // Some destinations let you hold foreign currency instead of converting on arrival.
+  // The main table above prices converting into the local currency, which on those
+  // corridors is the option the page often argues against, so price the alternatives too.
+  const altReceiving =
+    ratesResult
+      ? getDestCurrencies(corridor.destCountry as CountryCode)
+          .filter((c) => c !== corridor.destination)
+          .map((currency) => ({
+            currency,
+            quotes: calculate(
+              corridor.sourceCountry as CountryCode,
+              corridor.destCountry as CountryCode,
+              currency,
+              1000,
+              PROVIDERS,
+              ratesResult.rates,
+            ),
+          }))
+          .filter((set) => set.quotes.length > 0)
+      : [];
 
   const pageJsonLd = {
     '@context': 'https://schema.org',
@@ -285,6 +306,70 @@ export default async function CorridorPage({
                 </tbody>
               </table>
             </div>
+          </section>
+        )}
+
+        {/* Receiving without converting. Only rendered for destinations that actually
+            offer foreign-currency accounts, so most corridors show nothing here. */}
+        {altReceiving.length > 0 && (
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold">
+              Receiving without converting, in {corridor.country}
+            </h2>
+            {corridor.altReceivingNote && (
+              <p className="text-muted-foreground leading-relaxed">{corridor.altReceivingNote}</p>
+            )}
+            {altReceiving.map((set) => (
+              <div key={set.currency} className="space-y-2">
+                <h3 className="text-base font-semibold">
+                  Receiving $1,000 USD as {set.currency}
+                </h3>
+                <div className="overflow-x-auto rounded-xl border">
+                  <table className="w-full text-sm">
+                    <caption className="sr-only">
+                      Providers that can pay $1,000 USD into a {set.currency} account in{' '}
+                      {corridor.country}, ranked by net received
+                    </caption>
+                    <thead>
+                      <tr className="border-b bg-muted/50 text-left text-xs font-medium text-muted-foreground">
+                        <th scope="col" className="px-4 py-2.5">Provider</th>
+                        <th scope="col" className="px-4 py-2.5">Net received ({set.currency})</th>
+                        <th scope="col" className="px-4 py-2.5">Effective fee</th>
+                        <th scope="col" className="px-4 py-2.5">FX margin</th>
+                        <th scope="col" className="px-4 py-2.5">Speed</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {set.quotes.map((q, i) => (
+                        <tr
+                          key={q.provider.slug}
+                          className={i < set.quotes.length - 1 ? 'border-b' : ''}
+                        >
+                          <td className="px-4 py-3 font-medium">{q.provider.name}</td>
+                          <td className="px-4 py-3 font-semibold tabular-nums">
+                            {formatAmount(q.netReceivedInDest, set.currency)}
+                          </td>
+                          <td className="px-4 py-3 text-muted-foreground tabular-nums">
+                            {q.effectiveFeePercent.toFixed(2)}%
+                          </td>
+                          <td className="px-4 py-3 text-muted-foreground tabular-nums">
+                            {q.fxMarkupBps === 0
+                              ? 'No conversion'
+                              : `+${(q.fxMarkupBps / 100).toFixed(1)}%`}
+                            {q.isEstimate && (
+                              <span className="ml-1 text-muted-foreground/70">(est.)</span>
+                            )}
+                          </td>
+                          <td className="px-4 py-3 text-muted-foreground">
+                            {formatHours(q.timeHours)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ))}
           </section>
         )}
 

@@ -31,6 +31,11 @@ export interface Corridor {
   supportedProviders: string[];        // slugs of providers that actually support this corridor
   faqs: Faq[];
   siblingCorridors?: string[];  // slugs of related corridors for internal linking
+  // Some destinations let a recipient hold foreign currency rather than convert on
+  // arrival (Georgian USD/EUR sub-accounts, Thai FCD accounts). The receiving
+  // currencies themselves come from DEST_CURRENCIES_MAP in lib/calculate.ts; this is
+  // the one sentence of page copy explaining what that means for this country.
+  altReceivingNote?: string;
 }
 
 export const CORRIDORS: Corridor[] = [
