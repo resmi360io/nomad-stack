@@ -74,15 +74,28 @@ export function ResultsTable({ quotes, rateDate }: Props) {
                   <div className="mt-0.5 text-xs text-muted-foreground">
                     Fee: {formatAmount(q.totalFeeInSource, q.sourceCurrency)}{' '}
                     ({q.effectiveFeePercent.toFixed(2)}%) ·{' '}
-                    <span className={fxQ.color}>{fxQ.label}</span>
+                    {q.isEstimate ? (
+                      <span
+                        className="text-muted-foreground"
+                        title="This provider does not publish an FX spread for this corridor, so the rate above is our estimate rather than a sourced figure."
+                      >
+                        FX estimated
+                      </span>
+                    ) : (
+                      <span className={fxQ.color}>{fxQ.label}</span>
+                    )}
                   </div>
                   {q.provider.caveat && (
                     <div className="mt-0.5 text-xs text-muted-foreground/60 italic">
                       {q.provider.caveat}
                     </div>
                   )}
+                  {/* Never print a verification date against a figure we did not
+                      verify: that is the claim the estimate marker exists to avoid. */}
                   <div className="mt-0.5 text-xs text-muted-foreground/40">
-                    Fees verified {q.provider.lastVerified}
+                    {q.isEstimate
+                      ? 'FX spread not published by this provider; estimated'
+                      : `Fees verified ${q.provider.lastVerified}`}
                   </div>
                 </div>
               </div>

@@ -14,6 +14,11 @@ export interface CorridorFee {
   minAmount?: number;
   maxAmount?: number;
   notes?: string;
+  // True when fxMarkupBps is not traceable to a cited source: an assumption, a
+  // floor, or a third-party cross-rate estimate. Such quotes still rank, but they
+  // are marked in the UI and cannot take the best-value badge, because the badge
+  // is the number that actually steers readers.
+  fxMarkupEstimated?: boolean;
 }
 
 export interface Provider {
@@ -165,6 +170,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0.0069,
       fxMarkupBps: 0,
       typicalHours: 24,
+      fxMarkupEstimated: true,
       notes: 'Estimated; verify at wise.com for your corridor',
     },
   },
@@ -243,6 +249,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0,
       fxMarkupBps: 0,
       typicalHours: 72,
+      fxMarkupEstimated: true,
       notes: 'Estimated; verify at revolut.com for your corridor',
     },
     notes: 'Standard plan. EUR/SEPA corridors: 0.3% transfer fee, near instant. Other corridors via SWIFT: $3 flat fee, 3 to 5 days. FX at mid-market on weekdays within the $1,000/month exchange allowance; +0.5% above the allowance; +1% on weekends.',
@@ -425,6 +432,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0.01,
       fxMarkupBps: 200,
       typicalHours: 96,
+      fxMarkupEstimated: true,
       notes: 'Estimated; verify at payoneer.com for your corridor',
     },
   },
@@ -548,6 +556,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0.044,
       fxMarkupBps: 350,
       typicalHours: 24,
+      fxMarkupEstimated: true,
       notes: 'PayPal has limited or no GEL (Georgia) support; use Wise or Revolut',
     },
     notes: 'Georgia (GEL) not reliably supported. Fees shown are for Personal-account cross-border receiving. FX markup ~3.5% above mid-market.',
@@ -586,6 +595,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0.01,
       fxMarkupBps: 100,
       typicalHours: 48,
+      fxMarkupEstimated: true,
       notes: 'GrabrFi coverage expanding; verify at grabrfi.com for your corridor',
     },
   },
@@ -618,6 +628,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 500,
         typicalHours: 24,
+        fxMarkupEstimated: true,  // ~500 bps is an inline minor-corridor assumption, no cited source
         notes: 'Bank deposit; ~5% FX spread on GEL (minor corridor). Cash pickup fees differ.',
       },
       {
@@ -684,6 +695,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 175,
         typicalHours: 24,
+        fxMarkupEstimated: true,  // no Indonesia-specific rate or spread found from any source
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -692,6 +704,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 175,
         typicalHours: 24,
+        fxMarkupEstimated: true,  // no Indonesia-specific rate or spread found from any source
       },
       // EUR → Portuguese EUR via WU (SEPA-zone, no FX conversion)
       {
@@ -715,6 +728,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 200,
         typicalHours: 48,
+        fxMarkupEstimated: true,  // ~2% spread is a third-party cross-rate estimate, not WU-published
         notes: '$0 online fee for bank deposits over $200 (Pakistan Remittance Initiative) + ~2% FX spread, both personal remittance terms. PRI is a home remittance scheme and does not cover business transfers; WU commercial pricing for this corridor is unpublished. Bank deposit to HBL, UBL, MCB.',
       },
     ],
@@ -723,6 +737,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0,
       fxMarkupBps: 400,
       typicalHours: 24,
+      fxMarkupEstimated: true,
       notes: 'Estimated; verify at westernunion.com for your corridor',
     },
   },
@@ -917,6 +932,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0,
       fxMarkupBps: 350,
       typicalHours: 96,
+      fxMarkupEstimated: true,
       notes: 'Typical SWIFT estimate; check with your specific bank for exact fees',
     },
     notes: 'Fees vary by bank. Correspondent bank charges may reduce received amount unpredictably.',
@@ -960,6 +976,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0,
       fxMarkupBps: 0,
       typicalHours: 1,
+      fxMarkupEstimated: true,
     },
     notes: 'Paysera issues a Lithuanian IBAN to Georgian residents. EU clients send via SEPA; Paysera charges €0 to receive. NBG-licensed bank in Georgia.',
     caveat: 'You give your EU client a Lithuanian IBAN (LT…). They pay their bank\'s SEPA fee (~€0–5) separately, not deducted from your amount.',
@@ -998,6 +1015,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0,
       fxMarkupBps: 0,
       typicalHours: 24,
+      fxMarkupEstimated: true,
     },
     notes: 'Cleva issues a US virtual bank account for Nigerian freelancers. Clients send a domestic ACH or wire; Cleva charges a deposit fee on the incoming ACH ($1 for deposits under $300, $3 for deposits of $300 or more), then converts at mid-market and credits your Nigerian account with no separate withdrawal fee. CBN-regulated.',
   },
@@ -1030,6 +1048,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.008,
         fxMarkupBps: 100,
         typicalHours: 24,
+        fxMarkupEstimated: true,  // ~1% FX markup not traceable to a Grey pricing page
         notes: '0.8% deposit fee (min $2, max $10) + 1% conversion fee capped at $6 + ~1% FX markup',
       },
     ],
@@ -1038,6 +1057,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0.008,
       fxMarkupBps: 100,
       typicalHours: 24,
+      fxMarkupEstimated: true,
     },
     notes: 'Grey issues virtual USD (and GBP/EUR) accounts for Nigerian freelancers. Fees: 0.8% deposit fee (min $2, max $10) on incoming USD, plus a 1% conversion fee capped at $6 per transaction, plus ~1% FX markup. Roughly 2.4% all-in on $1,000. Supports USD, GBP, and EUR receiving.',
     caveat: 'Two capped fees apply: 0.8% deposit fee (max $10) and 1% conversion fee (max $6). On larger transfers both caps kick in and the effective rate drops.',
@@ -1070,6 +1090,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 48,
+        fxMarkupEstimated: true,  // FX markup not published; modeled at 0 bps as a floor
         notes: 'Zero flat and percentage fees; FX markup not published, modeled at 0 bps as a floor; FCA-licensed; verify current withdrawal limits',
       },
     ],
@@ -1078,6 +1099,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0,
       fxMarkupBps: 0,
       typicalHours: 48,
+      fxMarkupEstimated: true,
     },
     notes: 'LemFi (formerly Lemonade Finance) issues a virtual US account for Nigerian freelancers. No flat fee and no percentage fee on this corridor, but the LemFi terms of service say the exchange rate is a mark-up on the wholesale rate and the size of that mark-up is not published, so the zero-cost fee model here understates the real cost by an unknown amount. FCA-licensed (UK), FINTRAC-registered Money Service Business (Canada), CBN-approved. Compare the in-app rate against a mid-market reference, and verify current withdrawal limits before relying on it for large amounts.',
   },
@@ -1120,6 +1142,7 @@ export const PROVIDERS: Provider[] = [
       percentageFee: 0,
       fxMarkupBps: 0,
       typicalHours: 24,
+      fxMarkupEstimated: true,
     },
     notes: 'Raenest issues virtual USD and GBP accounts for African freelancers and remote workers. Since January 2026: 4 free deposits per month shared across USD, GBP, EUR, USDT and USDC, then $1 flat per ACH or stablecoin deposit. The USD-to-NGN conversion fee is 0.5% capped between $0.25 and $2.70 per conversion, so cost does not scale with transfer size above about $540. Verify the current allowance at raenest.com/pricing. No annual account fee. CBN-licensed IMTO.',
     caveat: 'Conversion fee is capped at $2.70, so the effective rate falls as the transfer size rises.',

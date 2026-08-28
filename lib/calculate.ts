@@ -12,6 +12,10 @@ export interface Quote {
   timeHours: number;
   affiliateLink: string;
   isBestValue: boolean;
+  // The FX markup behind this quote is not traceable to a cited source, either
+  // because the corridor row says so or because no researched row matched and we
+  // fell back to the provider's generic estimate.
+  isEstimate: boolean;
 }
 
 const COUNTRY_CURRENCY: Record<CountryCode, Currency> = {
@@ -118,11 +122,16 @@ export function calculate(
       timeHours: corridor.typicalHours,
       affiliateLink: provider.affiliateLink,
       isBestValue: false,
+      isEstimate: !matched || corridor.fxMarkupEstimated === true,
     });
   }
 
   quotes.sort((a, b) => b.netReceivedInDest - a.netReceivedInDest);
-  if (quotes.length > 0) quotes[0].isBestValue = true;
+  // Best value goes to the highest-ranked quote we can actually source. A quote
+  // built on an estimated FX markup still appears and still ranks, but awarding it
+  // the badge would put our loudest recommendation on a number we cannot defend.
+  const firstSourced = quotes.find((q) => !q.isEstimate);
+  if (firstSourced) firstSourced.isBestValue = true;
 
   return quotes;
 }

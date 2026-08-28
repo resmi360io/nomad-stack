@@ -271,6 +271,11 @@ export default async function CorridorPage({
                         {q.fxMarkupBps === 0
                           ? 'Mid-market'
                           : `+${(q.fxMarkupBps / 100).toFixed(1)}%`}
+                        {q.isEstimate && (
+                          <span className="ml-1 not-italic text-muted-foreground/70">
+                            (est.)
+                          </span>
+                        )}
                       </td>
                       <td className="px-4 py-3 text-muted-foreground">
                         {formatHours(q.timeHours)}
@@ -343,7 +348,10 @@ export default async function CorridorPage({
             </a>{' '}
             minus the provider&apos;s FX markup in basis points. Rates on this page refresh hourly
             (ISR). Fee data is sourced from each provider&apos;s public pricing page and verified
-            periodically.
+            periodically. Not every provider publishes an FX spread. Where one does not, we
+            estimate it, mark the row &ldquo;est.&rdquo; in the FX margin column, and exclude it
+            from the best-value badge, so the option we highlight is always one whose spread we
+            can source.
           </p>
           <p className="text-xs text-muted-foreground mt-3">
             {oldestFeeVerified
