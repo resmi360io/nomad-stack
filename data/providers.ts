@@ -184,7 +184,10 @@ export const PROVIDERS: Provider[] = [
   //   — Local-currency network (EUR/SEPA, some MXN): 0.3% transfer fee, 0 bps FX weekdays
   //   — SWIFT (GEL, THB, IDR, and others without local network): $3 flat fee (USD/EUR/GBP source)
   //   — FX markup: 0 bps weekdays; +100 bps weekends (major currencies); +200 bps weekends (exotic: GEL, THB, IDR)
-  //   — Fair use limit: $1,000/month currency exchange; +0.5% above limit
+  //   - Fair use limit: $1,000/month currency exchange; +0.5% above limit.
+  //     NOTE: those are Revolut US figures. Portugal residents are customers of the
+  //     EU-passported entity, whose Standard plan is reported at a EUR 1,000/month
+  //     allowance with 1% above it. Verify before relying on 0.5% for EU corridors.
   {
     slug: 'revolut',
     name: 'Revolut',
@@ -282,6 +285,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 200,
         typicalHours: 72,
+        fxMarkupEstimated: true,  // Payoneer's published conversion currency list does not include GEL, so this lari withdrawal may not exist at all
         notes: '1% receiving fee + ~2% FX markup; $1.50 flat applies to same-currency withdrawals only',
       },
       {
