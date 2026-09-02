@@ -428,7 +428,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 200,
         typicalHours: 48,
-        notes: '1% receiving fee + up to 2% FX markup on PHP withdrawal to bank or GoTyme; GCash payouts may add a GCash-side cash-in fee, priced by funding source and not confirmed from a GCash primary source (the PHP 8,000/month free figure is the over-the-counter schedule, not the Payoneer one); verify in app',
+        notes: '1% receiving fee + up to 2% FX markup on PHP withdrawal to bank or GoTyme; GCash payouts may add a GCash-side cash-in fee, priced by funding source and not confirmed from a GCash primary source; whether the PHP 8,000/month free-then-2% figure applies to Payoneer or only to over-the-counter cash-ins is unresolved, and some sources report a flat 1% instead; verify in app',
       },
     ],
     fallbackFee: {
