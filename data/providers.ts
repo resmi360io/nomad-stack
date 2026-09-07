@@ -217,9 +217,13 @@ export const PROVIDERS: Provider[] = [
       },
       // MXN: Revolut Bank S.A. Institucion de Banca Multiple launched full banking
       // operations in Mexico on 27 January 2026 under a CNBV licence, with IPAB deposit
-      // protection and local CLABE / SPEI details. The $3 SWIFT row below predates that
-      // launch and has not been rechecked against Revolut Mexico's current pricing.
-      // Verify current before relying on this row.
+      // protection and a local CLABE on SPEI. Two corrections to what this row used to say.
+      // Revolut Mexico receives foreign currency by SWIFT, not by US ACH: a Mexican customer
+      // gets no US routing number, so a US client cannot pay domestically. And no inbound
+      // receiving fee could be sourced for the Mexican entity at all. The $3 below is a
+      // Revolut US OUTBOUND SWIFT sending fee, which is the wrong side of this transaction
+      // and the wrong entity, and the 0 bps is carried over from Revolut Europe. Both are
+      // placeholders, so this row is flagged estimated and cannot take the best value badge.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'MX', currency: 'MXN' },
@@ -227,6 +231,8 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 72,
+        fxMarkupEstimated: true,  // no Revolut Mexico receiving fee or spread could be sourced
+        notes: 'Receives USD by SWIFT, not US ACH. Revolut Mexico publishes no inbound receiving fee we could find; the figures here are carried from other Revolut entities. Verify in app.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -585,13 +591,20 @@ export const PROVIDERS: Provider[] = [
     supportedSourceCountries: ['US'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'MX'],
     corridors: [
+      // Mexico withdrawal is reported as a flat US$2 per local-currency withdrawal, not a
+      // percentage. An earlier reading of US$10 was the BANK REJECTION fee, deducted from
+      // the refund when the receiving bank bounces the payout, not the withdrawal charge.
+      // GrabrFi does not publish an FX spread: the rate is shown in-app and locked at
+      // initiation with the margin embedded, so fxMarkupEstimated stays true.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'MX', currency: 'MXN' },
-        fixedFee: 0,
-        percentageFee: 0.01,
+        fixedFee: 2,
+        percentageFee: 0,
         fxMarkupBps: 100,
         typicalHours: 24,
+        fxMarkupEstimated: true,  // GrabrFi publishes no spread; margin is embedded in the locked in-app rate
+        notes: 'Flat $2 per withdrawal to a Mexican CLABE over SPEI, up to $5,000 per withdrawal. FX spread not published. Verify current.',
       },
     ],
     fallbackFee: {
