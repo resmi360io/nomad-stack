@@ -591,20 +591,24 @@ export const PROVIDERS: Provider[] = [
     supportedSourceCountries: ['US'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'MX'],
     corridors: [
-      // Mexico withdrawal is reported as a flat US$2 per local-currency withdrawal, not a
-      // percentage. An earlier reading of US$10 was the BANK REJECTION fee, deducted from
-      // the refund when the receiving bank bounces the payout, not the withdrawal charge.
-      // GrabrFi does not publish an FX spread: the rate is shown in-app and locked at
-      // initiation with the margin embedded, so fxMarkupEstimated stays true.
+      // The Mexico withdrawal fee is UNRESOLVED. Three incompatible models turned up across
+      // two research passes and a review, none from a page anyone could open: a flat US$2,
+      // a per-country table that does not list Mexico at all, and 0.3% with a US$1 minimum
+      // and US$5 maximum. A proposed flat US$2 was rejected at review for that reason. The
+      // 1% below is the long-standing figure, kept because replacing one unsourced number
+      // with another is not an improvement, NOT because it is confirmed.
+      // Separately confirmed across three runs: a US$10 charge exists but is the bank
+      // REJECTION fee, deducted from the refund when the receiving bank bounces a payout.
+      // The spread is confirmed absent: GrabrFi publishes none, the rate is shown in-app
+      // and locked at confirmation with the margin embedded. Hence fxMarkupEstimated.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'MX', currency: 'MXN' },
-        fixedFee: 2,
-        percentageFee: 0,
+        fixedFee: 0,
+        percentageFee: 0.01,
         fxMarkupBps: 100,
         typicalHours: 24,
-        fxMarkupEstimated: true,  // GrabrFi publishes no spread; margin is embedded in the locked in-app rate
-        notes: 'Flat $2 per withdrawal to a Mexican CLABE over SPEI, up to $5,000 per withdrawal. FX spread not published. Verify current.',
+        fxMarkupEstimated: true,  // GrabrFi publishes no spread; the withdrawal fee itself is also unresolved
       },
     ],
     fallbackFee: {
