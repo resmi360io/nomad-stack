@@ -24,6 +24,52 @@ stages and runs without human approval:
    tools, so a finding cannot reach a live page without passing through review and a
    human-visible commit.
 
+## New corridor pipeline
+
+One new corridor a week, and it goes through the same gates as a correction, with
+an extra stage at the front. All four agents are read-only; the orchestrating
+session does every write.
+
+1. **Research.** A `corridor-researcher` agent on the target corridor. It returns
+   providers, receiving rails, fees, compliance documents, regulators, limits and
+   the questions people actually ask. Point it at any known data problems first: a
+   corridor usually reaches this stage because something already blocked it.
+2. **Draft.** The orchestrating session writes the page from the brief. Run the
+   `humanizer` skill over the copy before it goes anywhere. This is mandatory for
+   new corridors and for every copy change to an existing one.
+3. **Verify.** A `corridor-verifier` agent on the draft, exactly as it would check
+   a live page. A draft has never been read by anyone else and deserves more
+   scrutiny than a page that has survived several passes, not less.
+4. **Review.** A `corridor-reviewer` agent on the verifier's change list, with the
+   same authority it has over live pages. It sets `safe_to_apply`, and a corridor
+   that comes back false does not ship.
+
+### What a new corridor has to touch
+
+Adding an entry to `CORRIDORS` propagates automatically to three places: the
+corridor table on `/receive-international-payments`, `generateStaticParams` for the
+page route, and `app/sitemap.ts`. Nothing else is automatic, and every item below
+has been missed at least once:
+
+- `siblingCorridors` on the new corridor, and on the existing corridors that should
+  now point back at it. Unknown slugs are silently dropped rather than erroring, so
+  a typo costs you the link with no warning.
+- `supportedProviders` must match the set that can actually produce a quote. If a
+  provider is listed but has no fee row, the guides page advertises a count larger
+  than the table renders. Check by running `calculate()`, not by reading the array.
+- Provider coverage in `data/providers.ts`: the destination country in
+  `supportedDestinationCountries`, and a corridor fee row for the pair. A provider
+  with the country but no row falls back to a generic estimate, which now surfaces
+  as `fxMarkupEstimated` and is barred from the best value badge.
+- `DEST_OPTIONS` in `components/CalculatorForm.tsx`, if the destination country is
+  not already offered.
+- `DEST_CURRENCIES_MAP` in `lib/calculate.ts`, if the destination lets a recipient
+  hold foreign currency instead of converting. Without it the page can only price
+  conversion, which on some corridors is the option the page argues against.
+
+Verify a new page by hand on the day it ships. The rotation will not reach it for
+up to six days, and that is exactly the window in which it is least trustworthy.
+
 ## Verification rotation
 
 Every live corridor is re-checked once a week. The scheduled job runs daily and
