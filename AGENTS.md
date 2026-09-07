@@ -17,10 +17,12 @@ stages and runs without human approval:
    `corridor-reviewer` agent independently re-researches every proposed change and
    returns approve / amend / reject per item, plus anything the verifier missed.
    The reviewer writes the final text. It also sets `safe_to_apply`.
-3. **Apply.** Approved and amended items are written to `data/corridors.ts` and
-   `data/providers.ts`, dates are bumped, the data files are typechecked, and the
-   orchestrating session makes a single commit and pushes. One commit per run, so
-   concurrent agents never race on the branch.
+3. **Apply.** The orchestrating session, not an agent, writes approved and amended
+   items to `data/corridors.ts` and `data/providers.ts`, bumps dates, typechecks the
+   data files, and makes a single commit and push. One commit per run, so concurrent
+   agents never race on the branch. All three agents are read-only and have no edit
+   tools, so a finding cannot reach a live page without passing through review and a
+   human-visible commit.
 
 ## Verification rotation
 
