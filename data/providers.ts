@@ -101,8 +101,10 @@ export const PROVIDERS: Provider[] = [
       // licensed local entity. After migration, third-party payments arriving into
       // foreign-currency receiving details are automatically converted to THB on arrival,
       // so a Thai-resident freelancer can still be paid but can no longer hold the USD.
-      // Reported timing: accounts opened after 21 January 2026 migrate by around August
-      // 2026, accounts opened before that date from around October 2026. Verify current.
+      // Reported timing: accounts opened after 21 January 2026 were scheduled to migrate by
+      // the end of August 2026; as of mid-September 2026 we could not confirm that wave
+      // completed. Accounts opened before that date, from around October 2026, unconfirmed.
+      // Fee row values are unaffected either way. Verify current.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'TH', currency: 'THB' },
