@@ -101,8 +101,10 @@ export const PROVIDERS: Provider[] = [
       // licensed local entity. After migration, third-party payments arriving into
       // foreign-currency receiving details are automatically converted to THB on arrival,
       // so a Thai-resident freelancer can still be paid but can no longer hold the USD.
-      // Reported timing: accounts opened after 21 January 2026 migrate by around August
-      // 2026, accounts opened before that date from around October 2026. Verify current.
+      // Reported timing: accounts opened after 21 January 2026 were scheduled to migrate by
+      // the end of August 2026; as of mid-September 2026 we could not confirm that wave
+      // completed. Accounts opened before that date, from around October 2026, unconfirmed.
+      // Fee row values are unaffected either way. Verify current.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'TH', currency: 'THB' },
@@ -217,9 +219,13 @@ export const PROVIDERS: Provider[] = [
       },
       // MXN: Revolut Bank S.A. Institucion de Banca Multiple launched full banking
       // operations in Mexico on 27 January 2026 under a CNBV licence, with IPAB deposit
-      // protection and local CLABE / SPEI details. The $3 SWIFT row below predates that
-      // launch and has not been rechecked against Revolut Mexico's current pricing.
-      // Verify current before relying on this row.
+      // protection and a local CLABE on SPEI. Two corrections to what this row used to say.
+      // Revolut Mexico receives foreign currency by SWIFT, not by US ACH: a Mexican customer
+      // gets no US routing number, so a US client cannot pay domestically. And no inbound
+      // receiving fee could be sourced for the Mexican entity at all. The $3 below is a
+      // Revolut US OUTBOUND SWIFT sending fee, which is the wrong side of this transaction
+      // and the wrong entity, and the 0 bps is carried over from Revolut Europe. Both are
+      // placeholders, so this row is flagged estimated and cannot take the best value badge.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'MX', currency: 'MXN' },
@@ -227,6 +233,8 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 72,
+        fxMarkupEstimated: true,  // no Revolut Mexico receiving fee or spread could be sourced
+        notes: 'Receives USD by SWIFT, not US ACH. Revolut Mexico publishes no inbound receiving fee we could find; the figures here are carried from other Revolut entities. Verify in app.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -585,6 +593,16 @@ export const PROVIDERS: Provider[] = [
     supportedSourceCountries: ['US'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'MX'],
     corridors: [
+      // The Mexico withdrawal fee is UNRESOLVED. Three incompatible models turned up across
+      // two research passes and a review, none from a page anyone could open: a flat US$2,
+      // a per-country table that does not list Mexico at all, and 0.3% with a US$1 minimum
+      // and US$5 maximum. A proposed flat US$2 was rejected at review for that reason. The
+      // 1% below is the long-standing figure, kept because replacing one unsourced number
+      // with another is not an improvement, NOT because it is confirmed.
+      // Separately confirmed across three runs: a US$10 charge exists but is the bank
+      // REJECTION fee, deducted from the refund when the receiving bank bounces a payout.
+      // The spread is confirmed absent: GrabrFi publishes none, the rate is shown in-app
+      // and locked at confirmation with the margin embedded. Hence fxMarkupEstimated.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'MX', currency: 'MXN' },
@@ -592,6 +610,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 100,
         typicalHours: 24,
+        fxMarkupEstimated: true,  // GrabrFi publishes no spread; the withdrawal fee itself is also unresolved
       },
     ],
     fallbackFee: {
