@@ -1104,18 +1104,14 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-06-14',
     supportedSourceCountries: ['US'],
-    supportedDestinationCountries: ['NG'],
+    // LemFi is deliberately NOT priced. Three verification passes failed to source its
+    // FX markup, and its own terms say the rate carries a mark-up on the wholesale rate,
+    // so modelling it at 0 bps put an impossible free option at the top of the Nigeria
+    // table. Emptying this list is what actually removes it: calculate() filters on
+    // supportedDestinationCountries, and LemFi's fallbackFee is an identical 0/0/0, so
+    // deleting the corridor row alone would have been a no-op.
+    supportedDestinationCountries: [],
     corridors: [
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'NG', currency: 'NGN' },
-        fixedFee: 0,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 48,
-        fxMarkupEstimated: true,  // FX markup not published; modeled at 0 bps as a floor
-        notes: 'Zero flat and percentage fees; FX markup not published, modeled at 0 bps as a floor; FCA-licensed; verify current withdrawal limits',
-      },
     ],
     fallbackFee: {
       fixedFee: 0,
