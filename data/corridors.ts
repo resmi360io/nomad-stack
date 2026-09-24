@@ -48,7 +48,7 @@ export const CORRIDORS: Corridor[] = [
     country: 'Pakistan',
     title: 'Receive USD in Pakistan: real costs compared 2026',
     metaDescription:
-      'Compare the real cost of receiving USD in Pakistan. Payoneer charges ~3% all-in; PayPal and Wise are not available. Live FX rates, worked example, and provider comparison.',
+      'Compare the real cost of receiving USD in Pakistan. Payoneer runs about 3% all in. PayPal and Wise cannot receive. Live FX rates and a worked example.',
     h1: 'How to receive USD in Pakistan: fees, FX spread, and what you actually net',
     intro:
       'Pakistani freelancers have fewer options than most -- PayPal has never launched in Pakistan and Pakistani residents cannot open a Wise account for receiving. Payoneer is the dominant choice at up to about 3% all-in (1% fee + up to 2% FX markup on PKR withdrawal). Western Union advertises a $0 online fee for bank deposits over $200 and a roughly 2% FX spread, but that pricing runs through the Pakistan Remittance Initiative, a home remittance scheme aimed at personal transfers rather than business payments, so it is not a like-for-like price for client invoices. Payoneer remains the standard for recurring freelance income.',
@@ -145,7 +145,7 @@ export const CORRIDORS: Corridor[] = [
     country: 'Bangladesh',
     title: 'Receive USD in Bangladesh: real costs compared 2026',
     metaDescription:
-      'Compare the real cost of receiving USD in Bangladesh. Payoneer is the main option (~3–5% all-in); PayPal can\'t receive and Wise is receive-only. Live FX + worked example.',
+      'Compare the real cost of receiving USD in Bangladesh. Payoneer is the main option at roughly 3 to 5% all in. PayPal cannot receive. Live FX and worked example.',
     h1: 'How to receive USD in Bangladesh: fees, FX spread, and what you actually net',
     intro:
       'Bangladeshi freelancers receive primarily via Payoneer (~3-5% all-in for bank account withdrawal), and the most popular local step after that is Payoneer to bKash. Payoneer has a direct bKash integration that moves your balance to a bKash wallet typically within hours, though Payoneer charges a higher conversion fee for this route than for bank withdrawals (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal before withdrawing). Bank account withdrawal takes 1-3 business days and generates the Foreign Inward Remittance Certificate (FIRC) required to claim the export cash incentive. PayPal cannot receive commercial payments in Bangladesh, and Wise is not available to Bangladeshi account holders (though a foreign client using Wise can push BDT directly to your bank account, bKash wallet, or Nagad wallet).',
@@ -172,14 +172,14 @@ export const CORRIDORS: Corridor[] = [
         name: 'Bank Wire (SWIFT)',
         available: true,
         notes:
-          'SWIFT wires to Bangladeshi banks (City Bank, Mutual Trust Bank, Midland Bank, Standard Chartered Bangladesh, Dutch-Bangla Bank) are the formal route that generates a Foreign Inward Remittance Certificate (FIRC), which is required to claim the export cash incentive and to fund an Exporter\'s Retention Quota (ERQ) foreign-currency account. The bank converts at the TT Buying Rate, typically 1–2% below mid-market. A typical US bank outgoing wire costs $25–45 flat, and a possible $15–30 correspondent bank deduction can reduce the amount further. On small amounts ($500–2,000) the flat fee dominates; on larger sums ($5,000+) the flat fee becomes negligible and the TT spread is competitive. City Bank, Mutual Trust Bank (MTB), and Midland Bank offer dedicated Freelancer accounts bundling a BDT current account with an ERQ sub-account.',
+          'SWIFT wires to Bangladeshi banks (City Bank, Mutual Trust Bank, Midland Bank, Standard Chartered Bangladesh, Dutch-Bangla Bank) are the formal route that generates a Foreign Inward Remittance Certificate (FIRC), which is required to claim the export cash incentive and to fund an Exporter\'s Retention Quota (ERQ) foreign-currency account. The bank converts at the TT Buying Rate, typically 1 to 2% below mid-market. A typical US bank outgoing wire costs $25 to $45 flat, and a possible $15 to $30 correspondent bank deduction can reduce the amount further. On small amounts ($500 to $2,000) the flat fee dominates; on larger sums ($5,000+) the flat fee becomes negligible and the TT spread is competitive. City Bank, Mutual Trust Bank (MTB), and Midland Bank offer dedicated Freelancer accounts bundling a BDT current account with an ERQ sub-account.',
       },
       {
         slug: 'wise',
         name: 'Wise',
         available: false,
         notes:
-          'Bangladeshi residents cannot open a Wise account, cannot hold USD in a Wise wallet, and cannot get Wise receiving details to share with clients. However, Wise is available as a sending tool for your foreign client: a US client can use Wise to push BDT directly to your Bangladeshi bank account, bKash wallet, or Nagad wallet at Wise\'s mid-market rate: the client pays roughly 0.7–1.9% on their end and your receiving cost is zero. This workaround is useful for direct clients willing to set it up manually, but it does not work on freelance platforms (Upwork, Fiverr) that process payments through their own systems.',
+          'Bangladeshi residents cannot open a Wise account, cannot hold USD in a Wise wallet, and cannot get Wise receiving details to share with clients. However, Wise is available as a sending tool for your foreign client: a US client can use Wise to push BDT directly to your Bangladeshi bank account, bKash wallet, or Nagad wallet at Wise\'s mid-market rate: the client pays roughly 0.7 to 1.9% on their end and your receiving cost is zero. This workaround is useful for direct clients willing to set it up manually, but it does not work on freelance platforms (Upwork, Fiverr) that process payments through their own systems.',
       },
       {
         slug: 'paypal',
@@ -207,7 +207,7 @@ export const CORRIDORS: Corridor[] = [
     faqs: [
       {
         q: 'What is the cheapest way to receive USD in Bangladesh?',
-        a: 'For most Bangladeshi freelancers, Payoneer to a local bank account is the cheapest widely available option at roughly 3–5% all-in (1% receiving fee plus 1.2–4% FX markup on BDT withdrawal). If your direct client is willing to cooperate, asking them to use Wise to push BDT to your bank account, bKash, or Nagad costs you nothing: the client pays roughly 0.7–1.9% on their end. This does not work on Upwork or Fiverr. For large, infrequent payments over $5,000, a SWIFT bank wire becomes cost-competitive once the flat fee is spread over the larger amount, and it generates the FIRC documentation needed for the export cash incentive.',
+        a: 'For most Bangladeshi freelancers, Payoneer to a local bank account is the cheapest widely available option at roughly 3 to 5% all-in (1% receiving fee plus 1.2 to 4% FX markup on BDT withdrawal). If your direct client is willing to cooperate, asking them to use Wise to push BDT to your bank account, bKash, or Nagad costs you nothing: the client pays roughly 0.7 to 1.9% on their end. This does not work on Upwork or Fiverr. For large, infrequent payments over $5,000, a SWIFT bank wire becomes cost-competitive once the flat fee is spread over the larger amount, and it generates the FIRC documentation needed for the export cash incentive.',
       },
       {
         q: 'Does the 2.5% remittance incentive apply to freelancing?',
@@ -219,7 +219,7 @@ export const CORRIDORS: Corridor[] = [
       },
       {
         q: 'How long does it take to receive payments in Bangladesh?',
-        a: 'Payoneer to a local BDT bank account: typically 1–3 business days after the payment clears on the sender\'s side. Payoneer to bKash: typically instant or within a few hours. SWIFT bank wire to a Bangladeshi bank: 1–3 business days in most cases; can be longer if correspondent banks are involved. Most Bangladeshi banks have improved SWIFT processing and straightforward USD→BDT wires usually settle within 2 business days.',
+        a: 'Payoneer to a local BDT bank account: typically 1 to 3 business days after the payment clears on the sender\'s side. Payoneer to bKash: typically instant or within a few hours. SWIFT bank wire to a Bangladeshi bank: 1 to 3 business days in most cases; can be longer if correspondent banks are involved. Most Bangladeshi banks have improved SWIFT processing and straightforward USD to BDT wires usually settle within 2 business days.',
       },
       {
         q: 'Do I have to pay income tax on foreign freelance earnings?',
@@ -247,7 +247,7 @@ export const CORRIDORS: Corridor[] = [
     country: 'Nigeria',
     title: 'Receive USD in Nigeria: real costs compared 2026',
     metaDescription:
-      'Compare the real cost of receiving USD in Nigeria in 2026. Cleva, Grey, LemFi, and Raenest offer near mid-market rates. Payoneer costs more. Live FX and worked example.',
+      'Compare the real cost of receiving USD in Nigeria in 2026. Cleva, Grey and Raenest price near mid-market. Payoneer costs more. Live FX and a worked example.',
     h1: 'How to receive USD in Nigeria: fees, FX spread, and what you actually net',
     intro:
       'Nigerian freelancers now have strong specialist options: Cleva, Grey, LemFi and Raenest all issue virtual US bank accounts that convert at near mid-market rates, and the ones we can price run about 0.3% to 2.4% all-in on published fees. One thing to read the comparison with: seven providers are covered on this page, but only six are priced in the ranked table. LemFi is a real option and is described below, but it does not publish the mark-up inside its exchange rate, and we will not rank a provider at zero cost when we know its real cost is above zero. Payoneer works but costs roughly 3% all-in and carries a minimum activity threshold (currently $6,000/year per Payoneer\'s help center) below which an annual fee applies. PayPal returned to Nigeria in January 2026 via a Paga partnership, but stacked fees make it roughly 6-7% or more all-in and the most expensive widely-available option.',
@@ -918,7 +918,7 @@ export const CORRIDORS: Corridor[] = [
     country: 'Mexico',
     title: 'Receive USD in Mexico: real costs compared 2026',
     metaDescription:
-      'Compare the real cost of receiving USD in Mexico. Wise does not sell Mexican residents its multi-currency account, and the cheapest rail may not be the one your accountant wants.',
+      'Compare the real cost of receiving USD in Mexico. Wise does not sell residents its multi-currency account, and three of the best options publish no FX rate.',
     h1: 'How to receive USD in Mexico: what works, what the guides get wrong, and the IVA trap',
     intro:
       'Start with the thing most guides get wrong. Wise does not sell Mexican residents the multi-currency account it sells almost everywhere else. We checked wise.com/mx on 24 September 2026 and the product menu offers exactly two things, an international money transfer and a large amount transfer, both of them outbound. There is no account, no account details, no card. The page is built around moving pesos out to dollars, with a worked example of 10,000 pesos becoming $561.38. So this is an argument from what Wise does not offer here rather than a quoted eligibility rule, and you should weigh it as that. But if you were about to hand a client Wise details expecting a US routing number, check the app first. What does work: Payoneer gives you US receiving details, Higlobe does too and pays out to your CLABE in minutes, and a plain SWIFT wire into your Mexican bank still works the way it always has. GrabrFi also issues US details, and we have taken it out of the priced comparison because we could not settle its withdrawal fee, which is explained below. Revolut launched a licensed Mexican bank in January 2026, which is real, but it receives dollars by SWIFT rather than domestic ACH, so your client is still sending an international transfer. One more thing, and it is the part nobody writes about: the cheapest way to get paid and the cleanest way to claim 0% IVA on exported services may not be the same route. That is worth thirty minutes with a contador before you optimise for fees.',
