@@ -44,6 +44,62 @@ session does every write.
    same authority it has over live pages. It sets `safe_to_apply`, and a corridor
    that comes back false does not ship.
 
+### The queue
+
+Take the next corridor from the top of this list. When one ships, delete its line.
+Order is the decision, so do not reorder it to pick an easier corridor: a corridor
+sitting at the top because it is hard is exactly the one worth doing.
+
+1. **Brazil (BRL).** Blocking question: does a Brazilian resident, personal or PJ,
+   get USD account details and a USD balance from Wise, or only a BRL payout with
+   the client paying? A Wise help article and Wise's own Brazilian blog say
+   different things. Second question: the current IOF rate on inbound export of
+   services receipts, which changed more than once in 2025. IOF is a tax, not a
+   provider fee, and must never be folded into `fxMarkupBps` or `percentageFee`.
+   Do not add `BR` to `DEST_CURRENCIES_MAP`: the realistic USD holding options are
+   offshore, not a domestic account.
+2. **India (INR).** Blocking question: the same residency question, where the split
+   is probably personal versus Wise Business. Note Wise's April 2025 India launch
+   announced "international" account details, which may mean SWIFT rather than
+   domestic ACH, and that changes both fee and speed. The page's real subject is
+   FIRC versus FIRA versus eBRC and which providers supply one free. Be aware this
+   is the most commercially contested receiving corridor there is, and that if Wise
+   does not serve Indian residents the page is close to unmonetisable. Skydo's flat
+   fee reportedly carries 18% GST on the fee itself, which the calculator has no
+   field for. EEFC accounts require conversion by the end of the following month,
+   so India probably does not get a `DEST_CURRENCIES_MAP` entry either.
+3. **Colombia (COP).** Blocking question: whether inbound service export receipts
+   must be channelled through the mercado cambiario with a declaracion de cambio,
+   or fall in the free market. Read Resolucion Externa 1 de 2018 rather than a
+   summary. Second question: whether a fintech USD balance counts as a cuenta de
+   compensacion requiring registration and monthly reporting. Also establish per
+   provider whether pricing is against the TRM or the interbank mid, because that
+   gap is a spread the reader never sees and the model does not capture. `COP`
+   belongs in the zero-decimal currency list in `formatAmount`.
+4. **Uzbekistan (UZS).** Blocking questions: whether Wise and Revolut serve Uzbek
+   residents at all, and what Payoneer's local withdrawal route is. The corridor's
+   distinctive feature is the IT Park tax regime for IT service exporters and the
+   e-resident programme, which is the reason the page would exist; get its current
+   terms from itpark.uz and soliq.uz rather than from press coverage. Establish the
+   currency rules from cbu.uz: whether a resident may hold and keep a USD account
+   domestically, and whether any repatriation or forced conversion rule applies to
+   service export receipts. Uzbekistan is a strong `DEST_CURRENCIES_MAP` candidate
+   (`UZ: ['UZS', 'USD']`) if domestic USD accounts are confirmed, which would make
+   it the third corridor after Georgia and Thailand where the page can price not
+   converting. Local rails to check: Payme, Click, Uzum Bank, and the Humo and
+   Uzcard national card schemes, none of which reach Visa or Mastercard rails.
+   `UZS` belongs in the zero-decimal currency list.
+
+None of the four can be drafted while the environment's network policy denies
+primary sources. Three were researched on 2026-09-24 and every one returned zero
+opened pages across roughly forty hosts, so the briefs are worklists, not data.
+Do not draft a corridor from secondary sources to get it off this list. The
+alternative route that has actually worked is the site owner capturing the pages
+by hand: Mexico shipped because `wise.com/mx` and `revolut.com/es-MX` were
+supplied as PDFs. One capture of the Wise eligibility page unblocks most of any
+corridor here, because it answers the blocking question and covers the affiliate
+rail at the same time.
+
 ### What a new corridor has to touch
 
 Adding an entry to `CORRIDORS` propagates automatically to three places: the

@@ -48,7 +48,7 @@ export const CORRIDORS: Corridor[] = [
     country: 'Pakistan',
     title: 'Receive USD in Pakistan: real costs compared 2026',
     metaDescription:
-      'Compare the real cost of receiving USD in Pakistan. Payoneer charges ~3% all-in; PayPal and Wise are not available. Live FX rates, worked example, and provider comparison.',
+      'Compare the real cost of receiving USD in Pakistan. Payoneer runs about 3% all in. PayPal and Wise cannot receive. Live FX rates and a worked example.',
     h1: 'How to receive USD in Pakistan: fees, FX spread, and what you actually net',
     intro:
       'Pakistani freelancers have fewer options than most -- PayPal has never launched in Pakistan and Pakistani residents cannot open a Wise account for receiving. Payoneer is the dominant choice at up to about 3% all-in (1% fee + up to 2% FX markup on PKR withdrawal). Western Union advertises a $0 online fee for bank deposits over $200 and a roughly 2% FX spread, but that pricing runs through the Pakistan Remittance Initiative, a home remittance scheme aimed at personal transfers rather than business payments, so it is not a like-for-like price for client invoices. Payoneer remains the standard for recurring freelance income.',
@@ -132,7 +132,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'HBL, UBL, MCB, Meezan Bank, and Bank Alfalah are the most commonly reported to work without issues; Faysal Bank is also frequently mentioned. HBL and Meezan Bank have official real-time withdrawal integrations with Payoneer, making them the fastest routes. The main requirement is that the account is in your legal name exactly as it appears in your Payoneer verification documents (CNIC or passport). Joint accounts or accounts with name mismatches can cause delays or rejections.',
       },
     ],
-    siblingCorridors: ['usd-to-bdt', 'usd-to-ngn', 'usd-to-php'],
+    siblingCorridors: ['usd-to-bdt', 'usd-to-ngn', 'usd-to-php', 'usd-to-mxn'],
   },
 
   // ─── USD → Bangladesh (BDT) ────────────────────────────────────────────────
@@ -145,7 +145,7 @@ export const CORRIDORS: Corridor[] = [
     country: 'Bangladesh',
     title: 'Receive USD in Bangladesh: real costs compared 2026',
     metaDescription:
-      'Compare the real cost of receiving USD in Bangladesh. Payoneer is the main option (~3–5% all-in); PayPal can\'t receive and Wise is receive-only. Live FX + worked example.',
+      'Compare the real cost of receiving USD in Bangladesh. Payoneer is the main option at roughly 3 to 5% all in. PayPal cannot receive. Live FX and worked example.',
     h1: 'How to receive USD in Bangladesh: fees, FX spread, and what you actually net',
     intro:
       'Bangladeshi freelancers receive primarily via Payoneer (~3-5% all-in for bank account withdrawal), and the most popular local step after that is Payoneer to bKash. Payoneer has a direct bKash integration that moves your balance to a bKash wallet typically within hours, though Payoneer charges a higher conversion fee for this route than for bank withdrawals (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal before withdrawing). Bank account withdrawal takes 1-3 business days and generates the Foreign Inward Remittance Certificate (FIRC) required to claim the export cash incentive. PayPal cannot receive commercial payments in Bangladesh, and Wise is not available to Bangladeshi account holders (though a foreign client using Wise can push BDT directly to your bank account, bKash wallet, or Nagad wallet).',
@@ -172,14 +172,14 @@ export const CORRIDORS: Corridor[] = [
         name: 'Bank Wire (SWIFT)',
         available: true,
         notes:
-          'SWIFT wires to Bangladeshi banks (City Bank, Mutual Trust Bank, Midland Bank, Standard Chartered Bangladesh, Dutch-Bangla Bank) are the formal route that generates a Foreign Inward Remittance Certificate (FIRC), which is required to claim the export cash incentive and to fund an Exporter\'s Retention Quota (ERQ) foreign-currency account. The bank converts at the TT Buying Rate, typically 1–2% below mid-market. A typical US bank outgoing wire costs $25–45 flat, and a possible $15–30 correspondent bank deduction can reduce the amount further. On small amounts ($500–2,000) the flat fee dominates; on larger sums ($5,000+) the flat fee becomes negligible and the TT spread is competitive. City Bank, Mutual Trust Bank (MTB), and Midland Bank offer dedicated Freelancer accounts bundling a BDT current account with an ERQ sub-account.',
+          'SWIFT wires to Bangladeshi banks (City Bank, Mutual Trust Bank, Midland Bank, Standard Chartered Bangladesh, Dutch-Bangla Bank) are the formal route that generates a Foreign Inward Remittance Certificate (FIRC), which is required to claim the export cash incentive and to fund an Exporter\'s Retention Quota (ERQ) foreign-currency account. The bank converts at the TT Buying Rate, typically 1 to 2% below mid-market. A typical US bank outgoing wire costs $25 to $45 flat, and a possible $15 to $30 correspondent bank deduction can reduce the amount further. On small amounts ($500 to $2,000) the flat fee dominates; on larger sums ($5,000+) the flat fee becomes negligible and the TT spread is competitive. City Bank, Mutual Trust Bank (MTB), and Midland Bank offer dedicated Freelancer accounts bundling a BDT current account with an ERQ sub-account.',
       },
       {
         slug: 'wise',
         name: 'Wise',
         available: false,
         notes:
-          'Bangladeshi residents cannot open a Wise account, cannot hold USD in a Wise wallet, and cannot get Wise receiving details to share with clients. However, Wise is available as a sending tool for your foreign client: a US client can use Wise to push BDT directly to your Bangladeshi bank account, bKash wallet, or Nagad wallet at Wise\'s mid-market rate: the client pays roughly 0.7–1.9% on their end and your receiving cost is zero. This workaround is useful for direct clients willing to set it up manually, but it does not work on freelance platforms (Upwork, Fiverr) that process payments through their own systems.',
+          'Bangladeshi residents cannot open a Wise account, cannot hold USD in a Wise wallet, and cannot get Wise receiving details to share with clients. However, Wise is available as a sending tool for your foreign client: a US client can use Wise to push BDT directly to your Bangladeshi bank account, bKash wallet, or Nagad wallet at Wise\'s mid-market rate: the client pays roughly 0.7 to 1.9% on their end and your receiving cost is zero. This workaround is useful for direct clients willing to set it up manually, but it does not work on freelance platforms (Upwork, Fiverr) that process payments through their own systems.',
       },
       {
         slug: 'paypal',
@@ -207,7 +207,7 @@ export const CORRIDORS: Corridor[] = [
     faqs: [
       {
         q: 'What is the cheapest way to receive USD in Bangladesh?',
-        a: 'For most Bangladeshi freelancers, Payoneer to a local bank account is the cheapest widely available option at roughly 3–5% all-in (1% receiving fee plus 1.2–4% FX markup on BDT withdrawal). If your direct client is willing to cooperate, asking them to use Wise to push BDT to your bank account, bKash, or Nagad costs you nothing: the client pays roughly 0.7–1.9% on their end. This does not work on Upwork or Fiverr. For large, infrequent payments over $5,000, a SWIFT bank wire becomes cost-competitive once the flat fee is spread over the larger amount, and it generates the FIRC documentation needed for the export cash incentive.',
+        a: 'For most Bangladeshi freelancers, Payoneer to a local bank account is the cheapest widely available option at roughly 3 to 5% all-in (1% receiving fee plus 1.2 to 4% FX markup on BDT withdrawal). If your direct client is willing to cooperate, asking them to use Wise to push BDT to your bank account, bKash, or Nagad costs you nothing: the client pays roughly 0.7 to 1.9% on their end. This does not work on Upwork or Fiverr. For large, infrequent payments over $5,000, a SWIFT bank wire becomes cost-competitive once the flat fee is spread over the larger amount, and it generates the FIRC documentation needed for the export cash incentive.',
       },
       {
         q: 'Does the 2.5% remittance incentive apply to freelancing?',
@@ -219,7 +219,7 @@ export const CORRIDORS: Corridor[] = [
       },
       {
         q: 'How long does it take to receive payments in Bangladesh?',
-        a: 'Payoneer to a local BDT bank account: typically 1–3 business days after the payment clears on the sender\'s side. Payoneer to bKash: typically instant or within a few hours. SWIFT bank wire to a Bangladeshi bank: 1–3 business days in most cases; can be longer if correspondent banks are involved. Most Bangladeshi banks have improved SWIFT processing and straightforward USD→BDT wires usually settle within 2 business days.',
+        a: 'Payoneer to a local BDT bank account: typically 1 to 3 business days after the payment clears on the sender\'s side. Payoneer to bKash: typically instant or within a few hours. SWIFT bank wire to a Bangladeshi bank: 1 to 3 business days in most cases; can be longer if correspondent banks are involved. Most Bangladeshi banks have improved SWIFT processing and straightforward USD to BDT wires usually settle within 2 business days.',
       },
       {
         q: 'Do I have to pay income tax on foreign freelance earnings?',
@@ -247,19 +247,19 @@ export const CORRIDORS: Corridor[] = [
     country: 'Nigeria',
     title: 'Receive USD in Nigeria: real costs compared 2026',
     metaDescription:
-      'Compare the real cost of receiving USD in Nigeria in 2026. Cleva, Grey, LemFi, and Raenest offer near mid-market rates. Payoneer costs more. Live FX and worked example.',
+      'Compare the real cost of receiving USD in Nigeria in 2026. Cleva, Grey and Raenest price near mid-market. Payoneer costs more. Live FX and a worked example.',
     h1: 'How to receive USD in Nigeria: fees, FX spread, and what you actually net',
     intro:
-      'Nigerian freelancers now have strong specialist options: Cleva, Grey, LemFi and Raenest all issue virtual US bank accounts that convert at near mid-market rates, and the ones we can price run about 0.3% to 2.4% all-in on published fees. One thing to read the comparison with: seven providers are covered on this page, but only six are priced in the ranked table. LemFi is a real option and is described below, but it does not publish the mark-up inside its exchange rate, and we will not rank a provider at zero cost when we know its real cost is above zero. Payoneer works but costs roughly 3% all-in and carries a minimum activity threshold (currently $6,000/year per Payoneer\'s help center) below which an annual fee applies. PayPal returned to Nigeria in January 2026 via a Paga partnership, but stacked fees make it roughly 6-7% or more all-in and the most expensive widely-available option.',
+      'Nigerian freelancers now have strong specialist options: Cleva, Grey, LemFi and Raenest all issue virtual US bank accounts, and the ones we can price convert at near mid-market rates, about 0.3% to 2.4% all-in on published fees. One thing to read the comparison with: seven providers are covered on this page, but only six are priced in the ranked table. LemFi is a real option and is described below, but it does not publish the mark-up inside its exchange rate, and we will not rank a provider at zero cost when we know its real cost is above zero. Payoneer works but costs roughly 3% all-in and carries a minimum activity threshold (currently $6,000/year per Payoneer\'s help center) below which an annual fee applies. PayPal returned to Nigeria in January 2026 via a Paga partnership, but stacked fees make it roughly 6-7% or more all-in and the most expensive widely-available option.',
     publishedDate: '2026-06-14',
-    updatedDate: '2026-08-10',
+    updatedDate: '2026-09-24',
     providers: [
       {
         slug: 'lemfi',
         name: 'LemFi',
         available: true,
         notes:
-          'LemFi (formerly Lemonade Finance) issues a virtual US bank account that Nigerian freelancers can share with clients as standard ACH receiving details. Fee structure: no flat fee and no percentage fee on this corridor, but the LemFi terms of service state that its exchange rate is a mark-up on the wholesale market rate, so the cost sits inside the quoted rate rather than in a visible fee. LemFi does not publish the size of that mark-up, and we could not open its pricing or terms pages directly to check, so we are not putting a number on it. The comparison table above still models LemFi at zero cost because we have no verified spread figure to use instead, so treat its position there as a floor rather than a measured all-in cost, and compare the rate quoted in the app against a mid-market reference before assuming LemFi is the cheapest option for your transfer. Typical settlement: 1-2 business days. LemFi is FCA-licensed in the UK, is registered with FINTRAC as a Money Service Business (MSB) in Canada, and operates under CBN approval in Nigeria. As it is a smaller operator than Cleva or Grey, verify current withdrawal limits before relying on it for large amounts.',
+          'LemFi (formerly Lemonade Finance) issues a virtual US bank account that Nigerian freelancers can share with clients as standard ACH receiving details. Fee structure: no flat fee and no percentage fee on this corridor, but the LemFi terms of service state that its exchange rate is a mark-up on the wholesale market rate, so the cost sits inside the quoted rate rather than in a visible fee. LemFi does not publish the size of that mark-up, and we could not open its pricing or terms pages directly to check, so we are not putting a number on it. That is also why LemFi no longer appears in the comparison table above at all: modelling it at no cost would put an impossible free option at the top of the table, so we have unranked it rather than rank it on a number we cannot defend. Compare the rate quoted in the app against a mid-market reference before assuming LemFi is the cheapest option for your transfer. Typical settlement: 1-2 business days. LemFi is FCA-licensed in the UK, is registered with FINTRAC as a Money Service Business (MSB) in Canada, and operates under CBN approval in Nigeria. As it is a smaller operator than Cleva or Grey, verify current withdrawal limits before relying on it for large amounts.',
       },
       {
         slug: 'raenest',
@@ -325,7 +325,10 @@ export const CORRIDORS: Corridor[] = [
           'GrabrFi advertises USD virtual accounts with NGN withdrawal for Nigerian freelancers, but we have not yet verified its current fees and withdrawal mechanism against its official pricing, so it is not included in the ranked comparison above. If you use GrabrFi, verify current fees on grabrfi.com before relying on it.',
       },
     ],
-    supportedProviders: ['lemfi', 'raenest', 'cleva', 'grey', 'payoneer', 'paypal', 'bank-wire'],
+    // lemfi dropped 2026-09-24: it was unranked (supportedDestinationCountries emptied after
+    // three failed passes to source its spread) but left declared here, so the guides page
+    // advertised 7 providers against a table that renders 6. Its prose entry stays below.
+    supportedProviders: ['raenest', 'cleva', 'grey', 'payoneer', 'paypal', 'bank-wire'],
     faqs: [
       {
         q: 'What is the cheapest way to receive USD in Nigeria?',
@@ -441,7 +444,11 @@ export const CORRIDORS: Corridor[] = [
           'GrabrFi accounts are limited to a fixed, short eligibility list of countries, mostly Latin America plus the US, UK, India, Nigeria, and a few others (the exact count has varied across GrabrFi\'s own published lists). The Philippines is not on the list.',
       },
     ],
-    supportedProviders: ['wise', 'gcash', 'payoneer', 'bank-wire', 'paypal', 'western-union'],
+    // gcash and western-union dropped 2026-09-24. Neither produces a quote for US to PH:
+    // gcash is not a Provider in data/providers.ts at all (it is a withdrawal method, covered
+    // in prose), and Western Union has no PH destination and no US to PH fee row. Declaring
+    // them made the guides page advertise 6 providers against a table that renders 4.
+    supportedProviders: ['wise', 'payoneer', 'bank-wire', 'paypal'],
     faqs: [
       {
         q: 'Is Wise available in the Philippines, and can I get USD account details?',
@@ -472,7 +479,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'GCash, yes: the Virtual US Account gives you ACH and wire details inside the app, and dollars land in your wallet as USD. Maya, not in the same way. Maya offers a USD wallet for holding and converting, but we could not confirm client-facing USD receiving details you could hand to a US payer; confirmed routes into Maya are remittance services like Wise, Remitly, WorldRemit, and Western Union, which arrive as pesos. If receiving USD into a wallet is the goal, GCash currently has the feature and Maya does not.',
       },
     ],
-    siblingCorridors: ['usd-to-idr', 'usd-to-thb', 'usd-to-bdt'],
+    siblingCorridors: ['usd-to-idr', 'usd-to-thb', 'usd-to-bdt', 'usd-to-mxn'],
   },
   // ─── USD → Georgia (GEL) ───────────────────────────────────────────────────
   {
@@ -583,7 +590,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'The reported threshold is 30,000 lari or the equivalent in another currency, above which you must declare the money to customs when crossing the border, with penalties for failing to. This one is worth mentioning only because people find the figure and assume it is a limit on bank transfers. It is not. It applies to physical cash and other bearer instruments you carry across the border in person, and it has nothing whatsoever to do with a client wiring dollars into your account. There is no transfer ceiling of that kind in Georgia. We could not open the customs code itself, so treat the exact figure as one to verify if you are actually planning to travel with cash.',
       },
     ],
-    siblingCorridors: ['usd-to-eur-portugal', 'usd-to-thb', 'usd-to-pkr'],
+    siblingCorridors: ['usd-to-eur-portugal', 'usd-to-thb', 'usd-to-pkr', 'usd-to-mxn'],
   },
   // ─── USD → Portugal (EUR) ──────────────────────────────────────────────────
   {
@@ -691,7 +698,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'If the account is euro-only, yes, and at whatever rate the bank applies that morning. You do not get to wait for a better one, and the retail spread a Portuguese bank applies is usually well above what Wise or Revolut charge. On top of that the bank takes an inbound foreign transfer commission from its published precario, and a correspondent bank may have already deducted its own fee in transit, which is why the amount that lands is often less than the amount your client sent. On a large payment a wire is still defensible, since the flat costs shrink as a percentage and it produces excellent documentation. If you take dollar wires regularly, ask your bank about a dollar-denominated account so the conversion becomes your decision rather than theirs, and weigh its maintenance fee against what timing your own conversions would save.',
       },
     ],
-    siblingCorridors: ['usd-to-gel', 'usd-to-thb', 'usd-to-php'],
+    siblingCorridors: ['usd-to-gel', 'usd-to-thb', 'usd-to-php', 'usd-to-mxn'],
   },
   // ─── USD → Thailand (THB) ──────────────────────────────────────────────────
   {
@@ -900,5 +907,124 @@ export const CORRIDORS: Corridor[] = [
       },
     ],
     siblingCorridors: ['usd-to-thb', 'usd-to-php', 'usd-to-pkr'],
+  },
+  // USD to Mexico (MXN)
+  {
+    slug: 'usd-to-mxn',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'MXN',
+    destCountry: 'MX',
+    country: 'Mexico',
+    title: 'Receive USD in Mexico: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in Mexico. Wise does not sell residents its multi-currency account, and three of the best options publish no FX rate.',
+    h1: 'How to receive USD in Mexico: what works, what the guides get wrong, and the IVA trap',
+    intro:
+      'Start with the thing most guides get wrong. Wise does not sell Mexican residents the multi-currency account it sells almost everywhere else. We checked wise.com/mx on 24 September 2026. The only personal products in the menu were an international money transfer and a large amount transfer, both of them outbound, alongside Wise Platform, which is sold to banks and businesses rather than to you. There is no multi-currency account, no account details and no card anywhere in that menu. The page is built around moving pesos out to dollars, with a worked example of 10,000 pesos becoming $561.38. So this is an argument from what Wise does not offer here rather than a quoted eligibility rule, and you should weigh it as that. But if you were about to hand a client Wise details expecting a US routing number, check the app first. What does work: Payoneer gives you US receiving details, Higlobe does too and pays out to your CLABE in minutes, and a plain SWIFT wire into your Mexican bank still works the way it always has. GrabrFi also issues US details, and we have taken it out of the priced comparison because we could not settle its withdrawal fee, which is explained below. Revolut launched a licensed Mexican bank in January 2026, which is real, but it receives dollars by SWIFT rather than domestic ACH, so your client is still sending an international transfer. One more thing, and it is the part nobody writes about: the cheapest way to get paid and the cleanest way to claim 0% IVA on exported services may not be the same route. That is worth thirty minutes with a contador before you optimise for fees.',
+    publishedDate: '2026-09-24',
+    updatedDate: '2026-09-24',
+    providers: [
+      {
+        slug: 'higlobe',
+        name: 'Higlobe',
+        customHeading: 'Higlobe: US account details, and not in our comparison',
+        available: true,
+        notes:
+          'The one option we found that gives a Mexican resident genuine US domestic receiving details, an account number and an ABA routing number in your own name, so a US client pays you by ordinary ACH. Payout lands in your Mexican bank in minutes rather than days. It is not in the comparison above, and the reason is structural rather than a judgement about the product: Higlobe charges a monthly subscription reported at $4.99 and takes the rest of its margin as a spread on the exchange rate that it does not publish as a number. Our fee model has a fixed fee and a percentage fee and no field for a recurring cost, so a subscription would either show as free or show as wrong, and neither helps you. Note that when Higlobe\'s own support material says the spread is the only charge you will incur, it means the only charge per transfer, on top of the subscription. Eligibility is reported as Mexican citizens and permanent residents working with US business clients, and the Mexican offer has been described as free for a limited time, the kind of promotion that expires quietly. Check the current price and compare the rate it quotes you against the mid-market rate before you move real volume through it.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        available: true,
+        notes:
+          'The familiar option, and the default payout on Upwork and Fiverr. You get USD receiving details with US bank information, your client pays those, and you withdraw pesos to a Mexican bank account in one to three business days. Payoneer charges up to 1% to receive a bank-funded payment, then a currency conversion charge on the withdrawal that its own material describes as up to 2%. Our model uses that 2%, because it is the number Payoneer publishes. We also found one source claiming up to 3.5% for dollars into pesos specifically, and we could not open Payoneer\'s pricing page to settle which applies to you, so read the cost off your own payout screen rather than off our table. The minimum withdrawal is reported at around $50. If your income arrives through a platform that already pays into Payoneer, the integration counts for something on its own. If you are invoicing direct clients, look at what the rest of this page costs first.',
+      },
+      {
+        slug: 'grabrfi',
+        name: 'GrabrFi',
+        customHeading: 'GrabrFi: US account details, and a fee we could not settle',
+        available: true,
+        notes:
+          'A US dollar account aimed at freelancers outside the US. The payout to a Mexican CLABE arrives as a domestic SPEI credit, usually same day, up to a reported ceiling of $5,000 per withdrawal. We have pulled it out of the priced comparison, and we want to be specific about why, because we earn a referral commission if you sign up through us. We could not settle the withdrawal fee. The readings we could reach contradict each other: one gives a flat $2 for Mexico, one gives a per country table that does not list Mexico at all, and one gives 0.3% of the amount with a $1 minimum and a $5 maximum. GrabrFi\'s own help centre is unreachable from our tooling, so we have not resolved it, and picking whichever of the three we liked best would be a guess wearing a number\'s clothes. One figure does hold across every reading: the separate $10 charge is a bank rejection fee, deducted from the refund when the receiving bank bounces the payout, not a withdrawal charge. The exchange rate is the other unknown. GrabrFi publishes no spread anywhere. The rate appears in the app before you confirm and locks when you accept it, with the margin folded in and described as including all taxes and fees. None of that makes GrabrFi a bad option, and the US account details are genuinely useful. It means we cannot put a price on it, so check the fee and the rate in the app against the mid-market rate yourself.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        customHeading: 'Revolut Mexico is a real bank now, but it is not an ACH route',
+        available: true,
+        notes:
+          'This changed in January 2026 and most articles about receiving dollars in Mexico predate it. Revolut Bank, S.A., Institucion de Banca Multiple is a CNBV licensed Mexican bank, and its Mexican site lists IPAB among the authorities it answers to, so deposits are covered. It has been described as the first full banking licence Revolut obtained outside Europe, which we could not confirm ourselves. Signup is limited to Mexican residents aged 18 or over with an INE. You get a Mexican CLABE for domestic SPEI, and the plans run from a free Estandar tier to Premium at 149 pesos a month plus IVA and Metal at 349. What you do not get, as far as we can establish, is a US routing number. Revolut\'s Mexican guidance describes receiving foreign currency through the SWIFT tab in the app, which means your US client sends an international wire and the usual intermediary bank deductions apply. That is a materially different product from the US account details Payoneer, GrabrFi and Higlobe give you. On cost we have to stop short. The Mexican site links to a costs and commissions schedule rather than printing one, and we could not open it, so we have no inbound receiving fee for the Mexican entity. The figures we previously carried here came from other Revolut entities, one of them a US outbound sending charge, which is the wrong side of this transaction and the wrong company. We have removed the row rather than dress a placeholder up as a quote. Open the app, read what the SWIFT tab says, and price it yourself.',
+      },
+      {
+        slug: 'bank-wire',
+        name: 'Bank Wire (SWIFT)',
+        customHeading: 'The expensive route your accountant may prefer anyway',
+        available: true,
+        notes:
+          'Flat fees make a wire painful on small invoices and irrelevant on large ones. Your client\'s US bank charges roughly $25 to $45 to send, a correspondent bank may take a cut in transit, and your Mexican bank converts at its own spread, which it does not show you as a line item. On a $1,000 invoice that is brutal. On a $20,000 project payment it rounds to noise. The reason to consider it anyway is documentary rather than financial, and it is explained in the IVA question below: a wire arrives from a foreign bank and produces a SWIFT confirmation, while a payout from Payoneer or GrabrFi reaches you as a domestic transfer from a Mexican payment company. If you are claiming the 0% export rate on IVA, those two things may not be equivalent in the eyes of the tax authority. We have not re-verified the sending fee or the bank spread in our model recently, so treat both as indicative.',
+      },
+      {
+        slug: 'western-union',
+        name: 'Western Union',
+        available: true,
+        notes:
+          'It carries our best value badge at the $1,000 comparison amount, and we want to explain why rather than let you assume it is a recommendation. The badge goes to the cheapest option whose exchange rate margin we can actually source. Western Union does come out cheapest of the four we can price, roughly 2% all in on $1,000 against Payoneer\'s roughly 3%, and there are three things to read alongside that. The 1.5% spread we model is not a Western Union figure, because Western Union publishes none; it comes from third party rate comparison, so treat it as indicative. The flat $5 fee means the ranking depends on size, and below about $330 on our own figures Payoneer nets you more. And the field is thinner than it looks: the three providers a freelancer would more likely want, Higlobe, GrabrFi and Revolut Mexico, are all absent from the priced table because none of them publishes a spread we could read, so the badge says more about what we can verify than about what suits you. Western Union is built and priced for someone sending money to family, not for a client settling a commercial invoice, which is the same mismatch we flag on the Pakistan page. How your transfer gets classified is your client\'s decision rather than yours, and the sender picks the fee and the rate. Fine occasionally. Not a rail to build your invoicing on.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        available: true,
+        notes:
+          'Available, universally understood, and the most expensive thing on this page by a wide margin. A cross-border commercial receiving fee stacks on top of a currency conversion charge, and the conversion is the half people forget to count when they compare it to anything else. We have not re-verified the Mexican percentages recently, so the figures above carry over from PayPal\'s general cross-border pricing and should be treated as estimates rather than quotes. Use it when a client refuses to use anything else, and move your recurring clients somewhere cheaper.',
+      },
+      {
+        slug: 'wise',
+        name: 'Wise',
+        customHeading: 'Why Wise does not work here, despite what you have read',
+        available: false,
+        notes:
+          'On 24 September 2026 the Mexican Wise site sold two personal products, an international money transfer and a large amount transfer. The only other thing in the product menu was Wise Platform, which is sold to banks and businesses. No multi-currency account, no account details and no card appeared anywhere in that menu. The whole page argues the outbound case, moving pesos into dollars and euros, and it works: the live example converted 10,000 pesos to $561.38 for 125.78 pesos in fees, about 1.26%. The site says Wise is regulated in Mexico by the Comision Nacional Bancaria y de Valores, and the entity in the footer is Wise Payments Limited, the UK company. So the account product is not sold here. That is not the same as a rule saying you cannot have one. We could not open Wise\'s help centre to find an eligibility page either way. Several guides written for Mexican freelancers read as though a Wise USD balance with US account details is available, and we could not open them to quote anyone, so treat that as our impression of the search results rather than a finding about any named publisher. The practical advice survives the uncertainty: before you put Wise details on an invoice, open the app and check whether your account actually has a US routing number. We also have a commercial interest to declare, which cuts the other way for once. Wise is the affiliate programme this site earns from, and on this corridor we cannot point you to it.',
+      },
+    ],
+    supportedProviders: ['western-union', 'payoneer', 'bank-wire', 'paypal'],
+    faqs: [
+      {
+        q: 'Can a US client pay me by ACH if I live in Mexico?',
+        a:
+          'Yes, but only through a provider that issues you US account details in your own name. Payoneer does, GrabrFi does, and Higlobe does. Wise does not sell the account that would carry them in Mexico. Revolut Mexico does not either, as far as we can establish: it gives you a Mexican CLABE for domestic transfers and receives foreign currency over SWIFT, which is a wire rather than an ACH. The distinction decides who pays and how long you wait. A domestic ACH is free for your client to send and lands in a couple of business days. An international wire costs the sender a fee, can be trimmed by an intermediary bank on the way, and reaches you in one to three business days with less predictability about the exact amount. If your client is a US company with an accounts payable department, handing them US account details usually removes an entire conversation.',
+      },
+      {
+        q: 'Do I charge IVA to a US client, and does my payment route affect it?',
+        a:
+          'This is the most consequential question on the page and the one we most want you to take to a contador. The default rate is 16%, and it does not disappear simply because your client is foreign. The 0% export rate comes from a closed list in article 29 of the IVA law, which names things like technical assistance, advertising, commissions, insurance, financing, filming, call centre services, and IT services including software development and hosting. General consulting, coaching and design work are not obviously on that list, whatever the blogs promising 0% to every freelancer tell you. Two further conditions ride on top. The service has to be used abroad, meaning the economic benefit lands outside Mexico rather than merely the client being foreign. And there is a condition on how you get paid, which is looser than it is usually reported. The strictest wording, which attaches to specific categories including IT services, calls for an electronic transfer from an account at a foreign financial institution into your account at a Mexican credit institution. The general test in the regulation is reported to be broader and to accept a nominative cheque as well. We could not open the law or the regulation directly, so do not rely on our summary of which version applies to the service you actually sell. Where this may matter for your rails: when your client pays your Payoneer, GrabrFi or Higlobe account and you then withdraw pesos, what your Mexican bank statement records is a domestic transfer from a Mexican payment company, not a transfer from a foreign bank. A direct SWIFT wire produces the paper trail the strict rule literally describes. We have not seen a tax authority ruling either way, and we are not qualified to give you one, so please do not treat this as settled. But if you are claiming 0%, ask your accountant which of your rails actually evidences it before you optimise everything for the lowest fee.',
+      },
+      {
+        q: 'How do I invoice a client who has no RFC?',
+        a:
+          'You still issue a CFDI, using the generic RFC for foreign residents, XEXX010101000. The receptor regime is 616, sin obligaciones fiscales, and the uso del CFDI is normally S01, sin efectos fiscales. CFDI 4.0 validation carries a specific exception for that generic RFC so it does not fail the check that the tax ID exists and is active. You also record your client\'s country of tax residence and their foreign tax identification number. One wrinkle that trips people up: some guidance says using a generic RFC forces the receptor name to read publico en general, while invoicing a foreign client normally uses the client\'s actual name alongside the residency and foreign tax ID fields. Those two rules describe different situations, and the material we could reach does not separate them cleanly. Have your contador set the template up once and then stop thinking about it. Mexico has no equivalent of the inward remittance certificate some countries issue, so your evidence of foreign income is the CFDI you raised plus the bank record showing the money arriving.',
+      },
+      {
+        q: 'How much tax do I pay in RESICO if I bill in dollars?',
+        a:
+          'RESICO for individuals taxes gross income you actually collected, with no deductions, on a monthly scale that starts at 1% and rises to 2.5% at the top. The reported bands run 1% up to 25,000 pesos a month, 1.10% to 50,000, 1.50% to 83,333, 2% to 208,333, and 2.5% above that, under an annual ceiling of 3,500,000 pesos. Billing in dollars changes nothing about the rate: you convert at the applicable exchange rate and declare in pesos. One correction to a claim that circulates widely in English: having a salaried job does not disqualify you. The law expressly allows RESICO alongside wages and interest income. Whether your salary and interest then count toward the RESICO ceiling is genuinely disputed. The miscellaneous rule that governs this, regla 3.13.8, is read by some practitioners as requiring the combined total to stay under the limit and by others as excluding salary and interest from the limit entirely, and we could not open the rule text to settle it. If you have a salaried job alongside your freelancing, that is a question for your contador. What does disqualify you is structural, mainly being a partner or shareholder in a company, or a related party. What gets you thrown out is behavioural, including missed declarations and failing to issue CFDIs for your income. Our sources also disagreed on whether exceeding the ceiling bars you permanently or only until you drop back under it. We could not open the tax authority directly, and during this check two searches returned two different 2026 ceilings, so verify the current bands before planning around them.',
+      },
+      {
+        q: 'Does the MTU limit affect money I receive from abroad?',
+        a:
+          'No, and we should say so plainly, because the rule caused a lot of confusion when it landed. The Monto Transaccional del Usuario became mandatory in January 2026 and sets a ceiling on what you can move out through digital channels: SPEI transfers, CoDi, and payments you initiate in an app or in online banking. Customers who never set one had a default applied, commonly reported at around 1,500 UDIs, roughly 12,800 pesos, though it varies by institution. Sources disagree on whether that ceiling applies per transaction or per day, and we could not reach the regulator to settle it. What is consistent is the direction: it constrains outbound operations you start, and it does not cap credits arriving into your account, so a wire from a client or a payout from Payoneer is not an MTU event. Where it does bite is immediately afterwards, when you try to move that money to another bank or pay somebody, and discover a limit you never set. Raise it in your banking app before you need it rather than during a transfer.',
+      },
+      {
+        q: 'Can I open a US dollar account at a Mexican bank?',
+        a:
+          'Probably not at a traditional Mexican bank, unless you live near the northern border. Mexican banks are reported to offer dollar accounts to individuals mainly in the border strip and in Baja California and Baja California Sur, with some banks making exceptions where income arrives by verifiable electronic transfer. Products marketed on that basis exist at more than one large bank. There is one possible exception this page has already introduced, and we should not answer as if it did not exist: Revolut Bank Mexico is a CNBV licensed Mexican bank, and Revolut holds balances in many currencies in its app elsewhere. Revolut\'s Mexican terms and its currency list are both behind doors our tooling cannot open, so treat that as something to test in the app rather than something we have verified. Two rules also get conflated constantly here and they are not the same thing: there are separate limits on depositing physical dollar cash, which is an anti-money-laundering measure, and neither those limits nor the account eligibility rules stop an incoming wire from being converted to pesos and credited to an ordinary peso account. So receiving dollars is not restricted. Holding them is a product availability problem. We could not open the underlying central bank circular either, so if this matters to your plans, ask two or three banks directly rather than trusting a summary.',
+      },
+      {
+        q: 'What is the cheapest way to receive USD in Mexico?',
+        a:
+          'Honestly, we cannot rank this one as cleanly as we would like, and it is better to say so than to pretend. The three options most likely to suit a freelancer are the three we cannot price. Higlobe, GrabrFi and Revolut Mexico each publish no exchange rate margin, and GrabrFi\'s withdrawal fee comes back three different ways depending on which source you read, so none of them appears in the comparison above. On a $5,000 invoice a spread you cannot see will dwarf a fee you can, and that is why we will not put a number on them. Of what we can price, Western Union tops the table at the $1,000 amount, roughly 2% all in, but the spread behind that number is third party rather than published and it is a family remittance rail rather than an invoicing one, so read the Western Union section above before you choose it. Payoneer is the most predictable at roughly 3% all in, which is the price of not having to think about it. A wire is the one option we would not pick on cost: the flat sending fee stops mattering as the invoice grows, but your Mexican bank\'s own spread does not, and on our figures that spread alone is more than Payoneer\'s entire all in cost. The case for a wire is documentary rather than financial, and that case is in the IVA question above. Our practical suggestion: open accounts at two of the unpriced three, get a real quote for your actual invoice size on the same afternoon, compare the pesos that land rather than the fees quoted, and factor in what your accountant says about the IVA question above.',
+      },
+    ],
+    siblingCorridors: ['usd-to-php', 'usd-to-gel', 'usd-to-eur-portugal', 'usd-to-pkr'],
   },
 ];
