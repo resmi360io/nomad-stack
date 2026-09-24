@@ -56,7 +56,13 @@ export const PROVIDERS: Provider[] = [
     lastVerified: '2026-08-27',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     // Wise balance availability excludes Indonesia (receiving/holding ended 23 May 2024)
-    // and Mexico (residents cannot open currency balances). Both removed as destinations.
+    // and Mexico. Both removed as destinations. On Mexico the evidence is absence of product,
+    // NOT a published eligibility rule: wise.com/mx on 2026-09-24 offered only outbound
+    // transfers (personal and large amount) plus Wise Platform, with no multi-currency
+    // account, no account details and no card in the product menu. Do not restate that as
+    // a rule saying Mexican residents cannot hold a balance.
+    // MX stays in supportedSourceCountries: the same capture showed a live outbound quote
+    // (MXN 10,000 to USD 561.38, 125.78 MXN in fees), so Mexican residents can still send.
     // MX stays in supportedSourceCountries: Mexican residents can still send, not hold.
     supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'TH', 'PH'],
     corridors: [
@@ -183,7 +189,7 @@ export const PROVIDERS: Provider[] = [
   // Source: https://assets.revolut.com/legal/terms/International_Payments_Pricing_Sheet.pdf
   //
   // Standard plan fee model:
-  //   — Local-currency network (EUR/SEPA, some MXN): 0.3% transfer fee, 0 bps FX weekdays
+  //   - Local-currency network (EUR/SEPA): 0.3% transfer fee, 0 bps FX weekdays
   //   — SWIFT (GEL, THB, IDR, and others without local network): $3 flat fee (USD/EUR/GBP source)
   //   — FX markup: 0 bps weekdays; +100 bps weekends (major currencies); +200 bps weekends (exotic: GEL, THB, IDR)
   //   - Fair use limit: $1,000/month currency exchange; +0.5% above limit.
@@ -482,6 +488,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.044,
         fxMarkupBps: 350,
         typicalHours: 24,
+        fxMarkupEstimated: true,  // 3.5% is PayPal's general cross-border spread, not a Mexico figure; the corridor copy calls it an estimate
       },
       // Thailand: the 2022 relaunch removed commercial receiving from personal accounts.
       // Personal-account identity verification runs through NDID, which requires a 13-digit
@@ -809,6 +816,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 350,
         typicalHours: 72,
+        fxMarkupEstimated: true,  // Mexican banks do not publish the spread on an inbound wire; the corridor copy calls fee and spread indicative
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -947,7 +955,7 @@ export const PROVIDERS: Provider[] = [
       notes: 'Typical SWIFT estimate; check with your specific bank for exact fees',
     },
     notes: 'Fees vary by bank. Correspondent bank charges may reduce received amount unpredictably.',
-    caveat: 'EU→EU routes use SEPA (cheap, ~1h). Other routes use SWIFT ($35 fee, 2–5 days, 3.5% FX).',
+    caveat: 'EU to EU routes use SEPA (cheap, ~1h). Other routes use SWIFT ($35 fee, 2 to 5 days, 3.5% FX).',
   },
 
   // ─── Paysera ────────────────────────────────────────────────────────────────
@@ -990,7 +998,7 @@ export const PROVIDERS: Provider[] = [
       fxMarkupEstimated: true,
     },
     notes: 'Paysera issues a Lithuanian IBAN to Georgian residents. EU clients send via SEPA; Paysera charges €0 to receive. NBG-licensed bank in Georgia.',
-    caveat: 'You give your EU client a Lithuanian IBAN (LT…). They pay their bank\'s SEPA fee (~€0–5) separately, not deducted from your amount.',
+    caveat: 'You give your EU client a Lithuanian IBAN (LT…). They pay their bank\'s SEPA fee (~€0 to €5) separately, not deducted from your amount.',
   },
 
   // ─── Cleva ─────────────────────────────────────────────────────────────────
