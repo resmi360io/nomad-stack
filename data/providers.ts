@@ -403,8 +403,11 @@ export const PROVIDERS: Provider[] = [
         notes: '1% receiving fee + up to 2% FX markup on PKR withdrawal to local bank',
       },
       // USD → Bangladeshi BDT bank account
-      // Source: payoneer.com/legal/fees/ (updated Jan 2026) — 1% receiving fee + 1.2–4% FX on BDT withdrawal
-      // Modeled at ~2% FX markup as representative midpoint; Payoneer-to-bKash route costs ~3% + $1 instead
+      // Source: payoneer.com/legal/fees/ (updated Jan 2026). The attribution of the 1.2-4%
+      // BDT range to that schedule was WITHDRAWN 2026-09-22: payoneer.com could not be
+      // opened, and Payoneer's withdraw-funds material is quoted as a single "up to 2%"
+      // for a local withdrawal in a different currency. Modeled at 2% on that basis, NOT
+      // as a midpoint of 1.2-4%, which would be 2.6%. Payoneer-to-bKash costs ~3% + $1.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'BD', currency: 'BDT' },
