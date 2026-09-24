@@ -4,6 +4,12 @@
 export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT' | 'NGN' | 'PHP' | 'BRL';
 export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK' | 'BD' | 'NG' | 'PH' | 'BR';
 
+// NOTE ON `notes` FIELDS IN THIS FILE: neither CorridorFee.notes nor Provider.notes is
+// rendered anywhere. The only provider prose a reader sees comes from CorridorProviderEntry.notes
+// in data/corridors.ts, via app/receive/[corridor]/page.tsx, and from Provider.caveat, via
+// components/ResultsTable.tsx. Verified by grepping every `.notes` read in app/, components/ and
+// lib/ on 2026-09-24. Two review passes have flagged dashes in these strings as reader-facing;
+// they are not. Provider.caveat IS reader-facing and must stay free of em and en dashes.
 export interface CorridorFee {
   source: { country: CountryCode; currency: Currency };
   destination: { country: CountryCode; currency: Currency };
@@ -74,7 +80,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.0137,
         fxMarkupBps: 0,
         typicalHours: 48,
-        notes: '~1–2 business days for GEL',
+        notes: '~1 to 2 business days for GEL',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -122,40 +128,44 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 24,
         notes: 'USD received by ACH is free. 0.5% to convert USD to BRL at the mid-market rate. Payout to a Brazilian account by Pix or TED.',
       },
-      // Verified: ~$4.80 fee on $1,000 USD send ($0.69 fixed + 0.41%)
-      // Wise is migrating Thai-address personal customers onto its Bank of Thailand
-      // licensed local entity. After migration, third-party payments arriving into
-      // foreign-currency receiving details are automatically converted to THB on arrival,
-      // so a Thai-resident freelancer can still be paid but can no longer hold the USD.
-      // Reported timing: accounts opened after 21 January 2026 were scheduled to migrate by
-      // the end of August 2026; as of mid-September 2026 we could not confirm that wave
-      // completed. Accounts opened before that date, from around October 2026, unconfirmed.
-      // Fee row values are unaffected either way. Verify current.
+      // THB fee REDERIVED 2026-09-24 from Wise's own quote endpoint, payIn BALANCE and payOut
+      // BANK_TRANSFER, which is the case this corridor prices: a freelancer already holding client
+      // dollars converts them to baht. Three points, mid rate 33.45 on all three:
+      //   USD   350 -> 3.88  (1.109%)
+      //   USD 1,000 -> 7.70  (0.770%)
+      //   USD 5,000 -> 31.16 (0.623%)
+      // Those fit 1.83 fixed + 0.5865%, which predicts 3.888 / 7.70 / 31.18. The previous row,
+      // 0.69 + 0.41%, gave 4.79 on 1,000 and understated the real cost by about 60%. It had been
+      // recorded as "verified ~$4.80 on $1,000" and no longer reconciled with anything Wise
+      // publishes. Raised at review on 2026-09-24, which declined to write a number from a single
+      // data point; this row comes from three. Ranking-neutral: Wise keeps the badge on this
+      // corridor either way, ahead of Western Union.
       //
-      // OPEN, RANKING-MOVING, RAISED 2026-09-24, NOT YET REVIEWED. Wise's own help page
-      // "Where do I need to live to hold money with Wise?"
-      // (wise.com/help/articles/2813542/where-can-i-open-a-wise-balance, read 2026-09-24)
-      // lists under Additional restrictions, verbatim:
-      //   "Thailand - we've temporarily stopped issuing currencies and account details
-      //    for customers in Thailand."
-      // That is stronger than the migration story above, which says a Thai resident can
-      // still be paid into foreign-currency receiving details and is simply converted on
-      // arrival. If Wise is not issuing account details to Thai customers at all, a Thai
-      // freelancer may have no way to get the USD receiving details this corridor assumes,
-      // and Wise currently holds the best value badge on usd-to-thb on exactly that route.
-      // Do NOT change the ranking on this comment alone. It needs a verifier and a reviewer:
-      // establish whether the pause covers new accounts only or all customers, whether it
-      // is still in force, and whether existing details keep working. The same page also
-      // says "India - you can hold money in your account when travelling overseas", which
-      // is relevant to the queued India corridor.
+      // Wise is migrating Thai-address personal customers onto its Bank of Thailand licensed local
+      // entity. After migration, third-party payments arriving into foreign-currency receiving
+      // details are automatically converted to THB on arrival, so a Thai-resident freelancer can
+      // still be paid but can no longer hold the USD. Wise's current text: customers who signed up
+      // before 21 January 2026 see the changes from October 2026; those who signed up after are
+      // rolled out progressively and on them by August 2026. The same article also says nothing
+      // changes until October 2026, which does not sit easily with the August date. Both reported.
+      //
+      // REVIEWED 2026-09-24, ranking unchanged. Wise's eligibility page
+      // (wise.com/help/articles/2813542) says under Additional restrictions: "Thailand - we've
+      // temporarily stopped issuing currencies and account details for customers in Thailand."
+      // Re-read independently at review. It carries NO date, NO new-versus-existing split and no
+      // Thailand-specific article explaining it, wise.com/help/articles/2810318 does not list
+      // Thailand among the countries where USD details are unavailable, and wise.com/th still
+      // markets the multi-currency account, account details from over ten countries and the card.
+      // Judged not strong enough to delist or move the badge. The corridor copy scopes the claim
+      // for the reader instead: if you do not already hold USD details, check you can get them.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'TH', currency: 'THB' },
-        fixedFee: 0.69,
-        percentageFee: 0.0041,
+        fixedFee: 1.83,
+        percentageFee: 0.00587,
         fxMarkupBps: 0,
-        typicalHours: 24,
-        notes: 'Typically 1 to 2 business days for THB. Client payments in USD are auto-converted to THB on arrival once your account moves to Wise Thailand, so you cannot hold dollars. Verify current.',
+        typicalHours: 36,
+        notes: 'Typically 1 to 2 business days for THB. Wise\'s eligibility page says it has temporarily stopped issuing currencies and account details for customers in Thailand, with no date given. Once your account moves to Wise Thailand, non-THB client payments are auto-converted to THB on arrival, and payments or transfers out are capped at 10,000 THB per transaction and 30,000 THB per day. Verify current.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -468,7 +478,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 200,
         typicalHours: 72,
-        notes: '1% receiving fee + ~2% FX markup on BDT withdrawal (range 1.2–4%); bKash route ~3% + $1 instead',
+        notes: '1% receiving fee + ~2% FX markup on BDT withdrawal (range 1.2 to 4%); bKash route ~3% + $1 instead',
       },
       // USD → Nigerian NGN bank account
       // Source: payoneer.com/legal/fees/ — 1% receiving fee + up to 2% FX markup on NGN withdrawal
@@ -531,7 +541,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.044,
         fxMarkupBps: 350,
         typicalHours: 24,
-        notes: '4.4% + $0.30 cross-border receiving fee; instant to PayPal balance, 1–3 days to bank',
+        notes: '4.4% + $0.30 cross-border receiving fee; instant to PayPal balance, 1 to 3 days to bank',
       },
       // BR: paypal.com/br/webapps/mpp/merchant-fees. Commercial payment 4.79%, plus a further
       // 1.61% because the payer is international, plus a fixed 0.60 BRL, plus 3.50% above the base
@@ -566,9 +576,16 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'TH', currency: 'THB' },
         fixedFee: 0.30,
         percentageFee: 0.044,
-        fxMarkupBps: 350,
+        fxMarkupBps: 300,
         typicalHours: 24,
-        notes: 'Thai personal accounts cannot receive commercial payments since the 2022 relaunch, and NDID verification requires a Thai national ID, so foreign residents cannot open one. A Thai-registered business account is the reported route. Verify current.',
+        // 350 bps corrected to 300 at review 2026-09-24: PayPal Thailand publishes 3.00% above its
+        // base rate, not 3.50%. The old note was also FACTUALLY WRONG and is replaced. Personal
+        // accounts CAN receive goods and services payments; the 2022 relaunch removed friends and
+        // family and Payouts (Mass Pay), not commercial receiving. Confirmed from the relaunch FAQ
+        // and, post-relaunch, from the PayPal (Thailand) Limited user agreement effective
+        // 20 February 2024. The 11.00 THB fixed fee applies to amounts received IN BAHT, so the
+        // 0.30 USD stays on this row, which prices a USD receipt.
+        notes: 'PayPal Thailand publishes 4.40% plus a fixed fee for cross-border commercial payments, 3.90% domestic, an 11.00 THB fixed fee on amounts received in baht, and 3.00% currency conversion above its base rate, rising to 4.00% on refunds and on payments sent more than a day after. Personal accounts CAN receive goods and services payments. Verification needs a 13-digit Thai national ID, so foreign residents of Thailand are unlikely to be approved for a personal account. Withdrawal to a Thai bank is free at 5,000 THB or more. PayPal Thai fee pages still carry 2021 effective dates. Verify current.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -847,7 +864,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 350,
         typicalHours: 96,
-        notes: '$25–45 sending fee + $10–25 correspondent fee; may arrive as USD then converted locally',
+        notes: '$25 to 45 sending fee + $10 to 25 correspondent fee; may arrive as USD then converted locally',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -997,7 +1014,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 150,
         typicalHours: 72,
-        notes: '$35 flat + TT buying rate ~1–2% below mid-market; generates FIRC for export incentive claims.',
+        notes: '$35 flat + TT buying rate ~1 to 2% below mid-market; generates FIRC for export incentive claims.',
       },
       // USD → Nigerian NGN bank account via SWIFT
       // Nigerian banks (GTBank, Access Bank, Zenith) convert at NFEM window rate + ~2% spread
