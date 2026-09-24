@@ -479,7 +479,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'GCash, yes: the Virtual US Account gives you ACH and wire details inside the app, and dollars land in your wallet as USD. Maya, not in the same way. Maya offers a USD wallet for holding and converting, but we could not confirm client-facing USD receiving details you could hand to a US payer; confirmed routes into Maya are remittance services like Wise, Remitly, WorldRemit, and Western Union, which arrive as pesos. If receiving USD into a wallet is the goal, GCash currently has the feature and Maya does not.',
       },
     ],
-    siblingCorridors: ['usd-to-idr', 'usd-to-thb', 'usd-to-bdt', 'usd-to-mxn'],
+    siblingCorridors: ['usd-to-idr', 'usd-to-thb', 'usd-to-bdt', 'usd-to-mxn', 'usd-to-brl'],
   },
   // ─── USD → Georgia (GEL) ───────────────────────────────────────────────────
   {
@@ -590,7 +590,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'The reported threshold is 30,000 lari or the equivalent in another currency, above which you must declare the money to customs when crossing the border, with penalties for failing to. This one is worth mentioning only because people find the figure and assume it is a limit on bank transfers. It is not. It applies to physical cash and other bearer instruments you carry across the border in person, and it has nothing whatsoever to do with a client wiring dollars into your account. There is no transfer ceiling of that kind in Georgia. We could not open the customs code itself, so treat the exact figure as one to verify if you are actually planning to travel with cash.',
       },
     ],
-    siblingCorridors: ['usd-to-eur-portugal', 'usd-to-thb', 'usd-to-pkr', 'usd-to-mxn'],
+    siblingCorridors: ['usd-to-eur-portugal', 'usd-to-thb', 'usd-to-pkr', 'usd-to-mxn', 'usd-to-brl'],
   },
   // ─── USD → Portugal (EUR) ──────────────────────────────────────────────────
   {
@@ -1025,6 +1025,143 @@ export const CORRIDORS: Corridor[] = [
           'Honestly, we cannot rank this one as cleanly as we would like, and it is better to say so than to pretend. The three options most likely to suit a freelancer are the three we cannot price. Higlobe, GrabrFi and Revolut Mexico each publish no exchange rate margin, and GrabrFi\'s withdrawal fee comes back three different ways depending on which source you read, so none of them appears in the comparison above. On a $5,000 invoice a spread you cannot see will dwarf a fee you can, and that is why we will not put a number on them. Of what we can price, Western Union tops the table at the $1,000 amount, roughly 2% all in, but the spread behind that number is third party rather than published and it is a family remittance rail rather than an invoicing one, so read the Western Union section above before you choose it. Payoneer is the most predictable at roughly 3% all in, which is the price of not having to think about it. A wire is the one option we would not pick on cost: the flat sending fee stops mattering as the invoice grows, but your Mexican bank\'s own spread does not, and on our figures that spread alone is more than Payoneer\'s entire all in cost. The case for a wire is documentary rather than financial, and that case is in the IVA question above. Our practical suggestion: open accounts at two of the unpriced three, get a real quote for your actual invoice size on the same afternoon, compare the pesos that land rather than the fees quoted, and factor in what your accountant says about the IVA question above.',
       },
     ],
-    siblingCorridors: ['usd-to-php', 'usd-to-gel', 'usd-to-eur-portugal', 'usd-to-pkr'],
+    siblingCorridors: ['usd-to-php', 'usd-to-gel', 'usd-to-eur-portugal', 'usd-to-pkr', 'usd-to-brl'],
+  },
+  // USD to Brazil (BRL)
+  {
+    slug: 'usd-to-brl',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'BRL',
+    destCountry: 'BR',
+    country: 'Brazil',
+    title: 'Receive USD in Brazil: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in Brazil. The 3.5% IOF everyone quotes is outbound: export receipts are zero rated. Live rates and a worked example.',
+    h1: 'How to receive USD in Brazil: the IOF myth, the Wise contradiction, and what it actually costs',
+    intro:
+      'Two things decide what this costs you, and most guides get both wrong. The first is IOF. Every article about Brazil quotes 3.5%, and that rate is for money going out, or spent on a card abroad. Money coming in for a service you exported is zero rated, and has been since 2010: Decreto 6.306 of 2007, article 15-B, first item, on foreign exchange operations for the entry into the country of revenue from the export of goods and services. It survived every one of the 2025 decrees that got suspended by Congress and fought over at the Supreme Court, because those changed credit and outbound rates. Here is the catch, and we found it by pulling a live quote rather than reading marketing: Wise charges 0.38% IOF on an ordinary dollars to reais transfer. That is the residual inbound rate for a transfer that is not classified as export revenue. So whether you pay nothing or 0.38% turns on how your operation gets classified, not on which app you use. Ask your provider how it classifies you. The second thing is Wise, whose own help centre contradicts itself about whether you can hold dollars in Brazil. You can. The explanation is below. And one trap to know before you read any further: if you have Wise Brazilian real account details, do not send them to a US client. They only accept domestic Brazilian payments and will reject an international transfer. The details your client needs are the dollar ones.',
+    publishedDate: '2026-09-24',
+    updatedDate: '2026-09-24',
+    providers: [
+      {
+        slug: 'higlobe',
+        name: 'Higlobe',
+        customHeading: 'Higlobe: the cheapest published number, and not our affiliate',
+        available: true,
+        notes:
+          'It tops our table and it is not our affiliate. We would rather you heard that from us than worked it out. Higlobe gives you your own US receiving account, an account number and a routing number you hand to a client who then pays you like any other American supplier. The payout reaches Brazil over Pix. The pricing is the cleanest thing on this page: a flat 0.2% spread on reais, no transfer fee, no monthly fee, volume described as unlimited, and a promise that the amount shown before you confirm is the amount that lands. That is a published spread rather than a ceiling, which is why it can carry our badge when a provider quoting an up-to number cannot. What we could not confirm, and you should check before moving real money: whether it onboards you on a CPF or wants a CNPJ, what onboarding asks for, and how it handles IOF and the exchange contract. None of that is on the pages we could open.',
+      },
+      {
+        slug: 'wise',
+        name: 'Wise',
+        customHeading: 'Wise: yes, you can hold dollars in Brazil',
+        available: true,
+        notes:
+          'Wise is the affiliate programme this site earns from, so read the table rather than us: it comes second here, behind a provider we are not paid to recommend. Now the confusion, because it costs people real decisions. One Wise help page says a Brazilian resident can hold over 40 currencies. Another lists Brazil under additional restrictions and says you can only hold reais. Both are live, neither carries a date. The tiebreaker is the Wise Pagamentos customer agreement, effective 10 February 2026, which is the most recent dated document on the question: Wise Pagamentos is the Brazilian licensed payment institution and it only handles reais, while every other currency you hold sits with Wise Payments Limited in the UK under separate terms. So the restriction describes a limit on the Brazilian entity, not a cap on what you personally may hold. Two more Wise pages agree, including its guide to opening a business account for a Brazilian company, which offers 40 plus currencies and account details to receive in them. Brazil is also absent from Wise\'s list of places where dollar account details are unavailable. Costs, read from Wise\'s own quote endpoint on 24 September 2026 rather than from a marketing page: receiving dollars by ACH is free, converting dollars to reais cost 0.526% on $1,000 and 0.494% on $5,000, and the rate used was the mid rate, so there is no hidden spread on top. A domestic dollar wire, as opposed to ACH, costs $6.11. One number we could not get: the one-off fee for opening your first set of account details, which Wise confirms exists but does not publish.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        available: true,
+        notes:
+          'The familiar option, and the one we are least able to price honestly. Payoneer publishes 1% to receive into a receiving account in a currency that is not your local currency. Your local currency as a Brazilian is the real, so on a literal reading a dollar receipt is exactly that case and costs 1%, but no Payoneer page we could open says so about Brazil specifically. The withdrawal is worse: Payoneer publishes it as up to 2%, which is a ceiling rather than a rate. We have modelled 1% plus 2% because that is the reading the published words support, and flagged the row as an estimate, which also bars it from our badge. There is a $29.95 annual fee if the account receives under $6,000 equivalent in any twelve consecutive months. If your work already arrives through a platform that pays into Payoneer, the integration counts for something. If you are invoicing direct clients, the two options above cost less.',
+      },
+      {
+        slug: 'husky',
+        name: 'Husky',
+        customHeading: 'Husky: a wire route whose own pages disagree on price',
+        available: true,
+        notes:
+          'A Brazilian company built for exactly this reader, and we have left it out of the priced table for two reasons. The first is that it is a wire route, not an ACH one: you get an IBAN and a SWIFT code rather than a US routing number, so your client sends an international transfer and somebody pays wire fees along the way. That is a different product from what Higlobe and Wise give you, and on small invoices the difference matters more than the headline percentage. The second is that its own two pages disagree about the price. The page about receiving money from abroad says 1.2%, reducible to 1% with a coupon, plus 0.38% IOF. The pricing page says at most 1% above $1,000, a flat $10 below that, and no IOF at all on service receipts. Both were live on the same day. We are not going to pick the flattering one, and the IOF disagreement is the same classification question this page opens with. Money reportedly arrives in one or two business days, up to five, paid out to a Brazilian account whose holder matches your CPF or CNPJ.',
+      },
+      {
+        slug: 'remessa-online',
+        name: 'Remessa Online',
+        available: true,
+        notes:
+          'Established, widely used, and impossible for us to rank. Remessa Online confirms it receives for both CPF and CNPJ holders, pays out within two business days of the exchange closing, and applies individual limits of R$50,000 a day and R$100,000 a year before extra documentation. It states it uses the commercial rate updated in real time from Reuters, and it publishes IOF at 0.38% on inbound and zero to 3.5% on outbound, which is a useful independent confirmation of the direction split this page opens with. What it does not publish anywhere we could find is its own fee percentage or its spread. It sends you to a simulator instead. A band of roughly 1% to 1.4% circulates in third-party write-ups and we are not repeating it as a number. Run the simulator for your actual invoice and compare the reais that land against the table above.',
+      },
+      {
+        slug: 'bank-wire',
+        name: 'Bank Wire (SWIFT)',
+        customHeading: 'The wire, and the one number Brazil makes everyone publish',
+        available: true,
+        notes:
+          'Flat fees make a wire painful on small invoices and tolerable on large ones, and in Brazil the interesting part is not the fee. It is that the Banco Central forces the institution to tell you the real number before you commit. The VET, or total effective value, bundles the exchange rate, IOF and any tariffs into one figure, disclosure is mandatory before you contract, and the Banco Central publishes a public ranking comparing institutions on it. That is a comparison tool you can check yourself, independent of us, and no competitor guide we read mentions it. Use it. Our own figures for this row are carried over from other wire corridors, because neither Itau nor Banco do Brasil would serve us their tariff schedule, so treat the number in the table as indicative and the VET as the real answer.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        available: true,
+        notes:
+          'The most expensive thing on this page by a wide margin, and the default a lot of freelancers fall into. Brazilian commercial pricing stacks: 4.79% on the payment, a further 1.61% because the payer is international, a fixed 0.60 reais, and then 3.50% above the base exchange rate when the money arrives in a currency other than reais. Withdrawing to a linked Brazilian bank by standard transfer is free, which is the only cheap part. Compare the bottom line against Higlobe in the table above: on a $5,000 invoice the gap is roughly 2,500 reais. Use PayPal when a client refuses everything else, and move your recurring clients somewhere sane.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        customHeading: 'Revolut Brazil: we could not verify it',
+        available: false,
+        notes:
+          'We have nothing usable on Revolut in Brazil, so we are going to leave it at that. Every revolut.com and help.revolut.com address we tried refused our requests. Search results show a Brazilian help centre, a Brazilian site and a mid-2025 promotion for new Brazilian accounts, which together suggest Brazilian residents can open personal accounts, but we did not open any of it. Treat Revolut as unknown on this corridor rather than unavailable, and check it yourself if you are curious.',
+      },
+      {
+        slug: 'nubank',
+        name: 'Nubank',
+        customHeading: 'Nubank does not receive international payments',
+        available: false,
+        notes:
+          'Nubank cannot receive an international payment for you, as far as its own documents go. Its international transfer contract defines the product as a transfer from a Nubank account to a beneficiary abroad. Outbound only. Receiving is not addressed anywhere in that contract. The Conta Global product attached to Ultravioleta is described as converting reais you already hold rather than accepting money from abroad. If you are a Nubank customer waiting for a client payment to arrive there, it will not.',
+      },
+    ],
+    supportedProviders: ['higlobe', 'wise', 'payoneer', 'bank-wire', 'paypal'],
+    faqs: [
+      {
+        q: 'Do I pay IOF when a foreign client pays me?',
+        a:
+          'Probably not, and the 3.5% you have read about is the wrong number. Decreto 6.306 of 2007, article 15-B, first item, sets the rate at zero for foreign exchange operations relating to the entry into Brazil of revenue from the export of goods and services. That has been the rule since 2010 and it survived the 2025 decrees that Congress suspended and the government took to the Supreme Court, because those touched credit and outbound operations. The 3.5% everyone quotes applies to money leaving Brazil and to cards and cash abroad. Now the honest complication. When we pulled a live quote from Wise for dollars into reais on 24 September 2026, it added a line labelled IOF at 0.377%. That is the residual inbound rate for an operation that is not classified as export revenue. So the question that decides your bill is not which app you use, it is how the institution classifies the operation it closes for you. Ask them directly, and ask before you sign up rather than after.',
+      },
+      {
+        q: 'Can a Brazilian resident hold dollars with Wise, or only reais?',
+        a:
+          'You can hold dollars. Wise says both things in different places and we understand why people are confused. One help page says you can hold over 40 currencies if you live in Brazil. Another lists Brazil under additional restrictions and says only reais. Neither page is dated. What resolves it is the Wise Pagamentos customer agreement, effective 10 February 2026, the most recent dated document on the question: Wise Pagamentos is the Brazilian licensed institution and it handles reais only, while your other currencies sit with Wise Payments Limited in the UK under a separate agreement. The restriction is about the Brazilian entity, not about you. Wise\'s guide to opening a business account for a Brazilian company says the same thing from the other direction, offering 40 plus currencies and account details to receive in them, and Brazil does not appear on Wise\'s list of countries where dollar account details are unavailable. If it matters to your plans, open the app and confirm rather than trusting either help page.',
+      },
+      {
+        q: 'Which account details do I give my client?',
+        a:
+          'The dollar ones, and this trips people up. Your Wise Brazilian real account details cannot receive anything from outside Brazil. Wise states plainly that you cannot receive other currencies or international transfers to them. They are for domestic Brazilian payments. If you hand those to a US client the payment will not arrive. Give them your dollar details, which include a routing number that works for both ACH and wires. Higlobe works the same way, a US account number and routing number in your name. Husky is the exception on this page: it gives you an IBAN and a SWIFT code instead, so your client sends an international wire rather than a domestic payment.',
+      },
+      {
+        q: 'Can I keep the dollars, or does Brazil make me convert?',
+        a:
+          'In practice you convert. Money arriving from abroad for a resident has to be sold into reais through an institution the Banco Central has authorised to operate in the exchange market. What you can do is hold the dollars offshore first, in a Wise, Payoneer or Higlobe balance, and convert when the rate suits you instead of on the day your client pays. That is not the same as a domestic dollar account and we are not going to pretend it is. Whether an ordinary resident can hold a foreign currency account inside Brazil under the 2021 exchange law is something we could not confirm, because the Banco Central\'s regulation text was not reachable from our tooling. Ask a bank directly if that is the thing you actually want.',
+      },
+      {
+        q: 'What do I keep as proof for the tax authority?',
+        a:
+          'The exchange contract, or the receipt for the exchange operation, from whichever institution closed the currency conversion. Brazil has no equivalent of the inward remittance certificate some countries issue, so this document is what ties the reais sitting in your account to an invoice you sent abroad. Download it every time and keep it with the invoice. We could not open the Banco Central regulation that governs what the institution owes you, so if a provider will not give you one, ask them why before you commit rather than after.',
+      },
+      {
+        q: 'Can I do this as a MEI?',
+        a:
+          'You can invoice a foreign client as a MEI, and Wise will open a business account for one. The ceiling is the real constraint: R$81,000 a year, prorated by month if you registered part way through the year, and dollar invoices count towards it converted at the central bank rate. Two steady American clients will take you past that, and then you are looking at an ME under Simples Nacional instead. There is a bill proposing to raise the MEI ceiling from 2027, but it is not law and we would not plan around it. Which Simples Nacional annex applies to exported technology and professional services is something we could not verify, and it changes what you pay, so that one is genuinely for an accountant.',
+      },
+      {
+        q: 'Do I owe ISS on work for a foreign client?',
+        a:
+          'Maybe, and this is the item that catches people. The federal complementary law exempts exported services, but it carves out work performed in Brazil whose result shows up in Brazil, and municipalities read the word result inconsistently. Two freelancers doing identical work in different cities can get different answers. We could not open the statute text directly, so treat this as a flag rather than a finding, and ask an accountant in your own municipality before you assume you are exempt.',
+      },
+      {
+        q: 'Can my client just send me a Pix?',
+        a:
+          'No. Pix moves reais inside Brazil and cannot carry an international payment. What actually happens is that the provider receives your dollars abroad, closes the currency exchange, and then pays you reais domestically, often over Pix. Higlobe and Wise both do that, and the Pix leg is the part that takes seconds. The dollars arriving is the part that takes a day or two.',
+      },
+      {
+        q: 'What is the cheapest way to receive dollars in Brazil?',
+        a:
+          'On published numbers, Higlobe, and it is not close. A flat 0.2% spread with no transfer fee beats Wise\'s roughly 0.5% conversion fee, and both are far below what PayPal costs. We want to be straightforward about two things though. Higlobe is not our affiliate and Wise is, so the ranking runs against our commercial interest rather than with it. And Higlobe is the option we know least about: we could not confirm its eligibility rules, its onboarding, or how it handles IOF and the exchange contract, while Wise publishes all of that. Our practical suggestion is to open both, run a real quote for your actual invoice size on the same afternoon, and compare the reais that land rather than the percentages quoted. Then check the Banco Central\'s public VET ranking, which compares institutions on an all-in effective rate including tax and tariffs, and is the one comparison nobody can spin.',
+      },
+    ],
+    siblingCorridors: ['usd-to-mxn', 'usd-to-php', 'usd-to-gel'],
   },
 ];

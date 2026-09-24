@@ -1,8 +1,8 @@
 // Fee data last verified: 2026-07-30
 // Sources: provider pricing pages (see inline comments per provider)
 
-export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT' | 'NGN' | 'PHP';
-export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK' | 'BD' | 'NG' | 'PH';
+export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT' | 'NGN' | 'PHP' | 'BRL';
+export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK' | 'BD' | 'NG' | 'PH' | 'BR';
 
 export interface CorridorFee {
   source: { country: CountryCode; currency: Currency };
@@ -64,7 +64,7 @@ export const PROVIDERS: Provider[] = [
     // MX stays in supportedSourceCountries: the same capture showed a live outbound quote
     // (MXN 10,000 to USD 561.38, 125.78 MXN in fees), so Mexican residents can still send.
     // MX stays in supportedSourceCountries: Mexican residents can still send, not hold.
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'TH', 'PH'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'TH', 'PH', 'BR'],
     corridors: [
       // Verified: ~$14.74 fee on $1,000 send (wise.com/us/send-money/send-money-to-georgia)
       {
@@ -101,6 +101,26 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.0043,
         fxMarkupBps: 0,
         typicalHours: 1,
+      },
+      // BRL: read from Wise's own quote endpoint on 2026-09-24, payIn BALANCE, which is the case
+      // this corridor describes: the freelancer already holds USD from a client and converts it.
+      // USD 1,000 -> conversion fee 5.26 (0.526%); USD 5,000 -> 24.70 (0.494%). Rate used 5.19225,
+      // which the same response reports as the mid rate, so the markup really is 0 bps.
+      // Modelled at 0.5%. Receiving USD by ACH into Wise USD details is free; a domestic USD WIRE
+      // costs 6.11 USD, not modelled here because ACH is the route the page recommends.
+      // NOT in this row, deliberately: the same quote carries a BRL_TAX line labelled "IOF tax" at
+      // 0.377%. IOF is a federal tax, not a Wise fee. Folding it into percentageFee would double
+      // count against providers whose marketing quotes IOF inclusive, and would misstate who
+      // charges it. See the corridor copy: export-of-services receipts are zero rated under
+      // Decreto 6.306/2007 art. 15-B inciso I, while a generic inbound transfer takes 0.38%.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'BR', currency: 'BRL' },
+        fixedFee: 0,
+        percentageFee: 0.005,
+        fxMarkupBps: 0,
+        typicalHours: 24,
+        notes: 'USD received by ACH is free. 0.5% to convert USD to BRL at the mid-market rate. Payout to a Brazilian account by Pix or TED.',
       },
       // Verified: ~$4.80 fee on $1,000 USD send ($0.69 fixed + 0.41%)
       // Wise is migrating Thai-address personal customers onto its Bank of Thailand
@@ -302,7 +322,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: true,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH', 'BR'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -337,6 +357,21 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 200,
         typicalHours: 48,
+      },
+      // BR: Payoneer publishes 1% to receive into a receiving account in a currency that is NOT
+      // your local currency (min 1.00 USD). A Brazilian's local currency is BRL, so on a literal
+      // reading a USD receipt is exactly that case, but NO Payoneer page we opened states the
+      // Brazil case explicitly. Withdrawal to a local bank in a different currency is published
+      // only as "up to 2%", which is not a determinate spread. Both halves are assumptions, so
+      // this row is flagged estimated and barred from the best value badge.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'BR', currency: 'BRL' },
+        fixedFee: 0,
+        percentageFee: 0.01,
+        fxMarkupBps: 200,
+        typicalHours: 48,
+        fxMarkupEstimated: true,  // "up to 2%" is a ceiling, not a rate; and the 1% leg is inferred
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -487,7 +522,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-08-27',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG', 'PH'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG', 'PH', 'BR'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -497,6 +532,19 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 350,
         typicalHours: 24,
         notes: '4.4% + $0.30 cross-border receiving fee; instant to PayPal balance, 1–3 days to bank',
+      },
+      // BR: paypal.com/br/webapps/mpp/merchant-fees. Commercial payment 4.79%, plus a further
+      // 1.61% because the payer is international, plus a fixed 0.60 BRL, plus 3.50% above the base
+      // exchange rate when the payment arrives in another currency. Withdrawal to a linked
+      // Brazilian bank by standard transfer is free. Modelled as 6.40% (4.79 + 1.61) and 350 bps.
+      // The 0.60 BRL fixed fee is about 0.12 USD and is modelled as such.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'BR', currency: 'BRL' },
+        fixedFee: 0.12,
+        percentageFee: 0.064,
+        fxMarkupBps: 350,
+        typicalHours: 24,
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -789,8 +837,8 @@ export const PROVIDERS: Provider[] = [
     affiliateLink: '',
     hasAffiliateProgram: false,
     lastVerified: '2026-06-02',
-    supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH'],
+    supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'BR'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH', 'BR'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -825,6 +873,21 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 100,
         typicalHours: 72,
+      },
+      // BR: no Brazilian bank tariff could be opened (itau.com.br and bb.com.br both 403). The
+      // structure is a US sending fee plus the receiving bank's own spread, which Brazilian banks
+      // do not publish as a line item. What IS published, and is the honest thing to point a
+      // reader at, is the Banco Central's VET (Valor Efetivo Total): every authorised institution
+      // must disclose an all-in effective rate before you contract, and BCB publishes a public
+      // comparison ranking. Figures below are carried from other wire corridors, so estimated.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'BR', currency: 'BRL' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 350,
+        typicalHours: 72,
+        fxMarkupEstimated: true,  // no Brazilian bank tariff opened; spread carried from other corridors
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -1178,5 +1241,50 @@ export const PROVIDERS: Provider[] = [
     },
     notes: 'Raenest issues virtual USD and GBP accounts for African freelancers and remote workers. Since January 2026: 4 free deposits per month shared across USD, GBP, EUR, USDT and USDC, then $1 flat per ACH or stablecoin deposit. The USD-to-NGN conversion fee is 0.5% capped between $0.25 and $2.70 per conversion, so cost does not scale with transfer size above about $540. Verify the current allowance at raenest.com/pricing. No annual account fee. CBN-licensed IMTO.',
     caveat: 'Conversion fee is capped at $2.70, so the effective rate falls as the transfer size rises.',
+  },
+  // ─── Higlobe ───────────────────────────────────────────────────────────────
+  // Source: https://higlobe.com/pt-br/pricing (2026-09-24)
+  // Source: https://higlobe.com/pt-br/how-it-works (2026-09-24)
+  // Scoped to BR only on purpose. Higlobe also serves Mexico, and its Mexican spread is
+  // reported at zero, but adding MX here would change the ranking on a live page that was
+  // reviewed on 2026-09-24 with Higlobe deliberately out of the priced table. That is a
+  // separate, ranking-moving decision and needs its own verifier and reviewer pass.
+  {
+    slug: 'higlobe',
+    name: 'Higlobe',
+    logoUrl: '/logos/higlobe.svg',
+    website: 'https://higlobe.com',
+    signupUrl: 'https://higlobe.com/pt-br',
+    affiliateLink: '',
+    hasAffiliateProgram: false,
+    lastVerified: '2026-09-24',
+    supportedSourceCountries: ['US'],
+    supportedDestinationCountries: ['BR'],
+    corridors: [
+      // Higlobe publishes a flat 0.2% spread for BRL, no transfer fee and no maintenance fee,
+      // with volume described as unlimited and the quoted amount guaranteed before you confirm:
+      // "O valor que você vê antes de confirmar sua transação é exatamente o que você receberá."
+      // This is a published spread, so the row is NOT flagged estimated and can take the badge.
+      // Unconfirmed and hedged in the corridor copy instead: CPF versus CNPJ eligibility,
+      // onboarding requirements, and how IOF and the contrato de câmbio are handled.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'BR', currency: 'BRL' },
+        fixedFee: 0,
+        percentageFee: 0,
+        fxMarkupBps: 20,
+        typicalHours: 24,
+        notes: '0.2% spread, no transfer fee, no monthly fee. US account number and routing number for ACH; payout to Brazil by Pix.',
+      },
+    ],
+    fallbackFee: {
+      fixedFee: 0,
+      percentageFee: 0,
+      fxMarkupBps: 20,
+      typicalHours: 24,
+      fxMarkupEstimated: true,
+    },
+    notes: 'Higlobe gives a Brazilian resident their own US receiving account, an account number and a routing number to hand a US client, so the client pays by ordinary domestic ACH. Payout to Brazil goes out over Pix. It publishes a flat 0.2% spread for BRL with no transfer fee and no monthly fee, and states that the amount shown before you confirm is the amount you receive. That makes it the cheapest published number on this corridor by a clear margin. What we could not confirm: whether it onboards individuals on a CPF or requires a CNPJ, what onboarding asks for, and how it handles IOF and the contrato de câmbio. Check those before you move real volume.',
+    caveat: 'Spread published at 0.2% for BRL. Eligibility and onboarding requirements not verified.',
   },
 ];
