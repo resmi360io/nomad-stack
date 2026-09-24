@@ -101,15 +101,27 @@ sitting at the top because it is hard is exactly the one worth doing.
    Uzcard national card schemes, none of which reach Visa or Mastercard rails.
    `UZS` belongs in the zero-decimal currency list.
 
-None of the four can be drafted while the environment's network policy denies
-primary sources. Three were researched on 2026-09-24 and every one returned zero
-opened pages across roughly forty hosts, so the briefs are worklists, not data.
-Do not draft a corridor from secondary sources to get it off this list. The
-alternative route that has actually worked is the site owner capturing the pages
-by hand: Mexico shipped because `wise.com/mx` and `revolut.com/es-MX` were
-supplied as PDFs. One capture of the Wise eligibility page unblocks most of any
-corridor here, because it answers the blocking question and covers the affiliate
-rail at the same time.
+Network access was opened on 2026-09-24 and curl now reaches every host tried,
+so these are buildable. Two cautions carried forward from the day it was closed.
+
+Bash curl and WebFetch are governed separately and have disagreed. On 2026-09-24
+curl returned 200 everywhere while WebFetch returned EGRESS_BLOCKED on every
+host including `example.com`, because WebFetch captured the network policy when
+the session started and never refreshed. That matters because the subagents hold
+only Read, Grep, Glob, WebSearch and WebFetch, with no Bash, so a session in that
+state cannot research anything through them. Probe both before spending agents.
+When WebFetch is stale, the workaround is to mirror the pages with curl into the
+scratchpad, strip them to text, write a manifest recording each file's source URL
+and fetch time, and point the agents at those files: they are full primary source
+texts, not snippets, and citing them is legitimate as long as the manifest travels
+with them.
+
+Never draft a corridor from secondary sources to get it off this list. Three of
+these were researched on 2026-09-24 while the policy was closed, and every brief
+came back with zero opened pages across roughly forty hosts, so those briefs are
+URL worklists rather than data. They are still useful as worklists. The other
+route that has worked is the site owner capturing pages by hand: Mexico shipped
+because `wise.com/mx` and `revolut.com/es-MX` were supplied as PDFs.
 
 ### What a new corridor has to touch
 
