@@ -52,8 +52,19 @@ sitting at the top because it is hard is exactly the one worth doing.
 
 1. **Brazil (BRL).** Blocking question: does a Brazilian resident, personal or PJ,
    get USD account details and a USD balance from Wise, or only a BRL payout with
-   the client paying? A Wise help article and Wise's own Brazilian blog say
-   different things. Second question: the current IOF rate on inbound export of
+   the client paying? This is NOT a case of one good source and one bad one. Two
+   Wise help pages, both read on 2026-09-24 within the same minute, contradict each
+   other outright. "Holding money if you live in Brazil"
+   (wise.com/help/articles/7cUlHeJwqj6AHM69S8qRCA/...) says "If you live in Brazil
+   and have a personal Wise account, you can add a currency and hold over 40
+   currencies with us, including BRL. The same applies if you have a Wise Business
+   account registered in Brazil." "Where do I need to live to hold money with Wise?"
+   (wise.com/help/articles/2813542/...) lists under Additional restrictions:
+   "Brazil - you can only hold BRL if you reside in Brazil." Do not resolve this by
+   picking the one you prefer. Establish which is current, and if it cannot be
+   settled, the page says Wise documents both and tells the reader to check in the
+   app. Note also that holding a currency and being issued receiving details for it
+   are different products, and the pages above address holding, not details. Second question: the current IOF rate on inbound export of
    services receipts, which changed more than once in 2025. IOF is a tax, not a
    provider fee, and must never be folded into `fxMarkupBps` or `percentageFee`.
    Do not add `BR` to `DEST_CURRENCIES_MAP`: the realistic USD holding options are

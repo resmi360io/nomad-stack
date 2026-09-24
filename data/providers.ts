@@ -111,6 +111,23 @@ export const PROVIDERS: Provider[] = [
       // the end of August 2026; as of mid-September 2026 we could not confirm that wave
       // completed. Accounts opened before that date, from around October 2026, unconfirmed.
       // Fee row values are unaffected either way. Verify current.
+      //
+      // OPEN, RANKING-MOVING, RAISED 2026-09-24, NOT YET REVIEWED. Wise's own help page
+      // "Where do I need to live to hold money with Wise?"
+      // (wise.com/help/articles/2813542/where-can-i-open-a-wise-balance, read 2026-09-24)
+      // lists under Additional restrictions, verbatim:
+      //   "Thailand - we've temporarily stopped issuing currencies and account details
+      //    for customers in Thailand."
+      // That is stronger than the migration story above, which says a Thai resident can
+      // still be paid into foreign-currency receiving details and is simply converted on
+      // arrival. If Wise is not issuing account details to Thai customers at all, a Thai
+      // freelancer may have no way to get the USD receiving details this corridor assumes,
+      // and Wise currently holds the best value badge on usd-to-thb on exactly that route.
+      // Do NOT change the ranking on this comment alone. It needs a verifier and a reviewer:
+      // establish whether the pause covers new accounts only or all customers, whether it
+      // is still in force, and whether existing details keep working. The same page also
+      // says "India - you can hold money in your account when travelling overseas", which
+      // is relevant to the queued India corridor.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'TH', currency: 'THB' },
