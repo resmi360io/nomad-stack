@@ -204,7 +204,10 @@ export const PROVIDERS: Provider[] = [
     // Revolut personal sign-up excludes Georgia, Thailand and Indonesia, so residents
     // there cannot hold an account. Mexico retained: Revolut Bank Mexico is live.
     supportedSourceCountries: ['US', 'GB', 'EU', 'PT', 'MX'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX'],
+    // MX removed from DESTINATIONS 2026-09-24: Revolut Bank Mexico is real, but no inbound
+    // receiving fee or FX spread for the Mexican entity could be sourced, so it cannot be
+    // priced. Source country retained; a Mexican resident can hold the account and send.
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT'],
     corridors: [
       // EUR via SEPA local network — 0.3% fee, near mid-market FX weekdays
       // Verified 2026-06-02: revolut.com/en-US/legal/standard-fees/
@@ -217,25 +220,17 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 24,
       },
-      // MXN: Revolut Bank S.A. Institucion de Banca Multiple launched full banking
-      // operations in Mexico on 27 January 2026 under a CNBV licence, with IPAB deposit
-      // protection and a local CLABE on SPEI. Two corrections to what this row used to say.
-      // Revolut Mexico receives foreign currency by SWIFT, not by US ACH: a Mexican customer
-      // gets no US routing number, so a US client cannot pay domestically. And no inbound
-      // receiving fee could be sourced for the Mexican entity at all. The $3 below is a
-      // Revolut US OUTBOUND SWIFT sending fee, which is the wrong side of this transaction
-      // and the wrong entity, and the 0 bps is carried over from Revolut Europe. Both are
-      // placeholders, so this row is flagged estimated and cannot take the best value badge.
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'MX', currency: 'MXN' },
-        fixedFee: 3,
-        percentageFee: 0,
-        fxMarkupBps: 0,
-        typicalHours: 72,
-        fxMarkupEstimated: true,  // no Revolut Mexico receiving fee or spread could be sourced
-        notes: 'Receives USD by SWIFT, not US ACH. Revolut Mexico publishes no inbound receiving fee we could find; the figures here are carried from other Revolut entities. Verify in app.',
-      },
+      // MXN: no priced row, deliberately. Revolut Bank S.A., Institucion de Banca Multiple
+      // launched full banking operations in Mexico on 27 January 2026 under a CNBV licence,
+      // with IPAB deposit protection and a local CLABE on SPEI. Confirmed from revolut.com/es-MX
+      // on 2026-09-24. Two facts stop us pricing it. Revolut Mexico receives foreign currency
+      // by SWIFT, not by US ACH: a Mexican customer gets no US routing number, so a US client
+      // cannot pay domestically. And the Mexican site links to a costs and commissions schedule
+      // rather than printing one, so there is no inbound receiving fee for the Mexican entity.
+      // The row that used to sit here carried a $3 Revolut US OUTBOUND SWIFT sending fee, the
+      // wrong side of the transaction and the wrong entity, plus 0 bps from Revolut Europe. At
+      // 0 bps it ranked Revolut top of the Mexico table on a number nobody published, so the
+      // row was removed at review rather than re-guessed. The corridor page keeps the prose.
       {
         source: { country: 'GB', currency: 'GBP' },
         destination: { country: 'PT', currency: 'EUR' },
@@ -594,28 +589,18 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: true,
     lastVerified: '2026-08-27',
     supportedSourceCountries: ['US'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'MX'],
-    corridors: [
-      // The Mexico withdrawal fee is UNRESOLVED. Three incompatible models turned up across
-      // two research passes and a review, none from a page anyone could open: a flat US$2,
-      // a per-country table that does not list Mexico at all, and 0.3% with a US$1 minimum
-      // and US$5 maximum. A proposed flat US$2 was rejected at review for that reason. The
-      // 1% below is the long-standing figure, kept because replacing one unsourced number
-      // with another is not an improvement, NOT because it is confirmed.
-      // Separately confirmed across three runs: a US$10 charge exists but is the bank
-      // REJECTION fee, deducted from the refund when the receiving bank bounces a payout.
-      // The spread is confirmed absent: GrabrFi publishes none, the rate is shown in-app
-      // and locked at confirmation with the margin embedded. Hence fxMarkupEstimated.
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'MX', currency: 'MXN' },
-        fixedFee: 0,
-        percentageFee: 0.01,
-        fxMarkupBps: 100,
-        typicalHours: 24,
-        fxMarkupEstimated: true,  // GrabrFi publishes no spread; the withdrawal fee itself is also unresolved
-      },
-    ],
+    // MX removed from DESTINATIONS 2026-09-24. The Mexico withdrawal fee is UNRESOLVED and the
+    // three readings are mutually exclusive, not merely unsourced: a flat US$2, a per-country
+    // table that does not list Mexico at all, and 0.3% with a US$1 minimum and US$5 maximum.
+    // help.grabrfi.com is unreachable from our tooling, so none was confirmed. The spread is
+    // confirmed ABSENT: GrabrFi publishes none, the rate is shown in-app and locked at
+    // confirmation with the margin embedded. Two unknowns on the one provider this site earns
+    // a referral commission from is not something to print a price for, so GrabrFi is unranked
+    // and appears as prose only on the corridor page. Separately confirmed across three runs:
+    // the US$10 charge is the bank REJECTION fee, deducted from the refund when the receiving
+    // bank bounces a payout, not a withdrawal charge.
+    supportedDestinationCountries: ['US', 'GB', 'EU'],
+    corridors: [],
     fallbackFee: {
       fixedFee: 0,
       percentageFee: 0.01,
