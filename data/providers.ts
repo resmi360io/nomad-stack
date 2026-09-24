@@ -371,9 +371,12 @@ export const PROVIDERS: Provider[] = [
       // BR: Payoneer publishes 1% to receive into a receiving account in a currency that is NOT
       // your local currency (min 1.00 USD). A Brazilian's local currency is BRL, so on a literal
       // reading a USD receipt is exactly that case, but NO Payoneer page we opened states the
-      // Brazil case explicitly. Withdrawal to a local bank in a different currency is published
-      // only as "up to 2%", which is not a determinate spread. Both halves are assumptions, so
-      // this row is flagged estimated and barred from the best value badge.
+      // Brazil case explicitly. Withdrawal to a bank account is published as a RANGE, 1.2% to 4%
+      // (payoneer.com/pricing, read 2026-09-24). The older "up to 2%" wording is no longer on the
+      // fee schedule and survives only in a Payoneer resources article, so do not cite it. 200 bps
+      // is kept as a working figure near the bottom of that range, pending one cross-corridor
+      // decision covering every Payoneer row. Both halves are assumptions, so this row is flagged
+      // estimated and barred from the best value badge.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'BR', currency: 'BRL' },
@@ -381,7 +384,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 200,
         typicalHours: 48,
-        fxMarkupEstimated: true,  // "up to 2%" is a ceiling, not a rate; and the 1% leg is inferred
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; and the 1% leg is inferred
       },
       {
         source: { country: 'US', currency: 'USD' },
