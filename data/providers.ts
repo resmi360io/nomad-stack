@@ -119,7 +119,14 @@ export const PROVIDERS: Provider[] = [
       // "Our conversion fee depends on the currency", and the 0.25% on its India business page
       // is a GBP to EUR volume-discount example that must not be reused. The endpoint is the
       // only honest source for it.
-      //   USD 1,000 -> INR fee 4.75 (0.475%);  USD 5,000 -> 21.48 (0.430%). Fit: 0.57 + 0.418%.
+      //   INR RE-DERIVED 2026-09-25 with the INDIA BUSINESS PROFILE, which is the parameter set
+      //   this corridor actually uses. wise.com/gateway/v1/price with profileCountry=IN and
+      //   profileType=BUSINESS returns priceSetId 5346 and an explicit flatFee field of 0.99 at
+      //   BOTH amounts: total 6.09 on USD 1,000 and 25.82 on USD 5,000, GST INCLUSIVE. Net of the
+      //   18% GST those are 5.17 and 21.88, which fit 0.99 + 0.418%. The earlier 0.57 came from
+      //   querying WITHOUT the India profile and therefore hit a different price set. The model
+      //   holds the PRE-GST figure, consistent with the page copy telling readers the table is
+      //   before GST and with IOF being excluded on the Brazil rows.
       //   USD 1,000 -> COP fee 15.51 (1.551%); USD 5,000 -> 69.96 (1.399%). Fit: 1.90 + 1.361%.
       // Both at the mid rate the same response reports, so 0 bps markup on each.
       // Not modelled here and called out in the copy instead: India charges 18% GST on the
@@ -127,7 +134,7 @@ export const PROVIDERS: Provider[] = [
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'IN', currency: 'INR' },
-        fixedFee: 0.57,
+        fixedFee: 0.99,
         percentageFee: 0.00418,
         fxMarkupBps: 0,
         typicalHours: 24,
@@ -1034,9 +1041,18 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'UZ', currency: 'UZS' },
         fixedFee: 35,
         percentageFee: 0,
-        fxMarkupBps: 26,
+        fxMarkupBps: 43,
         typicalHours: 72,
-        fxMarkupEstimated: true,  // 26 bps is ONE bank, ONE day, CASH rates: Trustbank sell 11,890 vs CBU 11,830.87
+        // 43 bps re-derived 2026-09-25 from two primary sources read directly. Trustbank's live
+        // table: USD BUY 11,780, SELL 11,890. CBU reference 11,830.87 (confirmed in CBU's own
+        // JSON, dated 25.09.2026). A recipient converting an INBOUND wire SELLS dollars to the
+        // bank, so the side that applies is the BUY rate: (11830.87 - 11780) / 11830.87 = 0.430%.
+        // The previous 26 bps used the sell side and reconciled with nothing; it traced to a
+        // research observation of buy 11,800 taken earlier in the day. Half the bank's own
+        // bid-ask is 46 bps, which is an arguable alternative. Still ONE bank on ONE day, and
+        // Trustbank publishes a single undifferentiated table with no cash or non-cash label,
+        // hence still estimated.
+        fxMarkupEstimated: true,
       },
       {
         source: { country: 'US', currency: 'USD' },
