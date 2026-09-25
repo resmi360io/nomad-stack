@@ -1,8 +1,8 @@
 // Fee data last verified: 2026-07-30
 // Sources: provider pricing pages (see inline comments per provider)
 
-export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT' | 'NGN' | 'PHP' | 'BRL';
-export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK' | 'BD' | 'NG' | 'PH' | 'BR';
+export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT' | 'NGN' | 'PHP' | 'BRL' | 'INR' | 'COP' | 'UZS';
+export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK' | 'BD' | 'NG' | 'PH' | 'BR' | 'IN' | 'CO' | 'UZ';
 
 // NOTE ON `notes` FIELDS IN THIS FILE: neither CorridorFee.notes nor Provider.notes is
 // rendered anywhere. The only provider prose a reader sees comes from CorridorProviderEntry.notes
@@ -70,7 +70,12 @@ export const PROVIDERS: Provider[] = [
     // MX stays in supportedSourceCountries: the same capture showed a live outbound quote
     // (MXN 10,000 to USD 561.38, 125.78 MXN in fees), so Mexican residents can still send.
     // MX stays in supportedSourceCountries: Mexican residents can still send, not hold.
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'TH', 'PH', 'BR'],
+    // UZ deliberately absent. Uzbekistan is not on Wise's hold-money country list
+    // (wise.com/help/articles/2813542), so no balances and no account details of any
+    // currency, and Wise's own quote endpoint returns error.route.not.supported for
+    // USD to UZS: "Sorry, you can't send between these currencies right now." Two
+    // independent confirmations. Wise can only be the rail a client SENDS on.
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'TH', 'PH', 'BR', 'IN', 'CO'],
     corridors: [
       // Verified: ~$14.74 fee on $1,000 send (wise.com/us/send-money/send-money-to-georgia)
       {
@@ -107,6 +112,35 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.0043,
         fxMarkupBps: 0,
         typicalHours: 1,
+      },
+      // INR and COP read from Wise's own quote endpoint on 2026-09-25, payIn BALANCE and
+      // payOut BANK_TRANSFER, which is the case these corridors price. Wise does NOT publish
+      // a USD to INR conversion fee anywhere: wise.com/in/pricing/business/receive says only
+      // "Our conversion fee depends on the currency", and the 0.25% on its India business page
+      // is a GBP to EUR volume-discount example that must not be reused. The endpoint is the
+      // only honest source for it.
+      //   USD 1,000 -> INR fee 4.75 (0.475%);  USD 5,000 -> 21.48 (0.430%). Fit: 0.57 + 0.418%.
+      //   USD 1,000 -> COP fee 15.51 (1.551%); USD 5,000 -> 69.96 (1.399%). Fit: 1.90 + 1.361%.
+      // Both at the mid rate the same response reports, so 0 bps markup on each.
+      // Not modelled here and called out in the copy instead: India charges 18% GST on the
+      // conversion fee and about 2 USD per eFIRC, and CorridorFee has no field for tax on a fee.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'IN', currency: 'INR' },
+        fixedFee: 0.57,
+        percentageFee: 0.00418,
+        fxMarkupBps: 0,
+        typicalHours: 24,
+        notes: 'USD received by ACH is free. Conversion to INR at the mid-market rate. 18% GST lands on the conversion fee and on the eFIRC fee, which this row does not include.',
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'CO', currency: 'COP' },
+        fixedFee: 1.90,
+        percentageFee: 0.01361,
+        fxMarkupBps: 0,
+        typicalHours: 24,
+        notes: 'USD received by ACH is free. Conversion to COP at the mid-market rate, but the conversion fee is far higher than Wise charges on most corridors.',
       },
       // BRL: read from Wise's own quote endpoint on 2026-09-24, payIn BALANCE, which is the case
       // this corridor describes: the freelancer already holds USD from a client and converts it.
@@ -343,7 +377,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: true,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH', 'BR'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH', 'BR', 'IN', 'CO', 'UZ'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -381,6 +415,41 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 260,
         fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 48,
+      },
+      // IN, CO, UZ added 2026-09-25. Same basis as every other Payoneer row: 1% to receive
+      // into a receiving account in a currency that is not your local currency (min 1.00 USD),
+      // plus a withdrawal conversion charge Payoneer publishes only as a 1.2% to 4% RANGE,
+      // modelled at its 2.6% midpoint and flagged estimated. Uzbekistan is additionally NOT on
+      // Payoneer's list of countries eligible for the flat 1.50 USD same-currency withdrawal,
+      // so there is no cheap exit there at all. Payoneer eligibility for Uzbek residents could
+      // not be confirmed from any Payoneer-published source: payoneer.com/about/countries/ 404s.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'IN', currency: 'INR' },
+        fixedFee: 0,
+        percentageFee: 0.01,
+        fxMarkupBps: 260,
+        typicalHours: 24,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate
+        notes: 'Payoneer India withdraws eligible payments automatically within 24 hours.',
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'CO', currency: 'COP' },
+        fixedFee: 0,
+        percentageFee: 0.01,
+        fxMarkupBps: 260,
+        typicalHours: 48,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'UZ', currency: 'UZS' },
+        fixedFee: 0,
+        percentageFee: 0.01,
+        fxMarkupBps: 260,
+        typicalHours: 72,
+        fxMarkupEstimated: true,  // range not a rate, AND Uzbek eligibility is unconfirmed
       },
       // BR: Payoneer publishes 1% to receive into a receiving account in a currency that is NOT
       // your local currency (min 1.00 USD). A Brazilian's local currency is BRL, so on a literal
@@ -561,7 +630,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-08-27',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG', 'PH', 'BR'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG', 'PH', 'BR', 'IN'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -571,6 +640,17 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 350,
         typicalHours: 24,
         notes: '4.4% + $0.30 cross-border receiving fee; instant to PayPal balance, 1 to 3 days to bank',
+      },
+      // IN: paypal.com/in business fees, 4.40% plus a fixed fee (0.30 USD on USD received,
+      // 3.00 INR on INR), and 3.0% above the base exchange rate. CO deliberately absent:
+      // no Colombia-specific PayPal fee page was opened, so there is no row to write.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'IN', currency: 'INR' },
+        fixedFee: 0.30,
+        percentageFee: 0.044,
+        fxMarkupBps: 300,
+        typicalHours: 24,
       },
       // BR: paypal.com/br/webapps/mpp/merchant-fees. Commercial payment 4.79%, plus a further
       // 1.61% because the payer is international, plus a fixed 0.60 BRL, plus 3.50% above the base
@@ -884,7 +964,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'BR'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH', 'BR'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH', 'BR', 'IN', 'CO', 'UZ'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -923,6 +1003,49 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 100,
         fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 72,
+      },
+      // IN, CO, UZ. No bank schedule of charges could be opened for any of the three, which
+      // is the normal state for this provider: it is a category, not a company. Fees carried
+      // from other wire corridors and flagged estimated accordingly. Uzbekistan is the one
+      // corridor where the wire is the route we actually recommend, because a resident may
+      // hold a domestic USD account and SQB publishes free opening and free crediting of
+      // inbound non-cash foreign currency. What nobody publishes anywhere is what the
+      // correspondent banks deduct in transit, and on small invoices that is what eats the money.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'IN', currency: 'INR' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 200,
+        typicalHours: 72,
+        fxMarkupEstimated: true,
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'CO', currency: 'COP' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 250,
+        typicalHours: 72,
+        fxMarkupEstimated: true,
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'UZ', currency: 'UZS' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 26,
+        typicalHours: 72,
+        fxMarkupEstimated: true,  // 26 bps is ONE bank, ONE day, CASH rates: Trustbank sell 11,890 vs CBU 11,830.87
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'UZ', currency: 'USD' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 72,
+        notes: 'Holding dollars in an Uzbek bank account converts nothing, so there is no spread. SQB publishes free account opening and free crediting of inbound non-cash foreign currency. Correspondent deductions still apply and nobody publishes those.',
       },
       // BR: no Brazilian bank tariff could be opened (itau.com.br and bb.com.br both 403). The
       // structure is a US sending fee plus the receiving bank's own spread, which Brazilian banks

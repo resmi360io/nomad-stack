@@ -51,6 +51,9 @@ export function useLiveRates(): RatesState {
           NGN: r.NGN,
           PHP: r.PHP,
           BRL: r.BRL,
+          INR: r.INR,
+          COP: r.COP,
+          UZS: r.UZS,
         };
         // "Mon, 02 Jun 2026 00:00:02 +0000" → "2026-06-02"
         const raw: string = data.time_last_update_utc ?? '';

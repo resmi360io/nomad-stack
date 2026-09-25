@@ -32,6 +32,9 @@ const COUNTRY_CURRENCY: Record<CountryCode, Currency> = {
   NG: 'NGN',
   PH: 'PHP',
   BR: 'BRL',
+  IN: 'INR',
+  CO: 'COP',
+  UZ: 'UZS',
 };
 
 // Currencies a recipient can receive in each destination country.
@@ -40,6 +43,11 @@ const COUNTRY_CURRENCY: Record<CountryCode, Currency> = {
 const DEST_CURRENCIES_MAP: Partial<Record<CountryCode, Currency[]>> = {
   GE: ['GEL', 'USD', 'EUR'],  // Georgian banks (TBC, BoG, etc.) support GEL, USD, and EUR accounts
   TH: ['THB', 'USD'],        // Thai banks offer foreign currency deposit (FCD) accounts in USD
+  // Uzbekistan: the currency law (ZRU-573 of 2019) art. 12 lets residents open foreign
+  // currency accounts at Uzbek banks, and nothing in it requires mandatory sale of foreign
+  // currency earnings. SQB publishes free opening and free crediting of inbound non-cash FX.
+  // Third corridor after Georgia and Thailand where the page can price NOT converting.
+  UZ: ['UZS', 'USD'],
 };
 
 export function getCurrency(country: CountryCode): Currency {
