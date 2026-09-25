@@ -35,7 +35,7 @@ const DEST_OPTIONS: { code: CountryCode; label: string }[] = [
   // dropdown until /receive/usd-to-inr, usd-to-cop and usd-to-uzs exist. Uncomment all
   // three in the same commit that adds those pages.
   // { code: 'CO', label: 'Colombia (COP)' },
-  // { code: 'IN', label: 'India (INR)' },
+  { code: 'IN', label: 'India (INR)' },
   { code: 'UZ', label: 'Uzbekistan (UZS)' },
   { code: 'MX', label: 'Mexico (MXN)' },
   { code: 'TH', label: 'Thailand (THB)' },

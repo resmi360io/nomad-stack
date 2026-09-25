@@ -132,7 +132,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'HBL, UBL, MCB, Meezan Bank, and Bank Alfalah are the most commonly reported to work without issues; Faysal Bank is also frequently mentioned. HBL and Meezan Bank have official real-time withdrawal integrations with Payoneer, making them the fastest routes. The main requirement is that the account is in your legal name exactly as it appears in your Payoneer verification documents (CNIC or passport). Joint accounts or accounts with name mismatches can cause delays or rejections.',
       },
     ],
-    siblingCorridors: ['usd-to-bdt', 'usd-to-ngn', 'usd-to-php', 'usd-to-mxn', 'usd-to-uzs'],
+    siblingCorridors: ['usd-to-bdt', 'usd-to-ngn', 'usd-to-php', 'usd-to-mxn', 'usd-to-uzs', 'usd-to-inr'],
   },
 
   // ─── USD → Bangladesh (BDT) ────────────────────────────────────────────────
@@ -234,7 +234,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'The bank account route is cheaper for most transfers: Payoneer charges a higher conversion fee for the bKash route (approximately 3% plus $1) than for bank account withdrawals (1% plus roughly 1.2%-4% FX markup, typical all-in 3-5%). The bKash side adds a cash-out charge on top: 18.50 Taka per 1,000 (1.85%) at a standard agent, or 7 Taka per 1,000 (0.70%) if you withdraw Payoneer-received funds at a BRAC Bank, City Bank or participating Q-Cash ATM. Even at the cheaper ATM rate the bank route usually still comes out ahead at a typical 2% FX markup (roughly 3% all-in against roughly 3.8%), but the two are close, and if your Payoneer FX lands near the top of its 1.2%-4% range the bKash-plus-ATM route can match it. If you do use bKash, cash out at one of those ATMs rather than at an agent. The bKash route is faster, typically settling within hours rather than 1-3 business days. For claiming the export cash incentive or funding an ERQ account, you must use the bank route: bKash withdrawals do not generate a Foreign Inward Remittance Certificate (FIRC). A practical split: use the bKash route for small, urgent withdrawals when you need cash quickly; route your main income through a bank account for savings, incentive claims, and ERQ.',
       },
     ],
-    siblingCorridors: ['usd-to-pkr', 'usd-to-ngn', 'usd-to-php'],
+    siblingCorridors: ['usd-to-pkr', 'usd-to-ngn', 'usd-to-php', 'usd-to-inr'],
   },
 
   // ─── USD → Nigeria (NGN) ───────────────────────────────────────────────────
@@ -479,7 +479,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'GCash, yes: the Virtual US Account gives you ACH and wire details inside the app, and dollars land in your wallet as USD. Maya, not in the same way. Maya offers a USD wallet for holding and converting, but we could not confirm client-facing USD receiving details you could hand to a US payer; confirmed routes into Maya are remittance services like Wise, Remitly, WorldRemit, and Western Union, which arrive as pesos. If receiving USD into a wallet is the goal, GCash currently has the feature and Maya does not.',
       },
     ],
-    siblingCorridors: ['usd-to-idr', 'usd-to-thb', 'usd-to-bdt', 'usd-to-mxn', 'usd-to-brl'],
+    siblingCorridors: ['usd-to-idr', 'usd-to-thb', 'usd-to-bdt', 'usd-to-mxn', 'usd-to-brl', 'usd-to-inr'],
   },
   // ─── USD → Georgia (GEL) ───────────────────────────────────────────────────
   {
@@ -1300,5 +1300,136 @@ export const CORRIDORS: Corridor[] = [
     altReceivingNote:
       'Uzbekistan is one of the few countries on this site where not converting is a real option rather than a workaround. Article 12 of the currency law gives residents the right to hold foreign currency accounts at Uzbek banks, and there is no rule anywhere in that law forcing you to sell your dollars. The bank we could read a tariff for charges nothing to open the account and nothing to credit money arriving from abroad. What you are doing is deferring the spread rather than escaping it, since you pay it whenever you sell, but you get to choose the day.',
     siblingCorridors: ['usd-to-gel', 'usd-to-thb', 'usd-to-pkr'],
+  },
+  // USD to India (INR)
+  {
+    slug: 'usd-to-inr',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'INR',
+    destCountry: 'IN',
+    country: 'India',
+    title: 'Receive USD in India: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in India. Wise gives freelancers US account details, 18% GST lands on the fee, and the RBI publishes who is authorised.',
+    h1: 'How to receive USD in India: the GST nobody quotes, and the register nobody checks',
+    intro:
+      'India is the corridor with too many answers rather than too few. Wise, Payoneer, PayPal and half a dozen India-built rails all want your invoices, and every one of them quotes its price in a different shape, so nothing lines up. Two distortions run through every comparison you will read, including the ones the rails write about each other. The first is GST. Eighteen percent lands on the fee for the India-domiciled services, which means a headline nineteen dollars is really twenty-two forty-two. Our calculator has no field for tax charged on a fee, so read our fee column as before GST and add it where we say it applies. The second is that almost nobody tells you which of these companies is actually authorised by the Reserve Bank to do this. There is a public register of cross-border payment aggregators, it is short, and some well-known names are not on it. We checked it and we say per provider what it showed. On the thing readers most often get wrong: yes, an Indian freelancer can get real US account details from Wise, the kind a client pays by ordinary domestic transfer. It sits on the business side of the product, but the eligibility list opens with sole trader and freelancer, and that category needs nothing but a PAN in your own name and a personal bank account. No company, no GST number. Finally, the part that matters more than the fee: sort out your proof-of-remittance document before you optimise pennies, because that is what your accountant and the GST rules actually run on.',
+    publishedDate: '2026-09-25',
+    updatedDate: '2026-09-25',
+    providers: [
+      {
+        slug: 'wise',
+        name: 'Wise',
+        customHeading: 'Wise: yes, a freelancer qualifies, despite the word business',
+        available: true,
+        notes:
+          'The one we would start with, and we should say upfront that Wise is the affiliate programme this site earns from, so check the table rather than taking our word for it. What you get is a Wise Business account with US account details, a routing number and an account number, so an American client pays you the way they pay a domestic supplier. It says business on the tin and that puts people off unnecessarily. Wise lists five accepted categories and the first is sole trader or freelancer, described as making money as an individual, with your PAN under your personal name and your rupee receiving account under your personal name. Only the separate sole proprietorship category, the one for trading under a business name, needs a GST number or an IEC. Verification is video KYC through Aadhaar OTP, PAN and Digilocker, and Wise says the account is ready inside two working days. On price, receiving dollars by ACH is free. Wise charges around six dollars for a domestic dollar wire or an inbound SWIFT payment, though the page that says so is the general dollar details article rather than an India-specific one, so treat it as indicative. Then comes the conversion, and here is a gap worth knowing about: Wise does not publish its dollars to rupees conversion fee anywhere we could find. Its India business receiving page says only that the conversion fee depends on the currency, and the 0.25% figure floating around its India pages belongs to a pounds to euros worked example with a volume discount applied, so anyone quoting it at you for this corridor is repeating something that was never about rupees. We got the real number out of Wise own pricing system on 25 September 2026: about 0.42% of the amount plus a small fixed component, at the mid-market rate with no spread on top. Two more charges to plan for. An eFIRC costs the equivalent of two dollars per transfer and is issued automatically, arriving by email two to three days after the transfer completes. And GST at 18% applies, on the conversion fee and on the eFIRC fee, which Wise states plainly. Limits run to 2.5 million rupees per transaction at the top and five dollars at the bottom, and Wise says more than half its transfers settle within two hours.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        customHeading: 'Payoneer: the free automatic FIRA is the real feature',
+        available: true,
+        notes:
+          'The default if your work arrives through Upwork or Fiverr, and it has one feature on this corridor that nothing else matches. The FIRA is free, automatic and per payment. Payoneer says the document is generated every time a payment is processed into your bank account, regardless of where the money came from, and is available to download within 24 to 72 hours, with no charge and nothing to request. Its own page lists no exclusions by amount or country. If the paperwork is the part you dread, that alone may decide it. The cost is muddier. Receiving into a receiving account in a currency that is not your local one costs 1% with a one dollar minimum, and your local currency as an Indian resident is the rupee. The withdrawal is published as a range rather than a rate, 1.2% to 4%, and Payoneer does not say where the rupee sits inside it, so we model the midpoint and flag the row as an estimate, which also bars it from our badge. There is a 29.95 dollar annual fee if the account takes in under 6,000 dollars in any twelve consecutive months. One India-specific behaviour is worth planning around: Payoneer says that once you add a bank account, eligible payments are withdrawn automatically within 24 hours of receipt, in accordance with Indian regulations. If that holds, and we could not find it repeated in Payoneer own help centre, it means you cannot use Payoneer to sit on dollars in India. The money reaches you as rupees whether you wanted that today or not.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        available: true,
+        notes:
+          'Available, familiar, and the most expensive thing on this page. Commercial receiving is 4.40% plus a fixed fee, thirty cents on dollars, and then 3.0% above the base exchange rate when the money is converted. To receive at all you have to verify your PAN, add an Indian bank account and pick a purpose code, which PayPal walks you through. The paperwork is better than the price: a weekly digital FIRA is free and fully automated, and a transaction-specific one costs 100 rupees plus GST, requested through Citibank and taking three to five business days if you bank with Citi and seven to ten if you do not. One thing we could not resolve and will not guess at. We checked the Reserve Bank public register of authorised cross-border payment aggregators, as published on 8 September 2026, and PayPal is not on it. That is not an accusation: there are other frameworks and legacy arrangements it could be working under, and we could not establish from any primary source which one applies. We are telling you what the register showed and nothing more.',
+      },
+      {
+        slug: 'skydo',
+        name: 'Skydo',
+        customHeading: 'Skydo: authorised, cheap at size, and a lesson in GST',
+        available: true,
+        notes:
+          'An India-built rail, properly authorised, and the clearest illustration of the GST problem on this page. Skydo charges nineteen dollars for invoices up to two thousand, twenty-nine dollars from two thousand to ten thousand, and 0.3% above ten thousand, at the live FX rate with no margin on the exchange. Those are the numbers everyone quotes. Skydo own calculator then adds GST at 18% to the fee, so the nineteen is really 22.42 and the twenty-nine is really 34.22. We checked because a competitor made the claim and we assumed it was a smear. It is not, it is correct. That is why Skydo is described here rather than ranked in the table above: its price is tiered by invoice size and our model holds a single flat fee, so any number we put in the table would be right at one invoice size and wrong at every other. Do the arithmetic for your own invoice. On a nine thousand dollar invoice, Skydo at 34.22 all in is very hard to beat. On a five hundred dollar one it is dreadful. Skydo Technologies Private Limited appears on the Reserve Bank register as an authorised cross-border payment aggregator for imports and exports, dated 8 January 2026. What we could not confirm is whether an unregistered individual freelancer can onboard, as against a registered exporter or business, so check that before you build a plan on it.',
+      },
+      {
+        slug: 'xflow',
+        name: 'Xflow',
+        customHeading: 'Xflow: authorised, and a different tax structure entirely',
+        available: true,
+        notes:
+          'The other authorised India-built rail we can describe with confidence, and it has a genuinely different tax structure that nobody explains. Pricing is tiered like Skydo: twelve dollars for invoices up to two thousand on the starter plan and 0.6% above that, or twenty dollars up to five thousand on the growth plan and 0.4% above, with custom pricing for ten thousand and up. It uses the mid-market rate. The interesting part is GST. Xflow says it does not charge GST on its services because it is a US-domiciled entity, which sounds like a straight saving against Skydo. Read the next sentence though: it also says the flat fees may require GST to be paid through the reverse charge mechanism, which moves the obligation onto you rather than removing it. Whether that is better depends entirely on whether you are already filing under reverse charge for anything else. Ask your accountant rather than assuming it is free money. Xflow Payments India Private Limited is on the Reserve Bank register, dated 18 February 2026. It is not in our table for the same reason Skydo is not: tiered pricing that a single flat fee cannot represent.',
+      },
+      {
+        slug: 'other-rails',
+        name: 'Karbon, Winvesta, BriskPe and Infinity',
+        customHeading: 'The rails we will not rank, and why',
+        available: true,
+        notes:
+          'Four more names come up constantly and we are not going to rank any of them, for reasons that differ and are all worth knowing. BriskPe refused every request we made to its website, so the only thing we can tell you from a source we actually opened is that GoBrisk Technologies Private Limited is on the Reserve Bank authorised register, dated 26 December 2025. Its fees circulate widely and we have verified none of them. Karbon publishes no rates at all: its own fees page lists categories and sends you to a pricing calculator, which is a legitimate way to run a business and an impossible one to put in a comparison table. It is also not on the authorised register. Winvesta pricing page turned out to be for its investment product, and the page that would carry its collection charges returns a 404; it is not on the register either. Infinity publishes a flat 0.5% described as all inclusive with no FX markup, which would be excellent if we knew whether all inclusive means GST is inside it, and its own page does not say; it is not on the register. Being absent from that register is not an accusation, because it covers one specific authorisation and there are other ways to operate legally. It is simply a check you can run yourself, and we would rather point you at it than pretend we can rank companies that do not publish a price.',
+      },
+      {
+        slug: 'bank-wire',
+        name: 'Bank Wire (SWIFT)',
+        customHeading: 'The wire, and where a real FIRC comes from',
+        available: true,
+        notes:
+          'The old route, still the one your bank understands best, and on a large enough invoice still competitive. Your client American bank charges a flat fee to send, an intermediary may take a cut on the way, and your Indian bank converts at its own rate, which it does not publish and will not tell you in advance. We could not open a schedule of charges for any Indian bank, so the figures in our table are carried from other wire corridors and flagged as estimates accordingly. The reason to consider a wire anyway is documentary. It lands through an Authorised Dealer bank, which is the entity that can issue a FIRC, and if your business ever needs the full certificate rather than the advice document, that is where it comes from.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        customHeading: 'Revolut has an Indian licence, but not for this',
+        available: false,
+        notes:
+          'Not an option for this corridor, and the reason is specific rather than vague. Revolut has a full Indian licence, announced in April 2025, but it is a prepaid payment instrument authorisation: domestic prepaid cards and wallets with UPI. That is a spending product, not a receiving one. Revolut also does not appear on the Reserve Bank register of authorised cross-border payment aggregators. Between those two facts there is no route for an Indian resident to take a dollar invoice from a foreign client through Revolut today. We did not find a Revolut page stating that negative outright, so this is our reading of its licence scope rather than a quote.',
+      },
+    ],
+    supportedProviders: ['wise', 'payoneer', 'bank-wire', 'paypal'],
+    faqs: [
+      {
+        q: 'Can an Indian freelancer really get US account details from Wise?',
+        a:
+          'Yes, and the confusion is about the word business. Wise India receiving product is licensed as a cross-border payment aggregator for business customers, which makes people assume they need a company. They do not. Wise lists five accepted categories and the first is sole trader or freelancer: you make money as an individual, your PAN is under your personal name, and your rupee receiving account is under your personal name. That is the whole requirement. The separate sole proprietorship category, for people trading under a business name, is the one that asks for a GST number or an IEC. Verification runs as video KYC using Aadhaar OTP, PAN and Digilocker, and Wise says the account is usable within two working days. The details you get are US domestic ones, so your client pays them like any American supplier rather than sending an international wire.',
+      },
+      {
+        q: 'What is the difference between a FIRC, a FIRA and an eBRC, and which do I need?',
+        a:
+          'This is the question that actually matters and almost every guide blurs it. A FIRC, a foreign inward remittance certificate, is the formal instrument and only an Authorised Dealer bank can issue one. A FIRA, sometimes written eFIRA or eFIRC, is the advice document you get per payment from your provider or its partner bank, and for a freelancer exporting services it is normally what suffices. An eBRC is a bank realisation certificate on the foreign trade portal, tied to goods and software exports, and is usually not your problem if you sell services. What you want is a provider that hands you the per-payment document without being asked. Payoneer does, free and automatically, within 24 to 72 hours. Wise does, automatically, for the equivalent of two dollars per transfer plus GST. PayPal gives you a free weekly one automatically, or a transaction-specific one for 100 rupees plus GST through Citibank. Sort this out before you optimise the fee, because it is what your accountant will ask for.',
+      },
+      {
+        q: 'Why does the fee I was quoted not match the fee that was charged?',
+        a:
+          'Almost always GST. Eighteen percent lands on the service fee for India-domiciled providers, and nearly every headline number you see is quoted before it. Skydo nineteen dollars becomes 22.42 once its own calculator adds the tax. Wise states that it charges GST on the conversion fee and on the eFIRC fee. Our comparison table has no field for tax charged on top of a fee, so the figures there are before GST and you should add it where it applies. Xflow is the odd one out and worth reading carefully rather than celebrating: it says it does not charge GST because it is a US entity, and in the same breath that its flat fees may require GST through the reverse charge mechanism, which moves the job to you rather than making it disappear.',
+      },
+      {
+        q: 'How do I know a provider is allowed to do this?',
+        a:
+          'Check the Reserve Bank own register. Since the cross-border payment aggregator framework came in, companies that collect export payments for Indian sellers need a specific authorisation, and the RBI publishes the list of who holds one. It is short, it is public, and checking it takes a minute. When we looked at the version published on 8 September 2026, Skydo, Xflow and BriskPe were on it under their corporate names, and Karbon, Winvesta, Infinity, PayPal and Revolut were not. Be careful what you conclude from an absence: the register covers one specific authorisation and a company can be operating perfectly legally under a different arrangement, which is why we flag PayPal absence rather than making an accusation of it. But if you are about to route serious money through a rail you had not heard of last week, the register is the first place to look.',
+      },
+      {
+        q: 'Can I hold dollars in India instead of converting straight away?',
+        a:
+          'Mostly no, and the reasons stack up. Payoneer says that once you link a bank account in India, eligible payments are withdrawn automatically within 24 hours of receipt in accordance with Indian regulations, so the balance is not somewhere you can park money. Wise converts and deposits rupees as the product design. There is an account type meant for exactly this, the EEFC account, which lets you hold foreign currency received from abroad, but it carries a conversion rule that limits how long you can sit on it, so it is a timing tool rather than a dollar savings account. We have deliberately not given this corridor a hold-your-dollars comparison for that reason. If holding dollars is the point for you, that is a conversation with a bank about an EEFC account, not a choice between apps.',
+      },
+      {
+        q: 'Do I need GST registration if all my clients are abroad?',
+        a:
+          'Export of services is zero rated, which is not the same as being outside GST, and the registration threshold question is genuinely contested among practitioners. The usual figures are twenty lakh rupees, or ten lakh in the special category states, and whether your export turnover counts toward that threshold is where the disagreement sits. We are not going to resolve an argument that chartered accountants are still having. What we will say is that if you register, the mechanism you want is a letter of undertaking, Form GST RFD-11, filed on the GST portal and renewed each financial year, which lets you export without paying IGST up front. The alternative is paying 18% IGST and claiming it back, which is a cash flow problem you do not need. Take the threshold question to an accountant with your actual numbers.',
+      },
+      {
+        q: 'What purpose code do I use?',
+        a:
+          'For most software and IT consulting work it is P0802, the code for software implementation and consultancy not covered by the SOFTEX route. There are neighbouring codes for packaged software products, for marketing services and for digital products, and getting it wrong is your problem rather than your bank. The code is recorded by whichever bank or platform receives the money and reported under the foreign exchange rules, based on what you tell them. Take the list from the Reserve Bank rather than from the vendor landing pages, several of which have built a page per code for search traffic and are not authoritative.',
+      },
+      {
+        q: 'Is Section 44ADA still the right way to be taxed?',
+        a:
+          'For a lot of freelancers it is, and the mechanism is that you declare half your gross receipts as income and pay tax on that, without keeping detailed books. The ceiling is the thing to check against your own numbers, and it is higher for people whose receipts arrive almost entirely electronically, which describes anyone being paid by foreign clients through the rails on this page. There is also a claim circulating that presumptive taxation moved into a renumbered section of a new income tax act from April 2026 at the same rates and limits. That is a large statement about current law and we have not confirmed it from the statute, so do not restructure anything on the strength of it, or of us.',
+      },
+      {
+        q: 'What is the cheapest way to receive dollars in India?',
+        a:
+          'It depends on your invoice size more than on anything else, which is why a single answer misleads. Of the providers we can put in a table, Wise comes out cheapest at the thousand dollar comparison amount: free to receive by ACH, around 0.42% to convert at the mid-market rate, plus two dollars for the eFIRC and GST on both. Payoneer is next, and its published range makes precision impossible. PayPal is a long way behind. But the tiered India-built rails change the answer at size: Skydo at 34.22 all in on a nine thousand dollar invoice is extremely hard to beat, and dreadful on a five hundred dollar one. We cannot rank them because our table holds one flat fee and their price moves in steps. So do this: take your typical invoice, run it through two of these for real on the same afternoon, add GST where it applies, and compare the rupees that land rather than the percentages quoted.',
+      },
+    ],
+    siblingCorridors: ['usd-to-pkr', 'usd-to-bdt', 'usd-to-php'],
   },
 ];
