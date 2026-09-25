@@ -145,6 +145,20 @@ has been missed at least once:
 - `DEST_CURRENCIES_MAP` in `lib/calculate.ts`, if the destination lets a recipient
   hold foreign currency instead of converting. Without it the page can only price
   conversion, which on some corridors is the option the page argues against.
+- A NEW CURRENCY breaks the build in two places that no amount of `tsc` on the data
+  files will catch, because both live outside them: the `Record<Currency, number>`
+  literals in `hooks/useLiveRates.ts` and in `lib/fetchRates.ts`. Both are exhaustive,
+  so adding a member to the `Currency` union without adding the currency to both is a
+  hard type error. Brazil shipped to production with this broken on 2026-09-25 and the
+  Vercel build caught it, not us.
+- `CURRENCY_LABELS` in `components/CalculatorForm.tsx` is the third exhaustive record
+  over `Currency`, and it renders to readers, so it must be free of em and en dashes.
+
+RUN `npm run build` BEFORE COMMITTING, not just `tsc` on the data files. Typechecking
+`data/corridors.ts` and `data/providers.ts` in isolation passes happily while the app
+does not compile, which is exactly how the above reached production. `npm run build`
+also proves `generateStaticParams` emits the corridor you just added: check the route
+list at the end of the output for it.
 
 Verify a new page by hand on the day it ships. The rotation will not reach it for
 up to six days, and that is exactly the window in which it is least trustworthy.

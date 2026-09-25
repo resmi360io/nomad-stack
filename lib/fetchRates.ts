@@ -31,6 +31,7 @@ export async function fetchRatesServer(): Promise<RatesResult | null> {
       BDT: r.BDT,
       NGN: r.NGN,
       PHP: r.PHP,
+      BRL: r.BRL,
     };
     // "Mon, 02 Jun 2026 00:00:02 +0000" → "2026-06-02"
     const raw: string = data.time_last_update_utc ?? '';
