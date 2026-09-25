@@ -128,11 +128,23 @@ export function calculate(
   }
 
   quotes.sort((a, b) => b.netReceivedInDest - a.netReceivedInDest);
-  // Best value goes to the highest-ranked quote we can actually source. A quote
-  // built on an estimated FX markup still appears and still ranks, but awarding it
-  // the badge would put our loudest recommendation on a number we cannot defend.
-  const firstSourced = quotes.find((q) => !q.isEstimate);
-  if (firstSourced) firstSourced.isBestValue = true;
+  // Best value goes to the top-ranked quote, and only if we can source its FX markup.
+  // Two rules, and the second one was added on 2026-09-25 after it bit us.
+  //
+  // A quote built on an estimated markup still appears and still ranks, but it cannot
+  // take the badge, because that would put our loudest recommendation on a number we
+  // cannot defend. That much was always true.
+  //
+  // What was wrong was scanning DOWN the list for the first sourced quote. That awards
+  // the badge to whatever we happen to be able to source, however badly it ranks. When
+  // Payoneer and bank wire were both correctly flagged as estimated, the old rule put
+  // BEST VALUE on PayPal for Indonesia: fourth of four on money actually received, and
+  // the most expensive option on the page. No amount of footnoting fixes a label like
+  // that. So the badge is now the top row's to win or nobody's, and a corridor where we
+  // cannot source the cheapest option simply has no badge. Three corridors are in that
+  // state today (PKR, BDT, IDR) and their copy says so rather than pretending otherwise.
+  const top = quotes[0];
+  if (top && !top.isEstimate) top.isBestValue = true;
 
   return quotes;
 }

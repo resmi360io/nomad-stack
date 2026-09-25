@@ -315,11 +315,22 @@ export const PROVIDERS: Provider[] = [
     caveat: 'Shown: weekday, within the $1,000/month FX allowance. Above the allowance: +0.5%. Weekends: +1% extra. Those allowance figures are from Revolut US; the European entity publishes different ones, so a EEA-resident account may differ. The allowance is not modelled in the rates above, which show the transfer fee only. Revolut accounts are not available to residents of Georgia, Thailand or Indonesia.',
   },
 
+  // FX MARKUP, ALL ROWS, revised 2026-09-25. Every row here used to carry 200 bps, sourced
+  // from an "up to 2%" line on payoneer.com/withdraw-funds. That wording is GONE. The fee
+  // schedule (payoneer.com/pricing and /legal/fees, last updated 1 January 2026) publishes
+  // a RANGE instead: 1.2% to 4% to withdraw to a bank account, with or without conversion.
+  // A range is not a rate, so no row here can be sourced. Confirmed independently by three
+  // agents on 2026-09-24. The rows now carry 260 bps, the true midpoint of 1.2 to 4 (an
+  // earlier pass on this project wrongly called 2% that midpoint), and every one is flagged
+  // estimated, which bars Payoneer from the best value badge on every corridor. Consequence
+  // to know: Payoneer held the badge on PKR, BDT and IDR, and those corridors now have no
+  // badge at all rather than one awarded to a worse option. See lib/calculate.ts.
   // ─── Payoneer ──────────────────────────────────────────────────────────────
   // Source: https://www.payoneer.com/legal/fees/ (2026-06-02)
   // Source: https://payoneer.custhelp.com/app/answers/detail/a_id/6118 (FX/cross-border fee)
   // Receiving fee: 1% (from Payoneer balance/bank); FX markup: up to 200 bps on local bank withdrawals
-  // Cross-currency: 1% receive + up to 2% FX = ~3% all-in. $1.50 flat ONLY for same-currency withdrawals.
+  // Cross-currency: 1% receive + a conversion charge Payoneer publishes only as 1.2% to 4%, modelled
+      // at its 2.6% midpoint = ~3.6% all-in. $1.50 flat ONLY for same-currency withdrawals.
   {
     slug: 'payoneer',
     name: 'Payoneer',
@@ -339,7 +350,7 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'GE', currency: 'GEL' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
         typicalHours: 72,
         fxMarkupEstimated: true,  // Payoneer's published conversion currency list does not include GEL, so this lari withdrawal may not exist at all
         notes: '1% receiving fee + ~2% FX markup; $1.50 flat applies to same-currency withdrawals only',
@@ -349,7 +360,8 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'GE', currency: 'GEL' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
       },
       {
@@ -357,7 +369,8 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'GE', currency: 'GEL' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
       },
       {
@@ -365,7 +378,8 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'PT', currency: 'EUR' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 48,
       },
       // BR: Payoneer publishes 1% to receive into a receiving account in a currency that is NOT
@@ -382,7 +396,7 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'BR', currency: 'BRL' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
         typicalHours: 48,
         fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; and the 1% leg is inferred
       },
@@ -391,7 +405,8 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'MX', currency: 'MXN' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 48,
       },
       {
@@ -399,7 +414,8 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'TH', currency: 'THB' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 48,
       },
       {
@@ -407,7 +423,8 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'PT', currency: 'EUR' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 48,
       },
       {
@@ -415,7 +432,8 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'ID', currency: 'IDR' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
       },
       {
@@ -423,7 +441,8 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'ID', currency: 'IDR' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
       },
       // USD → Georgian USD bank account (no FX — 1% receiving fee + $1.50 withdrawal)
@@ -458,20 +477,22 @@ export const PROVIDERS: Provider[] = [
         notes: '1% receiving fee; no FX conversion (SEPA)',
       },
       // USD → Pakistani PKR bank account
-      // Source: payoneer.com/legal/fees/ (2026-06-03) — 1% receiving fee + up to 2% FX on withdrawal
+      // Source: payoneer.com/legal/fees/ (re-read 2026-09-24): 1% receiving fee, plus a withdrawal
+      // conversion charge published as a RANGE of 1.2% to 4%. The old "up to 2%" wording is gone.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PK', currency: 'PKR' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
-        notes: '1% receiving fee + up to 2% FX markup on PKR withdrawal to local bank',
+        notes: '1% receiving fee plus a withdrawal conversion charge Payoneer publishes as 1.2% to 4%, modelled at the 2.6% midpoint. PKR withdrawal to local bank.',
       },
       // USD → Bangladeshi BDT bank account
       // Source: payoneer.com/legal/fees/ (updated Jan 2026). The attribution of the 1.2-4%
       // BDT range to that schedule was WITHDRAWN 2026-09-22: payoneer.com could not be
-      // opened, and Payoneer's withdraw-funds material is quoted as a single "up to 2%"
+      // opened. The single "up to 2%" figure that attribution rested on is no longer on payoneer.com
       // for a local withdrawal in a different currency. Modeled at 2% on that basis, NOT
       // as a midpoint of 1.2-4%, which would be 2.6%. Payoneer-to-bKash costs ~3% + $1.
       {
@@ -479,12 +500,14 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'BD', currency: 'BDT' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
         notes: '1% receiving fee + ~2% FX markup on BDT withdrawal (range 1.2 to 4%); bKash route ~3% + $1 instead',
       },
       // USD → Nigerian NGN bank account
-      // Source: payoneer.com/legal/fees/ — 1% receiving fee + up to 2% FX markup on NGN withdrawal
+      // Source: payoneer.com/legal/fees/ (re-read 2026-09-24): 1% receiving, plus a withdrawal
+      // conversion charge published as 1.2% to 4%, not the "up to 2%" this row used to cite.
       // Annual fee threshold: help center currently states $6,000/year received
       // (it has published $2,000 elsewhere); verify per-account in the portal
       {
@@ -492,20 +515,23 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'NG', currency: 'NGN' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
-        notes: '1% receiving fee + up to 2% FX markup on NGN withdrawal; $29.95/year if under the activity threshold (help center currently $6,000/year)',
+        notes: '1% receiving fee plus a withdrawal conversion charge published as 1.2% to 4%, modelled at 2.6%; $29.95/year if under the activity threshold (help center currently $6,000/year)',
       },
       // USD → Philippine PHP bank account, GCash, or GoTyme
-      // Source: payoneer.com country guide for PH — 1% receiving + up to 2% FX on withdrawal
+      // Source: payoneer.com country guide for PH, plus the fee schedule: 1% receiving, and a
+      // withdrawal conversion charge published as 1.2% to 4% rather than as "up to 2%".
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PH', currency: 'PHP' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 48,
-        notes: '1% receiving fee + up to 2% FX markup on PHP withdrawal to bank or GoTyme; GCash payouts may add a GCash-side cash-in fee, priced by funding source and not confirmed from a GCash primary source; whether the PHP 8,000/month free-then-2% figure applies to Payoneer or only to over-the-counter cash-ins is unresolved, and some sources report a flat 1% instead; verify in app',
+        notes: '1% receiving fee plus a withdrawal conversion charge published as 1.2% to 4%, modelled at 2.6%. PHP withdrawal to bank or GoTyme; GCash payouts may add a GCash-side cash-in fee, priced by funding source and not confirmed from a GCash primary source; whether the PHP 8,000/month free-then-2% figure applies to Payoneer or only to over-the-counter cash-ins is unresolved, and some sources report a flat 1% instead; verify in app',
       },
     ],
     fallbackFee: {
@@ -866,6 +892,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
         notes: '$25 to 45 sending fee + $10 to 25 correspondent fee; may arrive as USD then converted locally',
       },
@@ -875,6 +902,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 28,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
       },
       {
@@ -883,6 +911,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 30,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
       },
       // Verified 2026-06-02: $25–45 sending fee + bank FX markup ~1%; ~3.5% effective all-in
@@ -892,6 +921,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 100,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 72,
       },
       // BR: no Brazilian bank tariff could be opened (itau.com.br and bb.com.br both 403). The
@@ -924,6 +954,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
       },
       // USD → Thai foreign currency deposit (FCD) account via SWIFT (no FX conversion).
@@ -947,6 +978,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 25,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 48,
         notes: 'Post-Brexit GBP→EUR is SWIFT, not SEPA',
       },
@@ -956,6 +988,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 30,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
       },
       {
@@ -964,6 +997,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
       },
       // USD → Georgian USD bank account via SWIFT (no FX conversion)
@@ -1004,6 +1038,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 120,
         notes: '$25-45 flat sending fee + bank FX markup. SWIFT to HBL, UBL, MCB, Bank Alfalah.',
       },
@@ -1016,6 +1051,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 150,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 72,
         notes: '$35 flat + TT buying rate ~1 to 2% below mid-market; generates FIRC for export incentive claims.',
       },
@@ -1029,6 +1065,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 200,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 72,
         notes: '$35 flat + ~2% bank FX spread above NFEM rate; SWIFT wires exempt from IMTO naira-only rule.',
       },
@@ -1042,6 +1079,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 150,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
         notes: '$25-45 sending fee + bank inward remittance fees; no forced conversion (FCDU USD accounts); spread applies only on conversion to PHP',
       },
