@@ -50,26 +50,7 @@ Take the next corridor from the top of this list. When one ships, delete its lin
 Order is the decision, so do not reorder it to pick an easier corridor: a corridor
 sitting at the top because it is hard is exactly the one worth doing.
 
-1. **Brazil (BRL).** Blocking question: does a Brazilian resident, personal or PJ,
-   get USD account details and a USD balance from Wise, or only a BRL payout with
-   the client paying? This is NOT a case of one good source and one bad one. Two
-   Wise help pages, both read on 2026-09-24 within the same minute, contradict each
-   other outright. "Holding money if you live in Brazil"
-   (wise.com/help/articles/7cUlHeJwqj6AHM69S8qRCA/...) says "If you live in Brazil
-   and have a personal Wise account, you can add a currency and hold over 40
-   currencies with us, including BRL. The same applies if you have a Wise Business
-   account registered in Brazil." "Where do I need to live to hold money with Wise?"
-   (wise.com/help/articles/2813542/...) lists under Additional restrictions:
-   "Brazil - you can only hold BRL if you reside in Brazil." Do not resolve this by
-   picking the one you prefer. Establish which is current, and if it cannot be
-   settled, the page says Wise documents both and tells the reader to check in the
-   app. Note also that holding a currency and being issued receiving details for it
-   are different products, and the pages above address holding, not details. Second question: the current IOF rate on inbound export of
-   services receipts, which changed more than once in 2025. IOF is a tax, not a
-   provider fee, and must never be folded into `fxMarkupBps` or `percentageFee`.
-   Do not add `BR` to `DEST_CURRENCIES_MAP`: the realistic USD holding options are
-   offshore, not a domestic account.
-2. **India (INR).** Blocking question: the same residency question, where the split
+1. **India (INR).** Blocking question: the same residency question, where the split
    is probably personal versus Wise Business. Note Wise's April 2025 India launch
    announced "international" account details, which may mean SWIFT rather than
    domestic ACH, and that changes both fee and speed. The page's real subject is
@@ -79,7 +60,7 @@ sitting at the top because it is hard is exactly the one worth doing.
    fee reportedly carries 18% GST on the fee itself, which the calculator has no
    field for. EEFC accounts require conversion by the end of the following month,
    so India probably does not get a `DEST_CURRENCIES_MAP` entry either.
-3. **Colombia (COP).** Blocking question: whether inbound service export receipts
+2. **Colombia (COP).** Blocking question: whether inbound service export receipts
    must be channelled through the mercado cambiario with a declaracion de cambio,
    or fall in the free market. Read Resolucion Externa 1 de 2018 rather than a
    summary. Second question: whether a fintech USD balance counts as a cuenta de
@@ -87,7 +68,7 @@ sitting at the top because it is hard is exactly the one worth doing.
    provider whether pricing is against the TRM or the interbank mid, because that
    gap is a spread the reader never sees and the model does not capture. `COP`
    belongs in the zero-decimal currency list in `formatAmount`.
-4. **Uzbekistan (UZS).** Blocking questions: whether Wise and Revolut serve Uzbek
+3. **Uzbekistan (UZS).** Blocking questions: whether Wise and Revolut serve Uzbek
    residents at all, and what Payoneer's local withdrawal route is. The corridor's
    distinctive feature is the IT Park tax regime for IT service exporters and the
    e-resident programme, which is the reason the page would exist; get its current
@@ -116,10 +97,12 @@ and fetch time, and point the agents at those files: they are full primary sourc
 texts, not snippets, and citing them is legitimate as long as the manifest travels
 with them.
 
-Never draft a corridor from secondary sources to get it off this list. Three of
-these were researched on 2026-09-24 while the policy was closed, and every brief
-came back with zero opened pages across roughly forty hosts, so those briefs are
-URL worklists rather than data. They are still useful as worklists. The other
+Never draft a corridor from secondary sources to get it off this list. India and
+Colombia were first researched on 2026-09-24 while the policy was closed, and
+both briefs came back with zero opened pages across roughly forty hosts, so those
+are URL worklists rather than data. Brazil shipped on 2026-09-25 only after a
+research pass that opened real sources, and its verifier still found thirteen
+incorrect items in the draft, which is the standard to hold the rest to. The other
 route that has worked is the site owner capturing pages by hand: Mexico shipped
 because `wise.com/mx` and `revolut.com/es-MX` were supplied as PDFs.
 

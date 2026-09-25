@@ -8,6 +8,7 @@ import { PROVIDERS } from '@/data/providers';
 import { calculate, getDestCurrencies } from '@/lib/calculate';
 import type { CountryCode, Currency } from '@/data/providers';
 import { Calculator } from '@/components/Calculator';
+import { BestValueBadge } from '@/components/BestValueBadge';
 
 export const revalidate = 3600;
 
@@ -276,12 +277,26 @@ export default async function CorridorPage({
                   </tr>
                 </thead>
                 <tbody>
+                  {/* The best value badge renders here as well as in the interactive
+                      calculator. It used to live only in the client-side ResultsTable, which
+                      meant the page's own copy referred to a badge the server-rendered table
+                      never showed: the Mexico page says it carries our best value badge, above
+                      a table containing no badge. A reader without JavaScript, and a crawler,
+                      saw the ranking but not the recommendation. */}
                   {quotes.map((q, i) => (
                     <tr
                       key={q.provider.slug}
-                      className={i < quotes!.length - 1 ? 'border-b' : ''}
+                      className={[
+                        i < quotes!.length - 1 ? 'border-b' : '',
+                        q.isBestValue ? 'bg-green-50/60 dark:bg-green-900/10' : '',
+                      ].filter(Boolean).join(' ')}
                     >
-                      <td className="px-4 py-3 font-medium">{q.provider.name}</td>
+                      <td className="px-4 py-3 font-medium">
+                        <span className="flex flex-wrap items-center gap-2">
+                          {q.provider.name}
+                          {q.isBestValue && <BestValueBadge />}
+                        </span>
+                      </td>
                       <td className="px-4 py-3 font-semibold tabular-nums">
                         {formatAmount(q.netReceivedInDest, corridor.destination)}
                       </td>
