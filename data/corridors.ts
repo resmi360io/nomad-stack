@@ -132,7 +132,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'HBL, UBL, MCB, Meezan Bank, and Bank Alfalah are the most commonly reported to work without issues; Faysal Bank is also frequently mentioned. HBL and Meezan Bank have official real-time withdrawal integrations with Payoneer, making them the fastest routes. The main requirement is that the account is in your legal name exactly as it appears in your Payoneer verification documents (CNIC or passport). Joint accounts or accounts with name mismatches can cause delays or rejections.',
       },
     ],
-    siblingCorridors: ['usd-to-bdt', 'usd-to-ngn', 'usd-to-php', 'usd-to-mxn'],
+    siblingCorridors: ['usd-to-bdt', 'usd-to-ngn', 'usd-to-php', 'usd-to-mxn', 'usd-to-uzs'],
   },
 
   // ─── USD → Bangladesh (BDT) ────────────────────────────────────────────────
@@ -590,7 +590,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'The reported threshold is 30,000 lari or the equivalent in another currency, above which you must declare the money to customs when crossing the border, with penalties for failing to. This one is worth mentioning only because people find the figure and assume it is a limit on bank transfers. It is not. It applies to physical cash and other bearer instruments you carry across the border in person, and it has nothing whatsoever to do with a client wiring dollars into your account. There is no transfer ceiling of that kind in Georgia. We could not open the customs code itself, so treat the exact figure as one to verify if you are actually planning to travel with cash.',
       },
     ],
-    siblingCorridors: ['usd-to-eur-portugal', 'usd-to-thb', 'usd-to-pkr', 'usd-to-mxn', 'usd-to-brl'],
+    siblingCorridors: ['usd-to-eur-portugal', 'usd-to-thb', 'usd-to-pkr', 'usd-to-mxn', 'usd-to-brl', 'usd-to-uzs'],
   },
   // ─── USD → Portugal (EUR) ──────────────────────────────────────────────────
   {
@@ -803,7 +803,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'It is Thailand\'s closest equivalent to the inward remittance certificate that some other countries issue, and it is the document to ask for at the time rather than chase later. A Foreign Exchange Transaction form is issued by the receiving Thai bank and documents the inbound money, the conversion into baht and the stated purpose. Thai law firms and property sites report consistently that the bank prepares one at 50,000 dollars or more in a single transaction, and we should be straight with you about that sourcing: the Bank of Thailand\'s own exchange control page does not use the words Foreign Exchange Transaction form or FET anywhere, and does not state that threshold, so treat the 50,000 figure as reported rather than confirmed and ask your own bank what it applies. What the Bank of Thailand does publish is a different and higher rule: for transactions in an amount equivalent to 200,000 dollars or above, the authorized banks need to request the customers to submit supporting documents, except where the authorized banks have performed the know your business process on the customers. Below whatever threshold your bank uses, it will normally issue a credit advice or a bank letter instead if you ask. You want one because it is the proof of inbound foreign funds that comes up when buying a condominium, and it is useful evidence if the Revenue Department or immigration ever asks where money came from. Note how that interacts with holding dollars: because the form records a conversion into baht, money parked in an FCD account and never converted will not produce one. Separately, banks are reported to require a purpose to be stated on inbound remittances regardless of size. Make sure your client\'s payment carries something like payment for services rather than gift or family support, because the purpose code follows the money and a wrong one is awkward to unpick later.',
       },
     ],
-    siblingCorridors: ['usd-to-idr', 'usd-to-php', 'usd-to-gel'],
+    siblingCorridors: ['usd-to-idr', 'usd-to-php', 'usd-to-gel', 'usd-to-uzs'],
   },
   // ─── USD → Indonesia (IDR) ─────────────────────────────────────────────────
   {
@@ -1163,5 +1163,142 @@ export const CORRIDORS: Corridor[] = [
       },
     ],
     siblingCorridors: ['usd-to-mxn', 'usd-to-php', 'usd-to-gel'],
+  },
+  // USD to Uzbekistan (UZS)
+  {
+    slug: 'usd-to-uzs',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'UZS',
+    destCountry: 'UZ',
+    country: 'Uzbekistan',
+    title: 'Receive USD in Uzbekistan: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in Uzbekistan. Wise cannot hold money there and PayPal does not operate. A dollar account at an Uzbek bank is the answer.',
+    h1: 'How to receive USD in Uzbekistan: why IT Park is the wrong answer for freelancers',
+    intro:
+      'Most guides to getting paid in Uzbekistan start with IT Park and the 0% tax headline. If you are one person with a laptop, that is the wrong answer, and we will show you why below. Here is the right one. Your legal position is unusually good: the currency law lets a resident hold a foreign currency account at an Uzbek bank, nothing in it forces you to sell your dollars for sum, a registered self-employed person is specifically excluded from the foreign trade registration system that businesses have to use, and since 1 January 2026 that same person pays 1% of turnover. So you can be paid in dollars, keep them in dollars, file nothing with the foreign trade system, and pay about one percent. The catch is not legal, it is that the two apps you would reach for first do not work here. Wise will not give you an account of any kind: Uzbekistan is not on its list of countries where you can hold money, and when we asked its own pricing system for a dollars to sum quote it answered that you cannot send between these currencies right now. PayPal does not operate in Uzbekistan at all. What is left is a dollar account at an Uzbek bank, which is the route we would take, and Payoneer, which works if you can open it and is priced badly on the way out. Wise still belongs on this page, just pointed at the other end: it is what you ask your American client to send with.',
+    publishedDate: '2026-09-25',
+    updatedDate: '2026-09-25',
+    providers: [
+      {
+        slug: 'bank-wire',
+        name: 'Bank Wire (SWIFT)',
+        customHeading: 'A dollar account at an Uzbek bank: the route we would take',
+        available: true,
+        notes:
+          'This is the answer for most readers, and the reasoning matters more than the fee does. Article 12 of the currency law says residents have the right to open foreign currency accounts at banks in Uzbekistan. Nothing in that law requires you to sell foreign currency earnings, which is the rule people assume exists and it does not. So your client wires dollars, they land in a dollar account in your name, and you decide when or whether to turn them into sum. Uzpromstroybank publishes opening a foreign currency account as free and crediting inbound non-cash foreign currency as free, which is the one tariff we could open and read. Cash withdrawal of foreign currency received by transfer from abroad is 0.5%, and the bank applies Central Bank rates on the day. Two things the tariff does not show you, and they matter more than the tariff does. The first is what the correspondent banks take in the middle. A dollar wire from the US passes through at least one intermediary and none of them publish what they deduct, so on a small invoice this is the thing that eats the money and nobody can tell you the number in advance, including us. The second is that the spread is deferred rather than avoided. You pay it whenever you sell dollars for sum. On one bank on one day, Trustbank was selling dollars at 11,890 against a Central Bank reference of 11,830.87, so about a quarter of a percent, which is cheap by regional standards. That is one observation of a cash rate at one bank, so treat it as an order of magnitude rather than a quote. Note also that the Central Bank publishes its rate without any obligation to buy or sell at it: it is a reference, not a dealing rate.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        customHeading: 'Payoneer: fees we can quote, eligibility we cannot',
+        available: true,
+        notes:
+          'The platform fallback, and the one where we can give you the fees but not the answer you most want. Receiving is the good part: a US client pays your Payoneer receiving details like a domestic supplier. Getting the money to Uzbekistan is where it goes wrong, and for a specific reason. Payoneer charges a flat $1.50 to withdraw to a bank account in your own country and currency, but only in the 24 countries on its list, and Uzbekistan is not one of them. So both ways out cost the same thing: 1.2% to 4%, which Payoneer publishes as a range rather than a rate and does not break down by country. That applies whether you take sum or dollars, because dollars are not Uzbekistan\'s local currency either. There is no cheap exit. We model the midpoint of that range and flag the row as an estimate, which is also why it cannot carry our badge. Payoneer says plainly that when conversion applies the fee is inside the rate, so the number you actually pay is whatever the portal shows on the day. There is also a $29.95 annual fee if the account receives under $6,000 in any twelve consecutive months. Now the part we could not settle: whether Payoneer will open an account for an Uzbek resident at all. Payoneer says 190 plus countries and territories and that not all products are available everywhere, its own country availability page returns a 404, and every affirmative claim we found was somebody else\'s blog. Its own community forum has Russian language threads with titles like Payoneer Uzbekistan and withdrawal to a bank in Uzbekistan, which strongly suggests real Uzbek users, but the thread bodies would not load for us. Treat availability as probable and unconfirmed, and find out before you build anything on it.',
+      },
+      {
+        slug: 'wise',
+        name: 'Wise',
+        customHeading: 'Wise: not for you, but ask your client to use it',
+        available: false,
+        notes:
+          'Wise cannot give you an account in Uzbekistan, and we want to be exact about what that means because two of Wise\'s own pages can be misread as saying otherwise. Wise lists the countries where you can hold money with it, running from Andorra to Uruguay and including Georgia, Thailand, the Philippines and Brazil. Uzbekistan is not on that list and is not in the additional restrictions block either. Absence from the list means no currency balances at all, personal or business, and you cannot be issued account details for a balance you are not allowed to hold. Separately, Wise publishes a list of countries where USD account details are unavailable, and Uzbekistan is not on that one. That is silence, not permission, and reading it as good news is the mistake to avoid. We also asked Wise\'s own pricing system for a dollars to sum quote on 25 September 2026 and it refused, saying you cannot send between these currencies right now. Wise says the same thing in words on its send money to Uzbekistan page: it is working on letting customers send sum and is not quite there yet. Here is what Wise is good for on this corridor, and it is genuinely useful. Uzbekistan is on the list of countries Wise can send US dollars to by SWIFT. So the right move is to ask your American or British client to pay you through Wise, into your dollar account at an Uzbek bank. They get a cheaper send than their bank will give them, you get dollars, and the person who signs up for Wise is them rather than you. We should say plainly that Wise pays us a commission when someone signs up through this site, and that on this corridor the person we are pointing at Wise is your client, not you. Wise warns that SWIFT fees depend on banks that do not disclose them upfront, so whatever it quotes your client is an estimate too.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        available: false,
+        notes:
+          'PayPal does not operate in Uzbekistan. Uzbekistan is absent from PayPal\'s own country reference list, which runs straight from Ukraine to the United Arab Emirates. Uzbekistan is widely reported to be the only country in Central Asia without PayPal, and there has been talk of negotiations with the Central Bank for years, but PayPal\'s consumer country list would not load for us and we are not going to tell you a deal has happened on the strength of news coverage. If a client insists on PayPal, the honest answer today is that you need a different client or a different method.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        customHeading: 'Revolut: we could not verify it either way',
+        available: false,
+        notes:
+          'We have nothing solid on Revolut in Uzbekistan, in either direction. Every Revolut help address we tried refused our requests. Summaries of its supported country list show the European Economic Area plus the UK, US, Australia, Brazil, Japan, New Zealand, Singapore, Switzerland and Mexico, with no Uzbekistan, but we did not open any of it ourselves. Treat Revolut as unknown on this corridor rather than as confirmed unavailable, and check it yourself if you are curious.',
+      },
+      {
+        slug: 'local-wallets',
+        name: 'Payme, Click, Uzcard and Humo',
+        customHeading: 'The local rails, and why you cannot invoice into them',
+        available: false,
+        notes:
+          'Payme, Click, Uzcard and Humo are not things you can give a client. This confuses people, so let us be blunt about it. Uzcard and Humo are the national card schemes, and while Humo says it has arrangements with Visa, Mastercard and UnionPay so that its cards work abroad, that is about you spending money outside Uzbekistan. Neither scheme is an address a US company can send an invoice payment to. What these rails actually are is the last leg: the thing a provider pays out to once the currency exchange has already happened somewhere else. There is one exception, and we mention it to warn you off rather than to recommend it. Click lets a foreign card top up a wallet, which credits you in sum, and its own announcement of the feature puts the commission at 3.7% of the transfer with caps on unidentified wallets. That announcement is from 2020, so verify it before relying on it, and note that 3.7% to receive money is expensive by every standard on this page. Payme is reported to accept transfers from Visa, Mastercard and Mir cards with automatic conversion to sum at the local bank rate, but we could not reach a Payme page confirming current terms or the commission.',
+      },
+    ],
+    supportedProviders: ['payoneer', 'bank-wire'],
+    faqs: [
+      {
+        q: 'Can I get USD account details from Wise in Uzbekistan?',
+        a:
+          'No. Uzbekistan is not on Wise\'s list of countries where you can hold money, which means no currency balances at all and therefore no account details, because details are issued against a balance you are permitted to hold. You may notice that Uzbekistan is also absent from Wise\'s separate list of countries where dollar account details are unavailable, and it is tempting to read that as good news. It is not. That list only matters for people who can already hold a balance. The clearest confirmation is from Wise itself: we asked its pricing system for a dollars to sum quote and it answered that you cannot send between these currencies right now.',
+      },
+      {
+        q: 'Does Wise work in Uzbekistan at all?',
+        a:
+          'Yes, in one direction, and it is the direction worth using. Uzbekistan is not on Wise\'s list of countries where it does not operate, so you can register and send. And Uzbekistan is on the list of countries Wise can send US dollars to over SWIFT. What that adds up to is that Wise is the right tool for your client rather than for you: ask them to send dollars through Wise to your dollar account at an Uzbek bank. Wise cannot pay out sum at all, so the money arrives as dollars, which on this corridor is what you want anyway.',
+      },
+      {
+        q: 'Can my US client just wire dollars to my Uzbek bank account?',
+        a:
+          'Yes, and for most freelancers this is the setup to aim for. Article 12 of the currency law gives residents the right to open foreign currency accounts at Uzbek banks. Your client sends an ordinary international wire, the dollars land in a dollar account in your name, and Uzpromstroybank at least charges nothing to open the account and nothing to credit inbound non-cash foreign currency. What you cannot find out in advance is what the correspondent banks deduct on the way, because none of them publish it. On a $500 invoice that uncertainty is a real cost. On a $5,000 one it stops mattering much.',
+      },
+      {
+        q: 'Can I keep dollars in an Uzbek bank, or do I have to convert to sum?',
+        a:
+          'You can keep them. There is no mandatory sale rule anywhere in the currency law, which is the single most useful fact on this page, because the assumption that one exists is what pushes people into bad workarounds. The spread is deferred, not avoided: you pay it whenever you decide to sell. One caution does apply, and you should hear it from us rather than from your bank. Article 11 of the same law requires residents to ensure repatriation of assets from foreign trade operations, and past 180 days the operation is reclassified, with penalties that start at 5% of the unrepatriated amount and climb from there. We could not find an authority applying that article specifically to a self-employed individual as opposed to a business, and the article itself just says resident, which is broad. The practical reading is that money sitting in an offshore balance indefinitely is not obviously safe, so bring it home and hold your dollars here rather than there.',
+      },
+      {
+        q: 'Does Payoneer work in Uzbekistan, and what does it cost to get the money out?',
+        a:
+          'The fees we can tell you precisely. The eligibility we cannot. Uzbekistan is not among the 24 countries where Payoneer charges a flat $1.50 to withdraw to a local bank account, so both routes out cost 1.2% to 4%, which Payoneer publishes as a range rather than a rate. That applies to sum and to dollars alike, because dollars are not Uzbekistan\'s local currency either, so there is no cheap exit whichever you pick. On eligibility, Payoneer says 190 plus countries and that not all products are available everywhere, its own country list page returns a 404, and every source we found asserting it works in Uzbekistan was a third party blog. Its own forum carries Russian language threads about withdrawing to Uzbek banks, which suggests real users, but we could not read them. Open the account before you promise a client anything.',
+      },
+      {
+        q: 'Do I need to register my contract with anyone when a foreign client pays me?',
+        a:
+          'Not if you are registered as self-employed, and this is the best thing about the Uzbek setup. Cabinet of Ministers resolution 283 of 2020 makes business entities enter foreign trade contracts, acts and invoices into the unified electronic foreign trade system, and it covers export of services explicitly, with a deadline of the 20th of the month after the act. The same resolution excludes persons registered as self-employed. The tax authority says the same thing from the other side: a self-employed person providing services over the internet may take payment in foreign currency from foreign clients into accounts at Uzbek banks, and may work without a contract, using a public offer, electronic messages or invoices instead. So you invoice, you get paid, you file nothing with the foreign trade system. An individual entrepreneur or a company is a business entity and does have to register.',
+      },
+      {
+        q: 'Self-employed or individual entrepreneur, which should a freelancer register as?',
+        a:
+          'Self-employed, for almost anyone reading this. It is free to register through the tax app, your income from registered activity is excluded from aggregate personal income, you pay social tax of about one reference value a year, and you are outside the foreign trade registration system entirely. The limits are real but narrow: you cannot hire anyone, and you cannot be self-employed while also holding a main job or being registered as an individual entrepreneur. An individual entrepreneur is a business entity, which means contract registration and more filing. Note that the government page describing entrepreneur registration still quotes an old reference value and still describes the fixed income tax regime that was abolished for 2026, so read it for structure and not for numbers.',
+      },
+      {
+        q: 'How much tax do I pay on money from foreign clients in 2026?',
+        a:
+          'About 1% of turnover, plus a small annual social tax. Presidential resolution PP-247 of August 2025 sets turnover tax for individual entrepreneurs and self-employed persons with annual turnover up to 1 billion sum at 1%, effective 1 January 2026. The same act removed the exemption that had kept self-employed people under 100 million sum out of turnover tax altogether, and abolished the fixed income tax regime for entrepreneurs. Above 1 billion sum you move to standard treatment from the day you cross. We read the resolution text itself and it is unambiguous, though one major accounting firm\'s 2026 summary confirms the surrounding law without restating the rate, so confirm the rate applies to you before you plan around it.',
+      },
+      {
+        q: 'Can I join IT Park as a freelancer?',
+        a:
+          'No, and this is the correction we most want to make, because nearly every English article about Uzbekistan leads with IT Park. Asked directly whether an individual entrepreneur can be a resident, IT Park answers that it cannot, because an individual entrepreneur is an individual without the formation of a legal entity, and only legal entities can be residents. So a solo freelancer is out unless they incorporate. And if you do the arithmetic, incorporating to get in is usually the wrong move for one person. The 0% headline is real but specific: it covers profit tax, VAT, social tax, turnover tax and property and land tax until 2028, and it does not cover your own salary out of the company, which is taxed at 7.5% rather than the usual 12%. Against that you take on an approved business plan you have to stick to, monthly contributions to the directorate, an annual mandatory audit, accounting wired into the tax authority\'s systems and regular portal reporting, with status revocable if you slip. A self-employed person pays 1% of turnover and files almost nothing. For a one-person shop under a billion sum, self-employed wins on both tax and paperwork. IT Park is built for companies with staff, and that is who should use it.',
+      },
+      {
+        q: 'Is there an e-resident programme I can use?',
+        a:
+          'We could not confirm one exists, and we looked. IT Park lists five support programmes on its own site: resident status, IT Visa, One Stop Shop, Zero Risk and Local2Global. No e-resident scheme is among them, and the two domains people point to for it did not resolve for us at all. Secondary sources do refer to an electronic resident programme having launched. What we can confirm is the IT Visa, which is a different thing: a multiple entry visa of up to three years for foreign investors, IT professionals and founders of IT Park residents, with access to medical and education services on the same terms as citizens and permission to buy property at any value. If you are a resident of Uzbekistan reading this page, none of that is what you need anyway.',
+      },
+      {
+        q: 'Do I owe VAT on services sold to a client abroad?',
+        a:
+          'Almost certainly not, for two independent reasons, though we can only firmly give you the second. Uzbek VAT works on place of supply, and for services that are not on a special list the place of supply follows the buyer, so a service sold to a foreign client falls outside Uzbek VAT rather than being zero rated with a refund to claim. The article text itself would not load for us, so treat that mechanism as our reading of professional commentary rather than as quoted law. The second reason is simpler and harder to argue with: you only become a VAT payer at 1 billion sum of turnover, which puts essentially every freelancer out of scope regardless of how the place of supply rule works. We are deliberately not printing a VAT percentage, because the figure circulating in search results is out of date and the article that sets the current one would not open.',
+      },
+      {
+        q: 'Can a client pay me on Payme, Click, Uzcard or Humo?',
+        a:
+          'Not in any way you should design around. These are domestic rails. Uzcard and Humo are the national card schemes, and although Humo says its cards work abroad through arrangements with the international schemes, that is about you spending, not about receiving an invoice payment from a US company. What they really are is the last leg, where a provider drops sum after the currency exchange has happened elsewhere. The one genuine exception is that Click accepts top ups from a foreign card, crediting you in sum, at a commission its own announcement puts at 3.7%, with caps if your wallet is not identified. That announcement is six years old so check it, and 3.7% to receive money is expensive next to everything else here.',
+      },
+      {
+        q: 'What proof do I have that the money came from abroad?',
+        a:
+          'Your bank statement showing the credit, plus the invoice or public offer behind it. We could not find an Uzbek equivalent of the inward remittance certificate that India and Bangladesh issue, and no tax authority page we opened prescribes a specific document for a self-employed person\'s foreign receipts. For exporters generally a bank certificate confirming receipt of foreign currency proceeds is the standard document and it is what the VAT refund process is built around, but that came from professional commentary rather than from a rule we could open. Keep the statement and the invoice together, and if your bank offers a certificate of receipt, take it.',
+      },
+    ],
+    altReceivingNote:
+      'Uzbekistan is one of the few countries on this site where not converting is a real option rather than a workaround. Article 12 of the currency law gives residents the right to hold foreign currency accounts at Uzbek banks, and there is no rule anywhere in that law forcing you to sell your dollars. The bank we could read a tariff for charges nothing to open the account and nothing to credit money arriving from abroad. What you are doing is deferring the spread rather than escaping it, since you pay it whenever you sell, but you get to choose the day.',
+    siblingCorridors: ['usd-to-gel', 'usd-to-thb', 'usd-to-pkr'],
   },
 ];

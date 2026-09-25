@@ -36,7 +36,7 @@ const DEST_OPTIONS: { code: CountryCode; label: string }[] = [
   // three in the same commit that adds those pages.
   // { code: 'CO', label: 'Colombia (COP)' },
   // { code: 'IN', label: 'India (INR)' },
-  // { code: 'UZ', label: 'Uzbekistan (UZS)' },
+  { code: 'UZ', label: 'Uzbekistan (UZS)' },
   { code: 'MX', label: 'Mexico (MXN)' },
   { code: 'TH', label: 'Thailand (THB)' },
   { code: 'ID', label: 'Indonesia (IDR)' },
