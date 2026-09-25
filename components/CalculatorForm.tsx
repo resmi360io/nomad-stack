@@ -28,23 +28,26 @@ const DEST_OPTIONS: { code: CountryCode; label: string }[] = [
   { code: 'PK', label: 'Pakistan (PKR)' },
   { code: 'PH', label: 'Philippines (PHP)' },
   { code: 'PT', label: 'Portugal (EUR)' },
+  { code: 'BR', label: 'Brazil (BRL)' },
   { code: 'MX', label: 'Mexico (MXN)' },
   { code: 'TH', label: 'Thailand (THB)' },
   { code: 'ID', label: 'Indonesia (IDR)' },
 ];
 
+// Rendered to readers in the "Recipient receives in" dropdown, so no en dashes here.
 const CURRENCY_LABELS: Record<Currency, string> = {
-  USD: 'USD – US Dollar',
-  GBP: 'GBP – British Pound',
-  EUR: 'EUR – Euro',
-  GEL: 'GEL – Georgian Lari',
-  MXN: 'MXN – Mexican Peso',
-  THB: 'THB – Thai Baht',
-  IDR: 'IDR – Indonesian Rupiah',
-  PKR: 'PKR – Pakistani Rupee',
-  BDT: 'BDT – Bangladeshi Taka',
-  NGN: 'NGN – Nigerian Naira',
-  PHP: 'PHP – Philippine Peso',
+  USD: 'USD, US Dollar',
+  GBP: 'GBP, British Pound',
+  EUR: 'EUR, Euro',
+  GEL: 'GEL, Georgian Lari',
+  MXN: 'MXN, Mexican Peso',
+  THB: 'THB, Thai Baht',
+  IDR: 'IDR, Indonesian Rupiah',
+  PKR: 'PKR, Pakistani Rupee',
+  BDT: 'BDT, Bangladeshi Taka',
+  NGN: 'NGN, Nigerian Naira',
+  PHP: 'PHP, Philippine Peso',
+  BRL: 'BRL, Brazilian Real',
 };
 
 interface Props {

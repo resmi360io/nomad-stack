@@ -1,9 +1,15 @@
 // Fee data last verified: 2026-07-30
 // Sources: provider pricing pages (see inline comments per provider)
 
-export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT' | 'NGN' | 'PHP';
-export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK' | 'BD' | 'NG' | 'PH';
+export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT' | 'NGN' | 'PHP' | 'BRL';
+export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK' | 'BD' | 'NG' | 'PH' | 'BR';
 
+// NOTE ON `notes` FIELDS IN THIS FILE: neither CorridorFee.notes nor Provider.notes is
+// rendered anywhere. The only provider prose a reader sees comes from CorridorProviderEntry.notes
+// in data/corridors.ts, via app/receive/[corridor]/page.tsx, and from Provider.caveat, via
+// components/ResultsTable.tsx. Verified by grepping every `.notes` read in app/, components/ and
+// lib/ on 2026-09-24. Two review passes have flagged dashes in these strings as reader-facing;
+// they are not. Provider.caveat IS reader-facing and must stay free of em and en dashes.
 export interface CorridorFee {
   source: { country: CountryCode; currency: Currency };
   destination: { country: CountryCode; currency: Currency };
@@ -64,7 +70,7 @@ export const PROVIDERS: Provider[] = [
     // MX stays in supportedSourceCountries: the same capture showed a live outbound quote
     // (MXN 10,000 to USD 561.38, 125.78 MXN in fees), so Mexican residents can still send.
     // MX stays in supportedSourceCountries: Mexican residents can still send, not hold.
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'TH', 'PH'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'TH', 'PH', 'BR'],
     corridors: [
       // Verified: ~$14.74 fee on $1,000 send (wise.com/us/send-money/send-money-to-georgia)
       {
@@ -74,7 +80,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.0137,
         fxMarkupBps: 0,
         typicalHours: 48,
-        notes: '~1–2 business days for GEL',
+        notes: '~1 to 2 business days for GEL',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -102,23 +108,64 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 1,
       },
-      // Verified: ~$4.80 fee on $1,000 USD send ($0.69 fixed + 0.41%)
-      // Wise is migrating Thai-address personal customers onto its Bank of Thailand
-      // licensed local entity. After migration, third-party payments arriving into
-      // foreign-currency receiving details are automatically converted to THB on arrival,
-      // so a Thai-resident freelancer can still be paid but can no longer hold the USD.
-      // Reported timing: accounts opened after 21 January 2026 were scheduled to migrate by
-      // the end of August 2026; as of mid-September 2026 we could not confirm that wave
-      // completed. Accounts opened before that date, from around October 2026, unconfirmed.
-      // Fee row values are unaffected either way. Verify current.
+      // BRL: read from Wise's own quote endpoint on 2026-09-24, payIn BALANCE, which is the case
+      // this corridor describes: the freelancer already holds USD from a client and converts it.
+      // USD 1,000 -> conversion fee 5.26 (0.526%); USD 5,000 -> 24.70 (0.494%). Rate used 5.19225,
+      // which the same response reports as the mid rate, so the markup really is 0 bps.
+      // Modelled at 0.5%. Receiving USD by ACH into Wise USD details is free; a domestic USD WIRE
+      // costs 6.11 USD, not modelled here because ACH is the route the page recommends.
+      // NOT in this row, deliberately: the same quote carries a BRL_TAX line labelled "IOF tax" at
+      // 0.377%. IOF is a federal tax, not a Wise fee. Folding it into percentageFee would double
+      // count against providers whose marketing quotes IOF inclusive, and would misstate who
+      // charges it. See the corridor copy: export-of-services receipts are zero rated under
+      // Decreto 6.306/2007 art. 15-B inciso I, while a generic inbound transfer takes 0.38%.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'BR', currency: 'BRL' },
+        fixedFee: 0,
+        percentageFee: 0.005,
+        fxMarkupBps: 0,
+        typicalHours: 24,
+        notes: 'USD received by ACH is free. 0.5% to convert USD to BRL at the mid-market rate. Payout to a Brazilian account by Pix or TED.',
+      },
+      // THB fee REDERIVED 2026-09-24 from Wise's own quote endpoint, payIn BALANCE and payOut
+      // BANK_TRANSFER, which is the case this corridor prices: a freelancer already holding client
+      // dollars converts them to baht. Three points, mid rate 33.45 on all three:
+      //   USD   350 -> 3.88  (1.109%)
+      //   USD 1,000 -> 7.70  (0.770%)
+      //   USD 5,000 -> 31.16 (0.623%)
+      // Those fit 1.83 fixed + 0.5865%, which predicts 3.888 / 7.70 / 31.18. The previous row,
+      // 0.69 + 0.41%, gave 4.79 on 1,000 and understated the real cost by about 60%. It had been
+      // recorded as "verified ~$4.80 on $1,000" and no longer reconciled with anything Wise
+      // publishes. Raised at review on 2026-09-24, which declined to write a number from a single
+      // data point; this row comes from three. Ranking-neutral: Wise keeps the badge on this
+      // corridor either way, ahead of Western Union.
+      //
+      // Wise is migrating Thai-address personal customers onto its Bank of Thailand licensed local
+      // entity. After migration, third-party payments arriving into foreign-currency receiving
+      // details are automatically converted to THB on arrival, so a Thai-resident freelancer can
+      // still be paid but can no longer hold the USD. Wise's current text: customers who signed up
+      // before 21 January 2026 see the changes from October 2026; those who signed up after are
+      // rolled out progressively and on them by August 2026. The same article also says nothing
+      // changes until October 2026, which does not sit easily with the August date. Both reported.
+      //
+      // REVIEWED 2026-09-24, ranking unchanged. Wise's eligibility page
+      // (wise.com/help/articles/2813542) says under Additional restrictions: "Thailand - we've
+      // temporarily stopped issuing currencies and account details for customers in Thailand."
+      // Re-read independently at review. It carries NO date, NO new-versus-existing split and no
+      // Thailand-specific article explaining it, wise.com/help/articles/2810318 does not list
+      // Thailand among the countries where USD details are unavailable, and wise.com/th still
+      // markets the multi-currency account, account details from over ten countries and the card.
+      // Judged not strong enough to delist or move the badge. The corridor copy scopes the claim
+      // for the reader instead: if you do not already hold USD details, check you can get them.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'TH', currency: 'THB' },
-        fixedFee: 0.69,
-        percentageFee: 0.0041,
+        fixedFee: 1.83,
+        percentageFee: 0.00587,
         fxMarkupBps: 0,
-        typicalHours: 24,
-        notes: 'Typically 1 to 2 business days for THB. Client payments in USD are auto-converted to THB on arrival once your account moves to Wise Thailand, so you cannot hold dollars. Verify current.',
+        typicalHours: 36,
+        notes: 'Typically 1 to 2 business days for THB. Wise\'s eligibility page says it has temporarily stopped issuing currencies and account details for customers in Thailand, with no date given. Once your account moves to Wise Thailand, non-THB client payments are auto-converted to THB on arrival, and payments or transfers out are capped at 10,000 THB per transaction and 30,000 THB per day. Verify current.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -268,11 +315,22 @@ export const PROVIDERS: Provider[] = [
     caveat: 'Shown: weekday, within the $1,000/month FX allowance. Above the allowance: +0.5%. Weekends: +1% extra. Those allowance figures are from Revolut US; the European entity publishes different ones, so a EEA-resident account may differ. The allowance is not modelled in the rates above, which show the transfer fee only. Revolut accounts are not available to residents of Georgia, Thailand or Indonesia.',
   },
 
+  // FX MARKUP, ALL ROWS, revised 2026-09-25. Every row here used to carry 200 bps, sourced
+  // from an "up to 2%" line on payoneer.com/withdraw-funds. That wording is GONE. The fee
+  // schedule (payoneer.com/pricing and /legal/fees, last updated 1 January 2026) publishes
+  // a RANGE instead: 1.2% to 4% to withdraw to a bank account, with or without conversion.
+  // A range is not a rate, so no row here can be sourced. Confirmed independently by three
+  // agents on 2026-09-24. The rows now carry 260 bps, the true midpoint of 1.2 to 4 (an
+  // earlier pass on this project wrongly called 2% that midpoint), and every one is flagged
+  // estimated, which bars Payoneer from the best value badge on every corridor. Consequence
+  // to know: Payoneer held the badge on PKR, BDT and IDR, and those corridors now have no
+  // badge at all rather than one awarded to a worse option. See lib/calculate.ts.
   // ─── Payoneer ──────────────────────────────────────────────────────────────
   // Source: https://www.payoneer.com/legal/fees/ (2026-06-02)
   // Source: https://payoneer.custhelp.com/app/answers/detail/a_id/6118 (FX/cross-border fee)
   // Receiving fee: 1% (from Payoneer balance/bank); FX markup: up to 200 bps on local bank withdrawals
-  // Cross-currency: 1% receive + up to 2% FX = ~3% all-in. $1.50 flat ONLY for same-currency withdrawals.
+  // Cross-currency: 1% receive + a conversion charge Payoneer publishes only as 1.2% to 4%, modelled
+      // at its 2.6% midpoint = ~3.6% all-in. $1.50 flat ONLY for same-currency withdrawals.
   {
     slug: 'payoneer',
     name: 'Payoneer',
@@ -285,14 +343,14 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: true,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH', 'BR'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'GE', currency: 'GEL' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
         typicalHours: 72,
         fxMarkupEstimated: true,  // Payoneer's published conversion currency list does not include GEL, so this lari withdrawal may not exist at all
         notes: '1% receiving fee + ~2% FX markup; $1.50 flat applies to same-currency withdrawals only',
@@ -302,7 +360,8 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'GE', currency: 'GEL' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
       },
       {
@@ -310,7 +369,8 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'GE', currency: 'GEL' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
       },
       {
@@ -318,15 +378,35 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'PT', currency: 'EUR' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 48,
+      },
+      // BR: Payoneer publishes 1% to receive into a receiving account in a currency that is NOT
+      // your local currency (min 1.00 USD). A Brazilian's local currency is BRL, so on a literal
+      // reading a USD receipt is exactly that case, but NO Payoneer page we opened states the
+      // Brazil case explicitly. Withdrawal to a bank account is published as a RANGE, 1.2% to 4%
+      // (payoneer.com/pricing, read 2026-09-24). The older "up to 2%" wording is no longer on the
+      // fee schedule and survives only in a Payoneer resources article, so do not cite it. 200 bps
+      // is kept as a working figure near the bottom of that range, pending one cross-corridor
+      // decision covering every Payoneer row. Both halves are assumptions, so this row is flagged
+      // estimated and barred from the best value badge.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'BR', currency: 'BRL' },
+        fixedFee: 0,
+        percentageFee: 0.01,
+        fxMarkupBps: 260,
+        typicalHours: 48,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; and the 1% leg is inferred
       },
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'MX', currency: 'MXN' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 48,
       },
       {
@@ -334,7 +414,8 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'TH', currency: 'THB' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 48,
       },
       {
@@ -342,7 +423,8 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'PT', currency: 'EUR' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 48,
       },
       {
@@ -350,7 +432,8 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'ID', currency: 'IDR' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
       },
       {
@@ -358,7 +441,8 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'ID', currency: 'IDR' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
       },
       // USD → Georgian USD bank account (no FX — 1% receiving fee + $1.50 withdrawal)
@@ -393,20 +477,22 @@ export const PROVIDERS: Provider[] = [
         notes: '1% receiving fee; no FX conversion (SEPA)',
       },
       // USD → Pakistani PKR bank account
-      // Source: payoneer.com/legal/fees/ (2026-06-03) — 1% receiving fee + up to 2% FX on withdrawal
+      // Source: payoneer.com/legal/fees/ (re-read 2026-09-24): 1% receiving fee, plus a withdrawal
+      // conversion charge published as a RANGE of 1.2% to 4%. The old "up to 2%" wording is gone.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PK', currency: 'PKR' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
-        notes: '1% receiving fee + up to 2% FX markup on PKR withdrawal to local bank',
+        notes: '1% receiving fee plus a withdrawal conversion charge Payoneer publishes as 1.2% to 4%, modelled at the 2.6% midpoint. PKR withdrawal to local bank.',
       },
       // USD → Bangladeshi BDT bank account
       // Source: payoneer.com/legal/fees/ (updated Jan 2026). The attribution of the 1.2-4%
       // BDT range to that schedule was WITHDRAWN 2026-09-22: payoneer.com could not be
-      // opened, and Payoneer's withdraw-funds material is quoted as a single "up to 2%"
+      // opened. The single "up to 2%" figure that attribution rested on is no longer on payoneer.com
       // for a local withdrawal in a different currency. Modeled at 2% on that basis, NOT
       // as a midpoint of 1.2-4%, which would be 2.6%. Payoneer-to-bKash costs ~3% + $1.
       {
@@ -414,12 +500,14 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'BD', currency: 'BDT' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
-        notes: '1% receiving fee + ~2% FX markup on BDT withdrawal (range 1.2–4%); bKash route ~3% + $1 instead',
+        notes: '1% receiving fee + ~2% FX markup on BDT withdrawal (range 1.2 to 4%); bKash route ~3% + $1 instead',
       },
       // USD → Nigerian NGN bank account
-      // Source: payoneer.com/legal/fees/ — 1% receiving fee + up to 2% FX markup on NGN withdrawal
+      // Source: payoneer.com/legal/fees/ (re-read 2026-09-24): 1% receiving, plus a withdrawal
+      // conversion charge published as 1.2% to 4%, not the "up to 2%" this row used to cite.
       // Annual fee threshold: help center currently states $6,000/year received
       // (it has published $2,000 elsewhere); verify per-account in the portal
       {
@@ -427,20 +515,23 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'NG', currency: 'NGN' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
-        notes: '1% receiving fee + up to 2% FX markup on NGN withdrawal; $29.95/year if under the activity threshold (help center currently $6,000/year)',
+        notes: '1% receiving fee plus a withdrawal conversion charge published as 1.2% to 4%, modelled at 2.6%; $29.95/year if under the activity threshold (help center currently $6,000/year)',
       },
       // USD → Philippine PHP bank account, GCash, or GoTyme
-      // Source: payoneer.com country guide for PH — 1% receiving + up to 2% FX on withdrawal
+      // Source: payoneer.com country guide for PH, plus the fee schedule: 1% receiving, and a
+      // withdrawal conversion charge published as 1.2% to 4% rather than as "up to 2%".
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PH', currency: 'PHP' },
         fixedFee: 0,
         percentageFee: 0.01,
-        fxMarkupBps: 200,
+        fxMarkupBps: 260,
+        fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 48,
-        notes: '1% receiving fee + up to 2% FX markup on PHP withdrawal to bank or GoTyme; GCash payouts may add a GCash-side cash-in fee, priced by funding source and not confirmed from a GCash primary source; whether the PHP 8,000/month free-then-2% figure applies to Payoneer or only to over-the-counter cash-ins is unresolved, and some sources report a flat 1% instead; verify in app',
+        notes: '1% receiving fee plus a withdrawal conversion charge published as 1.2% to 4%, modelled at 2.6%. PHP withdrawal to bank or GoTyme; GCash payouts may add a GCash-side cash-in fee, priced by funding source and not confirmed from a GCash primary source; whether the PHP 8,000/month free-then-2% figure applies to Payoneer or only to over-the-counter cash-ins is unresolved, and some sources report a flat 1% instead; verify in app',
       },
     ],
     fallbackFee: {
@@ -470,7 +561,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-08-27',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG', 'PH'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG', 'PH', 'BR'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -479,7 +570,20 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.044,
         fxMarkupBps: 350,
         typicalHours: 24,
-        notes: '4.4% + $0.30 cross-border receiving fee; instant to PayPal balance, 1–3 days to bank',
+        notes: '4.4% + $0.30 cross-border receiving fee; instant to PayPal balance, 1 to 3 days to bank',
+      },
+      // BR: paypal.com/br/webapps/mpp/merchant-fees. Commercial payment 4.79%, plus a further
+      // 1.61% because the payer is international, plus a fixed 0.60 BRL, plus 3.50% above the base
+      // exchange rate when the payment arrives in another currency. Withdrawal to a linked
+      // Brazilian bank by standard transfer is free. Modelled as 6.40% (4.79 + 1.61) and 350 bps.
+      // The 0.60 BRL fixed fee is about 0.12 USD and is modelled as such.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'BR', currency: 'BRL' },
+        fixedFee: 0.12,
+        percentageFee: 0.064,
+        fxMarkupBps: 350,
+        typicalHours: 24,
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -501,9 +605,16 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'TH', currency: 'THB' },
         fixedFee: 0.30,
         percentageFee: 0.044,
-        fxMarkupBps: 350,
+        fxMarkupBps: 300,
         typicalHours: 24,
-        notes: 'Thai personal accounts cannot receive commercial payments since the 2022 relaunch, and NDID verification requires a Thai national ID, so foreign residents cannot open one. A Thai-registered business account is the reported route. Verify current.',
+        // 350 bps corrected to 300 at review 2026-09-24: PayPal Thailand publishes 3.00% above its
+        // base rate, not 3.50%. The old note was also FACTUALLY WRONG and is replaced. Personal
+        // accounts CAN receive goods and services payments; the 2022 relaunch removed friends and
+        // family and Payouts (Mass Pay), not commercial receiving. Confirmed from the relaunch FAQ
+        // and, post-relaunch, from the PayPal (Thailand) Limited user agreement effective
+        // 20 February 2024. The 11.00 THB fixed fee applies to amounts received IN BAHT, so the
+        // 0.30 USD stays on this row, which prices a USD receipt.
+        notes: 'PayPal Thailand publishes 4.40% plus a fixed fee for cross-border commercial payments, 3.90% domestic, an 11.00 THB fixed fee on amounts received in baht, and 3.00% currency conversion above its base rate, rising to 4.00% on refunds and on payments sent more than a day after. Personal accounts CAN receive goods and services payments. Verification needs a 13-digit Thai national ID, so foreign residents of Thailand are unlikely to be approved for a personal account. Withdrawal to a Thai bank is free at 5,000 THB or more. PayPal Thai fee pages still carry 2021 effective dates. Verify current.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -772,8 +883,8 @@ export const PROVIDERS: Provider[] = [
     affiliateLink: '',
     hasAffiliateProgram: false,
     lastVerified: '2026-06-02',
-    supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH'],
+    supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'BR'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH', 'BR'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -781,8 +892,9 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
-        notes: '$25–45 sending fee + $10–25 correspondent fee; may arrive as USD then converted locally',
+        notes: '$25 to 45 sending fee + $10 to 25 correspondent fee; may arrive as USD then converted locally',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -790,6 +902,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 28,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
       },
       {
@@ -798,6 +911,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 30,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
       },
       // Verified 2026-06-02: $25–45 sending fee + bank FX markup ~1%; ~3.5% effective all-in
@@ -807,7 +921,23 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 100,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 72,
+      },
+      // BR: no Brazilian bank tariff could be opened (itau.com.br and bb.com.br both 403). The
+      // structure is a US sending fee plus the receiving bank's own spread, which Brazilian banks
+      // do not publish as a line item. What IS published, and is the honest thing to point a
+      // reader at, is the Banco Central's VET (Valor Efetivo Total): every authorised institution
+      // must disclose an all-in effective rate before you contract, and BCB publishes a public
+      // comparison ranking. Figures below are carried from other wire corridors, so estimated.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'BR', currency: 'BRL' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 350,
+        typicalHours: 72,
+        fxMarkupEstimated: true,  // no Brazilian bank tariff opened; spread carried from other corridors
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -824,6 +954,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
       },
       // USD → Thai foreign currency deposit (FCD) account via SWIFT (no FX conversion).
@@ -847,6 +978,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 25,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 48,
         notes: 'Post-Brexit GBP→EUR is SWIFT, not SEPA',
       },
@@ -856,6 +988,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 30,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
       },
       {
@@ -864,6 +997,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
       },
       // USD → Georgian USD bank account via SWIFT (no FX conversion)
@@ -904,6 +1038,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 350,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 120,
         notes: '$25-45 flat sending fee + bank FX markup. SWIFT to HBL, UBL, MCB, Bank Alfalah.',
       },
@@ -916,8 +1051,9 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 150,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 72,
-        notes: '$35 flat + TT buying rate ~1–2% below mid-market; generates FIRC for export incentive claims.',
+        notes: '$35 flat + TT buying rate ~1 to 2% below mid-market; generates FIRC for export incentive claims.',
       },
       // USD → Nigerian NGN bank account via SWIFT
       // Nigerian banks (GTBank, Access Bank, Zenith) convert at NFEM window rate + ~2% spread
@@ -929,6 +1065,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 200,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 72,
         notes: '$35 flat + ~2% bank FX spread above NFEM rate; SWIFT wires exempt from IMTO naira-only rule.',
       },
@@ -942,6 +1079,7 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 150,
+        fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
         notes: '$25-45 sending fee + bank inward remittance fees; no forced conversion (FCDU USD accounts); spread applies only on conversion to PHP',
       },
@@ -1161,5 +1299,50 @@ export const PROVIDERS: Provider[] = [
     },
     notes: 'Raenest issues virtual USD and GBP accounts for African freelancers and remote workers. Since January 2026: 4 free deposits per month shared across USD, GBP, EUR, USDT and USDC, then $1 flat per ACH or stablecoin deposit. The USD-to-NGN conversion fee is 0.5% capped between $0.25 and $2.70 per conversion, so cost does not scale with transfer size above about $540. Verify the current allowance at raenest.com/pricing. No annual account fee. CBN-licensed IMTO.',
     caveat: 'Conversion fee is capped at $2.70, so the effective rate falls as the transfer size rises.',
+  },
+  // ─── Higlobe ───────────────────────────────────────────────────────────────
+  // Source: https://higlobe.com/pt-br/pricing (2026-09-24)
+  // Source: https://higlobe.com/pt-br/how-it-works (2026-09-24)
+  // Scoped to BR only on purpose. Higlobe also serves Mexico, and its Mexican spread is
+  // reported at zero, but adding MX here would change the ranking on a live page that was
+  // reviewed on 2026-09-24 with Higlobe deliberately out of the priced table. That is a
+  // separate, ranking-moving decision and needs its own verifier and reviewer pass.
+  {
+    slug: 'higlobe',
+    name: 'Higlobe',
+    logoUrl: '/logos/higlobe.svg',
+    website: 'https://higlobe.com',
+    signupUrl: 'https://higlobe.com/pt-br',
+    affiliateLink: '',
+    hasAffiliateProgram: false,
+    lastVerified: '2026-09-24',
+    supportedSourceCountries: ['US'],
+    supportedDestinationCountries: ['BR'],
+    corridors: [
+      // Higlobe publishes a flat 0.2% spread for BRL, no transfer fee and no maintenance fee,
+      // with volume described as unlimited and the quoted amount guaranteed before you confirm:
+      // "O valor que você vê antes de confirmar sua transação é exatamente o que você receberá."
+      // This is a published spread, so the row is NOT flagged estimated and can take the badge.
+      // Unconfirmed and hedged in the corridor copy instead: CPF versus CNPJ eligibility,
+      // onboarding requirements, and how IOF and the contrato de câmbio are handled.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'BR', currency: 'BRL' },
+        fixedFee: 0,
+        percentageFee: 0,
+        fxMarkupBps: 20,
+        typicalHours: 24,
+        notes: '0.2% spread, no transfer fee, no monthly fee. US account number and routing number for ACH; payout to Brazil by Pix.',
+      },
+    ],
+    fallbackFee: {
+      fixedFee: 0,
+      percentageFee: 0,
+      fxMarkupBps: 20,
+      typicalHours: 24,
+      fxMarkupEstimated: true,
+    },
+    notes: 'Higlobe gives a Brazilian resident their own US receiving account, an account number and a routing number to hand a US client, so the client pays by ordinary domestic ACH. Payout to Brazil goes out over Pix. It publishes a flat 0.2% spread for BRL with no transfer fee and no monthly fee, and states that the amount shown before you confirm is the amount you receive. That makes it the cheapest published number on this corridor by a clear margin. What we could not confirm: whether it onboards individuals on a CPF or requires a CNPJ, what onboarding asks for, and how it handles IOF and the contrato de câmbio. Check those before you move real volume.',
+    caveat: 'Spread published at 0.2% for BRL. Eligibility and onboarding requirements not verified.',
   },
 ];

@@ -52,8 +52,19 @@ sitting at the top because it is hard is exactly the one worth doing.
 
 1. **Brazil (BRL).** Blocking question: does a Brazilian resident, personal or PJ,
    get USD account details and a USD balance from Wise, or only a BRL payout with
-   the client paying? A Wise help article and Wise's own Brazilian blog say
-   different things. Second question: the current IOF rate on inbound export of
+   the client paying? This is NOT a case of one good source and one bad one. Two
+   Wise help pages, both read on 2026-09-24 within the same minute, contradict each
+   other outright. "Holding money if you live in Brazil"
+   (wise.com/help/articles/7cUlHeJwqj6AHM69S8qRCA/...) says "If you live in Brazil
+   and have a personal Wise account, you can add a currency and hold over 40
+   currencies with us, including BRL. The same applies if you have a Wise Business
+   account registered in Brazil." "Where do I need to live to hold money with Wise?"
+   (wise.com/help/articles/2813542/...) lists under Additional restrictions:
+   "Brazil - you can only hold BRL if you reside in Brazil." Do not resolve this by
+   picking the one you prefer. Establish which is current, and if it cannot be
+   settled, the page says Wise documents both and tells the reader to check in the
+   app. Note also that holding a currency and being issued receiving details for it
+   are different products, and the pages above address holding, not details. Second question: the current IOF rate on inbound export of
    services receipts, which changed more than once in 2025. IOF is a tax, not a
    provider fee, and must never be folded into `fxMarkupBps` or `percentageFee`.
    Do not add `BR` to `DEST_CURRENCIES_MAP`: the realistic USD holding options are
@@ -90,15 +101,27 @@ sitting at the top because it is hard is exactly the one worth doing.
    Uzcard national card schemes, none of which reach Visa or Mastercard rails.
    `UZS` belongs in the zero-decimal currency list.
 
-None of the four can be drafted while the environment's network policy denies
-primary sources. Three were researched on 2026-09-24 and every one returned zero
-opened pages across roughly forty hosts, so the briefs are worklists, not data.
-Do not draft a corridor from secondary sources to get it off this list. The
-alternative route that has actually worked is the site owner capturing the pages
-by hand: Mexico shipped because `wise.com/mx` and `revolut.com/es-MX` were
-supplied as PDFs. One capture of the Wise eligibility page unblocks most of any
-corridor here, because it answers the blocking question and covers the affiliate
-rail at the same time.
+Network access was opened on 2026-09-24 and curl now reaches every host tried,
+so these are buildable. Two cautions carried forward from the day it was closed.
+
+Bash curl and WebFetch are governed separately and have disagreed. On 2026-09-24
+curl returned 200 everywhere while WebFetch returned EGRESS_BLOCKED on every
+host including `example.com`, because WebFetch captured the network policy when
+the session started and never refreshed. That matters because the subagents hold
+only Read, Grep, Glob, WebSearch and WebFetch, with no Bash, so a session in that
+state cannot research anything through them. Probe both before spending agents.
+When WebFetch is stale, the workaround is to mirror the pages with curl into the
+scratchpad, strip them to text, write a manifest recording each file's source URL
+and fetch time, and point the agents at those files: they are full primary source
+texts, not snippets, and citing them is legitimate as long as the manifest travels
+with them.
+
+Never draft a corridor from secondary sources to get it off this list. Three of
+these were researched on 2026-09-24 while the policy was closed, and every brief
+came back with zero opened pages across roughly forty hosts, so those briefs are
+URL worklists rather than data. They are still useful as worklists. The other
+route that has worked is the site owner capturing pages by hand: Mexico shipped
+because `wise.com/mx` and `revolut.com/es-MX` were supplied as PDFs.
 
 ### What a new corridor has to touch
 
