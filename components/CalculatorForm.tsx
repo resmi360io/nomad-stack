@@ -29,6 +29,9 @@ const DEST_OPTIONS: { code: CountryCode; label: string }[] = [
   { code: 'PH', label: 'Philippines (PHP)' },
   { code: 'PT', label: 'Portugal (EUR)' },
   { code: 'BR', label: 'Brazil (BRL)' },
+  { code: 'CO', label: 'Colombia (COP)' },
+  { code: 'IN', label: 'India (INR)' },
+  { code: 'UZ', label: 'Uzbekistan (UZS)' },
   { code: 'MX', label: 'Mexico (MXN)' },
   { code: 'TH', label: 'Thailand (THB)' },
   { code: 'ID', label: 'Indonesia (IDR)' },
@@ -48,6 +51,9 @@ const CURRENCY_LABELS: Record<Currency, string> = {
   NGN: 'NGN, Nigerian Naira',
   PHP: 'PHP, Philippine Peso',
   BRL: 'BRL, Brazilian Real',
+  INR: 'INR, Indian Rupee',
+  COP: 'COP, Colombian Peso',
+  UZS: 'UZS, Uzbekistani Som',
 };
 
 interface Props {
