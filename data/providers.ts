@@ -70,7 +70,18 @@ export const PROVIDERS: Provider[] = [
     // MX stays in supportedSourceCountries: the same capture showed a live outbound quote
     // (MXN 10,000 to USD 561.38, 125.78 MXN in fees), so Mexican residents can still send.
     // MX stays in supportedSourceCountries: Mexican residents can still send, not hold.
-    // UZ deliberately absent. Uzbekistan is not on Wise's hold-money country list
+        // UZ deliberately absent. Uzbekistan is not on Wise's hold-money country list
+    // (wise.com/help/articles/2813542), so no balances and no account details of any
+    // currency. Wise's own send page for Uzbekistan says it is working hard to allow
+    // customers to send UZS from the US and is not quite there yet, and that page is what
+    // the reader-facing copy cites, because a reader can open it. Wise can only ever be the
+    // rail a client SENDS on here.
+    // ENDPOINT NOTE, do not relitigate this: wise.com/gateway/v3/quotes (POST) returns
+    // error.route.not.supported for USD to UZS, "Sorry, you can't send between these
+    // currencies right now", while wise.com/gateway/v1/price for the SAME pair returns a
+    // full 61 row grid. Both reproduced 2026-09-25. They are different endpoints and they
+    // genuinely disagree. The price grid is NOT evidence that the payout route exists, and a
+    // pass that finds it should not use it to soften the Wise negative. Uzbekistan is not on Wise's hold-money country list
     // (wise.com/help/articles/2813542), so no balances and no account details of any
     // currency, and Wise's own quote endpoint returns error.route.not.supported for
     // USD to UZS: "Sorry, you can't send between these currencies right now." Two
@@ -423,7 +434,22 @@ export const PROVIDERS: Provider[] = [
         fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 48,
       },
-      // IN, CO, UZ added 2026-09-25. Same basis as every other Payoneer row: 1% to receive
+            // IN, CO, UZ added 2026-09-25. Same basis as every other Payoneer row: 1% to receive
+      // into a receiving account in a currency that is not your local currency (min 1.00 USD),
+      // plus a withdrawal charge Payoneer publishes only as a 1.2% to 4% RANGE, modelled at its
+      // 2.6% midpoint and flagged estimated. Re-read 2026-09-25: the pricing table has THREE
+      // withdrawal rows, and BOTH percentage rows are 1.2% to 4%, "to a bank account in the
+      // recipient's local currency (no currency conversion)" and "to a bank account in the
+      // recipient's non-local currency (with currency conversion)". So the range is not scoped
+      // to conversion cases only; do not narrow it on that basis. Uzbekistan is NOT on the list
+      // eligible for the flat 1.50 USD same-currency withdrawal (that list counts "All EU
+      // countries" as one entry, so never quote a country count from it), which is why there is
+      // no cheap exit there at all. NOT MODELLED: Payoneer's footnote that in some countries a
+      // minimum fee of up to 20.00 USD or equivalent may apply. CorridorFee has no minimum-fee
+      // field, so the Uzbekistan copy carries that caveat in prose instead. Payoneer eligibility
+      // for Uzbek residents could not be confirmed from any Payoneer-published source
+      // (payoneer.com/about/countries/ 404s), and neither could the existence of a direct UZS
+      // payout route: this row prices the conversion Payoneer may or may not offer.: 1% to receive
       // into a receiving account in a currency that is not your local currency (min 1.00 USD),
       // plus a withdrawal conversion charge Payoneer publishes only as a 1.2% to 4% RANGE,
       // modelled at its 2.6% midpoint and flagged estimated. Uzbekistan is additionally NOT on
@@ -1015,8 +1041,9 @@ export const PROVIDERS: Provider[] = [
       // is the normal state for this provider: it is a category, not a company. Fees carried
       // from other wire corridors and flagged estimated accordingly. Uzbekistan is the one
       // corridor where the wire is the route we actually recommend, because a resident may
-      // hold a domestic USD account and SQB publishes free opening and free crediting of
-      // inbound non-cash foreign currency. What nobody publishes anywhere is what the
+      // hold a domestic USD account and SQB publishes free account opening and shows no tariff
+      // line charging for inbound non-cash foreign currency. That second half is an absence of
+      // a charge, not a stated zero, and the reader-facing copy is hedged accordingly. What nobody publishes anywhere is what the
       // correspondent banks deduct in transit, and on small invoices that is what eats the money.
       {
         source: { country: 'US', currency: 'USD' },
@@ -1043,7 +1070,19 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 43,
         typicalHours: 72,
-        // 43 bps re-derived 2026-09-25 from two primary sources read directly. Trustbank's live
+                // 43 bps re-derived 2026-09-25 from two primary sources read directly, then re-confirmed
+        // by the reviewer the same day. Trustbank's live table at its own 18:00 timestamp: USD BUY
+        // 11,780, SELL 11,880. CBU reference 11,830.87 (confirmed in CBU's own JSON, dated
+        // 25.09.2026). A recipient converting an INBOUND wire SELLS dollars to the bank, so the
+        // side that applies is the BUY rate: (11830.87 - 11780) / 11830.87 = 0.430%.
+        // The previous 26 bps used the sell side and reconciled with nothing; it traced to a
+        // research observation of buy 11,800 taken earlier in the day.
+        // WHY NOT half the bid-ask, which was the arguable alternative at 46 bps: it measures the
+        // bank's round-trip dealing margin, which no single recipient pays, and it is unstable.
+        // The sell rate moved 11,890 to 11,880 inside 25.09.2026, taking half the bid-ask from
+        // 46 bps to 42, while the buy rate did not move and the buy-derived figure held at 43.
+        // Still ONE bank on ONE day, and Trustbank publishes a single undifferentiated table with
+        // no cash or non-cash label, hence still estimated. Trustbank's live
         // table: USD BUY 11,780, SELL 11,890. CBU reference 11,830.87 (confirmed in CBU's own
         // JSON, dated 25.09.2026). A recipient converting an INBOUND wire SELLS dollars to the
         // bank, so the side that applies is the BUY rate: (11830.87 - 11780) / 11830.87 = 0.430%.
@@ -1061,7 +1100,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 72,
-        notes: 'Holding dollars in an Uzbek bank account converts nothing, so there is no spread. SQB publishes free account opening and free crediting of inbound non-cash foreign currency. Correspondent deductions still apply and nobody publishes those.',
+        notes: 'Holding dollars in an Uzbek bank account converts nothing, so there is no spread. SQB publishes free account opening and shows no tariff line charging for inbound non-cash foreign currency, which is an absence of a charge rather than a stated zero. Correspondent deductions still apply and nobody publishes those.',
       },
       // BR: no Brazilian bank tariff could be opened (itau.com.br and bb.com.br both 403). The
       // structure is a US sending fee plus the receiving bank's own spread, which Brazilian banks
