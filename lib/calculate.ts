@@ -116,6 +116,11 @@ export function calculate(
   for (const provider of providers) {
     if (!provider.supportedSourceCountries.includes(sourceCountry)) continue;
     if (!provider.supportedDestinationCountries.includes(destCountry)) continue;
+    // A provider can serve a country without being able to pay out in its currency. Checked before
+    // the fallback below, because the fallback is exactly what would invent the missing quote: the
+    // guard further down only protects NON-local currencies, so a local currency the provider
+    // cannot actually deliver would otherwise be priced from fallbackFee.
+    if (provider.unsupportedDestinationCurrencies?.[destCountry]?.includes(destCurrency)) continue;
 
     const matched = provider.corridors.find(
       c => c.source.country === sourceCountry &&

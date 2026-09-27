@@ -44,6 +44,18 @@ export interface Provider {
   fallbackFee: Omit<CorridorFee, 'source' | 'destination'>;  // used for unsupported corridors
   supportedSourceCountries: CountryCode[];
   supportedDestinationCountries: CountryCode[];
+  // Destination currencies this provider CANNOT pay out in a country it otherwise serves.
+  //
+  // supportedDestinationCountries answers "can money be sent here". It does not answer "in which
+  // currency", and for several providers those differ. Wise can send US dollars by SWIFT into an
+  // Uzbek bank account while its own page says it cannot pay out Uzbek som at all. Without a way
+  // to say that, listing UZ has to be avoided entirely, which drops Wise from the dollar table
+  // where it belongs; listing it anyway makes calculate() fall through to fallbackFee and invent a
+  // som quote for a route that does not exist, which is worse. Hence this.
+  //
+  // Only needed for the LOCAL currency of a destination. A non-local currency already requires an
+  // explicit corridor row (see calculate()), so it can never be conjured from the fallback.
+  unsupportedDestinationCurrencies?: Partial<Record<CountryCode, Currency[]>>;
   lastVerified: string;     // ISO date
   notes?: string;
   caveat?: string;          // short disclaimer shown under result card
