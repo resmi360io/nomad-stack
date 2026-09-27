@@ -361,14 +361,33 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 24,
         notes: 'Your client sends, you receive rupiah into an ordinary Indonesian bank account at the mid-market rate. You cannot hold a Wise balance as an Indonesian resident, so there is nothing for you to open.',
       },
+      // USD -> Georgian USD bank account by SWIFT. Both numbers here were wrong.
+      //   10.31 is Wise's published GEORGIA SWIFT fee from help/articles/2946451, the same article
+      //   the row already cited. It carried 6.11, which is that article's "all countries (no
+      //   predicted correspondent fees)" price of 6.15 in an older form: Georgia is ON the
+      //   predicted-fee list, so the per-destination figure replaces the base rather than the base
+      //   applying. Same class of error as the Uzbekistan prices corrected in #51, found by
+      //   re-reading the cited source rather than by any new source appearing.
+      //   0.0007 replaces 0.003, which reconciled with nothing published. The US ACH pay-in leg
+      //   derives at 0.0700% / 0.0695% / 0.0698% on 500 / 2,000 / 5,000 from the price endpoint,
+      //   whose pay-in leg is destination-independent even though its SWIFT constant is not.
+      //   ESTIMATED, newly. The other four USD SWIFT rows (UZ, ID, TH, PH) all carry the flag for
+      //   the same two reasons: one row must assume one funding method out of several that cost
+      //   materially more, and Wise contradicts itself on correspondent deductions between
+      //   article 2946451 and help/articles/5Fwvk7KFzbTBohJiUu0Ryd. Georgia was the odd one out.
+      //   CONSEQUENCE: at the hardcoded 1,000 comparison amount this moves Wise from 9.11 to 11.01
+      //   and, because rank 1 must be unflagged to take the badge, removes the badge from the
+      //   Georgian dollar table entirely. Wise still ranks first there, ahead of a 35 wire and a
+      //   36 Payoneer. Wise is this site's affiliate, so both halves of this run against us.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'GE', currency: 'USD' },
-        fixedFee: 6.11,
-        percentageFee: 0.003,
+        fixedFee: 10.31,
+        percentageFee: 0.0007,
         fxMarkupBps: 0,
         typicalHours: 48,
-        notes: 'USD SWIFT to Georgian USD bank account; no FX conversion',
+        fxMarkupEstimated: true,
+        notes: 'USD SWIFT into a Georgian USD account, no conversion. 10.31 is Wise\'s published Georgia SWIFT fee, plus about 0.07% if your client pays by US bank debit. The EUR row below is not covered by that article, which is about sending US dollars, so its 3.00 is unverified.',
       },
       // EUR → Georgian EUR bank account via SWIFT (non-SEPA, no FX conversion)
       {
@@ -1369,6 +1388,9 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 0,
+        // Carried 35 with no published schedule, same basis as the UZ, TH and PH dollar wire rows.
+        // This was the last unflagged one.
+        fxMarkupEstimated: true,
         typicalHours: 96,
         notes: 'SWIFT wire; recipient receives USD in Georgian bank; no FX conversion',
       },
