@@ -246,6 +246,37 @@ export const PROVIDERS: Provider[] = [
       },
       // USD → Georgian USD bank account via SWIFT (no FX conversion)
       // Source: wise.com help/articles/2946451 — USD SWIFT fee is $6.11
+      // USD -> a USD (FCDU) account at a Philippine bank, sent by Wise over SWIFT.
+      // Wise gives a PH resident a full account with US ACH receiving details, but those pay out in
+      // PHP: wise.com/us/send-money/send-money-to-philippines offers PHP only. This row is the OTHER
+      // shape, the one this corridor's copy already recommends: the reader's US client sends USD and
+      // it lands as USD in an FCDU account. The recipient needs nothing from Wise, just an account
+      // number and a SWIFT code.
+      //   9.39 is Wise's OWN published Philippines SWIFT fee (help/articles/2946451, read
+      //   2026-09-27), from its table of destinations where it predicts correspondent fees. It
+      //   REPLACES the 6.15 "all countries" base rather than adding to it. The Philippines appears
+      //   on help/articles/2974947, Wise's list of countries it can send USD to via SWIFT.
+      //   0.0007 is the US ACH pay-in fee, DERIVED, and the derivation matters. The USD->USD grid at
+      //   wise.com/gateway/v1/price is destination-BLIND: passing targetCountry returns an identical
+      //   fee map and the response carries no destination field, so its SWIFT constant must never be
+      //   used for a specific country (that error shipped once, see #51). Its PAY-IN leg is usable,
+      //   because an ACH pull from a US bank does not depend on where the money goes: the residual
+      //   over the 6.15 base was 0.0700% / 0.0695% / 0.0698% at $500 / $2,000 / $5,000.
+      //   ESTIMATED, not for FX (nothing converts) but because the cost is not fully traceable. One
+      //   row must assume one funding method: a domestic wire into Wise costs 6.11 more and a debit
+      //   card about 1.23%. Wise also contradicts itself on correspondent deductions, predicting
+      //   them upfront in article 2946451 while help/articles/5Fwvk7KFzbTBohJiUu0Ryd says
+      //   correspondent banks "may also deduct their own handling fees" that it "can't control".
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PH', currency: 'USD' },
+        fixedFee: 9.39,
+        percentageFee: 0.0007,
+        fxMarkupBps: 0,
+        typicalHours: 72,
+        fxMarkupEstimated: true,
+        notes: 'Your client is the Wise customer on this route, not you. Wise sends dollars by SWIFT into an ordinary USD (FCDU) account at a Philippine bank: you give your client an account number and a SWIFT code and you need nothing from Wise. $9.39 is Wise\'s own published Philippines SWIFT fee, plus about 0.07% if your client pays by US bank debit. Funding it with a domestic wire into Wise costs about $6 more, and a card costs far more again. This is the opposite direction from Wise\'s peso route, which pays out in PHP.',
+      },
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'GE', currency: 'USD' },
@@ -1300,6 +1331,21 @@ export const PROVIDERS: Provider[] = [
       // No forced conversion: FCDU USD accounts at BDO, BPI, Metrobank, RCBC hold dollars.
       // Inward remittance fees vary by bank (~$6-35 + possible correspondent deduction);
       // bank FX spread applies only when converting to PHP (estimate, not published)
+      // USD -> a USD (FCDU) account at a Philippine bank by ordinary correspondent wire. Nothing
+      // converts, so there is no spread. The 35 is carried from the other wire corridors in this
+      // file: no US or Philippine bank schedule of charges was opened for it and nobody publishes
+      // what correspondents deduct in the middle, so it is flagged estimated on the same basis as
+      // the UZ and BR wire rows.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PH', currency: 'USD' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        fxMarkupEstimated: true,
+        notes: 'Holding dollars in an FCDU account converts nothing, so there is no spread. The fee is a generic US correspondent wire rather than a figure from a published schedule, and correspondent deductions on top of it are not disclosed by anyone.',
+      },
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PH', currency: 'PHP' },
