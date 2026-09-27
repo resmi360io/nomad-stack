@@ -353,24 +353,38 @@ export const PROVIDERS: Provider[] = [
       // on 23 May 2024), but its Indonesian entity stays licensed for remittance, so a client can
       // send. Unlike the USD to USD grid, the price endpoint IS destination-aware for a
       // cross-currency pair, because targetCurrency=IDR identifies the country on its own.
-      // Read 2026-09-27, ACH pay-in to a bank-account payout: 5.42 on 1,000 and 9.68 on 2,000,
-      // which decomposes to 1.13 flat plus 0.428%. Mid-market rate, so 0 bps.
+      // PRICED AT THE DEARER BANK PAY-IN, deliberately. The endpoint offers two ACH-family
+      // pay-ins at the same amount, NORTHAM_DIRECT_DEBIT_STANDARD at 0.069% and DIRECT_DEBIT at
+      // 0.168%, and this row first used the cheaper one, which came out at 5.41 on 1,000. Wise's
+      // own send page quotes 6.40 on a 1,000 USD direct debit send to Indonesia, and that
+      // decomposes exactly: 10.80 bank-transfer total minus Wise's 6.11 inbound wire fee leaves a
+      // 4.69 conversion fee, and 6.40 minus 4.69 leaves 1.71 of pay-in, which is 0.171%. So Wise
+      // publishes the dearer leg as its headline. 1.13 + 0.528% gives 6.41 on 1,000 and 11.69 on
+      // 2,000, matching Wise's own page rather than undercutting it by 15%.
+      // FLAGGED, and it has to be. With 0 bps and no flag this row sorts first on usd-to-idr and
+      // takes the best value badge, while the corridor's own copy says the corridor has no badge
+      // at all. Choosing between two published pay-ins is exactly the assumption the flag exists
+      // to mark.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'ID', currency: 'IDR' },
         fixedFee: 1.13,
-        percentageFee: 0.00428,
+        percentageFee: 0.00528,
         fxMarkupBps: 0,
         typicalHours: 24,
+        fxMarkupEstimated: true,
         notes: 'Your client sends, you receive rupiah into an ordinary Indonesian bank account at the mid-market rate. You cannot hold a Wise balance as an Indonesian resident, so there is nothing for you to open.',
       },
       // USD -> Georgian USD bank account by SWIFT. Both numbers here were wrong.
       //   10.31 is Wise's published GEORGIA SWIFT fee from help/articles/2946451, the same article
-      //   the row already cited. It carried 6.11, which is that article's "all countries (no
-      //   predicted correspondent fees)" price of 6.15 in an older form: Georgia is ON the
-      //   predicted-fee list, so the per-destination figure replaces the base rather than the base
-      //   applying. Same class of error as the Uzbekistan prices corrected in #51, found by
-      //   re-reading the cited source rather than by any new source appearing.
+      //   the row already cited. The 6.11 it carried is not an outbound SWIFT price at all:
+      //   wise.com/us/pricing/receive lists 6.11 USD as the fixed fee for RECEIVING a USD wire or
+      //   SWIFT payment INTO a Wise account, a different direction and a different product, and
+      //   the price grid shows RECEIVE_SWIFT at 0.00 to 6.11. The outbound base in article 2946451
+      //   is 6.15, and Georgia is on the predicted-fee list anyway, so the per-destination figure
+      //   replaces it. 6.11 was never a Georgia figure and that article never supported it. An
+      //   earlier version of this comment called it "the base in an older form", which was a guess
+      //   dressed as an explanation; the correction to 10.31 was right, the reason was not.
       //   0.0007 replaces 0.003, which reconciled with nothing published. The US ACH pay-in leg
       //   derives at 0.0700% / 0.0695% / 0.0698% on 500 / 2,000 / 5,000 from the price endpoint,
       //   whose pay-in leg is destination-independent even though its SWIFT constant is not.
@@ -1469,10 +1483,9 @@ export const PROVIDERS: Provider[] = [
       // contract agreement with each correspondent bank". CorridorFee has no receiving-fee field, so
       // that cost lives in the corridor copy instead. Folding it in would give 41.50 here and 15.89
       // on the Wise row, which does not change their order, so it is disclosure rather than ranking.
-      // Note for whoever reads this next: the UZ/USD, TH/USD and GE/USD wire rows carry the same
-      // carried-over 35 and are NOT flagged, so PH/USD is the only foreign-currency wire row that is.
-      // That inconsistency is real and wants settling on those three corridors, not by unflagging
-      // this one.
+      // Settled 2026-09-27: the UZ/USD, TH/USD, ID/USD and GE/USD wire rows now carry this flag on
+      // the same basis, so all five foreign-currency wire rows are consistent. Do not unflag any of
+      // them without a published sending schedule to replace the carried 35.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PH', currency: 'USD' },
