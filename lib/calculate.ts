@@ -63,6 +63,20 @@ const DEST_CURRENCIES_MAP: Partial<Record<CountryCode, Currency[]>> = {
   // its flat same-currency withdrawal requires the account to sit in a country whose official
   // currency it is, and the peso is the Philippines' currency.
   PH: ['PHP', 'USD'],
+  // Indonesia: Bank Indonesia Regulation 7 of 2023 on export proceeds is the rule people assume
+  // catches a freelancer, and it does not, because it is written about goods. Pasal 1 no. 3, read
+  // from the PBI PDF on bi.go.id: "Ekspor adalah kegiatan mengeluarkan barang dari daerah pabean
+  // sebagaimana dimaksud dalam Undang-Undang mengenai kepabeanan", that is, taking GOODS out of
+  // the customs area. No. 5 makes DHE the proceeds of that activity, nos. 6 and 7 define both the
+  // natural-resource and non-natural-resource buckets as "Devisa hasil kegiatan ekspor barang",
+  // and no. 8 makes an Eksportir whoever performs it. Someone selling services has no customs
+  // declaration and is not an Eksportir, so the retention and repatriation regime, its
+  // three-month deadline and its USD 250,000 thresholds do not reach service income.
+  // Product side, from bca.co.id: BCA Dollar takes USD 100 to open, holds no minimum balance,
+  // requires no minimum monthly average, costs USD 1 a month, and is open to individual
+  // customers, Indonesian or foreign, holding an identity card. Cheaper to keep open than the
+  // Philippine equivalents.
+  ID: ['IDR', 'USD'],
 };
 
 export function getCurrency(country: CountryCode): Currency {

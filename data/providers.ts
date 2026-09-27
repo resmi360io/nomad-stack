@@ -103,7 +103,12 @@ export const PROVIDERS: Provider[] = [
     // currency, and Wise's own quote endpoint returns error.route.not.supported for
     // USD to UZS: "Sorry, you can't send between these currencies right now." Two
     // independent confirmations. Wise can only be the rail a client SENDS on.
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'TH', 'PH', 'BR', 'IN', 'CO'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'TH', 'PH', 'BR', 'IN', 'CO', 'ID', 'UZ'],
+    // Wise can SEND dollars by SWIFT to Uzbekistan but cannot pay out som. Its own send page:
+    // "We're working hard to allow customers to send UZS to Uzbekistan from the US, but we're not
+    // quite there yet." Without this the UZ entry above would make calculate() price a som quote
+    // off fallbackFee for a route Wise says does not exist.
+    unsupportedDestinationCurrencies: { UZ: ['UZS'] },
     corridors: [
       // Verified: ~$14.74 fee on $1,000 send (wise.com/us/send-money/send-money-to-georgia)
       {
@@ -288,6 +293,73 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 72,
         fxMarkupEstimated: true,
         notes: 'Your client is the Wise customer on this route, not you. Wise sends dollars by SWIFT into an ordinary USD (FCDU) account at a Philippine bank: you give your client an account number and a SWIFT code and you need nothing from Wise. $9.39 is Wise\'s own published Philippines SWIFT fee, plus about 0.07% if your client pays by US bank debit. Funding it with a domestic wire into Wise costs about $6 more, and a card costs far more again. This is the opposite direction from Wise\'s peso route, which pays out in PHP.',
+      },
+      // ── USD SWIFT sends into a foreign-currency account abroad ──────────────────────────────
+      // These three rows price the same product as the PH/USD row above: the reader's US client
+      // sends dollars by SWIFT and they land as dollars in an ordinary local bank account. The
+      // recipient needs nothing from Wise, just an account number and a SWIFT code. Each fixedFee
+      // is Wise's OWN published per-destination SWIFT fee from help/articles/2946451, read
+      // 2026-09-27, and each REPLACES the 6.15 "all countries (no predicted correspondent fees)"
+      // base rather than adding to it. All three destinations appear on help/articles/2974947,
+      // Wise's list of countries it can send USD to via SWIFT.
+      //   NEVER take these from wise.com/gateway/v1/price. For USD to USD that grid is
+      //   destination-blind: passing targetCountry returns an identical fee map with no destination
+      //   field, and its 6.15 constant is the no-predicted-fees price. Shipping it as an Uzbekistan
+      //   price understated that corridor by 7.64 and had to be corrected in #51. The grid's PAY-IN
+      //   leg is still usable, because an ACH pull from a US bank does not depend on the
+      //   destination: 0.0007 is that leg, the residual over the base at 0.0700% / 0.0695% /
+      //   0.0698% on 500 / 2,000 / 5,000.
+      //   All three are ESTIMATED, and not for FX, since nothing converts. One row has to assume
+      //   one funding method, and the others cost materially more: a domestic wire into Wise adds
+      //   6.11, a debit card about 1.23%, a credit card several percent. Wise also contradicts
+      //   itself on correspondent deductions, predicting them upfront in article 2946451 while
+      //   help/articles/5Fwvk7KFzbTBohJiUu0Ryd says correspondent banks "may also deduct their own
+      //   handling fees" that it "can't control".
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'UZ', currency: 'USD' },
+        fixedFee: 13.79,
+        percentageFee: 0.0007,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        fxMarkupEstimated: true,
+        notes: 'Your client is the Wise customer here, not you. Wise sends dollars by SWIFT into a USD account at an Uzbek bank; you supply an account number and a SWIFT code and need nothing from Wise. 13.79 is Wise\'s published Uzbekistan SWIFT fee. Wise cannot pay out som at all, which is why it appears only on the dollar table.',
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'ID', currency: 'USD' },
+        fixedFee: 32.90,
+        percentageFee: 0.0007,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        fxMarkupEstimated: true,
+        notes: 'Wise\'s published Indonesia SWIFT fee is 32.90, the second dearest on its whole list, which makes a dollar send here barely cheaper than a generic correspondent wire. Indonesian residents cannot hold a Wise balance, so this is the client-sends route into a local USD account.',
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'TH', currency: 'USD' },
+        fixedFee: 31.38,
+        percentageFee: 0.0007,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        fxMarkupEstimated: true,
+        notes: 'Wise\'s published Thailand SWIFT fee is 31.38, so on a dollar send into a Thai FCD account it saves very little against a generic wire. Converting to baht through Wise is a different and much cheaper product, priced on its own row.',
+      },
+      // USD -> Indonesian rupiah, into a local bank account. Indonesian residents cannot hold a
+      // Wise balance or get receiving details (Wise ended that for Indonesia-registered customers
+      // on 23 May 2024), but its Indonesian entity stays licensed for remittance, so a client can
+      // send. Unlike the USD to USD grid, the price endpoint IS destination-aware for a
+      // cross-currency pair, because targetCurrency=IDR identifies the country on its own.
+      // Read 2026-09-27, ACH pay-in to a bank-account payout: 5.42 on 1,000 and 9.68 on 2,000,
+      // which decomposes to 1.13 flat plus 0.428%. Mid-market rate, so 0 bps.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'ID', currency: 'IDR' },
+        fixedFee: 1.13,
+        percentageFee: 0.00428,
+        fxMarkupBps: 0,
+        typicalHours: 24,
+        notes: 'Your client sends, you receive rupiah into an ordinary Indonesian bank account at the mid-market rate. You cannot hold a Wise balance as an Indonesian resident, so there is nothing for you to open.',
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -1192,6 +1264,9 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 72,
+        // The 35 is carried from the other wire corridors with no published schedule behind it,
+        // same as UZ/UZS which was already flagged. This row was not, which was an oversight.
+        fxMarkupEstimated: true,
         notes: 'Holding dollars in an Uzbek bank account converts nothing, so there is no spread. SQB publishes free account opening and shows no tariff line charging for inbound non-cash foreign currency, which is an absence of a charge rather than a stated zero. Correspondent deductions still apply and nobody publishes those.',
       },
       // BR: no Brazilian bank tariff could be opened (itau.com.br and bb.com.br both 403). The
@@ -1239,6 +1314,8 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 35,
         percentageFee: 0,
         fxMarkupBps: 0,
+        // Carried 35 with no published schedule, same basis as the UZ and PH dollar wire rows.
+        fxMarkupEstimated: true,
         typicalHours: 96,
         notes: 'SWIFT wire; recipient receives USD in a Thai FCD account; no FX conversion. Bank inward remittance commission applies on top and is not modelled.',
       },
@@ -1260,6 +1337,21 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 350,
         fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
+      },
+      // USD -> a USD account at an Indonesian bank by ordinary correspondent wire. Nothing
+      // converts, so no spread. The 35 is the generic US sending fee used across the wire rows,
+      // with no published schedule behind it, hence estimated. Note that Wise's published
+      // Indonesia SWIFT fee is 32.90, so on this corridor the two are close enough that the
+      // choice barely matters, which is not true of any other dollar corridor here.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'ID', currency: 'USD' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        fxMarkupEstimated: true,
+        notes: 'Holding dollars in an Indonesian bank account converts nothing, so there is no spread. The fee is a generic US correspondent wire, and what correspondent banks deduct in the middle is published by nobody.',
       },
       {
         source: { country: 'US', currency: 'USD' },
