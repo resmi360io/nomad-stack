@@ -34,7 +34,7 @@ const DEST_OPTIONS: { code: CountryCode; label: string }[] = [
   // it is the exact mismatch this site was pulled up on before, so they stay out of the
   // dropdown until /receive/usd-to-inr, usd-to-cop and usd-to-uzs exist. Uncomment all
   // three in the same commit that adds those pages.
-  // { code: 'CO', label: 'Colombia (COP)' },
+  { code: 'CO', label: 'Colombia (COP)' },
   { code: 'IN', label: 'India (INR)' },
   { code: 'UZ', label: 'Uzbekistan (UZS)' },
   { code: 'MX', label: 'Mexico (MXN)' },

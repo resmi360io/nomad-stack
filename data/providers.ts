@@ -179,7 +179,11 @@ export const PROVIDERS: Provider[] = [
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'CO', currency: 'COP' },
-        fixedFee: 1.90,
+        // Re-queried 2026-09-27: RECEIVE_BANK_TRANSFER pay-in to BANK_TRANSFER payout, which is
+        // exactly this corridor, totals 15.38 on 1,000 as 13.59 variable plus 1.79 fixed, against a
+        // midRate of 3304.97. Balance to balance is 13.61 flat, confirming 1.361% exactly. The fixed
+        // leg was 1.90; 1.79 is what the endpoint returns now.
+        fixedFee: 1.79,
         percentageFee: 0.01361,
         fxMarkupBps: 0,
         typicalHours: 24,
@@ -863,7 +867,7 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-08-27',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG', 'PH', 'BR', 'IN'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG', 'PH', 'BR', 'IN', 'CO'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
@@ -895,6 +899,23 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'BR', currency: 'BRL' },
         fixedFee: 0.12,
         percentageFee: 0.064,
+        fxMarkupBps: 350,
+        typicalHours: 24,
+      },
+      // USD -> COP. Both legs from PayPal's own Colombian pages, read 2026-09-27.
+      // paypal.com/co/webapps/mpp/merchant-fees: a Colombian seller receiving a commercial payment
+      // from a buyer outside Colombia pays 5.40% plus a fixed fee, which is 0.30 for dollars.
+      // paypal.com/co/webapps/mpp/paypal-fees: conversion is 3.50% above PayPal's own base rate for
+      // the AMERICA region, and withdrawal to a Colombian bank account costs COP 3,500.
+      // Stacked that is roughly 9% on a 1,000 invoice before the base rate itself, which makes this
+      // the most expensive row on the corridor by a wide margin and the reason the page exists for
+      // anyone currently using PayPal. NOT flagged estimated: every component is published. The
+      // COP 3,500 payout fee has no field in CorridorFee and lives in the corridor copy instead.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'CO', currency: 'COP' },
+        fixedFee: 0.30,
+        percentageFee: 0.054,
         fxMarkupBps: 350,
         typicalHours: 24,
       },

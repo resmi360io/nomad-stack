@@ -483,7 +483,7 @@ export const CORRIDORS: Corridor[] = [
     ],
     altReceivingNote:
       'The Philippines has the clearest legal position of any country on this site when it comes to keeping your dollars, and the regulator says so in as many words. The BSP\'s own foreign exchange FAQs, March 2026 edition, ask whether foreign currency receipts of residents from non-trade sources have to be remitted in and sold for pesos, and answer no: such proceeds may, at the option of said residents, be sold for pesos, retained or deposited in foreign currency accounts, whether in the Philippines or abroad. No retention cap, no deadline, no forced sale. And non-trade is defined rather than left to interpretation: the FX Manual puts trade transactions as merchandise export and import, non-trade as everything else, and non-trade current account transactions as the non-trade ones with non-residents once loans and investments are stripped out. A service invoice is none of those things, so it lands in the bucket the FAQ is answering about. Of the routes we price, two can deliver dollars as dollars: a Wise send from your client, and a plain correspondent wire. Payoneer cannot, because its cheap flat withdrawal needs the receiving account to sit in a country whose official currency matches, and here that is the peso. A third route beats both on fees: the GCash Virtual US Account receives dollars by ACH for no transfer fee and holds them as dollars. It is in the dollar table below, though flagged as an estimate and unable to carry our badge, because GCash refused every request we made to its own help pages and the figure comes from its launch materials rather than from a fee schedule we read. It stays out of the peso table for a different reason, that GCash publishes no spread for the conversion, and we would rather show nothing than invent one. Two trade-offs worth weighing against a zero: a wallet balance is not a bank deposit, and converting to pesos moves the money into your ordinary wallet and picks up its monthly limits. Two costs to carry. Your own bank takes a cut of an inbound wire that our tables have no field for: BPI publishes $6.50 for a SWIFT remittance credited to a BPI dollar account, and calls that a minimum that can vary by correspondent agreement. And the spread is deferred rather than escaped, since you pay it whenever you sell those dollars for pesos. You just get to choose the day. Which option wins turns on invoice size, because the dollar routes charge a flat fee per transfer while converting charges a percentage of it. On our modelled fees converting through Wise is cheaper up to about $1,600, and the dollar route wins above that. At $5,000 the dollar route costs around 40% of converting, or nearer 60% once you count the receiving charge, which also pushes the crossover out to roughly $2,700. The tables here are fixed at $1,000 and cannot show you that, so use the calculator higher up the page, where you can set your own amount and switch the receiving currency.',
-    siblingCorridors: ['usd-to-idr', 'usd-to-thb', 'usd-to-bdt', 'usd-to-mxn', 'usd-to-brl', 'usd-to-inr'],
+    siblingCorridors: ['usd-to-idr', 'usd-to-thb', 'usd-to-bdt', 'usd-to-mxn', 'usd-to-brl', 'usd-to-inr', 'usd-to-cop'],
   },
   // ─── USD → Georgia (GEL) ───────────────────────────────────────────────────
   {
@@ -1031,7 +1031,7 @@ export const CORRIDORS: Corridor[] = [
           'Honestly, we cannot rank this one as cleanly as we would like, and it is better to say so than to pretend. The three options most likely to suit a freelancer are the three we cannot price. Higlobe, GrabrFi and Revolut Mexico each publish no exchange rate margin, and GrabrFi\'s withdrawal fee comes back three different ways depending on which source you read, so none of them appears in the comparison above. On a $5,000 invoice a spread you cannot see will dwarf a fee you can, and that is why we will not put a number on them. Of what we can price, Western Union tops the table at the $1,000 amount, roughly 2% all in, but the spread behind that number is third party rather than published and it is a family remittance rail rather than an invoicing one, so read the Western Union section above before you choose it. Payoneer is the most predictable at roughly 3% all in, which is the price of not having to think about it. A wire is the one option we would not pick on cost: the flat sending fee stops mattering as the invoice grows, but your Mexican bank\'s own spread does not, and on our figures that spread alone is more than Payoneer\'s entire all in cost. The case for a wire is documentary rather than financial, and that case is in the IVA question above. Our practical suggestion: open accounts at two of the unpriced three, get a real quote for your actual invoice size on the same afternoon, compare the pesos that land rather than the fees quoted, and factor in what your accountant says about the IVA question above.',
       },
     ],
-    siblingCorridors: ['usd-to-php', 'usd-to-gel', 'usd-to-eur-portugal', 'usd-to-pkr', 'usd-to-brl'],
+    siblingCorridors: ['usd-to-cop', 'usd-to-php', 'usd-to-gel', 'usd-to-eur-portugal', 'usd-to-pkr', 'usd-to-brl'],
   },
   // USD to Brazil (BRL)
   {
@@ -1168,7 +1168,7 @@ export const CORRIDORS: Corridor[] = [
           'On published numbers, Higlobe, and it is not close. A flat 0.2% spread with no transfer fee beats the roughly 0.5% Wise charges to convert, and both are far below what PayPal costs. We want to be straightforward about two things though. Higlobe is not our affiliate and Wise is, so the ranking runs against our commercial interest rather than with it. And Higlobe is the option we know least about: we could not confirm whether it onboards you on a CPF or wants a CNPJ, or what onboarding asks for, while Wise publishes all of that. On IOF it is clearer, because Higlobe states on its Brazilian site that 0.2% is the total cost and that there is no IOF, which is what you would expect for a receipt booked as an export of services. Our practical suggestion is to open both, run a real quote for your actual invoice size on the same afternoon, and compare the reais that land rather than the percentages quoted. You can also look up the Banco Central VET ranking, which compares institutions on an all-in effective rate including the taxes and fees on the operation, bearing in mind that it reports monthly averages for months already past and that institutions are not obliged to repeat those values today.',
       },
     ],
-    siblingCorridors: ['usd-to-mxn', 'usd-to-php', 'usd-to-gel'],
+    siblingCorridors: ['usd-to-cop', 'usd-to-mxn', 'usd-to-php', 'usd-to-gel'],
   },
   // USD to Uzbekistan (UZS)
   {
@@ -1451,5 +1451,139 @@ export const CORRIDORS: Corridor[] = [
       },
     ],
     siblingCorridors: ['usd-to-pkr', 'usd-to-bdt', 'usd-to-php'],
+  },
+  // USD to Colombia (COP)
+  {
+    slug: 'usd-to-cop',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'COP',
+    destCountry: 'CO',
+    country: 'Colombia',
+    title: 'Receive USD in Colombia: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in Colombia. No declaracion de cambio on service exports, but no dollar account either, and IVA has a checklist.',
+    h1: 'How to receive USD in Colombia: free to arrive, hard to keep in dollars',
+    intro:
+      'Colombia inverts the usual shape of these pages. The money is unusually free to arrive and unusually hard to keep as dollars. Nothing about a US client paying you has to go through the regulated foreign exchange market, because the list of operations that must is closed and it is about goods: article 41 of Resolucion Externa 1 de 2018 names importing and exporting bienes, external debt, capital investment, financial investments abroad, guarantees and derivatives. Services are not on it. So no declaracion de cambio, no cuenta de compensacion to register, no six month clock to beat. What you cannot do is hold those dollars in a Colombian bank, because the list of who may take a foreign currency deposit here is also closed and a resident individual is not on it. The real money on this corridor leaks somewhere else entirely, in the tax paperwork: exported services are exempt from IVA at 0% rather than simply outside it, the exemption comes with a four-item checklist, and if you miss an item the rule says you personally owe the 19% you never charged your client. That is the sentence worth reading twice.',
+    publishedDate: '2026-09-27',
+    updatedDate: '2026-09-27',
+    providers: [
+      {
+        slug: 'wise',
+        name: 'Wise',
+        customHeading: 'Wise: the cheapest route, and the residency question is settled',
+        available: true,
+        notes:
+          'The one to use on published numbers, and the residency question that blocks this provider on several other corridors comes out clean here. Wise lists the countries where you can hold money with it and Colombia is on that list with no restriction footnote attached, where Brazil, India, the Philippines and several others carry one. It publishes a separate list of countries that cannot get USD account details, thirty-odd places mostly under sanctions, and Colombia is not on that one either. So you get US account details, a routing number and an account number, and your client pays you the way they pay a domestic supplier. Receiving that way is free. There is a trap worth one sentence to your client: the same page prices a payment that arrives as a USD wire or SWIFT at $6.11 fixed, so tell them ACH rather than wire and save six dollars every invoice. Converting and paying out to a Colombian bank account cost $1.79 plus 1.359% on a thousand dollars when we queried it, at the live interbank mid with no spread added, and Wise says three quarters of its transfers arrive in under twenty seconds. We model a day, which is deliberately conservative. Two things we could not settle, and they are the kind that cost money if you guess. Whether Wise puts a freelancer on a personal or a business account is asserted both ways by everyone except Wise, which says nothing we could find. And business account details carry a one-off fee that Wise describes as depending on where the business is registered, without naming an amount for anywhere, let alone Colombia. Open the app and see which account type you are in before you put details on an invoice. We should also say plainly that Wise pays us a commission when someone signs up through this site, and that on this corridor it is also the option we would pick, which is a comfortable position to be in and worth flagging precisely because it is comfortable.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        customHeading: 'Payoneer: workable, and the Nequi route is the local wrinkle',
+        available: true,
+        notes:
+          'The platform default, and on this corridor it has a second route the others do not. Receiving a US client\'s ACH payment costs 1%. Getting the money out is where it gets expensive and where Payoneer stops publishing a rate: a withdrawal that involves conversion is priced as a range, 1.2% to 4%, with a possible minimum of $20 on small amounts, and we model the midpoint and flag the row as an estimate, which is also why it cannot carry our badge. Watch the annual fee if you bill modestly: $29.95 a year if the account receives under $6,000 in twelve months. The wrinkle is the Nequi integration, which lets a Payoneer balance land in a Nequi wallet in minutes. Payoneer\'s own Spanish page for it says the charge is up to 3% plus $1, Nequi adds a flat $3 with IVA included, euros route through dollars first, and eligibility is narrower than usual: Colombian by birth, of age, a valid cedula, and the same email address on both platforms. Limits run to $2,000 a month on a deposito de bajo monto, $5,000 on a cuenta de ahorros, and $2,000 per movement. Note that up to 3% plus $1 and 1.2% to 4% are two different numbers from the same company for what looks like the same job, so price it on your own screen rather than from either page.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        customHeading: 'PayPal: about 9% all in, and the reason this page exists',
+        available: true,
+        notes:
+          'If you are being paid through PayPal today, this is the number that should move you. A Colombian seller taking a commercial payment from a buyer outside Colombia pays 5.40% plus a fixed fee, thirty cents on a dollar payment, per PayPal\'s own Colombian merchant fee page. Then converting to pesos costs 3.50% above PayPal\'s own base rate, not the interbank mid and not the TRM, per its Colombian consumer fee page. Then moving it to your bank account costs COP 3,500, which our table has no field for and which barely matters next to the percentages. Stack those and you are near 9% on a thousand dollar invoice before you even argue about the base rate, against roughly 1.5% through Wise. Nothing about PayPal is broken; it works, and every client already understands it, which is exactly why people stay on it. But on a $3,000 month the gap is about $225, every month, for the convenience of not sending one email asking your client to pay somewhere else.',
+      },
+      {
+        slug: 'bank-wire',
+        name: 'Bank Wire (SWIFT)',
+        customHeading: 'A wire into a Colombian bank: expensive, and useful for a reason that is not price',
+        available: true,
+        notes:
+          'Worth understanding rather than dismissing, because its value here is evidentiary rather than financial. Bancolombia says on its own page that receiving an international transfer costs nothing, but that other banks may charge, which is the polite way of saying a US bank will take roughly $35 at the sending end and nobody publishes what correspondents take in between. Our $35 is that sending fee and it is an assumption, not a figure from a schedule. The spread is the bigger problem and it is unknowable: Colombian banks set rates by agreement rather than by reference to anything, which article 38 of the resolution permits explicitly, and Bancolombia\'s own instruction is to accept the exchange rate before the transfer is credited. So you find out the price at the moment you are committed. We model 2.5% as a placeholder and flag it, because no Colombian bank we could open publishes a number. Davivienda publishes its SWIFT code, CAFECOBBXXX, accepts receipts from $35 up to $50,000, and caps remittance-partner receipts at $7,500 a month. Here is why you might still want a wire. It produces a SWIFT confirmation naming a foreign payer, which is the cleanest document to put in front of DIAN when you need to show a service was exported. A Wise or Payoneer payout reaches you as a domestic credit from a Colombian payment company, which proves less on its face. Be careful with that thought, though: unlike some countries, Colombia\'s rule does not actually require a foreign bank transfer, so this is a practical evidence point and not a legal requirement.',
+      },
+      {
+        slug: 'littio',
+        name: 'Littio and ARQ',
+        customHeading: 'Littio and ARQ: a dollar account that is legally not one',
+        available: false,
+        notes:
+          'These two look like the answer to the problem this page opens with, a dollar account in Colombia, and what they actually sell is something else. We are keeping them out of the priced table and explaining why, because the explanation is the useful part. Littio gives you ACH and IBAN details to receive into, and its own site says the balance is USDC issued by Circle and backed one to one, that the company is Selenio S.A.S., that it does not provide or offer financial services, that it acts as an execution agent, and that it is not supervised by the Superintendencia Financiera. ARQ, which used to be DolarApp, gives you a US account number and routing number, and states that USDc and EURc are virtual assets and not fiat currency, and that incoming payments are automatically converted into them. So neither claims an exemption from the rule that bars foreign currency deposits between residents here. Both claim they are not doing that regulated thing at all, because a stablecoin is not divisas and they are not financial institutions. Whether that holds is not ours to rule on and we are not going to pretend otherwise. What we can tell you is what we could and could not price. Littio publishes free withdrawals to Colombian bank accounts, 1% to send USDC out, $2.99 for an outbound US ACH, and $2 to a third party Colombian account, but not what it charges to receive an incoming ACH, and not its peso to USDC rate. ARQ publishes a $3 fee on a deposit from a US dollar account and not much else, and says its ACH credits take three to six business days, which is materially slower than Wise on the same rail. The two missing numbers are exactly the two that would decide whether either beats Wise, so we will not guess them.',
+      },
+      {
+        slug: 'nequi',
+        name: 'Nequi and Daviplata',
+        customHeading: 'Nequi and Daviplata: a destination, not an address',
+        available: false,
+        notes:
+          'This is the distinction that matters most on this page and the one every guide blurs. Nequi offers three ways money reaches you from abroad: a link you generate in the app and send to someone in the United States, a pull from PayPal into Nequi, and remittances from a partner remittance company. Add the Payoneer route above and that is the lot. There is no SWIFT code, no IBAN, no account and routing number, nothing a US company\'s accounts payable system can pay. Every one of those routes is a person deciding to send money to you, using your name and your phone number, through a consumer product. An invoice needs the opposite: one static set of details you hand over once, which a finance system pays on net thirty without a human involved. Nequi is a destination, not an address. Its limits also make the point: $2,000 a month on a deposito de bajo monto, $5,000 on a cuenta de ahorros, $2,000 per movement. Daviplata is the same category with worse documentation, and we could not open a Davivienda page stating its receiving commission or hard limits, so we will not print the figures that circulate for it. PSE and Bre-B come up in the same conversation and are both domestic only: PSE debits a Colombian account to pay a Colombian merchant, and Bre-B is the instant local transfer scheme, which is why Littio can pay out to your bank in seconds. Neither is reachable by a US payer.',
+      },
+      {
+        slug: 'global66',
+        name: 'Global66',
+        customHeading: 'Global66: the gap in this page',
+        available: false,
+        notes:
+          'We are telling you about this one because leaving it out silently would be worse. Global66 appears to sell a Colombian dollar account with US receiving details and free receiving, which would make it the strongest local competitor to Wise on this corridor. We cannot tell you what it costs, because global66.com returned a 403 to every path we tried, including its Colombian dollar account page and its help centre. Search results describe the product and we are not going to price a provider from search results. So treat this as a known hole in our comparison rather than as an absence of options, and if you are choosing between it and Wise, get Global66\'s numbers from Global66.',
+      },
+    ],
+    supportedProviders: ['wise', 'payoneer', 'paypal', 'bank-wire'],
+    faqs: [
+      {
+        q: 'Do I have to register a cuenta de compensacion if my US clients pay my Wise or Payoneer account?',
+        a:
+          'On the regulation as written, no, and this is the question the page exists to answer because almost everything written about it is vague or wrong. Three articles point the same way. Article 81 says residents may freely open deposits in bank accounts abroad, using the word libremente, and may use them for any exchange operation other than the ones that must be channelled. Article 37 requires registering an account as a cuenta de compensacion only where a resident uses a foreign bank account for operations that must be channelled through the regulated market. Article 41, the closed list of what must be channelled, covers goods and capital and does not mention services. So a freelancer selling services abroad never triggers the condition that would make registration necessary. One honest note on how we got there: this follows from the scope of articles 37 and 81 rather than from an article that names payment platforms, and no article says whether a Wise balance counts as a cuenta bancaria en el exterior at all. If anything that helps you, since a Wise or Payoneer balance is electronic money rather than a bank deposit, which puts it further from the registration regime rather than closer. Article 81 ends by saying none of this displaces your tax obligations, which is a separate question and we answer it below.',
+      },
+      {
+        q: 'Do I need to file a declaracion de cambio when a US client pays me?',
+        a:
+          'No, and the reason is definitional rather than an absence of a rule. Article 88 defines the declaracion de cambio as the information on exchange operations channelled through the regulated market. Your service receipts are not channelled, because article 41 does not list services, so there is no declaration to make. There is one restriction that comes with being in the free market and you should hear it from us. Article 82 limits what you may do with foreign currency you did not channel: sell it to other residents, spend it on specified things like international freight and tickets and card purchases, invest it abroad, or channel it voluntarily. Read plainly, the two moves a freelancer wants are both permitted, selling the dollars to a Colombian bank for pesos or spending them abroad. We mention it so this page does not look like it only read the articles that helped.',
+      },
+      {
+        q: 'Can I open a US dollar account at a Colombian bank?',
+        a:
+          'Not as a resident individual, and this is the corridor\'s real constraint. The resolution authorises banks to take foreign currency deposits from a named list: international transport companies, travel and tourism agencies, free-trade warehouses, port and airport service providers, non-resident natural and legal persons, accredited diplomatic missions, multilateral organisations and their officials, and bodies running international technical cooperation programmes. The phrase that excludes you is in the list itself, personas naturales y juridicas no residentes, non-residents. A separate article closes the door generally, prohibiting deposits and other financial operations in foreign currency in the country between residents except where the resolution specifically allows them. You can still hold dollars, just not in a Colombian bank: article 81 permits an account abroad outright, and that is what a Wise or Payoneer balance effectively is. Two Colombian fintechs sell something that looks like a domestic dollar account and is legally a stablecoin balance, which we cover in their own section above.',
+      },
+      {
+        q: 'Do I charge IVA to a US client, and what do I have to do to get the 0% rate?',
+        a:
+          'This is the part of the page most likely to save you real money, so read the mechanism rather than just the rate. Exported services are not outside Colombian IVA; they are exempt at 0% under article 481 of the Estatuto Tributario, which means zero-rated with a right to recover input tax rather than simply out of scope. A DIAN concepto from June 2025 sets four conditions: the service is provided in the country, it is used exclusively abroad by a company or person without business or activities in Colombia, it meets the requirements in the regulation, and you keep the supporting documents for as long as the tax rules require. The regulation DIAN points to then gives the operative checklist: be registered in the RUT as an exporter of services, keep invoices issued properly, keep at least one of three specified documents evidencing the export, and keep a certification from yourself or your legal representative stating that the service was provided for use or consumption exclusively abroad and that you told the buyer so. Here is the sting, and it is in the regulation itself: if you fail any of those requirements, you as the provider are liable for the IVA you did not charge. That is 19% of income you already spent. One genuinely favourable difference from some countries: there is no closed list of qualifying service categories here, so a general consultant or designer is not shut out. And note the threshold below, because if you are a no responsable de IVA none of this applies to you yet.',
+      },
+      {
+        q: 'Will my US client withhold Colombian tax from my invoice?',
+        a:
+          'No, and the consequence is a cash flow trap rather than a saving. Article 368 of the Estatuto Tributario makes withholding an obligation of the payer, listing the public bodies, funds, consortiums and natural and legal persons who must withhold when they take part in the relevant operations. A US client with no Colombian presence is not subject to Colombian tax law, so nobody deducts anything on the way in. Your income is still fully taxable. It simply arrives gross and gets settled once a year in the declaracion de renta, which means one large bill instead of a year of small deductions, and that is what catches people who have only ever been paid by Colombian clients. We should be straight about the standing of this answer: the article is primary and we read it, but the step from it to a foreign payer not withholding is our reading of the rule rather than a DIAN ruling we found, and we looked.',
+      },
+      {
+        q: 'Can a US client pay me by ACH if I live in Colombia?',
+        a:
+          'Yes, and it is the single cheapest thing you can arrange on this corridor. Colombia is on Wise\'s list of countries where you can hold money and absent from its list of countries that cannot get USD account details, so you get a routing number and an account number your client pays like any domestic supplier, free to receive. Payoneer will also give you US receiving details and charges 1% on an ACH receipt. The thing to put in the email to your client is the word ACH: Wise charges $6.11 if the same money turns up as a wire or SWIFT payment instead, and a lot of finance departments default to wires.',
+      },
+      {
+        q: 'Can my client just send the money to my Nequi or Daviplata?',
+        a:
+          'Not in any way you should build on. Both are consumer products that receive money when a person decides to send it to you: an app link, a PayPal pull, or a remittance company. Neither gives you a SWIFT code, an IBAN, or an account and routing number, which means there is nothing to put on an invoice and nothing a US company\'s accounts payable system can pay on net thirty. The monthly limits, $2,000 on a low-amount deposit and $5,000 on a savings account, would also cap a working freelancer. The Payoneer to Nequi route is the one real exception and it is a Payoneer product with Nequi at the end of it, covered above.',
+      },
+      {
+        q: 'Do I owe ICA on income from foreign clients?',
+        a:
+          'Genuinely unsettled, and we would rather say so than pick an answer. ICA is a municipal tax, so start by noting that Bogota, Medellin and Cali are different regimes and nothing below generalises. In Bogota the governing decree computes the tax on net income for the period and lists deductions that include returns, rebates, discounts, exportaciones and sales of fixed assets. The word exportaciones appears without bienes after it, which reads helpfully. But the same decree\'s evidence rule asks an exporter to produce the single export form and a copy of the bill of lading, and a service export does not generate either document. So whether a service export can actually be deducted from the ICA base is contested, and the Bogota tax authority\'s own doctrine pages refused our requests, so we could not read what it says. Rates for professional consultancy and for unclassified services sit around 6.9 and 9.66 per thousand in that decree, from a column that has been in force a long time and may have been revised. Ask an accountant in your own municipality. This is the one section of this page where we think the honest answer is a question.',
+      },
+      {
+        q: 'Do I have to tell DIAN about the dollars sitting in my Wise balance?',
+        a:
+          'Possibly, and this is the counterweight to the good news further up. The Banco de la Republica does not want to hear about your Wise balance. DIAN might. Income taxpayers holding assets abroad above 2,000 UVT have to file Form 160, the declaracion de activos en el exterior, and DIAN\'s own page puts that threshold at $104,748,000 for 2026, which reconciles exactly against the 2026 UVT of $52,374. The deadline follows DIAN\'s annual calendar. What we cannot tell you is whether a payment platform balance counts: DIAN\'s page says assets abroad of any nature and does not address platform balances, and we are not going to rule on it. Know the threshold, know the form, and ask. Note also that the article permitting you to hold money abroad ends by saying it does not displace applicable tax rules, which is the regulator telling you these are two separate questions.',
+      },
+      {
+        q: 'What is the TRM, and is it the rate I actually get?',
+        a:
+          'The TRM is an average of yesterday, and no, nobody owes it to you. The resolution defines it as the volume-weighted average of spot dollar-peso purchases and sales settled the same day they were traded by exchange market intermediaries, calculated daily and certified by the Superintendencia Financiera. Two things follow. It is backward looking, and it is in force for a period rather than a moment: the rate set on a Friday governs the weekend. Look at what that means in practice. Across three days in late September 2026 the official rate was 3,264.39, then 3,329.61, then 3,306.86, a 2% move in a single day. On a day like that, the gap between a provider pricing off the live interbank mid and one pricing off a previous-day average is worth far more than any fee either of them discloses. And no bank has to give you the TRM: the resolution says exchange rates are whatever the parties to the operation freely agree. The TRM is a default for liquidating certain obligations, not a retail benchmark. Any page implying your bank owes you the TRM is wrong.',
+      },
+      {
+        q: 'What is the cheapest way to receive USD in Colombia?',
+        a:
+          'Wise, on published numbers, and by a margin wide enough that it is worth one awkward email to your client. Free to receive by ACH, then about $1.79 plus 1.359% to convert and pay out to your Colombian bank account at the live interbank mid. Payoneer is workable but its exit is priced as a range it will not narrow. PayPal is around 9% all in and is the thing most people reading this are currently using. Two caveats we will not bury. Wise pays us a commission, so our incentive and our recommendation point the same way here, and you should weigh that. And our comparison has a hole in it: Global66 sells what looks like a competing dollar account and blocked every attempt we made to read its fees, so we cannot tell you where it sits. Run your own numbers for your own invoice size in the calculator above rather than taking a ranking computed at a thousand dollars.',
+      },
+    ],
+    siblingCorridors: ['usd-to-mxn', 'usd-to-brl', 'usd-to-php'],
   },
 ];
