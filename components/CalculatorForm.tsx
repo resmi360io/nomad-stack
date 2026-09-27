@@ -29,11 +29,9 @@ const DEST_OPTIONS: { code: CountryCode; label: string }[] = [
   { code: 'PH', label: 'Philippines (PHP)' },
   { code: 'PT', label: 'Portugal (EUR)' },
   { code: 'BR', label: 'Brazil (BRL)' },
-  // Colombia, India and Uzbekistan are priced in the model and their tables work, but
-  // they have no corridor guide page yet. Offering a destination here with no guide behind
-  // it is the exact mismatch this site was pulled up on before, so they stay out of the
-  // dropdown until /receive/usd-to-inr, usd-to-cop and usd-to-uzs exist. Uncomment all
-  // three in the same commit that adds those pages.
+  // Every destination here has a corridor guide page behind it, and that is the rule: do not
+  // add one to this dropdown before its page exists in CORRIDORS. Offering a destination with
+  // no guide behind it is the exact mismatch this site was pulled up on before.
   { code: 'CO', label: 'Colombia (COP)' },
   { code: 'IN', label: 'India (INR)' },
   { code: 'UZ', label: 'Uzbekistan (UZS)' },
