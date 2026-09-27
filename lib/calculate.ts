@@ -45,10 +45,24 @@ const DEST_CURRENCIES_MAP: Partial<Record<CountryCode, Currency[]>> = {
   TH: ['THB', 'USD'],        // Thai banks offer foreign currency deposit (FCD) accounts in USD
   // Uzbekistan: the currency law (ZRU-573 of 2019) art. 12 lets residents open foreign
   // currency accounts at Uzbek banks, and nothing in it requires mandatory sale of foreign
-  // currency earnings.   // currency earnings. SQB publishes free account opening and shows no tariff line charging
+  // currency earnings. SQB publishes free account opening and shows no tariff line charging
   // for inbound non-cash FX (an absence of a charge, not a stated zero).
   // Third corridor after Georgia and Thailand where the page can price NOT converting.
   UZ: ['UZS', 'USD'],
+  // Philippines: BSP Foreign Exchange Regulations FAQs, March 2026 edition, question 28, under the
+  // heading "V. NON-TRADE CURRENT ACCOUNT TRANSACTIONS": "Are foreign currency receipts of residents
+  // from non-trade sources required to be inwardly remitted and sold for pesos? No. Section 1 of the
+  // FX Manual allows FX receipts, acquisitions or earnings of residents from non-trade sources to be
+  // used freely for any purpose. Such proceeds may, at the option of said residents, be sold for
+  // pesos, retained or deposited in foreign currency accounts (whether in the Philippines or
+  // abroad)." Read from the source PDF, not a summary. Freelance service fees sit in the non-trade
+  // current account bucket in BSP's own taxonomy, which is where that question is filed; the FAQ
+  // does not define non-trade, so that last step is our reading and the copy hedges it.
+  // No retention cap, no deadline and no mandatory sale, which makes this the cleanest legal case on
+  // the site. Only two rows can quote it: Wise by SWIFT and a generic wire. Payoneer cannot, because
+  // its flat same-currency withdrawal requires the account to sit in a country whose official
+  // currency it is, and the peso is the Philippines' currency.
+  PH: ['PHP', 'USD'],
 };
 
 export function getCurrency(country: CountryCode): Currency {
