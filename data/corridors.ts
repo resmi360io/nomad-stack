@@ -132,7 +132,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'HBL, UBL, MCB, Meezan Bank, and Bank Alfalah are the most commonly reported to work without issues; Faysal Bank is also frequently mentioned. HBL and Meezan Bank have official real-time withdrawal integrations with Payoneer, making them the fastest routes. The main requirement is that the account is in your legal name exactly as it appears in your Payoneer verification documents (CNIC or passport). Joint accounts or accounts with name mismatches can cause delays or rejections.',
       },
     ],
-    siblingCorridors: ['usd-to-bdt', 'usd-to-ngn', 'usd-to-php', 'usd-to-mxn'],
+    siblingCorridors: ['usd-to-bdt', 'usd-to-ngn', 'usd-to-php', 'usd-to-mxn', 'usd-to-uzs', 'usd-to-inr'],
   },
 
   // ─── USD → Bangladesh (BDT) ────────────────────────────────────────────────
@@ -234,7 +234,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'The bank account route is cheaper for most transfers: Payoneer charges a higher conversion fee for the bKash route (approximately 3% plus $1) than for bank account withdrawals (1% plus roughly 1.2%-4% FX markup, typical all-in 3-5%). The bKash side adds a cash-out charge on top: 18.50 Taka per 1,000 (1.85%) at a standard agent, or 7 Taka per 1,000 (0.70%) if you withdraw Payoneer-received funds at a BRAC Bank, City Bank or participating Q-Cash ATM. Even at the cheaper ATM rate the bank route usually still comes out ahead at a typical 2% FX markup (roughly 3% all-in against roughly 3.8%), but the two are close, and if your Payoneer FX lands near the top of its 1.2%-4% range the bKash-plus-ATM route can match it. If you do use bKash, cash out at one of those ATMs rather than at an agent. The bKash route is faster, typically settling within hours rather than 1-3 business days. For claiming the export cash incentive or funding an ERQ account, you must use the bank route: bKash withdrawals do not generate a Foreign Inward Remittance Certificate (FIRC). A practical split: use the bKash route for small, urgent withdrawals when you need cash quickly; route your main income through a bank account for savings, incentive claims, and ERQ.',
       },
     ],
-    siblingCorridors: ['usd-to-pkr', 'usd-to-ngn', 'usd-to-php'],
+    siblingCorridors: ['usd-to-pkr', 'usd-to-ngn', 'usd-to-php', 'usd-to-inr'],
   },
 
   // ─── USD → Nigeria (NGN) ───────────────────────────────────────────────────
@@ -479,7 +479,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'GCash, yes: the Virtual US Account gives you ACH and wire details inside the app, and dollars land in your wallet as USD. Maya, not in the same way. Maya offers a USD wallet for holding and converting, but we could not confirm client-facing USD receiving details you could hand to a US payer; confirmed routes into Maya are remittance services like Wise, Remitly, WorldRemit, and Western Union, which arrive as pesos. If receiving USD into a wallet is the goal, GCash currently has the feature and Maya does not.',
       },
     ],
-    siblingCorridors: ['usd-to-idr', 'usd-to-thb', 'usd-to-bdt', 'usd-to-mxn', 'usd-to-brl'],
+    siblingCorridors: ['usd-to-idr', 'usd-to-thb', 'usd-to-bdt', 'usd-to-mxn', 'usd-to-brl', 'usd-to-inr'],
   },
   // ─── USD → Georgia (GEL) ───────────────────────────────────────────────────
   {
@@ -590,7 +590,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'The reported threshold is 30,000 lari or the equivalent in another currency, above which you must declare the money to customs when crossing the border, with penalties for failing to. This one is worth mentioning only because people find the figure and assume it is a limit on bank transfers. It is not. It applies to physical cash and other bearer instruments you carry across the border in person, and it has nothing whatsoever to do with a client wiring dollars into your account. There is no transfer ceiling of that kind in Georgia. We could not open the customs code itself, so treat the exact figure as one to verify if you are actually planning to travel with cash.',
       },
     ],
-    siblingCorridors: ['usd-to-eur-portugal', 'usd-to-thb', 'usd-to-pkr', 'usd-to-mxn', 'usd-to-brl'],
+    siblingCorridors: ['usd-to-eur-portugal', 'usd-to-thb', 'usd-to-pkr', 'usd-to-mxn', 'usd-to-brl', 'usd-to-uzs'],
   },
   // ─── USD → Portugal (EUR) ──────────────────────────────────────────────────
   {
@@ -803,7 +803,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'It is Thailand\'s closest equivalent to the inward remittance certificate that some other countries issue, and it is the document to ask for at the time rather than chase later. A Foreign Exchange Transaction form is issued by the receiving Thai bank and documents the inbound money, the conversion into baht and the stated purpose. Thai law firms and property sites report consistently that the bank prepares one at 50,000 dollars or more in a single transaction, and we should be straight with you about that sourcing: the Bank of Thailand\'s own exchange control page does not use the words Foreign Exchange Transaction form or FET anywhere, and does not state that threshold, so treat the 50,000 figure as reported rather than confirmed and ask your own bank what it applies. What the Bank of Thailand does publish is a different and higher rule: for transactions in an amount equivalent to 200,000 dollars or above, the authorized banks need to request the customers to submit supporting documents, except where the authorized banks have performed the know your business process on the customers. Below whatever threshold your bank uses, it will normally issue a credit advice or a bank letter instead if you ask. You want one because it is the proof of inbound foreign funds that comes up when buying a condominium, and it is useful evidence if the Revenue Department or immigration ever asks where money came from. Note how that interacts with holding dollars: because the form records a conversion into baht, money parked in an FCD account and never converted will not produce one. Separately, banks are reported to require a purpose to be stated on inbound remittances regardless of size. Make sure your client\'s payment carries something like payment for services rather than gift or family support, because the purpose code follows the money and a wrong one is awkward to unpick later.',
       },
     ],
-    siblingCorridors: ['usd-to-idr', 'usd-to-php', 'usd-to-gel'],
+    siblingCorridors: ['usd-to-idr', 'usd-to-php', 'usd-to-gel', 'usd-to-uzs'],
   },
   // ─── USD → Indonesia (IDR) ─────────────────────────────────────────────────
   {
@@ -1163,5 +1163,273 @@ export const CORRIDORS: Corridor[] = [
       },
     ],
     siblingCorridors: ['usd-to-mxn', 'usd-to-php', 'usd-to-gel'],
+  },
+  // USD to Uzbekistan (UZS)
+  {
+    slug: 'usd-to-uzs',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'UZS',
+    destCountry: 'UZ',
+    country: 'Uzbekistan',
+    title: 'Receive USD in Uzbekistan: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in Uzbekistan. Wise cannot hold money there and PayPal does not operate. A dollar account at an Uzbek bank is the answer.',
+    h1: 'How to receive USD in Uzbekistan: why IT Park is the wrong answer for freelancers',
+    intro:
+      'Most guides to getting paid in Uzbekistan start with IT Park and the 0% tax headline. If you are one person with a laptop, that is the wrong answer, and we will show you why below. Here is the right one. Your legal position is unusually good: the currency law lets a resident hold a foreign currency account at an Uzbek bank, nothing in it forces you to sell your dollars for sum, a registered self-employed person is specifically excluded from the foreign trade registration system that businesses have to use, and since 1 January 2026 that same person pays 1% of turnover. So you can be paid in dollars, keep them in dollars, file nothing with the foreign trade system, and pay about one percent. The catch is not legal, it is that the two apps you would reach for first do not work here. Wise will not give you an account of any kind: Uzbekistan is not on its list of countries where you can hold money, and its own send money to Uzbekistan page says it is still working on letting customers send sum from the US and is not quite there yet. PayPal does not operate in Uzbekistan at all. What is left is a dollar account at an Uzbek bank, which is the route we would take, and Payoneer, which works if you can open it and is priced badly on the way out. Wise still belongs on this page, just pointed at the other end: it is what you ask your American client to send with.',
+    publishedDate: '2026-09-25',
+    updatedDate: '2026-09-25',
+    providers: [
+      {
+        slug: 'bank-wire',
+        name: 'Bank Wire (SWIFT)',
+        customHeading: 'A dollar account at an Uzbek bank: the route we would take',
+        available: true,
+        notes:
+          'This is the answer for most readers, and the reasoning matters more than the fee does. Article 12 of the currency law says residents have the right to open foreign currency accounts at banks in Uzbekistan. Nothing in that law requires you to sell foreign currency earnings, which is the rule people assume exists and it does not. So your client wires dollars, they land in a dollar account in your name, and you decide when or whether to turn them into sum. Uzpromstroybank publishes opening a foreign currency account as free, and its tariff puts no fee on foreign currency arriving by transfer into an account at the bank. That is the one tariff we could open and read, and the difference between those two halves is worth a sentence: the free opening is a line in the schedule that says it is free, while the free credit is the absence of a charge rather than a line promising one. The nearest line prices a transfer on to another bank at 1%. So confirm the inbound credit with your branch rather than with us. Taking that money out as physical cash costs a percentage of the amount, and the bank\'s own two schedules do not agree on which percentage. Its Russian language tariff, dated September 2026, prices cash issuance of foreign currency that arrived from abroad at 1% of the amount. Its English translation, approved in August 2024, still shows 0.5% for the same line. We could not establish which one is operative, so read the Russian schedule before you rely on either figure, and assume the higher one if you are planning around it. The bank applies Central Bank rates on the day. Two things the tariff does not show you, and they matter more than the tariff does. The first is what the correspondent banks take in the middle. A dollar wire from the US passes through at least one intermediary and none of them publish what they deduct, so on a small invoice this is the thing that eats the money and nobody can tell you the number in advance, including us. The second is that the spread is deferred rather than avoided. You pay it whenever you sell dollars for sum. On one bank on one day, Trustbank was buying dollars at 11,780 against a Central Bank reference of 11,830.87, and the buy side is the one that applies to you, because converting an inbound wire means selling your dollars to the bank. That gap is about 0.4%, which is cheap by regional standards. Treat it as an order of magnitude rather than a quote, for three reasons: it is one bank on one day, the bank publishes a single buy and sell table without saying whether it covers cash or transfers, and its sell rate moved during the afternoon we looked while its buy rate did not. Note also that the Central Bank publishes its rate without any obligation to buy or sell at it: it is a reference, not a dealing rate.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        customHeading: 'Payoneer: fees we can quote, eligibility we cannot',
+        available: true,
+        notes:
+          'The platform fallback, and the one where we can give you the fees but not the answer you most want. Receiving is the straightforward part: a US client pays your Payoneer receiving details like a domestic supplier. It is not free, though, and our table charges you for it. Payoneer takes 1% to receive into a receiving account in a currency that is not your local one, with a minimum of a dollar, and as an Uzbek resident your local currency is the sum, so a dollar receipt is exactly that case. Getting the money to Uzbekistan is where it goes wrong, and for a specific reason. Payoneer charges a flat $1.50 to withdraw to a bank account in your own country and currency, but only in the countries on its list, and Uzbekistan is not one of them. That list is not something you can put a number on, because it opens with all EU countries as a bloc and then names individual countries, so anyone quoting you a count is counting something arbitrary. Everything outside the list is priced the same way: 1.2% to 4%, which Payoneer publishes as a range rather than a rate and does not break down by country. Its table applies that range to both of the remaining routes, the one where your payout converts and the one where it lands in the currency it left in, so there is no cheap exit whichever you end up on. Two things to carry with you. Payoneer adds that in some countries a minimum fee of up to $20 or equivalent may apply, and on a small invoice that minimum, not the percentage, is what hurts; our table has no field for a minimum fee, so it is not in the numbers above. And we could not confirm that a direct payout in sum exists at all. Payoneer publishes no Uzbekistan page and no Uzbekistan rate, and what we could find described receiving in dollars or euros and withdrawing to a foreign currency account at an Uzbek bank. So read 1.2% to 4% as the price of whichever route Payoneer actually opens for you, not as proof that both of them exist. We model the midpoint of that range and flag the row as an estimate, which is also why it cannot carry our badge. Payoneer says plainly that when conversion applies the fee is inside the rate, so the number you actually pay is whatever the portal shows on the day. There is also a $29.95 annual fee if the account receives under $6,000 in any twelve consecutive months. Now the part we could not settle: whether Payoneer will open an account for an Uzbek resident at all. Payoneer says 190 plus countries and territories and that not all products are available everywhere, its own country availability page returns a 404, and every affirmative claim we found was somebody else\'s blog. Its own community forum has Russian language threads with titles like Payoneer Uzbekistan and withdrawal to a bank in Uzbekistan, which strongly suggests real Uzbek users, but the thread bodies would not load for us. Treat availability as probable and unconfirmed, and find out before you build anything on it.',
+      },
+      {
+        slug: 'wise',
+        name: 'Wise',
+        customHeading: 'Wise: not for you, but ask your client to use it',
+        available: false,
+        notes:
+          'Wise cannot give you an account in Uzbekistan, and we want to be exact about what that means because two of Wise\'s own pages can be misread as saying otherwise. Wise lists the countries where you can hold money with it, running from Andorra to Uruguay and including Georgia, Thailand, the Philippines and Brazil. Uzbekistan is not on that list and is not in the additional restrictions block either. Absence from the list means no currency balances at all, personal or business, and you cannot be issued account details for a balance you are not allowed to hold. Separately, Wise publishes a list of countries where USD account details are unavailable, and Uzbekistan is not on that one. That is silence, not permission, and reading it as good news is the mistake to avoid. Wise says this in words you can go and read, rather than only in an error message we saw. Its send money to Uzbekistan page says it is working hard to allow customers to send sum to Uzbekistan from the US and that it is not quite there yet. We did also ask its quote system for a dollars to sum price on 25 September 2026 and it refused, but a page you can open yourself is better evidence than an API call you cannot, so the page is what we are citing. Here is what Wise is good for on this corridor, and it is genuinely useful. Uzbekistan is on the list of countries Wise can send US dollars to by SWIFT. So the right move is to ask your American or British client to pay you through Wise, into your dollar account at an Uzbek bank. They get a cheaper send than their bank will give them, you get dollars, and the person who signs up for Wise is them rather than you. We should say plainly that Wise pays us a commission when someone signs up through this site, and that on this corridor the person we are pointing at Wise is your client, not you. Wise warns that SWIFT fees depend on banks that do not disclose them upfront, so whatever it quotes your client is an estimate too.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        available: false,
+        notes:
+          'PayPal does not operate in Uzbekistan. Uzbekistan is absent from PayPal\'s own country reference list, which runs straight from Ukraine to the United Arab Emirates. Uzbekistan is widely reported to be the only country in Central Asia without PayPal, and there has been talk of negotiations with the Central Bank for years, but PayPal\'s consumer country list would not load for us and we are not going to tell you a deal has happened on the strength of news coverage. If a client insists on PayPal, the honest answer today is that you need a different client or a different method.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        customHeading: 'Revolut: we could not verify it either way',
+        available: false,
+        notes:
+          'We have nothing solid on Revolut in Uzbekistan, in either direction. Every Revolut help address we tried refused our requests. Summaries of its supported country list show the European Economic Area plus the UK, US, Australia, Brazil, Japan, New Zealand, Singapore, Switzerland and Mexico, with no Uzbekistan, but we did not open any of it ourselves. Treat Revolut as unknown on this corridor rather than as confirmed unavailable, and check it yourself if you are curious.',
+      },
+      {
+        slug: 'local-wallets',
+        name: 'Payme, Click, Uzcard and Humo',
+        customHeading: 'The local rails, and why you cannot invoice into them',
+        available: false,
+        notes:
+          'Payme, Click, Uzcard and Humo are not things you can give a client. This confuses people, so let us be blunt about it. Uzcard and Humo are the national card schemes, and neither reaches Visa or Mastercard rails on its own. What Humo announces on its own press pages is a card co-badged with UnionPay, with Agrobank the first bank to issue it from around August 2026, and co-badging is the whole mechanism: a plain Humo card does not work outside Uzbekistan, and the one that does is a Humo card carrying a second scheme\'s logo. Individual banks advertise other combinations, but Humo itself only claims the UnionPay one. In any case this is about you spending money abroad, not about receiving an invoice payment. Neither scheme is an address a US company can send an invoice payment to. What these rails actually are is the last leg: the thing a provider pays out to once the currency exchange has already happened somewhere else. There is one exception, and we mention it to warn you off rather than to recommend it. Click lets a foreign card top up a wallet, which credits you in sum. Its 2020 announcement of the feature put the commission at 3.7% with caps on unidentified wallets, and we are not going to print that figure, because Click\'s current tariff table contradicts it by omission: the row for topping up a wallet from an international VISA or MasterCard card is the one row on that table with no price against it, just a dash, while card to card shows 1.1%, wallet to card 1.5% and a PAYNET top up 3.0%. So the route exists and Click does not currently publish what it costs. Find out what you would actually be charged before using it, and bear in mind that receiving money through a card top up is an expensive shape of transaction wherever it does get priced. Payme is reported to accept transfers from Visa, Mastercard and Mir cards with automatic conversion to sum at the local bank rate, but we could not reach a Payme page confirming current terms or the commission.',
+      },
+    ],
+    supportedProviders: ['payoneer', 'bank-wire'],
+    faqs: [
+      {
+        q: 'Can I get USD account details from Wise in Uzbekistan?',
+        a:
+          'No. Uzbekistan is not on Wise\'s list of countries where you can hold money, which means no currency balances at all and therefore no account details, because details are issued against a balance you are permitted to hold. You may notice that Uzbekistan is also absent from Wise\'s separate list of countries where dollar account details are unavailable, and it is tempting to read that as good news. It is not. That list only matters for people who can already hold a balance. The clearest confirmation is from Wise itself, in a page you can open: its send money to Uzbekistan page says it is working hard to allow customers to send sum to Uzbekistan from the US and that it is not quite there yet.',
+      },
+      {
+        q: 'Does Wise work in Uzbekistan at all?',
+        a:
+          'Yes, in one direction, and it is the direction worth using. Uzbekistan is not on Wise\'s list of countries where it does not operate, so you can register and send. And Uzbekistan is on the list of countries Wise can send US dollars to over SWIFT. What that adds up to is that Wise is the right tool for your client rather than for you: ask them to send dollars through Wise to your dollar account at an Uzbek bank. Wise cannot pay out sum at all, so the money arrives as dollars, which on this corridor is what you want anyway.',
+      },
+      {
+        q: 'Can my US client just wire dollars to my Uzbek bank account?',
+        a:
+          'Yes, and for most freelancers this is the setup to aim for. Article 12 of the currency law gives residents the right to open foreign currency accounts at Uzbek banks. Your client sends an ordinary international wire, the dollars land in a dollar account in your name, and Uzpromstroybank at least publishes free account opening, with no fee anywhere in its tariff for foreign currency arriving by transfer. What you cannot find out in advance is what the correspondent banks deduct on the way, because none of them publish it. On a $500 invoice that uncertainty is a real cost. On a $5,000 one it stops mattering much.',
+      },
+      {
+        q: 'Can I keep dollars in an Uzbek bank, or do I have to convert to sum?',
+        a:
+          'You can keep them. There is no mandatory sale rule anywhere in the currency law, which is the single most useful fact on this page, because the assumption that one exists is what pushes people into bad workarounds. The spread is deferred, not avoided: you pay it whenever you decide to sell. One caution does apply, and you should hear it from us rather than from your bank. Article 11 of the same law requires residents to ensure repatriation of assets from foreign trade operations, and past 180 days the operation is reclassified. The penalties live in a separate article, 11-1, and they start at 5% of the unrepatriated amount and climb with how late you are. We could not find an authority applying that article specifically to a self-employed individual as opposed to a business, and the article itself just says resident, which is broad. The practical reading is that money sitting in an offshore balance indefinitely is not obviously safe, so bring it home and hold your dollars here rather than there.',
+      },
+      {
+        q: 'Does Payoneer work in Uzbekistan, and what does it cost to get the money out?',
+        a:
+          'The fees we can tell you precisely. The eligibility we cannot. Uzbekistan is not on the list of countries where Payoneer charges a flat $1.50 to withdraw to a local bank account, and that list is not a number worth quoting because it counts all EU countries as one entry. Outside it, withdrawal is priced at 1.2% to 4%, which Payoneer publishes as a range rather than a rate, and its table puts every remaining route in that range whether the payout converts your dollars or not. So there is no cheap exit whichever you pick. Watch the minimum, though: Payoneer says a minimum fee of up to $20 or equivalent may apply in some countries, which on a $500 invoice swamps the percentage, and our table cannot show a minimum fee. We also could not confirm that Payoneer will pay out in sum at all, as against paying dollars into a foreign currency account here, so treat the range as the price of the route you are offered rather than a menu. On eligibility, Payoneer says 190 plus countries and that not all products are available everywhere, its own country list page returns a 404, and every source we found asserting it works in Uzbekistan was a third party blog. Its own forum carries Russian language threads about withdrawing to Uzbek banks, which suggests real users, but we could not read them. Open the account before you promise a client anything.',
+      },
+      {
+        q: 'Do I need to register my contract with anyone when a foreign client pays me?',
+        a:
+          'Not if you are registered as self-employed, and this is the best thing about the Uzbek setup. Cabinet of Ministers resolution 283 of 2020 makes business entities enter foreign trade contracts, acts and invoices into the unified electronic foreign trade system, and it covers export of services explicitly, with a deadline of the 20th of the month after the act. The same resolution excludes persons registered as self-employed. The tax authority says the same thing from the other side: a self-employed person providing services over the internet may take payment in foreign currency from foreign clients into accounts at Uzbek banks, and may work without a contract, using a public offer, electronic messages or invoices instead. So you invoice, you get paid, you file nothing with the foreign trade system. An individual entrepreneur or a company is a business entity and does have to register.',
+      },
+      {
+        q: 'Self-employed or individual entrepreneur, which should a freelancer register as?',
+        a:
+          'Self-employed, for almost anyone reading this. It is free to register through the tax app, your income from registered activity is excluded from aggregate personal income, you pay social tax of about one reference value a year, and you are outside the foreign trade registration system entirely. The limits are real but narrow: you cannot hire anyone, and you cannot be self-employed and a registered individual entrepreneur at the same time. Whether you can be self-employed while also holding a salaried job is genuinely unsettled in what we could read. The resolution that governs self-employment, Cabinet of Ministers resolution 806 of 2020, is reported as ruling it out, and several current practitioner guides say the opposite, that it is fine as long as the activities differ. On lex.uz only the metadata for 806 renders, not the operative text, so we cannot settle it from the source. If you have a job and want to register, ask the tax office rather than taking either answer from a guide, ours included. An individual entrepreneur is a business entity, which means contract registration and more filing. Note that the government page describing entrepreneur registration still quotes an old reference value and still describes the fixed income tax regime that was abolished for 2026, so read it for structure and not for numbers.',
+      },
+      {
+        q: 'How much tax do I pay on money from foreign clients in 2026?',
+        a:
+          'About 1% of turnover, plus a small annual social tax. Presidential resolution PP-247 of August 2025 sets turnover tax for individual entrepreneurs and self-employed persons with annual turnover up to 1 billion sum at 1%, effective 1 January 2026. The same act removed the exemption that had kept self-employed people under 100 million sum out of turnover tax altogether, and abolished the fixed income tax regime for entrepreneurs. It also runs to 31 December 2030, so treat 1% as the rate for this period rather than a permanent feature. Above the ceiling you move to standard treatment from the day you cross, and check the ceiling itself before planning around it: the threshold for being pushed onto the general tax regime was raised with effect from 1 June 2026 by a later decree, PF-100, and we could not read the text that would tell us whether the 1 billion figure in PP-247 moved with it. We read the resolution text itself and it is unambiguous, though one major accounting firm\'s 2026 summary confirms the surrounding law without restating the rate, so confirm the rate applies to you before you plan around it.',
+      },
+      {
+        q: 'Can I join IT Park as a freelancer?',
+        a:
+          'No, and this is the correction we most want to make, because nearly every English article about Uzbekistan leads with IT Park. Asked directly whether an individual entrepreneur can be a resident, IT Park answers that it cannot, because an individual entrepreneur is an individual without the formation of a legal entity, and only legal entities can be residents. So a solo freelancer is out unless they incorporate. And if you do the arithmetic, incorporating to get in is usually the wrong move for one person. The 0% headline is real but specific: it covers profit tax, VAT, social tax, turnover tax and property and land tax until 2028, and it does not cover your own salary out of the company, which is taxed at 7.5% rather than at the standard personal income rate. Against that you take on an approved business plan you have to stick to, monthly contributions to the directorate, an annual mandatory audit, accounting wired into the tax authority\'s systems and regular portal reporting, with status revocable if you slip. A self-employed person pays 1% of turnover and files almost nothing. For a one-person shop under a billion sum, self-employed wins on both tax and paperwork. IT Park is built for companies with staff, and that is who should use it.',
+      },
+      {
+        q: 'Is there an e-resident programme I can use?',
+        a:
+          'We could not confirm one exists, and we looked. IT Park lists five support programmes on its own site: resident status, IT Visa, One Stop Shop, Zero Risk and Local2Global. No e-resident scheme is among them, and the two domains people point to for it did not resolve for us at all. Secondary sources do refer to an electronic resident programme having launched. What we can confirm is the IT Visa, which is a different thing: a multiple entry visa of up to three years for foreign investors, IT professionals and founders of IT Park residents, with access to medical and education services on the same terms as citizens and permission to buy property at any value. If you are a resident of Uzbekistan reading this page, none of that is what you need anyway.',
+      },
+      {
+        q: 'Do I owe VAT on services sold to a client abroad?',
+        a:
+          'Almost certainly not, for two independent reasons, though we can only firmly give you the second. Uzbek VAT works on place of supply, and for services that are not on a special list the place of supply follows the buyer, so a service sold to a foreign client falls outside Uzbek VAT rather than being zero rated with a refund to claim. The article text itself would not load for us, so treat that mechanism as our reading of professional commentary rather than as quoted law. The second reason is simpler and harder to argue with: VAT only starts once your turnover pushes you onto the general tax regime, and that threshold sits far above anything a freelancer bills. It also moved recently, which is why the figure you will see quoted everywhere needs checking. A presidential decree numbered PF-100, dated 26 May 2026, raised it, and the Uzbek accounting press and the large firm tax alerts all read that as a rise from 1 billion sum to 12,000 base reference values, several times higher and now moving with the reference value instead of sitting at a fixed sum. We could open the decree\'s registration record on lex.uz but not its operative text, so treat the new threshold as well corroborated rather than quoted. Either version of it puts essentially every freelancer out of scope. We are deliberately not printing a VAT percentage, because the Tax Code article that sets the rate would not load for us, and we would rather cite nothing than cite a rate we could not read.',
+      },
+      {
+        q: 'Can a client pay me on Payme, Click, Uzcard or Humo?',
+        a:
+          'Not in any way you should design around. These are domestic rails. Uzcard and Humo are the national card schemes and neither works abroad by itself. Humo has announced a card co-badged with UnionPay, issued first by Agrobank, and that second logo is what gives the cardholder international acceptance rather than Humo doing so. Either way it is about you spending, not about receiving an invoice payment from a US company. What they really are is the last leg, where a provider drops sum after the currency exchange has happened elsewhere. The one genuine exception is that Click accepts top ups from a foreign card, crediting you in sum. A 2020 Click announcement put the commission at 3.7%, with caps if your wallet is not identified, but we will not repeat that number, because Click\'s live tariff table prints no figure at all against the row for topping up from an international VISA or MasterCard card, just a dash, while it prices everything around it. So the route exists at an undisclosed price. Ask before you use it, and expect a card top up to be an expensive way to receive money whatever the figure turns out to be.',
+      },
+      {
+        q: 'What proof do I have that the money came from abroad?',
+        a:
+          'Your bank statement showing the credit, plus the invoice or public offer behind it. We could not find an Uzbek equivalent of the inward remittance certificate that India and Bangladesh issue, and no tax authority page we opened prescribes a specific document for a self-employed person\'s foreign receipts. For exporters generally a bank certificate confirming receipt of foreign currency proceeds is the standard document and it is what the VAT refund process is built around, but that came from professional commentary rather than from a rule we could open. Keep the statement and the invoice together, and if your bank offers a certificate of receipt, take it.',
+      },
+    ],
+    altReceivingNote:
+      'Uzbekistan is one of the few countries on this site where not converting is a real option rather than a workaround. Article 12 of the currency law gives residents the right to hold foreign currency accounts at Uzbek banks, and there is no rule anywhere in that law forcing you to sell your dollars. The one bank whose tariff we could read publishes free account opening, and puts no fee in that tariff on money arriving from abroad. What you are doing is deferring the spread rather than escaping it, since you pay it whenever you sell, but you get to choose the day.',
+    siblingCorridors: ['usd-to-gel', 'usd-to-thb', 'usd-to-pkr'],
+  },
+  // USD to India (INR)
+  {
+    slug: 'usd-to-inr',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'INR',
+    destCountry: 'IN',
+    country: 'India',
+    title: 'Receive USD in India: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in India. Wise gives freelancers US account details, 18% GST lands on the fee, and the RBI publishes who is authorised.',
+    h1: 'How to receive USD in India: the GST nobody quotes, and the register nobody checks',
+    intro:
+      'India is the corridor with too many answers rather than too few. Wise, Payoneer, PayPal and half a dozen India-built rails all want your invoices, and every one of them quotes its price in a different shape, so nothing lines up. Two distortions run through every comparison you will read, including the ones the rails write about each other. The first is GST. Eighteen percent lands on the fee for the India-domiciled services, which means a headline nineteen dollars is really twenty-two forty-two. Our calculator has no field for tax charged on a fee, so read our fee column as before GST and add it where we say it applies. The second is that almost nobody tells you which of these companies is actually authorised by the Reserve Bank to do this. The Reserve Bank publishes the register, it is public, and searching it takes a minute. Wise is on it, which we mention first because Wise is also the company that pays us commission. PayPal and Payoneer are not on it, which means less than it sounds: both have announced in-principle approval, and that keeps a company off the list until the full authorisation is granted. We checked the register ourselves and we say per provider what it showed, presences and absences both. On the thing readers most often get wrong: yes, an Indian freelancer can get real US account details from Wise, the kind a client pays by ordinary domestic transfer. It sits on the business side of the product, but the eligibility list opens with sole trader and freelancer, and that category needs nothing but a PAN in your own name and a personal bank account. No company, no GST number. Finally, the part that matters more than the fee: sort out your proof-of-remittance document before you optimise pennies, because that is what your accountant and the GST rules actually run on.',
+    publishedDate: '2026-09-25',
+    updatedDate: '2026-09-25',
+    providers: [
+      {
+        slug: 'wise',
+        name: 'Wise',
+        customHeading: 'Wise: yes, a freelancer qualifies, despite the word business',
+        available: true,
+        notes:
+          'The one we would start with, and we should say upfront that Wise is the affiliate programme this site earns from, so check the table rather than taking our word for it. What you get is a Wise Business account with US account details, a routing number and an account number, so an American client pays you the way they pay a domestic supplier. It says business on the tin and that puts people off unnecessarily. Wise lists five accepted categories and the first is sole trader or freelancer, described as making money as an individual, with your PAN under your personal name and your rupee receiving account under your personal name. Only the separate sole proprietorship category, the one for trading under a business name, needs a GST number or an IEC. Verification is video KYC through Aadhaar OTP, PAN and Digilocker, and Wise says the account is ready inside two working days. On the authorisation question we check for every provider on this page: Wise Payments India Private Limited is on the Reserve Bank register, in the cross-border category for inward transactions, dated 12 March 2026. We earn commission from Wise, so treat that as a fact to go and check rather than as a recommendation. On price, receiving dollars by ACH is free. Wise publishes 6.11 dollars per payment for receiving a dollar wire or a SWIFT payment, on its US pricing page rather than an India one, and the India quote we pulled prices an inbound SWIFT payment identically to an ACH one, so we cannot tell you whether an Indian business profile actually pays it. Treat 6.11 as the worst case and take ACH if your client can send it. Then comes the conversion, and here is a gap worth knowing about: Wise does not publish its dollars to rupees conversion fee anywhere we could find. Its India business receiving page says only that the conversion fee depends on the currency, and the 0.25% figure floating around its India pages belongs to a pounds to euros worked example with a volume discount applied, so anyone quoting it at you for this corridor is repeating something that was never about rupees. We got the real number out of Wise own pricing system on 25 September 2026, with an India business profile: a flat 0.99 dollars plus about 0.42% of the amount, at the mid-market rate with no spread on top. That is a little over five dollars on a thousand before tax. Two more charges to plan for. An eFIRC costs the equivalent of two dollars per transfer and is issued automatically, arriving by email two to three days after the transfer completes. And GST at 18% applies, on the conversion fee and on the eFIRC fee, which Wise states plainly, and which is why the same quote shows 6.09 dollars all in on a thousand rather than five and a bit. Limits run to 2.5 million rupees per transaction at the top and five dollars at the bottom, and Wise says more than half its transfers settle within two hours.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        customHeading: 'Payoneer: the free automatic FIRA is the real feature',
+        available: true,
+        notes:
+          'The default if your work arrives through Upwork or Fiverr, and it has one feature on this corridor that nothing else matches. The FIRA is free, automatic and per payment. Payoneer says the document is generated every time a payment is processed into your bank account, regardless of where the money came from, and is available to download within 24 to 72 hours, with no charge and nothing to request. Its own page lists no exclusions by amount or country. If the paperwork is the part you dread, that alone may decide it. The cost is muddier, and on one line Payoneer contradicts itself. Its help centre prices receiving dollars into a receiving account at 1% with a one dollar minimum, dollars not being your local currency as an Indian resident, and names only China as an exception. Its own India page says the opposite, that receiving payments in dollars is free for customers in India. Neither page carries a date and we could not work out which is current, so our table charges the 1%: read our Payoneer number as the pessimistic one and check your own fee screen before you compare it with anything. The withdrawal is published as a range rather than a rate, 1.2% to 4%, and Payoneer does not say where the rupee sits inside it, so we model the midpoint and flag the row as an estimate, which also bars it from our badge. There is a 29.95 dollar annual fee if the account takes in under 6,000 dollars in any twelve consecutive months. One India-specific behaviour is worth planning around, and it is better than we first thought: Payoneer own India page says that for customers based in India, payments received to your Payoneer account are automatically withdrawn to your local bank account or EEFC account within 24 hours. So the dollars do not stay at Payoneer. Whether they stay dollars is up to you, because an EEFC account is a foreign currency account and Payoneer will send to one. On the register, Payoneer is not on the Reserve Bank list, and it announced Reserve Bank in-principle approval as a cross-border payment aggregator in January 2026, which is the stage before that list.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        available: true,
+        notes:
+          'Available, familiar, and the most expensive thing on this page. Commercial receiving is 4.40% plus a fixed fee, thirty cents on dollars, and then 3.0% above the base exchange rate when the money is converted. To receive at all you have to verify your PAN, add an Indian bank account and pick a purpose code, which PayPal walks you through. The paperwork is better than the price: a weekly digital FIRA is free and fully automated, and a transaction-specific one costs 100 rupees plus GST, requested through Citibank and taking three to five business days if you bank with Citi and seven to ten if you do not. On the authorisation question, the answer turned out to be straightforward once we read both sources rather than one. PayPal Payments Private Limited is not on the Reserve Bank register of authorised payment systems as published on 8 September 2026, and neither is Payoneer, but PayPal announced Reserve Bank in-principle approval to operate as a cross-border payment aggregator for exports in May 2025, and an in-principle holder does not join that register until the full authorisation is granted. So the absence is a stage in a process rather than a red flag, and it is shared with a provider we rank above PayPal. The reason to skip PayPal on this corridor is the price, not the paperwork.',
+      },
+      {
+        slug: 'skydo',
+        name: 'Skydo',
+        customHeading: 'Skydo: authorised, cheap at size, and a lesson in GST',
+        available: true,
+        notes:
+          'An India-built rail, properly authorised, and the clearest illustration of the GST problem on this page. Skydo charges nineteen dollars for invoices up to two thousand, twenty-nine dollars from two thousand to ten thousand, and 0.3% above ten thousand, at the live FX rate with no margin on the exchange. Those are the numbers everyone quotes. Skydo own calculator then adds GST at 18% to the fee, so the nineteen is really 22.42 and the twenty-nine is really 34.22. We checked because a competitor made the claim and we assumed it was a smear. It is not, it is correct. That is why Skydo is described here rather than ranked in the table above: its price is tiered by invoice size and our model holds a single flat fee, so any number we put in the table would be right at one invoice size and wrong at every other. Do the arithmetic for your own invoice. On a nine thousand dollar invoice, Skydo at 34.22 all in is very hard to beat. On a five hundred dollar one it is dreadful. Skydo Technologies Private Limited appears on the Reserve Bank register as an authorised cross-border payment aggregator for imports and exports, dated 8 January 2026. What we could not confirm is whether an unregistered individual freelancer can onboard, as against a registered exporter or business, so check that before you build a plan on it.',
+      },
+      {
+        slug: 'xflow',
+        name: 'Xflow',
+        customHeading: 'Xflow: authorised, and a different tax structure entirely',
+        available: true,
+        notes:
+          'The other authorised India-built rail we can describe with confidence, and it has a genuinely different tax structure that nobody explains. Pricing is tiered like Skydo: twelve dollars for invoices up to two thousand on the starter plan and 0.6% above that, or twenty dollars up to five thousand on the growth plan and 0.4% above, with custom pricing for ten thousand and up. It uses the mid-market rate. The interesting part is GST. Xflow says it does not charge GST on its services because it is a US-domiciled entity, which sounds like a straight saving against Skydo. Read the next sentence though: it also says the flat fees may require GST to be paid through the reverse charge mechanism, which moves the obligation onto you rather than removing it. Whether that is better depends entirely on whether you are already filing under reverse charge for anything else. Ask your accountant rather than assuming it is free money. Xflow Payments India Private Limited is on the Reserve Bank register, dated 18 February 2026. It is not in our table for the same reason Skydo is not: tiered pricing that a single flat fee cannot represent.',
+      },
+      {
+        slug: 'other-rails',
+        name: 'Karbon, Winvesta, BriskPe and Infinity',
+        customHeading: 'The rails we will not rank, and why',
+        available: true,
+        notes:
+          'Four more names come up constantly and we are not going to rank any of them, for reasons that differ and are all worth knowing. BriskPe refused every request we made to its website, so the only thing we can tell you from a source we actually opened is that GoBrisk Technologies Private Limited is on the Reserve Bank authorised register, dated 26 December 2025. Its fees circulate widely and we have verified none of them. Karbon publishes no rates at all: its own fees page lists categories and sends you to a pricing calculator, which is a legitimate way to run a business and an impossible one to put in a comparison table. It is also not on the authorised register. Winvesta pricing page turned out to be for its investment product, and the page that would carry its collection charges returns a 404; it is not on the register either. Infinity publishes a flat 0.5% described as all inclusive with no FX markup, which would be excellent if we knew whether all inclusive means GST is inside it, and its own page does not say; it is not on the register. Being absent from that register is not an accusation, because it covers one specific authorisation and there are other ways to operate legally. It is simply a check you can run yourself, and we would rather point you at it than pretend we can rank companies that do not publish a price.',
+      },
+      {
+        slug: 'bank-wire',
+        name: 'Bank Wire (SWIFT)',
+        customHeading: 'The wire, and where a real FIRC comes from',
+        available: true,
+        notes:
+          'The old route, still the one your bank understands best, and on a large enough invoice still competitive. Your client American bank charges a flat fee to send, an intermediary may take a cut on the way, and your Indian bank buys the dollars at its own rate for the day rather than at the mid-market rate. We could not open a rate card or a schedule of charges for any Indian bank on the day we checked, so the figures in our table are carried from other wire corridors and flagged as estimates accordingly, and we are not going to tell you what the spread is. What holds regardless is that the gap between the rate your bank uses and the mid rate is not a line item anywhere, so the only way to see it is to compare the rupees that landed against the mid rate on the day. Ask your branch what rate it will apply before the money arrives rather than after. The reason to consider a wire anyway is documentary. It lands through an Authorised Dealer bank, which is the entity that can issue a FIRC, and if your business ever needs the full certificate rather than the advice document, that is where it comes from.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        customHeading: 'Revolut has an Indian licence, but not for this',
+        available: false,
+        notes:
+          'Not an option for this corridor, and the reason is specific rather than vague. Revolut has a full Indian licence, announced in April 2025, but it is a prepaid payment instrument authorisation: domestic prepaid cards and wallets with UPI. That is a spending product, not a receiving one. Revolut also does not appear on the Reserve Bank register of authorised cross-border payment aggregators. Between those two facts there is no route for an Indian resident to take a dollar invoice from a foreign client through Revolut today. We did not find a Revolut page stating that negative outright, so this is our reading of its licence scope rather than a quote.',
+      },
+    ],
+    supportedProviders: ['wise', 'payoneer', 'bank-wire', 'paypal'],
+    faqs: [
+      {
+        q: 'Can an Indian freelancer really get US account details from Wise?',
+        a:
+          'Yes, and the confusion is about the word business. Wise India receiving product is licensed as a cross-border payment aggregator for business customers, which makes people assume they need a company. They do not. Wise lists five accepted categories and the first is sole trader or freelancer: you make money as an individual, your PAN is under your personal name, and your rupee receiving account is under your personal name. That is the whole requirement. The separate sole proprietorship category, for people trading under a business name, is the one that asks for a GST number or an IEC. Verification runs as video KYC using Aadhaar OTP, PAN and Digilocker, and Wise says the account is usable within two working days. The details you get are US domestic ones, so your client pays them like any American supplier rather than sending an international wire.',
+      },
+      {
+        q: 'What is the difference between a FIRC, a FIRA and an eBRC, and which do I need?',
+        a:
+          'This is the question that actually matters and almost every guide blurs it. A FIRC, a foreign inward remittance certificate, is the formal instrument and only an Authorised Dealer bank can issue one. A FIRA, sometimes written eFIRA or eFIRC, is the advice document you get per payment from your provider or its partner bank, and for a freelancer exporting services it is normally what suffices. An eBRC is an electronic bank realisation certificate generated on the foreign trade portal from the remittance your bank reports, and it is not a goods-only document, which is the thing most guides get wrong and we had wrong too. DGFT added a mandatory Mode of Export of Services field to the services export side of the eBRC format in 2025, matching each realisation to one of the four modes of supply used in the WTO services agreement, so service exports sit squarely inside it. We take that from DGFT notices reported elsewhere rather than from the portal, which refused every request we made on the day we checked, so treat it as reported rather than read. The reason it is still probably not your problem is a different one: you need an eBRC when you hold an IEC and are claiming something under the Foreign Trade Policy, not because you sell services rather than goods. What you want day to day is a provider that hands you the per-payment document without being asked. Payoneer does, free and automatically, within 24 to 72 hours. Wise does, automatically, for the equivalent of two dollars per transfer plus GST. PayPal gives you a free weekly one automatically, or a transaction-specific one for 100 rupees plus GST through Citibank. Sort this out before you optimise the fee, because it is what your accountant will ask for.',
+      },
+      {
+        q: 'Why does the fee I was quoted not match the fee that was charged?',
+        a:
+          'Almost always GST. Eighteen percent lands on the service fee for India-domiciled providers, and nearly every headline number you see is quoted before it. Skydo nineteen dollars becomes 22.42 once its own calculator adds the tax. Wise states that it charges GST on the conversion fee and on the eFIRC fee. Our comparison table has no field for tax charged on top of a fee, so the figures there are before GST and you should add it where it applies. Xflow is the odd one out and worth reading carefully rather than celebrating: it says it does not charge GST because it is a US entity, and in the same breath that its flat fees may require GST through the reverse charge mechanism, which moves the job to you rather than making it disappear.',
+      },
+      {
+        q: 'How do I know a provider is allowed to do this?',
+        a:
+          'Check the Reserve Bank own register. Since the cross-border payment aggregator framework came in, companies that collect export payments for Indian sellers need a specific authorisation, and the RBI publishes the list of everyone holding one, alongside the other payment systems it authorises. It is public and searching it takes a minute. On the version published on 8 September 2026 we found Wise Payments India Private Limited, dated 12 March 2026, in the cross-border category for inward transactions, which is the direction that matters here, and Skydo Technologies, Xflow Payments India and GoBrisk Technologies, which is BriskPe, dated 8 January 2026, 18 February 2026 and 26 December 2025. Wise is the company this site earns commission from, so that first entry is a fact for you to check rather than a reason to trust us. Not on the list: PayPal, Payoneer, Karbon, Winvesta and Infinity. Revolut Payments India Private Limited is on the list, but for prepaid payment instruments, dated 4 April 2025, which is a spending licence rather than a receiving one. Now the part most guides get wrong, us included until we read it properly. An absence is not a verdict. Both PayPal and Payoneer have announced Reserve Bank in-principle approval for exactly this activity, PayPal in May 2025 and Payoneer in January 2026, and an in-principle holder does not appear on this list until the full authorisation is granted. Wise itself sat in that gap: it announced in-principle approval in 2025 and appears on the register only from March 2026. So read the register as a check on where a company has got to in a process, not as a list of who is allowed to exist, and if you are about to route serious money through a rail you had not heard of last week, it is still the first place to look.',
+      },
+      {
+        q: 'Can I hold dollars in India instead of converting straight away?',
+        a:
+          'Yes, but not in an app, and not indefinitely. The account built for this is an EEFC account, an Exchange Earners Foreign Currency account held with an Authorised Dealer bank. The Reserve Bank own FAQ on it says all categories of foreign exchange earners resident in India may open one, individuals included, and that professional fees earned by rendering services in your individual capacity are a permitted credit, so a freelancer is not shut out of it. The catch is the conversion rule in the same FAQ: the sum total of the accruals in the account during a calendar month has to be converted into rupees on or before the last day of the succeeding calendar month, after adjusting for anything you have used for an approved purpose. So it is a timing tool, and a real one if you think the rupee is about to move your way this month, but it is not a dollar savings account, and how long you actually get depends on where in the month the money lands. The apps are a different matter. Payoneer own India page says payments are automatically withdrawn within 24 hours, to your local bank account or EEFC account, so Payoneer can feed a foreign currency account but cannot be the place you park money. Wise says its India account details cannot be used to hold in Balances, for regulatory reasons. That is why this corridor has no hold-your-dollars comparison: the only real answer is a bank account with a deadline attached, which is a conversation with a bank rather than a choice between apps.',
+      },
+      {
+        q: 'Do I need GST registration if all my clients are abroad?',
+        a:
+          'Export of services is zero rated, which is not the same as being outside GST, and the registration threshold question is genuinely contested among practitioners. The usual figures are twenty lakh rupees, or ten lakh in the special category states, and whether your export turnover counts toward that threshold is where the disagreement sits. We are not going to resolve an argument that chartered accountants are still having. What we will say is that if you register, the mechanism you want is a letter of undertaking, Form GST RFD-11, filed on the GST portal and renewed each financial year, which lets you export without paying IGST up front. The alternative is paying 18% IGST and claiming it back, which is a cash flow problem you do not need. Take the threshold question to an accountant with your actual numbers.',
+      },
+      {
+        q: 'What purpose code do I use?',
+        a:
+          'For most software and IT consulting work it is P0802, the code for software implementation and consultancy not covered by the SOFTEX route. There are neighbouring codes for packaged software products, for marketing services and for digital products, and getting it wrong is your problem rather than your bank. The code is recorded by whichever bank or platform receives the money and reported under the foreign exchange rules, based on what you tell them. Take the list from the Reserve Bank rather than from the vendor landing pages, several of which have built a page per code for search traffic and are not authoritative.',
+      },
+      {
+        q: 'What happened to Section 44ADA, and is presumptive taxation still the right way to be taxed?',
+        a:
+          'For a lot of freelancers it is, and the mechanism is the one you know: you declare half your gross receipts as income and pay tax on that, without keeping detailed books. What has changed is the statute it lives in, and this is not a rumour. The Income-tax Act, 2025 came into force on 1 April 2026 and the Income-tax Act, 1961 stands repealed from that date, which the Income Tax Department says in its own guidance on the new Act, and the 1961 Act continues to govern tax years that began before then. So Section 44ADA is the right reference for earlier years and the wrong one for this year. Tax commentary indexes the replacement provision for professions as section 58 of the new Act, on the same basis and with the same receipt ceilings, including the higher ceiling for people whose receipts arrive almost entirely electronically, which describes anyone being paid by foreign clients through the rails on this page. We could not open the statute itself to confirm the section number or the limits, because incometaxindia.gov.in refused every request we made, so take the section number and the ceiling from your accountant against your own receipts rather than from us.',
+      },
+      {
+        q: 'What is the cheapest way to receive dollars in India?',
+        a:
+          'It depends on your invoice size more than on anything else, which is why a single answer misleads. Of the providers we can put in a table, Wise comes out cheapest at the thousand dollar comparison amount: free to receive by ACH, then 0.99 dollars plus about 0.42% to convert at the mid-market rate, which its own quote shows as 6.09 dollars once 18% GST is added, plus the equivalent of two dollars for the eFIRC and GST on that too. Payoneer is next, and its published range makes precision impossible. PayPal is a long way behind. But the tiered India-built rails change the answer at size: Skydo at 34.22 all in on a nine thousand dollar invoice is extremely hard to beat, and dreadful on a five hundred dollar one. We cannot rank them because our table holds one flat fee and their price moves in steps. So do this: take your typical invoice, run it through two of these for real on the same afternoon, add GST where it applies, and compare the rupees that land rather than the percentages quoted.',
+      },
+    ],
+    siblingCorridors: ['usd-to-pkr', 'usd-to-bdt', 'usd-to-php'],
   },
 ];

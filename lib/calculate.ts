@@ -45,7 +45,8 @@ const DEST_CURRENCIES_MAP: Partial<Record<CountryCode, Currency[]>> = {
   TH: ['THB', 'USD'],        // Thai banks offer foreign currency deposit (FCD) accounts in USD
   // Uzbekistan: the currency law (ZRU-573 of 2019) art. 12 lets residents open foreign
   // currency accounts at Uzbek banks, and nothing in it requires mandatory sale of foreign
-  // currency earnings. SQB publishes free opening and free crediting of inbound non-cash FX.
+  // currency earnings.   // currency earnings. SQB publishes free account opening and shows no tariff line charging
+  // for inbound non-cash FX (an absence of a charge, not a stated zero).
   // Third corridor after Georgia and Thailand where the page can price NOT converting.
   UZ: ['UZS', 'USD'],
 };
