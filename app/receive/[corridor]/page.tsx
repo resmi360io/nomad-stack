@@ -191,8 +191,17 @@ export default async function CorridorPage({
       ? corridorProviderDates.reduce((a, b) => (a < b ? a : b))
       : null;
 
-  const availableProviders = corridor.providers.filter((p) => p.available);
-  const unavailableProviders = corridor.providers.filter((p) => !p.available);
+  // A provider entry earns a full section when it has a customHeading, whether or not it is
+  // `available`. On several corridors the most useful prose on the page is about a provider the
+  // reader cannot use for an invoice: Wise on Uzbekistan ("ask your client to use it"), the
+  // transfer apps that reach the country but bar business use, the domestic card rails. A
+  // customHeading is the author's signal that the entry argues something, rather than being a
+  // one-line "nope". Before this split, every unavailable entry was collapsed into the compact
+  // list below, which threw the heading away and set the prose at text-xs: on Uzbekistan that
+  // buried four sections, including the two longest on the page. Entries with no customHeading
+  // are genuine one-liners and stay compact.
+  const deepDiveProviders = corridor.providers.filter((p) => p.available || p.customHeading);
+  const compactUnavailable = corridor.providers.filter((p) => !p.available && !p.customHeading);
 
   return (
     <>
@@ -405,8 +414,8 @@ export default async function CorridorPage({
           </section>
         )}
 
-        {/* Available provider deep-dives */}
-        {availableProviders.map((p) => (
+        {/* Provider deep-dives, available or not. See the note on deepDiveProviders above. */}
+        {deepDiveProviders.map((p) => (
           <section key={p.slug}>
             <h2 className="text-xl font-semibold mb-2">
               {p.customHeading ?? `How much does ${p.name} charge to receive ${corridor.source} in ${corridor.country}?`}
@@ -415,14 +424,14 @@ export default async function CorridorPage({
           </section>
         ))}
 
-        {/* Unavailable providers */}
-        {unavailableProviders.length > 0 && (
+        {/* Unavailable providers with nothing more to say than that */}
+        {compactUnavailable.length > 0 && (
           <section>
             <h2 className="text-xl font-semibold mb-4">
               Providers not available in {corridor.country}
             </h2>
             <div className="space-y-4">
-              {unavailableProviders.map((p) => (
+              {compactUnavailable.map((p) => (
                 <div key={p.slug} className="rounded-lg border border-muted bg-muted/20 px-4 py-3">
                   <p className="font-medium text-sm mb-1">{p.name}: not available</p>
                   <p className="text-xs text-muted-foreground leading-relaxed">{p.notes}</p>

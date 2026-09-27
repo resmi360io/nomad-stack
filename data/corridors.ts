@@ -177,6 +177,7 @@ export const CORRIDORS: Corridor[] = [
       {
         slug: 'wise',
         name: 'Wise',
+        customHeading: 'Wise: no account for you, but your client can send with it',
         available: false,
         notes:
           'Bangladeshi residents cannot open a Wise account, cannot hold USD in a Wise wallet, and cannot get Wise receiving details to share with clients. However, Wise is available as a sending tool for your foreign client: a US client can use Wise to push BDT directly to your Bangladeshi bank account, bKash wallet, or Nagad wallet at Wise\'s mid-market rate: the client pays roughly 0.7 to 1.9% on their end and your receiving cost is zero. This workaround is useful for direct clients willing to set it up manually, but it does not work on freelance platforms (Upwork, Fiverr) that process payments through their own systems.',
@@ -184,6 +185,7 @@ export const CORRIDORS: Corridor[] = [
       {
         slug: 'paypal',
         name: 'PayPal',
+        customHeading: 'PayPal: Xoom reaches Bangladesh, but only for family money',
         available: false,
         notes:
           'PayPal commercial receiving is not available in Bangladesh. Only Xoom (a PayPal subsidiary) operates in Bangladesh, and Xoom explicitly states it supports person-to-person inbound remittance only: it does not support transactions for goods or business purposes. A freelancer cannot receive client project payments into a PayPal account in Bangladesh. Note: the availability of the Payoneer-PayPal workaround (receiving PayPal payments via Payoneer) for Bangladesh-registered accounts is unclear as of mid-2026; reports conflict on whether Payoneer\'s PayPal-receiving rollout covers Bangladesh, so check your own Payoneer dashboard for a PayPal option rather than relying on it. Government statements about a full PayPal launch have recurred for years, and on 29 July 2026 Bangladesh Bank issued a circular letting banks partner with cross-border digital payment providers and open Digital Value Accounts (stored-value wallets) for customers, with each partnership needing prior clearance from the central bank\'s Foreign Exchange Policy Department; news coverage names PayPal and Payoneer as the obvious candidates. That is a regulatory pathway, not a launch: no bank has announced a live PayPal service under it as of late September 2026, and Bangladeshi reporting says several commercial banks have approached PayPal, Google Wallet and Payoneer about partnerships while PayPal is described as still reviewing its policy on Bangladesh, and early reporting frames the framework mainly around outward payments rather than receiving client income. Treat PayPal as unavailable for receiving and plan billing around Payoneer and bank wire, and watch for a bank announcement under this framework.',
@@ -1218,6 +1220,7 @@ export const CORRIDORS: Corridor[] = [
       {
         slug: 'paypal',
         name: 'PayPal',
+        customHeading: 'PayPal: no account for you, but Xoom does reach Uzbekistan',
         available: false,
         notes:
           'PayPal will not give you an account in Uzbekistan, but the flat claim that PayPal does not operate there is too strong, and we made it in our first version of this page. Take the two halves separately. You cannot hold a PayPal account as an Uzbek resident: Uzbekistan is absent from PayPal\'s own country reference list, which runs straight from Ukraine to the United Arab Emirates, and it is widely described as the only country in Central Asia without PayPal. There has been talk of negotiations with the Central Bank for years and we are not going to tell you a deal has happened on the strength of news coverage. But PayPal owns Xoom, and xoom.com/uzbekistan/send-money is live: it takes US senders paying in dollars and offers cash pickup at named Uzbek banks, including Uzpromstroybank and Qishloq Qurilish Bank, plus deposit to a debit card. So a client who insists on paying through PayPal has an answer, just not the one they meant. The catch is the same one that applies to every consumer transfer app on this page, and we set it out in the section above: Xoom is a consumer service, and an invoice payment is not what it is for. If a client will only use their PayPal balance, the honest answer today is still that you need a different method.',
