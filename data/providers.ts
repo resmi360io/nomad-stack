@@ -44,7 +44,10 @@ export interface Provider {
   fallbackFee: Omit<CorridorFee, 'source' | 'destination'>;  // used for unsupported corridors
   supportedSourceCountries: CountryCode[];
   supportedDestinationCountries: CountryCode[];
-  // Destination currencies this provider CANNOT pay out in a country it otherwise serves.
+  // Destination currencies this provider cannot pay out, or that we decline to price, in a country
+  // it otherwise serves. Both uses are real: Wise cannot pay Uzbek som at all, while GCash can pay
+  // pesos but publishes no spread for that conversion, and inventing one to fill the fallback
+  // would be worse than leaving the row out.
   //
   // supportedDestinationCountries answers "can money be sent here". It does not answer "in which
   // currency", and for several providers those differ. Wise can send US dollars by SWIFT into an
@@ -1710,6 +1713,64 @@ export const PROVIDERS: Provider[] = [
   // ─── Higlobe ───────────────────────────────────────────────────────────────
   // Source: https://higlobe.com/pt-br/pricing (2026-09-24)
   // Source: https://higlobe.com/pt-br/how-it-works (2026-09-24)
+
+  // ─── GCash ─────────────────────────────────────────────────────────────────
+  // Source: our own usd-to-php gcash corridor entry, which is where these figures come from, and
+  // that is the problem with this provider. help.gcash.com returns 403 to every path tried, by
+  // curl and by WebFetch, so NOTHING here is read from GCash. The launch details (November 2025,
+  // wider in-app rollout through December, powered by Meridian Payments US, launch materials
+  // naming Wise, Gusto, Payoneer, Deel, Upwork and Chase as senders) were gathered when that
+  // corridor entry was written and have not been re-opened since.
+  // WHY IT IS HERE ANYWAY. The Philippines page already tells readers, in prose on prod, that the
+  // Virtual US Account receives dollars by ACH with no transfer fee and holds them as dollars
+  // until they choose to convert. AGENTS.md requires page copy and the fee model to agree, and a
+  // route the copy calls the cheapest way to do the thing the section recommends should appear in
+  // the table doing the comparing. Leaving it out is what made that table read as though a 35
+  // wire were the floor.
+  // WHY IT IS FLAGGED. A zero fee we cannot open is a strong claim: it makes GCash cheapest by
+  // construction, and an unflagged rank 1 takes the best value badge, which this file calls the
+  // number that actually steers readers. So the row is flagged estimated. It ranks, the reader
+  // sees it, and no badge rests on a figure nobody here has read from the source.
+  // Scoped to PH only, and deliberately no PHP row: GCash does not publish the spread it applies
+  // on the USD to PHP conversion, which is the standing reason it stays out of the peso table.
+  // That objection does not reach a table where nothing converts.
+  {
+    slug: 'gcash',
+    name: 'GCash',
+    logoUrl: '/logos/gcash.svg',
+    website: 'https://www.gcash.com',
+    signupUrl: 'https://www.gcash.com',
+    affiliateLink: '',
+    hasAffiliateProgram: false,
+    lastVerified: '2026-09-27',
+    supportedSourceCountries: ['US'],
+    supportedDestinationCountries: ['PH'],
+    // Without this, PHP being the local currency sends calculate() to fallbackFee and GCash
+    // renders in the PESO table at a fee of zero against an invented 3% spread, which is the
+    // fabrication this whole entry is trying to avoid. GCash can pay pesos; what it does not
+    // publish is the spread, so we decline to price that leg rather than guess it.
+    unsupportedDestinationCurrencies: { PH: ['PHP'] },
+    corridors: [
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PH', currency: 'USD' },
+        fixedFee: 0,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 48,
+        fxMarkupEstimated: true,
+        notes: 'US ACH receiving details inside the GCash app, no transfer fee reported on an ACH deposit, and the dollars stay dollars in the wallet until you convert. A wire arrives same day for a reported 15. Flagged because help.gcash.com could not be opened to confirm any of it.',
+      },
+    ],
+    fallbackFee: {
+      fixedFee: 0,
+      percentageFee: 0,
+      fxMarkupBps: 300,
+      typicalHours: 48,
+      fxMarkupEstimated: true,
+    },
+    caveat: 'A GCash balance is a wallet, not a bank deposit, so weigh that against the fee. Converting to pesos moves the money into your ordinary wallet and picks up its monthly limits, and GCash does not publish the spread it applies on that conversion. We could not open GCash\'s own fee pages to confirm the figures above.',
+  },
   // Scoped to BR only on purpose. Higlobe also serves Mexico, and its Mexican spread is
   // reported at zero, but adding MX here would change the ranking on a live page that was
   // reviewed on 2026-09-24 with Higlobe deliberately out of the priced table. That is a
