@@ -380,7 +380,15 @@ export default async function CorridorPage({
                             {q.fxMarkupBps === 0
                               ? 'No conversion'
                               : `+${(q.fxMarkupBps / 100).toFixed(1)}%`}
-                            {q.isEstimate && (
+                            {/* This column is the FX margin, so "(est.)" next to it reads as doubt
+                                about the margin. Where nothing converts the margin is exactly zero
+                                and there is nothing to estimate: what is estimated on those rows is
+                                the FEE, which the previous column shows. Marking "No conversion
+                                (est.)" told readers we were unsure whether a conversion happens.
+                                Every row in a foreign-currency table has fxMarkupBps 0, so this hid
+                                behind the local-currency tables until the Philippines dollar table
+                                arrived with both of its rows estimated. */}
+                            {q.isEstimate && q.fxMarkupBps !== 0 && (
                               <span className="ml-1 text-muted-foreground/70">(est.)</span>
                             )}
                           </td>

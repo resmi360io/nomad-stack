@@ -1332,10 +1332,18 @@ export const PROVIDERS: Provider[] = [
       // Inward remittance fees vary by bank (~$6-35 + possible correspondent deduction);
       // bank FX spread applies only when converting to PHP (estimate, not published)
       // USD -> a USD (FCDU) account at a Philippine bank by ordinary correspondent wire. Nothing
-      // converts, so there is no spread. The 35 is carried from the other wire corridors in this
-      // file: no US or Philippine bank schedule of charges was opened for it and nobody publishes
-      // what correspondents deduct in the middle, so it is flagged estimated on the same basis as
-      // the UZ and BR wire rows.
+      // converts, so there is no spread. The 35 is a generic US SENDING fee, carried from the other
+      // wire corridors and backed by no published schedule, which is why the row is flagged
+      // estimated. The Philippine RECEIVING side is published and is NOT in this number: BPI charges
+      // USD 6.50 for a SWIFT remittance credited to a BPI dollar account (PHP 150 plus documentary
+      // stamps to a peso account), calling it "the minimum rate" that "may vary depending on the
+      // contract agreement with each correspondent bank". CorridorFee has no receiving-fee field, so
+      // that cost lives in the corridor copy instead. Folding it in would give 41.50 here and 15.89
+      // on the Wise row, which does not change their order, so it is disclosure rather than ranking.
+      // Note for whoever reads this next: the UZ/USD, TH/USD and GE/USD wire rows carry the same
+      // carried-over 35 and are NOT flagged, so PH/USD is the only foreign-currency wire row that is.
+      // That inconsistency is real and wants settling on those three corridors, not by unflagging
+      // this one.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PH', currency: 'USD' },
@@ -1344,7 +1352,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 96,
         fxMarkupEstimated: true,
-        notes: 'Holding dollars in an FCDU account converts nothing, so there is no spread. The fee is a generic US correspondent wire rather than a figure from a published schedule, and correspondent deductions on top of it are not disclosed by anyone.',
+        notes: 'Holding dollars in an FCDU account converts nothing, so there is no spread. The 35 is a generic US sending fee rather than a figure from a published schedule. The Philippine receiving side IS published and is not in this number: BPI charges USD 6.50 for a SWIFT remittance credited to a BPI dollar account, described as a minimum that may vary by correspondent agreement. What a correspondent deducts in the middle is still disclosed by nobody.',
       },
       {
         source: { country: 'US', currency: 'USD' },
