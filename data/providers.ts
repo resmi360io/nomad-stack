@@ -20,10 +20,15 @@ export interface CorridorFee {
   minAmount?: number;
   maxAmount?: number;
   notes?: string;
-  // True when fxMarkupBps is not traceable to a cited source: an assumption, a
-  // floor, or a third-party cross-rate estimate. Such quotes still rank, but they
-  // are marked in the UI and cannot take the best-value badge, because the badge
-  // is the number that actually steers readers.
+  // True when this row's COST is not fully traceable to a cited source: an assumption, a
+  // floor, a third-party cross-rate estimate, or a percentageFee we had to derive from a
+  // published RANGE rather than read as a rate. Despite the name it flags the quote, not
+  // only the FX leg, and the same-currency rows are the case that shows it: the Payoneer
+  // GE/USD and GE/EUR rows carry fxMarkupBps 0 (correctly, nothing converts) with this
+  // flag true, because the 3.6% percentage is the estimated part. Do not "fix" that by
+  // clearing the flag or by inventing a spread. Such quotes still rank, but they are
+  // marked in the UI and cannot take the best-value badge, because the badge is the
+  // number that actually steers readers.
   fxMarkupEstimated?: boolean;
 }
 
@@ -382,7 +387,11 @@ export const PROVIDERS: Provider[] = [
   // Source: https://payoneer.custhelp.com/app/answers/detail/a_id/6118 (FX/cross-border fee)
   // Receiving fee: 1% (from Payoneer balance/bank); FX markup: up to 200 bps on local bank withdrawals
   // Cross-currency: 1% receive + a conversion charge Payoneer publishes only as 1.2% to 4%, modelled
-      // at its 2.6% midpoint = ~3.6% all-in. $1.50 flat ONLY for same-currency withdrawals.
+  // at its 2.6% midpoint = ~3.6% all-in. The $1.50 flat rate needs BOTH conditions, not one: a
+  // withdrawal in your own country's local currency, AND a country on Payoneer's named flat-rate
+  // list (fee schedule, last updated 1 January 2026). Georgia and Uzbekistan are on neither test.
+  // That list contains "South Georgia and the South Sandwich Islands", which is not Georgia, and
+  // counts "All EU countries" as one entry, so never quote a country count from it.
   {
     slug: 'payoneer',
     name: 'Payoneer',
@@ -405,7 +414,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 260,
         typicalHours: 72,
         fxMarkupEstimated: true,  // Payoneer's published conversion currency list does not include GEL, so this lari withdrawal may not exist at all
-        notes: '1% receiving fee + ~2% FX markup; $1.50 flat applies to same-currency withdrawals only',
+        notes: '1% receiving fee plus a withdrawal conversion charge Payoneer publishes only as a 1.2% to 4% range, modelled at its 2.6% midpoint. The $1.50 flat rate does not apply: it is limited to a withdrawal in your own country\'s local currency AND to the countries on Payoneer\'s named flat-rate list, and Georgia is on neither test. Payoneer\'s published conversion currency list does not include GEL, so this lari withdrawal may not exist at all.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -547,29 +556,52 @@ export const PROVIDERS: Provider[] = [
         fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
       },
-      // USD → Georgian USD bank account. NO conversion happens, but the $1.50 flat
-      // withdrawal does NOT apply, and this row used to charge it. Payoneer's own
-      // explainer at payoneer.com/resources/how-to-use-payoneer/how-payoneer-calculates-withdrawal-fees/
-      // states the condition: "The bank account must be in a country where the official
-      // currency is the same as the bank account's currency", and gives the deciding
-      // example, that "a US Dollar bank account in the United States is eligible for this
-      // type of withdrawal, but a US Dollar bank account in Germany is not." Georgia's
-      // official currency is the lari, so a Georgian USD account fails the test exactly as
-      // the German one does, and the same page puts the ineligible fee at "up to 2%".
-      // The corridor COPY on usd-to-gel already said the flat rate does not apply here; it
-      // was this row that disagreed with it, which is the failure AGENTS.md warns about.
-      // 2% is used rather than the 2.6% midpoint we model elsewhere because "up to 2%" is
-      // the figure on the same page as the eligibility rule. Payoneer's fee schedule states
-      // 1.2% to 4% for withdrawals generally, so the two disagree and the row is estimated.
+      // USD -> Georgian USD bank account. NO conversion happens, but the $1.50 flat
+      // withdrawal does NOT apply, and this row used to charge it. Three Payoneer-published
+      // grounds, all read 2026-09-27 at review:
+      //   1. payoneer.com/legal/fees ("Last updated on 1 January 2026") attaches the 1.50 USD
+      //      flat rate to "a bank account in the same country as yours, in local currency (in
+      //      supported countries)" and gives a NAMED list. Georgia is not on it. Read that
+      //      list carefully: it DOES contain "South Georgia and the South Sandwich Islands",
+      //      a British South Atlantic territory, which is a trap for anyone re-checking by
+      //      eye. It also contains the UK, and counts "All EU countries" as one entry, so
+      //      never quote a country count from it.
+      //   2. The same schedule has TWO percentage withdrawal rows and BOTH are 1.2% to 4%,
+      //      for local currency without conversion and non-local currency with conversion.
+      //      The range is therefore not scoped to conversion cases; do not narrow it.
+      //   3. payoneer.com/resources/how-to-use-payoneer/how-payoneer-calculates-withdrawal-fees/
+      //      ("Last Modified September 23rd, 2026") states the currency condition, "the bank
+      //      account must be in a country where the official currency is the same", with the
+      //      deciding example that "a US Dollar bank account in the United States is eligible
+      //      for this type of withdrawal, but a US Dollar bank account in Germany is not".
+      //      It ALSO adds a billing-address test: "The country where your billing address is
+      //      registered is key", and "if your billing address is in the UK and you want to
+      //      withdraw USD to a US Dollar bank account, you are not eligible." A Georgia-billing
+      //      customer withdrawing USD fails on both tests, wherever the account sits.
+      // PRICED AT 3.6%, NOT 3.0%. The resources page puts an ineligible withdrawal at "up to
+      // 2%"; the dated fee schedule puts every non-flat-rate withdrawal at 1.2% to 4%. They
+      // disagree, a range is not a rate, and this file already resolved that conflict once for
+      // every other Payoneer row (see the FX MARKUP block comment above): 1% to receive plus
+      // the 2.6% midpoint, flagged estimated. A 2% carve-out here would contradict that rule
+      // on the strength of a marketing article rather than the legal schedule.
+      // RANKING CONSEQUENCE, do not change this row without reading it. The Georgia dollar
+      // table has exactly three rows (Wise, bank wire, Payoneer) and all three carry 0 bps, so
+      // ordering is pure fee ordering. At the hardcoded 1,000 USD comparison amount: Wise
+      // 9.11, bank wire 35.00, Payoneer 30.00 at 3.0% or 36.00 at 3.6%. So 3.0% puts Payoneer
+      // SECOND and 3.6% puts it LAST, by one dollar, against a 35.00 wire fee that is itself an
+      // assumption. At 2,000 USD it is last either way (60.00 or 72.00 against 35.00). The
+      // corridor copy was rewritten at the same review to say "at or near the bottom" rather
+      // than asserting an ordering that turns on a one-dollar margin between two figures
+      // Payoneer does not publish.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'GE', currency: 'USD' },
         fixedFee: 0,
-        percentageFee: 0.03,
+        percentageFee: 0.036,
         fxMarkupBps: 0,
         typicalHours: 72,
         fxMarkupEstimated: true,
-        notes: '1% receiving fee + up to 2% withdrawal (a Georgian USD account is not eligible for the $1.50 flat rate); no FX conversion',
+        notes: '1% receiving fee plus a withdrawal charge Payoneer publishes only as a 1.2% to 4% range, modelled at its 2.6% midpoint. A Georgian USD account is not eligible for the $1.50 flat rate: Georgia is not on Payoneer\'s flat-rate country list, and the US dollar is not Georgia\'s local currency. No FX conversion, so no spread.',
       },
       // EUR → Georgian EUR bank account. Same correction as the USD row above: no
       // conversion, but Georgia's official currency is not the euro, so the account fails
@@ -579,11 +611,11 @@ export const PROVIDERS: Provider[] = [
         source: { country: 'EU', currency: 'EUR' },
         destination: { country: 'GE', currency: 'EUR' },
         fixedFee: 0,
-        percentageFee: 0.03,
+        percentageFee: 0.036,
         fxMarkupBps: 0,
         typicalHours: 72,
         fxMarkupEstimated: true,
-        notes: '1% receiving fee + up to 2% withdrawal (a Georgian EUR account is not eligible for the flat same-currency rate); no FX conversion',
+        notes: '1% receiving fee plus a withdrawal charge Payoneer publishes only as a 1.2% to 4% range, modelled at its 2.6% midpoint. A Georgian EUR account is not eligible for the flat same-currency rate: Georgia is not on Payoneer\'s flat-rate country list, and the euro is not Georgia\'s local currency. No FX conversion, so no spread.',
       },
       // EUR → Portuguese EUR (SEPA, no FX — 1% receiving fee)
       {
