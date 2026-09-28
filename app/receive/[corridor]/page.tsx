@@ -83,16 +83,45 @@ export default async function CorridorPage({
 
   const ratesResult = await getRates();
 
+  // Every table on this page is priced at one invoice size. That single number quietly decides
+  // which provider looks cheapest, because some charge a flat fee per transfer and others a
+  // percentage, so the order genuinely changes with the amount. Two live examples: on Georgia at
+  // 1,000 Payoneer trails a bank wire by a dollar and leads it well before 5,000, and on the
+  // Philippines converting to pesos beats taking dollars up to about 1,600 and loses above it.
+  // Rather than pick a different arbitrary size, price a second one and tell the reader when the
+  // winner actually swaps. RANK_CHECK_AMOUNT is never shown as a price, only used for that test.
+  const COMPARISON_AMOUNT = 1000;
+  const RANK_CHECK_AMOUNT = 5000;
+
   const quotes =
     ratesResult
       ? calculate(
           corridor.sourceCountry as CountryCode,
           corridor.destCountry as CountryCode,
           corridor.destination as Currency,
-          1000,
+          COMPARISON_AMOUNT,
           PROVIDERS,
           ratesResult.rates,
         )
+      : null;
+
+  // The same comparison at a larger invoice, used only to detect an order change.
+  const quotesAtLarger =
+    ratesResult
+      ? calculate(
+          corridor.sourceCountry as CountryCode,
+          corridor.destCountry as CountryCode,
+          corridor.destination as Currency,
+          RANK_CHECK_AMOUNT,
+          PROVIDERS,
+          ratesResult.rates,
+        )
+      : null;
+
+  const cheapestSwitchesAt =
+    quotes && quotes.length > 1 && quotesAtLarger && quotesAtLarger.length > 1 &&
+    quotes[0].provider.slug !== quotesAtLarger[0].provider.slug
+      ? { small: quotes[0].provider.name, large: quotesAtLarger[0].provider.name }
       : null;
 
   // Some destinations let you hold foreign currency instead of converting on arrival.
@@ -108,7 +137,7 @@ export default async function CorridorPage({
               corridor.sourceCountry as CountryCode,
               corridor.destCountry as CountryCode,
               currency,
-              1000,
+              COMPARISON_AMOUNT,
               PROVIDERS,
               ratesResult.rates,
             ),
@@ -255,7 +284,7 @@ export default async function CorridorPage({
         {quotes && quotes.length > 0 && (
           <section>
             <h2 className="text-xl font-semibold mb-1">
-              Provider comparison: receiving $1,000 USD in {corridor.country}
+              Provider comparison: receiving ${COMPARISON_AMOUNT.toLocaleString()} USD in {corridor.country}
             </h2>
             {ratesResult && (
               <p className="text-xs text-muted-foreground mb-4">
@@ -270,10 +299,19 @@ export default async function CorridorPage({
                 </a>
               </p>
             )}
+            {cheapestSwitchesAt && (
+              <p className="text-sm text-muted-foreground mb-4">
+                This ranking is for a ${COMPARISON_AMOUNT.toLocaleString()} invoice, and it does not
+                hold at every size. {cheapestSwitchesAt.small} is cheapest here, but at $
+                {RANK_CHECK_AMOUNT.toLocaleString()} it is {cheapestSwitchesAt.large}, because some
+                providers charge a flat fee per transfer and others a percentage of it. Put your own
+                invoice amount into the calculator above rather than reading the order off this table.
+              </p>
+            )}
             <div className="overflow-x-auto rounded-xl border">
               <table className="w-full text-sm">
                 <caption className="sr-only">
-                  Provider comparison: receiving $1,000 USD in {corridor.country},
+                  Provider comparison: receiving ${COMPARISON_AMOUNT.toLocaleString()} USD in {corridor.country},
                   ranked by net received
                 </caption>
                 <thead>
@@ -346,12 +384,12 @@ export default async function CorridorPage({
             {altReceiving.map((set) => (
               <div key={set.currency} className="space-y-2">
                 <h3 className="text-base font-semibold">
-                  Receiving $1,000 USD as {set.currency}
+                  Receiving ${COMPARISON_AMOUNT.toLocaleString()} USD as {set.currency}
                 </h3>
                 <div className="overflow-x-auto rounded-xl border">
                   <table className="w-full text-sm">
                     <caption className="sr-only">
-                      Providers that can pay $1,000 USD into a {set.currency} account in{' '}
+                      Providers that can pay ${COMPARISON_AMOUNT.toLocaleString()} USD into a {set.currency} account in{' '}
                       {corridor.country}, ranked by net received
                     </caption>
                     <thead>
@@ -409,7 +447,7 @@ export default async function CorridorPage({
         {!quotes && (
           <section>
             <h2 className="text-xl font-semibold mb-1">
-              Provider comparison: receiving $1,000 USD in {corridor.country}
+              Provider comparison: receiving ${COMPARISON_AMOUNT.toLocaleString()} USD in {corridor.country}
             </h2>
             <div className="rounded-xl border bg-muted/30 px-5 py-4 text-sm text-muted-foreground leading-relaxed">
               <p>
