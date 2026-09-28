@@ -50,37 +50,30 @@ Take the next corridor from the top of this list. When one ships, delete its lin
 Order is the decision, so do not reorder it to pick an easier corridor: a corridor
 sitting at the top because it is hard is exactly the one worth doing.
 
-1. **India (INR).** Blocking question: the same residency question, where the split
-   is probably personal versus Wise Business. Note Wise's April 2025 India launch
-   announced "international" account details, which may mean SWIFT rather than
-   domestic ACH, and that changes both fee and speed. The page's real subject is
-   FIRC versus FIRA versus eBRC and which providers supply one free. Be aware this
-   is the most commercially contested receiving corridor there is, and that if Wise
-   does not serve Indian residents the page is close to unmonetisable. Skydo's flat
-   fee reportedly carries 18% GST on the fee itself, which the calculator has no
-   field for. EEFC accounts require conversion by the end of the following month,
-   so India probably does not get a `DEST_CURRENCIES_MAP` entry either.
-2. **Colombia (COP).** Blocking question: whether inbound service export receipts
-   must be channelled through the mercado cambiario with a declaracion de cambio,
-   or fall in the free market. Read Resolucion Externa 1 de 2018 rather than a
-   summary. Second question: whether a fintech USD balance counts as a cuenta de
-   compensacion requiring registration and monthly reporting. Also establish per
-   provider whether pricing is against the TRM or the interbank mid, because that
-   gap is a spread the reader never sees and the model does not capture. `COP`
-   belongs in the zero-decimal currency list in `formatAmount`.
-3. **Uzbekistan (UZS).** Blocking questions: whether Wise and Revolut serve Uzbek
-   residents at all, and what Payoneer's local withdrawal route is. The corridor's
-   distinctive feature is the IT Park tax regime for IT service exporters and the
-   e-resident programme, which is the reason the page would exist; get its current
-   terms from itpark.uz and soliq.uz rather than from press coverage. Establish the
-   currency rules from cbu.uz: whether a resident may hold and keep a USD account
-   domestically, and whether any repatriation or forced conversion rule applies to
-   service export receipts. Uzbekistan is a strong `DEST_CURRENCIES_MAP` candidate
-   (`UZ: ['UZS', 'USD']`) if domestic USD accounts are confirmed, which would make
-   it the third corridor after Georgia and Thailand where the page can price not
-   converting. Local rails to check: Payme, Click, Uzum Bank, and the Humo and
-   Uzcard national card schemes, none of which reach Visa or Mastercard rails.
-   `UZS` belongs in the zero-decimal currency list.
+**The queue is empty.** India, Uzbekistan and Colombia were the last three on it and
+all three are live. Nobody deleted the India and Uzbekistan lines when they shipped on
+2026-09-25, so for three days this section told sessions to research corridors that
+already existed. Delete the line when the corridor ships, not later.
+
+Before adding a corridor here, note what the last three cost, because the estimate
+this section used to imply was wrong. Each one took a research pass, a draft, a
+humanizer pass, a verifier and a reviewer, and each verifier found real errors in a
+draft that felt finished: Brazil thirteen, Colombia five, and the Wise dollar rows
+eight, most of which tilted toward the provider that pays us commission. Budget for
+that rather than for a page.
+
+Two things to carry into the next one, learned the hard way on these:
+
+- A provider's pricing endpoint is not a provider's price. Wise's `v1/price` grid is
+  destination-BLIND for USD to USD: passing `targetCountry` returns an identical fee
+  map with no destination field. It shipped an Uzbekistan price that was 55% too low
+  and, separately, a Georgia fee that was never a Georgia figure at all. Its pay-in
+  leg is usable because an ACH pull does not depend on the destination; its SWIFT
+  constant never is.
+- A provider whose site blocks you stays out of the priced table. That is the standard
+  Global66 set on Colombia and GCash was held to on the Philippines. Being blocked is
+  not the same as having the data, and a zero you cannot open ranks first at every
+  amount.
 
 Network access was opened on 2026-09-24 and curl now reaches every host tried,
 so these are buildable. Two cautions carried forward from the day it was closed.
