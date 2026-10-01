@@ -174,3 +174,39 @@ Rules that hold regardless of what a scheduled prompt says:
 
 Verification is not a substitute for shipping the corrections. A run that produces
 findings and leaves them unapplied has done nothing for the reader.
+
+The scheduled job merges its own work to main. The owner authorised that on
+2026-10-01: a reviewer-approved or reviewer-amended change goes to production
+without waiting for a human, because the reviewer gate is what authorises
+shipping. It refuses to merge when `npm run build` fails, when an item has no
+reviewer approval, or when a reviewer returned `safe_to_apply: false`, and in
+those cases it pushes the branch and reports the blocker instead. Before
+2026-10-01 it committed to a feature branch and was told not to open a pull
+request, so its corrections sat unmerged by construction, which is the failure
+the paragraph above forbids.
+
+### Interactive work and the scheduled job share one weekly budget
+
+This has already cost three days of verification, and it is invisible unless you
+look for it. Heavy interactive sessions consume the same seven-day account quota
+the rotation needs. On 2026-09-27 and 2026-09-28 a long session spent most of the
+week's budget, and the runs on 28, 29 and 30 September were rejected before doing
+any work. The weekly window reset at 2026-09-30 12:00 UTC, after that morning's
+run had already failed.
+
+Two traps when checking whether the job is healthy:
+
+- `list_triggers` is not a health check. It reported `last_run.status: SUCCEEDED`
+  for the 30 September run while the session itself was `status_bucket: FAILED`
+  with `status_detail: "You've hit your weekly limit"`. SUCCEEDED means the wake
+  was delivered, not that the turn worked. Read the session with `get_session` on
+  the `session_id` in `last_run`, and look at `post_turn_summary` and
+  `rate_limit_info`.
+- Finish time is the cheap tell. A real run launches verifier agents and then
+  reviewer agents, which takes ten to twenty minutes. The failed run finished 61
+  seconds after firing. Anything under a few minutes did not do the work.
+
+So after a long interactive push, check the Routine's last run rather than
+assuming it is fine, and expect nothing useful from it until the weekly window
+turns over. If a rotation day is missed the corridor waits another week, unless
+someone runs it by hand.
