@@ -171,6 +171,16 @@ Rules that hold regardless of what a scheduled prompt says:
   current"), never stated as a bare number.
 - Page copy and the calculator fee model must agree. If a fee changes in one, change
   the other in the same commit.
+- Bump `updatedDate` on every corridor whose reader-facing copy you changed, in the
+  same commit. This applies to interactive work exactly as much as to the scheduled
+  job, and it was previously written down only in the job's prompt, which is why
+  seven corridors spent ten days claiming a date that predated their own content.
+  `updatedDate` is not internal bookkeeping: it renders twice on the page and feeds
+  the schema.org `dateModified`, so a stale one is a false freshness claim made to
+  readers and to search engines. If you are unsure which corridors a change touched,
+  diff `data/corridors.ts` against the last release and attribute each added prose
+  line to the corridor block it falls in, rather than trusting your memory of what
+  you edited.
 
 Verification is not a substitute for shipping the corrections. A run that produces
 findings and leaves them unapplied has done nothing for the reader.
@@ -202,9 +212,17 @@ Two traps when checking whether the job is healthy:
   was delivered, not that the turn worked. Read the session with `get_session` on
   the `session_id` in `last_run`, and look at `post_turn_summary` and
   `rate_limit_info`.
-- Finish time is the cheap tell. A real run launches verifier agents and then
-  reviewer agents, which takes ten to twenty minutes. The failed run finished 61
-  seconds after firing. Anything under a few minutes did not do the work.
+- Do NOT judge a run by the Routine's `finished_at`. An earlier version of this
+  section said anything finishing under a few minutes did not do the work. That is
+  wrong: `finished_at` tracks the wake delivery, not the turn. On 2026-10-08 the
+  Routine recorded `finished_at` 103 seconds after firing while the session's own
+  `updated_at` showed it still working 7.5 minutes in, having spent $2.69 and 112k
+  output tokens. Applying the old rule would have declared a healthy run dead.
+  What actually tells you, all from `get_session` on the `session_id` in `last_run`:
+  `status_bucket` (`FAILED` versus `REVIEW_READY`), `rate_limit_info.status`
+  (`rejected` versus `allowed`), `usage.cost_usd` and `usage.output_tokens` (a real
+  run spends dollars, not cents), and `updated_at` minus `created_at` for how long
+  it actually ran.
 
 So after a long interactive push, check the Routine's last run rather than
 assuming it is fine, and expect nothing useful from it until the weekly window
