@@ -195,6 +195,33 @@ those cases it pushes the branch and reports the blocker instead. Before
 request, so its corrections sat unmerged by construction, which is the failure
 the paragraph above forbids.
 
+### The scheduled job has failed three different ways. Check it, do not assume it.
+
+It has never once shipped a corridor correction. Three distinct causes so far, and
+each looked like success from the outside:
+
+1. **Nowhere to ship to** (until 2026-10-01). Its prompt committed to a feature
+   branch and forbade opening a pull request, so corrections sat unmerged by
+   construction. Fixed: it now merges to main itself.
+2. **No budget** (28 to 30 September). Rejected on the seven-day account quota
+   after an interactive session spent it. See the section below.
+3. **No repository** (observed 2026-10-16 and 2026-10-19, and the cause is still
+   on the Routine). The Routine's `session_request.config.sources` is `[]`, so it
+   declares no source repo and a fresh session can start with none. Both sampled
+   runs carried the session tag `config:no-git-repo`, spent about $2.40 and eight
+   or nine minutes each, and could not read `AGENTS.md` or `CORRIDORS`, let alone
+   commit. A session with no code is also at risk of "verifying" corridors from
+   memory and search, which this project forbids.
+
+The prompt now checks for the checkout first and calls `add_repo` if it is
+missing, then stops rather than spending anything. That is a workaround from the
+prompt side. The durable fix is to attach `resmi360io/nomad-stack` to the Routine
+or its environment, which the trigger tools here cannot set.
+
+So: never read a green `last_run` as proof the job worked. Check the session, and
+check whether `main` actually moved. Eleven days passed between 2026-10-08 and
+2026-10-19 with daily runs, real money spent, and not one commit.
+
 ### Interactive work and the scheduled job share one weekly budget
 
 This has already cost three days of verification, and it is invisible unless you
