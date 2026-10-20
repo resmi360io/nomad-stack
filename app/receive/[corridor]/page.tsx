@@ -67,7 +67,9 @@ function formatHours(h: number): string {
 }
 
 function formatAmount(n: number, currency: string): string {
-  if (!isFinite(n)) return '—';
+  // 'n/a' rather than a dash: this string renders into the comparison table cells, and no
+  // reader-facing text on this site carries an em or en dash. It used to return one.
+  if (!isFinite(n)) return 'n/a';
   const decimals = ['IDR', 'PKR', 'THB', 'MXN', 'BDT', 'NGN', 'PHP', 'INR', 'COP', 'UZS'].includes(currency) ? 0 : 2;
   return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 }
