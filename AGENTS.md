@@ -195,9 +195,9 @@ those cases it pushes the branch and reports the blocker instead. Before
 request, so its corrections sat unmerged by construction, which is the failure
 the paragraph above forbids.
 
-### The scheduled job has failed three different ways. Check it, do not assume it.
+### The scheduled job has failed four different ways. Check it, do not assume it.
 
-It has never once shipped a corridor correction. Three distinct causes so far, and
+It has never once shipped a corridor correction. Four distinct causes so far, and
 each looked like success from the outside:
 
 1. **Nowhere to ship to** (until 2026-10-01). Its prompt committed to a feature
@@ -213,10 +213,36 @@ each looked like success from the outside:
    commit. A session with no code is also at risk of "verifying" corridors from
    memory and search, which this project forbids.
 
+4. **No agents, and cloning cannot fix it** (2026-10-20). The run did clone the
+   repo, then could not find `corridor-verifier`, `corridor-reviewer` or
+   `corridor-researcher`. Those three live in `.claude/agents/` INSIDE this repo,
+   and project agent definitions load when a session STARTS. A session that begins
+   without the repo can never acquire them by cloning, and the scheduled session's
+   tool list has `add_repo`, `check_repo_access` and `list_repos` but NOT
+   `register_repo_root`, which is the only tool that reloads project config after a
+   mid-run clone. So the whole pipeline was unreachable.
+
+   The fallback now in the prompt: read each definition file, drop the YAML
+   frontmatter, and pass the body verbatim to a `general-purpose` agent with
+   `model: opus`, since the files specify opus while the scheduled session runs on
+   Sonnet. This loses one real guarantee. The named agents are read-only by
+   construction, holding only Read, Grep, Glob, WebSearch and WebFetch; a
+   general-purpose agent can write files, so the prompt adds an explicit read-only
+   instruction and the orchestrator stays the only writer. Treat that as weaker
+   than the real thing, and keep the verifier and the reviewer as separate agents
+   whatever path is used, because their independence is the entire gate.
+
 The prompt now checks for the checkout first and calls `add_repo` if it is
-missing, then stops rather than spending anything. That is a workaround from the
-prompt side. The durable fix is to attach `resmi360io/nomad-stack` to the Routine
-or its environment, which the trigger tools here cannot set.
+missing, then stops rather than spending anything, and expects the agents to be
+missing rather than discovering it mid-run. Both are workarounds from the prompt
+side. The durable fix for all of it is attaching `resmi360io/nomad-stack` to the
+Routine or its environment so a run STARTS with the repo, which makes the agents
+load normally; the trigger tools here cannot set that field.
+
+Worth knowing for anything else built this way: an agent, skill or plugin that
+lives in the repo is unavailable to any session that starts without the repo. If
+the rotation needs to be robust, those definitions belong at the account level
+rather than in `.claude/`.
 
 So: never read a green `last_run` as proof the job worked. Check the session, and
 check whether `main` actually moved. Eleven days passed between 2026-10-08 and
