@@ -35,6 +35,9 @@ const COUNTRY_CURRENCY: Record<CountryCode, Currency> = {
   IN: 'INR',
   CO: 'COP',
   UZ: 'UZS',
+  ZA: 'ZAR',
+  AR: 'ARS',
+  PL: 'PLN',
 };
 
 // Currencies a recipient can receive in each destination country.
@@ -77,6 +80,34 @@ const DEST_CURRENCIES_MAP: Partial<Record<CountryCode, Currency[]>> = {
   // customers, Indonesian or foreign, holding an identity card. Cheaper to keep open than the
   // Philippine equivalents.
   ID: ['IDR', 'USD'],
+  // South Africa: the rule everyone cites is the 30 day one, and it is about currency held
+  // OUTSIDE the country. SARB's Currency and Exchanges Manual for Authorised Dealers, version
+  // 2026-10-08, section B.17(E)(i): holders of foreign currency outside South Africa "must,
+  // unless exempted elsewhere in the Authorised Dealer Manual, offer to sell their holdings to
+  // an Authorised Dealer within 30 days from the date of becoming entitled thereto". Once the
+  // money is onshore a different rule takes over, section E.(B)(ii)(a)(aa): "Clients are
+  // permitted to retain funds in their CFC accounts without the obligation to convert the funds
+  // into Rand. The current repatriation requirement remains extant." Repatriate, do not convert.
+  // A sole trader cannot open a CFC: E.(B)(i) opens them to "South African entities (legal
+  // persons)" only. What a resident individual gets instead is a plain foreign currency account,
+  // E.(C)(i) and B.2(B)(i)(m), which is what makes this entry correct for our reader.
+  ZA: ['ZAR', 'USD'],
+  // Argentina: the obligation to CONVERT is gone, the obligation to bring the money in is not.
+  // BCRA texto ordenado "Exterior y Cambios" Version 8a, in force 2026-09-15 via Comunicacion A
+  // 8481, point 2.2.1 requires service export receipts to be "ingresados y liquidados en el
+  // mercado de cambios en un plazo no mayor a los 20 (veinte) dias habiles". Point 2.2.2.1 then
+  // exempts personas humanas from the LIQUIDATION leg where the funds are credited to a
+  // foreign-currency account the client holds at a LOCAL financial entity and the use is "neutra
+  // en materia fiscal". Same point: "Las entidades no podran cobrar comisiones por estas
+  // operaciones." The USD 36,000 annual cap that most of the internet still quotes was deleted by
+  // A 8330 on 2025-09-18, and A 8417 of 2026-04-09 extended the exemption to all service concepts.
+  AR: ['ARS', 'USD'],
+  // Poland: no currency law to parse at all, which makes this the easiest entry in this map to
+  // justify. mBank's eKonto walutowe is a free retail account in ten currencies including USD
+  // ("0 zl za otwarcie i korzystanie z konta"), so a resident can simply hold dollars and choose
+  // when to sell. The spread is deferred, not escaped: mBank converts an inbound payment at its
+  // own buy rate, and into a non-matching foreign-currency account it crosses twice, buy then sell.
+  PL: ['PLN', 'USD'],
 };
 
 export function getCurrency(country: CountryCode): Currency {

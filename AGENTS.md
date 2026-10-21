@@ -64,12 +64,22 @@ that rather than for a page.
 
 Two things to carry into the next one, learned the hard way on these:
 
-- A provider's pricing endpoint is not a provider's price. Wise's `v1/price` grid is
-  destination-BLIND for USD to USD: passing `targetCountry` returns an identical fee
-  map with no destination field. It shipped an Uzbekistan price that was 55% too low
-  and, separately, a Georgia fee that was never a Georgia figure at all. Its pay-in
-  leg is usable because an ACH pull does not depend on the destination; its SWIFT
-  constant never is.
+- A provider's pricing endpoint is not a provider's price. Wise's `v1/price` grid has now
+  failed three distinct ways, and the third one breaks the rule this bullet used to state.
+  First, it is destination-BLIND for USD to USD: passing `targetCountry` returns an identical
+  fee map with no destination field, which shipped an Uzbekistan price 55% too low. Second,
+  it returned a Georgia fee that was never a Georgia send figure at all, but Wise's own
+  INBOUND receive fee. Third, on 2026-10-20 it returned 61 fully priced USD to ARS options,
+  with delivery estimates, for a product Wise's own send page says is not launched: that page
+  offers a waiting list for sending pesos to Argentina.
+  So a cross-currency pair is NOT automatically safe. The old rule here said the pay-in leg is
+  usable because an ACH pull does not depend on the destination, and that much still holds, but
+  it was read as licence to trust any quote that converts. Nothing from this endpoint ships
+  until Wise's own public send page for that corridor agrees, and "agrees" means the product
+  exists there, not merely that a number came back. Poland is what passing looks like: endpoint
+  and send page matched at every amount tested and the mid rate matched NBP to four decimals, so
+  that row records no spread and is not flagged as an estimate. Argentina is what failing looks
+  like: 61 prices, and the route left out of the model entirely.
 - A provider whose site blocks you stays out of the priced table. That is the standard
   Global66 set on Colombia and GCash was held to on the Philippines. Being blocked is
   not the same as having the data, and a zero you cannot open ranks first at every

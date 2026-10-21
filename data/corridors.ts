@@ -1586,4 +1586,348 @@ export const CORRIDORS: Corridor[] = [
     ],
     siblingCorridors: ['usd-to-mxn', 'usd-to-brl', 'usd-to-php'],
   },
+  // USD to South Africa (ZAR)
+  {
+    slug: 'usd-to-zar',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'ZAR',
+    destCountry: 'ZA',
+    country: 'South Africa',
+    title: 'Receive USD in South Africa: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in South Africa. Bring it home in 30 days, but you never have to convert it. Plus the BOP code your bank will ask for.',
+    h1: 'How to receive USD in South Africa: repatriate, but do not convert',
+    intro:
+      'South Africa still runs exchange control, and almost everything written about what that means for a freelancer is wrong in the same direction. Here is the shape of it. You do have to bring the money home: the Reserve Bank\'s manual for authorised dealers says a resident holding foreign currency outside South Africa must offer to sell it to an authorised dealer within 30 days of becoming entitled to it. What you do not have to do is convert it. Once the money is onshore, the same manual says clients may retain funds without the obligation to convert into rand, and that the repatriation requirement remains extant. Repatriate, do not convert. There is a catch in the account you hold it in, and it is not the one people expect. A Customer Foreign Currency account, the instrument everyone names, is open only to legal persons, so a sole trader cannot have one. What a resident individual gets instead is a plain foreign currency account, which the manual provides for separately and which does the job. Incorporate and the CFC opens up. The other thing to know before you read the table is that your bank will ask you for a balance of payments category code on every inbound payment, and it reports whatever it picks to the Reserve Bank and, by your own consent on the form, to SARS. Getting that code right is free. Getting it wrong tells the taxman you are employed by a foreign company.',
+    publishedDate: '2026-10-21',
+    updatedDate: '2026-10-21',
+    providers: [
+      {
+        slug: 'wise',
+        name: 'Wise',
+        customHeading: 'Wise: the cheapest route, and it is not close',
+        available: true,
+        notes:
+          'The one to use on published numbers. Your US client pushes an ordinary domestic ACH into the dollar details Wise gives you, Wise converts at the interbank mid with no spread added, and rand lands in your South African bank account. We priced it from Wise\'s own system at two amounts so the fixed and percentage parts could be separated rather than guessed: $7.79 on a thousand dollars and $25.31 on five thousand, which works out at $3.41 flat plus 0.438%. That is 0.78% all in at a thousand and 0.51% at five thousand, against roughly 1.9% for a bank wire at the smaller size and something near 6% to 8% for PayPal. South Africa is on Wise\'s list of countries where you can hold money, with no restriction attached, and it is absent from the separate list of countries that cannot get dollar account details, so you should get both. Two things to carry. We earn a commission when someone signs up to Wise through this site, and on this corridor it is also the option we would pick, so weigh the recommendation knowing that. And if you would rather keep the dollars than sell them, Wise can also send dollars by SWIFT into your foreign currency account for a published $13.50, which is priced on the dollar table further down.',
+      },
+      {
+        slug: 'bank-wire',
+        name: 'Bank Wire (SWIFT)',
+        customHeading: 'A wire into your South African bank: the minimum is what hurts',
+        available: true,
+        notes:
+          'Worth understanding because the fee structure is the opposite of what you would assume, and it punishes small invoices. Standard Bank is the one South African schedule we could open. Online, it charges 0.5% commission on an inbound SWIFT payment with a minimum of R165 and a maximum of R622, plus R143 in telecoms charges. Run the arithmetic and the minimum is the whole story at freelancer sizes. On a thousand dollars, 0.5% is only about R82, so the R165 minimum applies instead, and with the R143 you are paying roughly R308, about 1.9%. On five thousand the percentage finally exceeds the minimum and you pay about R554, which is 0.67%. The cap is the interesting end: once your invoice passes roughly R124,000 the commission stops growing, so a very large payment is proportionally cheap through a bank. All of that is before the bank\'s exchange rate, which Standard Bank does not publish and which we are not going to invent, so our spread figure here is an assumption and the row is flagged as an estimate. Capitec and FNB both refused every request we made for their schedules, so neither appears in our table at all. That is a hole in the comparison rather than a verdict on them.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        customHeading: 'Payoneer: fine to receive with, expensive to leave',
+        available: true,
+        notes:
+          'The platform default, and it prices the way it does on most corridors here. Receiving a dollar payment costs 1%, because dollars are not your local currency. Getting the money out is where it stops being competitive and where Payoneer stops publishing a rate: a withdrawal that involves conversion is given as a range, 1.2% to 4%, and South Africa is not on the list of countries that get its cheap flat withdrawal. We model the midpoint of that range and flag the row, which is also why it cannot carry our badge. Watch the annual fee if you bill modestly, $29.95 a year when the account receives under $6,000 in any twelve months.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        customHeading: 'PayPal: the most expensive option here, and it still goes through FNB',
+        available: true,
+        notes:
+          'If your clients pay you through PayPal today, this is the number worth acting on. Receiving a commercial payment from abroad costs 4.40% plus a fixed fee of thirty cents. Converting costs another 3.0% above PayPal\'s own base rate. And then there is a wrinkle specific to this country: a South African PayPal user still cannot withdraw straight to a bank. Withdrawal runs through FNB\'s service, which by FNB\'s own description lets you withdraw to an FNB account or any linked South African bank account, with non-FNB customers having to create a free FNB online banking profile first, and which charges up to 1.51%. Stack the three and you are somewhere around 6% to 8% before you argue about the base rate. Withdrawals reach an FNB account instantly and take up to three business days elsewhere.',
+      },
+      {
+        slug: 'shyft',
+        name: 'Shyft',
+        customHeading: 'Shyft: the dollar wallet that looks like it breaks the 30 day rule, and does not',
+        available: false,
+        notes:
+          'Standard Bank\'s forex app, and the most interesting thing on this corridor after exchange control itself. Shyft is open to both Standard Bank and non-Standard Bank customers, says it can receive international payments from anyone in the world no matter where they bank, and holds wallets in dollars, euros, pounds, Australian dollars and rand. Its own page says you can store your forex indefinitely. That sounds like a direct contradiction of the 30 day repatriation rule, and it is not, which is worth spelling out because the reconciliation is the useful part. The 30 day obligation applies to foreign currency held OUTSIDE South Africa. A Shyft wallet sits with a South African authorised dealer, so the money is already home and the obligation is already satisfied. Once onshore, the no-forced-conversion rule takes over and you may keep it in dollars as long as you like. We are not pricing it, because Standard Bank\'s 2026 forex guide publishes Shyft\'s outbound payment fees and its card fees but no fee for receiving into a wallet and no exchange margin. Those are the two numbers that would decide whether it beats Wise, so we will not guess them.',
+      },
+      {
+        slug: 'local-rails',
+        name: 'PayShap, EFT, Ozow and SnapScan',
+        customHeading: 'The local rails, and why none of them is an invoice address',
+        available: false,
+        notes:
+          'These come up constantly and none of them solves this problem. PayShap is South Africa\'s domestic instant interbank scheme, addressed by a ShapID that is usually a mobile number tied to a South African bank account. EFT is domestic rand clearing. Ozow is pay-by-bank for South African payers and SnapScan is QR acquiring for South African payers. The distinction to hold onto is that a US client\'s accounts payable department can pay exactly two kinds of thing: US account details belonging to you, reached by a domestic ACH or wire, which is what Wise and Payoneer hand you, or a South African bank account reached by international SWIFT. Everything on that list is how money moves once it is already in the country, which makes it useless as an answer to what you put on an invoice. We should say that no source we opened states outright that PayShap cannot be reached from abroad; it follows from its being a domestic scheme with no cross-border leg, so treat it as our reading rather than a quotation.',
+      },
+    ],
+    supportedProviders: ['wise', 'payoneer', 'paypal', 'bank-wire'],
+    faqs: [
+      {
+        q: 'Do I have to convert my dollars to rand, or can I keep them?',
+        a:
+          'You can keep them, and this is the most useful fact on the page because most sources imply otherwise. The Reserve Bank\'s manual for authorised dealers says in one place that a resident holding foreign currency outside South Africa must offer to sell it to an authorised dealer within 30 days of becoming entitled to it, and in another that clients are permitted to retain funds without the obligation to convert into rand, while the repatriation requirement remains extant. Those are not in conflict. The first is about money sitting abroad, the second about money that has arrived. So bring it home inside 30 days, then hold it in dollars for as long as you want and sell when the rate suits you.',
+      },
+      {
+        q: 'Can I open a dollar account as a freelancer, or do I need a company?',
+        a:
+          'You can, but not the account everyone names. A Customer Foreign Currency account, the CFC, is the one discussed in every guide, and the manual opens it to South African entities, legal persons. A sole trader is not a legal person, so you cannot have one, and the manual says any other purpose needs written approval from the Financial Surveillance Department. What you can have is a plain foreign currency account, which the manual provides for separately for private individuals resident in South Africa, and which lets you receive and hold dollars and convert when you choose. A Shyft wallet is another route to the same thing. If you do incorporate, the CFC becomes available, and the manual lists among its holders any South African entity providing a service in South Africa to non-residents and receiving payment in foreign currency. So the binding condition is not what you sell, it is whether you are incorporated.',
+      },
+      {
+        q: 'Why does my bank keep asking for a BOP code, and what do I put for freelance work?',
+        a:
+          'Because it has to report every cross-border receipt to the Reserve Bank, whatever the amount, and within two business days of the value date. The code describes what the money was for. For a developer the usual answer is category 231, computer-related services including maintenance, repair and consultancy. Designers, writers and other creative work often land on 296, artistic, sports, cultural and recreational services, or on 297, other business services not included elsewhere, which is the honest catch-all. A virtual assistant fits 289, management consulting including administration and secretarial services. Two codes to avoid: the 303 and 304 series are remuneration paid by a non-resident to a resident employee, and coding your invoice that way tells the Reserve Bank and, through the consent on the form, SARS that you are employed by a foreign company. The 101 and 103 series are merchandise export proceeds, which drag in paperwork for goods that do not exist.',
+      },
+      {
+        q: 'What happens if the bank picks the wrong category for me?',
+        a:
+          'You get a window to fix it, and you should use it. Under about R50,000 per transaction a natural person may not have to complete the full form at all, provided the purpose is disclosed clearly in the payment message. But the dispensation comes with a condition: where no mandate is in place, the bank must send you a confirmation after each transaction stating the category it reported, and if you disagree you must dispute it within 14 days. That is the reason to read the message your bank sends rather than ignoring it. A caution on consequences: the manual prescribes no penalty on you for a wrong code. What it does create is a misreported category that reaches both the Reserve Bank and SARS, and a 14 day window in which it is easy to correct. We are not going to invent a fine.',
+      },
+      {
+        q: 'Does the foreign income exemption mean I do not pay tax on money from US clients?',
+        a:
+          'No, and the reason people think it does is that they are reading the wrong half of the test. The exemption in section 10(1)(o)(ii) is for foreign EMPLOYMENT income and depends on days spent working outside the country. A freelancer invoicing from a desk in South Africa fails it twice: there is no employer, and the work is not performed abroad. The client being foreign is not the question. Your income is ordinary taxable income and South African residents are taxed on worldwide income. We did not open a SARS page on that section in this pass, so treat the structural reason as sound and check the day-count and cap figures yourself before relying on them.',
+      },
+      {
+        q: 'Do I need to register as a provisional taxpayer, and when do I pay?',
+        a:
+          'Almost certainly yes. SARS says any person who receives income other than remuneration is a provisional taxpayer, and the exemption for a natural person below the tax threshold applies only to someone with no business income at all. Client invoices are business income, so a freelancer is a provisional taxpayer regardless of size. There are two compulsory payments: the first within six months of the start of the tax year, which for a February year end means the end of August, and the second by the last working day of the tax year at the end of February. A third voluntary top-up is available at the end of September. The practical trap is cash flow rather than the rule: nobody withholds anything on the way in, so the whole bill arrives at once. SARS warns that underestimating can attract penalties and interest without publishing a rate, so we are not printing one.',
+      },
+      {
+        q: 'Do I charge VAT to a US client, and when do I have to register?',
+        a:
+          'The registration number moved this year and most pages you find will be stale. From 1 April 2026 the compulsory VAT registration threshold rose from R1 million to R2.3 million of turnover, and the voluntary threshold from R50,000 to R120,000. One honest caveat: that change rides on a bill still marked draft and SARS describes the figures as subject to Parliament, while applying them anyway. The practical effect is that most freelancers are nowhere near it and have no VAT obligation, which means the zero-rating question below never engages for them. If you are registered, services supplied to a non-resident are zero-rated, and SARS wants specific proof: a tax invoice, written confirmation from the client that it is not a resident, proof of payment, and one of three further documents. There is a 90 day clock from the earlier of invoice or payment to hold that proof, and if you miss it you must account for output tax and can reverse it later if the documents turn up within five years. Zero-rating is also denied if the client is physically in South Africa when the work is done.',
+      },
+      {
+        q: 'Is my single discretionary allowance used up when I receive money from abroad?',
+        a:
+          'No, and this is the most common confusion in this corridor. The single discretionary allowance, R2 million per person per calendar year, and the foreign capital allowance of up to R10 million, are both about money going OUT. They cap what you may send or take abroad, and the larger one needs an approval and a tax compliance PIN that your bank checks before it will transfer. Receiving payment for work does not touch either of them. Note also that the R2 million figure has moved: plenty of commentary still says R1 million.',
+      },
+      {
+        q: 'What do I keep as proof the money came from abroad?',
+        a:
+          'There is no single certificate here, no equivalent of the inward remittance certificates India and Bangladesh issue. What you keep instead is the bank\'s inward payment advice showing the category it reported, the form where one was completed or the bank\'s confirmation message where the small-payment dispensation applied, and the invoice and contract behind it. The retention period lines up neatly on both sides: the manual tells authorised dealers to keep documents for five years and to tell clients to do the same, and the VAT rules give five years to produce missing zero-rating proof.',
+      },
+    ],
+    altReceivingNote:
+      'South Africa is one of the countries on this site where keeping your dollars is a real option rather than a workaround, and the rule that appears to forbid it does not. A resident holding foreign currency outside the country must offer to sell it within 30 days, so the money does have to come home. Once it is home the manual says the opposite: funds may be retained without any obligation to convert into rand. Repatriate, do not convert. The account matters more than most readers expect. The Customer Foreign Currency account everyone names is open to legal persons only, so a sole trader cannot hold one, but a plain foreign currency account for a resident individual does the same job and the manual provides for it separately. A Shyft wallet is a third route, and its claim that you can store forex indefinitely is consistent with the rules precisely because the wallet sits with a South African authorised dealer. Two things to weigh against the dollar option. The spread is deferred rather than escaped, since you pay it whenever you sell. And on the numbers below it is dear: Wise charges a published $13.50 to carry dollars here by SWIFT against about $7.79 to convert and pay out rand, so taking dollars costs more at a thousand dollars and the gap only closes at size. Take dollars because you want to choose the day you sell, not because it is cheaper.',
+    siblingCorridors: ['usd-to-ngn', 'usd-to-gel', 'usd-to-php'],
+  },
+  // USD to Argentina (ARS)
+  {
+    slug: 'usd-to-ars',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'ARS',
+    destCountry: 'AR',
+    country: 'Argentina',
+    title: 'Receive USD in Argentina: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in Argentina. You can keep every dollar, there is no annual cap, and your bank may not charge you to receive it.',
+    h1: 'How to receive USD in Argentina: you can keep the dollars now',
+    intro:
+      'Almost everything written about getting paid in dollars in Argentina is out of date, and it is out of date in the direction that costs you money. Here is where the rules actually stand. The central bank\'s rulebook still requires service export receipts to be brought into the country within 20 business days. What it no longer requires is that you sell them. A resident individual is exempt from the conversion leg as long as the money is credited to a foreign currency account you hold at a local bank, and that exemption has no annual ceiling: the USD 36,000 cap that every accounting blog still quotes was deleted in September 2025, and the exemption was widened to cover all service categories in April 2026. The same provision goes further and bans the bank from charging you a commission on the inbound credit. So you can be paid in dollars, keep every one of them, and pay your bank nothing to receive them. The second thing readers arrive with backwards is the rate. For years the gap between the official rate and the parallel one dwarfed every fee on a page like this. That gap has essentially closed: in late October 2026 the parallel rate sat about 1.3% above the official one. Choosing a cheap provider now matters more than choosing a clever rate, which has not been true here in a decade.',
+    publishedDate: '2026-10-21',
+    updatedDate: '2026-10-21',
+    providers: [
+      {
+        slug: 'bank-wire',
+        name: 'A dollar account at an Argentine bank',
+        customHeading: 'The route the rules were changed to allow',
+        available: true,
+        notes:
+          'This is the answer for most readers and the reasoning is better than the fee. The central bank\'s texto ordenado exempts a resident individual from having to sell service export receipts provided two things hold: the funds land in a foreign currency account in your own name at a local financial entity, and the arrangement is neutral for tax purposes. The same point then says, in terms, that entities may not charge commissions on these operations, with only documented foreign intermediary charges passed through at cost. Banco Macro confirms it from the bank side on its own trade page, telling you that settling under the right concepts into a foreign currency account leaves you exempt from commissions, and giving the operational detail a US accounts payable team needs, which is that the sender fills the beneficiary field with your data. So the Argentine end of this is free by regulation. The $35 in our table is your client\'s own bank charging them to send an international wire, and nothing else. Two cautions. The 20 business day obligation to bring the money in was never lifted, only the obligation to convert, so parking income indefinitely in an offshore balance sits outside the exemption as written. And the condition that the arrangement be fiscally neutral is a phrase whose practical meaning rests on accountants rather than on anything the text explains, so ask yours.',
+      },
+      {
+        slug: 'wise',
+        name: 'Wise',
+        customHeading: 'Wise: dollars only, and its own price list is wrong about that',
+        available: true,
+        notes:
+          'Wise works here in one direction and one currency, and we have to be careful about why. It cannot pay out pesos. Its own send page says it is working hard to allow customers to send pesos to Argentina from the US and is not quite there yet, and offers a waiting list. We are flagging that explicitly because Wise\'s pricing system says otherwise: ask it for a dollars to pesos quote and it returns dozens of priced options that look entirely deliverable. They are not, and we have left that route out of our model deliberately rather than publishing a price for a product that does not exist. What Wise can do is carry dollars to Argentina by SWIFT for a published $13.47, and Argentina is on its list of destinations where it predicts what the intermediary banks will deduct and funds that in advance so you receive the full amount. Combined with the central bank\'s commission ban at the Argentine end, that is the cleanest route on this page: a known fee at the front, nothing at the back. We earn a commission when someone signs up to Wise through this site, and on this corridor the honest pitch is narrower than usual, which is that it is a dollar courier rather than a currency converter.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        customHeading: 'Payoneer: workable, and the one route to a market rate',
+        available: true,
+        notes:
+          'The platform default, and on this corridor it has a feature the others do not. Receiving costs 1%. Payoneer publishes Argentina-specific terms, which is unusual, and says withdrawals to an Argentine account cost up to 2% whether you take pesos or dollars, generally landing within two business days. It also supports transfers to the brokers Cocos Capital, Balanz and PPI at the same up-to-2%, and that is the route an Argentine uses to sell dollars at the market rate rather than the official one. Two things to hold at arm\'s length. Payoneer\'s Argentina page and its global pricing page give different numbers for the same action, up to 2% in one place and 1.2% to 4% in the other, so we model the midpoint of the published range and flag the row, which is why it cannot carry our badge. And that same Argentina page still advertises a USD 36,000 annual cap on the dollar benefit, thirteen months after the central bank removed it. When a provider\'s own page is stale about the regulation, price it from your own screen.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        customHeading: 'PayPal: around 9%, and it locks you out of the dollar exemption',
+        available: true,
+        notes:
+          'The most expensive option here by a wide margin, and uniquely on this corridor it also costs you the thing the page is about. Receiving a commercial payment from abroad is 5.40% plus thirty cents. Converting is another 3.50% over PayPal\'s own base rate. Withdrawal to an Argentine bank costs 75 pesos a time. Stack those and you are near 9% before arguing about the base rate. The structural problem is worse than the price: PayPal withdraws to an Argentine bank account in pesos only, and the central bank\'s exemption requires the funds to land in a foreign currency account. So a PayPal user cannot use the dollar retention rule at all. They have converted at PayPal\'s rate before the question even arises.',
+      },
+      {
+        slug: 'wallbit',
+        name: 'Wallbit',
+        customHeading: 'Wallbit: the local option that actually publishes its fees',
+        available: false,
+        notes:
+          'Worth naming because it does the thing the others will not, which is publish a full price list that opens. Deposits by ACH, wire, SWIFT, USDT and USDC are free on every plan. Withdrawing to a local account is where the plans diverge: the paid tiers quote a 0.25% preferential exchange rate, at $9 or $19 a month, while the free tier says only standard exchange rate, which is not a number. ACH out is 1% on the free plan and 0.5% on the paid ones with a $5 minimum, wires 1% or 0.5% with a $25 minimum, and there is a $2 monthly inactivity charge after three months if your balance is under $500. We are keeping it out of the priced table for one reason: the free plan\'s exchange rate is undefined, and that is the number that would decide whether it beats Wise. Same standard we applied to Global66 on Colombia.',
+      },
+      {
+        slug: 'local-wallets',
+        name: 'Lemon, Belo, Takenos and Mercado Pago',
+        customHeading: 'The local wallets, and what we could not find out',
+        available: false,
+        notes:
+          'These four come up in every Argentine discussion of getting paid from abroad and we can tell you very little about them with confidence, which is itself worth saying. Lemon advertises receiving pesos, dollars or euros from any bank, wallet or international platform and names PayPal, Wise, Payoneer and Deel as origins; its help centre refused our requests, so no fee figure is citable. Takenos claims no opening or maintenance cost and commission-free receiving from abroad; its help centre also refused us. Belo\'s help centre has the right sections and no retrievable figures. Mercado Pago\'s own article on receiving international dollar transfers returned an error, and the text we could read describes bringing dollars in from a bank or wallet account that must already be in Argentina, which is a domestic top-up rather than something a US company can pay. None of them goes in our table, on the same rule we apply everywhere: being blocked is not the same as having the data. On the crypto wallets there is a further point worth making plainly. Nothing we read prohibits receiving USDT or USDC. Nothing we read authorises it as a substitute for bringing the money in through the exchange market either, and a stablecoin receipt that never touches that market does not generate the settlement record the dollar exemption is built on. That tension is our reading, not a rule.',
+      },
+    ],
+    supportedProviders: ['wise', 'payoneer', 'paypal', 'bank-wire'],
+    faqs: [
+      {
+        q: 'Do I have to sell the dollars I receive from abroad, or can I keep them?',
+        a:
+          'You can keep all of them, and this is the fact most sources get wrong. The central bank\'s rulebook requires service export receipts to be brought in within 20 business days, and then exempts a resident individual from the obligation to sell, provided the money is credited to a foreign currency account in your name at a local financial entity and the arrangement is fiscally neutral. There is no annual ceiling on that exemption. The USD 36,000 cap you will read everywhere was removed in September 2025, and in April 2026 the exemption was extended to all service categories, which also means the long list of service concept codes that blogs attach to freelancers governs companies under a different provision, not you. Keep the distinction straight, though: the obligation to bring the money in survives. Only the obligation to convert is gone.',
+      },
+      {
+        q: 'Does my bank charge me to receive a transfer from abroad?',
+        a:
+          'It is not allowed to. The same provision that grants the exemption says entities may not charge commissions on these operations, and that only documented charges from foreign intermediary banks may be passed through, at cost. Banco Macro states the same thing on its own trade page. So if your bank quotes you a commission on an inbound credit to a dollar account under these concepts, that is worth questioning with the rule in hand. What you cannot avoid is your client\'s own bank charging them to send the wire, which is what the figure in our table represents.',
+      },
+      {
+        q: 'Is the official rate still miles below the real one?',
+        a:
+          'No, and this is the other thing readers arrive with backwards. For years the spread between the official rate and the parallel market was so wide that it swamped every provider fee, and choosing how to convert mattered far more than choosing who to receive with. In late October 2026 the parallel rate sat only about 1.3% above the official one. We should be clear about sourcing: the official reference rate and the Banco Nacion board rates are from primary sources, while the parallel and financial rates come from a market aggregator rather than a regulator, so treat those as indicative. The practical consequence is that a cheap provider now beats a clever rate, which has not been the case here for a long time.',
+      },
+      {
+        q: 'Does Wise work for getting paid in Argentina?',
+        a:
+          'In one direction only. Wise cannot pay out Argentine pesos: its own send page says it is still working on that and offers a waiting list. It can carry dollars to an Argentine bank account by SWIFT for a published $13.47, with the intermediary bank deductions predicted and pre-funded so you get the full amount. Combined with the ban on your bank charging you to receive, that is the cheapest clean route here. One warning, because it caught us: if you query Wise\'s pricing system for a dollars to pesos quote it returns dozens of priced options that look real. They contradict Wise\'s own send page, and we have deliberately not modelled them.',
+      },
+      {
+        q: 'How much can I invoice as a monotributista exporting services?',
+        a:
+          'The category ceilings run from about 12 million pesos at the bottom to roughly 126.6 million at the top, on the scale effective from August 2026, and export income counts toward them like any other income. At the late-October rate that top ceiling is around 83,000 dollars a year, which is the number a growing freelancer plans against. Those figures index periodically, so check the current table rather than our conversion. Above the ceiling you move to the general regime. One piece of good news: the tax authority says monotributistas do not have to register in the exporters\' registry.',
+      },
+      {
+        q: 'Do I charge IVA to a client abroad?',
+        a:
+          'No. The VAT law places services whose effective use or exploitation happens abroad outside national territory, and separately exempts exports, so a service sold to a foreign client falls outside Argentine VAT rather than being taxed at zero with a refund to chase. If you are a monotributista you are outside VAT regardless, so the question does not arise. Note that the agency was renamed from AFIP to ARCA, and old AFIP addresses still serve live content, which makes it easy to mistake an old page for a current one or the reverse.',
+      },
+      {
+        q: 'What do I keep as proof the money came from abroad?',
+        a:
+          'There is no single certificate like the ones India or Bangladesh issue. What you keep is the export invoice, issued through the tax authority\'s system after enabling an export point of sale and carrying the destination country\'s tax identifier in the buyer field, together with the bank\'s settlement records for the operation. Where you invoice in pesos, the rate to use is the Banco Nacion buying rate from the day before you issue. Keep the invoice and the bank records together, because they need to tell the same story.',
+      },
+      {
+        q: 'What if I get paid in USDT or USDC instead?',
+        a:
+          'It is common, and we are going to be straight about the limits of what we know. Nothing we read prohibits receiving stablecoins. The virtual asset providers now sit on a register run by the securities regulator, and registration is not the same thing as supervision of what they do. But nothing we read authorises a stablecoin receipt as a substitute for bringing the money in through the exchange market, and a payment that never touches that market does not produce the settlement record the dollar retention exemption is built on. So the route exists and is widely used, and whether it satisfies the obligation you are under is a question we cannot answer from the rules. That is a reading, not a ruling, and it is worth an accountant\'s time if you are relying on it.',
+      },
+    ],
+    altReceivingNote:
+      'Argentina is now one of the better places on this site to keep your dollars, which is close to the opposite of its reputation. The central bank requires service export receipts to be brought into the country within 20 business days, and then exempts a resident individual from selling them, as long as they land in a foreign currency account you hold at a local bank and the arrangement is fiscally neutral. No annual cap applies: the USD 36,000 limit most sources still quote was deleted in September 2025. The same provision bans your bank from charging a commission on the inbound credit, so the Argentine end is free by regulation and the fee in the table below is your client\'s sending bank. Two honest limits. The obligation to bring the money in survives, so an offshore balance left to sit indefinitely is outside the exemption as written. And the spread is deferred rather than escaped, since you pay it whenever you sell, although with the official and parallel rates now about 1.3% apart that choice costs far less than it used to.',
+    siblingCorridors: ['usd-to-cop', 'usd-to-brl', 'usd-to-mxn'],
+  },
+  // USD to Poland (PLN)
+  {
+    slug: 'usd-to-pln',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'PLN',
+    destCountry: 'PL',
+    country: 'Poland',
+    title: 'Receive USD in Poland: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in Poland. No exchange control, the cheapest transfer on this site, and the e-invoicing rule that changed in April 2026.',
+    h1: 'How to receive USD in Poland: the transfer is cheap, the tax choice is not',
+    intro:
+      'Poland inverts the usual shape of these pages. There is no exchange control to work around, no repatriation clock, nothing to declare to a central bank, and a resident can hold dollars in a free retail account at a Polish bank for as long as they like. So the question is not whether you can receive the money. It is what the money costs you, and the honest answer is that the transfer fee is the least of it. Wise will convert and pay out zloty for about 0.35% plus a dollar, which is the cheapest row anywhere on this site. Your social contributions will cost you somewhere between 456 zloty and roughly 3,400 zloty a month depending on which reliefs you qualify for, which is a different order of magnitude entirely. The two things actually worth your attention are therefore the tax form you choose, where the gap between the lump-sum rates is worth five figures a year to an IT freelancer, and the fact that as of 1 April 2026 you must issue invoices through the national e-invoicing system, including invoices to a US client who cannot log into it. One warning up front about a provider: Payoneer looks cheap here because its price list shows a flat fee for withdrawals in your own country\'s currency, and that flat fee does not apply to you, because taking dollars and wanting zloty means a conversion.',
+    publishedDate: '2026-10-21',
+    updatedDate: '2026-10-21',
+    providers: [
+      {
+        slug: 'wise',
+        name: 'Wise',
+        customHeading: 'Wise: the cheapest row on this entire site',
+        available: true,
+        notes:
+          'Not close, and we checked it twice because of a mistake we made on another corridor. Your client pushes a domestic ACH into the dollar details Wise gives you, Wise converts and pays zloty into your Polish account. We priced it at a thousand and five thousand dollars so the fixed and percentage parts separate cleanly: $1.19 flat plus 0.35%. That is about $4.68 on a thousand-dollar invoice. The reason we trust it here is that Wise\'s pricing system and Wise\'s own public send page agree at every amount we tested, and the mid rate it returned matched the National Bank of Poland\'s mid to four decimal places, which is why we record no hidden spread rather than assuming one. Wise says most transfers arrive in seconds, with 77% under twenty seconds. Read that as the zloty leg only: your client\'s ACH into your dollar details still takes its own one to three business days first. Wise also issues zloty account details, though they come as an account number without an international code attached. We earn a commission when someone signs up through this site, and here it happens to also be the cheapest option by a factor of several, so weigh the recommendation knowing both things.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        customHeading: 'Payoneer: the flat fee you have read about does not apply to you',
+        available: true,
+        notes:
+          'This is the correction most worth having on this page, because we went looking to confirm the good news and could not. Payoneer\'s price list shows a flat $1.50 for a withdrawal to a bank account in your own country in local currency, in supported countries, and Poland looks like it should qualify. But Payoneer\'s own explainer conditions that flat fee on there being no conversion in the chain, and names only euro and sterling amounts. A Polish freelancer receiving dollars and wanting zloty has a conversion by definition, so the flat rate is not the price you pay. What you pay is 1% to receive a non-local currency, then a withdrawal involving conversion that Payoneer publishes as a range of 1.2% to 4% in one place and up to 2% in another. We model the midpoint of the published range and flag the row, which is why it cannot take our badge. There is a plausible cheaper path, holding a dollar balance, converting between balances at 0.50% and then withdrawing locally, but we could not confirm that a Polish account can hold a zloty balance at all, so we are not pricing a route we cannot verify. Also watch the $29.95 annual fee if the account takes under $6,000 in twelve months.',
+      },
+      {
+        slug: 'bank-wire',
+        name: 'Bank Wire (SWIFT)',
+        customHeading: 'A wire into a Polish bank: fine for dollars, poor for zloty',
+        available: true,
+        notes:
+          'Worth understanding for one specific purpose. mBank\'s foreign-currency account is free to open and run, in ten currencies including dollars, which means you can take a dollar wire and simply hold it. That is the useful case. The poor case is letting the bank convert. mBank says an inbound payment into a zloty account is converted at mBank\'s own buying rate, and into a foreign-currency account that does not match the payment it converts twice, to zloty at the buy rate and then to the account currency at the sell rate. Two spreads, neither published. It also books incoming foreign transfers only on business days between 08:00 and 14:00, with later arrivals landing the next business day, and it says plainly that intermediary and recipient bank costs are additional. Our figure here is the generic US sending fee carried from other corridors, because mBank publishes no inbound charge and we are not going to invent one, and the spread is flagged as an assumption. One naming trap worth knowing if you shop around: Santander Bank Polska has been renamed Erste Bank Polska, and its own site now carries the former name only as a footnote.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        customHeading: 'PayPal: close to 8%, and the surcharge is the part people miss',
+        available: true,
+        notes:
+          'The expensive answer, and the Polish schedule has a wrinkle that makes it worse than readers expect. A commercial transaction is 2.90% plus a fixed fee, thirty cents on a dollar payment. Then there is an international surcharge that depends on where the buyer is, and for markets outside the European Economic Area and the UK, which includes the United States, it is another 1.99%. So receiving is 4.89% before conversion. Conversion is a further 3.00% above PayPal\'s base rate. Call it near 8% all in, against roughly 0.5% through Wise. On a 5,000 dollar month that difference is about 375 dollars, every month.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        customHeading: 'Revolut: popular here, and we could not read its prices',
+        available: false,
+        notes:
+          'Awkward to leave out, because Revolut is genuinely widely used in Poland, and we are leaving it out anyway. Every Revolut page we tried refused us: the Polish fee schedule and two help pages all returned errors. By the standard we hold everywhere on this site, a provider whose own site blocks us does not get a priced row, because being blocked is not the same as having the data. What search surfaced but we could not open, and therefore will not state as fact: a per-transfer charge above a plan allowance for incoming international transfers, plan-based exchange allowances with a charge above them and a higher weekend rate on the free tier, and, more importantly, a suggestion that dollar receiving for a Polish resident runs through an international route rather than US local details. If that last point is right it changes the arithmetic badly, because a client sending to international details pays more and may lose money to intermediaries. Treat all of that as unconfirmed and get the numbers from Revolut.',
+      },
+      {
+        slug: 'local-rails',
+        name: 'BLIK and Przelewy24',
+        customHeading: 'The local rails, and why neither is an invoice address',
+        available: false,
+        notes:
+          'Polish readers reach for BLIK by reflex and it cannot do this job. BLIK works by generating a six-digit code inside your own bank\'s app, valid for two minutes, and it is available in the apps of Polish banks with a country selector offering Poland, Romania and Slovakia. That is the whole problem: it is initiated from inside a Polish banking app by someone who already holds a Polish account. A US company\'s accounts payable department has neither, so there is nothing for them to start. It is not a set of details you can put on an invoice. Przelewy24 is a different category again, a merchant checkout gateway that collects card and Polish bank payments from a buyer at a web checkout and settles to an onboarded Polish merchant. Built for selling to consumers, not for a US client paying a six-thousand dollar invoice on net thirty. We could not open its fee page, so we quote no prices for it, but the category difference stands on its own.',
+      },
+    ],
+    supportedProviders: ['wise', 'payoneer', 'paypal', 'bank-wire'],
+    faqs: [
+      {
+        q: 'Which tax form should I pick, and what is the rate for IT work?',
+        a:
+          'This is the decision worth the most money on the page. A sole trader can choose the progressive scale, a 19% flat tax, or the lump-sum ryczalt, and for software work the ryczalt rate is 12%. That figure is confirmed on the government business portal, which lists it against a specific set of statistical classification codes covering software-related services, software consultancy, software installation and network and systems management. Here is the nuance almost nobody states. Several of those entries carry the prefix meaning only part of the grouping is caught, so work that is genuinely not software-related is argued into the residual 8.5% service rate instead. On a 300,000 zloty year the gap between 12% and 8.5% is around 10,500 zloty. We have to be honest that the 8.5% route rests on individual tax interpretations and practitioner practice rather than a rule we read, and the boundary is settled case by case, so it is worth an accountant and possibly your own interpretation request. Also worth knowing because English-language guides omit it: there is a 5% regime for qualifying income from intellectual property, which can apply to Polish software developers. And one widespread error to ignore: the step from 8.5% to 12.5% at 100,000 zloty is not a general rule for service income. It attaches to things like renting business assets and property management.',
+      },
+      {
+        q: 'What will social contributions actually cost me?',
+        a:
+          'More than any transfer fee on this page, which is why we put it in the intro. On full contributions in 2026 the social package is about 1,927 zloty a month, on a base of 5,652 zloty. The health contribution is separate and on the ryczalt it is a flat band by revenue: about 498 zloty a month under 60,000 zloty, about 831 from 60,000 to 300,000, and about 1,495 above 300,000. So a developer on the ryczalt earning well is paying roughly 41,000 zloty a year before any income tax at all. Two reliefs cut that sharply at the start and both still exist. Ulga na start gives six full months free of social, Labour Fund and Solidarity Fund contributions, though the health contribution is still due. Preferential contributions then run for 24 full months on a much lower base, about 456 zloty a month in 2026. Both have the same catch, and it is the one that bites Polish developers specifically: neither is available if you are providing the same kind of work to someone who employed you this year or last, which is exactly the employment-to-contract switch many people are making.',
+      },
+      {
+        q: 'Do I charge Polish VAT to a US client?',
+        a:
+          'No. The general business-to-business rule puts the place of supply where the customer has its business, so a service sold to a US company is supplied in the United States and is not taxed in Poland. The government portal works exactly that example and concludes the service is not subject to Polish VAT. Two refinements, both of which catch people. First, there is a genuine disagreement about what to write on the invoice: the government portal says to issue it without VAT marked as reverse charge, while Polish practitioners argue that reverse charge is the EU mechanism and does not apply to a US customer, and that the correct marking is the one meaning not subject to taxation, which is not the same as a 0% rate. We would rather report that conflict than pretend it is settled, so ask your accountant which marking they want. Second, if you are a registered VAT payer you do still report this income in your monthly VAT file, as a supply outside the territory of the country, even though no tax is charged. What does not apply is the EU sales listing, which covers EU customers only, so there is no summary information to file and no VIES check to run for a US client.',
+      },
+      {
+        q: 'When do I have to register for VAT, and is it ever worth doing voluntarily?',
+        a:
+          'The exemption threshold for 2026 is 240,000 zloty, and there is a transitional rule letting a business whose 2025 sales exceeded 200,000 but stayed under 240,000 still take the exemption this year. You need your business seat in Poland and must not be doing one of the excluded activities, which include legal services. One thing we could not settle: whether US-client income counts toward that threshold. It very likely does, since it is a supply made by a Polish taxpayer, but that is our reasoning rather than a rule we read, so confirm it before planning around it. On the voluntary question, there is a real argument for registering even though you owe nothing: the portal says you may deduct VAT on expenses related to providing the service where those expenses are taxed in Poland. That makes your laptop, your software and your office costs recoverable, which is why plenty of Polish freelancers with only American clients register anyway.',
+      },
+      {
+        q: 'Do I have to use the national e-invoicing system for a US client?',
+        a:
+          'Yes, and this is the thing most likely to make an otherwise good guide wrong by omission. Structured e-invoicing through the national system became mandatory on 1 February 2026 for the very largest businesses and on 1 April 2026 for everyone else. A Polish freelancer invoicing a foreign business sits in no exclusion. There is a transitional easement until 31 December 2026 letting you issue outside the system in a month where such invoices total under 10,000 zloty including VAT. The practical question is what your client sees, and the system\'s own FAQ answers it directly: a foreign customer has no Polish tax identifier, cannot log in and cannot download the invoice, so you issue it in the system and then send the client the document separately however you have agreed, typically a PDF by email, carrying a QR code that lets them verify the invoice really exists in the system. So your workflow changes and your client\'s does not.',
+      },
+      {
+        q: 'Can I invoice in dollars, and which exchange rate converts it?',
+        a:
+          'You can invoice in a foreign currency and in a foreign language: the rules do not prescribe the language, and a bilingual invoice is the common recommendation. On the rate, there are two separate rules and conflating them is a common mistake. For VAT purposes you use the National Bank of Poland average rate from the last business day before the tax point arises, or before the invoice date where the invoice comes first. For income tax you use the average rate from the last business day before the revenue arose. Both point at the bank\'s table A, and both mean the business day before, not the day itself. There is also an option to apply the income-tax conversion rule for VAT too, which then binds you for at least twelve months; we saw that referenced but did not open the page, so treat it as worth checking rather than settled.',
+      },
+      {
+        q: 'Can I keep the dollars instead of converting them?',
+        a:
+          'Yes, and Poland makes this easier than any other country on this site because there is no currency law to satisfy. mBank\'s foreign-currency account is free to open and run and comes in ten currencies including dollars, so you can take a dollar payment, hold it, and sell when you choose. The catch is purely commercial rather than legal, and it runs the other way from most corridors here: Wise charges a published $27.24 to carry dollars to Poland by international transfer, against about $4.68 to convert and pay out zloty. So holding dollars costs noticeably more at ordinary invoice sizes. Do it because you want to choose when you sell, not to save money. And remember the spread is deferred, not escaped: you pay it whenever you convert, and if you let a Polish bank do the converting into a mismatched account it may cross twice.',
+      },
+      {
+        q: 'What proof do I need that the money came from abroad?',
+        a:
+          'Less than readers arriving from other corridors expect, and it is worth saying plainly: Poland has no inward remittance certificate, no equivalent of the documents India or Bangladesh issue, and nothing to chase from your bank. What the government portal says to keep for a service treated as supplied outside Poland is documentation that the service was performed outside Poland and the EU, specifically a bank confirmation of payment and the contract with the client including any side arrangements. Add your e-invoice with its system number and QR code, and your revenue register if you are on the lump sum. That is the whole pack. On the American side, your client may ask you for a W-8BEN, which the US tax authority says a foreign person gives the payer whether or not they are claiming a reduced rate. Since personal service income is sourced where the services are performed, work done at a desk in Poland is foreign-source for US purposes and there is nothing for your client to withhold. The form documents that rather than claiming a treaty benefit, and we make no claim here about the treaty itself.',
+      },
+    ],
+    altReceivingNote:
+      'Poland is the easiest country on this site to keep your dollars in, and for once the reason is that there is nothing to get around. No exchange control, no repatriation deadline, and nobody to notify. mBank\'s foreign-currency account is free to open and run and covers ten currencies including dollars, so a resident can simply take a dollar payment and hold it. The constraint here is commercial and it points the opposite way to most corridors on this site. Wise publishes a $27.24 fee to carry dollars into Poland by international transfer, against about $4.68 to convert and pay zloty into your account, so taking dollars costs around six times as much at a thousand-dollar invoice and is still dearer at five thousand. Take dollars because you want to choose the day you sell, or because you spend in dollars, not because it saves anything. Two further things to weigh. The spread is deferred rather than escaped, since you pay it when you convert. And if you let a Polish bank convert an inbound payment into an account whose currency does not match it, mBank\'s own rules cross the money twice, to zloty at its buying rate and then out at its selling rate, neither of which it publishes.',
+    siblingCorridors: ['usd-to-eur-portugal', 'usd-to-gel', 'usd-to-zar'],
+  },
 ];

@@ -38,6 +38,9 @@ const DEST_OPTIONS: { code: CountryCode; label: string }[] = [
   { code: 'MX', label: 'Mexico (MXN)' },
   { code: 'TH', label: 'Thailand (THB)' },
   { code: 'ID', label: 'Indonesia (IDR)' },
+  { code: 'ZA', label: 'South Africa (ZAR)' },
+  { code: 'AR', label: 'Argentina (ARS)' },
+  { code: 'PL', label: 'Poland (PLN)' },
 ];
 
 // Rendered to readers in the "Recipient receives in" dropdown, so no en dashes here.
@@ -57,6 +60,9 @@ const CURRENCY_LABELS: Record<Currency, string> = {
   INR: 'INR, Indian Rupee',
   COP: 'COP, Colombian Peso',
   UZS: 'UZS, Uzbekistani Som',
+  ZAR: 'ZAR, South African Rand',
+  ARS: 'ARS, Argentine Peso',
+  PLN: 'PLN, Polish Zloty',
 };
 
 interface Props {
