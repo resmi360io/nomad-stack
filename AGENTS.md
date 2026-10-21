@@ -64,24 +64,36 @@ that rather than for a page.
 
 Two things to carry into the next one, learned the hard way on these:
 
-- A provider's pricing endpoint is not a provider's price. Wise's `v1/price` grid has now
-  failed three distinct ways, and the third one breaks the rule this bullet used to state.
-  First, it is destination-BLIND for USD to USD: passing `targetCountry` returns an identical
-  fee map with no destination field, which shipped an Uzbekistan price 55% too low. Second,
-  it returned a Georgia fee that was never a Georgia send figure at all, but Wise's own
-  INBOUND receive fee. Third, on 2026-10-20 it returned 61 fully priced USD to ARS options,
-  with delivery estimates, for a product Wise's own send page says is not launched: that page
-  offers a waiting list for sending pesos to Argentina.
-  So a cross-currency pair is NOT automatically safe. The old rule here said the pay-in leg is
-  usable because an ACH pull does not depend on the destination, and that much still holds, but
-  it was read as licence to trust any quote that converts. Nothing from this endpoint ships
-  until Wise's own public send page for that corridor agrees, and "agrees" means the product
-  exists there, not merely that a number came back. Argentina is what failing looks like: 61
-  prices, and the route left out of the model entirely. Poland is what passing looks like: the
-  endpoint's fees matched the send page exactly at the one amount that page shows, across all
-  four funding methods it displays, so the PL/PLN row records no spread and is not flagged as an
-  estimate. Note what that check is: one amount, four adjacent methods. The send page shows no
-  second amount, so nothing cross-checks the percentage component.
+- A provider's pricing endpoint is not a provider's price, and the cross-currency exemption this
+  bullet used to grant is withdrawn. Wise's `v1/price` grid has failed three ways. First, it is
+  destination-BLIND for USD to USD: passing `targetCountry` returns an identical fee map with no
+  destination field, which shipped an Uzbekistan price 55% too low. Second, it returned a Georgia
+  fee that was never a Georgia send figure at all, but Wise's own INBOUND receive fee. Third, on
+  2026-10-20 it produced a ZA/ZAR pair, 7.79 at a thousand and 25.31 at five thousand, that
+  matches NOTHING on Wise's public send page for South Africa: that page shows 7.46 from a Wise
+  balance, 9.47 by direct debit and 13.87 by bank transfer at a thousand, and publishes no second
+  amount at all, so the percentage half of the pair had no public corroboration anywhere. It won
+  the best value badge on the strength of that.
+  The rule, then: a number from this endpoint does not ship until Wise's own public send page for
+  that corridor shows it. One amount agreeing is worth something; a fixed-plus-percentage split
+  derived from two endpoint reads and no public second amount is worth nothing, because the whole
+  percentage component is unfalsifiable. Poland is the nearest thing to a pass in this batch, and
+  note how narrow it is: the endpoint's fees matched the send page exactly at the one amount that
+  page shows, across the four funding methods it displays, and nothing cross-checks its
+  percentage component either.
+  Separately, do NOT conclude from a missing product that a provider cannot do the thing. On
+  2026-10-20 this endpoint returned 61 priced USD to ARS options and Wise's US send page offers a
+  waiting list for sending pesos to Argentina, and an earlier version of this bullet recorded that
+  as the endpoint pricing a product that does not exist. That was wrong, and the error was mine
+  rather than the endpoint's. Wise's own help article for ARS transfers says "You can send ARS to
+  any bank account in Argentina", capped at the equivalent of 18,000 USD per transfer per calendar
+  month, funded only "by converting another currency you hold with Wise" and explicitly not from
+  an external bank account. So the peso payout exists; what is missing is the one-step US send.
+  The endpoint's real sin here is that it prices a capability without saying which pay-in legs can
+  reach it, which is the same blindness as failure one wearing a different hat. Read the help
+  centre for the destination currency before declaring a route impossible, and when a corridor
+  page asserts a provider CANNOT do something, that assertion needs a source exactly as much as a
+  fee does.
 - Do NOT cross-check a provider's mid against a central bank fixing. An earlier version of the
   bullet above claimed the Poland row was trustworthy because Wise's returned mid "matched NBP
   to four decimals", and offered that as the standard for a passing check. It is false twice
