@@ -158,7 +158,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 96,
         fxMarkupEstimated: true,
-        notes: 'The only thing Wise can actually do on this corridor: carry dollars by SWIFT into an Argentine foreign currency account. It cannot pay out pesos whatever its pricing grid says.',
+        notes: 'Dollars by SWIFT into an Argentine foreign currency account. The 13.47 is Wise\'s published Argentina Swift payout fee, from help/articles/2946451, and Argentina is in the group where predicted correspondent deductions are pre-funded. Wise CAN pay pesos out to a CBU, but only from ARS converted inside a Wise account, with no external peso funding and a cap of the equivalent USD 18,000 per transfer per calendar month, and its US send page still says US to ARS sending is not launched. So there is no ARS row here, and the 2.13% the price grid quotes for USD to ARS is not shippable under the rule at the top of this file.',
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -984,8 +984,10 @@ export const PROVIDERS: Provider[] = [
       // because every component is published. South Africa: 4.40% plus 0.30 to receive and 3.0%
       // conversion, with withdrawal still routing through FNB at up to 1.51%, which has no field
       // here and lives in the copy. Argentina: 5.40% plus 0.30, 3.50% conversion, ARS 75 per
-      // withdrawal, PESOS ONLY, which is why PayPal forecloses the BCRA dollar-retention
-      // exemption completely. Poland: 2.90% plus a 1.99% other-markets surcharge, so 4.89%, then
+      // withdrawal, and PayPal's Argentine schedule prices only a peso withdrawal, which is why a
+      // PayPal user most likely cannot use the BCRA dollar-retention exemption. NOT asserted as a
+      // rule: PayPal states nowhere that dollar withdrawals in Argentina do not exist, and the copy
+      // hedges accordingly. Poland: 2.90% plus a 1.99% other-markets surcharge, so 4.89%, then
       // 3.00% on conversion.
       {
         source: { country: 'US', currency: 'USD' },
@@ -1369,8 +1371,12 @@ export const PROVIDERS: Provider[] = [
       // field, and the copy carries the full structure including the cap. Capitec and FNB both
       // refused our requests, so neither gets a row.
       // AR: the Argentine side is free BY REGULATION. BCRA texto ordenado point 2.2.2.1: "Las
-      // entidades no podran cobrar comisiones por estas operaciones", corroborated on Banco
-      // Macro's own COMEX page. So the 35 here is the US sender's own wire fee and nothing else.
+      // entidades no podran cobrar comisiones por estas operaciones", confirmed in CIRA's
+      // reproduction of Com. A 8330. But the SAME sentence preserves pass-through of documented
+      // foreign intermediary charges at cost, and a plain wire pre-funds nothing, so the recipient
+      // CAN land short. Banco Macro is not a usable source for any of this: both macro.com.ar URLs
+      // are encrypted PDF forms that no agent has opened. The 35 is the carried US sending figure,
+      // unsourced, which is why the row is flagged and the copy now calls it a placeholder.
       // PL: mBank's eKonto walutowe is free to open and run but publishes no inbound fee, so 35 is
       // the carried US sending figure. Its spread is unpublished, and into an account whose
       // currency does not match it crosses twice, buy then sell.
