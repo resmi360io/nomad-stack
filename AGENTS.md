@@ -76,10 +76,22 @@ Two things to carry into the next one, learned the hard way on these:
   usable because an ACH pull does not depend on the destination, and that much still holds, but
   it was read as licence to trust any quote that converts. Nothing from this endpoint ships
   until Wise's own public send page for that corridor agrees, and "agrees" means the product
-  exists there, not merely that a number came back. Poland is what passing looks like: endpoint
-  and send page matched at every amount tested and the mid rate matched NBP to four decimals, so
-  that row records no spread and is not flagged as an estimate. Argentina is what failing looks
-  like: 61 prices, and the route left out of the model entirely.
+  exists there, not merely that a number came back. Argentina is what failing looks like: 61
+  prices, and the route left out of the model entirely. Poland is what passing looks like: the
+  endpoint's fees matched the send page exactly at the one amount that page shows, across all
+  four funding methods it displays, so the PL/PLN row records no spread and is not flagged as an
+  estimate. Note what that check is: one amount, four adjacent methods. The send page shows no
+  second amount, so nothing cross-checks the percentage component.
+- Do NOT cross-check a provider's mid against a central bank fixing. An earlier version of the
+  bullet above claimed the Poland row was trustworthy because Wise's returned mid "matched NBP
+  to four decimals", and offered that as the standard for a passing check. It is false twice
+  over. Wise returned 3.8829 on 2026-10-20 against NBP table A 204/A/NBP/2026 of 3.8959, a 0.33%
+  gap, and the match could never have happened anyway: NBP table A is a once-daily 11:00 fixing
+  and a provider's live mid is a different kind of number. The verifier caught this on a draft,
+  which is the gate working, but the claim had already been committed here.
+  The real reason a Wise row records zero markup is structural and is the same on every corridor
+  on this site: Wise converts at its live mid and takes its revenue as an explicit separate fee,
+  so there is no spread to find. That is what to write, and it needs no rate comparison at all.
 - A provider whose site blocks you stays out of the priced table. That is the standard
   Global66 set on Colombia and GCash was held to on the Philippines. Being blocked is
   not the same as having the data, and a zero you cannot open ranks first at every
