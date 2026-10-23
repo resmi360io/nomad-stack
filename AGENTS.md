@@ -56,11 +56,40 @@ all three are live. Nobody deleted the India and Uzbekistan lines when they ship
 already existed. Delete the line when the corridor ships, not later.
 
 Before adding a corridor here, note what the last three cost, because the estimate
-this section used to imply was wrong. Each one took a research pass, a draft, a
-humanizer pass, a verifier and a reviewer, and each verifier found real errors in a
-draft that felt finished: Brazil thirteen, Colombia five, and the Wise dollar rows
-eight, most of which tilted toward the provider that pays us commission. Budget for
-that rather than for a page.
+this section used to imply was wrong. Each one takes a research pass, a draft, a
+humanizer pass, a verifier, a reviewer, AND an owner decision. South Africa,
+Argentina and Poland shipped together on 2026-10-23 and the numbers were: 145
+atomic claims checked, 102 verified, 24 incorrect, 6 outdated, 12 needing a hedge.
+Per corridor that is 38 to 60 claims and 7 to 9 real errors in a draft that felt
+finished. Earlier rounds ran the same way: Brazil thirteen, Colombia five, the Wise
+dollar rows eight. Budget for that rather than for a page.
+
+Four things that round taught, beyond the provider-specific traps below:
+
+- EXPECT TO NEED THE OWNER, once per corridor, and plan the run around it rather
+  than discovering it at the end. All three reviewers returned `safe_to_apply:
+  false`, and all three did so for the same structural reason: the cheapest row on
+  a page decides the best value badge, so any correction to it is ranking-moving by
+  definition, and ranking-moving changes are reserved for a human. A new corridor's
+  cheapest row is also the one most likely to be wrong, because it is the one worth
+  getting wrong. So a new corridor cannot ship agent-only, and a run that assumes it
+  can will stall holding finished work. Ask the question as soon as the reviewer
+  names it, with the ranking consequence computed, not described.
+- RUN THE HUMANIZER AGAIN AFTER APPLYING REVIEWER TEXT, not only over the draft.
+  The Poland reviewer rebuilt the intro from the scratchpad script that had written
+  the original entry, which was the PRE-humanizer version, and so reintroduced a
+  signposting line removed two days earlier. Reviewer prose is new copy and gets the
+  same pass as any other.
+- PASS THE VERIFIER'S JSON TO THE REVIEWER, verbatim. The Poland reviewer opened its
+  report saying the change list never reached it: it was given a prose summary of the
+  thirteen items and had to reconstruct the draft from `scratchpad/pl.py` to work at
+  all. It still did good work, but its locators were descriptive rather than copied,
+  which pushed the mapping back onto the orchestrator and is exactly where a wrong
+  string gets written. The two agents are the gate; do not narrate between them.
+- WHEN A DRAFT SAYS A PROVIDER CANNOT DO SOMETHING, that needs a primary source as
+  much as a fee does. Argentina asserted in four places that Wise cannot pay out
+  pesos. It can. Nobody had asked for the source because a negative does not look
+  like a claim.
 
 Two things to carry into the next one, learned the hard way on these:
 
