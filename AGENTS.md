@@ -64,12 +64,46 @@ that rather than for a page.
 
 Two things to carry into the next one, learned the hard way on these:
 
-- A provider's pricing endpoint is not a provider's price. Wise's `v1/price` grid is
-  destination-BLIND for USD to USD: passing `targetCountry` returns an identical fee
-  map with no destination field. It shipped an Uzbekistan price that was 55% too low
-  and, separately, a Georgia fee that was never a Georgia figure at all. Its pay-in
-  leg is usable because an ACH pull does not depend on the destination; its SWIFT
-  constant never is.
+- A provider's pricing endpoint is not a provider's price, and the cross-currency exemption this
+  bullet used to grant is withdrawn. Wise's `v1/price` grid has failed three ways. First, it is
+  destination-BLIND for USD to USD: passing `targetCountry` returns an identical fee map with no
+  destination field, which shipped an Uzbekistan price 55% too low. Second, it returned a Georgia
+  fee that was never a Georgia send figure at all, but Wise's own INBOUND receive fee. Third, on
+  2026-10-20 it produced a ZA/ZAR pair, 7.79 at a thousand and 25.31 at five thousand, that
+  matches NOTHING on Wise's public send page for South Africa: that page shows 7.46 from a Wise
+  balance, 9.47 by direct debit and 13.87 by bank transfer at a thousand, and publishes no second
+  amount at all, so the percentage half of the pair had no public corroboration anywhere. It won
+  the best value badge on the strength of that.
+  The rule, then: a number from this endpoint does not ship until Wise's own public send page for
+  that corridor shows it. One amount agreeing is worth something; a fixed-plus-percentage split
+  derived from two endpoint reads and no public second amount is worth nothing, because the whole
+  percentage component is unfalsifiable. Poland is the nearest thing to a pass in this batch, and
+  note how narrow it is: the endpoint's fees matched the send page exactly at the one amount that
+  page shows, across the four funding methods it displays, and nothing cross-checks its
+  percentage component either.
+  Separately, do NOT conclude from a missing product that a provider cannot do the thing. On
+  2026-10-20 this endpoint returned 61 priced USD to ARS options and Wise's US send page offers a
+  waiting list for sending pesos to Argentina, and an earlier version of this bullet recorded that
+  as the endpoint pricing a product that does not exist. That was wrong, and the error was mine
+  rather than the endpoint's. Wise's own help article for ARS transfers says "You can send ARS to
+  any bank account in Argentina", capped at the equivalent of 18,000 USD per transfer per calendar
+  month, funded only "by converting another currency you hold with Wise" and explicitly not from
+  an external bank account. So the peso payout exists; what is missing is the one-step US send.
+  The endpoint's real sin here is that it prices a capability without saying which pay-in legs can
+  reach it, which is the same blindness as failure one wearing a different hat. Read the help
+  centre for the destination currency before declaring a route impossible, and when a corridor
+  page asserts a provider CANNOT do something, that assertion needs a source exactly as much as a
+  fee does.
+- Do NOT cross-check a provider's mid against a central bank fixing. An earlier version of the
+  bullet above claimed the Poland row was trustworthy because Wise's returned mid "matched NBP
+  to four decimals", and offered that as the standard for a passing check. It is false twice
+  over. Wise returned 3.8829 on 2026-10-20 against NBP table A 204/A/NBP/2026 of 3.8959, a 0.33%
+  gap, and the match could never have happened anyway: NBP table A is a once-daily 11:00 fixing
+  and a provider's live mid is a different kind of number. The verifier caught this on a draft,
+  which is the gate working, but the claim had already been committed here.
+  The real reason a Wise row records zero markup is structural and is the same on every corridor
+  on this site: Wise converts at its live mid and takes its revenue as an explicit separate fee,
+  so there is no spread to find. That is what to write, and it needs no rate comparison at all.
 - A provider whose site blocks you stays out of the priced table. That is the standard
   Global66 set on Colombia and GCash was held to on the Philippines. Being blocked is
   not the same as having the data, and a zero you cannot open ranks first at every

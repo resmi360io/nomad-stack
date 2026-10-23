@@ -1,8 +1,8 @@
 // Fee data last verified: 2026-07-30
 // Sources: provider pricing pages (see inline comments per provider)
 
-export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT' | 'NGN' | 'PHP' | 'BRL' | 'INR' | 'COP' | 'UZS';
-export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK' | 'BD' | 'NG' | 'PH' | 'BR' | 'IN' | 'CO' | 'UZ';
+export type Currency = 'USD' | 'GBP' | 'EUR' | 'GEL' | 'MXN' | 'THB' | 'IDR' | 'PKR' | 'BDT' | 'NGN' | 'PHP' | 'BRL' | 'INR' | 'COP' | 'UZS' | 'ZAR' | 'ARS' | 'PLN';
+export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' | 'PK' | 'BD' | 'NG' | 'PH' | 'BR' | 'IN' | 'CO' | 'UZ' | 'ZA' | 'AR' | 'PL';
 
 // NOTE ON `notes` FIELDS IN THIS FILE: neither CorridorFee.notes nor Provider.notes is
 // rendered anywhere. The only provider prose a reader sees comes from CorridorProviderEntry.notes
@@ -106,13 +106,93 @@ export const PROVIDERS: Provider[] = [
     // currency, and Wise's own quote endpoint returns error.route.not.supported for
     // USD to UZS: "Sorry, you can't send between these currencies right now." Two
     // independent confirmations. Wise can only be the rail a client SENDS on.
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'TH', 'PH', 'BR', 'IN', 'CO', 'ID', 'UZ'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'TH', 'PH', 'BR', 'IN', 'CO', 'ID', 'UZ', 'ZA', 'AR', 'PL'],
     // Wise can SEND dollars by SWIFT to Uzbekistan but cannot pay out som. Its own send page:
     // "We're working hard to allow customers to send UZS to Uzbekistan from the US, but we're not
     // quite there yet." Without this the UZ entry above would make calculate() price a som quote
     // off fallbackFee for a route Wise says does not exist.
-    unsupportedDestinationCurrencies: { UZ: ['UZS'] },
+    // ARS joins UZS here for a DIFFERENT and more alarming reason. Wise cannot pay out Uzbek som
+    // and says so plainly. For Argentina its v1/price grid cheerfully returns 61
+    // deliverable-looking USD to ARS options at mid 1,524.25 with fees from 16.33, while
+    // wise.com/us/send-money/send-money-to-argentina says "We're working hard to allow customers
+    // to send ARS to Argentina from the US - but we're not quite there yet" and offers a waiting
+    // list. The grid prices a product that does not exist.
+    // That is the THIRD way this endpoint has misled this project, after being destination-blind
+    // for USD to USD and after the Georgia base-fee confusion, and it breaks the rule this file
+    // used to state: a cross-currency pair is NOT automatically safe. Always cross-check the grid
+    // against Wise's own send page for that corridor. A FOURTH way followed immediately: the
+    // grid's ZAR pair matched nothing on Wise's own South Africa send page, so it was discarded
+    // and that row is now a flagged single-point model. Poland is the nearest thing to a pass,
+    // and only at the one amount its send page prices.
+    unsupportedDestinationCurrencies: { UZ: ['UZS'], AR: ['ARS'] },
     corridors: [
+      // South Africa, Argentina and Poland. PLN comes from wise.com/gateway/v1/price and agrees
+      // with Wise's own send page at the one amount that page prices, across its funding methods.
+      // ZAR DOES NOT agree: the endpoint gave 7.79 on 1,000 and 25.31 on 5,000 while the send page
+      // prices the cheapest route, money already in your Wise account, at 7.46 on 1,000, with
+      // direct debit 9.47 and bank transfer 13.87. Nothing public is 7.79 and nothing public
+      // prices 5,000, so that pair is DISCARDED and the ZAR row is a flagged single-point model.
+      // The USD rows use Wise's published per-destination SWIFT fee from help/articles/2946451,
+      // read 2026-10-20 and again 2026-10-21, which REPLACES the 6.15 all-countries base; all
+      // three are on the list where Wise pre-funds predicted intermediary deductions so the
+      // recipient gets the full amount. That article labels the figure a "Swift fee per transfer"
+      // and its worked example adds a separate 1.13 USD Wise fee on a BALANCE-funded send, so
+      // these fixed components may be short by 1.13 on that funding path. Left unresolved: two
+      // reviewers could not reproduce the example consistently.
+      // The pay-in percentage is 0, decided by the owner on 2026-10-23. The flow every one of
+      // these pages describes is the client PUSHING a domestic ACH into your Wise receiving
+      // details, which the grid prices as RECEIVE_BANK_TRANSFER at 0% variable. The 0.17% belongs
+      // to DIRECT_DEBIT, where Wise PULLS from the sender's account, a different transaction and
+      // not the one these pages model. The earlier "model the dearer leg" choice was answering
+      // which of two pull legs applies, not whether a pull happens at all.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'ZA', currency: 'ZAR' },
+        fixedFee: 0,
+        percentageFee: 0.00746,
+        fxMarkupBps: 0,
+        typicalHours: 24,
+        fxMarkupEstimated: true,
+        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-south-africa states the cheapest route, money already in your Wise account, costs 7.46 USD on 1,000 USD, read 2026-10-21. Wise publishes no second amount at any URL we could find, so the fixed and percentage parts cannot be separated; this models the 1,000 USD price proportionally, which overstates at larger amounts rather than understating. The v1/price pair (7.79 on 1,000 and 25.31 on 5,000) matched NO figure on Wise\'s own page and is not used. fxMarkupEstimated marks the estimated PERCENTAGE, not the markup, same as the Payoneer GE/USD rows above; it bars the badge, which is correct while the cheapest row is unsourced.',
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'ZA', currency: 'USD' },
+        fixedFee: 13.50,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        fxMarkupEstimated: true,
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'AR', currency: 'USD' },
+        fixedFee: 13.47,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        fxMarkupEstimated: true,
+        notes: 'Dollars by SWIFT into an Argentine foreign currency account. The 13.47 is Wise\'s published Argentina Swift payout fee, from help/articles/2946451, and Argentina is in the group where predicted correspondent deductions are pre-funded. Wise CAN pay pesos out to a CBU, but only from ARS converted inside a Wise account, with no external peso funding and a cap of the equivalent USD 18,000 per transfer per calendar month, and its US send page still says US to ARS sending is not launched. So there is no ARS row here, and the 2.13% the price grid quotes for USD to ARS is not shippable under the rule at the top of this file.',
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PL', currency: 'PLN' },
+        fixedFee: 1.19,
+        percentageFee: 0.0035,
+        fxMarkupBps: 0,
+        typicalHours: 24,
+        notes: 'Fixed and percentage parts separated at $1,000 and $5,000 on Wise\'s price grid: $1.19 flat plus about 0.35%, giving $4.68 and $18.62. Every route at both amounts quoted the same rate, and Wise\'s own send page displayed that rate and states it converts at the mid-market rate with the fee charged separately, which is why the zero spread is sourced rather than assumed. It does NOT match NBP table A to four decimals and cannot: table A is a once-daily fixing, Wise quotes a live rate. Send page cross-checked at $1,000 across funding methods only.',
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PL', currency: 'USD' },
+        fixedFee: 27.24,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        fxMarkupEstimated: true,
+        notes: 'Wise\'s published Poland SWIFT fee, and it is dear: 27.24 against 1.19 to take zloty. Here taking dollars costs more than converting at almost any invoice size, which inverts the usual shape of these corridors.',
+      },
       // Verified: ~$14.74 fee on $1,000 send (wise.com/us/send-money/send-money-to-georgia)
       {
         source: { country: 'US', currency: 'USD' },
@@ -568,8 +648,60 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: true,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH', 'BR', 'IN', 'CO', 'UZ'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH', 'BR', 'IN', 'CO', 'UZ', 'ZA', 'AR', 'PL'],
     corridors: [
+      // ZA and PL: 1% to receive a non-local currency, then a withdrawal involving conversion that
+      // Payoneer publishes only as a 1.2% to 4% range, modelled at its 2.6% midpoint and flagged.
+      // AR is the exception in this file, decided by the owner on 2026-10-23: Payoneer's own
+      // Argentina page prices both the ARS and the USD withdrawal at "hasta 2%", naming the exact
+      // action a reader performs, while neither global band row fits either Argentine case (a USD
+      // balance paid out as pesos is local currency WITH conversion; a USD payout to an Argentine
+      // USD account is non-local currency WITHOUT one). So both AR rows use 2% and stay flagged,
+      // because a published ceiling is not a rate and the two Payoneer pages disagree.
+      // None of these gets the flat rate. Poland looked like it might: the pricing page's 1.50
+      // row reads "same country as yours, in local currency", but Payoneer's own explainer
+      // conditions that on there being NO conversion, and a Pole receiving dollars who wants zloty
+      // has a conversion by definition. Note that Payoneer's Argentina page also still advertises
+      // a USD 36,000 annual cap the BCRA deleted on 2025-09-18, so it is stale about regulation
+      // even though we treat it as authoritative about Payoneer's own prices.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'ZA', currency: 'ZAR' },
+        fixedFee: 0,
+        percentageFee: 0.01,
+        fxMarkupBps: 260,
+        typicalHours: 48,
+        fxMarkupEstimated: true,
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'AR', currency: 'ARS' },
+        fixedFee: 0,
+        percentageFee: 0.01,
+        fxMarkupBps: 200,
+        typicalHours: 48,
+        fxMarkupEstimated: true,
+        notes: '1% to receive a non-local currency, then the up to 2% Payoneer publishes on its own Argentina page for an ARS bank withdrawal, generally within 2 business days. Priced at that ceiling rather than the 2.6% midpoint used elsewhere in this file, because the Argentina page names this exact action while the global list only has rows for local currency without conversion and non-local currency with conversion, neither of which describes a USD balance paid out as pesos. Still flagged: a ceiling is not a rate, and the two Payoneer pages disagree.',
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'AR', currency: 'USD' },
+        fixedFee: 0,
+        percentageFee: 0.03,
+        fxMarkupBps: 0,
+        typicalHours: 48,
+        fxMarkupEstimated: true,
+        notes: '1% to receive plus the up to 2% Payoneer publishes for a USD withdrawal to an Argentine account, so 3% with no conversion leg, which is why it sits in percentageFee rather than in a markup. Payoneer adds "Verificar requisitos con tu banco para recepcion de USD". Flagged because 2% is a published ceiling, not a rate.',
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PL', currency: 'PLN' },
+        fixedFee: 0,
+        percentageFee: 0.01,
+        fxMarkupBps: 260,
+        typicalHours: 48,
+        fxMarkupEstimated: true,
+      },
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'GE', currency: 'GEL' },
@@ -876,8 +1008,41 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-08-27',
     supportedSourceCountries: ['US', 'GB', 'EU'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG', 'PH', 'BR', 'IN', 'CO'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG', 'PH', 'BR', 'IN', 'CO', 'ZA', 'AR', 'PL'],
     corridors: [
+      // All three from PayPal's own country fee schedules, read 2026-10-20, and none is flagged
+      // because every component is published. South Africa: 4.40% plus 0.30 to receive and 3.0%
+      // conversion, with withdrawal still routing through FNB at up to 1.51%, which has no field
+      // here and lives in the copy. Argentina: 5.40% plus 0.30, 3.50% conversion, ARS 75 per
+      // withdrawal, and PayPal's Argentine schedule prices only a peso withdrawal, which is why a
+      // PayPal user most likely cannot use the BCRA dollar-retention exemption. NOT asserted as a
+      // rule: PayPal states nowhere that dollar withdrawals in Argentina do not exist, and the copy
+      // hedges accordingly. Poland: 2.90% plus a 1.99% other-markets surcharge, so 4.89%, then
+      // 3.00% on conversion.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'ZA', currency: 'ZAR' },
+        fixedFee: 0.30,
+        percentageFee: 0.044,
+        fxMarkupBps: 300,
+        typicalHours: 48,
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'AR', currency: 'ARS' },
+        fixedFee: 0.30,
+        percentageFee: 0.054,
+        fxMarkupBps: 350,
+        typicalHours: 48,
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PL', currency: 'PLN' },
+        fixedFee: 0.30,
+        percentageFee: 0.0489,
+        fxMarkupBps: 300,
+        typicalHours: 48,
+      },
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PT', currency: 'EUR' },
@@ -1227,8 +1392,75 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: false,
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'BR'],
-    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH', 'BR', 'IN', 'CO', 'UZ'],
+    supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH', 'BR', 'IN', 'CO', 'UZ', 'ZA', 'AR', 'PL'],
     corridors: [
+      // ZA: Standard Bank is the one South African schedule that opened. Personal Forex pricing
+      // guide 2026, Transaction fees page: inward telegraphic transfers, Online/App 0.5% with a
+      // R165 minimum and a R622 maximum, plus R143 additional telecommunication fees. Physical
+      // channel is 0.73%, R244, R1 047, same R143. At 16.4341 the minimum bites below about
+      // USD 2,000, so the real cost there is R165 plus R143, about 18.74. Modelled as that flat
+      // figure because CorridorFee has no minimum or maximum field; it is correct to roughly
+      // USD 2,000 and TOO LOW above it (about 33.70 at USD 5,000), and the copy now says so
+      // explicitly rather than only carrying the structure. Checked 2026-10-21 that neither model
+      // shape changes the ranking at 1,000 or 5,000. Capitec publishes a 2026 forex fee schedule
+      // at a public URL that returns 403, and the FNB foreign exchange guide we could reach is
+      // years out of date, so neither gets a row. Neither bank refused us; we could not open the
+      // documents.
+      // AR: the Argentine side is free BY REGULATION. BCRA texto ordenado point 2.2.2.1: "Las
+      // entidades no podran cobrar comisiones por estas operaciones", confirmed in CIRA's
+      // reproduction of Com. A 8330. But the SAME sentence preserves pass-through of documented
+      // foreign intermediary charges at cost, and a plain wire pre-funds nothing, so the recipient
+      // CAN land short. Banco Macro is not a usable source for any of this: both macro.com.ar URLs
+      // are encrypted PDF forms that no agent has opened. The 35 is the carried US sending figure,
+      // unsourced, which is why the row is flagged and the copy now calls it a placeholder.
+      // PL: mBank's eKonto walutowe is free to open and run but publishes no inbound fee, so 35 is
+      // the carried US sending figure. Its spread is unpublished, and into an account whose
+      // currency does not match it crosses twice, buy then sell.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'ZA', currency: 'ZAR' },
+        fixedFee: 18.74,
+        percentageFee: 0,
+        fxMarkupBps: 250,
+        typicalHours: 96,
+        fxMarkupEstimated: true,
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'ZA', currency: 'USD' },
+        fixedFee: 18.74,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        fxMarkupEstimated: true,
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'AR', currency: 'USD' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        fxMarkupEstimated: true,
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PL', currency: 'PLN' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 250,
+        typicalHours: 96,
+        fxMarkupEstimated: true,
+      },
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'PL', currency: 'USD' },
+        fixedFee: 35,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 96,
+        fxMarkupEstimated: true,
+      },
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'GE', currency: 'GEL' },
