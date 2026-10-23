@@ -57,6 +57,7 @@ export function useLiveRates(): RatesState {
           ZAR: r.ZAR,
           ARS: r.ARS,
           PLN: r.PLN,
+          UAH: r.UAH,
         };
         // "Mon, 02 Jun 2026 00:00:02 +0000" → "2026-06-02"
         const raw: string = data.time_last_update_utc ?? '';
