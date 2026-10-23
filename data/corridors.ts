@@ -594,7 +594,7 @@ export const CORRIDORS: Corridor[] = [
         a: 'The reported threshold is 30,000 lari or the equivalent in another currency, above which you must declare the money to customs when crossing the border, with penalties for failing to. This one is worth mentioning only because people find the figure and assume it is a limit on bank transfers. It is not. It applies to physical cash and other bearer instruments you carry across the border in person, and it has nothing whatsoever to do with a client wiring dollars into your account. There is no transfer ceiling of that kind in Georgia. We could not open the customs code itself, so treat the exact figure as one to verify if you are actually planning to travel with cash.',
       },
     ],
-    siblingCorridors: ['usd-to-eur-portugal', 'usd-to-thb', 'usd-to-pkr', 'usd-to-mxn', 'usd-to-brl', 'usd-to-uzs', 'usd-to-zar', 'usd-to-pln'],
+    siblingCorridors: ['usd-to-eur-portugal', 'usd-to-thb', 'usd-to-pkr', 'usd-to-mxn', 'usd-to-brl', 'usd-to-uzs', 'usd-to-zar', 'usd-to-pln', 'usd-to-uah'],
   },
   // ─── USD → Portugal (EUR) ──────────────────────────────────────────────────
   {
@@ -1319,7 +1319,7 @@ export const CORRIDORS: Corridor[] = [
     ],
     altReceivingNote:
       'Uzbekistan is one of the few countries on this site where not converting is a real option rather than a workaround. Article 12 of the currency law gives residents the right to hold foreign currency accounts at Uzbek banks, and there is no rule anywhere in that law forcing you to sell your dollars. The one bank whose tariff we could read publishes free account opening, and puts no fee in that tariff on money arriving from abroad. What you are doing is deferring the spread rather than escaping it, since you pay it whenever you sell, but you get to choose the day.',
-    siblingCorridors: ['usd-to-gel', 'usd-to-thb', 'usd-to-pkr'],
+    siblingCorridors: ['usd-to-gel', 'usd-to-thb', 'usd-to-pkr', 'usd-to-uah'],
   },
   // USD to India (INR)
   {
@@ -1702,7 +1702,7 @@ export const CORRIDORS: Corridor[] = [
     ],
     altReceivingNote:
       'South Africa is one of the countries on this site where keeping your dollars is a real option rather than a workaround, and the rule that appears to forbid it does not. A resident holding foreign currency outside the country must, unless exempted elsewhere in the manual, offer to sell it within 30 days, and the exemption that exists covers services rendered to non-residents while physically abroad, which is not a freelancer at a desk in South Africa. So the money does have to come home. Once it is home the picture changes. The manual provides for a foreign currency account for a resident individual, allows withdrawals through any authorised banking product, and says funds withdrawn may also be converted to rand, which reads as a choice rather than a duty, while the 30 day sale obligation is written against currency held outside the country. Repatriate, do not convert. That last step is our reading of those provisions together rather than a sentence the manual states about individual accounts. For a company it is stated outright: CFC holders may retain funds without the obligation to convert into rand. The account matters more than most readers expect. The Customer Foreign Currency account everyone names is open to South African entities that are legal persons only, so a sole trader cannot hold one, but a plain foreign currency account for a resident individual does the same job and the manual provides for it separately. A Shyft wallet is a third route, and its claim that you can store forex indefinitely is consistent with the rules precisely because the wallet sits with a South African authorised dealer. Two things to weigh against the dollar option. The spread is deferred rather than escaped, since you pay it whenever you sell. And on the numbers below it is dear: Wise publishes a SWIFT fee of $13.50 to carry dollars here, against 7.43 dollars on a thousand to convert and pay out rand. So taking dollars costs more at ordinary invoice sizes. Take dollars because you want to choose the day you sell, not because it is cheaper.',
-    siblingCorridors: ['usd-to-ngn', 'usd-to-gel', 'usd-to-php', 'usd-to-pln'],
+    siblingCorridors: ['usd-to-ngn', 'usd-to-gel', 'usd-to-php', 'usd-to-pln', 'usd-to-uah'],
   },
   // USD to Argentina (ARS)
   {
@@ -1928,6 +1928,147 @@ export const CORRIDORS: Corridor[] = [
     ],
     altReceivingNote:
       'Poland is the easiest country on this site to keep your dollars in, and for once the reason is that there is nothing to get around. No exchange control, no repatriation deadline, and nobody to notify. mBank\'s foreign-currency account is free to open and run and covers ten currencies including dollars, so a resident can simply take a dollar payment and hold it. The constraint here is commercial and it points the opposite way to most corridors on this site. Wise publishes a $27.24 fee to carry dollars into Poland by international transfer, against about $4.68 to convert and pay zloty into your account, so taking dollars costs around six times as much at a thousand-dollar invoice and is still dearer at five thousand. Take dollars because you want to choose the day you sell, or because you spend in dollars, not because it saves anything. Two further things to weigh. The spread is deferred rather than escaped, since you pay it when you convert. And if you let a Polish bank convert an inbound payment into an account whose currency does not match it, mBank\'s own rules cross the money twice, to zloty at its buying rate and then out at its selling rate, neither of which it publishes.',
-    siblingCorridors: ['usd-to-eur-portugal', 'usd-to-gel', 'usd-to-zar'],
+    siblingCorridors: ['usd-to-eur-portugal', 'usd-to-gel', 'usd-to-zar', 'usd-to-uah'],
+  },
+  // USD to Ukraine (UAH)
+  {
+    slug: 'usd-to-uah',
+    source: 'USD',
+    sourceCountry: 'US',
+    destination: 'UAH',
+    destCountry: 'UA',
+    country: 'Ukraine',
+    title: 'Receive USD in Ukraine: real costs compared 2026',
+    metaDescription:
+      'Compare the real cost of receiving USD in Ukraine. No forced conversion, your bank charges nothing to receive it, and Wise cannot give you an account.',
+    h1: 'How to receive USD in Ukraine: nobody makes you convert, and Wise will not take you',
+    intro:
+      'Ukraine is the corridor where the rule everyone fears does not exist and the provider everyone recommends will not take you. Start with the good news, because it is better than almost anywhere else on this site. There is no mandatory sale of your dollars. We read the National Bank\'s wartime resolution, the one that governs all of this, across about 98% of its text, and there is no conversion obligation on a resident individual or a sole trader anywhere in it. What forced sales it does contain are housekeeping rules for banks rather than for you. Ukraine abolished mandatory sale of export proceeds in 2019, before the war, and the war did not bring it back. So you can be paid in dollars, hold them at a Ukrainian bank, and sell when the rate suits you. Now the awkward part. Wise, which is the cheapest option on most pages here, cannot give you an account: Ukraine is absent from its list of countries where you may hold money, and it is named outright on the list of places whose residents cannot get dollar account details. Wise can still pay money INTO Ukraine, so it belongs on this page as your client\'s rail rather than yours. The provider you will actually sign up for is Payoneer, and Payoneer does not publish one consistent price for Ukraine. Two more things before the table. Your bank almost certainly charges you nothing to receive the wire, which surprises most readers. And the account the money lands in matters more than the route: business income belongs in your sole trader foreign currency account, and putting it in your personal one is prohibited by the account rules rather than merely frowned upon.',
+    publishedDate: '2026-10-23',
+    updatedDate: '2026-10-23',
+    providers: [
+      {
+        slug: 'bank-wire',
+        name: 'A wire into your Ukrainian bank',
+        customHeading: 'A wire into a Ukrainian bank: nothing to receive it',
+        available: true,
+        notes:
+          'The default here, and for once the recipient side is genuinely free. Two Ukrainian banks publish tariffs we could open and both charge you nothing to take an inbound transfer. monobank states it plainly: receiving an incoming transfer is free. PrivatBank charges nothing on a personal current account or a premium card, though 1% on its payout and internet cards, and says it adds no commission of its own while warning that correspondent banks may deduct theirs depending on whether your client chose OUR, SHA or BEN. For a sole trader in IT, PrivatBank\'s own package prices account opening and monthly servicing at nothing, credits foreign currency the same day, and advertises currency exchange without commission. So what does this cost? Two things, and neither is a fee your bank charges you. The first is your client\'s own bank sending the wire, typically 25 to 50 dollars from a US bank, which is the figure in our table and is a placeholder carried from our other corridors rather than a number we measured. Ask your client what theirs charges. The second is the spread whenever you sell the dollars, and here we have to be careful: neither bank publishes an exchange margin. On the day we looked, PrivatBank\'s own branch board showed dollars at 44.8 buy against a 45.07 mid, which works out around 0.6%, but that is one observation from one board on one day and the page itself says rates vary by branch and card. Our spread figure is therefore an assumption and this row is flagged as an estimate. Two banks we could not price: Raiffeisen publishes a tariff announcement with no figures, and the only OTP international schedule we found covers large corporates.',
+      },
+      {
+        slug: 'payoneer',
+        name: 'Payoneer',
+        customHeading: 'Payoneer: the one you can actually sign up for, and it disagrees with itself',
+        available: true,
+        notes:
+          'The provider this corridor really runs on, and the one place our table cannot give you a single honest number, because Payoneer publishes two. Receiving costs 1% with a one dollar minimum, because a dollar payment is not your local currency. Getting it out is where the two pages part company. Payoneer\'s global fee schedule, last updated 1 January 2026, limits its cheap 1.50 dollar flat withdrawal to a named list of countries, and Ukraine is not on that list, which puts every withdrawal here in the published band of 1.2% to 4%. Payoneer\'s own Ukraine page says instead that withdrawal to a Ukrainian bank account costs up to 2% against the interbank rate. The same page also puts the annual fee trigger at under 2,000 dollars of turnover where the global schedule says under 6,000 dollars in any twelve consecutive months. Two pages, two numbers, twice over. We model the midpoint of the wider published band and flag the row, which is why it cannot carry our badge, and your real cost may well land at or under 2%. Worth knowing on top: Payoneer converts to hryvnia at its own rate, which it says may differ from the bank rate and for which it publishes no margin, the minimum withdrawal is 50 dollars, and it names integrations with PrivatBank, monobank, A-Bank and FUIB with payouts arriving in several hours to a few working days depending on the bank. One thing we could not confirm from any Payoneer page we opened, and which most guides assert: that a Ukraine-registered user is issued US local account details with an ACH routing number. The receiving pages promise local details in eleven currencies without saying who qualifies. Treat it as likely and check your own screen.',
+      },
+      {
+        slug: 'wise',
+        name: 'Wise',
+        customHeading: 'Wise: your client\'s rail, because you cannot have an account',
+        available: true,
+        notes:
+          'Read this one carefully, because it is the opposite of what this site usually tells you and we have a commission riding on it. You cannot open a Wise account as a Ukrainian resident. Ukraine does not appear anywhere on Wise\'s list of countries where you may hold money with it, and Wise\'s article on dollar account details names Ukraine outright among the places whose residents cannot have them. So the usual advice on this site, give your client US account details from Wise, is not available to you at all. What Wise can do is pay money in. Its help pages say it sends dollars into PrivatBank accounts on domestic rails rather than by SWIFT, and into other Ukrainian banks by SWIFT, at a published 1.13 dollars plus 1.94%. That is the figure in our dollar table, and it is your client\'s cost rather than yours. We have flagged it, because we found it in Wise\'s help centre and could not corroborate it on a public send page that prices the dollar leg, which is the standard this site now holds Wise numbers to. Wise can also deliver hryvnia, to an IBAN rather than a card, but we are not pricing that route because we could not find a published fee for it, and there is a ceiling that bites at exactly this reader\'s invoice size: a non-PrivatBank account takes at most 29,999 hryvnia per transfer, which is about 666 dollars, so a thousand dollar invoice will not fit through it in one piece. Wise also excludes Crimea and the occupied regions, and will not send to personal, junior or business cards. We earn a commission when someone signs up to Wise through this site. On this corridor the person who would sign up is your client, not you, and we would rather say that than imply otherwise.',
+      },
+      {
+        slug: 'paypal',
+        name: 'PayPal',
+        customHeading: 'PayPal: two of its own schedules point different ways',
+        available: true,
+        notes:
+          'The most tangled answer on the page, and we are going to lay out the conflict rather than resolve it, because PayPal\'s own documents do not agree. Its current Ukrainian consumer schedule opens with a notice that the expansion of services for Ukrainian customers is temporary humanitarian relief, applying to Ukrainian personal accounts up to and including 31 December 2026 until further notice. PayPal has been extending that date a quarter at a time. What that schedule prices is personal transactions, meaning friends and family: receiving one is free where no conversion is involved, and the only withdrawal row for Ukraine is to cards. There is no bank withdrawal row for Ukraine in it at all. For selling, it points you at the merchant schedule. Follow that link and Ukraine is listed, falling into all other markets for receiving international transactions at 4.40% plus a fixed fee, thirty cents on a dollar payment, which is what our table prices. So one document frames Ukraine as a temporary personal-accounts arrangement and the other prices Ukraine for commercial receiving. We could not settle it: PayPal\'s Ukrainian help article returned a security page to us, and the loudest third party claiming Ukrainian accounts still cannot take goods and services payments sells a workaround and has an interest in the answer. So do not read our row as confirmation that you can switch commercial receiving on. Confirm it with PayPal before you plan around it, and note that we have no published conversion figure for a Ukrainian merchant account either, so that part of our row is an assumption.',
+      },
+      {
+        slug: 'revolut',
+        name: 'Revolut',
+        customHeading: 'Revolut: it arrived, and then it left',
+        available: false,
+        notes:
+          'Worth a line because readers still ask and the answer changed recently. Revolut opened to Ukrainian residents in early 2025 through its Lithuanian bank, with onboarding through the state Diia app, then told those customers at the end of that year that it was withdrawing, and the accounts were deactivated in February 2026. Ukrainians living and registered in the European Economic Area keep theirs. We are hedging the dates rather than stating them flatly, because everything we could read on this is Ukrainian press: the National Bank\'s own site refused every request we made, and we did not open Revolut\'s own notice. Either way there is nothing to price.',
+      },
+      {
+        slug: 'eor-platforms',
+        name: 'Deel, Remote and the EOR platforms',
+        customHeading: 'Deel and Remote: a wrapper around the same rails',
+        available: false,
+        notes:
+          'These come up constantly in Ukraine, more than on most corridors, because a US company that wants a compliance wrapper around a Ukrainian contractor reaches for one. We are not pricing them, for a plain reason: we found no page from Deel or Remote of their own setting out Ukrainian contractor withdrawal methods or fees, and we will not price a provider from vendor blog posts. The structural point is worth more than a number anyway. These platforms change who your client contracts with and who handles the paperwork. They do not change where the money finally lands, which is still one of the rails above, so whatever they charge sits on top of the costs on this page rather than instead of them.',
+      },
+      {
+        slug: 'local-rails',
+        name: 'Ukrainian cards and instant payments',
+        customHeading: 'The local rails, and why none is an invoice address',
+        available: false,
+        notes:
+          'Ukrainian readers reach for a card number by reflex and it cannot do this job. The domestic card schemes and instant transfer services are initiated from inside the Ukrainian banking system by somebody who already holds a Ukrainian account, so there is nothing in them for a US accounts payable department to start. A US payer can address exactly two things: US account details belonging to you, which on this corridor no mainstream provider reliably gives a Ukrainian resident, or a Ukrainian bank account reached by international SWIFT. That absence is the whole shape of this page. It is why a SWIFT wire is the default here rather than the fallback it is on most corridors. We should say that no source we opened states outright that the domestic schemes cannot be reached from abroad; it follows from their being domestic systems with no cross-border leg, so treat it as our reading rather than a quotation.',
+      },
+    ],
+    supportedProviders: ['payoneer', 'bank-wire', 'wise', 'paypal'],
+    faqs: [
+      {
+        q: 'Do I have to sell my dollars, or can I keep them?',
+        a:
+          'You can keep them, and this is the most useful fact on the page because most readers arrive expecting the opposite. We read the National Bank\'s wartime resolution, the act that governs banking under martial law, across roughly 98% of its text, and there is no mandatory sale and no conversion obligation on a resident individual or a sole trader anywhere in it. The only forced sales in the document are aimed at banks rather than at you: a bank that bought currency for a client\'s medical treatment has to sell it back within two working days, and a bank holding currency on its National Bank account may sell it only to the National Bank. Neither touches a freelancer. The deeper reason is that Ukraine abolished mandatory sale of export proceeds in 2019, before the war, and the wartime rules did not reinstate it. We could not open the 2019 instrument itself, so treat that history as context rather than proof, but the current position does not depend on it: the resolution in force simply contains no such rule.',
+      },
+      {
+        q: 'Is there a deadline for bringing the money into Ukraine?',
+        a:
+          'There is a 180 day settlement deadline in the resolution, and as written it covers goods rather than services. The point says the limit applies to operations involving the export and import of goods, and the word it uses is goods. Services are not named in it. We are not going to tell you that settles it, for two reasons we could not check. The currency law that sits above the resolution may define goods broadly enough to pull services in, which is how the older currency control regime worked, and we could not open that law\'s article text despite several attempts. And a separate 2019 resolution sets exceptions to those deadlines, which Ukrainian accounting press says removes service exports from bank supervision entirely, and that document refused us too. So the honest answer is that the deadline as written is about goods, that a freelancer exporting services is probably outside it, and that the person to confirm it with is your own bank, because your bank is the one applying currency supervision to your account.',
+      },
+      {
+        q: 'Which account should the money land in, my sole trader account or my personal one?',
+        a:
+          'Your sole trader foreign currency account, and this is not a preference. The National Bank\'s instruction on opening accounts requires a natural person to hold separate accounts for business or independent professional activity and for personal needs, and then says in terms that personal use accounts may not be used for operations connected with business activity. So client money in your personal account is prohibited by the account rules rather than merely untidy. The consequence when it happens is a tax one rather than a currency penalty. The tax service has advised more than once that money credited to a personal account, or left sitting inside a payment system, is not sole trader income at all: it is personal income, which is taxed at 18% plus the military levy instead of the 5% single tax. PrivatBank tells individual recipients the same thing on its own transfers page. We could not open the tax service\'s consultation ourselves, because its site refused us, so that number reaches you through Ukrainian accounting press rather than from the authority.',
+      },
+      {
+        q: 'Can I move the dollars from my business account to my personal dollar card?',
+        a:
+          'Probably not directly, and we want to be straight that this is the weakest-sourced answer on the page. Ukrainian practitioners consistently cite a provision of the National Bank\'s currency regulation that forbids a sole trader transferring foreign currency from the business account to their own personal foreign currency account, with the described workaround being to sell the currency, move the hryvnia to your business hryvnia account, and transfer from there. We could not open that regulation at any address we tried, so we are reporting what practitioners say rather than a rule we read. Ask your bank before you plan around it. What we can tell you from a bank\'s own page is that monobank lets a sole trader move money to their personal account and withdraw up to 50,000 hryvnia a month without commission, which suggests the hryvnia leg of that workaround is routine.',
+      },
+      {
+        q: 'Why will Wise not give me dollar account details?',
+        a:
+          'Because Ukraine is on the exclusion list, by name. Wise publishes an article on who can get dollar account details, and it lists the countries where having your address there disqualifies you; Ukraine appears on it, alongside Russia, Turkey, the United Arab Emirates and Serbia. Separately, Wise publishes the list of countries where you may hold money with it at all, and Ukraine is simply not there. So this is not a verification problem you can argue your way through, and it is not temporary as far as either page says. Wise can still send money to you, including dollars into a PrivatBank account on domestic rails and hryvnia to an IBAN, so the useful move on this corridor is to ask your US client to pay you through Wise rather than to open an account yourself. We should disclose that we earn a commission when someone signs up to Wise through this site, and that on this corridor the person signing up would be your client.',
+      },
+      {
+        q: 'Does money sitting in Payoneer count as my income yet?',
+        a:
+          'Not as sole trader income, and the timing is where this gets expensive. The tax service\'s position, as reported by Ukrainian accounting press, is that funds sitting inside a payment system are not sole trader income: they become income when they reach your sole trader account. The trap is what happens if they never do. Money that ends up in your personal account instead is personal income at 18% plus the military levy rather than 5% plus 1%, and leaving a balance parked in Payoneer across a quarter end can leave you arguing about which period it belongs to. The practical habit is to withdraw to your sole trader foreign currency account and let the bank statement date the income. We could not open the tax authority\'s own page on this, so treat the rule as well attested rather than quoted, and ask your accountant how they date it.',
+      },
+      {
+        q: 'What do I actually pay in tax on this?',
+        a:
+          'On the usual setup, a sole trader on the third group pays 5% single tax plus a 1% military levy, both on the hryvnia equivalent of what you received, converted at the National Bank\'s official rate for the date the money reached your account. The gross amount counts, before your bank\'s commission. The military levy on third group sole traders is the recent change that English language guides routinely miss: it arrived on 1 January 2025 and is charged on the same base as the single tax. Social contributions are separate. Every figure in this answer reaches you from Ukrainian accounting publications rather than from the tax authority, because the authority\'s site refused every request we made and the Tax Code page would not load either, so verify the current numbers before you rely on them. One thing worth noticing: this is the real cost of the corridor. Tax on a five thousand dollar month runs to roughly 300 dollars, while the entire argument about which provider to use is worth perhaps 40.',
+      },
+      {
+        q: 'Does the 2% wartime single tax rate still exist?',
+        a:
+          'No, as far as we can establish, and this is the single most common stale belief about Ukrainian freelance tax. The 2% rate was a wartime measure and it was abolished from 1 August 2023. We are flagging it rather than stating it flatly because the law that repealed it refused to load for us, so we have this from accounting press rather than from the statute. If you are reading a guide that still quotes 2%, check its date before anything else: it is the fastest way to tell whether the rest of the page is current.',
+      },
+      {
+        q: 'Can I use Diia City and its 5% rate?',
+        a:
+          'Almost certainly not, and the reason is who the regime is written for. The 5% personal income tax attaches to salary and to gig contract pay handed out BY a company that is a Diia City resident, and that resident is a Ukrainian legal entity which has to keep meeting monthly tests, reported as an average remuneration floor and a minimum headcount of employees and gig specialists. A sole trader invoicing a US client directly is nobody\'s gig specialist, so the regime does not reach you. It becomes relevant if you stop freelancing and join a Ukrainian company inside the regime. Our sources here are a professional services brochure and Ukrainian tax press, because the Diia City site did not resolve for us and the law itself would not load, so treat the thresholds as indicative.',
+      },
+      {
+        q: 'Does my bank charge me to receive the transfer?',
+        a:
+          'On the two banks whose tariffs we could open, no. monobank states that receiving an incoming transfer is free. PrivatBank charges nothing on a personal current account or a premium card, and 1% on its payout and internet cards, while noting that correspondent banks in the chain may take their own cut depending on whether your client chose to pay those charges. PrivatBank\'s package for IT sole traders prices opening and monthly servicing at nothing and credits foreign currency the same day. What you cannot avoid is your client\'s own bank charging them to send, which is the figure in our table. One gap worth naming: neither bank publishes an inbound commission for a sole trader foreign currency account specifically, so the free figure is read off personal account and package schedules rather than a sole trader tariff.',
+      },
+      {
+        q: 'What paperwork proves the money came from abroad?',
+        a:
+          'There is no certificate here, and readers arriving from other corridors are often surprised by that. Ukraine issues no equivalent of the inward remittance certificates India or Bangladesh provide, and there is nothing to chase from your bank afterwards. What you keep instead is the statement on your sole trader foreign currency account showing the credit and its date, the contract or the invoice where the invoice works as a public offer, an act of services where your client signs one, and whatever your bank put in its own currency supervision file. Foreign language documents generally need a Ukrainian translation. The closest thing to a form we found is a bank template rather than a regulator\'s: PrivatBank runs a simplified currency control process for clients paid under offer agreements by companies like Google, Apple and Upwork, and asks for a letter about the offer agreement on its own template before the first credit.',
+      },
+      {
+        q: 'Do I need to worry about the US side, or a tax treaty?',
+        a:
+          'There is a treaty, and the guides telling you otherwise are wrong, which is worth knowing because several of the pages ranking for this question say Ukraine has no tax treaty with the United States. It does: an income tax treaty signed in 1994 which entered into force in 2000. In practice your US client will ask you for a W-8BEN. Income from services is sourced where the services are performed, so work done at a desk in Ukraine is foreign source for US purposes and there is nothing for your client to withhold. The form documents that rather than claiming a treaty benefit. We make no claim here about what the treaty itself gives you on any particular kind of income, because that depends on the article and on your circumstances.',
+      },
+    ],
+    altReceivingNote:
+      'Ukraine is one of the better countries on this site for keeping your dollars, and the reason is simply that nothing stops you. No rule requires an individual or a sole trader to sell foreign currency, not in the wartime resolution and not anywhere else we could find. monobank gives a sole trader free dollar and euro accounts alongside the hryvnia one, and PrivatBank runs foreign currency accounts for individuals, so holding the dollars costs you nothing. There is no cap on receiving or holding. The limits that do exist are about taking the money out as physical cash: roughly 200,000 hryvnia equivalent a day from your foreign currency account, which at current rates is around 4,400 dollars and will not bind a freelancer, and tighter ceilings on cash withdrawals abroad. On this corridor keeping the dollars is also the cheaper choice rather than the dearer one, which is unusual here. Receiving a dollar wire costs you nothing at either bank we could price, and the spread only arrives when you decide to sell, which on one branch board we looked at was around 0.6%. Compare that with the conversion a payment platform does for you on arrival at a rate it does not publish. Two honest limits. That 0.6% is a single observation from one board on one day, not a published margin, so our figure is an assumption. And the money has to land in your sole trader foreign currency account rather than your personal one, which is an account rule rather than advice.',
+    siblingCorridors: ['usd-to-gel', 'usd-to-pln', 'usd-to-uzs', 'usd-to-zar'],
   },
 ];

@@ -41,6 +41,7 @@ const DEST_OPTIONS: { code: CountryCode; label: string }[] = [
   { code: 'ZA', label: 'South Africa (ZAR)' },
   { code: 'AR', label: 'Argentina (ARS)' },
   { code: 'PL', label: 'Poland (PLN)' },
+  { code: 'UA', label: 'Ukraine (UAH)' },
 ];
 
 // Rendered to readers in the "Recipient receives in" dropdown, so no en dashes here.
@@ -63,6 +64,7 @@ const CURRENCY_LABELS: Record<Currency, string> = {
   ZAR: 'ZAR, South African Rand',
   ARS: 'ARS, Argentine Peso',
   PLN: 'PLN, Polish Zloty',
+  UAH: 'UAH, Ukrainian Hryvnia',
 };
 
 interface Props {

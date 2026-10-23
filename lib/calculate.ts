@@ -38,6 +38,7 @@ const COUNTRY_CURRENCY: Record<CountryCode, Currency> = {
   ZA: 'ZAR',
   AR: 'ARS',
   PL: 'PLN',
+  UA: 'UAH',
 };
 
 // Currencies a recipient can receive in each destination country.
@@ -108,6 +109,17 @@ const DEST_CURRENCIES_MAP: Partial<Record<CountryCode, Currency[]>> = {
   // when to sell. The spread is deferred, not escaped: mBank converts an inbound payment at its
   // own buy rate, and into a non-matching foreign-currency account it crosses twice, buy then sell.
   PL: ['PLN', 'USD'],
+  // Ukraine: the absence of a rule IS the rule, which is why this entry exists. NBU Board
+  // Resolution No. 18 of 24.02.2022 governs banking under martial law; read across ~98% of its
+  // 305,360 characters (consolidated revision 17.09.2026, basis v0105500-26) there is NO
+  // mandatory sale and NO conversion obligation on a resident individual or a FOP. The only
+  // forced sales are bank-side housekeeping. Ukraine abolished mandatory sale of export proceeds
+  // in 2019, pre-war, and the wartime rules did not reinstate it. monobank gives a FOP free USD
+  // and EUR accounts alongside the hryvnia one; PrivatBank runs FX current accounts for
+  // individuals. So holding dollars is free and the spread only lands when you choose to sell,
+  // which makes the dollar option the CHEAPER one here rather than the dearer one. Caps are on
+  // cash, not on holding: ~200,000 UAH/day equivalent out of an FX account (point 5).
+  UA: ['UAH', 'USD'],
 };
 
 export function getCurrency(country: CountryCode): Currency {
