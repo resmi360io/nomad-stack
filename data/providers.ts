@@ -124,7 +124,7 @@ export const PROVIDERS: Provider[] = [
     // grid's ZAR pair matched nothing on Wise's own South Africa send page, so it was discarded
     // and that row is now a flagged single-point model. Poland is the nearest thing to a pass,
     // and only at the one amount its send page prices.
-    unsupportedDestinationCurrencies: { UZ: ['UZS'], AR: ['ARS'], UA: ['UAH'] },
+    unsupportedDestinationCurrencies: { UZ: ['UZS'], AR: ['ARS'], UA: ['UAH', 'USD'] },
     corridors: [
       // South Africa, Argentina and Poland. PLN comes from wise.com/gateway/v1/price and agrees
       // with Wise's own send page at the one amount that page prices, across its funding methods.
@@ -183,16 +183,20 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 24,
         notes: 'Fixed and percentage parts separated at $1,000 and $5,000 on Wise\'s price grid: $1.19 flat plus about 0.35%, giving $4.68 and $18.62. Every route at both amounts quoted the same rate, and Wise\'s own send page displayed that rate and states it converts at the mid-market rate with the fee charged separately, which is why the zero spread is sourced rather than assumed. It does NOT match NBP table A to four decimals and cannot: table A is a once-daily fixing, Wise quotes a live rate. Send page cross-checked at $1,000 across funding methods only.',
       },
-      {
-        source: { country: 'US', currency: 'USD' },
-        destination: { country: 'UA', currency: 'USD' },
-        fixedFee: 1.13,
-        percentageFee: 0.0194,
-        fxMarkupBps: 0,
-        typicalHours: 48,
-        fxMarkupEstimated: true,
-        notes: 'THE READER CANNOT HAVE A WISE ACCOUNT. Ukraine is absent from "where do I need to live to hold money with Wise" and is NAMED on the USD-account-details exclusion list, so this row is the CLIENT\'s cost, not the reader\'s. 1.13 flat plus 1.94% is Wise\'s published figure for sending USD into a PrivatBank account on domestic rails (other Ukrainian banks go by SWIFT). Flagged because it comes from the help centre and we could not corroborate it on a public send page that prices the dollar leg, which is the standard this file now holds Wise numbers to. Wise CAN deliver UAH to an IBAN, but we found no published fee for it, hence the UA/UAH opt-out above; note also a 29,999 UAH per-transfer ceiling at non-PrivatBank banks, about 666 USD, so a 1,000 USD invoice will not fit through it in one piece.',
-      },
+      // NO US to UA row, in either currency, and that is deliberate. Wise has not launched
+      // sending to Ukraine from the United States: wise.com/us/send-money/send-money-to-ukraine
+      // offers a UAH wishlist ("We're working hard to allow customers to send UAH to Ukraine from
+      // the US - but we're not quite there yet"), the ua-locale page about sending from the USA
+      // says the same of dollars, and wise.com/us/send-money/send-money-to-privatbank-card offers
+      // a waiting list rather than a transfer. All read 2026-10-23 and re-read by the reviewer.
+      // Wise DOES publish 1.13 USD plus 1.94% for USD into a PrivatBank account on domestic rails,
+      // corroborated by worked examples on its own help page (21.66 from a USD balance, 26.64 by
+      // USD wire, on a 1,000 USD recipient amount), but those are sends from OUTSIDE the US and
+      // this site's source country is always US. Separately the reader cannot hold a Wise balance
+      // at all: Ukraine is absent from the hold-money list and NAMED on the USD-details exclusion
+      // list. UAH side for the record: a non-PrivatBank account takes at most 29,999 UAH per
+      // transfer, about 666 USD. See unsupportedDestinationCurrencies above: UA is opted out in
+      // BOTH currencies, so nobody re-adds a row from a price endpoint later.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PL', currency: 'USD' },
@@ -712,7 +716,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 260,
         typicalHours: 48,
         fxMarkupEstimated: true,
-        notes: 'The provider the reader actually signs up for on this corridor, since Wise bars Ukrainian residents. 1% to receive a non-local currency (min 1.00). Ukraine is NOT on the named flat-rate withdrawal list, so withdrawal falls in the published 1.2% to 4% band, modelled at its 2.6% midpoint. Payoneer disagrees with itself twice: its own Ukraine page says "up to 2%" against the interbank rate, and puts the annual fee trigger at under 2,000 USD turnover where the global schedule says under 6,000 USD in any 12 consecutive months. Flagged for that reason; the real cost may sit at or under 2%. Payoneer converts at its own rate, publishes no margin for it, and sets a 50 USD minimum withdrawal. NOT confirmed on any Payoneer page we opened: that a Ukraine-registered user gets US local details with an ACH routing number.',
+        notes: 'The provider the reader actually signs up for on this corridor, since Wise bars Ukrainian residents. 1% to receive a non-local currency (min 1.00). Ukraine is NOT on the named flat-rate withdrawal list, so withdrawal falls in the published 1.2% to 4% band, modelled at its 2.6% midpoint. Payoneer disagrees with itself twice: its own Ukraine page says "up to 2%" against the interbank rate, and puts the annual fee trigger at under 2,000 USD turnover where the global schedule says under 6,000 USD in any 12 consecutive months. Flagged for that reason; the real cost may sit at or under 2%. Payoneer converts at its own rate, publishes no margin for it, and publishes no minimum withdrawal we could find on its pricing pages, though the global page warns that "In some countries, a minimum fee of up to 20.00 USD or equivalent may apply". NOT confirmed on any Payoneer page we opened: that a Ukraine-registered user gets US local details with an ACH routing number.',
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -1061,10 +1065,10 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'UA', currency: 'UAH' },
         fixedFee: 0.30,
         percentageFee: 0.044,
-        fxMarkupBps: 400,
+        fxMarkupBps: 300,
         typicalHours: 48,
         fxMarkupEstimated: true,
-        notes: 'Two PayPal documents point different ways and the copy reports the conflict rather than resolving it. The Ukrainian CONSUMER schedule frames Ukraine as temporary humanitarian relief for PERSONAL accounts, "up to and including December 31, 2026 until further notice", prices personal transactions only, and has no bank-withdrawal row for Ukraine at all. The MERCHANT schedule lists Ukraine and puts it in "all other markets" for receiving international transactions at 4.40% plus a fixed fee, 0.30 on USD, which is what this row prices. We could NOT confirm that commercial receiving can actually be enabled on a Ukrainian account: PayPal\'s own Ukrainian help article served a security interstitial, and the loudest third party asserting it cannot sells a workaround. Do not read this row as proof it works. The 400bps markup is an ASSUMPTION: no conversion figure is published for a Ukrainian merchant account.',
+        notes: 'Two PayPal documents point different ways and the copy reports the conflict rather than resolving it. The Ukrainian CONSUMER schedule frames Ukraine as temporary humanitarian relief for PERSONAL accounts, "up to and including December 31, 2026 until further notice", prices personal transactions only, and has no bank-withdrawal row for Ukraine at all. The MERCHANT schedule lists Ukraine and puts it in "all other markets" for receiving international transactions at 4.40% plus a fixed fee, 0.30 on USD, which is what this row prices. We could NOT confirm that commercial receiving can actually be enabled on a Ukrainian account: PayPal\'s own Ukrainian help article served a security interstitial, and the loudest third party asserting it cannot sells a workaround. Do not read this row as proof it works. The 300bps markup is PUBLISHED, not assumed: PayPal\'s Ukrainian merchant fee page puts Ukraine under South East Europe at 3.0% above the base exchange rate for conversions when receiving payments, adding funds, withdrawing and moving money between balances, and at 4.0% for conversions when making payments or on refunds beyond a day, so 3.0% is the leg this row needs. Read 2026-10-23. fxMarkupEstimated stays TRUE, because what we still cannot confirm is whether commercial receiving can be switched on for a Ukrainian account at all.',
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -1482,10 +1486,10 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'UA', currency: 'UAH' },
         fixedFee: 35,
         percentageFee: 0,
-        fxMarkupBps: 60,
+        fxMarkupBps: 0,
         typicalHours: 48,
         fxMarkupEstimated: true,
-        notes: 'The RECIPIENT side is free, which is unusual. monobank: "Отримання вхідного переказу - безкоштовно". PrivatBank: free on a personal current account or premium card, 1% on payout and internet cards, no commission of its own, correspondent banks may still deduct. Its IT FOP package prices opening and servicing at nothing and credits FX same day. So the 35 here is the CLIENT\'s US sending bank, carried from other corridors and unsourced, hence the flag. The 60bps spread is ONE observation: PrivatBank\'s branch board showed USD 44.8 buy against a 45.07 mid on 2026-10-23, about 0.6%, and the page itself says rates vary by branch and card. Neither bank publishes an exchange margin, and neither publishes an inbound commission for a FOP FX account specifically, so the free figure is read off personal and package schedules.',
+        notes: 'The RECIPIENT side is free, which is unusual. monobank: "Відправлення та отримання SWIFT-переказів тепер за 0 грн", with SWIFT in USD, EUR, PLN, GBP, CAD and CHF "протягом 1-2 робочих днів", which is what typicalHours 48 rests on. PrivatBank: free on a personal current account or premium card, 1% on payout and internet cards, no commission of its own, correspondent banks may still deduct. Its IT FOP package prices opening and the monthly RKO fee at nothing, verbatim on privatbank.ua/package-propositions-for-it-specialists. Same-day FX crediting is NOT a property of the inbound payment: the bank\'s December 2024 announcement of the package says it as a property of an extended currency TRADING SESSION, while the IT companies page credits incoming payments до 17:00 and says the larger the exchange volume the better the rate and the lower the commission. So the 35 here is the CLIENT\'s US sending bank, carried from other corridors and unsourced, hence the flag. The spread is set to ZERO because nothing published supports a number: on 2026-10-23 PrivatBank\'s own pages showed USD buy 44.95 in the header ticker and 45.05 in the branch table against an NBU official rate of 45.051, so the observable gap was between nothing and about 22bps, and an earlier 44.8 against 45.07 reading did not reproduce. PrivatBank\'s own FAQ also says the branch rate is the cash desk rate while the card rate is the one used for online payments and transfers to your own currency card, so a branch board is not the rate a bank applies to an inbound non-cash credit. fxMarkupEstimated stays TRUE because the 35 remains an unsourced placeholder. Neither bank publishes an exchange margin, and neither publishes an inbound commission for a FOP FX account specifically, so the free figure is read off personal and package schedules.',
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -1495,7 +1499,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 48,
         fxMarkupEstimated: true,
-        notes: 'Holding dollars rather than converting. Nothing to receive at either bank we could price, no conversion, so the only cost is the client\'s sending bank. This is the cheapest way to be paid on this corridor AND the option the page argues for, because the spread lands only when you choose to sell.',
+        notes: 'Holding dollars rather than converting. Nothing to receive at either bank we could price, no conversion, so the only cost is the client\'s sending bank. With the Wise row gone there is no other priced dollar route here, so this row is the dollar option by default rather than by comparison. The page argues for it because the spread lands only when you choose to sell, not because the 35 beats anything: the 35 is an unsourced placeholder for the client\'s sending bank, identical to the figure on the hryvnia row, and should not be read as a ranking.',
       },
       {
         source: { country: 'US', currency: 'USD' },
