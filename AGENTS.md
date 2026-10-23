@@ -289,7 +289,19 @@ What is in place now:
 
 - A standing host session created WITH `source_url` pointing at this repo, so the checkout,
   the three agents, the `humanizer` skill and AGENTS.md all load normally. This was verified
-  by a throwaway diagnostic session before anything was rewired, not assumed.
+  by a throwaway diagnostic session before anything was rewired, not assumed, and then
+  verified again END TO END: a one-shot trigger bound to the host woke it through the
+  scheduler on 2026-10-23, and it reported the checkout at HEAD 51f457f, all three named
+  agents and the humanizer present, and computed the day's rotation set itself as
+  `usd-to-gel` and `usd-to-inr`. That is the first scheduled wake in this project's history
+  that arrived with working agents.
+- DO NOT USE `fire_trigger` TO TEST OR RUN THIS, and do not read a fire_trigger result as
+  evidence about the rotation. Fired manually on 2026-10-23, this trigger did NOT wake the
+  host: it minted a brand new session with `origin: force_run_trigger` carrying the old
+  `config:no-git-repo` tag, which reproduced the original failure in 43 seconds for $0.12 and
+  proved nothing. Only the scheduled path honours `persistent_session_id`. To test it out of
+  hours, create a one-shot trigger with `run_once_at` bound to the host, which does go
+  through the scheduler.
 - A daily trigger bound to that host by `persistent_session_id`, firing at the same 09:07.
 - The old trigger DISABLED and renamed, not deleted, so this is reversible.
 - The host runs on Sonnet on purpose. The orchestrator is the cheap part; the named agents
