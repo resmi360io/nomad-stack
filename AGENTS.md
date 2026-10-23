@@ -50,10 +50,25 @@ Take the next corridor from the top of this list. When one ships, delete its lin
 Order is the decision, so do not reorder it to pick an easier corridor: a corridor
 sitting at the top because it is hard is exactly the one worth doing.
 
-**The queue is empty.** India, Uzbekistan and Colombia were the last three on it and
-all three are live. Nobody deleted the India and Uzbekistan lines when they shipped on
-2026-09-25, so for three days this section told sessions to research corridors that
-already existed. Delete the line when the corridor ships, not later.
+- **Ukraine (UAH).** IN PROGRESS in an interactive session from 2026-10-23, so do NOT
+  research it from a scheduled run while this parenthesis is here: you would pay twice for
+  the same brief. The owner picked it over Turkey, Vietnam and Egypt on the grounds that it
+  is the largest freelance population not yet covered and pairs with Poland for the
+  relocation audience. Known blockers to point the researcher at: martial-law NBU currency
+  controls in force since February 2022 and amended many times, so the live resolution
+  number matters more than any summary; whether a FOP may hold and keep dollars at all, and
+  whether service income must land in a FOP foreign-currency account rather than a personal
+  one, which is the same account-type trap that nearly shipped wrong on South Africa; the
+  FOP group 3 single tax and the military levy that changed on 2025-01-01; and PayPal, which
+  has historically been unable to RECEIVE commercial payments in Ukraine. That last one is a
+  negative claim, so it needs a primary source like any fee. UAH is also a new currency, so
+  the two exhaustive rate records bite.
+
+Nothing else is queued. India, Uzbekistan and Colombia were the last three on it and all
+three are live, as are South Africa, Argentina and Poland since 2026-10-23. Nobody deleted
+the India and Uzbekistan lines when they shipped on 2026-09-25, so for three days this
+section told sessions to research corridors that already existed. Delete the line when the
+corridor ships, not later.
 
 Before adding a corridor here, note what the last three cost, because the estimate
 this section used to imply was wrong. Each one takes a research pass, a draft, a
@@ -258,9 +273,55 @@ those cases it pushes the branch and reports the blocker instead. Before
 request, so its corrections sat unmerged by construction, which is the failure
 the paragraph above forbids.
 
-### The scheduled job has failed four different ways. Check it, do not assume it.
+### FIXED on 2026-10-23: the rotation now runs in a persistent host that starts with the repo
 
-It has never once shipped a corridor correction. Four distinct causes so far, and
+Read this before touching the rotation, because the four failures below are history
+and the fix is not obvious from them.
+
+The real cause under failures 3 and 4 was one thing: project agents in `.claude/agents/`
+load only when a session STARTS, and every scheduled run from 2026-10-16 onward started
+with no repository. So `corridor-verifier`, `corridor-reviewer` and `corridor-researcher`
+could not exist for it, cloning mid-run could not create them, and the session has no
+`register_repo_root` to reload project config afterwards. Every prompt-side workaround was
+treating a symptom.
+
+What is in place now:
+
+- A standing host session created WITH `source_url` pointing at this repo, so the checkout,
+  the three agents, the `humanizer` skill and AGENTS.md all load normally. This was verified
+  by a throwaway diagnostic session before anything was rewired, not assumed.
+- A daily trigger bound to that host by `persistent_session_id`, firing at the same 09:07.
+- The old trigger DISABLED and renamed, not deleted, so this is reversible.
+- The host runs on Sonnet on purpose. The orchestrator is the cheap part; the named agents
+  specify opus in their own definitions, so they come up on opus regardless. The old
+  general-purpose fallback is gone and must not come back: it handed write tools to agents
+  whose whole guarantee was being read-only.
+
+Four things about this shape that will bite if you forget them:
+
+- NO COMPLETION NOTIFICATIONS. The service rejects the `notifications` field for a trigger
+  bound to a persistent session. The owner's only signals are the run's report and the pull
+  request, which is why the prompt ends by saying so. If notifications matter more than the
+  fix, the alternative is the product-side change below.
+- THE WORKING TREE PERSISTS between runs, unlike a fresh session. The prompt therefore starts
+  every run with `git fetch origin main` and `git checkout -B <branch> origin/main`. Without
+  that a run eventually builds on the last one's leftovers.
+- CONTEXT ACCUMULATES in the host across runs and will compact. If its work degrades, create
+  a NEW host session with `source_url` and a new trigger bound to it: `update_trigger` cannot
+  move `persistent_session_id`, so repointing means a new trigger and disabling the old one.
+- THE HOST SHARES THE BRANCH with interactive sessions, so pushes can collide. The prompt
+  tells it to do its git work in one go and to rebase its single commit rather than force-push
+  over anyone.
+
+The tidier fix is still product-side and still needs the owner: attach `resmi360io/nomad-stack`
+to a Routine or to its environment, which would let the rotation go back to a fresh session per
+run AND keep notifications. It cannot be done from here. `create_trigger` has no sources field,
+`update_trigger` cannot set one, there is no create-environment tool, and all four environments
+on this account are named "Default" with `sources: []`.
+
+### The scheduled job had failed five different ways. Check it, do not assume it.
+
+Before the fix above it had never once shipped a corridor correction. Five distinct causes, and
 each looked like success from the outside:
 
 1. **Nowhere to ship to** (until 2026-10-01). Its prompt committed to a feature
@@ -307,9 +368,18 @@ lives in the repo is unavailable to any session that starts without the repo. If
 the rotation needs to be robust, those definitions belong at the account level
 rather than in `.claude/`.
 
+5. **Full price, still nothing** (2026-10-22). The clearest evidence that the guard in
+   the prompt was never a fix. That run still carried `config:no-git-repo`, but it did
+   NOT stop early: it spent $5.41 over 12.7 minutes, 153k output tokens, and `main` did
+   not move. The day before, on 2026-10-21, an identical setup stopped after 35 seconds
+   for $0.12. Same cause, same outcome, cost varying by a factor of forty. So do not read
+   a cheap run as the guard working or an expensive one as real progress: only `main`
+   moving tells you anything.
+
 So: never read a green `last_run` as proof the job worked. Check the session, and
 check whether `main` actually moved. Eleven days passed between 2026-10-08 and
-2026-10-19 with daily runs, real money spent, and not one commit.
+2026-10-19 with daily runs, real money spent, and not one commit, and another four
+days followed that.
 
 ### Interactive work and the scheduled job share one weekly budget
 
