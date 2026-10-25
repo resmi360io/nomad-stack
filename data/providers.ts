@@ -129,8 +129,8 @@ export const PROVIDERS: Provider[] = [
       // South Africa, Argentina and Poland. PLN comes from wise.com/gateway/v1/price and agrees
       // with Wise's own send page at the one amount that page prices, across its funding methods.
       // ZAR DOES NOT agree: the endpoint gave 7.79 on 1,000 and 25.31 on 5,000 while the send page
-      // prices the cheapest route, money already in your Wise account, at 7.46 on 1,000, with
-      // direct debit 9.47 and bank transfer 13.87. Nothing public is 7.79 and nothing public
+      // prices the cheapest route, money already in your Wise account, at 7.43 on 1,000 (read
+      // 2026-10-25), with direct debit 9.44 and bank transfer 13.84. Nothing public is 7.79 and nothing public
       // prices 5,000, so that pair is DISCARDED and the ZAR row is a flagged single-point model.
       // The USD rows use Wise's published per-destination SWIFT fee from help/articles/2946451,
       // read 2026-10-20 and again 2026-10-21, which REPLACES the 6.15 all-countries base; all
@@ -149,11 +149,11 @@ export const PROVIDERS: Provider[] = [
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'ZA', currency: 'ZAR' },
         fixedFee: 0,
-        percentageFee: 0.00746,
+        percentageFee: 0.00743,
         fxMarkupBps: 0,
         typicalHours: 24,
         fxMarkupEstimated: true,
-        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-south-africa states the cheapest route, money already in your Wise account, costs 7.46 USD on 1,000 USD, read 2026-10-21. Wise publishes no second amount at any URL we could find, so the fixed and percentage parts cannot be separated; this models the 1,000 USD price proportionally, which overstates at larger amounts rather than understating. The v1/price pair (7.79 on 1,000 and 25.31 on 5,000) matched NO figure on Wise\'s own page and is not used. fxMarkupEstimated marks the estimated PERCENTAGE, not the markup, same as the Payoneer GE/USD rows above; it bars the badge, which is correct while the cheapest row is unsourced.',
+        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-south-africa states the cheapest route, money already in your Wise account, costs 7.43 USD on 1,000 USD, read 2026-10-25. Wise publishes no second amount at any URL we could find, so the fixed and percentage parts cannot be separated; this models the 1,000 USD price proportionally, which overstates at larger amounts rather than understating. The v1/price pair (7.79 on 1,000 and 25.31 on 5,000) matched NO figure on Wise\'s own page and is not used. fxMarkupEstimated marks the estimated PERCENTAGE, not the markup, same as the Payoneer GE/USD rows above; it bars the badge, which is correct while the cheapest row is unsourced.',
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -305,10 +305,11 @@ export const PROVIDERS: Provider[] = [
       // Wise is migrating Thai-address personal customers onto its Bank of Thailand licensed local
       // entity. After migration, third-party payments arriving into foreign-currency receiving
       // details are automatically converted to THB on arrival, so a Thai-resident freelancer can
-      // still be paid but can no longer hold the USD. Wise's current text: customers who signed up
-      // before 21 January 2026 see the changes from October 2026; those who signed up after are
-      // rolled out progressively and on them by August 2026. The same article also says nothing
-      // changes until October 2026, which does not sit easily with the August date. Both reported.
+      // still be paid but can no longer hold the USD. Wise's text as read 2026-10-25: customers who
+      // signed up before 21 January 2026 see the changes from December 2026; those who signed up
+      // after are rolled out progressively and on them by September 2026. The same article says
+      // nothing changes until December 2026, which does not sit easily with the September date.
+      // Both reported. Both dates are later than the October and August read in September 2026.
       //
       // REVIEWED 2026-09-24, ranking unchanged. Wise's eligibility page
       // (wise.com/help/articles/2813542) says under Additional restrictions: "Thailand - we've
@@ -1102,10 +1103,10 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 24,
         fxMarkupEstimated: true,  // 3.5% is PayPal's general cross-border spread, not a Mexico figure; the corridor copy calls it an estimate
       },
-      // Thailand: the 2022 relaunch removed commercial receiving from personal accounts.
-      // Personal-account identity verification runs through NDID, which requires a 13-digit
-      // Thai national ID, so foreign residents of Thailand cannot hold a personal Thai
-      // PayPal account at all. A Thai-registered business account is the reported route for
+      // Thailand: the 2022 relaunch removed friends and family and Payouts, NOT commercial receiving
+      // (see the corrected note on this row). Personal-account identity verification runs through
+      // NDID and PayPal's relaunch FAQ says IDs without a 13-digit Thai national ID number cannot be
+      // accepted, so foreign residents are unlikely to be approved for a personal account. A Thai-registered business account is the reported route for
       // freelance income. The fee row below is the generic personal-account model and does
       // not describe that route. Verify current before relying on it.
       {
@@ -1122,7 +1123,7 @@ export const PROVIDERS: Provider[] = [
         // and, post-relaunch, from the PayPal (Thailand) Limited user agreement effective
         // 20 February 2024. The 11.00 THB fixed fee applies to amounts received IN BAHT, so the
         // 0.30 USD stays on this row, which prices a USD receipt.
-        notes: 'PayPal Thailand publishes 4.40% plus a fixed fee for cross-border commercial payments, 3.90% domestic, an 11.00 THB fixed fee on amounts received in baht, and 3.00% currency conversion above its base rate, rising to 4.00% on refunds and on payments sent more than a day after. Personal accounts CAN receive goods and services payments. Verification needs a 13-digit Thai national ID, so foreign residents of Thailand are unlikely to be approved for a personal account. Withdrawal to a Thai bank is free at 5,000 THB or more. PayPal Thai fee pages still carry 2021 effective dates. Verify current.',
+        notes: 'PayPal Thailand publishes 4.40% plus a fixed fee for cross-border commercial payments, 3.90% domestic, an 11.00 THB fixed fee on amounts received in baht, and 3.00% currency conversion above its base rate, rising to 4.00% on conversions when sending a payment and on refunds received more than a day after the original payment. Personal accounts CAN receive goods and services payments. Verification needs a 13-digit Thai national ID, so foreign residents of Thailand are unlikely to be approved for a personal account. Withdrawal to a Thai bank is free at 5,000 THB or more. PayPal Thai fee pages still carry 2021 effective dates. Verify current.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -1202,8 +1203,8 @@ export const PROVIDERS: Provider[] = [
   // ─── GrabrFi ───────────────────────────────────────────────────────────────
   // Source: https://grabrfi.com/pricing (2026-06-02)
   // Freelancer-focused; USD checking product. Account eligibility is a fixed list of
-  // countries keyed to your government-issued ID, and it excludes Georgia, Thailand and
-  // Indonesia. Portugal is on the eligibility list but GrabrFi EUR payout to a Portuguese
+  // countries whose residents GrabrFi offers accounts to (help.grabrfi.com, 26 countries, read
+  // 2026-10-25), and it excludes Georgia, Thailand and Indonesia. Portugal is on the eligibility list but GrabrFi EUR payout to a Portuguese
   // bank is unconfirmed, so PT is not listed as a destination. Local-currency withdrawal: MX.
   {
     slug: 'grabrfi',
@@ -1307,7 +1308,7 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 1,
         notes: 'Strong US→MX network; near-instant cash pickup available',
       },
-      // Confirmed ~150 bps FX spread (bestexchangerates.com); $0 promo fee until Jul 2026
+      // ~150 bps FX spread from bestexchangerates.com only, hence flagged estimated. westernunion.com/us/en/send-money-to-thailand.html showed fee and rate placeholders only on 2026-10-25, plus a first digital transfer promo (no fee, promo rate up to 2,500 USD, limited time).
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'TH', currency: 'THB' },
@@ -1315,7 +1316,8 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 150,
         typicalHours: 24,
-        notes: '$5 standard transfer fee shown. A $0 promotional fee was previously advertised with an expiry around July 2026; that date has passed and the promotion has not been rechecked. Verify current.',
+        fxMarkupEstimated: true,
+        notes: 'Neither the $5 transfer fee nor the 1.5% spread is published by Western Union for this corridor: the spread is from a third party tracker, and Western Union\'s own Thailand page showed only blank placeholders for fee and rate when checked on 2026-10-25. That page advertises no transfer fee and a special rate on a first digital transfer up to 2,500 USD, as a limited time offer. Verify current.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -1394,7 +1396,7 @@ export const PROVIDERS: Provider[] = [
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'BR'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH', 'BR', 'IN', 'CO', 'UZ', 'ZA', 'AR', 'PL'],
     corridors: [
-      // ZA: Standard Bank is the one South African schedule that opened. Personal Forex pricing
+      // ZA: the row is priced on Standard Bank. Personal Forex pricing
       // guide 2026, Transaction fees page: inward telegraphic transfers, Online/App 0.5% with a
       // R165 minimum and a R622 maximum, plus R143 additional telecommunication fees. Physical
       // channel is 0.73%, R244, R1 047, same R143. At 16.4341 the minimum bites below about
@@ -1402,10 +1404,12 @@ export const PROVIDERS: Provider[] = [
       // figure because CorridorFee has no minimum or maximum field; it is correct to roughly
       // USD 2,000 and TOO LOW above it (about 33.70 at USD 5,000), and the copy now says so
       // explicitly rather than only carrying the structure. Checked 2026-10-21 that neither model
-      // shape changes the ranking at 1,000 or 5,000. Capitec publishes a 2026 forex fee schedule
-      // at a public URL that returns 403, and the FNB foreign exchange guide we could reach is
-      // years out of date, so neither gets a row. Neither bank refused us; we could not open the
-      // documents.
+      // shape changes the ranking at 1,000 or 5,000. FNB's guide for 1 July 2026 to
+      // 30 June 2027 charges 0.55% on a digital global receipt above R10,000, min R175, max R450.
+      // Capitec's 2026 personal fee schedule (valid from 1 March 2026) charges a fixed R50 to receive
+      // an international payment; its business forex schedule still returns 403. Neither publishes a
+      // margin. Rebasing this row on either moves bank wire above Payoneer at USD 1,000 (FNB 964.71,
+      // Capitec 972.06, against Payoneer 964.26), so it is held for the owner, read 2026-10-25.
       // AR: the Argentine side is free BY REGULATION. BCRA texto ordenado point 2.2.2.1: "Las
       // entidades no podran cobrar comisiones por estas operaciones", confirmed in CIRA's
       // reproduction of Com. A 8330. But the SAME sentence preserves pass-through of documented
