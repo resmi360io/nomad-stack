@@ -1,30 +1,43 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { cache } from 'react';
 import { Calculator } from '@/components/Calculator';
+import { CorridorTable } from '@/components/CorridorTable';
+import { fetchRatesServer } from '@/lib/fetchRates';
 import { CORRIDORS } from '@/data/corridors';
 import { PROVIDERS } from '@/data/providers';
 
+export const revalidate = 3600;
+
+const getRates = cache(fetchRatesServer);
+
+// Receive intent only. Until 2026-10-26 this page ranked around position 63 for sender queries
+// ("pay freelancers internationally") because nothing else on the site answered them, and it
+// answered them badly. Those queries now have their own page, so this one can say plainly that it
+// is for the person being paid. Title is absolute so the layout does not append the site name.
 export const metadata: Metadata = {
-  title: 'How freelancers receive international payments: country guide 2026',
+  title: { absolute: 'Receive international payments: real costs by country' },
   description:
-    'Country-by-country cost guide: fees, FX spread, and the cheapest way to receive USD, GBP, or EUR from international clients. Wise, Payoneer, Western Union, bank wire compared.',
+    'How freelancers receive international payments: what Wise, Payoneer, PayPal, Western Union and bank wire really cost in 17 countries, and which one leaves you the most.',
   alternates: {
     canonical: '/receive-international-payments',
   },
   openGraph: {
-    title: 'How freelancers receive international payments: country-by-country cost guide 2026',
+    title: 'How freelancers receive international payments: real costs by country',
     description:
-      'Country-by-country breakdown of what it really costs to receive international payments. Wise, Payoneer, Revolut, Western Union, bank wire, ranked by net received.',
+      'What each way of getting paid from abroad really costs in 17 countries, ranked by the amount that lands in your account.',
     url: '/receive-international-payments',
     type: 'article',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'How freelancers receive international payments: country guide 2026',
+    title: 'Receive international payments: real costs by country',
     description:
-      'Country-by-country breakdown of what it really costs to receive international payments, ranked by net received.',
+      'What each way of getting paid from abroad really costs in 17 countries, ranked by the amount that lands in your account.',
   },
 };
+
+const P = 'text-muted-foreground leading-relaxed';
 
 const pillarJsonLd = {
   '@context': 'https://schema.org',
@@ -32,10 +45,9 @@ const pillarJsonLd = {
     {
       '@type': 'Article',
       '@id': 'https://paidacross.com/receive-international-payments#article',
-      headline:
-        'How freelancers receive international payments: country-by-country cost guide 2026',
+      headline: 'How freelancers receive international payments: real costs by country',
       datePublished: '2026-06-03T00:00:00+00:00',
-      dateModified: '2026-08-13T00:00:00+00:00',
+      dateModified: '2026-10-26T00:00:00+00:00',
       url: 'https://paidacross.com/receive-international-payments',
       image: 'https://paidacross.com/opengraph-image',
       author: {
@@ -67,7 +79,8 @@ const pillarJsonLd = {
   ],
 };
 
-export default function ReceiveInternationalPaymentsPage() {
+export default async function ReceiveInternationalPaymentsPage() {
+  const rates = await getRates();
   const wiseProvider = PROVIDERS.find(p => p.slug === 'wise');
   const wiseLink = wiseProvider?.affiliateLink || wiseProvider?.signupUrl || 'https://wise.com';
 
@@ -80,18 +93,17 @@ export default function ReceiveInternationalPaymentsPage() {
         }}
       />
       <main className="mx-auto max-w-3xl px-4 py-12 space-y-10">
-        {/* Header */}
         <header className="space-y-3">
           <h1 className="text-3xl font-bold tracking-tight leading-tight">
-            How freelancers receive international payments: country-by-country cost guide 2026
+            How freelancers receive international payments: real costs by country
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            The platform you use to receive international payments can cost you anywhere from
-            0.5% to 8% of each invoice. On a single $5,000 invoice, that gap is about $375,
-            and on $5,000 of monthly freelance income, choosing the wrong option can cost you
-            over $4,000 a year. This guide covers every major receiving corridor, what each
-            provider actually charges, and which one comes out cheapest for your specific
-            source and destination currency.
+            This guide is for the person being paid. If a client abroad owes you money, the way
+            you choose to receive it can cost anything from a fraction of a percent to almost 9%
+            of every invoice. On $3,000 a month that is the difference between losing about $15
+            and losing over $250, every month, for the same work. Below is what each route
+            really costs in the {CORRIDORS.length} countries we cover, and the handful of things
+            that decide which one is right for you.
           </p>
           <p className="text-xs text-muted-foreground">
             By{' '}
@@ -99,100 +111,168 @@ export default function ReceiveInternationalPaymentsPage() {
               George I.
             </Link>
             {' · '}
-            Last updated: August 13, 2026
+            Last updated: October 26, 2026
           </p>
         </header>
 
-        {/* Calculator widget */}
         <section aria-label="Payment cost calculator">
-          <h2 className="text-xl font-semibold mb-4">Calculate your transfer cost now</h2>
+          <h2 className="text-xl font-semibold mb-4">Check your own numbers first</h2>
           <div style={{ minHeight: '320px' }}>
             <Calculator />
           </div>
         </section>
 
-        {/* What drives the real cost */}
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">What drives the real cost</h2>
-          <p className="text-muted-foreground leading-relaxed">
-            Most providers charge in two layers: a percentage fee on the payment (usually 0.5–4%)
-            and an FX markup on the exchange rate (usually 0–5% above mid-market, but rarely
-            disclosed as a line item). The total cost is the sum of both. A provider quoting
-            &ldquo;no fee&rdquo; often makes it back in FX, and a provider with a visible 1% fee
-            and a 0% FX markup can be cheaper than one with &ldquo;no fee&rdquo; and a 3% spread.
+          <h2 className="text-xl font-semibold">The short answer</h2>
+          <p className={P}>
+            If Wise will give you an account in your country, it tops our table more often than
+            anything else. It converts at the mid-market rate and charges a fee it shows you up
+            front, and in several countries it can give you US account details, so a client pays
+            you the way they would pay a supplier down the road.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            This calculator uses live mid-market rates and shows both the fee percentage and the
-            FX markup separately, so you can see exactly where the cost comes from. The net
-            received column is what actually lands in your account.
+          <p className={P}>
+            Where Wise is closed to residents, as in Pakistan and Bangladesh, Payoneer is usually
+            what is left, and it costs more. Our model puts it at about 3.6% on a typical payment,
+            and that figure rests on the middle of a range Payoneer publishes rather than a rate.
+          </p>
+          <p className={P}>
+            The surprise is how often a local service beats both. In Nigeria, Raenest and Cleva
+            issue US account numbers and come out cheapest in our comparison. In Brazil it is
+            Higlobe. These names rarely show up in global comparison articles, which is one reason
+            the country pages exist.
           </p>
         </section>
 
-        {/* Corridor index */}
         <section>
-          <h2 className="text-xl font-semibold mb-4">Corridor-by-corridor cost guides</h2>
-          <p className="text-sm text-muted-foreground mb-5">
-            Each guide covers which providers work for that corridor, the all-in cost as a
-            percentage, a worked example, and provider-specific notes on restrictions and
-            quirks.
+          <h2 className="text-xl font-semibold mb-4">Every country, compared</h2>
+          <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
+            Each row is the top of that country&apos;s own comparison on a $1,000 payment, at
+            today&apos;s mid-market rate, with the fee and the exchange rate margin both counted.
+            The country page has the rest of the table, a worked example and the local rules.
           </p>
-          <div className="overflow-hidden rounded-xl border">
-            <table className="w-full text-sm">
-              <caption className="sr-only">
-                Corridor guides: destination country, how many providers we can price there,
-                and a link to the full cost comparison
-              </caption>
-              <thead>
-                <tr className="border-b bg-muted/50 text-left text-xs font-medium text-muted-foreground">
-                  <th scope="col" className="px-4 py-2.5">Corridor</th>
-                  <th scope="col" className="px-4 py-2.5">Providers we can price</th>
-                  <th scope="col" className="px-4 py-2.5">Cheapest option</th>
-                </tr>
-              </thead>
-              <tbody>
-                {CORRIDORS.map((corridor, i) => (
-                  <tr
-                    key={corridor.slug}
-                    className={i < CORRIDORS.length - 1 ? 'border-b' : ''}
-                  >
-                    <td className="px-4 py-3">
-                      <Link
-                        href={`/receive/${corridor.slug}`}
-                        className="font-medium underline underline-offset-2 hover:text-muted-foreground"
-                      >
-                        Receive {corridor.source} in {corridor.country}
-                      </Link>
-                    </td>
-                    <td className="px-4 py-3 text-muted-foreground">
-                      {corridor.supportedProviders.length} providers
-                    </td>
-                    <td className="px-4 py-3 text-muted-foreground">
-                      <Link
-                        href={`/receive/${corridor.slug}`}
-                        className="underline underline-offset-2 hover:text-foreground"
-                      >
-                        See comparison →
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <CorridorTable
+            rates={rates}
+            caption="Countries covered, how many receiving options we price in each, and which one tops the comparison at $1,000"
+          />
+          <p className="text-sm text-muted-foreground mt-4 leading-relaxed">
+            Est. means part of that cost is published only as a range and we used the middle.
+            Read the country page before you act on a top row. Pakistan&apos;s is Western Union
+            pricing meant for family remittances, and Ukraine&apos;s is a bank wire whose cost
+            depends heavily on your client&apos;s bank. Both pages explain the catch.
+          </p>
         </section>
 
-        {/* Provider overviews */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">The two charges in every payment</h2>
+          <p className={P}>
+            Most services charge you twice. The first charge is the visible fee, a percentage, a
+            flat amount, or both. The second is inside the exchange rate. Every provider converts
+            at a rate a little worse than the mid-market rate you see on Google or Reuters, and the
+            gap is money you pay without ever seeing a line for it.
+          </p>
+          <p className={P}>
+            Here is how that works on a $1,000 payment through Payoneer to a local bank account.
+            Payoneer takes 1% when the payment arrives, leaving $990. It then converts at a rate
+            it describes as 1.2% to 4% away from the mid. At the middle of that range, 2.6%, you
+            lose about another $26. The total is roughly $36, or 3.6%, and only the first $10 of it
+            appears as a fee.
+          </p>
+          <p className={P}>
+            That is why we never rank on the advertised fee. A service that says &ldquo;no
+            fee&rdquo; and converts 3% below the mid costs you more than one that charges a
+            visible 1% and converts at the mid. Our tables measure everything against the
+            mid-market rate, so both charges show up in one number: what lands in your account.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Account details matter more than fees</h2>
+          <p className={P}>
+            The single biggest saving most freelancers can make has little to do with which app
+            looks cheapest. It is whether you can give your client a routing number and an account
+            number that look like a US bank account. With those, a US client pays you by domestic
+            ACH, which usually costs them nothing and arrives in a couple of business days.
+            Without them, they send an international wire, their bank charges $25 to $45 to send
+            it, and someone absorbs that, usually you.
+          </p>
+          <p className={P}>
+            Wise gives US account details to residents of many countries, including Portugal, the
+            Philippines and Georgia. Payoneer gives them almost everywhere it operates, which is a
+            large part of why it dominates in South Asia despite the cost. Nigeria&apos;s local
+            services do the same. Before you give a client anything, open the app and check what
+            it actually shows under your dollar balance. In some countries the only option is
+            SWIFT, and that changes the arithmetic completely.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Upwork, Fiverr and other marketplaces</h2>
+          <p className={P}>
+            When a marketplace pays you, your choices narrow. You pick from the withdrawal methods
+            the platform offers, which usually means Payoneer, a direct bank transfer, or PayPal
+            where it works. The cheap trick some direct clients will do for you, paying through
+            their own Wise account straight into your local bank, is not available on a platform
+            that runs payments through its own system.
+          </p>
+          <p className={P}>
+            Two things are worth checking. First, the platform takes its own commission before
+            anything else, so Payoneer&apos;s 1% applies to what reaches Payoneer, not to what
+            the client was billed. Second, a platform&apos;s own direct-to-bank option converts at
+            the platform&apos;s rate, so compare the local currency figure it quotes against the
+            mid-market rate on the day before you assume it is cheaper. Our Pakistan page walks
+            through that comparison for Upwork.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">You do not always have to convert</h2>
+          <p className={P}>
+            In some countries you can hold the dollars and convert later, or never. Georgian banks
+            offer USD sub-accounts, Thai banks offer foreign currency deposit accounts, and banks
+            in the Philippines offer FCDU dollar savings accounts that take an incoming wire
+            without forcing a conversion. Bangladesh lets ICT freelancers keep part of their
+            export earnings in an ERQ foreign currency account, and a July 2026 central bank
+            circular raised that share to 50%. That one is recent, so confirm your bank has put
+            it in place.
+          </p>
+          <p className={P}>
+            Holding dollars is worth it if you have dollar expenses or want to choose when you
+            convert. Where a country lets you do this, our calculator offers the dollar option
+            alongside the local currency, so you can compare the two directly.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Paperwork can outweigh the fee</h2>
+          <p className={P}>
+            In some countries the cheapest route on paper is the wrong one, because of what it
+            does or does not prove to the tax office. In Pakistan, IT exporters registered with
+            the Pakistan Software Export Board pay a 0.25% final tax on export proceeds instead of
+            roughly 1%, but only on money that comes in through banking channels and is recorded
+            as an export of services. A payment that arrives as a family remittance does not
+            count.
+          </p>
+          <p className={P}>
+            Bangladesh is similar. The 2.5% export cash incentive for individual freelancers needs
+            a Foreign Inward Remittance Certificate from your bank. Payoneer to bKash is fast and
+            popular, but it produces no certificate, so the money it moves cannot earn the
+            incentive. In both countries a route that costs half a percent more can leave you
+            better off. The country pages give the details, and they are no substitute for a local
+            tax adviser.
+          </p>
+        </section>
+
         <section className="space-y-5">
-          <h2 className="text-xl font-semibold">Provider overview</h2>
+          <h2 className="text-xl font-semibold">The main providers, briefly</h2>
           <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
             <div>
               <h3 className="font-semibold text-foreground mb-1">Wise</h3>
               <p>
-                Uses the real mid-market exchange rate with zero FX markup, charging only a
-                transparent percentage fee (typically 0.4–1.5% depending on the corridor).
-                Best overall for most corridors where it operates, including the Philippines,
-                where residents can open a full account with US ACH receiving details and
-                convert to pesos at mid-market. Does not support Pakistan for account holders.
+                Converts at the mid-market rate and charges a separate fee you can see before you
+                accept. It tops most of the tables where residents can open an account. Where they
+                cannot, as in Pakistan and Bangladesh, a client can still use Wise to send local
+                currency straight to your bank account, and your side of that transfer costs you
+                nothing.
               </p>
               <a
                 href={wiseLink}
@@ -200,54 +280,107 @@ export default function ReceiveInternationalPaymentsPage() {
                 rel="sponsored nofollow noopener"
                 className="mt-1.5 inline-block text-xs underline underline-offset-2 hover:text-foreground"
               >
-                Open Wise account →
+                Open Wise account (AD) →
               </a>
-            </div>
-            <div>
-              <h3 className="font-semibold text-foreground mb-1">Revolut</h3>
-              <p>
-                Standard plan charges 0.3% on SEPA corridors and $3 flat for SWIFT corridors.
-                FX is at mid-market on weekdays within a $1,000/month allowance; weekends and
-                over-allowance add 0.5–2% depending on the currency. Not available in Pakistan.
-              </p>
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-1">Payoneer</h3>
               <p>
-                1% receiving fee on most commercial payments, plus up to 2% FX markup on local
-                currency withdrawals. The dominant solution for freelancers in Pakistan, India,
-                Bangladesh, and other markets where Wise and Revolut are restricted. Works on
-                most major freelance platforms.
+                1% on an incoming client payment, then a conversion cost on withdrawal that
+                Payoneer gives only as a range of 1.2% to 4%. It works in places Wise and Revolut
+                do not, and Upwork and Fiverr pay into it without any effort from you, which is
+                why so many freelancers in Pakistan, Bangladesh and elsewhere use it. For
+                today&apos;s numbers, see our{' '}
+                <Link href="/rates/payoneer-usd-to-pkr" className="underline underline-offset-2 hover:text-foreground">
+                  Payoneer USD to PKR
+                </Link>{' '}
+                and{' '}
+                <Link href="/rates/payoneer-usd-to-bdt" className="underline underline-offset-2 hover:text-foreground">
+                  Payoneer USD to BDT
+                </Link>{' '}
+                pages.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-1">Revolut</h3>
+              <p>
+                Cheap where it is licensed. In Portugal, the one country on our list where we can
+                price it, it comes out at the top. It is not available to residents of most of the
+                countries we cover, including Pakistan, Bangladesh, Georgia, Thailand and
+                Indonesia.
               </p>
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-1">PayPal</h3>
               <p>
-                4.4% + $0.30 cross-border receiving fee, plus ~3.5% FX markup, making it the
-                most expensive option in most corridors. Not supported for receiving in Pakistan.
-                Convenience does not justify the cost for most freelancers.
+                Convenient and almost always the most expensive. On a cross-border commercial
+                payment PayPal charges a receiving fee of roughly 2.9% to 5.4% plus a fixed amount,
+                then about 3% to 3.5% on conversion, depending on the country. It cannot receive
+                business payments at all in Pakistan or Bangladesh.
               </p>
             </div>
             <div>
               <h3 className="font-semibold text-foreground mb-1">Western Union</h3>
               <p>
-                Available in almost every country, including restricted markets. On a minor
-                corridor like GEL the FX spread is typically 4–5% above mid-market, which makes
-                it expensive compared to Payoneer for recurring payments. Pakistan looks cheaper
-                (no online fee on bank deposits over $200, and roughly a 2% spread), but that is
-                Pakistan Remittance Initiative pricing for personal home remittances, not a
-                published commercial rate for client invoices.
+                Reaches almost everywhere. In some countries, Pakistan and Mexico among them, it
+                comes out near the top of our tables, but read the country page first: the cheap
+                Pakistan price is set up for family remittances, and Western Union publishes no
+                rate for business payments on that route.
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-1">Bank Wire (SWIFT)</h3>
+              <h3 className="font-semibold text-foreground mb-1">Bank wire (SWIFT)</h3>
               <p>
-                Always available but expensive for small amounts due to flat fees ($25–45 from
-                most US banks). Practical for large, infrequent payments over $5,000; not
-                suitable for regular monthly invoices.
+                Works everywhere and costs a lot on small amounts. Your client&apos;s US bank
+                usually charges $25 to $45 to send, an intermediary bank may take a cut, and your
+                bank converts at its own rate. On a payment over $5,000 the flat part fades, and
+                in Bangladesh and Pakistan a wire is also the route that gives you the export
+                paperwork.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-foreground mb-1">Local specialists</h3>
+              <p>
+                Raenest, Cleva, Grey and LemFi in Nigeria, Higlobe in Brazil, GCash and Maya in the
+                Philippines, bKash in Bangladesh. These often beat the global names in their own
+                country. We list them on the country pages and only price them where we can source
+                both the fee and the exchange rate.
               </p>
             </div>
           </div>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Four mistakes that cost the most</h2>
+          <ul className="list-disc space-y-2 pl-5 text-muted-foreground leading-relaxed">
+            <li>
+              Comparing fees and ignoring the exchange rate. The rate is often the larger charge.
+            </li>
+            <li>
+              Asking a US client for an international wire when you could have given them
+              domestic account details.
+            </li>
+            <li>
+              Leaving PayPal as the default because clients already have it. On $3,000 a month the
+              gap to a cheaper route can be around $200.
+            </li>
+            <li>
+              Choosing the fastest route in a country where the slower one is the only one that
+              qualifies for a tax rate or an incentive.
+            </li>
+          </ul>
+        </section>
+
+        <section className="rounded-xl border border-dashed px-6 py-5">
+          <h2 className="text-base font-semibold mb-2">Paying someone, not getting paid?</h2>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            If you are the client, the question flips: which way of paying leaves your freelancer
+            with the most?{' '}
+            <Link href="/pay-freelancers-internationally" className="underline underline-offset-2 hover:text-foreground">
+              Our guide to paying freelancers internationally
+            </Link>{' '}
+            covers it from your side.
+          </p>
         </section>
 
         {/* Methodology */}
@@ -294,7 +427,7 @@ export default function ReceiveInternationalPaymentsPage() {
             >
               George I.
             </Link>{' '}
-            (20+ years in international payments). Last updated: August 13, 2026.
+            (20+ years in international payments). Last updated: October 26, 2026.
           </p>
           <p>
             Fees are estimates based on publicly available pricing. Verify with your provider

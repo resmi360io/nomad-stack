@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { CORRIDORS } from '@/data/corridors';
+import { RATE_PAGES } from '@/data/ratePages';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://paidacross.com';
 
@@ -11,6 +12,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(c.updatedDate),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
+  }));
+
+  // Provider rate pages. Priority sits just under the corridor pages: they target a narrower,
+  // more transactional query and they link UP to the corridor page rather than competing with it.
+  const ratePages: MetadataRoute.Sitemap = RATE_PAGES.map((p) => ({
+    url: `${SITE_URL}/rates/${p.slug}`,
+    lastModified: new Date(p.updatedDate),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
   }));
 
   return [
@@ -27,6 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${SITE_URL}/pay-freelancers-internationally`,
+      lastModified: new Date('2026-10-26'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    {
       url: `${SITE_URL}/how-we-make-money`,
       lastModified: now,
       changeFrequency: 'monthly' as const,
@@ -39,5 +55,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
     ...corridorPages,
+    ...ratePages,
   ];
 }
