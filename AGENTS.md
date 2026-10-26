@@ -204,6 +204,35 @@ list at the end of the output for it.
 Verify a new page by hand on the day it ships. The rotation will not reach it for
 up to six days, and that is exactly the window in which it is least trustworthy.
 
+## Provider rate pages (`/rates/[pair]`) are NOT in the rotation yet
+
+Added 2026-10-26. `data/ratePages.ts` holds provider-specific pages targeting the one query
+pattern this project has measured demand for: the 2026-06-14 GSC read found USD to PKR already
+ranking around position 33 for "payoneer exchange rate usd to pkr" and "usd to pkr payoneer rate
+today", and nothing on the site targeted it for four months. First page is
+`/rates/payoneer-usd-to-pkr`.
+
+Two things to know before touching them.
+
+- THE FEE NUMBERS LOOK AFTER THEMSELVES, the prose does not. The table on a rate page calls
+  `calculate()` against the same `data/providers.ts` row the corridor page uses, so when the
+  rotation corrects a provider's fee row the rate page moves with it in the same commit, with no
+  second edit. That is deliberate. But the rotation selects work from `CORRIDORS` only, so the
+  INTRO, the rate note and the FAQs on a rate page are currently verified by nobody, and they
+  carry claims (what a provider does and does not publish, which banks a withdrawal reaches).
+  Until the rotation covers them, treat a rate page's prose as going stale silently.
+- DO NOT MULTIPLY THEM YET. One hand-written page against a measured query is not programmatic
+  SEO; twenty generated ones are, and the pSEO gate in this file still fails on three of its four
+  conditions (no editorial backlinks, no top-30 rankings, no 8-week impression trend). Add the
+  next rate page only when there is GSC evidence for the specific provider and pair, the same way
+  this one had it.
+
+One per-page trap, found by rendering the first one rather than reading it: `effectiveFeePercent`
+on a `Quote` is the EXPLICIT fee only and ignores `fxMarkupBps`. Printed under a "total cost"
+heading it reported 1.00% for a Payoneer row that really costs about 3.57%, because 260bps of
+markup is most of the cost. The rate page now derives all-in cost as the net measured against
+what the mid rate alone would have paid. Any new surface that shows a "total" must do the same.
+
 ## Verification rotation
 
 Every live corridor is re-checked once a week. The scheduled job runs daily and

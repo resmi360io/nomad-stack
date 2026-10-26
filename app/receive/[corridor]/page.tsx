@@ -3,6 +3,7 @@ import { cache } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CORRIDORS } from '@/data/corridors';
+import { RATE_PAGES } from '@/data/ratePages';
 import { fetchRatesServer } from '@/lib/fetchRates';
 import { PROVIDERS } from '@/data/providers';
 import { calculate, getDestCurrencies } from '@/lib/calculate';
@@ -579,6 +580,20 @@ export default async function CorridorPage({
                 How freelancers receive international payments: country-by-country guide 2026
               </Link>
             </li>
+            {/* Provider rate pages for THIS corridor, listed before the sibling corridors because
+                they are the more specific page rather than a lateral one. These target the
+                "[provider] [pair] rate today" query the 2026-06-14 GSC read found this site
+                already ranking for, and the link is what tells Google they belong together. */}
+            {RATE_PAGES.filter((rp) => rp.corridorSlug === corridor.slug).map((rp) => (
+              <li key={rp.slug}>
+                <Link
+                  href={`/rates/${rp.slug}`}
+                  className="underline underline-offset-2 hover:text-foreground"
+                >
+                  {rp.h1}
+                </Link>
+              </li>
+            ))}
             {corridor.siblingCorridors?.map((siblingSlug) => {
               const sibling = CORRIDORS.find((c) => c.slug === siblingSlug);
               if (!sibling) return null;
