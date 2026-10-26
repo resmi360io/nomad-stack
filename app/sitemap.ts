@@ -37,6 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${SITE_URL}/pay-freelancers-internationally`,
+      lastModified: new Date('2026-10-26'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    {
       url: `${SITE_URL}/how-we-make-money`,
       lastModified: now,
       changeFrequency: 'monthly' as const,

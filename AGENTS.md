@@ -212,6 +212,14 @@ ranking around position 33 for "payoneer exchange rate usd to pkr" and "usd to p
 today", and nothing on the site targeted it for four months. First page is
 `/rates/payoneer-usd-to-pkr`.
 
+Second page, same day: `/rates/payoneer-usd-to-bdt`, on GSC evidence that the BDT corridor page
+already ranked for "payoneer dollar rate in bangladesh today" (about 25) and "payoneer exchange
+rate usd to bdt" (about 32). Its prose is copied from the `usd-to-bdt` corridor entry, so a
+rotation correction to that entry's Payoneer or bKash figures must be carried to the rate page by
+hand. The same applies to `/pay-freelancers-internationally` (the sender-side page, built for
+queries that were landing on the receive pillar) and to the homepage and pillar prose: all of
+them restate corridor facts, and only their `CorridorTable` column updates itself.
+
 Two things to know before touching them.
 
 - THE FEE NUMBERS LOOK AFTER THEMSELVES, the prose does not. The table on a rate page calls

@@ -1,6 +1,6 @@
 import { CORRIDORS } from '@/data/corridors';
 import { PROVIDERS } from '@/data/providers';
-import type { Currency } from '@/data/providers';
+import type { CountryCode, Currency } from '@/data/providers';
 import { calculate, getDestCurrencies } from '@/lib/calculate';
 
 const mid: Record<Currency, number> = { USD:1,EUR:0.861,GBP:0.746,GEL:2.705,MXN:18.34,THB:32.4,
@@ -16,17 +16,17 @@ console.log('slug'.padEnd(22), 'local tab: paying provider?'.padEnd(34), 'rank',
 let monet = 0, dead = 0;
 const deadList: string[] = [], weak: string[] = [];
 for (const c of CORRIDORS) {
-  const currencies = getDestCurrencies(c.destCountry, PROVIDERS);
+  const currencies = getDestCurrencies(c.destCountry as CountryCode);
   const local = currencies[0] as Currency;
-  const qs = calculate(c.sourceCountry, c.destCountry, local, 1000, PROVIDERS, mid);
+  const qs = calculate(c.sourceCountry as CountryCode, c.destCountry as CountryCode, local, 1000, PROVIDERS, mid);
   const payRows = qs.filter(q => paying.has(q.provider.slug));
   const rank = payRows.length ? (qs.findIndex(q => paying.has(q.provider.slug)) + 1) + '/' + qs.length : '-';
   // listed in supportedProviders but produces no quote in ANY offered currency
   const quoting = new Set<string>();
   for (const cur of currencies)
-    for (const q of calculate(c.sourceCountry, c.destCountry, cur as Currency, 1000, PROVIDERS, mid)) quoting.add(q.provider.slug);
+    for (const q of calculate(c.sourceCountry as CountryCode, c.destCountry as CountryCode, cur as Currency, 1000, PROVIDERS, mid)) quoting.add(q.provider.slug);
   const mute = c.supportedProviders.filter(s => paying.has(s) && !quoting.has(s));
-  const label = payRows.length ? payRows.map(q=>q.provider.slug).join('+') : 'NONE — no monetizable CTA';
+  const label = payRows.length ? payRows.map(q=>q.provider.slug).join('+') : 'NONE, no monetizable CTA';
   console.log(c.slug.padEnd(22), label.padEnd(34), String(rank).padEnd(4), mute.join(',') || '');
   if (payRows.length) { monet++; if (payRows.length && (qs.findIndex(q=>paying.has(q.provider.slug))+1) > 2) weak.push(c.slug); }
   else { dead++; deadList.push(c.slug); }
