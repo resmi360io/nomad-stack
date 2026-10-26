@@ -50,22 +50,9 @@ Take the next corridor from the top of this list. When one ships, delete its lin
 Order is the decision, so do not reorder it to pick an easier corridor: a corridor
 sitting at the top because it is hard is exactly the one worth doing.
 
-- **Ukraine (UAH).** IN PROGRESS in an interactive session from 2026-10-23, so do NOT
-  research it from a scheduled run while this parenthesis is here: you would pay twice for
-  the same brief. The owner picked it over Turkey, Vietnam and Egypt on the grounds that it
-  is the largest freelance population not yet covered and pairs with Poland for the
-  relocation audience. Known blockers to point the researcher at: martial-law NBU currency
-  controls in force since February 2022 and amended many times, so the live resolution
-  number matters more than any summary; whether a FOP may hold and keep dollars at all, and
-  whether service income must land in a FOP foreign-currency account rather than a personal
-  one, which is the same account-type trap that nearly shipped wrong on South Africa; the
-  FOP group 3 single tax and the military levy that changed on 2025-01-01; and PayPal, which
-  has historically been unable to RECEIVE commercial payments in Ukraine. That last one is a
-  negative claim, so it needs a primary source like any fee. UAH is also a new currency, so
-  the two exhaustive rate records bite.
-
-Nothing else is queued. India, Uzbekistan and Colombia were the last three on it and all
-three are live, as are South Africa, Argentina and Poland since 2026-10-23. Nobody deleted
+**The queue is empty.** India, Uzbekistan and Colombia were the last three on it and all
+three are live, as are South Africa, Argentina and Poland since 2026-10-23 and Ukraine since
+2026-10-26. Nobody deleted
 the India and Uzbekistan lines when they shipped on 2026-09-25, so for three days this
 section told sessions to research corridors that already existed. Delete the line when the
 corridor ships, not later.

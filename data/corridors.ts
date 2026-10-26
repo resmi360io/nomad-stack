@@ -1944,8 +1944,8 @@ export const CORRIDORS: Corridor[] = [
     h1: 'How to receive USD in Ukraine: nobody makes you convert, and Wise will not take you',
     intro:
       'Ukraine is the corridor where the rule everyone fears does not exist and the provider everyone recommends will not take you. Start with the good news, because it is better than almost anywhere else on this site. There is no mandatory sale of your dollars. We read the National Bank\'s wartime resolution, the one that governs all of this, in the consolidated text in force when we checked in October 2026, and there is no conversion obligation on a resident individual or a sole trader anywhere in it. What forced sales it does contain are housekeeping rules for banks rather than for you. Ukraine abolished mandatory sale of export proceeds in 2019, before the war, and the war did not bring it back. So you can be paid in dollars, hold them at a Ukrainian bank, and sell when the rate suits you. Now the awkward part. Wise, which is the cheapest option on most pages here, cannot give you an account: Ukraine is absent from its list of countries where you may hold money, and it is named outright on the list of places whose residents cannot get dollar account details. Wise can pay money into Ukraine from some countries, but not from the United States: its own pages offer a waiting list for both hryvnia and dollar transfers from the US, so it is not your client\'s rail either. The provider you will actually sign up for is Payoneer, and Payoneer does not publish one consistent price for Ukraine. Two more things before the table. Your bank almost certainly charges you nothing to receive the wire, which surprises most readers. And the account the money lands in matters more than the route: business income belongs in your sole trader foreign currency account, and putting it in your personal one is prohibited by the account rules rather than merely frowned upon.',
-    publishedDate: '2026-10-23',
-    updatedDate: '2026-10-23',
+    publishedDate: '2026-10-26',
+    updatedDate: '2026-10-26',
     providers: [
       {
         slug: 'bank-wire',
