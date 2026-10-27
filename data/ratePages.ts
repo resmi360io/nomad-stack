@@ -124,24 +124,24 @@ export const RATE_PAGES: RatePage[] = [
       'Today\'s mid-market USD to BDT rate, what Payoneer\'s fees take out of it, and what reaches your Bangladeshi bank or bKash. Payoneer publishes no rate of its own.',
     h1: 'Payoneer USD to BDT rate today, and what you actually receive',
     intro:
-      'Search for the Payoneer dollar rate in Bangladesh and you will find a different number on every site. None of them comes from Payoneer, because Payoneer does not publish one. What it publishes is a fee structure: 1% on an incoming client payment, then a conversion cost on withdrawal that it gives as a range of 1.2% to 4%, with nothing to say where the taka sits in that range. So this page does the one thing that can be checked. It shows today\'s mid-market USD to BDT rate with the date it was published, then applies Payoneer\'s published fees to a 500, 1,000 and 5,000 dollar payment withdrawn to a Bangladeshi bank account. The exact rate is the one your Payoneer withdrawal screen shows when you press the button. What we can tell you is roughly how far below the mid it will be, and why.',
+      'Search for the Payoneer dollar rate in Bangladesh and you will find a different number on every site. None of them comes from Payoneer, because Payoneer does not publish one. What it publishes is a fee structure: 1% on a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace), then a conversion cost on withdrawal that it gives as a range of 1.2% to 4%, with nothing to say where the taka sits in that range. So this page does the one thing that can be checked. It shows today\'s mid-market USD to BDT rate with the date it was published, then applies Payoneer\'s published fees to a 500, 1,000 and 5,000 dollar payment withdrawn to a Bangladeshi bank account. The exact rate is the one your Payoneer withdrawal screen shows when you press the button. What we can tell you is roughly how far below the mid it will be, and why.',
     rateNote:
       'That is the interbank mid-market rate, the one Google shows and nobody actually pays out. It is the right yardstick because it has no margin in it, so any provider cost can be measured as a distance from it. Payoneer gives its conversion cost only as a band, 1.2% to 4%, and our figures below use 2.6%, the middle of the band, which is why they are marked as an estimate. If your withdrawal screen shows a rate near the mid you will do better than our table, and further away you will do worse.',
     faqs: [
       {
         q: 'What is the Payoneer USD to BDT rate today?',
         a:
-          'Payoneer does not publish one. It charges 1% to receive a client payment and gives its withdrawal conversion cost as a range of 1.2% to 4%, and the only exact rate is the one in your account at the moment you withdraw. To plan, start from today\'s mid-market rate above and expect to lose somewhere around 2.2% to 5% of the payment across the two charges. Our table uses the middle of the published band and labels it an estimate, because a range is not a price.',
+          'Payoneer does not publish one. It charges 1% to receive a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace) and gives its withdrawal conversion cost as a range of 1.2% to 4%, and the only exact rate is the one in your account at the moment you withdraw. To plan, start from today\'s mid-market rate above and expect to lose somewhere around 2.2% to 5% of the payment across the two charges. Our table uses the middle of the published band and labels it an estimate, because a range is not a price.',
       },
       {
         q: 'Why is the Payoneer dollar rate lower than the bank rate?',
         a:
-          'Usually because it is further from the mid-market rate. Bangladeshi banks convert an incoming wire at their TT buying rate, which typically sits 1% to 2% below the mid, and Payoneer\'s conversion cost is given as 1.2% to 4%. But a bank rate is not the whole cost of a wire. Your client\'s US bank usually charges $25 to $45 to send it and an intermediary bank can take a cut, so on a $500 payment the wire can still lose more in total. On payments of a few thousand dollars the bank route often wins. Our Bangladesh page compares the two at different amounts.',
+          'Usually because it is further from the mid-market rate. Bangladeshi banks convert an incoming wire at their TT buying rate, which banks do not usually publish as a distance from the mid (our Bangladesh table assumes about 1.5% below it), and Payoneer\'s conversion cost is given as 1.2% to 4%. But a bank rate is not the whole cost of a wire. Your client\'s US bank usually charges $25 to $45 to send it and an intermediary bank can take a cut, so on a $500 payment the wire can still lose more in total. On payments of a few thousand dollars the bank route often wins. Our Bangladesh page compares the two at different amounts.',
       },
       {
         q: 'Is Payoneer to bKash cheaper than Payoneer to a bank account?',
         a:
-          'Usually not. Payoneer charges a separate conversion fee for the bKash route, roughly 3% plus $1 per transfer as of mid 2026, against 1% plus the 1.2% to 4% conversion cost for a bank withdrawal. Then bKash charges to cash out: 18.50 Taka per 1,000 at a standard agent, or 7 Taka per 1,000 if you cash out Payoneer money at a BRAC Bank, City Bank or participating Q-Cash ATM. Even at the ATM rate the bank route normally comes out a little ahead, though the gap is small if your Payoneer conversion lands near the top of its range. The bKash route is faster, usually a few hours instead of one to three business days. Check both fees in the Payoneer portal and the bKash app before you rely on these figures.',
+          'Usually not. The 1% receiving fee applies either way. After it, Payoneer charges roughly 3% plus $1 per transfer to convert for the bKash route as of mid 2026, against 1.2% to 4% for a bank withdrawal. Then bKash charges to cash out: 18.50 Taka per 1,000 at a standard agent, or 7 Taka per 1,000 if you cash out Payoneer money at a BRAC Bank, City Bank or participating Q-Cash ATM. On a $1,000 payment the bank route comes out about a percentage point ahead at the middle of Payoneer\'s range (about 3.6% against about 4.7% with the ATM cash-out), and the two only draw level if your Payoneer conversion lands at about 3.8%, near the top of the range. The bKash route is faster, usually a few hours instead of one to three business days. Check both fees in the Payoneer portal and the bKash app before you rely on these figures.',
       },
       {
         q: 'Does a Payoneer withdrawal count for the 2.5% freelancer incentive?',
@@ -160,6 +160,6 @@ export const RATE_PAGES: RatePage[] = [
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-10-26',
+    updatedDate: '2026-10-27',
   },
 ];
