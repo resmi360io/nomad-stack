@@ -962,11 +962,9 @@ export const PROVIDERS: Provider[] = [
         notes: '1% receiving fee plus a withdrawal conversion charge Payoneer publishes as 1.2% to 4%, modelled at the 2.6% midpoint. PKR withdrawal to local bank.',
       },
       // USD → Bangladeshi BDT bank account
-      // Source: payoneer.com/legal/fees/ (updated Jan 2026). The attribution of the 1.2-4%
-      // BDT range to that schedule was WITHDRAWN 2026-09-22: payoneer.com could not be
-      // opened. The single "up to 2%" figure that attribution rested on is no longer on payoneer.com
-      // for a local withdrawal in a different currency. Modeled at 2% on that basis, NOT
-      // as a midpoint of 1.2-4%, which would be 2.6%. Payoneer-to-bKash costs ~3% + $1.
+      // Source: payoneer.com/legal/fees/ (last updated 1 January 2026, re-read 2026-10-27): 1% to
+      // receive via a non-local-currency receiving account, then a bank withdrawal Payoneer publishes
+      // only as 1.2% to 4%. Modelled at the 2.6% midpoint and flagged estimated. Payoneer-to-bKash ~3% + $1.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'BD', currency: 'BDT' },
@@ -975,7 +973,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 260,
         fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
-        notes: '1% receiving fee + ~2% FX markup on BDT withdrawal (range 1.2 to 4%); bKash route ~3% + $1 instead',
+        notes: '1% receiving fee plus a withdrawal conversion charge Payoneer publishes as 1.2% to 4%, modelled at the 2.6% midpoint; bKash route ~3% + $1 instead',
       },
       // USD → Nigerian NGN bank account
       // Source: payoneer.com/legal/fees/ (re-read 2026-09-24): 1% receiving, plus a withdrawal
