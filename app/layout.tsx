@@ -1,24 +1,19 @@
 import type { Metadata } from "next";
-import { Schibsted_Grotesk, Spline_Sans_Mono } from "next/font/google";
+import { Schibsted_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { PostHogProvider } from "./providers";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
 
-// Words in Schibsted Grotesk, money in Spline Sans Mono. Both are variable fonts, so each is one file
-// for every weight, and next/font self-hosts them with a size-adjusted fallback to hold layout still.
+// One variable family for words and figures: one file for every weight, self-hosted by next/font
+// with a size-adjusted fallback so layout holds still while it loads.
 const textFont = Schibsted_Grotesk({
   variable: "--font-text",
   subsets: ["latin"],
   display: "swap",
 });
 
-const figuresFont = Spline_Sans_Mono({
-  variable: "--font-figures",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const SITE_URL = "https://paidacross.com";
 
@@ -86,7 +81,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${textFont.variable} ${figuresFont.variable} h-full antialiased`}
+      className={`${textFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <script

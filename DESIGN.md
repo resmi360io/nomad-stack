@@ -1,54 +1,55 @@
-# Design system: Passbook
+# Design system: Passbook (iteration 2, ledger)
 
 Chosen by the owner on 2026-10-29. Tokens live in `app/globals.css` (`:root` and the `pa-*` component
 classes); fonts are loaded in `app/layout.tsx`. PRODUCT.md holds product truth; this file holds the look.
 
 ## Idea
 
-The site prints what landed, the way a savings passbook or a bank credit advice does. One strong
-surface (the oxblood cover) frames the shell and the calculator; everything else is white sheets on a
-cool tinted paper, ruled with hairlines, with money set in a monospace face.
+Iteration 2 (2026-10-29) keeps the passbook idea but moves it out of the chrome and into the numbers:
+a light, quiet shell, one raised card for the calculator, and results set like a statement, where the
+amount received is the largest thing on the screen and every cost behind it is labelled.
 
 ## Colour
 
 | Token | Value | Job |
 |---|---|---|
-| `--cover` | #5b1a27 | Header, footer, calculator frame, primary button |
-| `--cover-foreground` / `--cover-muted` | #fbf3f4 / #dcc3c8 | Text on the cover (11.9:1, 7.8:1) |
-| `--background` | #f3f5f4 | Page paper |
-| `--sheet` | #ffffff | Tables, result list, form page |
-| `--foreground` | #17201d | Ink (15.2:1 on paper) |
-| `--muted-foreground` | #4b5752 | Secondary text (6.9:1 on paper) |
-| `--stamp` / `--stamp-tint` | #4c3d9e / #eeebf8 | Links, focus ring, best value mark and row |
-| `--border` / `--rule` | #d3dbd7 / #b8c3be | Hairlines inside sheets / section rules |
-| `--input` | #84918b | Form control borders (3.3:1, meets 1.4.11) |
+| `--background` | #f5f6f4 | Page paper |
+| `--sheet` | #ffffff | Cards, tables, header |
+| `--foreground` | #141a19 | Ink (16.3:1 on paper) |
+| `--muted-foreground` | #525d5a | Secondary text (6.3:1 on paper) |
+| `--primary` (= `--stamp`) | #6b1f2e | Oxblood: primary button, links, best value badge (10.4:1) |
+| `--accent` / `--stamp-tint` | #f7eef0 | Best value row |
+| `--positive` / tint | #1f6a49 / #e8f3ed | "Fees verified" status, live-rate dot |
+| `--caution` / tint / border | #7a4f00 / #fbf3e0 / #ecd9a8 | Estimates, personal remittance notices |
+| `--border` / `--rule` | #e1e5e2 / #c7cfcb | Hairlines / section rules |
+| `--input` | #8a9692 | Control borders (3.06:1) |
+| `--cover` | #141a19 | Footer only |
 
-No gradients, no glass, no state colour used as decoration. Best value is the only highlighted row and
-it uses the stamp tint, never green. Every CTA in the results uses the same outline button.
+Oxblood is the only brand colour. Green and amber appear only where they mean verified or estimated.
 
 ## Type
 
-- Schibsted Grotesk (variable) for all words. Spline Sans Mono (variable) only for money and counts
-  (`.pa-figure`). Large single figures use the text face (`.pa-figure-display`), because mono
-  punctuation is a full cell wide.
-- Scale: `.pa-h1` 28 to 44px fluid, `.pa-h2` 21 to 26px, `.pa-h3` 18px, body 16px, prose and intros 17px
-  at 1.7, meta 13px. Sentence case, no uppercase eyebrows.
-- Measure: prose and intros 65ch; `.pa-read` column 44rem; `.pa-shell` 72rem.
+- Schibsted Grotesk (variable) for everything, including figures (`.pa-figure`: lining, proportional;
+  its tabular figures widen punctuation, so they are not used).
+- `.pa-h1` 26 to 42px fluid, `.pa-h2` 21 to 26px, `.pa-h3` 18px, prose and intros 16 to 17px at 1.68,
+  meta 13px. Sentence case, no eyebrows.
+- Long single-string prose from `data/` is split into paragraphs at sentence boundaries by
+  `lib/paragraphs.ts`; the words are unchanged.
 
 ## Shape and space
 
-Radius 4px (`--radius: 0.25rem`), 3px inside the cover frame. 1px borders. One shadow, under the
-calculator cover only. Sections separate by 48 to 64px; more space above a heading than below it.
+Radius 6px (`--radius: 0.375rem`), 10px on `.pa-card`. 1px borders. One shadow, on `.pa-card` only.
 
 ## Components
 
-- `.pa-sheet`, `.pa-note`, `.pa-table-wrap`: white sheet, tinted note, scrolling table sheet.
-- Calculator: cover frame, white form page, rate source printed on the cover under it.
-- Results: one sheet, an entry per provider: rank, name, best value stamp, fee / rate margin / all-in,
-  caveat, verification line, credited amount large on the right, outline CTA with AD mark.
-- Corridor pages: "On this page" list from the h2s (sticky sidebar at xl, `<details>` below), placed
-  after the article in source order.
-- Controls are 44px tall or more. Focus is a 2px stamp outline.
+- Header: white, 56px, one row at every width; monogram drawn with CSS so the link name stays "Paid Across".
+- Calculator (`.pa-card`): 48px controls, labels 13px semibold, full-width button on phones, inline
+  amount validation, live-rate line with a green dot once rates load.
+- Result cards: rank, provider, best value badge; "You receive" figure at 28px; a three-cell strip of
+  transfer fee, FX margin and total cost (amount and %); amber notice for personal remittance pricing;
+  status footer (verified green or estimated amber) with the same outline CTA on every row.
+- Corridor pages: key facts strip (top of the table at $1,000, total cost, options priced), section list,
+  comparison table led by Net received and Total cost, related guides as a two-column grid.
 
 ## Rules that protect SEO and the money
 

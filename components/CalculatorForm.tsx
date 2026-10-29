@@ -80,6 +80,8 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
   const [destCountry, setDestCountry] = useState<CountryCode>(defaultDest);
   const [destCurrency, setDestCurrency] = useState<Currency>(getCurrency(defaultDest));
   const [amount, setAmount] = useState('1000');
+  // Shown only after a submit that the amount check rejects; editing the field clears it.
+  const [amountError, setAmountError] = useState(false);
 
   const sourceCurrency = getCurrency(sourceCountry);
   const availableDestCurrencies = useMemo(
@@ -102,26 +104,24 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const parsed = parseFloat(amount);
-    if (!parsed || parsed <= 0) return;
+    if (!parsed || parsed <= 0) {
+      setAmountError(true);
+      return;
+    }
     onSubmit(sourceCountry, destCountry, destCurrency, parsed);
   }
 
   return (
-    // The passbook cover around a white page: the oxblood frame is the one strong surface on the
-    // site, so the calculator is the first thing the eye lands on at every width.
-    <form
-      onSubmit={handleSubmit}
-      className="rounded-md bg-cover p-1.5 shadow-[0_10px_30px_-12px_rgb(59_14_24/0.45)]"
-    >
-      <div className="grid gap-x-4 gap-y-4 rounded-[3px] bg-sheet p-4 sm:grid-cols-2 sm:gap-y-5 sm:p-6">
-        <div className="space-y-2">
+    <form onSubmit={handleSubmit} noValidate className="pa-card p-4 sm:p-6">
+      <div className="grid gap-x-3 gap-y-3.5 sm:grid-cols-2 sm:gap-y-4">
+        <div className="space-y-1.5">
           <Select
             value={sourceCountry}
             onValueChange={(v) => { if (v) handleSourceChange(v as CountryCode); }}
           >
-            <SelectFieldLabel className="text-[0.9375rem] font-semibold">From</SelectFieldLabel>
+            <SelectFieldLabel className="text-[0.8125rem] font-semibold text-foreground">From</SelectFieldLabel>
             <SelectTrigger className="w-full">
-              <span data-slot="select-value" className="flex flex-1 text-left">
+              <span data-slot="select-value" className="flex flex-1 truncate text-left">
                 {SOURCE_OPTIONS.find(o => o.code === sourceCountry)?.label ?? sourceCountry}
               </span>
             </SelectTrigger>
@@ -133,14 +133,14 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
           </Select>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <Select
             value={destCountry}
             onValueChange={(v) => { if (v) handleDestCountryChange(v as CountryCode); }}
           >
-            <SelectFieldLabel className="text-[0.9375rem] font-semibold">To</SelectFieldLabel>
+            <SelectFieldLabel className="text-[0.8125rem] font-semibold text-foreground">To</SelectFieldLabel>
             <SelectTrigger className="w-full">
-              <span data-slot="select-value" className="flex flex-1 text-left">
+              <span data-slot="select-value" className="flex flex-1 truncate text-left">
                 {DEST_OPTIONS.find(o => o.code === destCountry)?.label ?? destCountry}
               </span>
             </SelectTrigger>
@@ -153,14 +153,14 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
         </div>
 
         {availableDestCurrencies.length > 1 && (
-          <div className="space-y-2 sm:col-span-2">
+          <div className="space-y-1.5 sm:col-span-2">
             <Select
               value={destCurrency}
               onValueChange={(v) => { if (v) setDestCurrency(v as Currency); }}
             >
-              <SelectFieldLabel className="text-[0.9375rem] font-semibold">Recipient receives in</SelectFieldLabel>
+              <SelectFieldLabel className="text-[0.8125rem] font-semibold text-foreground">Recipient receives in</SelectFieldLabel>
               <SelectTrigger className="w-full">
-                <span data-slot="select-value" className="flex flex-1 text-left">
+                <span data-slot="select-value" className="flex flex-1 truncate text-left">
                   {CURRENCY_LABELS[destCurrency] ?? destCurrency}
                 </span>
               </SelectTrigger>
@@ -173,11 +173,11 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
           </div>
         )}
 
-        <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="amount" className="text-[0.9375rem] font-semibold">Amount to send ({sourceCurrency})</Label>
-          <div className="flex flex-col gap-3 sm:flex-row">
+        <div className="space-y-1.5 sm:col-span-2">
+          <Label htmlFor="amount" className="text-[0.8125rem] font-semibold text-foreground">Amount to send ({sourceCurrency})</Label>
+          <div className="flex flex-col gap-2.5 sm:flex-row">
             <div className="relative flex-1">
-              <span className="pa-figure pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground select-none">
+              <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-medium text-muted-foreground select-none">
                 {sourceCurrency}
               </span>
               <Input
@@ -187,20 +187,31 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
                 min="1"
                 step="any"
                 value={amount}
-                onChange={e => setAmount(e.target.value)}
-                className="pa-figure h-12 pl-14 text-lg font-medium md:text-lg"
+                onChange={e => { setAmount(e.target.value); if (amountError) setAmountError(false); }}
+                aria-invalid={amountError || undefined}
+                aria-describedby={amountError ? 'amount-error' : undefined}
+                className="pa-figure h-12 pl-14 text-lg font-semibold md:text-lg"
                 placeholder="1000"
                 required
               />
             </div>
-            <Button type="submit" size="lg" disabled={disabled} className="h-12 w-full sm:w-auto">
+            <Button type="submit" size="lg" disabled={disabled} className="h-12 w-full sm:w-auto sm:px-7">
               Compare options
             </Button>
           </div>
+          {amountError && (
+            <p id="amount-error" className="text-[0.8125rem] font-medium text-destructive">
+              Enter an amount greater than zero.
+            </p>
+          )}
         </div>
       </div>
-      {/* Printed on the cover, under the page: where the rates come from and how fresh they are. */}
-      <p className="min-h-[1.5em] px-4 pt-2 pb-1 text-xs text-cover-muted sm:px-5">{rateLabel ?? ''}</p>
+      {/* Where the rates come from and how fresh they are. Always rendered, so the line is there
+          before the rates load and nothing shifts when it fills in. */}
+      <p className="mt-3.5 flex min-h-[1.25rem] items-start gap-2 text-xs leading-5 text-muted-foreground">
+        {rateLabel?.startsWith('Live') && <span aria-hidden="true" className="mt-[7px] size-1.5 shrink-0 rounded-full bg-positive" />}
+        <span>{rateLabel ?? ''}</span>
+      </p>
     </form>
   );
 }

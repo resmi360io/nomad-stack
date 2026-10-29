@@ -22,28 +22,34 @@ export function Header() {
   ];
 
   return (
-    // The cover of the passbook: one oxblood band. Sticky from sm up only, because on a phone the
-    // nav wraps to a second line and a two-line sticky bar would eat the calculator's viewport.
-    <header className="z-50 bg-cover text-cover-foreground sm:sticky sm:top-0">
-      <div className="pa-shell flex flex-wrap items-center gap-x-8 gap-y-0.5 pt-2.5 pb-1.5 sm:h-14 sm:pb-0 sm:pt-0 sm:flex-nowrap sm:py-0">
+    // Light, one row, 56px at every width: the bar is chrome, not content, and on a phone every
+    // pixel it gives back moves the calculator up.
+    <header className="sticky top-0 z-50 border-b border-border bg-sheet/95 backdrop-blur-sm supports-[backdrop-filter]:bg-sheet/85">
+      <div className="pa-shell flex h-14 items-center justify-between gap-3">
         <Link
           href="/"
           aria-current={isActive(pathname, '/') ? 'page' : undefined}
-          className="rounded-sm text-[1.0625rem] font-bold tracking-[-0.015em] text-cover-foreground focus-visible:outline-cover-foreground"
+          className="flex shrink-0 items-center gap-2 rounded-sm text-[1rem] font-bold tracking-[-0.02em] text-foreground"
         >
+          {/* The monogram is drawn with generated content, not text, so the link's accessible
+              and crawlable name stays exactly "Paid Across". */}
+          <span
+            aria-hidden="true"
+            className="hidden size-6 place-items-center rounded-[5px] bg-primary text-[0.6875rem] font-bold tracking-normal text-primary-foreground before:content-['PA'] sm:grid"
+          />
           Paid Across
         </Link>
-        <nav aria-label="Main" className="-mx-2 flex items-center text-[0.9375rem]">
+        <nav aria-label="Main" className="-mr-2 flex items-center text-[0.8125rem] sm:text-[0.9375rem]">
           {navItems.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
               aria-current={isActive(pathname, href) ? 'page' : undefined}
               className={cn(
-                'rounded-sm px-2 py-1.5 underline-offset-[6px] transition-colors focus-visible:outline-cover-foreground',
+                'flex min-h-11 items-center rounded-sm px-2 font-medium whitespace-nowrap transition-colors sm:px-3',
                 isActive(pathname, href)
-                  ? 'text-cover-foreground underline decoration-cover-muted decoration-2'
-                  : 'text-cover-muted hover:text-cover-foreground',
+                  ? 'text-primary'
+                  : 'text-muted-foreground hover:text-foreground',
               )}
             >
               {label}

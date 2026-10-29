@@ -25,19 +25,17 @@ export default async function Home() {
 
   return (
     <main className="pb-4">
-      {/* First viewport: the question on the left, the calculator that answers it on the right.
-          On a phone they stack, and the intro is short enough that the form starts on screen. */}
-      <div className="pa-shell grid items-start gap-6 pt-6 pb-12 sm:gap-8 sm:pt-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14 lg:pt-16">
-        <header className="space-y-4 sm:space-y-5 lg:sticky lg:top-24">
-          <h1 className="pa-h1 max-w-[18ch]">
+      {/* First viewport: the question, one line on what the tool does, and the calculator. The
+          full explanation follows directly under the calculator, visible and server-rendered,
+          so a phone shows the form without scrolling and nothing is hidden from anyone. */}
+      <div className="pa-shell grid items-start gap-5 pt-5 pb-10 sm:gap-8 sm:pt-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14 lg:pt-16 lg:pb-14">
+        <header className="space-y-3 sm:space-y-4 lg:pt-4">
+          <h1 className="pa-h1 max-w-[16ch] sm:max-w-[20ch] lg:max-w-[14ch]">
             What it really costs to receive international payments
           </h1>
-          <p className="pa-lede">
-            Type in what your client is paying and where you live. We price every route we can
-            find for getting dollars into your account in {CORRIDORS.length} countries, Wise,
-            Payoneer, Western Union, PayPal, bank wire and the local services that only work in
-            one place, and rank them by the amount that actually lands after every fee and the
-            margin hidden in the exchange rate.
+          <p className="max-w-[40ch] text-[1.0625rem] leading-snug text-muted-foreground sm:text-lg">
+            See what lands in your account after every fee and the exchange rate margin, in{' '}
+            {CORRIDORS.length} countries.
           </p>
         </header>
 
@@ -45,6 +43,14 @@ export default async function Home() {
       </div>
 
       <div className="pa-shell space-y-16">
+        <p className="pa-intro">
+          Type in what your client is paying and where you live. We price every route we can
+          find for getting dollars into your account in {CORRIDORS.length} countries, Wise,
+          Payoneer, Western Union, PayPal, bank wire and the local services that only work in
+          one place, and rank them by the amount that actually lands after every fee and the
+          margin hidden in the exchange rate.
+        </p>
+
         <section className="max-w-4xl space-y-5">
           <h2 className="pa-h2">Every country we cover</h2>
           <p className="pa-prose">

@@ -16,6 +16,8 @@ export interface Quote {
   // because the corridor row says so or because no researched row matched and we
   // fell back to the provider's generic estimate.
   isEstimate: boolean;
+  // Passed through from the corridor row for display; see CorridorFee.personalRemittancePricing.
+  personalRemittancePricing: boolean;
 }
 
 const COUNTRY_CURRENCY: Record<CountryCode, Currency> = {
@@ -211,6 +213,7 @@ export function calculate(
       affiliateLink: provider.affiliateLink,
       isBestValue: false,
       isEstimate: !matched || corridor.fxMarkupEstimated === true,
+      personalRemittancePricing: matched?.personalRemittancePricing === true,
     });
   }
 

@@ -30,6 +30,11 @@ export interface CorridorFee {
   // marked in the UI and cannot take the best-value badge, because the badge is the
   // number that actually steers readers.
   fxMarkupEstimated?: boolean;
+  // Set when the price on this row is published for personal remittances (family money) rather
+  // than for business or freelance income, so a client invoice may not get it. Display only: it
+  // never changes the quote or the ranking, it labels the row so the page does not imply that the
+  // cheapest modelled route is open to a freelancer. Set it only when the row's own source says so.
+  personalRemittancePricing?: boolean;
 }
 
 export interface Provider {
@@ -1400,6 +1405,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 200,
         typicalHours: 48,
         fxMarkupEstimated: true,  // ~2% spread is a third-party cross-rate estimate, not WU-published
+        personalRemittancePricing: true,
         notes: '$0 online fee for bank deposits over $200 (Pakistan Remittance Initiative) + ~2% FX spread, both personal remittance terms. PRI is a home remittance scheme and does not cover business transfers; WU commercial pricing for this corridor is unpublished. Bank deposit to HBL, UBL, MCB.',
       },
     ],
