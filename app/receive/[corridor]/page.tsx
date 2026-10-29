@@ -324,6 +324,22 @@ export default async function CorridorPage({
               </div>
             </dl>
           )}
+          {/* Readers who want one provider's rate land here more often than on the rate page itself,
+              so point them at it near the top rather than only in "Related guides" at the end. */}
+          {RATE_PAGES.filter((rp) => rp.corridorSlug === corridor.slug).map((rp) => {
+            const providerName = PROVIDERS.find((p) => p.slug === rp.providerSlug)?.name ?? rp.providerSlug;
+            return (
+              <p key={rp.slug} className="text-[0.9375rem]">
+                Looking for today&apos;s {providerName} rate?{' '}
+                <Link
+                  href={`/rates/${rp.slug}`}
+                  className="font-semibold underline underline-offset-2 hover:text-foreground"
+                >
+                  {providerName} {rp.source} to {rp.destination} rate today
+                </Link>
+              </p>
+            );
+          })}
           <details className="pa-note group px-4 py-3 xl:hidden">
               <summary className="cursor-pointer text-sm font-semibold marker:text-rule">On this page</summary>
               <nav aria-label="On this page" className="mt-3">
