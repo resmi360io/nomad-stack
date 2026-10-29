@@ -101,10 +101,10 @@ export default function HowWeMakeMoney() {
           __html: JSON.stringify(pageJsonLd).replace(/</g, '\\u003c'),
         }}
       />
-      <main className="mx-auto max-w-2xl px-4 py-12 space-y-10">
+      <main className="pa-read space-y-12 pt-8 pb-4 sm:pt-12">
 
         {/* Top trust callout */}
-        <div className="rounded-xl border bg-muted/40 px-5 py-4 text-sm leading-relaxed">
+        <div className="pa-note px-5 py-4 text-[0.9375rem] leading-relaxed">
           <p className="font-semibold mb-1">Rankings are never for sale.</p>
           <p className="text-muted-foreground">
             Every provider is ranked purely by the net amount you receive after all fees and FX
@@ -123,9 +123,9 @@ export default function HowWeMakeMoney() {
         </div>
 
         {/* Page header */}
-        <header className="space-y-2">
-          <h1 className="text-2xl font-bold tracking-tight">How We Make Money</h1>
-          <p className="text-xs text-muted-foreground">
+        <header className="space-y-4">
+          <h1 className="pa-h1">How We Make Money</h1>
+          <p className="pa-meta">
             By{' '}
             <Link
               href="/about/author"
@@ -139,8 +139,8 @@ export default function HowWeMakeMoney() {
         </header>
 
         {/* Section 1: How we earn */}
-        <section className="space-y-4 text-sm leading-relaxed">
-          <h2 className="text-lg font-semibold">How this site earns money</h2>
+        <section className="pa-section pa-prose">
+          <h2 className="pa-h2">How this site earns money</h2>
           <p>
             This site is free to use. We earn money when readers sign up for certain providers
             through links on this site. Two providers can pay us for a signup, and both are
@@ -173,14 +173,14 @@ export default function HowWeMakeMoney() {
         </section>
 
         {/* Section 2: How rankings work */}
-        <section className="space-y-4 text-sm leading-relaxed">
-          <h2 className="text-lg font-semibold">How rankings are decided</h2>
+        <section className="pa-section pa-prose">
+          <h2 className="pa-h2">How rankings are decided</h2>
           <p>
             Every provider is ranked by a single number: the net amount you actually receive in
             your local currency after all costs. That cost has two components, which we show
             separately on every comparison card:
           </p>
-          <ul className="space-y-2 text-muted-foreground list-disc pl-5">
+          <ul className="space-y-2 list-disc pl-5 marker:text-rule">
             <li>
               <strong className="text-foreground">The visible fee.</strong> A flat amount or
               percentage stated on the provider&apos;s own pricing page.
@@ -218,8 +218,8 @@ export default function HowWeMakeMoney() {
         </section>
 
         {/* Section 3: Data verification */}
-        <section className="space-y-4 text-sm leading-relaxed">
-          <h2 className="text-lg font-semibold">How we verify the data</h2>
+        <section className="pa-section pa-prose">
+          <h2 className="pa-h2">How we verify the data</h2>
           <p>
             Every fee figure is sourced from the provider&apos;s own official pricing page or
             help center before publishing. We do not use aggregators, press releases, or
@@ -256,7 +256,7 @@ export default function HowWeMakeMoney() {
           id="affiliate-disclosure"
           className="rounded-xl border bg-muted/30 px-6 py-5 space-y-3 text-sm leading-relaxed"
         >
-          <h2 className="text-base font-semibold">Affiliate disclosure</h2>
+          <h2 className="pa-h3">Affiliate disclosure</h2>
           <p>
             Some links on paidacross.com are affiliate or referral links. If you click one and
             sign up for the provider, we may earn a commission or a referral bonus. Either way it
@@ -275,7 +275,7 @@ export default function HowWeMakeMoney() {
             exists. A full list of every commercial relationship and its current status is in the
             table below.
           </p>
-          <p className="text-xs text-muted-foreground">
+          <p className="pa-meta">
             This disclosure applies to the entire paidacross.com domain and is intended to
             satisfy the FTC Endorsement Guides (16 C.F.R. Part 255) and equivalent UK and EU
             disclosure requirements.
@@ -284,18 +284,18 @@ export default function HowWeMakeMoney() {
 
         {/* Affiliate status table */}
         <section className="space-y-4">
-          <h2 className="text-lg font-semibold">Affiliate program status</h2>
-          <p className="text-sm text-muted-foreground leading-relaxed">
+          <h2 className="pa-h2">Affiliate program status</h2>
+          <p className="max-w-[65ch] text-[0.9375rem] text-muted-foreground leading-relaxed">
             Every commercial relationship is disclosed in this table and updated as statuses
             change. Last updated: {formatIsoDate(affiliateTableLastUpdated)}.
           </p>
-          <div className="overflow-hidden rounded-xl border">
+          <div className="pa-table-wrap">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b bg-muted/50 text-left text-xs font-medium text-muted-foreground">
-                  <th className="px-4 py-2.5">Provider</th>
-                  <th className="px-4 py-2.5">Status</th>
-                  <th className="px-4 py-2.5">Last updated</th>
+                <tr className="text-left">
+                  <th className="px-4 py-3">Provider</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="px-4 py-3">Last updated</th>
                 </tr>
               </thead>
               <tbody>
@@ -337,8 +337,8 @@ export default function HowWeMakeMoney() {
         </section>
 
         {/* Section 5: Author and contact */}
-        <section className="space-y-3 text-sm leading-relaxed">
-          <h2 className="text-lg font-semibold">About the author and contact</h2>
+        <section className="space-y-3 pa-prose">
+          <h2 className="pa-h2">About the author and contact</h2>
           <p>
             This site is researched and maintained by{' '}
             <Link
@@ -374,7 +374,7 @@ export default function HowWeMakeMoney() {
         </section>
 
         {/* Page footer */}
-        <div className="border-t pt-5 text-xs text-muted-foreground space-y-1">
+        <div className="pa-meta space-y-1.5 border-t border-rule pt-5">
           <p>
             Written by{' '}
             <Link

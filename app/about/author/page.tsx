@@ -54,13 +54,13 @@ export default function AuthorPage() {
           __html: JSON.stringify(authorJsonLd).replace(/</g, '\\u003c'),
         }}
       />
-      <main className="mx-auto max-w-2xl px-4 py-12 space-y-8">
-        <header className="space-y-2">
-          <h1 className="text-2xl font-bold tracking-tight">About the author</h1>
+      <main className="pa-read space-y-12 pt-8 pb-4 sm:pt-12">
+        <header className="space-y-4">
+          <h1 className="pa-h1">About the author</h1>
           <p className="text-muted-foreground">George I., payments industry, 20+ years</p>
         </header>
 
-        <section className="space-y-4 text-sm leading-relaxed">
+        <section className="pa-section pa-prose">
           <p>
             I spent two decades in transaction banking and payments infrastructure: clearing
             operations at a major European bank, FX product management at a multinational
@@ -86,9 +86,9 @@ export default function AuthorPage() {
           </p>
         </section>
 
-        <section className="space-y-4 text-sm leading-relaxed">
-          <h2 className="text-lg font-semibold">Areas of expertise</h2>
-          <ul className="space-y-1.5 text-muted-foreground list-disc pl-5">
+        <section className="pa-section pa-prose">
+          <h2 className="pa-h2">Areas of expertise</h2>
+          <ul className="space-y-1.5 list-disc pl-5 marker:text-rule">
             <li>SWIFT and SEPA network mechanics, correspondent banking, and nostro/vostro accounts</li>
             <li>FX pricing and bid-ask spread construction in interbank and retail contexts</li>
             <li>EMI (Electronic Money Institution) regulation in the EU and UK</li>
@@ -97,8 +97,8 @@ export default function AuthorPage() {
           </ul>
         </section>
 
-        <section className="space-y-3 text-sm leading-relaxed">
-          <h2 className="text-lg font-semibold">Methodology and standards</h2>
+        <section className="space-y-3 pa-prose">
+          <h2 className="pa-h2">Methodology and standards</h2>
           <p className="text-muted-foreground">
             Every fee figure on this site is sourced from the provider&apos;s own public pricing
             page, with the verification date recorded. If a fee cannot be confirmed from a
@@ -132,8 +132,8 @@ export default function AuthorPage() {
           </p>
         </section>
 
-        <section className="space-y-3 text-sm leading-relaxed">
-          <h2 className="text-lg font-semibold">Why pseudonymous</h2>
+        <section className="space-y-3 pa-prose">
+          <h2 className="pa-h2">Why pseudonymous</h2>
           <p className="text-muted-foreground">
             I have worked with and for several of the payment providers reviewed on this site.
             Using a pseudonym avoids any suggestion that reviews are shaped by former employer
@@ -142,7 +142,7 @@ export default function AuthorPage() {
           </p>
         </section>
 
-        <div className="border-t pt-5 text-xs text-muted-foreground space-y-1">
+        <div className="pa-meta space-y-1.5 border-t border-rule pt-5">
           <p>
             <Link
               href="/"

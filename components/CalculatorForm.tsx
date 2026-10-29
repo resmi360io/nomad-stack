@@ -107,16 +107,21 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-xl border bg-card p-6 shadow-sm">
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div className="space-y-1.5">
+    // The passbook cover around a white page: the oxblood frame is the one strong surface on the
+    // site, so the calculator is the first thing the eye lands on at every width.
+    <form
+      onSubmit={handleSubmit}
+      className="rounded-md bg-cover p-1.5 shadow-[0_10px_30px_-12px_rgb(59_14_24/0.45)]"
+    >
+      <div className="grid gap-x-4 gap-y-4 rounded-[3px] bg-sheet p-4 sm:grid-cols-2 sm:gap-y-5 sm:p-6">
+        <div className="space-y-2">
           <Select
             value={sourceCountry}
             onValueChange={(v) => { if (v) handleSourceChange(v as CountryCode); }}
           >
-            <SelectFieldLabel>From</SelectFieldLabel>
+            <SelectFieldLabel className="text-[0.9375rem] font-semibold">From</SelectFieldLabel>
             <SelectTrigger className="w-full">
-              <span data-slot="select-value" className="flex flex-1 text-left text-sm">
+              <span data-slot="select-value" className="flex flex-1 text-left">
                 {SOURCE_OPTIONS.find(o => o.code === sourceCountry)?.label ?? sourceCountry}
               </span>
             </SelectTrigger>
@@ -128,14 +133,14 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
           </Select>
         </div>
 
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <Select
             value={destCountry}
             onValueChange={(v) => { if (v) handleDestCountryChange(v as CountryCode); }}
           >
-            <SelectFieldLabel>To</SelectFieldLabel>
+            <SelectFieldLabel className="text-[0.9375rem] font-semibold">To</SelectFieldLabel>
             <SelectTrigger className="w-full">
-              <span data-slot="select-value" className="flex flex-1 text-left text-sm">
+              <span data-slot="select-value" className="flex flex-1 text-left">
                 {DEST_OPTIONS.find(o => o.code === destCountry)?.label ?? destCountry}
               </span>
             </SelectTrigger>
@@ -148,14 +153,14 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
         </div>
 
         {availableDestCurrencies.length > 1 && (
-          <div className="space-y-1.5 sm:col-span-2">
+          <div className="space-y-2 sm:col-span-2">
             <Select
               value={destCurrency}
               onValueChange={(v) => { if (v) setDestCurrency(v as Currency); }}
             >
-              <SelectFieldLabel>Recipient receives in</SelectFieldLabel>
+              <SelectFieldLabel className="text-[0.9375rem] font-semibold">Recipient receives in</SelectFieldLabel>
               <SelectTrigger className="w-full">
-                <span data-slot="select-value" className="flex flex-1 text-left text-sm">
+                <span data-slot="select-value" className="flex flex-1 text-left">
                   {CURRENCY_LABELS[destCurrency] ?? destCurrency}
                 </span>
               </SelectTrigger>
@@ -168,32 +173,34 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
           </div>
         )}
 
-        <div className="space-y-1.5 sm:col-span-2">
-          <Label htmlFor="amount">Amount to send ({sourceCurrency})</Label>
-          <div className="flex gap-2">
+        <div className="space-y-2 sm:col-span-2">
+          <Label htmlFor="amount" className="text-[0.9375rem] font-semibold">Amount to send ({sourceCurrency})</Label>
+          <div className="flex flex-col gap-3 sm:flex-row">
             <div className="relative flex-1">
-              <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground select-none">
+              <span className="pa-figure pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground select-none">
                 {sourceCurrency}
               </span>
               <Input
                 id="amount"
                 type="number"
+                inputMode="decimal"
                 min="1"
                 step="any"
                 value={amount}
                 onChange={e => setAmount(e.target.value)}
-                className="pl-12"
+                className="pa-figure h-12 pl-14 text-lg font-medium md:text-lg"
                 placeholder="1000"
                 required
               />
             </div>
-            <Button type="submit" disabled={disabled}>Compare options</Button>
+            <Button type="submit" size="lg" disabled={disabled} className="h-12 w-full sm:w-auto">
+              Compare options
+            </Button>
           </div>
-          {rateLabel && (
-            <p className="mt-2 text-xs text-muted-foreground">{rateLabel}</p>
-          )}
         </div>
       </div>
+      {/* Printed on the cover, under the page: where the rates come from and how fresh they are. */}
+      <p className="min-h-[1.5em] px-4 pt-2 pb-1 text-xs text-cover-muted sm:px-5">{rateLabel ?? ''}</p>
     </form>
   );
 }

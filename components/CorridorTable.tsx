@@ -38,31 +38,31 @@ export function CorridorTable({
   });
 
   return (
-    <div className="overflow-x-auto rounded-xl border">
-      <table className="w-full text-sm">
+    <div className="pa-table-wrap">
+      <table className="w-full text-[0.9375rem]">
         <caption className="sr-only">{caption}</caption>
         <thead>
-          <tr className="border-b bg-muted/50 text-left text-xs font-medium text-muted-foreground">
-            <th scope="col" className="px-4 py-2.5">Where you get paid</th>
-            <th scope="col" className="px-4 py-2.5">Options we price</th>
-            <th scope="col" className="px-4 py-2.5">Top of the table at ${AMOUNT.toLocaleString('en-US')}</th>
+          <tr className="text-left">
+            <th scope="col" className="px-4 py-3">Where you get paid</th>
+            <th scope="col" className="px-4 py-3 text-right">Options we price</th>
+            <th scope="col" className="px-4 py-3">Top of the table at ${AMOUNT.toLocaleString('en-US')}</th>
           </tr>
         </thead>
         <tbody>
-          {rows.map(({ corridor, top, allIn }, i) => (
-            <tr key={corridor.slug} className={i < rows.length - 1 ? 'border-b' : ''}>
-              <td className="px-4 py-3">
+          {rows.map(({ corridor, top, allIn }) => (
+            <tr key={corridor.slug} className="transition-colors hover:bg-stamp-tint/60">
+              <td className="px-4 py-3 whitespace-nowrap">
                 <Link
                   href={`/receive/${corridor.slug}`}
-                  className="font-medium underline underline-offset-2 hover:text-muted-foreground"
+                  className="font-semibold text-stamp underline decoration-stamp/35 underline-offset-[3px] hover:decoration-stamp"
                 >
                   {corridor.source} to {corridor.destination}, {corridor.country.replace(/^the /, '')}
                 </Link>
               </td>
-              <td className="px-4 py-3 text-muted-foreground tabular-nums">
+              <td className="pa-figure px-4 py-3 text-right text-muted-foreground">
                 {corridor.supportedProviders.length}
               </td>
-              <td className="px-4 py-3 text-muted-foreground">
+              <td className="px-4 py-3 text-muted-foreground min-w-[14rem]">
                 {top && isFinite(allIn) ? (
                   <>
                     {top.provider.name}, {allIn.toFixed(2)}% all in
