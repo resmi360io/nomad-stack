@@ -577,7 +577,17 @@ export default async function CorridorPage({
                 href="/receive-international-payments"
                 className="underline underline-offset-2 hover:text-foreground"
               >
-                How freelancers receive international payments: country-by-country guide 2026
+                How freelancers receive international payments: real costs by country
+              </Link>
+            </li>
+            {/* The sender page is new and has no inbound links of its own. Corridor pages are the
+                ones already on page one, so this is where its first internal links come from. */}
+            <li>
+              <Link
+                href="/pay-freelancers-internationally"
+                className="underline underline-offset-2 hover:text-foreground"
+              >
+                Paying a freelancer in {corridor.country}? How to pay freelancers internationally
               </Link>
             </li>
             {/* Provider rate pages for THIS corridor, listed before the sibling corridors because

@@ -47,7 +47,7 @@ const pillarJsonLd = {
       '@id': 'https://paidacross.com/receive-international-payments#article',
       headline: 'How freelancers receive international payments: real costs by country',
       datePublished: '2026-06-03T00:00:00+00:00',
-      dateModified: '2026-10-26T00:00:00+00:00',
+      dateModified: '2026-10-29T00:00:00+00:00',
       url: 'https://paidacross.com/receive-international-payments',
       image: 'https://paidacross.com/opengraph-image',
       author: {
@@ -98,12 +98,15 @@ export default async function ReceiveInternationalPaymentsPage() {
             How freelancers receive international payments: real costs by country
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            This guide is for the person being paid. If a client abroad owes you money, the way
-            you choose to receive it can cost anything from a fraction of a percent to almost 9%
-            of every invoice. On $3,000 a month that is the difference between losing about $15
-            and losing over $250, every month, for the same work. Below is what each route
-            really costs in the {CORRIDORS.length} countries we cover, and the handful of things
-            that decide which one is right for you.
+            For most freelancers the cheapest way to receive international payments is a Wise
+            account with US account details, where your country allows one: your client pays
+            you like a local supplier and Wise converts at the mid-market rate. Where Wise is
+            closed to residents, as in Pakistan and Bangladesh, Payoneer is the usual route at
+            roughly 3.6% all in. In Nigeria and Brazil, local services such as Raenest and
+            Higlobe come out cheaper than either. The choice matters more than it looks. The
+            cost runs from a fraction of a percent to almost 9% of every invoice, and on $3,000 a
+            month that is the difference between losing about $15 and losing over $250. Below is
+            what each route costs in the {CORRIDORS.length} countries we cover.
           </p>
           <p className="text-xs text-muted-foreground">
             By{' '}
@@ -111,7 +114,7 @@ export default async function ReceiveInternationalPaymentsPage() {
               George I.
             </Link>
             {' · '}
-            Last updated: October 26, 2026
+            Last updated: October 29, 2026
           </p>
         </header>
 
@@ -230,10 +233,9 @@ export default async function ReceiveInternationalPaymentsPage() {
             In some countries you can hold the dollars and convert later, or never. Georgian banks
             offer USD sub-accounts, Thai banks offer foreign currency deposit accounts, and banks
             in the Philippines offer FCDU dollar savings accounts that take an incoming wire
-            without forcing a conversion. Bangladesh lets ICT freelancers keep part of their
-            export earnings in an ERQ foreign currency account, and a July 2026 central bank
-            circular raised that share to 50%. That one is recent, so confirm your bank has put
-            it in place.
+            without forcing a conversion. Bangladesh lets freelancers exporting software and other
+            ICT services keep up to 50% of their export earnings in an ERQ foreign currency
+            account, and up to 30% for other services. Ask your bank which share applies to you.
           </p>
           <p className={P}>
             Holding dollars is worth it if you have dollar expenses or want to choose when you
@@ -270,9 +272,10 @@ export default async function ReceiveInternationalPaymentsPage() {
               <p>
                 Converts at the mid-market rate and charges a separate fee you can see before you
                 accept. It tops most of the tables where residents can open an account. Where they
-                cannot, as in Pakistan and Bangladesh, a client can still use Wise to send local
-                currency straight to your bank account, and your side of that transfer costs you
-                nothing.
+                cannot, as in Pakistan, a client can often still use Wise to send local currency
+                straight to your bank account, and your side of that transfer costs you nothing.
+                Bangladesh is the exception to check: Wise says it cannot send business transfers
+                to taka.
               </p>
               <a
                 href={wiseLink}
@@ -305,9 +308,9 @@ export default async function ReceiveInternationalPaymentsPage() {
               <h3 className="font-semibold text-foreground mb-1">Revolut</h3>
               <p>
                 Cheap where it is licensed. In Portugal, the one country on our list where we can
-                price it, it comes out at the top. It is not available to residents of most of the
-                countries we cover, including Pakistan, Bangladesh, Georgia, Thailand and
-                Indonesia.
+                price it, it comes out at the top. Residents of most of the other countries we
+                cover cannot use it, including Pakistan, Georgia, Thailand and Indonesia, and we
+                could not confirm it for Bangladesh.
               </p>
             </div>
             <div>
@@ -427,7 +430,7 @@ export default async function ReceiveInternationalPaymentsPage() {
             >
               George I.
             </Link>{' '}
-            (20+ years in international payments). Last updated: October 26, 2026.
+            (20+ years in international payments). Last updated: October 29, 2026.
           </p>
           <p>
             Fees are estimates based on publicly available pricing. Verify with your provider

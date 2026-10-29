@@ -35,7 +35,7 @@ const jsonLd = {
       '@id': 'https://paidacross.com/pay-freelancers-internationally#article',
       headline: 'How to pay freelancers internationally without shrinking their invoice',
       datePublished: '2026-10-26T00:00:00+00:00',
-      dateModified: '2026-10-26T00:00:00+00:00',
+      dateModified: '2026-10-29T00:00:00+00:00',
       url: 'https://paidacross.com/pay-freelancers-internationally',
       image: 'https://paidacross.com/opengraph-image',
       author: { '@type': 'Person', name: 'George I.', url: 'https://paidacross.com/about/author' },
@@ -87,7 +87,7 @@ export default async function PayFreelancersPage() {
               George I.
             </Link>
             {' · '}
-            Published October 26, 2026
+            Published October 26, 2026, updated October 29, 2026
           </p>
         </header>
 
@@ -105,12 +105,14 @@ export default async function PayFreelancersPage() {
             them to convert afterwards is between them and their provider.
           </p>
           <p className={P}>
-            If all they have is a local bank account, send money in their currency, not in dollars. A service like Wise lets you pay in
-            dollars and deliver Pakistani rupees, taka, naira or pesos straight into their local
-            bank account at the mid-market rate. You pay a fee you can see before you confirm, and
-            nothing comes off on their side. This works even in countries where residents cannot
-            open a Wise account themselves, such as Pakistan and Bangladesh. In Bangladesh it can
-            also deliver to a bKash or Nagad wallet.
+            If all they have is a local bank account, send money in their currency, not in
+            dollars. A service like Wise lets you pay in dollars and deliver Pakistani rupees,
+            naira or pesos straight into their local bank account at the mid-market rate. You pay
+            a fee you can see before you confirm, and nothing comes off on their side. This works
+            even where residents cannot open a Wise account themselves, as in Pakistan. Check the
+            details for each country, though. Wise says it cannot send business transfers to
+            Bangladeshi taka, so a company paying from a Wise Business account cannot use it
+            there, and our Bangladesh page covers what to do instead.
           </p>
           <p className={P}>
             If you hired through Upwork or Fiverr, pay through the platform. Its fees are set and you
