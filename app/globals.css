@@ -8,7 +8,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-text), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-figures), ui-monospace, monospace;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-heading: var(--font-text), ui-sans-serif, system-ui, sans-serif;
   --color-cover: var(--cover);
   --color-cover-foreground: var(--cover-foreground);
@@ -16,6 +16,11 @@
   --color-stamp: var(--stamp);
   --color-stamp-tint: var(--stamp-tint);
   --color-sheet: var(--sheet);
+  --color-positive: var(--positive);
+  --color-positive-tint: var(--positive-tint);
+  --color-caution: var(--caution);
+  --color-caution-tint: var(--caution-tint);
+  --color-caution-border: var(--caution-border);
   --color-rule: var(--rule);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -56,47 +61,53 @@
 }
 
 :root {
-  /* Passbook. Cover cloth owns the shell, paper is a cool security tint, entries print on white
-     sheets in green-black ink, and violet teller-stamp ink marks links, focus and best value. */
-  --background: #f3f5f4;
-  --foreground: #17201d;
+  /* Restrained ledger palette. Neutral, faintly green-grey paper and white surfaces carry the
+     content; oxblood is the one brand colour and does three jobs only: primary action, links and
+     the best value mark. Estimate and remittance notices use amber, verified figures use green. */
+  --background: #f5f6f4;
+  --foreground: #141a19;
   --sheet: #ffffff;
   --card: #ffffff;
-  --card-foreground: #17201d;
+  --card-foreground: #141a19;
   --popover: #ffffff;
-  --popover-foreground: #17201d;
-  --primary: #5b1a27;
+  --popover-foreground: #141a19;
+  --primary: #6b1f2e;
   --primary-foreground: #ffffff;
-  --secondary: #e8ecea;
-  --secondary-foreground: #17201d;
-  --muted: #e8ecea;
-  --muted-foreground: #4b5752;
-  --accent: #eceaf7;
-  --accent-foreground: #2e2470;
+  --secondary: #eceeeb;
+  --secondary-foreground: #141a19;
+  --muted: #eceeeb;
+  --muted-foreground: #525d5a;
+  --accent: #f7eef0;
+  --accent-foreground: #4a1520;
   --destructive: #a61b1b;
-  --border: #d3dbd7;
-  --rule: #b8c3be;
-  --input: #84918b;
-  --ring: #4c3d9e;
-  --cover: #5b1a27;
-  --cover-foreground: #fbf3f4;
-  --cover-muted: #dcc3c8;
-  --stamp: #4c3d9e;
-  --stamp-tint: #eeebf8;
-  --chart-1: #5b1a27;
-  --chart-2: #4c3d9e;
-  --chart-3: #4b5752;
-  --chart-4: #84918b;
-  --chart-5: #d3dbd7;
-  --radius: 0.25rem;
-  --sidebar: #f3f5f4;
-  --sidebar-foreground: #17201d;
-  --sidebar-primary: #5b1a27;
+  --border: #e1e5e2;
+  --rule: #c7cfcb;
+  --input: #8a9692;
+  --ring: #6b1f2e;
+  --cover: #141a19;
+  --cover-foreground: #f5f6f4;
+  --cover-muted: #b9c2bf;
+  --stamp: #6b1f2e;
+  --stamp-tint: #f7eef0;
+  --positive: #1f6a49;
+  --positive-tint: #e8f3ed;
+  --caution: #7a4f00;
+  --caution-tint: #fbf3e0;
+  --caution-border: #ecd9a8;
+  --chart-1: #6b1f2e;
+  --chart-2: #1f6a49;
+  --chart-3: #525d5a;
+  --chart-4: #8a9692;
+  --chart-5: #e1e5e2;
+  --radius: 0.375rem;
+  --sidebar: #f5f6f4;
+  --sidebar-foreground: #141a19;
+  --sidebar-primary: #6b1f2e;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #e8ecea;
-  --sidebar-accent-foreground: #17201d;
-  --sidebar-border: #d3dbd7;
-  --sidebar-ring: #4c3d9e;
+  --sidebar-accent: #eceeeb;
+  --sidebar-accent-foreground: #141a19;
+  --sidebar-border: #e1e5e2;
+  --sidebar-ring: #6b1f2e;
 }
 
 /* Unused: nothing sets .dark. Kept so shadcn primitives still resolve if it is ever added. */
@@ -176,9 +187,9 @@
      wins, so nothing about where a link goes or how it is marked up changes. */
   main a.underline, footer a.underline {
     color: var(--stamp);
-    text-decoration-color: color-mix(in oklab, var(--stamp) 40%, transparent);
+    text-decoration-color: color-mix(in oklab, var(--stamp) 35%, transparent);
     text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
+    text-underline-offset: 0.2em;
   }
   main a.underline:hover {
     text-decoration-color: currentColor;
@@ -206,10 +217,10 @@
     @apply mx-auto w-full max-w-[44rem] px-4 sm:px-6;
   }
   .pa-h1 {
-    font-size: clamp(1.75rem, 1.3rem + 2.1vw, 2.75rem);
-    line-height: 1.1;
+    font-size: clamp(1.625rem, 1.25rem + 1.9vw, 2.625rem);
+    line-height: 1.12;
     font-weight: 700;
-    letter-spacing: -0.022em;
+    letter-spacing: -0.024em;
   }
   .pa-h2 {
     font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.6rem);
@@ -232,8 +243,8 @@
   /* Long standfirsts (corridor and guide intros run 100 to 200 words) read as body text, not as a
      display lede: same size as prose, full ink. */
   .pa-intro {
-    font-size: 1.0625rem;
-    line-height: 1.7;
+    font-size: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+    line-height: 1.68;
     color: var(--foreground);
     max-width: 65ch;
   }
@@ -245,8 +256,8 @@
     letter-spacing: -0.02em;
   }
   .pa-prose {
-    font-size: 1.0625rem;
-    line-height: 1.7;
+    font-size: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+    line-height: 1.68;
     color: color-mix(in oklab, var(--foreground) 82%, var(--muted-foreground));
     max-width: 65ch;
   }
@@ -255,10 +266,11 @@
     line-height: 1.5;
     color: var(--muted-foreground);
   }
+  /* Money and percentages. Lining figures in the text face: the font's tabular figures also widen
+     commas and points to a full digit cell, which reads as "271 , 376". */
   .pa-figure {
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums slashed-zero;
-    letter-spacing: -0.01em;
+    font-variant-numeric: lining-nums proportional-nums;
+    letter-spacing: -0.005em;
   }
   /* Sheets: white paper on the tinted ground, one hairline, square-ish corners. */
   .pa-sheet {
@@ -266,13 +278,33 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
   }
+  /* A raised surface for the one interactive object on a page. */
+  .pa-card {
+    background: var(--sheet);
+    border: 1px solid var(--border);
+    border-radius: 0.625rem;
+    box-shadow: 0 1px 2px rgb(20 26 25 / 0.04), 0 8px 24px -12px rgb(20 26 25 / 0.12);
+  }
+  .pa-caution {
+    background: var(--caution-tint);
+    border: 1px solid var(--caution-border);
+    color: var(--caution);
+    border-radius: var(--radius);
+  }
   .pa-note {
     background: color-mix(in oklab, var(--muted) 60%, var(--sheet));
     border: 1px solid var(--border);
     border-radius: var(--radius);
   }
+  /* Scroll shadows (background-attachment: local covers them at each end), so a table wider than a
+     phone shows an edge where more columns wait, instead of silently cutting them off. */
   .pa-table-wrap {
-    background: var(--sheet);
+    background:
+      linear-gradient(to right, var(--sheet) 30%, transparent) left center / 2.5rem 100% no-repeat local,
+      linear-gradient(to left, var(--sheet) 30%, transparent) right center / 2.5rem 100% no-repeat local,
+      radial-gradient(farthest-side at 0 50%, rgb(23 32 29 / 0.18), transparent) left center / 0.875rem 100% no-repeat scroll,
+      radial-gradient(farthest-side at 100% 50%, rgb(23 32 29 / 0.18), transparent) right center / 0.875rem 100% no-repeat scroll,
+      var(--sheet);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow-x: auto;
@@ -290,5 +322,18 @@
   }
   .pa-section {
     @apply space-y-4;
+  }
+}
+
+/* Unlayered so it beats the px-4 utilities on table cells: tighter cells on phones let the
+   comparison tables fit more columns before they have to scroll. */
+@media (max-width: 639px) {
+  .pa-table-wrap :is(th, td) {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .pa-table-wrap th {
+    white-space: normal;
+    vertical-align: bottom;
   }
 }

@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { cache } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { splitParagraphs } from '@/lib/paragraphs';
 import { RATE_PAGES } from '@/data/ratePages';
 import { CORRIDORS } from '@/data/corridors';
 import { PROVIDERS } from '@/data/providers';
@@ -148,11 +149,13 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
 
           <h1 className="pa-h1">{page.h1}</h1>
 
-          <p className="pa-intro mt-5">{page.intro}</p>
+          <div className="pa-intro mt-5 space-y-3">
+            {splitParagraphs(page.intro).map((t, i) => <p key={i}>{t}</p>)}
+          </div>
 
-          {/* The rate, printed on the cover: the one figure this page exists to show. */}
-          <section className="mt-10 rounded-md bg-cover p-1.5 shadow-[0_10px_30px_-12px_rgb(59_14_24/0.45)]">
-            <div className="rounded-[3px] bg-sheet px-5 py-5 sm:px-6">
+          {/* The one figure this page exists to show, on the raised surface. */}
+          <section className="pa-card mt-8">
+            <div className="px-5 py-5 sm:px-6">
               <h2 className="text-[0.9375rem] font-semibold text-muted-foreground">
                 Mid-market rate today
               </h2>
@@ -170,7 +173,9 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
                   Live rate unavailable right now. The fee structure below does not depend on it.
                 </p>
               )}
-              <p className="mt-4 max-w-[65ch] text-[0.9375rem] leading-relaxed">{page.rateNote}</p>
+              <div className="mt-4 max-w-[65ch] space-y-3 text-[0.9375rem] leading-relaxed">
+                {splitParagraphs(page.rateNote).map((t, i) => <p key={i}>{t}</p>)}
+              </div>
             </div>
           </section>
 
@@ -267,7 +272,9 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
               {page.faqs.map((f) => (
                 <div key={f.q} className="py-5">
                   <dt className="pa-h3">{f.q}</dt>
-                  <dd className="pa-prose mt-2 text-base">{f.a}</dd>
+                  <dd className="pa-prose mt-2 space-y-3">
+                  {splitParagraphs(f.a).map((t, i) => <p key={i}>{t}</p>)}
+                </dd>
                 </div>
               ))}
             </dl>

@@ -55,77 +55,109 @@ export function ResultsTable({ quotes, rateDate, amount }: Props) {
         <h2 className="pa-h3">Results: ranked by net received</h2>
         <span className="pa-meta whitespace-nowrap">Rate: {rateDate}</span>
       </div>
-      {/* One sheet, one entry per provider, the way a passbook prints them: the credited amount is
-          the figure set large on the right, and the working sits under the name. */}
-      <ol className="pa-sheet divide-y divide-border overflow-hidden">
+      <p className="text-[0.8125rem] leading-snug text-muted-foreground">
+        Ranked by the modelled amount you receive. A low price is not an offer to you: check that a
+        provider accepts freelance or business income before you sign up.
+      </p>
+      <ol className="space-y-3">
         {quotes.map((q, i) => {
           const href = q.affiliateLink || q.provider.signupUrl;
           const isAffiliate = !!q.affiliateLink;
           const { margin, allIn } = breakdown(q, amount);
+          const est = q.isEstimate ? <span className="font-normal text-caution"> est.</span> : null;
 
           return (
             <li
               key={q.provider.slug}
               className={cn(
-                'grid grid-cols-[1.75rem_1fr] gap-x-2 px-4 py-4 sm:grid-cols-[2rem_1fr_auto] sm:gap-x-4 sm:px-5',
-                q.isBestValue && 'bg-stamp-tint',
+                'pa-sheet overflow-hidden',
+                q.isBestValue && 'border-primary/50 ring-1 ring-primary/25',
               )}
             >
-              <span className="pa-figure pt-0.5 text-sm text-muted-foreground" aria-label={`Rank ${i + 1}`}>
-                {i + 1}
-              </span>
-
-              <div className="min-w-0">
-                <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-                  <span className="text-[1.0625rem] font-semibold">{q.provider.name}</span>
+              <div className="p-4 sm:p-5">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex min-w-0 items-center gap-2.5">
+                    <span
+                      className="pa-figure grid size-6 shrink-0 place-items-center rounded-full bg-muted text-xs font-semibold text-muted-foreground"
+                      aria-label={`Rank ${i + 1}`}
+                    >
+                      {i + 1}
+                    </span>
+                    <span className="truncate text-[1.0625rem] font-semibold">{q.provider.name}</span>
+                  </div>
                   {q.isBestValue && <BestValueBadge />}
                 </div>
 
-                <dl className="mt-1.5 flex flex-wrap gap-x-4 gap-y-0.5 text-sm text-muted-foreground">
-                  <div className="flex gap-1.5">
-                    <dt>Fee</dt>
-                    <dd className="pa-figure text-foreground">
+                <div className="mt-3 flex flex-wrap items-end justify-between gap-x-4 gap-y-1">
+                  <div>
+                    <div className="text-xs font-medium text-muted-foreground">You receive</div>
+                    <div className="pa-figure text-[1.75rem] leading-tight font-bold tracking-[-0.02em]">
+                      {formatAmount(q.netReceivedInDest, q.destCurrency)}
+                    </div>
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    Credited in {formatHours(q.timeHours)}
+                  </div>
+                </div>
+
+                <dl className="mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-md border border-border bg-border text-sm">
+                  <div className="bg-sheet px-3 py-2.5">
+                    <dt className="text-xs text-muted-foreground">Transfer fee</dt>
+                    <dd className="pa-figure mt-0.5 font-semibold">
                       {formatAmount(q.totalFeeInSource, q.sourceCurrency)}
                     </dd>
-                  </div>
-                  <div className="flex gap-1.5">
-                    <dt>Rate margin</dt>
-                    <dd className="pa-figure text-foreground">
-                      {formatAmount(margin, q.sourceCurrency)}
-                      {q.isEstimate && <span className="font-sans text-muted-foreground [font-variant-numeric:normal]"> est.</span>}
+                    <dd className="pa-figure text-xs text-muted-foreground">
+                      {q.effectiveFeePercent.toFixed(2)}%
                     </dd>
                   </div>
-                  <div className="flex gap-1.5">
-                    <dt>All in</dt>
-                    <dd className="pa-figure text-foreground">
-                      {isFinite(allIn) ? `${allIn.toFixed(2)}%` : 'n/a'}
+                  <div className="bg-sheet px-3 py-2.5">
+                    <dt className="text-xs text-muted-foreground">FX margin</dt>
+                    <dd className="pa-figure mt-0.5 font-semibold">
+                      {formatAmount(margin, q.sourceCurrency)}
+                    </dd>
+                    <dd className="pa-figure text-xs text-muted-foreground">
+                      {(q.fxMarkupBps / 100).toFixed(2)}%{est}
+                    </dd>
+                  </div>
+                  <div className="bg-sheet px-3 py-2.5">
+                    <dt className="text-xs text-muted-foreground">Total cost</dt>
+                    <dd className="pa-figure mt-0.5 font-semibold">
+                      {formatAmount(q.totalFeeInSource + margin, q.sourceCurrency)}
+                    </dd>
+                    <dd className="pa-figure text-xs font-semibold text-foreground">
+                      {isFinite(allIn) ? `${allIn.toFixed(2)}%` : 'n/a'}{est}
                     </dd>
                   </div>
                 </dl>
 
+                {q.personalRemittancePricing && (
+                  <p className="pa-caution mt-3 px-3 py-2 text-[0.8125rem] leading-snug">
+                    <span className="font-semibold">Personal remittance price.</span> This is
+                    published for family transfers, not business payments, so a client invoice may
+                    not get it.
+                  </p>
+                )}
                 {q.provider.caveat && (
-                  <p className="mt-1.5 max-w-[60ch] text-[0.8125rem] leading-snug text-muted-foreground">
+                  <p className="mt-3 text-[0.8125rem] leading-snug text-muted-foreground">
                     {q.provider.caveat}
                   </p>
                 )}
-                {/* Never print a verification date against a figure we did not
-                    verify: that is the claim the estimate marker exists to avoid. */}
-                <p className="mt-1 text-xs text-muted-foreground">
-                  {q.isEstimate
-                    ? 'FX spread not published by this provider; estimated'
-                    : `Fees verified ${q.provider.lastVerified}`}
-                </p>
               </div>
 
-              <div className="col-start-2 mt-3 flex items-end justify-between gap-4 sm:col-start-3 sm:row-start-1 sm:mt-0 sm:flex-col sm:items-end sm:justify-start sm:gap-2">
-                <div className="sm:text-right">
-                  <div className="pa-figure text-xl font-semibold tracking-tight sm:text-2xl">
-                    {formatAmount(q.netReceivedInDest, q.destCurrency)}
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    Credited in {formatHours(q.timeHours)}
-                  </div>
-                </div>
+              <div className="flex flex-col gap-3 border-t border-border bg-background/60 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+                {/* Never print a verification date against a figure we did not
+                    verify: that is the claim the estimate marker exists to avoid. */}
+                <p className="flex items-center gap-2 text-xs">
+                  <span
+                    aria-hidden="true"
+                    className={cn('size-1.5 shrink-0 rounded-full', q.isEstimate ? 'bg-caution' : 'bg-positive')}
+                  />
+                  <span className={q.isEstimate ? 'text-caution' : 'text-positive'}>
+                    {q.isEstimate
+                      ? 'FX spread not published by this provider; estimated'
+                      : `Fees verified ${q.provider.lastVerified}`}
+                  </span>
+                </p>
                 {href && (
                   <a
                     href={href}
@@ -133,7 +165,7 @@ export function ResultsTable({ quotes, rateDate, amount }: Props) {
                     rel={isAffiliate ? 'sponsored nofollow noopener' : 'noopener noreferrer'}
                     // Same button on every row: the order and the badge already say which is
                     // cheapest, and a louder button on one row would be a second, unearned signal.
-                    className={cn(buttonVariants({ size: 'sm', variant: 'outline' }), 'shrink-0 bg-sheet')}
+                    className={cn(buttonVariants({ variant: 'outline' }), 'h-11 w-full shrink-0 bg-sheet sm:w-auto')}
                     onClick={() =>
                       posthog.capture('affiliate_click', {
                         provider: q.provider.slug,

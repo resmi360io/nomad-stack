@@ -10,6 +10,7 @@ import { calculate, getDestCurrencies } from '@/lib/calculate';
 import type { CountryCode, Currency } from '@/data/providers';
 import { Calculator } from '@/components/Calculator';
 import { BestValueBadge } from '@/components/BestValueBadge';
+import { splitParagraphs } from '@/lib/paragraphs';
 
 export const revalidate = 3600;
 
@@ -120,6 +121,19 @@ export default async function CorridorPage({
           ratesResult.rates,
         )
       : null;
+
+  // Total cost of a quote against the mid rate: the transfer fee AND the margin inside the
+  // conversion, as a share of the invoice. effectiveFeePercent is the transfer fee alone, which is
+  // why a row could read "0.00%" in one column and "2.00% all in" on the homepage. Same formula as
+  // CorridorTable and the rate pages; presentation only, nothing here feeds the ranking.
+  const totalCostPct = (q: { netReceivedInDest: number }, currency: string) => {
+    if (!ratesResult) return NaN;
+    const atMid =
+      COMPARISON_AMOUNT *
+      (ratesResult.rates[currency as Currency] / ratesResult.rates[corridor.source as Currency]);
+    return atMid > 0 ? (1 - q.netReceivedInDest / atMid) * 100 : NaN;
+  };
+  const fmtPct = (n: number) => (isFinite(n) ? `${n.toFixed(2)}%` : 'n/a');
 
   const cheapestSwitchesAt =
     quotes && quotes.length > 1 && quotesAtLarger && quotesAtLarger.length > 1 &&
@@ -235,6 +249,16 @@ export default async function CorridorPage({
   const deepDiveProviders = corridor.providers.filter((p) => p.available || p.customHeading);
   const compactUnavailable = corridor.providers.filter((p) => !p.available && !p.customHeading);
 
+  const keyFacts =
+    quotes && quotes.length > 0
+      ? {
+          top: quotes[0].provider.name,
+          cost: `${fmtPct(totalCostPct(quotes[0], corridor.destination))}${quotes[0].isEstimate ? ' (est.)' : ''}`,
+          remittance: quotes[0].personalRemittancePricing,
+          options: quotes.length,
+        }
+      : null;
+
   // "On this page": the h2s below, in order, each with the anchor its heading carries. Built from
   // the same values the headings render, so the list cannot drift from the page.
   const providerHeading = (p: (typeof corridor.providers)[number]) =>
@@ -289,9 +313,9 @@ export default async function CorridorPage({
             <h1 className="pa-h1">
               {corridor.h1}
             </h1>
-            <p className="pa-intro">
-              {corridor.intro}
-            </p>
+            <div className="pa-intro space-y-3">
+              {splitParagraphs(corridor.intro).map((t, i) => <p key={i}>{t}</p>)}
+            </div>
             <p className="pa-meta">
               By{' '}
               <Link href="/about/author" className="underline underline-offset-2 hover:text-foreground">
@@ -301,7 +325,30 @@ export default async function CorridorPage({
               Last updated:{' '}
               <time dateTime={corridor.updatedDate}>{formatIsoDate(corridor.updatedDate)}</time>
             </p>
-            <details className="pa-note group px-4 py-3 xl:hidden">
+            {/* Key facts, computed from the same quotes as the comparison table below, so they move
+              when the rotation corrects a fee. They restate the table; they make no claim of their own. */}
+          {keyFacts && (
+            <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-md border border-border bg-border text-sm sm:grid-cols-3">
+              <div className="col-span-2 bg-sheet px-4 py-3 sm:col-span-1">
+                <dt className="text-xs text-muted-foreground">Top of the table at ${COMPARISON_AMOUNT.toLocaleString('en-US')}</dt>
+                <dd className="mt-0.5 font-semibold">
+                  {keyFacts.top}
+                  {keyFacts.remittance && (
+                    <span className="mt-0.5 block text-xs font-medium text-caution">Personal remittance price</span>
+                  )}
+                </dd>
+              </div>
+              <div className="bg-sheet px-4 py-3">
+                <dt className="text-xs text-muted-foreground">Total cost</dt>
+                <dd className="pa-figure mt-0.5 font-semibold">{keyFacts.cost}</dd>
+              </div>
+              <div className="bg-sheet px-4 py-3">
+                <dt className="text-xs text-muted-foreground">Options we price</dt>
+                <dd className="pa-figure mt-0.5 font-semibold">{keyFacts.options}</dd>
+              </div>
+            </dl>
+          )}
+          <details className="pa-note group px-4 py-3 xl:hidden">
               <summary className="cursor-pointer text-sm font-semibold marker:text-rule">On this page</summary>
               <nav aria-label="On this page" className="mt-3">
                 {tocList}
@@ -356,7 +403,8 @@ export default async function CorridorPage({
                     <tr className="text-left">
                       <th scope="col" className="px-4 py-3">Provider</th>
                       <th scope="col" className="px-4 py-3 text-right">Net received ({corridor.destination})</th>
-                      <th scope="col" className="px-4 py-3 text-right">Effective fee</th>
+                      <th scope="col" className="px-4 py-3 text-right">Total cost</th>
+                      <th scope="col" className="px-4 py-3 text-right">Transfer fee</th>
                       <th scope="col" className="px-4 py-3">FX margin</th>
                       <th scope="col" className="px-4 py-3">Speed</th>
                     </tr>
@@ -378,9 +426,17 @@ export default async function CorridorPage({
                             {q.provider.name}
                             {q.isBestValue && <BestValueBadge />}
                           </span>
+                          {q.personalRemittancePricing && (
+                            <span className="mt-1 block text-xs font-medium text-caution">
+                              Personal remittance price
+                            </span>
+                          )}
                         </td>
                         <td className="pa-figure px-4 py-3 text-right font-semibold whitespace-nowrap">
                           {formatAmount(q.netReceivedInDest, corridor.destination)}
+                        </td>
+                        <td className="pa-figure px-4 py-3 text-right font-semibold whitespace-nowrap">
+                          {fmtPct(totalCostPct(q, corridor.destination))}
                         </td>
                         <td className="pa-figure px-4 py-3 text-right text-muted-foreground">
                           {q.effectiveFeePercent.toFixed(2)}%
@@ -414,7 +470,9 @@ export default async function CorridorPage({
                 Receiving without converting, in {corridor.country}
               </h2>
               {corridor.altReceivingNote && (
-                <p className="pa-prose">{corridor.altReceivingNote}</p>
+                <div className="pa-prose space-y-4">
+                  {splitParagraphs(corridor.altReceivingNote).map((t, i) => <p key={i}>{t}</p>)}
+                </div>
               )}
               {altReceiving.map((set) => (
                 <div key={set.currency} className="space-y-3">
@@ -431,7 +489,8 @@ export default async function CorridorPage({
                         <tr className="text-left">
                           <th scope="col" className="px-4 py-3">Provider</th>
                           <th scope="col" className="px-4 py-3 text-right">Net received ({set.currency})</th>
-                          <th scope="col" className="px-4 py-3 text-right">Effective fee</th>
+                          <th scope="col" className="px-4 py-3 text-right">Total cost</th>
+                          <th scope="col" className="px-4 py-3 text-right">Transfer fee</th>
                           <th scope="col" className="px-4 py-3">FX margin</th>
                           <th scope="col" className="px-4 py-3">Speed</th>
                         </tr>
@@ -442,6 +501,9 @@ export default async function CorridorPage({
                             <td className="px-4 py-3 font-semibold">{q.provider.name}</td>
                             <td className="pa-figure px-4 py-3 text-right font-semibold whitespace-nowrap">
                               {formatAmount(q.netReceivedInDest, set.currency)}
+                            </td>
+                            <td className="pa-figure px-4 py-3 text-right font-semibold whitespace-nowrap">
+                              {fmtPct(totalCostPct(q, set.currency))}
                             </td>
                             <td className="pa-figure px-4 py-3 text-right text-muted-foreground">
                               {q.effectiveFeePercent.toFixed(2)}%
@@ -498,7 +560,9 @@ export default async function CorridorPage({
               <h2 id={`provider-${p.slug}`} className="pa-h2 mb-4">
                 {providerHeading(p)}
               </h2>
-              <p className="pa-prose">{p.notes}</p>
+              <div className="pa-prose space-y-4">
+                {splitParagraphs(p.notes).map((t, i) => <p key={i}>{t}</p>)}
+              </div>
             </section>
           ))}
 
@@ -564,7 +628,9 @@ export default async function CorridorPage({
                 {corridor.faqs.map((faq, i) => (
                   <div key={i} className="py-5">
                     <h3 className="pa-h3 mb-2">{faq.q}</h3>
-                    <p className="pa-prose text-base">{faq.a}</p>
+                    <div className="pa-prose space-y-3">
+                      {splitParagraphs(faq.a).map((t, j) => <p key={j}>{t}</p>)}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -598,9 +664,9 @@ export default async function CorridorPage({
           </div>
 
           {/* Internal links */}
-          <nav aria-label="Related guides" className="pa-sheet px-5 py-5 sm:px-7">
+          <nav aria-label="Related guides">
             <h2 className="pa-h3 mb-3">Related guides</h2>
-            <ul className="space-y-2.5 text-[0.9375rem] leading-snug">
+            <ul className="grid gap-2 text-[0.9375rem] leading-snug sm:grid-cols-2 [&>li]:rounded-md [&>li]:border [&>li]:border-border [&>li]:bg-sheet [&>li]:px-4 [&>li]:py-3">
               <li>
                 <Link
                   href="/receive-international-payments"
