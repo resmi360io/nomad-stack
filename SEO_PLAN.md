@@ -120,12 +120,14 @@ watermark remover", and are ignored. What survives a sceptical read:
 
 ### This week (by 2026-11-05)
 
-1. [ ] **Claude:** title, meta description and first-sentence pass on the pages already on page 1, in
+1. [~] **Claude:** title, meta description and first-sentence pass on the pages already on page 1, in
    this order: Indonesia, Philippines, Portugal, Bangladesh, then Thailand, Nigeria, Georgia. For each,
    take the top queries from Search Console (page plus query), mirror the most common wording in the
    title, answer the question in the meta description in one sentence, and make sure the query appears
    in the first sentence of the intro. Copy changes, so humanizer first, `updatedDate` bumped, and you
    request indexing for each URL afterwards. Measure at the checkpoint, not before.
+   **Shipped in PR #72 (2026-10-29)** for all seven, using Bing query wording because Search Console
+   hides almost every query on these pages. Left to do: you request indexing for the seven URLs.
 2. [ ] **You:** apply to the Payoneer affiliate programme. Both rate pages and 7 corridors earn nothing,
    and the rate pages are now linked from every page.
 3. [ ] **You:** decide the Payoneer Georgia question from PR #70: under about $300 the dollar table ranks
