@@ -15,13 +15,13 @@ import type { CountryCode, Currency } from '@/data/providers';
 import { PROVIDERS } from '@/data/providers';
 import { getCurrency, getAvailableDestCurrencies } from '@/lib/calculate';
 
-const SOURCE_OPTIONS: { code: CountryCode; label: string }[] = [
+export const SOURCE_OPTIONS: { code: CountryCode; label: string }[] = [
   { code: 'US', label: 'United States (USD)' },
   { code: 'GB', label: 'United Kingdom (GBP)' },
   { code: 'EU', label: 'Eurozone (EUR)' },
 ];
 
-const DEST_OPTIONS: { code: CountryCode; label: string }[] = [
+export const DEST_OPTIONS: { code: CountryCode; label: string }[] = [
   { code: 'BD', label: 'Bangladesh (BDT)' },
   { code: 'GE', label: 'Georgia' },
   { code: 'NG', label: 'Nigeria (NGN)' },
@@ -45,7 +45,7 @@ const DEST_OPTIONS: { code: CountryCode; label: string }[] = [
 ];
 
 // Rendered to readers in the "Recipient receives in" dropdown, so no en dashes here.
-const CURRENCY_LABELS: Record<Currency, string> = {
+export const CURRENCY_LABELS: Record<Currency, string> = {
   USD: 'USD, US Dollar',
   GBP: 'GBP, British Pound',
   EUR: 'EUR, Euro',
@@ -73,9 +73,13 @@ interface Props {
   rateLabel?: string | null;
   defaultSrc?: CountryCode;
   defaultDest?: CountryCode;
+  // Called on every edit, so results computed for earlier inputs can be marked out of date.
+  onInputsChange?: () => void;
+  // Called when a submit is rejected, so stale results can be withdrawn rather than left looking current.
+  onInvalid?: () => void;
 }
 
-export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US', defaultDest = 'PK' }: Props) {
+export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US', defaultDest = 'PK', onInputsChange, onInvalid }: Props) {
   const [sourceCountry, setSourceCountry] = useState<CountryCode>(defaultSrc);
   const [destCountry, setDestCountry] = useState<CountryCode>(defaultDest);
   const [destCurrency, setDestCurrency] = useState<Currency>(getCurrency(defaultDest));
@@ -90,6 +94,7 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
   );
 
   function handleSourceChange(code: CountryCode) {
+    onInputsChange?.();
     setSourceCountry(code);
     // Reset receiving currency to local default when source changes
     // (same-currency options differ per source — e.g., US→GE has USD but EU→GE has EUR)
@@ -97,15 +102,21 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
   }
 
   function handleDestCountryChange(code: CountryCode) {
+    onInputsChange?.();
     setDestCountry(code);
     setDestCurrency(getCurrency(code));
   }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const parsed = parseFloat(amount);
-    if (!parsed || parsed <= 0) {
+    // Number(), not parseFloat(): parseFloat('12abc') is 12, and an amount the reader did not
+    // type should never be priced. type="number" already blocks most of this in the browser.
+    const parsed = Number(amount.trim());
+    if (amount.trim() === '' || !Number.isFinite(parsed) || parsed <= 0) {
       setAmountError(true);
+      onInvalid?.();
+      // Put the reader where the problem is; the message is tied to the field by aria-describedby.
+      (e.currentTarget as HTMLFormElement).querySelector<HTMLInputElement>('#amount')?.focus();
       return;
     }
     onSubmit(sourceCountry, destCountry, destCurrency, parsed);
@@ -156,7 +167,7 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
           <div className="space-y-1.5 sm:col-span-2">
             <Select
               value={destCurrency}
-              onValueChange={(v) => { if (v) setDestCurrency(v as Currency); }}
+              onValueChange={(v) => { if (v) { onInputsChange?.(); setDestCurrency(v as Currency); } }}
             >
               <SelectFieldLabel className="text-[0.8125rem] font-semibold text-foreground">Recipient receives in</SelectFieldLabel>
               <SelectTrigger className="w-full">
@@ -187,7 +198,7 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
                 min="1"
                 step="any"
                 value={amount}
-                onChange={e => { setAmount(e.target.value); if (amountError) setAmountError(false); }}
+                onChange={e => { onInputsChange?.(); setAmount(e.target.value); if (amountError) setAmountError(false); }}
                 aria-invalid={amountError || undefined}
                 aria-describedby={amountError ? 'amount-error' : undefined}
                 className="pa-figure h-12 pl-14 text-lg font-semibold md:text-lg"
@@ -200,7 +211,7 @@ export function CalculatorForm({ onSubmit, disabled, rateLabel, defaultSrc = 'US
             </Button>
           </div>
           {amountError && (
-            <p id="amount-error" className="text-[0.8125rem] font-medium text-destructive">
+            <p id="amount-error" role="alert" className="text-[0.8125rem] font-medium text-destructive">
               Enter an amount greater than zero.
             </p>
           )}

@@ -204,6 +204,39 @@ list at the end of the output for it.
 Verify a new page by hand on the day it ships. The rotation will not reach it for
 up to six days, and that is exactly the window in which it is least trustworthy.
 
+## The fee model: components, route states and the one ranking rule (since 2026-10-29)
+
+Read this before correcting any fee row. Three things changed together and the rotation must respect
+all three.
+
+- **`feeComponents` overrides `fixedFee` / `percentageFee`.** A row with `feeComponents` is priced from
+  them alone (ordered; `basis: 'sent' | 'remaining'`; `min`, `max`; `appliesFrom` / `appliesBelow` for
+  tiers). The flat fields stay filled in as the $1,000 reading for humans, but `calculate()` ignores
+  them, so correcting `fixedFee` on such a row changes NOTHING on the page. Grey, Raenest and Cleva
+  (Nigeria), PayPal via Paga (Nigeria) and Payoneer (Ukraine, Georgia) carry components today. A capped
+  or tiered schedule goes into components, never into a flat fee "read at $1,000": that is how Grey
+  showed $46 of fees on $5,000 when its own schedule says $16.
+- **A quote is ranked only when it is comparable.** `availability: 'unverified'` (the route may not exist),
+  `personalRemittancePricing: true` (family-transfer price, not for invoices) and a non-empty
+  `missingCosts` (a known charge we cannot price) each keep a row out of the ranking and off the badge.
+  It is still priced and shown, separately, with the reason. Every surface (calculator, corridor tables,
+  homepage directory, key facts, the screen-reader announcement) goes through `isComparable()` in
+  `lib/calculate.ts`; do not reimplement the rule anywhere else. Setting or clearing one of these flags
+  on the top row is ranking-moving and goes to the owner like any other.
+- **`data/routes.ts` records routes we describe but do not price** (`unpriced`, `unverified`, `sender`,
+  `unavailable`), and is what labels them in the calculator and in "Providers not available". When a
+  corridor entry's `available` changes, check that file in the same commit, or the calculator and the page
+  will disagree.
+- **`Provider.caveat` with `caveatScope: 'fallback'`** quotes generic numbers and is shown only on quotes
+  priced from `fallbackFee`. Never put corridor-specific numbers in a caveat.
+- **`lastVerified` is per provider, so do not bump it after checking one corridor** of a multi-corridor
+  provider: it would claim every corridor was checked. Bump it only when every row it covers was re-read.
+
+Tests: `npm test` (engine, real-data scenarios, formatting; frozen rates in `tests/fixtures/`) and
+`npm run test:e2e` against a running build (`BASE`, and `PW_CHROMIUM=/opt/pw-browsers/chromium` in cloud
+sessions). `node --experimental-strip-types tests/snapshot-quotes.ts` prints every quote for every
+corridor and amount; diff it before and after a data change to see exactly what moved.
+
 ## Provider rate pages (`/rates/[pair]`) are NOT in the rotation yet
 
 Added 2026-10-26. `data/ratePages.ts` holds provider-specific pages targeting the one query

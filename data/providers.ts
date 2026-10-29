@@ -10,6 +10,29 @@ export type CountryCode = 'US' | 'GB' | 'EU' | 'GE' | 'PT' | 'MX' | 'TH' | 'ID' 
 // components/ResultsTable.tsx. Verified by grepping every `.notes` read in app/, components/ and
 // lib/ on 2026-09-24. Two review passes have flagged dashes in these strings as reader-facing;
 // they are not. Provider.caveat IS reader-facing and must stay free of em and en dashes.
+// One charge in a provider's schedule. Applied in array order: `basis: 'sent'` charges on the
+// amount the client sent, `basis: 'remaining'` on what is left after the earlier components (a
+// conversion fee charged on the deposited balance, say). `min` and `max` clamp the charge in the
+// source currency; `appliesFrom` / `appliesBelow` restrict it to a band of the SENT amount, which is
+// how a tiered fee ($1 under $300, $3 at $300 or more) is written. Every number here must come from
+// the provider's own schedule, the same standard as fixedFee and percentageFee.
+export interface FeeComponent {
+  label: string;            // reader-facing, e.g. "Deposit fee"
+  percent?: number;         // 0.008 = 0.8%
+  fixed?: number;           // in source currency
+  min?: number;             // in source currency
+  max?: number;             // in source currency
+  basis?: 'sent' | 'remaining';
+  appliesFrom?: number;     // only when sent amount >= this
+  appliesBelow?: number;    // only when sent amount < this
+}
+
+// Who acts. A recipient-account route means the freelancer opens an account and gives the client
+// details to pay into. A sender-transfer route means the CLIENT sends from their own provider
+// (a wire, a Western Union transfer, a Wise transfer to a local bank) and the freelancer opens
+// nothing, which changes what the call to action can honestly say.
+export type RouteType = 'recipient-account' | 'sender-transfer';
+
 export interface CorridorFee {
   source: { country: CountryCode; currency: Currency };
   destination: { country: CountryCode; currency: Currency };
@@ -35,6 +58,19 @@ export interface CorridorFee {
   // never changes the quote or the ranking, it labels the row so the page does not imply that the
   // cheapest modelled route is open to a freelancer. Set it only when the row's own source says so.
   personalRemittancePricing?: boolean;
+  // Replaces fixedFee + percentageFee when present. Keep fixedFee/percentageFee filled in too
+  // (with the figures at the reference $1,000) so older readers of this file still make sense,
+  // but calculate() prices from these components.
+  feeComponents?: FeeComponent[];
+  // 'unverified' when we could not confirm that this route exists at all (a withdrawal currency
+  // the provider may not offer, say). The row still prices, so the reader can see the model, but
+  // it is never ranked against routes we know exist and can never take the best value badge.
+  availability?: 'confirmed' | 'unverified';
+  // Charges we know exist on this route but cannot put a number on (a withdrawal partner's fee, a
+  // receiving bank's commission). Reader-facing names. When non-empty the quote is a PARTIAL cost:
+  // what it shows as received is an upper bound, so it is kept out of the definitive ranking.
+  missingCosts?: string[];
+  routeType?: RouteType;      // overrides Provider.routeType for this row
 }
 
 export interface Provider {
@@ -67,6 +103,11 @@ export interface Provider {
   lastVerified: string;     // ISO date
   notes?: string;
   caveat?: string;          // short disclaimer shown under result card
+  // 'fallback' when the caveat quotes generic numbers (a 3.5% bank spread, PayPal's 4.4%) that
+  // corridor rows override. It is then shown only on quotes priced from fallbackFee; on a matched
+  // corridor row it contradicted the row it sat under (Nigeria's bank wire is modelled at 2%).
+  caveatScope?: 'all' | 'fallback';
+  routeType?: RouteType;    // default 'recipient-account'
 }
 
 export const PROVIDERS: Provider[] = [
@@ -653,7 +694,7 @@ export const PROVIDERS: Provider[] = [
   // Cross-currency: 1% receive + a conversion charge Payoneer publishes only as 1.2% to 4%, modelled
   // at its 2.6% midpoint = ~3.6% all-in. The $1.50 flat rate needs BOTH conditions, not one: a
   // withdrawal in your own country's local currency, AND a country on Payoneer's named flat-rate
-  // list (fee schedule, last updated 1 January 2026). Georgia and Uzbekistan are on neither test.
+  // list (fee schedule, last updated 1 January 2026). Georgia and Uzbekistan fail the list test. A lari or som withdrawal does meet the local-currency wording, but the withdrawal-fee explainer offers the fixed fee only for USD, EUR or GBP withdrawn to an account in that same currency, so a converted withdrawal fails that too.
   // That list contains "South Georgia and the South Sandwich Islands", which is not Georgia, and
   // counts "All EU countries" as one entry, so never quote a country count from it.
   {
@@ -722,6 +763,10 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 48,
         fxMarkupEstimated: true,
         notes: 'The provider the reader actually signs up for on this corridor, since Wise bars Ukrainian residents. 1% to receive a non-local currency (min 1.00). Ukraine is NOT on the named flat-rate withdrawal list, so withdrawal falls in the published 1.2% to 4% band, modelled at its 2.6% midpoint. Payoneer disagrees with itself twice: its own Ukraine page says "up to 2%" against the interbank rate, and puts the annual fee trigger at under 2,000 USD turnover where the global schedule says under 6,000 USD in any 12 consecutive months. Flagged for that reason; the real cost may sit at or under 2%. Payoneer converts at its own rate, publishes no margin for it, and publishes no minimum withdrawal we could find on its pricing pages, though the global page warns that "In some countries, a minimum fee of up to 20.00 USD or equivalent may apply". NOT confirmed on any Payoneer page we opened: that a Ukraine-registered user gets US local details with an ACH routing number.',
+        // 1% to receive with a published minimum of 1.00; the conversion stays in fxMarkupBps.
+        feeComponents: [
+          { label: 'Receiving fee', percent: 0.01, min: 1 },
+        ],
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -740,7 +785,14 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 260,
         typicalHours: 72,
         fxMarkupEstimated: true,  // Payoneer's published conversion currency list does not include GEL, so this lari withdrawal may not exist at all
-        notes: '1% receiving fee plus a withdrawal conversion charge Payoneer publishes only as a 1.2% to 4% range, modelled at its 2.6% midpoint. The $1.50 flat rate does not apply: it is limited to a withdrawal in your own country\'s local currency AND to the countries on Payoneer\'s named flat-rate list, and Georgia is on neither test. Payoneer\'s published conversion currency list does not include GEL, so this lari withdrawal may not exist at all.',
+        notes: '1% receiving fee plus a withdrawal conversion charge Payoneer publishes only as a 1.2% to 4% range, modelled at its 2.6% midpoint. The $1.50 flat rate does not apply on two grounds: the Payoneer fee schedule limits it to a named list of countries and Georgia is not on it (the South Georgia on that list is a British South Atlantic territory), and the Payoneer withdrawal-fee explainer offers the fixed fee only for USD, EUR or GBP withdrawn to an account in that same currency, which a lari withdrawal from a dollar balance is not. The Payoneer Manage Currencies list does not include GEL, and no Payoneer page we opened confirms a lari withdrawal, so this route may not exist at all.',
+        // The guide says a lari withdrawal has not been confirmed to exist (Manage Currencies does
+        // not list GEL). Priced so the model is visible, never ranked until it is confirmed.
+        availability: 'unverified',
+        // 1% to receive with a published minimum of 1.00; the conversion stays in fxMarkupBps.
+        feeComponents: [
+          { label: 'Receiving fee', percent: 0.01, min: 1 },
+        ],
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -750,6 +802,9 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 260,
         fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
+        // The guide says a lari withdrawal has not been confirmed to exist (Manage Currencies does
+        // not list GEL). Priced so the model is visible, never ranked until it is confirmed.
+        availability: 'unverified',
       },
       {
         source: { country: 'EU', currency: 'EUR' },
@@ -759,6 +814,9 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 260,
         fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 72,
+        // The guide says a lari withdrawal has not been confirmed to exist (Manage Currencies does
+        // not list GEL). Priced so the model is visible, never ranked until it is confirmed.
+        availability: 'unverified',
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -928,6 +986,12 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 72,
         fxMarkupEstimated: true,
         notes: '1% receiving fee plus a withdrawal charge Payoneer publishes only as a 1.2% to 4% range, modelled at its 2.6% midpoint. A Georgian USD account is not eligible for the $1.50 flat rate: Georgia is not on Payoneer\'s flat-rate country list, and the US dollar is not Georgia\'s local currency. No FX conversion, so no spread.',
+        // 1% to receive (published minimum 1.00 USD) plus the 2.6% midpoint of the 1.2% to 4% withdrawal
+        // range, both on the amount sent, so the 1,000 USD figure stays 36.00. Only amounts under 100 change.
+        feeComponents: [
+          { label: 'Receiving fee', percent: 0.01, min: 1 },
+          { label: 'Withdrawal fee (estimate)', percent: 0.026 },
+        ],
       },
       // EUR → Georgian EUR bank account. Same correction as the USD row above: no
       // conversion, but Georgia's official currency is not the euro, so the account fails
@@ -1034,6 +1098,7 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.paypal.com/us/business',
     affiliateLink: '',
     hasAffiliateProgram: false,
+    caveatScope: 'fallback',
     lastVerified: '2026-08-27',
     supportedSourceCountries: ['US', 'GB', 'EU'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'PT', 'MX', 'TH', 'ID', 'NG', 'PH', 'BR', 'IN', 'CO', 'ZA', 'AR', 'PL', 'UA'],
@@ -1198,17 +1263,29 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 1,
         notes: '4.4% + €0.35 cross-border receiving fee; no FX conversion (EUR→EUR)',
       },
-      // USD → Nigerian NGN bank account via Paga (launched Jan 27 2026)
-      // PayPal reenabled NGN payouts via Paga partnership — naira-only, 2.9% + $0.30 + ~3.5% FX
-      // Source: PayPal help article (Jan 2026) + Paga payout terms
+      // USD to Nigerian NGN via Paga (launched Jan 27 2026). Sources read 2026-10-29:
+      // paypal.com/ng/webapps/mpp/merchant-fees (updated 28 Oct 2026): seller NG, buyer all markets,
+      // 4.90% + fixed fee; USD fixed fee 0.30. help.paga.com article 35000305311: withdrawal fees
+      // $3 + 3% of the transaction amount, which include PayPal charges and currency conversion
+      // charges. PayPal's own third-party withdrawal row (2.0% + 1.50 USD) is NOT added on top: Paga
+      // says its figure includes PayPal's charges, and 2% + 1.50 fits inside 3% + 3. Paga publishes
+      // no rate margin, so the rate stays a missing cost rather than an invented bps figure.
+      // Withdrawals are $4 to $5,000 each; above that a second $3 applies, which this does not model.
+      // fixedFee/percentageFee are the exact linear form of the two components (3.291 + 7.753%).
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'NG', currency: 'NGN' },
-        fixedFee: 0.30,
-        percentageFee: 0.029,
-        fxMarkupBps: 350,
+        fixedFee: 3.29,
+        percentageFee: 0.07753,
+        fxMarkupBps: 0,
+        fxMarkupEstimated: true,
         typicalHours: 48,
-        notes: 'Via Paga (Jan 2026); 2.9% + $0.30 PayPal receiving fee + ~3.5% FX markup; naira-only payout',
+        notes: 'Via Paga: 4.90% + $0.30 PayPal international commercial receiving fee, then Paga withdrawal $3 + 3% (Paga says this includes PayPal and conversion charges); Paga rate margin unpublished; withdrawals $4 to $5,000 each',
+        feeComponents: [
+          { label: 'PayPal receiving fee', percent: 0.049, fixed: 0.30 },
+          { label: 'Paga withdrawal fee', percent: 0.03, fixed: 3, basis: 'remaining' },
+        ],
+        missingCosts: ["Paga's exchange rate on the naira payout"],
       },
       // USD → Philippine PHP: widely used in PH; ~4.4% + $0.30 cross-border receiving
       // + ~3.5% FX on USD→PHP conversion. GCash charges a cash-in fee on the PayPal-to-GCash
@@ -1256,7 +1333,8 @@ export const PROVIDERS: Provider[] = [
     // MX removed from DESTINATIONS 2026-09-24. The Mexico withdrawal fee is UNRESOLVED and the
     // three readings are mutually exclusive, not merely unsourced: a flat US$2, a per-country
     // table that does not list Mexico at all, and 0.3% with a US$1 minimum and US$5 maximum.
-    // help.grabrfi.com is unreachable from our tooling, so none was confirmed. The spread is
+    // help.grabrfi.com was unreachable until 2026-10-29; its fee schedule (effective 3 Sep 2026) then
+    // read Mexico $2 and Nigeria $1 for a local-currency withdrawal. Mexico not re-added here. The spread is
     // confirmed ABSENT: GrabrFi publishes none, the rate is shown in-app and locked at
     // confirmation with the margin embedded. Two unknowns on the one provider this site earns
     // a referral commission from is not something to print a price for, so GrabrFi is unranked
@@ -1292,6 +1370,7 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.westernunion.com',
     affiliateLink: '',
     hasAffiliateProgram: false,
+    routeType: 'sender-transfer',
     lastVerified: '2026-07-05',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK'],
@@ -1406,7 +1485,7 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 48,
         fxMarkupEstimated: true,  // ~2% spread is a third-party cross-rate estimate, not WU-published
         personalRemittancePricing: true,
-        notes: '$0 online fee for bank deposits over $200 (Pakistan Remittance Initiative) + ~2% FX spread, both personal remittance terms. PRI is a home remittance scheme and does not cover business transfers; WU commercial pricing for this corridor is unpublished. Bank deposit to HBL, UBL, MCB.',
+        notes: '$0 online fee for transfers over $200 to bank accounts or mobile wallets (Pakistan Remittance Initiative; not valid on credit cards, one such transfer every 24 hours) + ~2% FX spread, both personal remittance terms. PRI is a home remittance scheme and does not cover business transfers; WU commercial pricing for this corridor is unpublished. Bank deposit to HBL, UBL, MCB.',
       },
     ],
     fallbackFee: {
@@ -1430,6 +1509,8 @@ export const PROVIDERS: Provider[] = [
     // No signupUrl — bank wire is a method, not a product to sign up for
     affiliateLink: '',
     hasAffiliateProgram: false,
+    caveatScope: 'fallback',
+    routeType: 'sender-transfer',
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'BR'],
     supportedDestinationCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID', 'PK', 'BD', 'NG', 'PH', 'BR', 'IN', 'CO', 'UZ', 'ZA', 'AR', 'PL', 'UA'],
@@ -1678,6 +1759,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupEstimated: true,
         typicalHours: 96,
         notes: 'SWIFT wire; recipient receives USD in a Thai FCD account; no FX conversion. Bank inward remittance commission applies on top and is not modelled.',
+        missingCosts: ['Thai bank inward remittance commission'],
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -1819,6 +1901,7 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 96,
         fxMarkupEstimated: true,
         notes: 'Holding dollars in an FCDU account converts nothing, so there is no spread. The 35 is a generic US sending fee rather than a figure from a published schedule. The Philippine receiving side IS published and is not in this number: BPI charges USD 6.50 for a SWIFT remittance credited to a BPI dollar account, described as a minimum that may vary by correspondent agreement. What a correspondent deducts in the middle is still disclosed by nobody.',
+        missingCosts: ['Philippine receiving bank charge (BPI publishes USD 6.50 as a minimum)'],
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -1858,6 +1941,10 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.paysera.com/v2/en/registration',
     affiliateLink: '',
     hasAffiliateProgram: false,
+    // Paysera is a euro rail into Georgia (Lithuanian IBAN over SEPA). It has no lari row, so
+    // without this the calculator priced EU to GEL from fallbackFee: zero fee, zero spread, ranked
+    // first above every researched route. We decline to price a conversion it has no row for.
+    unsupportedDestinationCurrencies: { GE: ['GEL'] },
     lastVerified: '2026-06-02',
     supportedSourceCountries: ['EU'],
     supportedDestinationCountries: ['GE'],
@@ -1912,6 +1999,11 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 24,
         notes: 'Two-tier ACH deposit fee: $1 under $300, $3 at $300 or more; conversion/withdrawal free at mid-market; modeled at $3 for the $1,000 example',
+        // Two-tier ACH deposit fee, both tiers modelled rather than the $1,000 reading only.
+        feeComponents: [
+          { label: 'Deposit fee', fixed: 1, appliesBelow: 300 },
+          { label: 'Deposit fee', fixed: 3, appliesFrom: 300 },
+        ],
       },
     ],
     fallbackFee: {
@@ -1929,8 +2021,9 @@ export const PROVIDERS: Provider[] = [
   // Pan-African fintech (HQ Lagos) issuing virtual USD, GBP, and EUR accounts.
   // Fee model: 0.8% deposit fee (min $2, max $10) on incoming USD + 1% conversion fee
   // (capped at $6 per transaction) + ~1% FX markup above mid-market.
-  // Modeled below as $6 fixed (capped conversion, transfers >= $600) + 0.8% + 100 bps;
-  // exact only near $1,000 since both caps cannot be expressed in this fee model.
+  // Modelled below with feeComponents (deposit 0.8% min 2 max 10, then conversion 1% capped at 6 on
+  // the remainder) + 100 bps estimated margin. Re-verified 2026-10-29 against support.grey.co
+  // articles 9235188, 10600451, 5450108 and 6498738 (N35 naira withdrawal, too small to model).
   // Nigeria regulatory status not established. A previous 'CBN-regulated (license 10151)'
   // claim was removed on 2026-08-04 after it could not be traced to any source.
   {
@@ -1941,7 +2034,7 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://grey.co',
     affiliateLink: '',
     hasAffiliateProgram: false,
-    lastVerified: '2026-07-05',
+    lastVerified: '2026-10-29',
     supportedSourceCountries: ['US', 'GB', 'EU'],
     supportedDestinationCountries: ['NG'],
     corridors: [
@@ -1954,6 +2047,13 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 24,
         fxMarkupEstimated: true,  // ~1% FX markup not traceable to a Grey pricing page
         notes: '0.8% deposit fee (min $2, max $10) + 1% conversion fee capped at $6 + ~1% FX markup',
+        // Grey's own schedule (source record above): deposit 0.8% of the incoming USD, minimum $2,
+        // maximum $10; then a 1% conversion fee capped at $6, charged on the deposited balance.
+        // fixedFee/percentageFee above are the $1,000 reading of the same schedule.
+        feeComponents: [
+          { label: 'Deposit fee', percent: 0.008, min: 2, max: 10 },
+          { label: 'Conversion fee', percent: 0.01, max: 6, basis: 'remaining' },
+        ],
       },
     ],
     fallbackFee: {
@@ -2035,6 +2135,11 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 24,
         notes: '0.5% conversion fee capped at $2.70 (min $0.25); 4 free deposits/month, then $1 flat each; CBN-licensed IMTO',
+        // 0.5% conversion fee, minimum $0.25, capped at $2.70. Deposits are modelled inside the
+        // 4-a-month free allowance; past it each deposit adds $1, which the caveat says.
+        feeComponents: [
+          { label: 'Conversion fee', percent: 0.005, min: 0.25, max: 2.7 },
+        ],
       },
     ],
     fallbackFee: {
@@ -2045,7 +2150,7 @@ export const PROVIDERS: Provider[] = [
       fxMarkupEstimated: true,
     },
     notes: 'Raenest issues virtual USD and GBP accounts for African freelancers and remote workers. Since January 2026: 4 free deposits per month shared across USD, GBP, EUR, USDT and USDC, then $1 flat per ACH or stablecoin deposit. The USD-to-NGN conversion fee is 0.5% capped between $0.25 and $2.70 per conversion, so cost does not scale with transfer size above about $540. Verify the current allowance at raenest.com/pricing. No annual account fee. CBN-licensed IMTO.',
-    caveat: 'Conversion fee is capped at $2.70, so the effective rate falls as the transfer size rises.',
+    caveat: 'Conversion fee is 0.5%, at least $0.25 and at most $2.70. Priced inside the 4 free deposits a month; after those, each deposit costs $1.',
   },
   // ─── Higlobe ───────────────────────────────────────────────────────────────
   // Source: https://higlobe.com/pt-br/pricing (2026-09-24)

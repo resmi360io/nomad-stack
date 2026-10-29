@@ -1,0 +1,26 @@
+{
+  "source": "open.er-api.com/v6/latest/USD",
+  "rateDate": "Thu, 29 Oct 2026 00:02:31 +0000",
+  "note": "Frozen copy for deterministic tests. Not used by the site.",
+  "rates": {
+    "USD": 1,
+    "EUR": 0.897215,
+    "GBP": 0.751538,
+    "GEL": 2.593883,
+    "MXN": 18.653512,
+    "THB": 33.772095,
+    "IDR": 18181.613355,
+    "PKR": 276.914167,
+    "BDT": 124.144543,
+    "NGN": 1346.236888,
+    "PHP": 63.997475,
+    "BRL": 5.346831,
+    "INR": 95.29615,
+    "COP": 3146.899554,
+    "UZS": 11983.753367,
+    "ZAR": 16.633923,
+    "ARS": 1538.4739,
+    "PLN": 3.951965,
+    "UAH": 45.607014
+  }
+}

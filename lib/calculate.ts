@@ -1,9 +1,19 @@
-import type { Provider, CountryCode, Currency } from '@/data/providers';
+import type { Provider, CountryCode, Currency, CorridorFee, FeeComponent, RouteType } from '@/data/providers';
+
+export interface FeeLine {
+  label: string;
+  amount: number; // source currency, rounded to cents
+}
+
+// Why a quote is or is not in the definitive ranking. Order of precedence when several apply:
+// a route we cannot confirm exists says nothing useful about price, so 'unverified' wins; then a
+// price that is not on offer to a client payment; then a price we know is missing a component.
+export type QuoteStatus = 'comparable' | 'unverified' | 'personal-only' | 'incomplete';
 
 export interface Quote {
   provider: Provider;
-  totalFeeInSource: number;
-  effectiveFeePercent: number;
+  totalFeeInSource: number;       // explicit fees only, sum of `fees`
+  effectiveFeePercent: number;    // explicit fees only, as % of the amount sent
   fxMarkupBps: number;
   fxRateUsed: number;
   netReceivedInDest: number;
@@ -18,6 +28,17 @@ export interface Quote {
   isEstimate: boolean;
   // Passed through from the corridor row for display; see CorridorFee.personalRemittancePricing.
   personalRemittancePricing: boolean;
+  amount: number;                 // what the client sent, source currency
+  fees: FeeLine[];                // each explicit charge, in the order it is taken
+  fxMarginInSource: number;       // the margin inside the conversion, valued in source currency
+  totalCostInSource: number;      // fees + fxMarginInSource
+  totalCostPercent: number;       // totalCostInSource / amount; equals 1 - net / (amount x mid)
+  availability: 'confirmed' | 'unverified';
+  missingCosts: string[];         // known charges not in the number; non-empty = partial quote
+  routeType: RouteType;
+  matchedCorridorRow: boolean;    // false when priced from the provider's generic fallbackFee
+  status: QuoteStatus;
+  rank: number | null;            // 1-based position among comparable quotes, null otherwise
 }
 
 const COUNTRY_CURRENCY: Record<CountryCode, Currency> = {
@@ -160,6 +181,56 @@ export function getAvailableDestCurrencies(
   );
 }
 
+// Money in the source currency is charged in cents. Round each charge once, half away from zero,
+// at the point a provider would, and never round the intermediate conversion: the received amount
+// is carried at full precision and only formatted for display.
+export function roundCents(x: number): number {
+  return Math.sign(x) * Math.round(Math.abs(x) * 100 + 1e-9) / 100;
+}
+
+// The schedule a row actually charges. Rows written before FeeComponent existed are read as a
+// fixed fee then a percentage of the amount sent, which is exactly what they always meant.
+export function feeScheduleOf(row: Pick<CorridorFee, 'fixedFee' | 'percentageFee' | 'feeComponents'>): FeeComponent[] {
+  if (row.feeComponents && row.feeComponents.length > 0) return row.feeComponents;
+  const out: FeeComponent[] = [];
+  if (row.fixedFee) out.push({ label: 'Fixed fee', fixed: row.fixedFee });
+  if (row.percentageFee) out.push({ label: 'Percentage fee', percent: row.percentageFee });
+  return out;
+}
+
+// Applies a fee schedule to an amount. Pure, exported for tests.
+export function computeFees(amount: number, schedule: FeeComponent[]): FeeLine[] {
+  const lines: FeeLine[] = [];
+  let taken = 0;
+  for (const c of schedule) {
+    if (c.appliesFrom !== undefined && amount < c.appliesFrom) continue;
+    if (c.appliesBelow !== undefined && amount >= c.appliesBelow) continue;
+    const base = c.basis === 'remaining' ? Math.max(0, amount - taken) : amount;
+    let fee = (c.fixed ?? 0) + base * (c.percent ?? 0);
+    if (c.min !== undefined) fee = Math.max(fee, c.min);
+    if (c.max !== undefined) fee = Math.min(fee, c.max);
+    // A charge can never take more than is left to take it from.
+    fee = Math.min(roundCents(fee), Math.max(0, roundCents(amount - taken)));
+    lines.push({ label: c.label, amount: fee });
+    taken = roundCents(taken + fee);
+  }
+  return lines;
+}
+
+// THE comparability rule. Every surface that ranks, badges, summarises or announces quotes goes
+// through this one predicate, so the calculator, the server tables, the homepage directory and
+// the screen-reader announcement cannot disagree about what "best" means.
+export function isComparable(q: Pick<Quote, 'status'>): boolean {
+  return q.status === 'comparable';
+}
+
+function statusOf(availability: Quote['availability'], personal: boolean, missing: string[]): QuoteStatus {
+  if (availability === 'unverified') return 'unverified';
+  if (personal) return 'personal-only';
+  if (missing.length > 0) return 'incomplete';
+  return 'comparable';
+}
+
 export function calculate(
   sourceCountry: CountryCode,
   destCountry: CountryCode,
@@ -173,6 +244,7 @@ export function calculate(
   const midRate = midRates[destCurrency] / midRates[sourceCurrency];
 
   const quotes: Quote[] = [];
+  if (!(amount > 0) || !Number.isFinite(amount) || !(midRate > 0)) return quotes;
 
   for (const provider of providers) {
     if (!provider.supportedSourceCountries.includes(sourceCountry)) continue;
@@ -195,15 +267,20 @@ export function calculate(
 
     const corridor = matched ?? provider.fallbackFee;
 
-    const totalFee = corridor.fixedFee + amount * corridor.percentageFee;
-    const amountAfterFee = amount - totalFee;
+    const fees = computeFees(amount, feeScheduleOf(corridor));
+    const totalFee = roundCents(fees.reduce((sum, f) => sum + f.amount, 0));
+    const amountAfterFee = Math.max(0, amount - totalFee);
     const fxRateUsed = midRate * (1 - corridor.fxMarkupBps / 10000);
-    const netReceivedInDest = Math.max(0, amountAfterFee * fxRateUsed);
+    const netReceivedInDest = amountAfterFee * fxRateUsed;
+    const fxMargin = amountAfterFee * (corridor.fxMarkupBps / 10000);
+    const missingCosts = corridor.missingCosts ?? [];
+    const availability = corridor.availability ?? 'confirmed';
+    const personal = corridor.personalRemittancePricing === true;
 
     quotes.push({
       provider,
       totalFeeInSource: totalFee,
-      effectiveFeePercent: amount > 0 ? (totalFee / amount) * 100 : 0,
+      effectiveFeePercent: (totalFee / amount) * 100,
       fxMarkupBps: corridor.fxMarkupBps,
       fxRateUsed,
       netReceivedInDest,
@@ -213,12 +290,34 @@ export function calculate(
       affiliateLink: provider.affiliateLink,
       isBestValue: false,
       isEstimate: !matched || corridor.fxMarkupEstimated === true,
-      personalRemittancePricing: matched?.personalRemittancePricing === true,
+      personalRemittancePricing: personal,
+      amount,
+      fees,
+      fxMarginInSource: fxMargin,
+      totalCostInSource: totalFee + fxMargin,
+      totalCostPercent: ((totalFee + fxMargin) / amount) * 100,
+      availability,
+      missingCosts,
+      routeType: corridor.routeType ?? provider.routeType ?? 'recipient-account',
+      matchedCorridorRow: !!matched,
+      status: statusOf(availability, personal, missingCosts),
+      rank: null,
     });
   }
 
-  quotes.sort((a, b) => b.netReceivedInDest - a.netReceivedInDest);
-  // Best value goes to the top-ranked quote, and only if we can source its FX markup.
+  // Comparable routes first, by what lands; everything else after them, also by what lands, but
+  // unranked. A personal remittance price, a route that may not exist and a price with a known
+  // hole in it are not the same kind of number as a complete quote for a client payment, and
+  // ordering them together would let any of them sit at the top of the table.
+  quotes.sort((a, b) => {
+    const ca = isComparable(a) ? 0 : 1;
+    const cb = isComparable(b) ? 0 : 1;
+    return ca - cb || b.netReceivedInDest - a.netReceivedInDest;
+  });
+  let rank = 0;
+  for (const q of quotes) if (isComparable(q)) q.rank = ++rank;
+
+  // Best value goes to the top COMPARABLE quote, and only if we can source its FX markup.
   // Two rules, and the second one was added on 2026-09-25 after it bit us.
   //
   // A quote built on an estimated markup still appears and still ranks, but it cannot
@@ -231,10 +330,30 @@ export function calculate(
   // BEST VALUE on PayPal for Indonesia: fourth of four on money actually received, and
   // the most expensive option on the page. No amount of footnoting fixes a label like
   // that. So the badge is now the top row's to win or nobody's, and a corridor where we
-  // cannot source the cheapest option simply has no badge. Three corridors are in that
-  // state today (PKR, BDT, IDR) and their copy says so rather than pretending otherwise.
+  // cannot source the cheapest option simply has no badge.
   const top = quotes[0];
-  if (top && !top.isEstimate) top.isBestValue = true;
+  if (top && isComparable(top) && !top.isEstimate) top.isBestValue = true;
 
   return quotes;
+}
+
+// The sentence the calculator's live region announces, built from the same quotes and the same
+// predicate as the visible results, so a screen reader is never told something the page does not
+// show. Exported for tests.
+export function describeResults(quotes: Quote[]): string {
+  if (quotes.length === 0) return 'No providers support this route.';
+  const comparable = quotes.filter(isComparable);
+  const others = quotes.length - comparable.length;
+  const best = quotes.find((q) => q.isBestValue);
+  const parts: string[] = [];
+  if (comparable.length > 0) {
+    parts.push(
+      `${comparable.length} option${comparable.length === 1 ? '' : 's'} ranked by net received; top: ${comparable[0].provider.name}.`,
+    );
+    parts.push(best ? `Best value: ${best.provider.name}.` : 'No best value badge: the top price is an estimate.');
+  } else {
+    parts.push('No option can be ranked for a client payment on this route.');
+  }
+  if (others > 0) parts.push(`${others} more shown separately, not ranked.`);
+  return parts.join(' ');
 }

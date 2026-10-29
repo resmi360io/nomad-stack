@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { CORRIDORS } from '@/data/corridors';
 import { PROVIDERS } from '@/data/providers';
 import type { CountryCode, Currency } from '@/data/providers';
-import { calculate } from '@/lib/calculate';
+import { calculate, isComparable } from '@/lib/calculate';
 import type { RatesResult } from '@/lib/fetchRates';
 
 // One table of every corridor, shared by the homepage and the pillar so the two can never
@@ -29,11 +29,11 @@ export function CorridorTable({
       PROVIDERS,
       rates.rates,
     );
-    const top = quotes[0] ?? null;
-    // Measured against the mid rate, not effectiveFeePercent, which ignores the FX markup.
-    const atMid =
-      AMOUNT * (rates.rates[corridor.destination as Currency] / rates.rates[corridor.source as Currency]);
-    const allIn = top && atMid > 0 ? (1 - top.netReceivedInDest / atMid) * 100 : NaN;
+    // The first RANKED quote, by the same rule the corridor page ranks with: a personal remittance
+    // price, an unconfirmed route or a partial price is never "top of the table".
+    const top = quotes.find(isComparable) ?? null;
+    // Measured against the mid rate (Quote.totalCostPercent), not effectiveFeePercent, which ignores the FX markup.
+    const allIn = top ? top.totalCostPercent : NaN;
     return { corridor, top, allIn };
   });
 

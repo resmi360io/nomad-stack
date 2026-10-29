@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node --experimental-strip-types --no-warnings --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit -p .",
+    "test:e2e": "node --test tests/e2e/*.e2e.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

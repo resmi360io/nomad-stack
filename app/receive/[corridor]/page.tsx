@@ -6,10 +6,12 @@ import { CORRIDORS } from '@/data/corridors';
 import { RATE_PAGES } from '@/data/ratePages';
 import { fetchRatesServer } from '@/lib/fetchRates';
 import { PROVIDERS } from '@/data/providers';
-import { calculate, getDestCurrencies } from '@/lib/calculate';
+import { calculate, getDestCurrencies, isComparable } from '@/lib/calculate';
 import type { CountryCode, Currency } from '@/data/providers';
 import { Calculator } from '@/components/Calculator';
-import { BestValueBadge } from '@/components/BestValueBadge';
+import { QuoteTable } from '@/components/QuoteTable';
+import { formatPercent } from '@/lib/format';
+import { LISTED_STATUS_LABEL, listedRoute } from '@/data/routes';
 import { splitParagraphs } from '@/lib/paragraphs';
 
 export const revalidate = 3600;
@@ -60,22 +62,6 @@ function formatIsoDate(iso: string): string {
   return `${MONTHS[month - 1]} ${day}, ${year}`;
 }
 
-function formatHours(h: number): string {
-  if (h < 1) return '< 1 hr';
-  if (h === 1) return '~ 1 hr';
-  if (h < 24) return `~${h} hrs`;
-  const days = Math.round(h / 24);
-  return days === 1 ? '~1 day' : `~${days} days`;
-}
-
-function formatAmount(n: number, currency: string): string {
-  // 'n/a' rather than a dash: this string renders into the comparison table cells, and no
-  // reader-facing text on this site carries an em or en dash. It used to return one.
-  if (!isFinite(n)) return 'n/a';
-  const decimals = ['IDR', 'PKR', 'THB', 'MXN', 'BDT', 'NGN', 'PHP', 'INR', 'COP', 'UZS', 'ARS', 'UAH'].includes(currency) ? 0 : 2;
-  return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-}
-
 export default async function CorridorPage({
   params,
 }: {
@@ -89,8 +75,9 @@ export default async function CorridorPage({
 
   // Every table on this page is priced at one invoice size. That single number quietly decides
   // which provider looks cheapest, because some charge a flat fee per transfer and others a
-  // percentage, so the order genuinely changes with the amount. Two live examples: on Georgia at
-  // 1,000 Payoneer trails a bank wire by a dollar and leads it well before 5,000, and on the
+  // percentage, so the order genuinely changes with the amount. Two live examples: on Georgia's
+  // dollar table at 1,000 Payoneer trails a bank wire by a dollar and falls further behind as the
+  // amount grows, while below about 300 it is the cheapest row there, and on the
   // Philippines converting to pesos beats taking dollars up to about 1,600 and loses above it.
   // Rather than pick a different arbitrary size, price a second one and tell the reader when the
   // winner actually swaps. RANK_CHECK_AMOUNT is never shown as a price, only used for that test.
@@ -122,23 +109,14 @@ export default async function CorridorPage({
         )
       : null;
 
-  // Total cost of a quote against the mid rate: the transfer fee AND the margin inside the
-  // conversion, as a share of the invoice. effectiveFeePercent is the transfer fee alone, which is
-  // why a row could read "0.00%" in one column and "2.00% all in" on the homepage. Same formula as
-  // CorridorTable and the rate pages; presentation only, nothing here feeds the ranking.
-  const totalCostPct = (q: { netReceivedInDest: number }, currency: string) => {
-    if (!ratesResult) return NaN;
-    const atMid =
-      COMPARISON_AMOUNT *
-      (ratesResult.rates[currency as Currency] / ratesResult.rates[corridor.source as Currency]);
-    return atMid > 0 ? (1 - q.netReceivedInDest / atMid) * 100 : NaN;
-  };
-  const fmtPct = (n: number) => (isFinite(n) ? `${n.toFixed(2)}%` : 'n/a');
-
+  // Compared on ranked routes only, the same set the table ranks, so the note can never name a
+  // personal-remittance price or a partial quote as "cheapest".
+  const rankedNow = quotes?.filter(isComparable) ?? [];
+  const rankedLarger = quotesAtLarger?.filter(isComparable) ?? [];
   const cheapestSwitchesAt =
-    quotes && quotes.length > 1 && quotesAtLarger && quotesAtLarger.length > 1 &&
-    quotes[0].provider.slug !== quotesAtLarger[0].provider.slug
-      ? { small: quotes[0].provider.name, large: quotesAtLarger[0].provider.name }
+    rankedNow.length > 1 && rankedLarger.length > 1 &&
+    rankedNow[0].provider.slug !== rankedLarger[0].provider.slug
+      ? { small: rankedNow[0].provider.name, large: rankedLarger[0].provider.name }
       : null;
 
   // Some destinations let you hold foreign currency instead of converting on arrival.
@@ -252,9 +230,10 @@ export default async function CorridorPage({
   const keyFacts =
     quotes && quotes.length > 0
       ? {
-          top: quotes[0].provider.name,
-          cost: `${fmtPct(totalCostPct(quotes[0], corridor.destination))}${quotes[0].isEstimate ? ' (est.)' : ''}`,
-          remittance: quotes[0].personalRemittancePricing,
+          top: rankedNow[0]?.provider.name ?? 'No route we can rank',
+          cost: rankedNow[0]
+            ? `${formatPercent(rankedNow[0].totalCostPercent)}${rankedNow[0].isEstimate ? ' (est.)' : ''}`
+            : 'n/a',
           options: quotes.length,
         }
       : null;
@@ -297,7 +276,7 @@ export default async function CorridorPage({
           __html: JSON.stringify(pageJsonLd).replace(/</g, '\\u003c'),
         }}
       />
-      <main className="pa-shell grid gap-x-16 pt-6 pb-4 sm:pt-10 xl:grid-cols-[minmax(0,46rem)_15rem]">
+      <main id="main-content" className="pa-shell grid gap-x-16 pt-6 pb-4 sm:pt-10 xl:grid-cols-[minmax(0,46rem)_15rem]">
         <div className="min-w-0 space-y-14 xl:col-start-1 xl:row-start-1">
           {/* Header */}
           <header className="space-y-5">
@@ -333,9 +312,6 @@ export default async function CorridorPage({
                 <dt className="text-xs text-muted-foreground">Top of the table at ${COMPARISON_AMOUNT.toLocaleString('en-US')}</dt>
                 <dd className="mt-0.5 font-semibold">
                   {keyFacts.top}
-                  {keyFacts.remittance && (
-                    <span className="mt-0.5 block text-xs font-medium text-caution">Personal remittance price</span>
-                  )}
                 </dd>
               </div>
               <div className="bg-sheet px-4 py-3">
@@ -382,6 +358,8 @@ export default async function CorridorPage({
                   >
                     open.er-api.com
                   </a>
+                  . A fixed ${COMPARISON_AMOUNT.toLocaleString()} example: for your own amount, use the
+                  calculator above.
                 </p>
               )}
               {cheapestSwitchesAt && (
@@ -393,72 +371,11 @@ export default async function CorridorPage({
                   invoice amount into the calculator above rather than reading the order off this table.
                 </p>
               )}
-              <div className="pa-table-wrap">
-                <table className="w-full text-[0.9375rem]">
-                  <caption className="sr-only">
-                    Provider comparison: receiving ${COMPARISON_AMOUNT.toLocaleString()} USD in {corridor.country},
-                    ranked by net received
-                  </caption>
-                  <thead>
-                    <tr className="text-left">
-                      <th scope="col" className="px-4 py-3">Provider</th>
-                      <th scope="col" className="px-4 py-3 text-right">Net received ({corridor.destination})</th>
-                      <th scope="col" className="px-4 py-3 text-right">Total cost</th>
-                      <th scope="col" className="px-4 py-3 text-right">Transfer fee</th>
-                      <th scope="col" className="px-4 py-3">FX margin</th>
-                      <th scope="col" className="px-4 py-3">Speed</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* The best value badge renders here as well as in the interactive
-                        calculator. It used to live only in the client-side ResultsTable, which
-                        meant the page's own copy referred to a badge the server-rendered table
-                        never showed: the Mexico page says it carries our best value badge, above
-                        a table containing no badge. A reader without JavaScript, and a crawler,
-                        saw the ranking but not the recommendation. */}
-                    {quotes.map((q) => (
-                      <tr
-                        key={q.provider.slug}
-                        className={q.isBestValue ? 'bg-stamp-tint' : undefined}
-                      >
-                        <td className="px-4 py-3 font-semibold">
-                          <span className="flex flex-wrap items-center gap-2">
-                            {q.provider.name}
-                            {q.isBestValue && <BestValueBadge />}
-                          </span>
-                          {q.personalRemittancePricing && (
-                            <span className="mt-1 block text-xs font-medium text-caution">
-                              Personal remittance price
-                            </span>
-                          )}
-                        </td>
-                        <td className="pa-figure px-4 py-3 text-right font-semibold whitespace-nowrap">
-                          {formatAmount(q.netReceivedInDest, corridor.destination)}
-                        </td>
-                        <td className="pa-figure px-4 py-3 text-right font-semibold whitespace-nowrap">
-                          {fmtPct(totalCostPct(q, corridor.destination))}
-                        </td>
-                        <td className="pa-figure px-4 py-3 text-right text-muted-foreground">
-                          {q.effectiveFeePercent.toFixed(2)}%
-                        </td>
-                        <td className="px-4 py-3 text-muted-foreground whitespace-nowrap">
-                          {q.fxMarkupBps === 0
-                            ? 'Mid-market'
-                            : `+${(q.fxMarkupBps / 100).toFixed(1)}%`}
-                          {q.isEstimate && (
-                            <span className="ml-1 not-italic text-muted-foreground/70">
-                              (est.)
-                            </span>
-                          )}
-                        </td>
-                        <td className="px-4 py-3 text-muted-foreground whitespace-nowrap">
-                          {formatHours(q.timeHours)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              <QuoteTable
+                quotes={quotes}
+                currency={corridor.destination}
+                caption={`Provider comparison: receiving $${COMPARISON_AMOUNT.toLocaleString()} USD in ${corridor.country}, ranked by net received`}
+              />
             </section>
           )}
 
@@ -479,59 +396,12 @@ export default async function CorridorPage({
                   <h3 className="pa-h3">
                     Receiving ${COMPARISON_AMOUNT.toLocaleString()} USD as {set.currency}
                   </h3>
-                  <div className="pa-table-wrap">
-                    <table className="w-full text-[0.9375rem]">
-                      <caption className="sr-only">
-                        Providers that can pay ${COMPARISON_AMOUNT.toLocaleString()} USD into a {set.currency} account in{' '}
-                        {corridor.country}, ranked by net received
-                      </caption>
-                      <thead>
-                        <tr className="text-left">
-                          <th scope="col" className="px-4 py-3">Provider</th>
-                          <th scope="col" className="px-4 py-3 text-right">Net received ({set.currency})</th>
-                          <th scope="col" className="px-4 py-3 text-right">Total cost</th>
-                          <th scope="col" className="px-4 py-3 text-right">Transfer fee</th>
-                          <th scope="col" className="px-4 py-3">FX margin</th>
-                          <th scope="col" className="px-4 py-3">Speed</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {set.quotes.map((q) => (
-                          <tr key={q.provider.slug}>
-                            <td className="px-4 py-3 font-semibold">{q.provider.name}</td>
-                            <td className="pa-figure px-4 py-3 text-right font-semibold whitespace-nowrap">
-                              {formatAmount(q.netReceivedInDest, set.currency)}
-                            </td>
-                            <td className="pa-figure px-4 py-3 text-right font-semibold whitespace-nowrap">
-                              {fmtPct(totalCostPct(q, set.currency))}
-                            </td>
-                            <td className="pa-figure px-4 py-3 text-right text-muted-foreground">
-                              {q.effectiveFeePercent.toFixed(2)}%
-                            </td>
-                            <td className="px-4 py-3 text-muted-foreground whitespace-nowrap">
-                              {q.fxMarkupBps === 0
-                                ? 'No conversion'
-                                : `+${(q.fxMarkupBps / 100).toFixed(1)}%`}
-                              {/* This column is the FX margin, so "(est.)" next to it reads as doubt
-                                  about the margin. Where nothing converts the margin is exactly zero
-                                  and there is nothing to estimate: what is estimated on those rows is
-                                  the FEE, which the previous column shows. Marking "No conversion
-                                  (est.)" told readers we were unsure whether a conversion happens.
-                                  Every row in a foreign-currency table has fxMarkupBps 0, so this hid
-                                  behind the local-currency tables until the Philippines dollar table
-                                  arrived with both of its rows estimated. */}
-                              {q.isEstimate && q.fxMarkupBps !== 0 && (
-                                <span className="ml-1 text-muted-foreground/70">(est.)</span>
-                              )}
-                            </td>
-                            <td className="px-4 py-3 text-muted-foreground whitespace-nowrap">
-                              {formatHours(q.timeHours)}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                  <QuoteTable
+                    quotes={set.quotes}
+                    currency={set.currency}
+                    holding
+                    caption={`Providers that can pay $${COMPARISON_AMOUNT.toLocaleString()} USD into a ${set.currency} account in ${corridor.country}, ranked by net received`}
+                  />
                 </div>
               ))}
             </section>
@@ -575,7 +445,15 @@ export default async function CorridorPage({
               <div className="pa-sheet divide-y divide-border">
                 {compactUnavailable.map((p) => (
                   <div key={p.slug} className="px-5 py-4">
-                    <p className="font-semibold mb-1">{p.name}: not available</p>
+                    <p className="font-semibold mb-1">
+                      {/* The label comes from data/routes.ts when the route has a recorded state, so
+                          a route we only failed to verify is never called "not available". */}
+                      {p.name}:{' '}
+                      {(() => {
+                        const listed = listedRoute(corridor.destCountry as CountryCode, p.slug);
+                        return listed ? LISTED_STATUS_LABEL[listed.status] : 'not available';
+                      })()}
+                    </p>
                     <p className="text-[0.9375rem] text-muted-foreground leading-relaxed">{p.notes}</p>
                   </div>
                 ))}

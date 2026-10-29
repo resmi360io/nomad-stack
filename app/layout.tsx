@@ -61,14 +61,9 @@ const siteJsonLd = {
       url: SITE_URL,
       name: "Paid Across",
       publisher: { "@id": `${SITE_URL}/#organization` },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate: `${SITE_URL}/receive/{search_term_string}`,
-        },
-        "query-input": "required name=search_term_string",
-      },
+      // No SearchAction: the site has no search. The one this used to carry pointed at
+      // /receive/{search_term_string}, which only resolves for an exact corridor slug and 404s
+      // for anything a person would actually type, so it described a feature that does not exist.
     },
   ],
 };
@@ -90,6 +85,14 @@ export default function RootLayout({
             __html: JSON.stringify(siteJsonLd).replace(/</g, "\\u003c"),
           }}
         />
+        {/* First focusable element on every page (WCAG 2.4.1). Every page's <main> carries
+            id="main-content". */}
+        <a
+          href="#main-content"
+          className="sr-only z-[60] rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
+        >
+          Skip to main content
+        </a>
         <PostHogProvider>
           <Header />
           {children}

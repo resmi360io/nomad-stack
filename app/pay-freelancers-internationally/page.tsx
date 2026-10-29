@@ -69,7 +69,7 @@ export default async function PayFreelancersPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
-      <main className="pa-read space-y-14 pt-8 pb-4 sm:pt-12">
+      <main id="main-content" className="pa-read space-y-14 pt-8 pb-4 sm:pt-12">
         <header className="space-y-5">
           <h1 className="pa-h1">
             How to pay freelancers internationally without shrinking their invoice
@@ -106,13 +106,12 @@ export default async function PayFreelancersPage() {
           </p>
           <p className={P}>
             If all they have is a local bank account, send money in their currency, not in
-            dollars. A service like Wise lets you pay in dollars and deliver Pakistani rupees,
-            naira or pesos straight into their local bank account at the mid-market rate. You pay
-            a fee you can see before you confirm, and nothing comes off on their side. This works
-            even where residents cannot open a Wise account themselves, as in Pakistan. Check the
-            details for each country, though. Wise says it cannot send business transfers to
-            Bangladeshi taka, so a company paying from a Wise Business account cannot use it
-            there, and our Bangladesh page covers what to do instead.
+            dollars. A service like Wise lets you pay in dollars and deliver naira or Philippine pesos
+            straight into their local bank account at the mid-market rate. You pay
+            a fee you can see before you confirm, and nothing comes off on their side. Check the details for each country, though. Wise says it is currently unable to send
+            business payments to Pakistani rupees and cannot send business transfers to Bangladeshi
+            taka, so a company paying a freelancer in Pakistan or Bangladesh cannot use it there,
+            and our Pakistan and Bangladesh pages cover what to do instead.
           </p>
           <p className={P}>
             If you hired through Upwork or Fiverr, pay through the platform. Its fees are set and you
