@@ -5,7 +5,7 @@ are done, and add the PR number or date, so the next session starts from the tru
 memory. Fact-checking rules for anything that touches page copy live in AGENTS.md and still apply:
 verifier, then reviewer, then humanizer, and ranking-moving changes go to the owner.
 
-Last updated: 2026-10-29 (second revision, after PR #71 and the third video batch).
+Last updated: 2026-10-29 (third revision, after PR #72 and the first SEO agent audit).
 
 Legend: `[x]` done, `[~]` in progress or partly done, `[ ]` not started. Owner is **You** (site owner)
 or **Claude** (a session in this repo).
@@ -41,7 +41,11 @@ Latest 28 days, 2026-10-02 to 2026-10-29 (preliminary, read 2026-10-29): 2 click
 
 Read the drop in impressions with care: the 28-day window is short, and most impressions are on
 anonymised queries (only 50 of 422 over three months are attributable to a query), so the per-query
-picture is thin. Do not change pages in response to one month of this.
+picture is thin. Do not change pages in response to one month of this. Two more reasons, from the
+2026-10-29 audit: both 28-day windows overlap the September 2026 spam update rollout (2026-09-24 to
+2026-10-08), and the drop sits on three pages (pillar 81, Bangladesh 62, Georgia 31). The Bangladesh
+rate page was live for only the last four days of the window, so a shift between our own pages can
+explain at most a small part of the Bangladesh fall; the checkpoint tests it.
 
 Bing Webmaster (2026-09-07 to 2026-10-26): about 100 impressions and 1 click, many from long,
 chatbot-style questions where the site ranks 1 to 7. Crawl issues reported on 2026-10-29: none.
@@ -127,7 +131,9 @@ watermark remover", and are ignored. What survives a sceptical read:
    in the first sentence of the intro. Copy changes, so humanizer first, `updatedDate` bumped, and you
    request indexing for each URL afterwards. Measure at the checkpoint, not before.
    **Shipped in PR #72 (2026-10-29)** for all seven, using Bing query wording because Search Console
-   hides almost every query on these pages. Left to do: you request indexing for the seven URLs.
+   hides almost every query on these pages. Left to do: you request indexing for the seven URLs (not
+   done at the 2026-10-29 audit) in Search Console and in Bing URL Submission, and note the date here.
+   The measurement clock starts at each URL's recrawl, not at the merge.
 2. [ ] **You:** apply to the Payoneer affiliate programme. Both rate pages and 7 corridors earn nothing,
    and the rate pages are now linked from every page.
 3. [ ] **You:** decide the Payoneer Georgia question from PR #70: under about $300 the dollar table ranks
@@ -138,8 +144,24 @@ watermark remover", and are ignored. What survives a sceptical read:
 5. [ ] **Claude:** add a calculator usage event in PostHog (`calc_run`, with corridor and amount band).
    Only `$pageview` and `affiliate_click` exist, so there is no way to see whether people use the tool.
    Needs your go-ahead, since it changes analytics.
+13. [ ] **Claude:** remove the en dash between 3 and 8 in "lose 3 to 8% of every international invoice" on
+    `/about/author` (AGENTS.md no-dash rule; found by the 2026-10-29 audit). Humanizer pass, no claim change.
+14. [ ] **You:** decide how the weeks 2 to 3 copy work meets the PR #72 measurement window (see the note
+    under Weeks 2 to 3).
 
 ### Weeks 2 to 3 (2026-11-05 to 2026-11-19)
+
+Measurement note (2026-10-29 audit): items 6 and 11 and the weekly FAQ would add copy to Bangladesh,
+Nigeria, the Philippines and Indonesia, four of the seven PR #72 pages, inside the PR #72 window, which
+breaks KNOWLEDGE.md measurement rule 4. Recommended: record the voice memos now, but hold new body
+copy on those four pages until the PR #72 decision read (2026-12-24 at the earliest), and work on
+Pakistan, the pillar and the corridors outside PR #72 first. If you would rather ship, record that the
+read for those pages is a bundle.
+
+15. [ ] **Claude:** shorten the titles over 60 characters on the eight zero-impression corridors (MXN, BRL,
+    UZS, COP, ZAR, ARS, PLN, UAH) and the ZAR (177) and homepage (164) descriptions. Pakistan's title (63),
+    the pillar description (168) and the PKR rate page description (177) wait until after the checkpoint,
+    because those pages are inside a measurement window. Humanizer and `updatedDate` bump.
 
 6. [ ] **You + Claude:** expert answers by voice. Claude sends five questions per corridor group (PK and
    BD, NG, PH and ID); you answer each in a 2-minute voice memo; Claude transcribes them (the same
@@ -161,14 +183,20 @@ watermark remover", and are ignored. What survives a sceptical read:
     about 45) and on tracking international payments (26 at 55).
 11. [ ] **Claude:** mine competitor reviews (Trustpilot for Payoneer and Wise, from PK, BD, NG and PH
     users) for real complaints, and turn the best into fact-checked FAQs.
-12. [ ] **Claude:** Bing again: pages indexed (12 on 2026-10-25), sitemap read date, and the chatbot-style
-    queries, now that the redesign is live.
+12. [~] **Claude:** Bing again: pages indexed (12 on 2026-10-25), sitemap read date, and the chatbot-style
+    queries, now that the redesign is live. 2026-10-29 audit: crawl issues none, query stats read (53 rows,
+    2026-09-11 to 2026-10-23); indexed count and sitemap read date not pulled yet. **You:** also open AI
+    Performance in Bing Webmaster Tools and its Topics Portfolio tab (beta since 2026-10-13), which Bing
+    shows only when a site has enough data, and note what is there.
 
 ### Ongoing from now
 
 - [ ] **Claude:** a weekly fact-checked FAQ. One real question from Search Console, Bing or People Also
   Ask; read the top three results first and answer what they miss; then verifier, reviewer and
-  humanizer. Can be set up as a weekly scheduled task on request.
+  humanizer. Can be set up as a weekly scheduled task on request. Until the PR #72 decision read
+  (2026-12-24 at the earliest), put it on a page outside the seven PR #72 corridors, or record that the
+  read for that page is a bundle. First candidate (2026-10-29 audit): a USD salary question on Pakistan,
+  from Bing "best way to receive usd salary in pakistan and convert to pkr" (position 2).
 - [ ] **You:** one pitch or correction email a day (newsletters, PK and BD tech press, authors still
   quoting Payoneer "up to 2%"), plus two helpful Reddit or Quora answers a week from a branded account
   that says who you are. Never astroturf.
@@ -179,12 +207,22 @@ watermark remover", and are ignored. What survives a sceptical read:
 - [ ] **You:** monthly, re-check Bing and Search Console for new spam domains and re-upload the full
   disavow list if any appear.
 
-### Checkpoint: around 2026-11-23
+### Checkpoint: 2026-11-30 (moved from 2026-11-23)
+
+Moved by the 2026-10-29 audit: 2026-11-23 is 25 days after PRs #68 to #72 shipped, short of the four
+weeks after recrawl that KNOWLEDGE.md measurement rule 3 requires, and Search Console's last two or
+three days are preliminary. If a Google ranking or spam update rolls out inside the window, say so and
+draw no conclusion.
 
 - [ ] **Claude:** read Search Console again and compare with both baselines above:
-  - Did CTR move on the pages from this week's title pass?
+  - Did CTR move on the pages from this week's title pass? Preliminary only, and only for URLs recrawled
+    by 2026-11-02. Georgia, Nigeria and Thailand had 4 to 6 impressions in 28 days, so expect no readable
+    result for them before the decision read (2026-12-24 at the earliest).
   - Have the sender queries moved from the pillar to `/pay-freelancers-internationally`?
-  - Do the rate pages hold or improve on 9 to 16? Any cannibalization with the corridor pages?
+  - Do the rate pages hold or improve on 9 to 16? Any cannibalization with the corridor pages? Check
+    Bangladesh as well as Pakistan, with dates restricted to after 2026-10-26: over the 90 days to
+    2026-10-29 both PKR pages showed for "payoneer exchange rate usd to pkr" (rate page 63, corridor
+    71.7), and the BDT corridor showed for Payoneer rate queries (25.5, 32) that its rate page now targets.
   - Did the redesign and the PR #70 ranking change move any position by more than a few places?
 - [ ] **Claude:** decide the next rate page, only where Search Console shows the provider and pair
   query (AGENTS.md rule).

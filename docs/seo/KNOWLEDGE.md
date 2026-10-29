@@ -15,7 +15,7 @@ wins until someone updates both.
 |---|---|---|
 | Auto-merge reports | no | Owner only. When `yes`, the weekly audit may merge its own PR if it touches nothing outside `docs/seo/` and `SEO_PLAN.md`. |
 | Audit cadence | weekly | Owner |
-| Last checked (WATCH) | 2026-10-01 | The agent, every run, to the run date |
+| Last checked (WATCH) | 2026-10-29 | The agent, every run, to the run date |
 | Search Console property | paidacross.com (domain), OpenRush website_id `aab70b77-7a4d-4d6e-9f13-85584c82a534` | |
 | Bing property | `https://paidacross.com/`, read through the Hermoso MCP `call_tool` (read tools only) | |
 | Scheduled host session | to be recorded when created | Owner or an interactive session |
@@ -28,10 +28,10 @@ Only primary sources can change a verdict. Industry coverage may raise a questio
 | Source | How to read it | What to look for |
 |---|---|---|
 | Google Search Status Dashboard | `https://status.search.google.com/incidents.json` (JSON, machine readable) | Core, spam, helpful-content and ranking updates: begin and end dates. A ranking read taken during a rollout is noise. |
-| Google Search Central ranking updates | `https://developers.google.com/search/updates/ranking` | Named updates and what they target |
+| Google Search Central ranking updates | `https://developers.google.com/search/updates/ranking`, which on 2026-10-29 returned a 301 to `https://status.search.google.com/products/rGHU1u87FJnkP6W2GwMi/history` (the same data as `incidents.json`); read the announcement each incident links to for what the update targets | Named updates and what they target |
 | Google Search Central blog | `https://developers.google.com/search/blog` | Policy changes (spam policies, structured data support, AI features guidance) |
 | Bing Webmaster blog | `https://blogs.bing.com/webmaster/feed/` (RSS; fetch with redirects and a browser user agent) | Bing and Copilot changes, AI Performance reporting, IndexNow, sitemap guidance |
-| Bing Webmaster Tools for the site | Hermoso `bing_webmaster_crawl`, `bing_webmaster_query_stats` | Crawl issues, the long chatbot-style queries |
+| Bing Webmaster Tools for the site | Hermoso `bing_webmaster_crawl`, `bing_webmaster_query_stats`; AI Performance and its Topics Portfolio tab in the BWT UI (owner) | Crawl issues, the long chatbot-style queries, grounding queries and Opportunity Queries once the site has enough AI Search data for Bing to show them |
 
 ### Site-specific thresholds (used by `scripts/seo/checks.mjs`)
 
@@ -182,7 +182,7 @@ Count = number of distinct row ids that make the tactic. Rows are cited by `reel
 | # | Tactic | n | Row ids | Claim as the videos state it | Verdict | Reason | How to apply here |
 |---|---|---|---|---|---|---|---|
 | 63 | Get mentioned where AI engines already pull from: Reddit, review sites (G2, Capterra, Trustpilot), "best X" roundups | 1 | 31 | About 75% of what AI cites is off your own site | Adopt with limits | Directionally plausible; the statistic is NP Digital's own and unverified | Use OpenRush `discover_ai_citations` to list the roundups cited for our questions; pitch inclusion with our data; branded Reddit answers (53); no fake reviews |
-| 64 | Check AI visibility with a checker tool | 3 | 14, 31, 117 | Free tools score whether ChatGPT and AI Overviews show you and who is ahead | Already done | We have OpenRush `inspect_ai_visibility` and `discover_ai_citations`; the free tools need an email opt-in | SEO_PLAN item 9 |
+| 64 | Check AI visibility with a checker tool | 3 | 14, 31, 117 | Free tools score whether ChatGPT and AI Overviews show you and who is ahead | Already done | We have OpenRush `inspect_ai_visibility` and `discover_ai_citations`; the free tools need an email opt-in | SEO_PLAN item 9. Add Bing Webmaster Tools AI Performance (cited pages and grounding queries, public preview since 2026-02-11) and its Topics Portfolio tab (beta since 2026-10-13: topics, and Opportunity Queries where other sites are cited and ours is not). First party, but Bing calls the topic figures approximate and shows the tab only when a site has enough data; use it for wording and direction, never as counts |
 | 65 | Follow Google's "optimizing for generative AI" guidance: AEO and GEO are still SEO | 2 | 73, 92 | No llms.txt, no special markup, no chunking, no rewriting for AI, no inauthentic mentions, do not over-focus on structured data; fact-check AI output | Adopt | It is Google's own documentation and matches everything else here | Treat as the baseline policy for any "AI optimisation" idea that arrives later |
 | 66 | Remove "AI watermarks" from generated text | 1 | 129 | OpenAI watermarks all ChatGPT text; a tool removes them | Rejected | Dubious claim; the purpose is disguise; already in "Decided against" | Humanizer is for readability only |
 
@@ -302,7 +302,10 @@ Reconciled rules for a site with about 355 impressions and 2 clicks a month:
 3. **Waiting time before judging a change.** Confirm the recrawl first (GSC URL Inspection, last crawl date
    after the change). Read a preliminary result no earlier than 4 weeks after recrawl and a decision result at 8
    weeks, comparing equal windows (28 days vs the previous 28, or 8 weeks vs 8 weeks). For PR #72 (2026-10-29)
-   that means the 2026-11-23 checkpoint is preliminary and about 2026-12-24 is the decision read.
+   the earliest preliminary read is 2026-11-26, four weeks after the merge, and later for any URL recrawled
+   later; allowing for Search Console's preliminary last days, read it on 2026-11-30 and only for URLs whose
+   last crawl is on or before 2026-11-02. The decision read is 8 weeks after each URL's recrawl, so 2026-12-24
+   at the earliest. The redesign (PRs #68, #69), PR #70 and PR #71 shipped the same day and share these dates.
 4. **One change per page per cycle.** Title, intro and FAQ changes on the same page in the same window cannot be
    attributed. Stagger them, or accept that the read is for the bundle.
 5. **Position needs query context.** Average position on a low-volume page moves when a new query starts
@@ -313,10 +316,13 @@ Reconciled rules for a site with about 355 impressions and 2 clicks a month:
 7. **AI visibility.** Check quarterly with OpenRush on a fixed question set (for example "cost to receive USD in
    the Philippines", "Payoneer dollar rate in Pakistan today"), because model updates swing citation shares.
 8. **Cadences.** Daily: the verification rotation (AGENTS.md). Weekly: at most one fact-checked FAQ. Monthly: GSC
-   and Bing read, spam-domain check, any automated GSC candidate report. Checkpoints: around 2026-11-23, then
-   every 4 to 8 weeks. Quarterly: AI visibility, Core Web Vitals, keyword gap refresh.
-9. **Do not react to one month.** Already the SEO_PLAN rule; the 28-day drop of 173 impressions is within noise
-   for a site this size.
+   and Bing read, spam-domain check, any automated GSC candidate report. Checkpoints: 2026-11-30 (see rule 3),
+   then every 4 to 8 weeks. Quarterly: AI visibility, Core Web Vitals, keyword gap refresh.
+9. **Do not react to one month.** Already the SEO_PLAN rule. The 28-day drop of 173 impressions read on 2026-10-29
+   is not attributable: both windows (2026-09-04 to 2026-10-01 and 2026-10-02 to 2026-10-29) overlap the September
+   2026 spam update rollout (2026-09-24 to 2026-10-08), the newer window ends on days Search Console still marks
+   preliminary, and the drop sits on three pages (pillar 81, Bangladesh 62, Georgia 31). Any read whose window
+   overlaps a ranking or spam update rollout on the Status Dashboard says so and draws no conclusion from it.
 10. **Engagement.** Ranking claims about user signals are unproven (row 18), but whether people use the
     calculator is the product question. Add the PostHog `calc_run` event (SEO_PLAN item 5, needs owner go-ahead)
     and read it monthly.
@@ -519,3 +525,14 @@ Every edit the agent proposes to this file and the orchestrator applies gets one
   and the site's own history (PRs #58 to #72). Watchlist and thresholds set. "Last checked" set to 2026-10-01 so
   the first WATCH run evaluates October 2026 (the September 2026 spam update, completed 2026-10-08; Bing's AI
   Performance Topics Portfolio, 2026-10-13).
+- 2026-10-29: First WATCH run, window 2026-10-02 to 2026-10-29. Google: the September 2026 spam update completed
+  2026-10-08 (Search Status Dashboard incident XhUDXP7A67iHCD2kmbVu); no verdict change, recorded in measurement
+  rule 9 because both 28-day windows either side of 2026-10-01 overlap its rollout. No other ranking incident
+  since. The only October 2026 Search Central blog post (SEO learning paths on YouTube) is not relevant. Bing:
+  Topics Portfolio (beta) in AI Performance, 2026-10-13
+  (https://blogs.bing.com/webmaster/2026/10/introducing-topics-portfolio-beta-in-ai-performance/), added to the
+  watchlist and to tactic 64's how-to; no verdict change. Watchlist: the Search Central ranking-updates URL now
+  301-redirects to the Status Dashboard ranking history. Measurement rule 3 date arithmetic corrected
+  (2026-11-23 was 25 days after PR #72); checkpoint moved to 2026-11-30 in rules 3 and 8. Last checked set to
+  2026-10-29. Open question for a one-off read: Search Console's generative AI performance reports (June 2026),
+  the Site Reputation Policy update (August 2026) and multimodal Search performance reporting (September 2026).
