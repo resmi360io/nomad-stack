@@ -39,7 +39,7 @@ export function CorridorTable({
 
   return (
     <div className="pa-table-wrap">
-      <table className="w-full text-[0.9375rem]">
+      <table className="w-full text-sm sm:text-[0.9375rem]">
         <caption className="sr-only">{caption}</caption>
         <thead>
           <tr className="text-left">
@@ -51,7 +51,7 @@ export function CorridorTable({
         <tbody>
           {rows.map(({ corridor, top, allIn }) => (
             <tr key={corridor.slug} className="transition-colors hover:bg-stamp-tint/60">
-              <td className="px-4 py-3 whitespace-nowrap">
+              <td className="px-4 py-3 sm:whitespace-nowrap">
                 <Link
                   href={`/receive/${corridor.slug}`}
                   className="font-semibold text-stamp underline decoration-stamp/35 underline-offset-[3px] hover:decoration-stamp"
@@ -62,7 +62,7 @@ export function CorridorTable({
               <td className="pa-figure px-4 py-3 text-right text-muted-foreground">
                 {corridor.supportedProviders.length}
               </td>
-              <td className="px-4 py-3 text-muted-foreground min-w-[14rem]">
+              <td className="px-4 py-3 text-muted-foreground sm:min-w-[14rem]">
                 {top && isFinite(allIn) ? (
                   <>
                     {top.provider.name}, {allIn.toFixed(2)}% all in

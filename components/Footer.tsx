@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="mt-20 bg-cover text-cover-muted">
+    <footer className="mt-12 bg-cover sm:mt-20 text-cover-muted">
       <div className="pa-shell flex flex-col gap-3 py-8 text-sm leading-relaxed sm:flex-row sm:items-end sm:justify-between">
         <p className="max-w-[60ch]">
           Some links on this page are affiliate links:{' '}

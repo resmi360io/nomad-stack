@@ -271,8 +271,15 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
   }
+  /* Scroll shadows (background-attachment: local covers them at each end), so a table wider than a
+     phone shows an edge where more columns wait, instead of silently cutting them off. */
   .pa-table-wrap {
-    background: var(--sheet);
+    background:
+      linear-gradient(to right, var(--sheet) 30%, transparent) left center / 2.5rem 100% no-repeat local,
+      linear-gradient(to left, var(--sheet) 30%, transparent) right center / 2.5rem 100% no-repeat local,
+      radial-gradient(farthest-side at 0 50%, rgb(23 32 29 / 0.18), transparent) left center / 0.875rem 100% no-repeat scroll,
+      radial-gradient(farthest-side at 100% 50%, rgb(23 32 29 / 0.18), transparent) right center / 0.875rem 100% no-repeat scroll,
+      var(--sheet);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow-x: auto;
@@ -290,5 +297,18 @@
   }
   .pa-section {
     @apply space-y-4;
+  }
+}
+
+/* Unlayered so it beats the px-4 utilities on table cells: tighter cells on phones let the
+   comparison tables fit more columns before they have to scroll. */
+@media (max-width: 639px) {
+  .pa-table-wrap :is(th, td) {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .pa-table-wrap th {
+    white-space: normal;
+    vertical-align: bottom;
   }
 }
