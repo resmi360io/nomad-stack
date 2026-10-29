@@ -1,26 +1,28 @@
 export function Footer() {
   return (
-    <footer className="border-t py-6 text-center text-xs text-muted-foreground">
-      <p>
-        Some links on this page are affiliate links:{' '}
-        <a
-          href="/how-we-make-money"
-          className="underline underline-offset-2 hover:text-foreground"
-        >
-          how we make money
-        </a>
-        {' · '}
-        <a
-          href="https://github.com/resmi360io/nomad-stack"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline underline-offset-2 hover:text-foreground"
-        >
-          fee data on GitHub
-        </a>
-        . Ranking is based on fee math only.
-      </p>
-      <p className="mt-1">© {new Date().getFullYear()} Paid Across</p>
+    <footer className="mt-20 bg-cover text-cover-muted">
+      <div className="pa-shell flex flex-col gap-3 py-8 text-sm leading-relaxed sm:flex-row sm:items-end sm:justify-between">
+        <p className="max-w-[60ch]">
+          Some links on this page are affiliate links:{' '}
+          <a
+            href="/how-we-make-money"
+            className="text-cover-foreground underline decoration-cover-muted underline-offset-4 hover:decoration-cover-foreground"
+          >
+            how we make money
+          </a>
+          {' · '}
+          <a
+            href="https://github.com/resmi360io/nomad-stack"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-cover-foreground underline decoration-cover-muted underline-offset-4 hover:decoration-cover-foreground"
+          >
+            fee data on GitHub
+          </a>
+          . Ranking is based on fee math only.
+        </p>
+        <p className="shrink-0 font-semibold text-cover-foreground">© {new Date().getFullYear()} Paid Across</p>
+      </div>
     </footer>
   );
 }

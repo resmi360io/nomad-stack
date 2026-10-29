@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
 };
 
-const P = 'text-muted-foreground leading-relaxed';
+const P = 'pa-prose';
 
 const pillarJsonLd = {
   '@context': 'https://schema.org',
@@ -92,12 +92,12 @@ export default async function ReceiveInternationalPaymentsPage() {
           __html: JSON.stringify(pillarJsonLd).replace(/</g, '\\u003c'),
         }}
       />
-      <main className="mx-auto max-w-3xl px-4 py-12 space-y-10">
-        <header className="space-y-3">
-          <h1 className="text-3xl font-bold tracking-tight leading-tight">
+      <main className="pa-read space-y-14 pt-8 pb-4 sm:pt-12">
+        <header className="space-y-5">
+          <h1 className="pa-h1">
             How freelancers receive international payments: real costs by country
           </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="pa-intro">
             For most freelancers the cheapest way to receive international payments is a Wise
             account with US account details, where your country allows one: your client pays
             you like a local supplier and Wise converts at the mid-market rate. Where Wise is
@@ -108,7 +108,7 @@ export default async function ReceiveInternationalPaymentsPage() {
             month that is the difference between losing about $15 and losing over $250. Below is
             what each route costs in the {CORRIDORS.length} countries we cover.
           </p>
-          <p className="text-xs text-muted-foreground">
+          <p className="pa-meta">
             By{' '}
             <Link href="/about/author" className="underline underline-offset-2 hover:text-foreground">
               George I.
@@ -119,14 +119,14 @@ export default async function ReceiveInternationalPaymentsPage() {
         </header>
 
         <section aria-label="Payment cost calculator">
-          <h2 className="text-xl font-semibold mb-4">Check your own numbers first</h2>
+          <h2 className="pa-h2 mb-5">Check your own numbers first</h2>
           <div style={{ minHeight: '320px' }}>
             <Calculator />
           </div>
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">The short answer</h2>
+          <h2 className="pa-h2">The short answer</h2>
           <p className={P}>
             If Wise will give you an account in your country, it tops our table more often than
             anything else. It converts at the mid-market rate and charges a fee it shows you up
@@ -147,8 +147,8 @@ export default async function ReceiveInternationalPaymentsPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold mb-4">Every country, compared</h2>
-          <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
+          <h2 className="pa-h2 mb-5">Every country, compared</h2>
+          <p className="pa-prose mb-5">
             Each row is the top of that country&apos;s own comparison on a $1,000 payment, at
             today&apos;s mid-market rate, with the fee and the exchange rate margin both counted.
             The country page has the rest of the table, a worked example and the local rules.
@@ -157,7 +157,7 @@ export default async function ReceiveInternationalPaymentsPage() {
             rates={rates}
             caption="Countries covered, how many receiving options we price in each, and which one tops the comparison at $1,000"
           />
-          <p className="text-sm text-muted-foreground mt-4 leading-relaxed">
+          <p className="pa-meta mt-4 max-w-[75ch]">
             Est. means part of that cost is published only as a range and we used the middle.
             Read the country page before you act on a top row. Pakistan&apos;s is Western Union
             pricing meant for family remittances, and Ukraine&apos;s is a bank wire whose cost
@@ -166,7 +166,7 @@ export default async function ReceiveInternationalPaymentsPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">The two charges in every payment</h2>
+          <h2 className="pa-h2">The two charges in every payment</h2>
           <p className={P}>
             Most services charge you twice. The first charge is the visible fee, a percentage, a
             flat amount, or both. The second is inside the exchange rate. Every provider converts
@@ -189,7 +189,7 @@ export default async function ReceiveInternationalPaymentsPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">Account details matter more than fees</h2>
+          <h2 className="pa-h2">Account details matter more than fees</h2>
           <p className={P}>
             The single biggest saving most freelancers can make has little to do with which app
             looks cheapest. It is whether you can give your client a routing number and an account
@@ -209,7 +209,7 @@ export default async function ReceiveInternationalPaymentsPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">Upwork, Fiverr and other marketplaces</h2>
+          <h2 className="pa-h2">Upwork, Fiverr and other marketplaces</h2>
           <p className={P}>
             When a marketplace pays you, your choices narrow. You pick from the withdrawal methods
             the platform offers, which usually means Payoneer, a direct bank transfer, or PayPal
@@ -228,7 +228,7 @@ export default async function ReceiveInternationalPaymentsPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">You do not always have to convert</h2>
+          <h2 className="pa-h2">You do not always have to convert</h2>
           <p className={P}>
             In some countries you can hold the dollars and convert later, or never. Georgian banks
             offer USD sub-accounts, Thai banks offer foreign currency deposit accounts, and banks
@@ -245,7 +245,7 @@ export default async function ReceiveInternationalPaymentsPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">Paperwork can outweigh the fee</h2>
+          <h2 className="pa-h2">Paperwork can outweigh the fee</h2>
           <p className={P}>
             In some countries the cheapest route on paper is the wrong one, because of what it
             does or does not prove to the tax office. In Pakistan, IT exporters registered with
@@ -265,10 +265,10 @@ export default async function ReceiveInternationalPaymentsPage() {
         </section>
 
         <section className="space-y-5">
-          <h2 className="text-xl font-semibold">The main providers, briefly</h2>
-          <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+          <h2 className="pa-h2">The main providers, briefly</h2>
+          <div className="space-y-7 pa-prose">
             <div>
-              <h3 className="font-semibold text-foreground mb-1">Wise</h3>
+              <h3 className="pa-h3 mb-2">Wise</h3>
               <p>
                 Converts at the mid-market rate and charges a separate fee you can see before you
                 accept. It tops most of the tables where residents can open an account. Where they
@@ -287,7 +287,7 @@ export default async function ReceiveInternationalPaymentsPage() {
               </a>
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-1">Payoneer</h3>
+              <h3 className="pa-h3 mb-2">Payoneer</h3>
               <p>
                 1% on an incoming client payment, then a conversion cost on withdrawal that
                 Payoneer gives only as a range of 1.2% to 4%. It works in places Wise and Revolut
@@ -305,7 +305,7 @@ export default async function ReceiveInternationalPaymentsPage() {
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-1">Revolut</h3>
+              <h3 className="pa-h3 mb-2">Revolut</h3>
               <p>
                 Cheap where it is licensed. In Portugal, the one country on our list where we can
                 price it, it comes out at the top. Residents of most of the other countries we
@@ -314,7 +314,7 @@ export default async function ReceiveInternationalPaymentsPage() {
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-1">PayPal</h3>
+              <h3 className="pa-h3 mb-2">PayPal</h3>
               <p>
                 Convenient and almost always the most expensive. On a cross-border commercial
                 payment PayPal charges a receiving fee of roughly 2.9% to 5.4% plus a fixed amount,
@@ -323,7 +323,7 @@ export default async function ReceiveInternationalPaymentsPage() {
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-1">Western Union</h3>
+              <h3 className="pa-h3 mb-2">Western Union</h3>
               <p>
                 Reaches almost everywhere. In some countries, Pakistan and Mexico among them, it
                 comes out near the top of our tables, but read the country page first: the cheap
@@ -332,7 +332,7 @@ export default async function ReceiveInternationalPaymentsPage() {
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-1">Bank wire (SWIFT)</h3>
+              <h3 className="pa-h3 mb-2">Bank wire (SWIFT)</h3>
               <p>
                 Works everywhere and costs a lot on small amounts. Your client&apos;s US bank
                 usually charges $25 to $45 to send, an intermediary bank may take a cut, and your
@@ -342,7 +342,7 @@ export default async function ReceiveInternationalPaymentsPage() {
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-1">Local specialists</h3>
+              <h3 className="pa-h3 mb-2">Local specialists</h3>
               <p>
                 Raenest, Cleva, Grey and LemFi in Nigeria, Higlobe in Brazil, GCash and Maya in the
                 Philippines, bKash in Bangladesh. These often beat the global names in their own
@@ -354,8 +354,8 @@ export default async function ReceiveInternationalPaymentsPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">Four mistakes that cost the most</h2>
-          <ul className="list-disc space-y-2 pl-5 text-muted-foreground leading-relaxed">
+          <h2 className="pa-h2">Four mistakes that cost the most</h2>
+          <ul className="pa-prose list-disc space-y-3 pl-5 marker:text-rule">
             <li>
               Comparing fees and ignoring the exchange rate. The rate is often the larger charge.
             </li>
@@ -374,9 +374,9 @@ export default async function ReceiveInternationalPaymentsPage() {
           </ul>
         </section>
 
-        <section className="rounded-xl border border-dashed px-6 py-5">
-          <h2 className="text-base font-semibold mb-2">Paying someone, not getting paid?</h2>
-          <p className="text-sm text-muted-foreground leading-relaxed">
+        <section className="pa-sheet px-5 py-6 sm:px-7">
+          <h2 className="pa-h3 mb-3">Paying someone, not getting paid?</h2>
+          <p className="max-w-[65ch] text-[0.9375rem] text-muted-foreground leading-relaxed">
             If you are the client, the question flips: which way of paying leaves your freelancer
             with the most?{' '}
             <Link href="/pay-freelancers-internationally" className="underline underline-offset-2 hover:text-foreground">
@@ -387,9 +387,9 @@ export default async function ReceiveInternationalPaymentsPage() {
         </section>
 
         {/* Methodology */}
-        <section className="rounded-xl border bg-muted/30 px-6 py-5">
-          <h2 className="text-base font-semibold mb-2">Methodology</h2>
-          <p className="text-sm text-muted-foreground leading-relaxed">
+        <section className="pa-note px-5 py-6 sm:px-7">
+          <h2 className="pa-h3 mb-3">Methodology</h2>
+          <p className="max-w-[65ch] text-[0.9375rem] text-muted-foreground leading-relaxed">
             Fees come from each provider&apos;s own public pricing page, verified by date with
             the source linked. FX spreads are different: several providers do not publish one
             at all, so where we could not source a figure we estimate it, mark that row
@@ -407,7 +407,7 @@ export default async function ReceiveInternationalPaymentsPage() {
             with no bank rates. Provider ranking is determined entirely by net received
             amount after all fees and FX markup. There is no paid placement.
           </p>
-          <p className="text-xs text-muted-foreground mt-3">
+          <p className="pa-meta mt-4">
             <Link
               href="https://github.com/resmi360io/nomad-stack"
               target="_blank"
@@ -421,7 +421,7 @@ export default async function ReceiveInternationalPaymentsPage() {
         </section>
 
         {/* Author + disclaimer */}
-        <div className="border-t pt-5 text-xs text-muted-foreground space-y-1">
+        <div className="pa-meta space-y-1.5 border-t border-rule pt-5">
           <p>
             Written by{' '}
             <Link

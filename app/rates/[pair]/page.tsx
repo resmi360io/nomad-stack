@@ -131,154 +131,159 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-      <article className="mx-auto max-w-3xl px-4 py-10">
-        <nav className="mb-6 text-sm text-muted-foreground">
-          <Link href="/" className="underline underline-offset-2 hover:text-foreground">
-            Paid Across
-          </Link>
-          {' / '}
-          <Link
-            href={`/receive/${corridor.slug}`}
-            className="underline underline-offset-2 hover:text-foreground"
-          >
-            Receive {page.source} in {page.country}
-          </Link>
-        </nav>
-
-        <h1 className="text-3xl font-semibold tracking-tight">{page.h1}</h1>
-
-        <p className="mt-6 text-base leading-relaxed">{page.intro}</p>
-
-        <section className="mt-10 rounded-lg border p-5">
-          <h2 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
-            Mid-market rate today
-          </h2>
-          {mid && ratesResult ? (
-            <>
-              <p className="mt-2 text-3xl font-semibold tabular-nums">
-                1 {page.source} = {mid.toFixed(2)} {page.destination}
-              </p>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Published {ratesResult.rateDate} by open.er-api.com. This page refreshes hourly.
-              </p>
-            </>
-          ) : (
-            <p className="mt-2 text-sm text-muted-foreground">
-              Live rate unavailable right now. The fee structure below does not depend on it.
-            </p>
-          )}
-          <p className="mt-4 text-sm leading-relaxed">{page.rateNote}</p>
-        </section>
-
-        {rows.length > 0 && (
-          <section className="mt-10">
-            <h2 className="text-xl font-semibold">
-              What {provider.name} actually pays into a {page.country} bank account
-            </h2>
-            <div className="mt-4 overflow-x-auto">
-              <table className="w-full border-collapse text-sm">
-                <caption className="sr-only">
-                  {provider.name} {page.source} to {page.destination} net amounts at three invoice
-                  sizes
-                </caption>
-                <thead>
-                  <tr className="border-b text-left">
-                    <th scope="col" className="py-2 pr-4 font-medium">You invoice</th>
-                    <th scope="col" className="py-2 pr-4 font-medium">You receive ({page.destination})</th>
-                    <th scope="col" className="py-2 pr-4 font-medium">All-in cost vs mid</th>
-                    <th scope="col" className="py-2 font-medium">Your rate per {page.source}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map(({ amount, q, allInPct }) => (
-                    <tr key={amount} className="border-b last:border-0">
-                      <td className="py-2 pr-4 tabular-nums">
-                        ${amount.toLocaleString('en-US')}
-                      </td>
-                      <td className="py-2 pr-4 tabular-nums">
-                        {fmt(q.netReceivedInDest, page.destination)}
-                      </td>
-                      <td className="py-2 pr-4 tabular-nums">
-                        {isFinite(allInPct) ? `${allInPct.toFixed(2)}%` : 'n/a'}
-                        {q.isEstimate ? <span className="text-muted-foreground"> (est.)</span> : null}
-                      </td>
-                      <td className="py-2 tabular-nums">
-                        {(q.netReceivedInDest / amount).toFixed(2)}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-3 text-sm text-muted-foreground">
-              All-in cost is measured against the mid rate above, so it includes both the explicit
-              fee and the margin taken inside the conversion. Your rate per {page.source} is the
-              same figure expressed the way your bank statement will show it. Rows marked est. use
-              the midpoint of a cost {provider.name} publishes only as a range, so treat them as
-              the middle of a band rather than a quote.
-            </p>
-          </section>
-        )}
-
-        <section className="mt-10 rounded-lg border border-dashed p-5">
-          <p className="text-sm leading-relaxed">
-            This page covers one provider. For the full comparison of everything that can get{' '}
-            {page.source} into {page.country}, ranked by what actually lands,{' '}
+      <main className="pa-read pt-8 pb-4 sm:pt-12">
+        <article>
+          <nav className="pa-meta mb-6">
+            <Link href="/" className="underline underline-offset-2 hover:text-foreground">
+              Paid Across
+            </Link>
+            {' / '}
             <Link
               href={`/receive/${corridor.slug}`}
-              className="font-medium underline underline-offset-2"
+              className="underline underline-offset-2 hover:text-foreground"
             >
-              read the {page.country} corridor page
+              Receive {page.source} in {page.country}
             </Link>
-            . It shows where {provider.name} places against every alternative we could price.
-          </p>
-          <a
-            href={ctaHref}
-            target="_blank"
-            rel={isAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'}
-            className="mt-4 inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium hover:bg-muted"
-          >
-            Open {provider.name}
-            {isAffiliate && (
-              <span
-                className="rounded bg-muted px-1 text-xs"
-                aria-label="Affiliate link"
-                title="We may earn a commission if you sign up"
-              >
-                AD
-              </span>
-            )}
-          </a>
-          {!isAffiliate && (
-            <p className="mt-2 text-xs text-muted-foreground">
-              We earn nothing if you open {provider.name}. We have no affiliate relationship with
-              them, which is worth knowing when you read a recommendation anywhere.
-            </p>
-          )}
-        </section>
+          </nav>
 
-        <section className="mt-12">
-          <h2 className="text-xl font-semibold">Questions people ask about this rate</h2>
-          <dl className="mt-4 space-y-6">
-            {page.faqs.map((f) => (
-              <div key={f.q}>
-                <dt className="font-medium">{f.q}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.a}</dd>
+          <h1 className="pa-h1">{page.h1}</h1>
+
+          <p className="pa-intro mt-5">{page.intro}</p>
+
+          {/* The rate, printed on the cover: the one figure this page exists to show. */}
+          <section className="mt-10 rounded-md bg-cover p-1.5 shadow-[0_10px_30px_-12px_rgb(59_14_24/0.45)]">
+            <div className="rounded-[3px] bg-sheet px-5 py-5 sm:px-6">
+              <h2 className="text-[0.9375rem] font-semibold text-muted-foreground">
+                Mid-market rate today
+              </h2>
+              {mid && ratesResult ? (
+                <>
+                  <p className="pa-figure-display mt-2 text-[clamp(1.875rem,1.4rem+1.8vw,2.75rem)] leading-tight">
+                    1 {page.source} = {mid.toFixed(2)} {page.destination}
+                  </p>
+                  <p className="pa-meta mt-2">
+                    Published {ratesResult.rateDate} by open.er-api.com. This page refreshes hourly.
+                  </p>
+                </>
+              ) : (
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Live rate unavailable right now. The fee structure below does not depend on it.
+                </p>
+              )}
+              <p className="mt-4 max-w-[65ch] text-[0.9375rem] leading-relaxed">{page.rateNote}</p>
+            </div>
+          </section>
+
+          {rows.length > 0 && (
+            <section className="mt-14">
+              <h2 className="pa-h2">
+                What {provider.name} actually pays into a {page.country} bank account
+              </h2>
+              <div className="pa-table-wrap mt-5">
+                <table className="w-full border-collapse text-[0.9375rem]">
+                  <caption className="sr-only">
+                    {provider.name} {page.source} to {page.destination} net amounts at three invoice
+                    sizes
+                  </caption>
+                  <thead>
+                    <tr className="text-right">
+                      <th scope="col" className="px-4 py-3 text-left">You invoice</th>
+                      <th scope="col" className="px-4 py-3">You receive ({page.destination})</th>
+                      <th scope="col" className="px-4 py-3">All-in cost vs mid</th>
+                      <th scope="col" className="px-4 py-3">Your rate per {page.source}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {rows.map(({ amount, q, allInPct }) => (
+                      <tr key={amount} className="text-right">
+                        <td className="pa-figure px-4 py-3 text-left">
+                          ${amount.toLocaleString('en-US')}
+                        </td>
+                        <td className="pa-figure px-4 py-3 font-semibold whitespace-nowrap">
+                          {fmt(q.netReceivedInDest, page.destination)}
+                        </td>
+                        <td className="pa-figure px-4 py-3 whitespace-nowrap">
+                          {isFinite(allInPct) ? `${allInPct.toFixed(2)}%` : 'n/a'}
+                          {q.isEstimate ? <span className="font-sans text-muted-foreground [font-variant-numeric:normal]"> (est.)</span> : null}
+                        </td>
+                        <td className="pa-figure px-4 py-3">
+                          {(q.netReceivedInDest / amount).toFixed(2)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-            ))}
-          </dl>
-        </section>
+              <p className="pa-meta mt-4 max-w-[75ch]">
+                All-in cost is measured against the mid rate above, so it includes both the explicit
+                fee and the margin taken inside the conversion. Your rate per {page.source} is the
+                same figure expressed the way your bank statement will show it. Rows marked est. use
+                the midpoint of a cost {provider.name} publishes only as a range, so treat them as
+                the middle of a band rather than a quote.
+              </p>
+            </section>
+          )}
 
-        <footer className="mt-12 border-t pt-6 text-sm text-muted-foreground">
-          <p>
-            Fee figures last checked {provider.lastVerified}. Page updated {page.updatedDate}. Our{' '}
-            <Link href="/how-we-make-money" className="underline underline-offset-2">
-              methodology and how we make money
-            </Link>{' '}
-            explains how these numbers are sourced and ranked.
-          </p>
-        </footer>
-      </article>
+          <section className="pa-note mt-14 px-5 py-6 sm:px-7">
+            <p className="max-w-[65ch] text-[0.9375rem] leading-relaxed">
+              This page covers one provider. For the full comparison of everything that can get{' '}
+              {page.source} into {page.country}, ranked by what actually lands,{' '}
+              <Link
+                href={`/receive/${corridor.slug}`}
+                className="font-medium underline underline-offset-2"
+              >
+                read the {page.country} corridor page
+              </Link>
+              . It shows where {provider.name} places against every alternative we could price.
+            </p>
+            <a
+              href={ctaHref}
+              target="_blank"
+              rel={isAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'}
+              className="mt-5 inline-flex h-11 items-center gap-2 rounded border border-primary bg-primary px-5 text-[0.9375rem] font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+            >
+              Open {provider.name}
+              {isAffiliate && (
+                <span
+                  className="rounded-[2px] border border-current px-1 text-[10px] leading-4 opacity-80"
+                  aria-label="Affiliate link"
+                  title="We may earn a commission if you sign up"
+                >
+                  AD
+                </span>
+              )}
+            </a>
+            {!isAffiliate && (
+              <p className="pa-meta mt-3">
+                We earn nothing if you open {provider.name}. We have no affiliate relationship with
+                them, which is worth knowing when you read a recommendation anywhere.
+              </p>
+            )}
+          </section>
+
+          <section className="mt-14">
+            <h2 className="pa-h2">Questions people ask about this rate</h2>
+            <dl className="mt-6 divide-y divide-border border-y border-border">
+              {page.faqs.map((f) => (
+                <div key={f.q} className="py-5">
+                  <dt className="pa-h3">{f.q}</dt>
+                  <dd className="pa-prose mt-2 text-base">{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
+          <footer className="pa-meta mt-12 border-t border-rule pt-5">
+            <p>
+              Fee figures last checked {provider.lastVerified}. Page updated {page.updatedDate}. Our{' '}
+              <Link href="/how-we-make-money" className="underline underline-offset-2">
+                methodology and how we make money
+              </Link>{' '}
+              explains how these numbers are sourced and ranked.
+            </p>
+          </footer>
+        </article>
+      </main>
     </>
   );
 }

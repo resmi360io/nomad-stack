@@ -56,7 +56,7 @@ const jsonLd = {
   ],
 };
 
-const P = 'text-muted-foreground leading-relaxed';
+const P = 'pa-prose';
 
 export default async function PayFreelancersPage() {
   const rates = await getRates();
@@ -69,19 +69,19 @@ export default async function PayFreelancersPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
-      <main className="mx-auto max-w-3xl px-4 py-12 space-y-10">
-        <header className="space-y-3">
-          <h1 className="text-3xl font-bold tracking-tight leading-tight">
+      <main className="pa-read space-y-14 pt-8 pb-4 sm:pt-12">
+        <header className="space-y-5">
+          <h1 className="pa-h1">
             How to pay freelancers internationally without shrinking their invoice
           </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="pa-intro">
             When you pay a freelancer overseas, two bills get paid: the fee your side is charged,
             and whatever disappears between your account and theirs. The second is usually
             bigger, and you never see it. A $1,000 invoice can arrive as $995 or as about $920
             depending on how you send it. This page is about choosing the way that leaves your
             freelancer with the most, without making it expensive or awkward for you.
           </p>
-          <p className="text-xs text-muted-foreground">
+          <p className="pa-meta">
             By{' '}
             <Link href="/about/author" className="underline underline-offset-2 hover:text-foreground">
               George I.
@@ -92,7 +92,7 @@ export default async function PayFreelancersPage() {
         </header>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">Start by asking what details they have</h2>
+          <h2 className="pa-h2">Start by asking what details they have</h2>
           <p className={P}>
             The cheapest way to pay depends almost entirely on what your freelancer can give you,
             so ask before you set anything up.
@@ -122,10 +122,10 @@ export default async function PayFreelancersPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">What each way of paying costs, and who pays it</h2>
-          <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+          <h2 className="pa-h2">What each way of paying costs, and who pays it</h2>
+          <div className="space-y-7 pa-prose">
             <div>
-              <h3 className="font-semibold text-foreground mb-1">ACH to US account details</h3>
+              <h3 className="pa-h3 mb-2">ACH to US account details</h3>
               <p>
                 Usually free for you. Your freelancer pays their provider&apos;s conversion cost
                 when they move the money home. With Wise that is a small visible fee at the
@@ -134,7 +134,7 @@ export default async function PayFreelancersPage() {
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-1">Wise, sent in their currency</h3>
+              <h3 className="pa-h3 mb-2">Wise, sent in their currency</h3>
               <p>
                 You pay Wise&apos;s fee, shown before you send. Wise converts at the mid-market rate
                 and your freelancer receives the full local amount. For a direct client this is
@@ -145,18 +145,18 @@ export default async function PayFreelancersPage() {
                 href={wiseLink}
                 target="_blank"
                 rel="sponsored nofollow noopener"
-                className="mt-2 inline-flex items-center gap-2 rounded-md border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted"
+                className="mt-3 inline-flex h-10 items-center gap-2 rounded border border-input bg-sheet px-4 text-sm font-semibold text-foreground transition-colors hover:border-foreground"
               >
                 Pay with Wise
-                <span className="rounded bg-muted px-1" aria-label="Affiliate link">AD</span>
+                <span className="rounded-[2px] border border-current px-1 text-[10px] leading-4 opacity-70" aria-label="Affiliate link">AD</span>
               </a>
-              <p className="mt-1 text-xs">
+              <p className="pa-meta mt-2">
                 We earn a commission if you sign up through this link. It never changes the order
                 of any table on this site.
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-1">International wire (SWIFT)</h3>
+              <h3 className="pa-h3 mb-2">International wire (SWIFT)</h3>
               <p>
                 The expensive default. A US bank usually charges $25 to $45 to send one, an
                 intermediary bank can take a cut along the way, and your freelancer&apos;s bank
@@ -167,7 +167,7 @@ export default async function PayFreelancersPage() {
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-1">PayPal</h3>
+              <h3 className="pa-h3 mb-2">PayPal</h3>
               <p>
                 Easy for you, expensive for them. On a cross-border business payment PayPal takes
                 roughly 2.9% to 5.4% plus a fixed amount from your freelancer, then around 3% more
@@ -176,7 +176,7 @@ export default async function PayFreelancersPage() {
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-foreground mb-1">Remittance apps</h3>
+              <h3 className="pa-h3 mb-2">Remittance apps</h3>
               <p>
                 Western Union, Remitly and similar apps can look cheap, but they are priced and
                 set up for people sending money to family. In some countries that matters for tax.
@@ -190,8 +190,8 @@ export default async function PayFreelancersPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold">Small things that help your freelancer</h2>
-          <ul className="list-disc space-y-2 pl-5 text-muted-foreground leading-relaxed">
+          <h2 className="pa-h2">Small things that help your freelancer</h2>
+          <ul className="pa-prose list-disc space-y-3 pl-5 marker:text-rule">
             <li>
               Pay in their currency or to their US details, never as a dollar wire to a local
               bank account unless they ask for it.
@@ -213,8 +213,8 @@ export default async function PayFreelancersPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold mb-4">What your freelancer&apos;s best route costs, by country</h2>
-          <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
+          <h2 className="pa-h2 mb-5">What your freelancer&apos;s best route costs, by country</h2>
+          <p className="pa-prose mb-5">
             This is the same table we show freelancers: the cheapest way we can price for them to
             receive $1,000 in each country, with the fee and the exchange rate margin both
             counted. Each country page has notes written for the person being paid, which is
@@ -224,7 +224,7 @@ export default async function PayFreelancersPage() {
             rates={rates}
             caption="For each country, the cheapest receiving route we can price on a $1,000 payment"
           />
-          <p className="text-sm text-muted-foreground mt-4 leading-relaxed">
+          <p className="pa-meta mt-4 max-w-[75ch]">
             Est. means part of the cost is published only as a range and we used the middle. If
             you are the freelancer, our guide to{' '}
             <Link href="/receive-international-payments" className="underline underline-offset-2 hover:text-foreground">
@@ -234,7 +234,7 @@ export default async function PayFreelancersPage() {
           </p>
         </section>
 
-        <div className="border-t pt-5 text-xs text-muted-foreground space-y-1">
+        <div className="pa-meta space-y-1.5 border-t border-rule pt-5">
           <p>
             Fees are estimates based on each provider&apos;s published pricing. Check with the
             provider before sending. Nothing on this site is financial or tax advice.{' '}

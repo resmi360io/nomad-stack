@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Schibsted_Grotesk, Spline_Sans_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { PostHogProvider } from "./providers";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Words in Schibsted Grotesk, money in Spline Sans Mono. Both are variable fonts, so each is one file
+// for every weight, and next/font self-hosts them with a size-adjusted fallback to hold layout still.
+const textFont = Schibsted_Grotesk({
+  variable: "--font-text",
   subsets: ["latin"],
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const figuresFont = Spline_Sans_Mono({
+  variable: "--font-figures",
   subsets: ["latin"],
   display: "swap",
 });
@@ -84,7 +86,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${textFont.variable} ${figuresFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <script

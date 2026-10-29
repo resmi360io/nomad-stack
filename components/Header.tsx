@@ -22,31 +22,28 @@ export function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex max-w-3xl items-center gap-6 px-4 py-3">
+    // The cover of the passbook: one oxblood band. Sticky from sm up only, because on a phone the
+    // nav wraps to a second line and a two-line sticky bar would eat the calculator's viewport.
+    <header className="z-50 bg-cover text-cover-foreground sm:sticky sm:top-0">
+      <div className="pa-shell flex flex-wrap items-center gap-x-8 gap-y-0.5 pt-2.5 pb-1.5 sm:h-14 sm:pb-0 sm:pt-0 sm:flex-nowrap sm:py-0">
         <Link
           href="/"
           aria-current={isActive(pathname, '/') ? 'page' : undefined}
-          className={cn(
-            'font-semibold text-sm transition-colors',
-            isActive(pathname, '/')
-              ? 'text-foreground'
-              : 'text-muted-foreground hover:text-foreground',
-          )}
+          className="rounded-sm text-[1.0625rem] font-bold tracking-[-0.015em] text-cover-foreground focus-visible:outline-cover-foreground"
         >
           Paid Across
         </Link>
-        <nav className="flex items-center gap-4 text-sm">
+        <nav aria-label="Main" className="-mx-2 flex items-center text-[0.9375rem]">
           {navItems.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
               aria-current={isActive(pathname, href) ? 'page' : undefined}
               className={cn(
-                'transition-colors',
+                'rounded-sm px-2 py-1.5 underline-offset-[6px] transition-colors focus-visible:outline-cover-foreground',
                 isActive(pathname, href)
-                  ? 'text-foreground'
-                  : 'text-muted-foreground hover:text-foreground',
+                  ? 'text-cover-foreground underline decoration-cover-muted decoration-2'
+                  : 'text-cover-muted hover:text-cover-foreground',
               )}
             >
               {label}
