@@ -92,7 +92,7 @@ export default async function ReceiveInternationalPaymentsPage() {
           __html: JSON.stringify(pillarJsonLd).replace(/</g, '\\u003c'),
         }}
       />
-      <main className="pa-read space-y-14 pt-8 pb-4 sm:pt-12">
+      <main id="main-content" className="pa-read space-y-14 pt-8 pb-4 sm:pt-12">
         <header className="space-y-5">
           <h1 className="pa-h1">
             How freelancers receive international payments: real costs by country
@@ -159,9 +159,10 @@ export default async function ReceiveInternationalPaymentsPage() {
           />
           <p className="pa-meta mt-4 max-w-[75ch]">
             Est. means part of that cost is published only as a range and we used the middle.
-            Read the country page before you act on a top row. Pakistan&apos;s is Western Union
-            pricing meant for family remittances, and Ukraine&apos;s is a bank wire whose cost
-            depends heavily on your client&apos;s bank. Both pages explain the catch.
+            Read the country page before you act on a top row. Ukraine&apos;s is a bank wire whose
+            cost depends heavily on your client&apos;s bank, and Pakistan&apos;s page also shows a
+            cheaper Western Union price that we list but do not rank, because it is meant for family
+            remittances. Both pages explain the catch.
           </p>
         </section>
 
@@ -271,11 +272,10 @@ export default async function ReceiveInternationalPaymentsPage() {
               <h3 className="pa-h3 mb-2">Wise</h3>
               <p>
                 Converts at the mid-market rate and charges a separate fee you can see before you
-                accept. It tops most of the tables where residents can open an account. Where they
-                cannot, as in Pakistan, a client can often still use Wise to send local currency
-                straight to your bank account, and your side of that transfer costs you nothing.
-                Bangladesh is the exception to check: Wise says it cannot send business transfers
-                to taka.
+                accept. It tops most of the tables where residents can open an account. Where they cannot, a client can sometimes still use Wise to send local currency
+                straight to your bank account. Pakistan and Bangladesh are the exceptions to check:
+                Wise says it is currently unable to send business payments to Pakistani rupees and
+                cannot send business transfers to Bangladeshi taka.
               </p>
               <a
                 href={wiseLink}
@@ -325,10 +325,10 @@ export default async function ReceiveInternationalPaymentsPage() {
             <div>
               <h3 className="pa-h3 mb-2">Western Union</h3>
               <p>
-                Reaches almost everywhere. In some countries, Pakistan and Mexico among them, it
-                comes out near the top of our tables, but read the country page first: the cheap
-                Pakistan price is set up for family remittances, and Western Union publishes no
-                rate for business payments on that route.
+                Reaches almost everywhere. In some countries, Mexico among them, it comes out near
+                the top of our tables. In Pakistan its price looks cheaper still, but that price is
+                set up for family remittances, so we list it without ranking it, and Western Union
+                publishes no rate for business payments on that route. Read the country page first.
               </p>
             </div>
             <div>

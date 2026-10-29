@@ -24,7 +24,7 @@ export default async function Home() {
   const rates = await getRates();
 
   return (
-    <main className="pb-4">
+    <main id="main-content" className="pb-4">
       {/* First viewport: the question, one line on what the tool does, and the calculator. The
           full explanation follows directly under the calculator, visible and server-rendered,
           so a phone shows the form without scrolling and nothing is hidden from anyone. */}
@@ -37,21 +37,18 @@ export default async function Home() {
             See what lands in your account after every fee and the exchange rate margin, in{' '}
             {CORRIDORS.length} countries.
           </p>
+          <p className="text-[0.9375rem]">
+            <a href="#countries" className="font-semibold text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary">
+              Or jump to your country&apos;s guide
+            </a>
+          </p>
         </header>
 
         <Calculator />
       </div>
 
       <div className="pa-shell space-y-16">
-        <p className="pa-intro">
-          Type in what your client is paying and where you live. We price every route we can
-          find for getting dollars into your account in {CORRIDORS.length} countries, Wise,
-          Payoneer, Western Union, PayPal, bank wire and the local services that only work in
-          one place, and rank them by the amount that actually lands after every fee and the
-          margin hidden in the exchange rate.
-        </p>
-
-        <section className="max-w-4xl space-y-5">
+        <section id="countries" className="max-w-4xl scroll-mt-20 space-y-5">
           <h2 className="pa-h2">Every country we cover</h2>
           <p className="pa-prose">
             Each row links to a full page for that country: which services you can actually open
@@ -65,11 +62,21 @@ export default async function Home() {
           />
           <p className="pa-meta max-w-[75ch]">
             A row marked est. means part of that provider&apos;s cost is published only as a range,
-            so we use the middle of it. Read the country page before acting on the top row.
-            Pakistan&apos;s, for example, is a Western Union price that exists for family
-            remittances, and the page explains why a client invoice may not get it.
+            so we use the middle of it. These rows also skip any price we cannot rank: one published
+            only for family transfers, a payout we could not confirm, or a price with a known charge
+            missing. That is why Pakistan&apos;s top row is Payoneer, even though Western
+            Union&apos;s family-transfer price is lower. Read the country page before acting on any
+            row.
           </p>
         </section>
+
+        <p className="pa-intro">
+          Type in what your client is paying and where you live. We price every route we can
+          find for getting dollars into your account in {CORRIDORS.length} countries, Wise,
+          Payoneer, Western Union, PayPal, bank wire and the local services that only work in
+          one place, and rank them by the amount that actually lands after every fee and the
+          margin hidden in the exchange rate.
+        </p>
 
         <div className="grid gap-x-14 gap-y-16 lg:grid-cols-2">
           <section className="pa-section">
@@ -101,8 +108,15 @@ export default async function Home() {
             <h2 className="pa-h2">How we rank, and when we refuse to</h2>
             <p className="pa-prose">
               The order is set by one number: what you receive. Nobody pays to move up. Fees come
-              from each provider&apos;s own published pricing, and every country page is re-checked
-              against those sources on a weekly rotation, with the check date printed on the page.
+              from each provider&apos;s own published pricing. Each country page is re-checked on a
+              weekly rotation that has run reliably since late October 2026, and each fee in the
+              calculator shows the date it was last checked against its source. That date can be
+              older than the page&apos;s own last update.
+            </p>
+            <p className="pa-prose">
+              Only routes that are open to a client payment and fully priced get ranked. Anything
+              else we can price, such as a family-transfer price, a payout we could not confirm or a
+              quote missing a known charge, is shown separately with the reason.
             </p>
             <p className="pa-prose">
               Some providers do not publish their exchange rate margin. Where we could not find one,

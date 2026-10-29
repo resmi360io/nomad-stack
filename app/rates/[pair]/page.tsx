@@ -132,7 +132,7 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-      <main className="pa-read pt-8 pb-4 sm:pt-12">
+      <main id="main-content" className="pa-read pt-8 pb-4 sm:pt-12">
         <article>
           <nav className="pa-meta mb-6">
             <Link href="/" className="underline underline-offset-2 hover:text-foreground">

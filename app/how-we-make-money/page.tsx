@@ -101,7 +101,7 @@ export default function HowWeMakeMoney() {
           __html: JSON.stringify(pageJsonLd).replace(/</g, '\\u003c'),
         }}
       />
-      <main className="pa-read space-y-12 pt-8 pb-4 sm:pt-12">
+      <main id="main-content" className="pa-read space-y-12 pt-8 pb-4 sm:pt-12">
 
         {/* Top trust callout */}
         <div className="pa-note px-5 py-4 text-[0.9375rem] leading-relaxed">

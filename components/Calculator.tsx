@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { CalculatorForm } from './CalculatorForm';
+import { CalculatorForm, DEST_OPTIONS, SOURCE_OPTIONS } from './CalculatorForm';
 import { ResultsTable } from './ResultsTable';
-import { calculate } from '@/lib/calculate';
+import { calculate, describeResults } from '@/lib/calculate';
 import { PROVIDERS } from '@/data/providers';
 import type { CountryCode, Currency } from '@/data/providers';
 import type { Quote } from '@/lib/calculate';
@@ -14,15 +14,46 @@ interface Props {
   defaultDest?: CountryCode;
 }
 
+// What a set of results was computed FOR. Kept with the quotes, so the summary always describes
+// the numbers on screen even after the reader has started editing the form.
+interface Result {
+  quotes: Quote[];
+  src: CountryCode;
+  dest: CountryCode;
+  destCurrency: Currency;
+  amount: number;
+  rateDate: string;
+}
+
 export function Calculator({ defaultSrc, defaultDest }: Props = {}) {
-  const [quotes, setQuotes] = useState<Quote[] | null>(null);
-  const [quotedAmount, setQuotedAmount] = useState(0);
+  const [result, setResult] = useState<Result | null>(null);
+  const [stale, setStale] = useState(false);
+  // The live region's text. Set on the three events worth announcing (new results, results going
+  // out of date, results withdrawn) and nowhere else, so typing an amount is not narrated per key.
+  const [announcement, setAnnouncement] = useState('');
   const ratesState = useLiveRates();
 
   function handleSubmit(src: CountryCode, dest: CountryCode, destCurrency: Currency, amount: number) {
     if (ratesState.status !== 'ready') return;
-    setQuotedAmount(amount);
-    setQuotes(calculate(src, dest, destCurrency, amount, PROVIDERS, ratesState.rates));
+    const quotes = calculate(src, dest, destCurrency, amount, PROVIDERS, ratesState.rates);
+    setResult({ quotes, src, dest, destCurrency, amount, rateDate: ratesState.rateDate });
+    setStale(false);
+    setAnnouncement(`Results updated. ${describeResults(quotes)}`);
+  }
+
+  function handleInputsChange() {
+    if (result && !stale) {
+      setStale(true);
+      setAnnouncement('Inputs changed. The results below are out of date until you compare again.');
+    }
+  }
+
+  function handleInvalid() {
+    if (result) {
+      setResult(null);
+      setStale(false);
+      setAnnouncement('Previous results cleared.');
+    }
   }
 
   const rateLabel = ratesState.status === 'ready'
@@ -31,9 +62,10 @@ export function Calculator({ defaultSrc, defaultDest }: Props = {}) {
     ? 'Loading live exchange rates…'
     : null;
 
+  const sourceLabel = (c: CountryCode) => SOURCE_OPTIONS.find((o) => o.code === c)?.label ?? c;
+  const destLabel = (c: CountryCode) => DEST_OPTIONS.find((o) => o.code === c)?.label ?? c;
+
   return (
-    // The form is server-rendered at its full height, so it needs no min-height reserve to hold
-    // layout still; results only appear after a click, which does not count as a layout shift.
     <div className="space-y-6">
       {ratesState.status === 'error' && (
         <p
@@ -45,24 +77,32 @@ export function Calculator({ defaultSrc, defaultDest }: Props = {}) {
       )}
       <CalculatorForm
         onSubmit={handleSubmit}
+        onInputsChange={handleInputsChange}
+        onInvalid={handleInvalid}
         disabled={ratesState.status !== 'ready'}
         rateLabel={rateLabel}
         defaultSrc={defaultSrc}
         defaultDest={defaultDest}
       />
-      {/* Persistent live region: submitting the form swaps the table in silently
-          otherwise, so a screen reader user is told nothing (WCAG 4.1.3). The
-          region announces a summary; the table itself is left non-live so it is
-          not read out in full on every submit. */}
+      {/* Persistent live region (WCAG 4.1.3). It announces a one-sentence summary built by the same
+          describeResults() the tests check against the visible ranking; the results themselves are
+          not live, so they are not read out in full on every submit. */}
       <div role="status" aria-live="polite" className="sr-only">
-        {quotes !== null && ratesState.status === 'ready'
-          ? quotes.length === 0
-            ? 'No providers support this corridor.'
-            : `Results updated: ${quotes.length} provider${quotes.length === 1 ? '' : 's'} compared, ranked by net received. Best value: ${quotes[0].provider.name}.`
-          : ''}
+        {announcement}
       </div>
-      {quotes !== null && ratesState.status === 'ready' && (
-        <ResultsTable quotes={quotes} rateDate={ratesState.rateDate} amount={quotedAmount} />
+      {result && (
+        <ResultsTable
+          quotes={result.quotes}
+          rateDate={result.rateDate}
+          amount={result.amount}
+          stale={stale}
+          destCountry={result.dest}
+          context={{
+            from: sourceLabel(result.src),
+            to: destLabel(result.dest),
+            currency: result.destCurrency,
+          }}
+        />
       )}
     </div>
   );

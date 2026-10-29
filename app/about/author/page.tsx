@@ -54,7 +54,7 @@ export default function AuthorPage() {
           __html: JSON.stringify(authorJsonLd).replace(/</g, '\\u003c'),
         }}
       />
-      <main className="pa-read space-y-12 pt-8 pb-4 sm:pt-12">
+      <main id="main-content" className="pa-read space-y-12 pt-8 pb-4 sm:pt-12">
         <header className="space-y-4">
           <h1 className="pa-h1">About the author</h1>
           <p className="text-muted-foreground">George I., payments industry, 20+ years</p>
