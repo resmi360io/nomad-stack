@@ -66,7 +66,7 @@ export const RATE_PAGES: RatePage[] = [
       {
         q: 'What is the Payoneer USD to PKR rate today?',
         a:
-          'Payoneer does not publish one, and that is a real answer rather than a dodge. It publishes 1% to receive a commercial payment and a withdrawal conversion cost given as a range of 1.2% to 4%, with no public rate feed behind it. So the only exact rate is the one shown in your account at the moment you withdraw. What you can plan with is the gap: start from today\'s mid-market rate above, then expect to lose roughly 2.2% to 5% of the payment across the two Payoneer charges together. Our table models the midpoint of the published band because a range is not a price, and we flag it as an estimate for that reason.',
+          'Payoneer does not publish one, and that is a real answer rather than a dodge. It publishes 1% to receive a commercial payment and a withdrawal conversion cost given as a range of 1.2% to 4%, with no public rate feed behind it. So the only exact rate is the one shown in your account at the moment you withdraw. What you can plan with is the gap: start from today\'s mid-market rate above, then expect to lose roughly 2.2% to 5% of the payment across the two Payoneer charges together, and possibly more on a small payment, because the Payoneer fee schedule says that in some countries a minimum fee of up to 20.00 USD or equivalent may apply, and it does not say which. Our table models the midpoint of the published band because a range is not a price, and we flag it as an estimate for that reason.',
       },
       {
         q: 'Why is the Payoneer exchange rate lower than the rate on Google?',
@@ -96,7 +96,7 @@ export const RATE_PAGES: RatePage[] = [
       {
         q: 'What is the Payoneer to JazzCash dollar rate today?',
         a:
-          'There is no separate published rate for it. The JazzCash route is a Payoneer withdrawal to a mobile wallet instead of a bank, so the dollars are converted by Payoneer at its own rate, the same way as any rupee withdrawal, and neither company publishes a clear fee or rate for the wallet route. Third-party guides quote figures that disagree with each other. Before you use it, compare the rupee amount your Payoneer withdrawal screen shows for JazzCash with the amount it shows for your bank at the same moment. If the wallet amount is lower, the difference is the price of speed.',
+          'There is no separate published rate for it. The JazzCash route is a Payoneer withdrawal to a mobile wallet instead of a bank, so the dollars are converted by Payoneer at its own rate, the same way as any rupee withdrawal, and neither company publishes a clear fee or rate for the wallet route. Third-party guides quote figures that disagree with each other. Before you use it, compare the rupee amount your Payoneer withdrawal screen shows for JazzCash with the amount it shows for your bank at the same moment. If the wallet amount is lower, the difference is the price of speed. Do not confuse this with the Request a Payment option in the JazzCash app. That sends your client a Payoneer payment link, and the money lands in your Payoneer account, not the wallet, so you still withdraw it afterwards.',
       },
       {
         q: 'How often does this page update?',
@@ -105,7 +105,7 @@ export const RATE_PAGES: RatePage[] = [
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-10-26',
+    updatedDate: '2026-10-29',
   },
   // Second page, on the same evidence rule as the first. GSC for 2026-07-29 to 2026-10-26 shows
   // the BDT corridor page already ranking for "payoneer dollar rate in bangladesh today" around
@@ -131,7 +131,7 @@ export const RATE_PAGES: RatePage[] = [
       {
         q: 'What is the Payoneer USD to BDT rate today?',
         a:
-          'Payoneer does not publish one. It charges 1% to receive a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace) and gives its withdrawal conversion cost as a range of 1.2% to 4%, and the only exact rate is the one in your account at the moment you withdraw. To plan, start from today\'s mid-market rate above and expect to lose somewhere around 2.2% to 5% of the payment across the two charges. Our table uses the middle of the published band and labels it an estimate, because a range is not a price.',
+          'Payoneer does not publish one. It charges 1% to receive a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace) and gives its withdrawal conversion cost as a range of 1.2% to 4%, and the only exact rate is the one in your account at the moment you withdraw. To plan, start from today\'s mid-market rate above and expect to lose somewhere around 2.2% to 5% of the payment across the two charges, and possibly more on a small payment, because the Payoneer fee schedule says that in some countries a minimum fee of up to 20.00 USD or equivalent may apply, and it does not say which. Our table uses the middle of the published band and labels it an estimate, because a range is not a price.',
       },
       {
         q: 'Why is the Payoneer dollar rate lower than the bank rate?',
@@ -160,6 +160,6 @@ export const RATE_PAGES: RatePage[] = [
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-10-27',
+    updatedDate: '2026-10-29',
   },
 ];

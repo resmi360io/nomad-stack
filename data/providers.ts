@@ -794,7 +794,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 260,
         typicalHours: 24,
         fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate
-        notes: 'Payoneer India withdraws eligible payments automatically within 24 hours.',
+        notes: 'Payoneer India withdraws eligible payments automatically, within 24 hours on its payment-request page and within 48 hours on its pricing page.',
       },
       {
         source: { country: 'US', currency: 'USD' },
