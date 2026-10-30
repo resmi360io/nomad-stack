@@ -162,6 +162,21 @@ watermark remover", and are ignored. What survives a sceptical read:
 14. [x] **You:** decided 2026-10-30: ship the weeks 2 to 3 copy when it is ready, including on Bangladesh,
     Nigeria, the Philippines and Indonesia. The PR #72 read for those four becomes a bundle (titles plus new
     copy), recorded as such; Portugal, Thailand and Georgia keep a clean read as long as no copy lands on them.
+    **Applied 2026-10-30:** reviewer-approved fact-check batch on Bangladesh, Nigeria and the Philippines (and
+    Pakistan, outside PR #72 but inside the PR #70/#71 window): 5 new FAQs, corrected Payoneer timing and
+    annual-fee threshold, PH Payoneer cost now 3.6% on our model. Reads for all four are bundles. Five FAQs in
+    one release is a deliberate exception to the one-a-week cadence (KNOWLEDGE.md rule 8); the Pakistan USD
+    salary FAQ is still open. Owner: request indexing for the four URLs after deploy and note the date per URL.
+    Questions came from Trustpilot complaint themes (item 11): PK annual fee, BD document rejection, NG
+    withdrawal not arrived, PH Payoneer IDs, PH Wise to GCash.
+19. [ ] **Claude:** align the rest of `/rates/payoneer-usd-to-pkr` (intro line "1% on an incoming commercial
+    payment", FAQ 1 "1% to receive a commercial payment", cheapest-route FAQ "Its 1% receive fee") with the
+    corridor wording "1% (minimum 1 USD) on a client payment into a USD receiving account; marketplace payouts
+    vary", through verifier and reviewer. Its Upwork and Fiverr FAQ was corrected 2026-10-30. Effort S.
+20. [ ] **You:** Payoneer's 1 USD minimum on the 1% receiving fee for Nigeria and the Philippines. Modelled on
+    Pakistan and Bangladesh on 2026-10-30 (no order change). On PH it moves PayPal above Payoneer below about
+    $13.30; on NG it moves Cleva above Payoneer below about $28, and below about $7 Raenest takes the top spot
+    and the best value badge. Until decided, the PH copy states the minimum and the PH row does not model it.
 16. [x] **You:** Manual actions report checked 2026-10-30: no issues. Disavow file received 2026-10-30 and committed as `docs/seo/disavow.txt` (26 domains,
     prepared 2026-10-26). Of the 29 referring domains on 2026-10-30, only seopxl-ranking-boost-lab.shop (first
     seen 2026-10-28) is not in it; adding it is optional (measurement rule 6). Original item: send Claude the current disavow file so it can be committed as `docs/seo/disavow.txt` (spam

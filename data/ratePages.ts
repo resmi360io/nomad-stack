@@ -86,7 +86,7 @@ export const RATE_PAGES: RatePage[] = [
       {
         q: 'Does the 1% receiving fee apply to Upwork and Fiverr payments?',
         a:
-          'Payoneer\'s charge of 1% is on incoming commercial payments, which is what a marketplace payout is. The thing to watch is that the marketplace usually takes its own cut first, so the 1% applies to what reaches Payoneer rather than to what your client was invoiced, and the two can be a long way apart. Check what your Upwork or Fiverr statement says left the platform, not what the client paid, and apply the figures below to that.',
+          'Not necessarily. Payoneer\'s 1% (minimum 1 USD) is its fee for a client payment into your USD receiving account. For payouts from a marketplace such as Upwork or Fiverr, its fee schedule says only that the fee varies by marketplace, so check what Payoneer actually charged on one of your own payouts rather than assuming 1%. The marketplace also takes its own cut first, so any Payoneer fee comes out of what left the platform, not what your client was invoiced. The table on this page assumes the 1% client payment fee. For a marketplace payout, read the row closest to what your Upwork or Fiverr statement says left the platform, then adjust: if Payoneer charged less than 1%, you keep a little more than the table shows, and if it charged more, a little less.',
       },
       {
         q: 'Which Pakistani banks does a Payoneer withdrawal reach?',
@@ -105,7 +105,7 @@ export const RATE_PAGES: RatePage[] = [
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-10-29',
+    updatedDate: '2026-10-30',
   },
   // Second page, on the same evidence rule as the first. GSC for 2026-07-29 to 2026-10-26 shows
   // the BDT corridor page already ranking for "payoneer dollar rate in bangladesh today" around
