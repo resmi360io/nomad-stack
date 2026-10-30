@@ -169,7 +169,7 @@ watermark remover", and are ignored. What survives a sceptical read:
     salary FAQ is still open. Owner: request indexing for the four URLs after deploy and note the date per URL.
     Questions came from Trustpilot complaint themes (item 11): PK annual fee, BD document rejection, NG
     withdrawal not arrived, PH Payoneer IDs, PH Wise to GCash.
-19. [ ] **Claude:** align the rest of `/rates/payoneer-usd-to-pkr` (intro line "1% on an incoming commercial
+19. [x] **Claude:** (done 2026-10-30, reviewer-approved; BDT rate page scoped the same way) align the rest of `/rates/payoneer-usd-to-pkr` (intro line "1% on an incoming commercial
     payment", FAQ 1 "1% to receive a commercial payment", cheapest-route FAQ "Its 1% receive fee") with the
     corridor wording "1% (minimum 1 USD) on a client payment into a USD receiving account; marketplace payouts
     vary", through verifier and reviewer. Its Upwork and Fiverr FAQ was corrected 2026-10-30. Effort S.
@@ -254,6 +254,14 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
     2026-09-07 to 2026-10-27: 1 click, about 90 impressions. AI Performance has no API in our Bing connector;
     you read it in the dashboard (help: https://www.bing.com/webmasters/help/ai-performance-9f8e7d6c, which
     says very sparse citation activity may not surface at all, and that is not a penalty).
+    **AI Performance export, read 2026-10-30 (owner, CSV), 2026-09-07 to 2026-10-27:** 251 citations in Copilot
+    and Bing AI answers. By page: `/receive/usd-to-pkr` 143, `/receive/usd-to-php` 99, the pillar 6,
+    `/receive/usd-to-bdt` 2, `/receive/usd-to-ngn` 1; the other 13 corridors 0; the rate pages 0 (published 2026-10-26, two days old, so not a finding). Daily
+    citations averaged 2.8 to 2026-10-14 and 11.1 from 2026-10-15 (144 in 13 days). Grounding queries: "receive
+    USD payments from US clients to Pakistani bank account" 57 (34% share), "receive USD payments from US
+    clients to Pakistan bank account" 29 (26%), "cost of receiving international payments philippines business"
+    29 (51%). Compare Google AI Overviews (OpenRush, same day): 0 citations. Bing is where the site is already
+    cited; this is the baseline for KNOWLEDGE.md measurement rule 7.
 
 ### Ongoing from now
 
