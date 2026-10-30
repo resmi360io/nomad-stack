@@ -244,8 +244,10 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
    the sources AI cites for PK and NG are YouTube first, then providers' own pages, Facebook and Reddit
    (detail in the outreach run directory and `docs/seo/outreach.md`). Bing is the opposite: 251 citations
    (item 12). Gaps are closed by the December videos, community answers and outreach, all already planned.
-10. [ ] **Claude:** pillar section on receiving from clients in several countries (74 impressions at
-    about 45) and on tracking international payments (26 at 55).
+10. [x] **Claude:** pillar section on receiving from clients in several countries (74 impressions at
+    about 45) and on tracking international payments (26 at 55). **Shipped 2026-10-30:** H2s "Receiving payments
+    from clients in multiple countries" and "Keeping track of international payments", through verifier and
+    reviewer; the pillar read is a bundle with the redesign and PR #70/#71.
 11. [x] **Claude:** mine competitor reviews (Trustpilot for Payoneer and Wise, from PK, BD, NG and PH
     users) for real complaints, and turn the best into fact-checked FAQs. **Done 2026-10-30:** about 150
     reviews read; five FAQs shipped in PR #77 after verifier and reviewer, plus four live-page corrections.
@@ -278,6 +280,8 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
   (2026-12-24 at the earliest), put it on a page outside the seven PR #72 corridors, or record that the
   read for that page is a bundle. First candidate (2026-10-29 audit): a USD salary question on Pakistan,
   from Bing "best way to receive usd salary in pakistan and convert to pkr" (position 2).
+  **2026-10-30: #1 shipped**, the USD salary FAQ on `/receive/usd-to-pkr` (researcher, verifier, reviewer; answer
+  first). The PK read is a bundle with PR #77.
 - [ ] **You:** one pitch or correction email a day (newsletters, PK and BD tech press, authors still
   quoting Payoneer "up to 2%"), plus two helpful Reddit or Quora answers a week from a branded account
   that says who you are. Never astroturf.
@@ -319,7 +323,7 @@ draw no conclusion.
 
 ### December 2026
 
-- [ ] **Claude:** one linkable data asset, "What freelancers lose getting paid in 17 countries", built
+- [~] **Claude:** one linkable data asset, "What freelancers lose getting paid in 17 countries", built
   from `calculate()` and the frozen-rate fixture, so every number is reproducible. This is also the
   thing to pitch in the daily emails and the Show HN post. Build it as the first edition of a dated index
   (KNOWLEDGE.md section 3b): a stated method, the rate date, a downloadable CSV, a "how to cite" line, and
@@ -327,6 +331,12 @@ draw no conclusion.
   through verifier and reviewer; any "cheapest in country X" claim is ranking-moving and goes to you.
   **You** decide after the first edition whether to repeat it quarterly (next would be 2027-03); each
   edition costs a full verification pass.
+  **First edition shipped early, 2026-10-30, at your request:** `/freelancer-payment-cost-index` with
+  `/freelancer-payment-cost-index/2026-10.csv`, CC BY 4.0, Dataset JSON-LD, footer and pillar links. Judge at about
+  2027-01-30 by editorial referring domains (target 3). You still decide whether to repeat it quarterly. Owner
+  decisions the same day: Wise PH row flagged estimated (PH best value badge removed; PH read is now titles plus
+  copy plus badge), MIT and CC BY 4.0 licences added. The sitewide footer link is template only, so the Portugal,
+  Thailand and Georgia reads stay clean.
 - [ ] **You + Claude:** a few 30-second corridor videos ("what $1,000 from a US client becomes in
   pesos") using your voice-memo answers, linking to each page. YouTube is the most-cited source in AI
   answers for this topic (46 citations). A handful done properly, not a daily stream. Open on the

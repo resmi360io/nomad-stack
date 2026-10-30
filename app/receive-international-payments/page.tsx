@@ -162,7 +162,12 @@ export default async function ReceiveInternationalPaymentsPage() {
             Read the country page before you act on a top row. Ukraine&apos;s is a bank wire whose
             cost depends heavily on your client&apos;s bank, and Pakistan&apos;s page also shows a
             cheaper Western Union price that we list but do not rank, because it is meant for family
-            remittances. Both pages explain the catch.
+            remittances. Both pages explain the catch. For a dated, citable version of this comparison
+            that also shows the dearest route in each country, see our{' '}
+            <Link href="/freelancer-payment-cost-index" className="underline underline-offset-2 hover:text-foreground">
+              freelancer payment cost index
+            </Link>
+            .
           </p>
         </section>
 
@@ -231,7 +236,7 @@ export default async function ReceiveInternationalPaymentsPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="pa-h2">Clients in more than one country</h2>
+          <h2 className="pa-h2">Receiving payments from clients in multiple countries</h2>
           <p className={P}>
             If your clients pay from the US, the UK and the euro area, the expensive habit is letting
             every payment become dollars first. A UK client who sends you dollars converts at their

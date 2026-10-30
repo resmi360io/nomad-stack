@@ -39,7 +39,7 @@ export function Footer() {
             </a>
             {' · '}
             <a href="/freelancer-payment-cost-index" className={linkClass}>
-              cost index
+              freelancer payment cost index
             </a>
             {' · '}
             <a

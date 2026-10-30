@@ -19,8 +19,11 @@ const minWide = Math.min(...wide.map((r) => r.gap!));
 const maxWide = Math.max(...wide.map((r) => r.gap!));
 const rateDay = new Date(edition.rateDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 
+const pct = (n: number) => `${n.toFixed(2)}%`;
+const usd = (n: number) => `${n.toFixed(2)} USD`;
+
 const title = 'What freelancers lose getting paid: the cost index';
-const description = `What a 1,000 USD client payment really costs to receive in ${rows.length} countries, priced at the rates of ${rateDay}. Free to cite, with the data as a CSV.`;
+const description = `Receiving 1,000 USD in ${rows.length} countries: the cheapest and dearest ranked routes differ by up to ${usd(widest.gap!)}. Priced at ${rateDay} rates; CSV free to cite.`;
 
 export const metadata: Metadata = {
   title: { absolute: 'Freelancer payment cost index: 17 countries (Oct 2026)' },
@@ -31,8 +34,6 @@ export const metadata: Metadata = {
 };
 
 const P = 'pa-prose';
-const pct = (n: number) => `${n.toFixed(2)}%`;
-const usd = (n: number) => `${n.toFixed(2)} USD`;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -46,12 +47,14 @@ const jsonLd = {
       temporalCoverage: edition.rateDate ? new Date(edition.rateDate).toISOString().slice(0, 10) : undefined,
       datePublished: `${PUBLISHED}T00:00:00+00:00`,
       isAccessibleForFree: true,
+      license: 'https://creativecommons.org/licenses/by/4.0/',
+      version: edition.edition,
       creator: { '@type': 'Person', name: 'George I.', url: 'https://paidacross.com/about/author' },
       publisher: { '@id': 'https://paidacross.com/#organization' },
       distribution: {
         '@type': 'DataDownload',
         encodingFormat: 'text/csv',
-        contentUrl: `${URL}/data.csv`,
+        contentUrl: `${URL}/${edition.edition}.csv`,
       },
     },
     {
@@ -192,8 +195,8 @@ export default function CostIndexPage() {
           <h2 className="pa-h3">Use the data</h2>
           <p className="max-w-[65ch] text-[0.9375rem] text-muted-foreground leading-relaxed">
             Download every country at 500, 1,000 and 5,000 USD, with every ranked route:{' '}
-            <a href="/freelancer-payment-cost-index/data.csv" className="underline underline-offset-2 hover:text-foreground">
-              data.csv
+            <a href={`/freelancer-payment-cost-index/${edition.edition}.csv`} className="underline underline-offset-2 hover:text-foreground">
+              {edition.edition}.csv
             </a>
             . The data is licensed under{' '}
             <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground">
