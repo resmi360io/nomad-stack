@@ -16,7 +16,7 @@ const getRates = cache(fetchRatesServer);
 export const metadata: Metadata = {
   title: { absolute: 'Paid Across: what receiving USD really costs, by country' },
   description:
-    'What Wise, Payoneer, Western Union, PayPal and bank wire leave you after fees and the exchange rate margin, in 17 countries. Live mid-market rates, no paid ranking.',
+    'What Wise, Payoneer, Western Union, PayPal and bank wire leave you after fees and the FX margin, in 17 countries. Live mid-market rates; nobody pays to rank.',
   alternates: { canonical: '/' },
 };
 

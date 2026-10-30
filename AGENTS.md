@@ -268,6 +268,24 @@ rotation host on purpose: the two would otherwise fight over one context window 
 The trigger and host ids are recorded in `docs/seo/KNOWLEDGE.md` under "Operations". Check a run by
 reading the PR it opened, not the trigger's status.
 
+## The outreach agent (since 2026-10-30)
+
+Link earning and promotion have their own agent, `outreach-analyst` (`.claude/agents/outreach-analyst.md`,
+read-only, opus), procedure (`.claude/skills/outreach/SKILL.md`) and records (`docs/seo/outreach/`: `log.json`,
+`drafts/`, `suppression.txt`, and `research-2026-10-30.md`, which lists every forbidden pattern with its Google
+policy line). It finds pages worth contacting, scores them, drafts one-to-one emails and tracks earned links.
+
+- **Nothing is ever sent, posted or submitted by a session.** The owner sends every email by hand from their
+  own mailbox. No sequences, no bulk mail, no contact scraping, no personal email addresses in the repo.
+- **Nothing is offered for a link**, and a correction is never conditional on one. No anchor text is ever
+  suggested. Journalist platforms get a facts pack, never an AI-written pitch (Qwoted's terms forbid it).
+- **Every number in a draft comes from `calculate()`** with its rate date, like any other copy here, and every
+  draft goes through the humanizer.
+- Success is new editorial referring domains judged at 2 to 3 months (KNOWLEDGE.md measurement rule 6), never
+  emails sent or authority scores.
+- A session that started before the agent existed cannot load it; the skill says how to run its body through a
+  general-purpose agent with an explicit read-only instruction.
+
 ## Provider rate pages (`/rates/[pair]`) are NOT in the rotation yet
 
 Added 2026-10-26. `data/ratePages.ts` holds provider-specific pages targeting the one query

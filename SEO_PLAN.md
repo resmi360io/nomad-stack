@@ -151,20 +151,35 @@ watermark remover", and are ignored. What survives a sceptical read:
    "model it" (now possible with fee components, but ranking-moving).
 5. [~] **Claude:** add a calculator usage event in PostHog (`calc_run`, with corridor and amount band).
    **Go-ahead given 2026-10-30; built** (`lib/analytics.ts`, one event per Compare press, amount as a band,
-   corridor in the same format as `affiliate_click`). Live once its PR ships; then check PostHog for the
-   first real events, because PostHog sends nothing from an automated browser and it could not be watched
-   in testing.
+   corridor in the same format as `affiliate_click`). **Shipped in PR #76 (77674a1, 2026-10-30).** Left to
+   do: confirm the first real events in PostHog (it sends nothing from an automated browser, so it could
+   not be watched in testing).
    Only `$pageview` and `affiliate_click` exist, so there is no way to see whether people use the tool.
    Needs your go-ahead, since it changes analytics.
-13. [ ] **Claude:** remove the en dash between 3 and 8 in "lose 3 to 8% of every international invoice" on
+13. [x] **Claude:** remove the en dash between 3 and 8 in "lose 3 to 8% of every international invoice" on
     `/about/author` (AGENTS.md no-dash rule; found by the 2026-10-29 audit). Humanizer pass, no claim change.
+    **Done 2026-10-30** (same PR as item 15).
 14. [x] **You:** decided 2026-10-30: ship the weeks 2 to 3 copy when it is ready, including on Bangladesh,
     Nigeria, the Philippines and Indonesia. The PR #72 read for those four becomes a bundle (titles plus new
     copy), recorded as such; Portugal, Thailand and Georgia keep a clean read as long as no copy lands on them.
-16. [~] **You:** disavow file received 2026-10-30 and committed as `docs/seo/disavow.txt` (26 domains,
+    **Applied 2026-10-30:** reviewer-approved fact-check batch on Bangladesh, Nigeria and the Philippines (and
+    Pakistan, outside PR #72 but inside the PR #70/#71 window): 5 new FAQs, corrected Payoneer timing and
+    annual-fee threshold, PH Payoneer cost now 3.6% on our model. Reads for all four are bundles. Five FAQs in
+    one release is a deliberate exception to the one-a-week cadence (KNOWLEDGE.md rule 8); the Pakistan USD
+    salary FAQ is still open. Owner: request indexing for the four URLs after deploy and note the date per URL.
+    Questions came from Trustpilot complaint themes (item 11): PK annual fee, BD document rejection, NG
+    withdrawal not arrived, PH Payoneer IDs, PH Wise to GCash.
+19. [ ] **Claude:** align the rest of `/rates/payoneer-usd-to-pkr` (intro line "1% on an incoming commercial
+    payment", FAQ 1 "1% to receive a commercial payment", cheapest-route FAQ "Its 1% receive fee") with the
+    corridor wording "1% (minimum 1 USD) on a client payment into a USD receiving account; marketplace payouts
+    vary", through verifier and reviewer. Its Upwork and Fiverr FAQ was corrected 2026-10-30. Effort S.
+20. [x] **You:** decided 2026-10-30: model it on both (applied the same day). Payoneer's 1 USD minimum on the 1% receiving fee for Nigeria and the Philippines. Modelled on
+    Pakistan and Bangladesh on 2026-10-30 (no order change). On PH it moves PayPal above Payoneer below about
+    $13.30; on NG it moves Cleva above Payoneer below about $28, and below about $7 Raenest takes the top spot
+    and the best value badge.
+16. [x] **You:** Manual actions report checked 2026-10-30: no issues. Disavow file received 2026-10-30 and committed as `docs/seo/disavow.txt` (26 domains,
     prepared 2026-10-26). Of the 29 referring domains on 2026-10-30, only seopxl-ranking-boost-lab.shop (first
-    seen 2026-10-28) is not in it; adding it is optional (measurement rule 6). Still to do: the Manual actions
-    check below. Original item: send Claude the current disavow file so it can be committed as `docs/seo/disavow.txt` (spam
+    seen 2026-10-28) is not in it; adding it is optional (measurement rule 6). Original item: send Claude the current disavow file so it can be committed as `docs/seo/disavow.txt` (spam
     domain names only). Without it nobody can tell which of the 29 referring domains are already disavowed.
     Also open Search Console's Manual actions report once and note the result here. Effort S.
 17. [x] **Claude:** AI-referral baseline from PostHog, read 2026-10-30 ($pageview on paidacross.com, 90 days,
@@ -189,7 +204,14 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
 15. [ ] **Claude:** shorten the titles over 60 characters on the eight zero-impression corridors (MXN, BRL,
     UZS, COP, ZAR, ARS, PLN, UAH) and the ZAR (177) and homepage (164) descriptions. Pakistan's title (63),
     the pillar description (168) and the PKR rate page description (177) wait until after the checkpoint,
-    because those pages are inside a measurement window. Humanizer and `updatedDate` bump.
+    because those pages are inside a measurement window. Humanizer pass.
+    **Done 2026-10-30 (REVIEW: SHIP WITH CHANGES, applied):** titles now "Receive USD in {Country}: real
+    costs (2026)" (South Africa exactly 60), ZAR description 149, homepage description 157. `updatedDate`
+    deliberately NOT bumped: only head metadata changed, the page body did not, and the date feeds the
+    visible "Last updated" line, `dateModified` and the sitemap `<lastmod>` (Google uses lastmod only when it
+    is "consistently and verifiably" accurate). No further title edits on these 8 before 2026-12-25
+    (measurement rule 2). The homepage read for the redesign window is now a bundle with this description
+    change (rule 4).
 
 6. [ ] **You + Claude:** expert answers by voice. Claude sends five questions per corridor group (PK and
    BD, NG, PH and ID); you answer each in a 2-minute voice memo; Claude transcribes them (the same
@@ -207,6 +229,8 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
    creditosenusa.com, globalecommerce.org, oppalerts.com, biyapay.com and grokipedia.com and open them by
    hand; build the outreach list from the categories in KNOWLEDGE.md section 3b instead (career offices,
    freelancer communities, regional tech press, journalist requests) as `docs/seo/outreach.md`. Effort M.
+   **2026-10-30:** the `outreach-analyst` agent and `outreach` skill now do this weekly (AGENTS.md). First run
+   on 2026-10-30; its board is `docs/seo/outreach.md` and its drafts wait for you in `docs/seo/outreach/drafts/`.
 8. [ ] **You:** launch the calculator where builders look, one per week rather than all at once: Show HN
    ("I priced what freelancers in 17 countries lose getting paid", with the data), r/SideProject,
    Product Hunt on a Tuesday to Thursday, Indie Hackers, Uneed. Claude drafts each post; you post from
@@ -223,6 +247,13 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
     2026-09-11 to 2026-10-23); indexed count and sitemap read date not pulled yet. **You:** also open AI
     Performance in Bing Webmaster Tools and its Topics Portfolio tab (beta since 2026-10-13), which Bing
     shows only when a site has enough data, and note what is there.
+    **2026-10-30 read (Bing API):** 12 pages in the index (2026-10-28), 2 inbound links, no crawl errors except
+    one 4xx on 2026-10-25. Sitemap `https://paidacross.com/sitemap.xml` was last crawled by Bing on 2026-06-12
+    with 6 URLs (the site now has 24); it was resubmitted 2026-10-29 and Bing has not re-read it yet. A second
+    sitemap is registered at `https://www.paidacross.com/sitemap.xml` (last crawled 2026-06-13). Bing traffic
+    2026-09-07 to 2026-10-27: 1 click, about 90 impressions. AI Performance has no API in our Bing connector;
+    you read it in the dashboard (help: https://www.bing.com/webmasters/help/ai-performance-9f8e7d6c, which
+    says very sparse citation activity may not surface at all, and that is not a penalty).
 
 ### Ongoing from now
 
@@ -286,6 +317,10 @@ draw no conclusion.
   answers for this topic (46 citations). A handful done properly, not a daily stream. Open on the
   number, on screen in the first second (the only usable point of reels 134 and 137); it must match the
   page on the day it is posted, and the description links to the page with the rate date.
+
+- [ ] **You + Claude:** every corridor title carries "2026". Decide before 2027-01-01 whether to change the
+  year (a title change on all 17 pages, several inside measurement windows) or drop it from titles. Route
+  through REVIEW mode either way.
 
 ### Q1 2027, decisions rather than tasks
 

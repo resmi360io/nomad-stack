@@ -1,0 +1,167 @@
+[
+  {
+    "url": "https://abroadmate.me/guides/payoneer-vs-wise-pakistan-freelancers-2026",
+    "domain": "abroadmate.me",
+    "source": "stale_fee",
+    "found": "2026-10-30",
+    "score": 76,
+    "state": "drafted",
+    "contact_route": "https://abroadmate.me/contact",
+    "our_url": "https://paidacross.com/receive/usd-to-pkr",
+    "notes": "Quotes the pre-23 Feb 2026 annual fee rule ($3/month under $2,000) and 'approximately 2%' conversion. Payoneer a_id 43738: 6,000 USD for Pakistan from 23/02/2026; fees page 1.2% to 4%. Payoneer's own PK guide still says 2%, and the draft says so. Site discloses affiliate deals with Wise and Payoneer."
+  },
+  {
+    "url": "https://brands.ng/blog/how-to-receive-dollars-in-nigeria-as-a-freelancer-every-option-compared/",
+    "domain": "brands.ng",
+    "source": "resource_page",
+    "found": "2026-10-30",
+    "score": 77,
+    "state": "drafted",
+    "contact_route": "brands.ng author or contact page (owner to confirm)",
+    "our_url": "https://paidacross.com/receive/usd-to-ngn",
+    "notes": "Named author Augustine Tom, 28 May 2026. Gives no Payoneer figure; the draft supplies ours for the providers it names."
+  },
+  {
+    "url": "https://itsourcecode.com/freelance-finance/how-to-receive-us-client-payments-in-php-2026/",
+    "domain": "itsourcecode.com",
+    "source": "stale_fee",
+    "found": "2026-10-30",
+    "score": 68,
+    "state": "monitor",
+    "contact_route": "itsourcecode.com author page (not opened)",
+    "our_url": "https://paidacross.com/receive/usd-to-php",
+    "notes": "Says USD 1.50 flat withdrawal to PH bank; Payoneer's flat fee applies to local-currency withdrawals in listed countries, PH status unconfirmed. New finance section on a source-code site: watch for scaled content."
+  },
+  {
+    "url": "https://blog.onlinejobs.ph/online-workers-guide-getting-payments/",
+    "domain": "blog.onlinejobs.ph",
+    "source": "resource_page",
+    "found": "2026-10-30",
+    "score": 67,
+    "state": "monitor",
+    "contact_route": "onlinejobs.ph contact page (not opened)",
+    "our_url": "https://paidacross.com/receive/usd-to-php",
+    "notes": "Stale fee claims are in 6 to 7 year old admin replies, not the body. 83 comments."
+  },
+  {
+    "url": "https://codeforpakistan.org/programs/d4wee/freelance-business-essentials",
+    "domain": "codeforpakistan.org",
+    "source": "training_org",
+    "found": "2026-10-30",
+    "score": 58,
+    "state": "dropped",
+    "contact_route": "https://codeforpakistan.org/contact",
+    "our_url": "https://paidacross.com/receive/usd-to-pkr",
+    "notes": "Course page, no links list. Revisit if public course materials exist."
+  },
+  {
+    "url": "https://www.pnytrainings.com/blog/marketing/upwork-payment-methods-in-pakistan",
+    "domain": "pnytrainings.com",
+    "source": "training_org",
+    "found": "2026-10-30",
+    "score": 56,
+    "state": "dropped",
+    "contact_route": "",
+    "our_url": "https://paidacross.com/receive/usd-to-pkr",
+    "notes": "No fees stated, no outbound links."
+  },
+  {
+    "url": "https://www.enablers.org/blog/how-to-create-pay-pal-account-from-pakistan",
+    "domain": "enablers.org",
+    "source": "ai_cited",
+    "found": "2026-10-30",
+    "score": 53,
+    "state": "dropped",
+    "contact_route": "https://www.enablers.org/contact-us",
+    "our_url": "",
+    "notes": "Fails G4: no payment-cost page to improve. The URL AI Overviews cite is unknown."
+  },
+  {
+    "url": "https://thenationonlineng.net/",
+    "domain": "thenationonlineng.net",
+    "source": "ai_cited",
+    "found": "2026-10-30",
+    "score": null,
+    "state": "could_not_open",
+    "contact_route": "",
+    "our_url": "https://paidacross.com/receive/usd-to-ngn",
+    "notes": "Both WebFetch and WebSearch refuse the domain. Needs the cited URL and a capture."
+  },
+  {
+    "url": "https://www.bitdegree.org/money-transfer/tutorials/is-paypal-available-in-pakistan",
+    "domain": "bitdegree.org",
+    "source": "ai_cited",
+    "found": "2026-10-30",
+    "score": 71,
+    "state": "dropped",
+    "contact_route": "",
+    "our_url": "https://paidacross.com/receive/usd-to-pkr",
+    "notes": "Fails G2 and G5: scored money-transfer reviews with a site-wide partner banner."
+  },
+  {
+    "url": "https://www.nsave.com/bangladesh/payoneer",
+    "domain": "nsave.com",
+    "source": "ai_cited",
+    "found": "2026-10-30",
+    "score": 59,
+    "state": "dropped",
+    "contact_route": "",
+    "our_url": "",
+    "notes": "Provider of USD accounts (G5). Not opened."
+  },
+  {
+    "url": "https://techeconomy.ng/best-platform-to-withdraw-from-upwork-in-nigeria-2026",
+    "domain": "techeconomy.ng",
+    "source": "stale_fee",
+    "found": "2026-10-30",
+    "score": 55,
+    "state": "dropped",
+    "contact_route": "",
+    "our_url": "https://paidacross.com/receive/usd-to-ngn",
+    "notes": "No byline; reads as undisclosed Cleva promotion (G2). Quotes the $2,000 threshold after the change."
+  },
+  {
+    "url": "https://www.arthikalap.com/payoneer-to-bkash-withdrawal-bangladesh-guide/",
+    "domain": "arthikalap.com",
+    "source": "stale_fee",
+    "found": "2026-10-30",
+    "score": 57,
+    "state": "dropped",
+    "contact_route": "https://www.arthikalap.com/contact-us/",
+    "our_url": "https://paidacross.com/receive/usd-to-bdt",
+    "notes": "Says no direct Payoneer to bKash route exists; Payoneer's page says there is. Dropped only on G2 (nobody named)."
+  },
+  {
+    "url": "https://www.rtrsupportslimited.com/post/a-complete-guide-on-payoneer-account-in-pakistan",
+    "domain": "rtrsupportslimited.com",
+    "source": "stale_fee",
+    "found": "2026-10-30",
+    "score": 40,
+    "state": "dropped",
+    "contact_route": "",
+    "our_url": "https://paidacross.com/receive/usd-to-pkr",
+    "notes": "Offshore-company content marketing, no author."
+  },
+  {
+    "url": "https://liveinph.com/payoneer-philippines-withdrawal-fees-2026",
+    "domain": "liveinph.com",
+    "source": "stale_fee",
+    "found": "2026-10-30",
+    "score": 73,
+    "state": "dropped",
+    "contact_route": "",
+    "our_url": "",
+    "notes": "Already correct; runs a remittance comparator (competitor)."
+  },
+  {
+    "url": "https://profit.pakistantoday.com.pk/2026/04/30/we-can-almost-solve-freelancer-payments-in-pakistan-all-we-need-is-one-ambitious-ceo",
+    "domain": "profit.pakistantoday.com.pk",
+    "source": "press",
+    "found": "2026-10-30",
+    "score": 51,
+    "state": "dropped",
+    "contact_route": "",
+    "our_url": "",
+    "notes": "Policy op-ed. Revisit for the data index pitch to regional press."
+  }
+]
