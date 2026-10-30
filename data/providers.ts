@@ -1066,6 +1066,10 @@ export const PROVIDERS: Provider[] = [
         fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 48,
         notes: '1% receiving fee plus a withdrawal conversion charge published as 1.2% to 4%, modelled at 2.6%; $29.95/year if under the activity threshold (help center currently $6,000/year)',
+        // 1% to receive with a published minimum of 1.00; the conversion stays in fxMarkupBps.
+        feeComponents: [
+          { label: 'Receiving fee', percent: 0.01, min: 1 },
+        ],
       },
       // USD → Philippine PHP bank account, GCash, or GoTyme
       // Source: payoneer.com country guide for PH, plus the fee schedule: 1% receiving, and a
@@ -1079,6 +1083,10 @@ export const PROVIDERS: Provider[] = [
         fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
         typicalHours: 48,
         notes: '1% receiving fee plus a withdrawal conversion charge published as 1.2% to 4%, modelled at 2.6%. PHP withdrawal to bank or GoTyme; GCash payouts may add a GCash-side cash-in fee, priced by funding source and not confirmed from a GCash primary source; whether the PHP 8,000/month free-then-2% figure applies to Payoneer or only to over-the-counter cash-ins is unresolved, and some sources report a flat 1% instead; verify in app',
+        // 1% to receive with a published minimum of 1.00; the conversion stays in fxMarkupBps.
+        feeComponents: [
+          { label: 'Receiving fee', percent: 0.01, min: 1 },
+        ],
       },
     ],
     fallbackFee: {

@@ -173,10 +173,10 @@ watermark remover", and are ignored. What survives a sceptical read:
     payment", FAQ 1 "1% to receive a commercial payment", cheapest-route FAQ "Its 1% receive fee") with the
     corridor wording "1% (minimum 1 USD) on a client payment into a USD receiving account; marketplace payouts
     vary", through verifier and reviewer. Its Upwork and Fiverr FAQ was corrected 2026-10-30. Effort S.
-20. [ ] **You:** Payoneer's 1 USD minimum on the 1% receiving fee for Nigeria and the Philippines. Modelled on
+20. [x] **You:** decided 2026-10-30: model it on both (applied the same day). Payoneer's 1 USD minimum on the 1% receiving fee for Nigeria and the Philippines. Modelled on
     Pakistan and Bangladesh on 2026-10-30 (no order change). On PH it moves PayPal above Payoneer below about
     $13.30; on NG it moves Cleva above Payoneer below about $28, and below about $7 Raenest takes the top spot
-    and the best value badge. Until decided, the PH copy states the minimum and the PH row does not model it.
+    and the best value badge.
 16. [x] **You:** Manual actions report checked 2026-10-30: no issues. Disavow file received 2026-10-30 and committed as `docs/seo/disavow.txt` (26 domains,
     prepared 2026-10-26). Of the 29 referring domains on 2026-10-30, only seopxl-ranking-boost-lab.shop (first
     seen 2026-10-28) is not in it; adding it is optional (measurement rule 6). Original item: send Claude the current disavow file so it can be committed as `docs/seo/disavow.txt` (spam
