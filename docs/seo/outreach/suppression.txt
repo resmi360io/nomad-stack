@@ -22,3 +22,8 @@ theforbestimes.com # link farm
 thcradar.com # link farm
 thedocmag.com # link farm
 quotesblom.com # link farm
+# Added 2026-10-30 after the first outreach run (G5: competitor or provider)
+liveinph.com # competitor (remittance cost comparator)
+bitdegree.org # money-transfer review site with a partner
+nsave.com # provider (USD accounts)
+walllet.com # provider
