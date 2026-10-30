@@ -214,6 +214,8 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
    creditosenusa.com, globalecommerce.org, oppalerts.com, biyapay.com and grokipedia.com and open them by
    hand; build the outreach list from the categories in KNOWLEDGE.md section 3b instead (career offices,
    freelancer communities, regional tech press, journalist requests) as `docs/seo/outreach.md`. Effort M.
+   **2026-10-30:** the `outreach-analyst` agent and `outreach` skill now do this weekly (AGENTS.md). First run
+   on 2026-10-30; its board is `docs/seo/outreach.md` and its drafts wait for you in `docs/seo/outreach/drafts/`.
 8. [ ] **You:** launch the calculator where builders look, one per week rather than all at once: Show HN
    ("I priced what freelancers in 17 countries lose getting paid", with the data), r/SideProject,
    Product Hunt on a Tuesday to Thursday, Indie Hackers, Uneed. Claude drafts each post; you post from
@@ -230,6 +232,13 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
     2026-09-11 to 2026-10-23); indexed count and sitemap read date not pulled yet. **You:** also open AI
     Performance in Bing Webmaster Tools and its Topics Portfolio tab (beta since 2026-10-13), which Bing
     shows only when a site has enough data, and note what is there.
+    **2026-10-30 read (Bing API):** 12 pages in the index (2026-10-28), 2 inbound links, no crawl errors except
+    one 4xx on 2026-10-25. Sitemap `https://paidacross.com/sitemap.xml` was last crawled by Bing on 2026-06-12
+    with 6 URLs (the site now has 24); it was resubmitted 2026-10-29 and Bing has not re-read it yet. A second
+    sitemap is registered at `https://www.paidacross.com/sitemap.xml` (last crawled 2026-06-13). Bing traffic
+    2026-09-07 to 2026-10-27: 1 click, about 90 impressions. AI Performance has no API in our Bing connector;
+    you read it in the dashboard (help: https://www.bing.com/webmasters/help/ai-performance-9f8e7d6c, which
+    says very sparse citation activity may not surface at all, and that is not a penalty).
 
 ### Ongoing from now
 
