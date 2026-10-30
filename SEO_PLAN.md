@@ -149,11 +149,12 @@ watermark remover", and are ignored. What survives a sceptical read:
    or model a minimum and let Wise rank first at small amounts.
 4. [x] **You:** decided 2026-10-30: leave as is ("warning only" stays live). The Payoneer minimum fee elsewhere: "warning only" (recommended, live) or
    "model it" (now possible with fee components, but ranking-moving).
-5. [~] **Claude:** add a calculator usage event in PostHog (`calc_run`, with corridor and amount band).
+5. [x] **Claude:** add a calculator usage event in PostHog (`calc_run`, with corridor and amount band).
    **Go-ahead given 2026-10-30; built** (`lib/analytics.ts`, one event per Compare press, amount as a band,
    corridor in the same format as `affiliate_click`). **Shipped in PR #76 (77674a1, 2026-10-30).** Left to
    do: confirm the first real events in PostHog (it sends nothing from an automated browser, so it could
-   not be watched in testing).
+   not be watched in testing). **Confirmed 2026-10-30:** four real `calc_run` events arrived with every
+   property (USD to PKR and USD to NGN, amount bands correct).
    Only `$pageview` and `affiliate_click` exist, so there is no way to see whether people use the tool.
    Needs your go-ahead, since it changes analytics.
 13. [x] **Claude:** remove the en dash between 3 and 8 in "lose 3 to 8% of every international invoice" on
@@ -201,7 +202,7 @@ copy on those four pages until the PR #72 decision read (2026-12-24 at the earli
 Pakistan, the pillar and the corridors outside PR #72 first. If you would rather ship, record that the
 read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pages are read as a bundle.**
 
-15. [ ] **Claude:** shorten the titles over 60 characters on the eight zero-impression corridors (MXN, BRL,
+15. [x] **Claude:** shorten the titles over 60 characters on the eight zero-impression corridors (MXN, BRL,
     UZS, COP, ZAR, ARS, PLN, UAH) and the ZAR (177) and homepage (164) descriptions. Pakistan's title (63),
     the pillar description (168) and the PKR rate page description (177) wait until after the checkpoint,
     because those pages are inside a measurement window. Humanizer pass.
@@ -231,18 +232,26 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
    freelancer communities, regional tech press, journalist requests) as `docs/seo/outreach.md`. Effort M.
    **2026-10-30:** the `outreach-analyst` agent and `outreach` skill now do this weekly (AGENTS.md). First run
    on 2026-10-30; its board is `docs/seo/outreach.md` and its drafts wait for you in `docs/seo/outreach/drafts/`.
-8. [ ] **You:** launch the calculator where builders look, one per week rather than all at once: Show HN
+8. [~] **You:** launch the calculator where builders look, one per week rather than all at once: Show HN
    ("I priced what freelancers in 17 countries lose getting paid", with the data), r/SideProject,
    Product Hunt on a Tuesday to Thursday, Indie Hackers, Uneed. Claude drafts each post; you post from
-   your own account and answer comments.
-9. [ ] **Claude:** check AI-answer citations with OpenRush (`discover_ai_citations`,
+   your own account and answer comments. **Drafts done 2026-10-30:** `docs/seo/launch-posts.md` (one post
+   per channel, with the rules and the numbers to refresh on the day). Posting is yours.
+9. [x] **Claude:** check AI-answer citations with OpenRush (`discover_ai_citations`,
    `inspect_ai_visibility`) for questions like "cost to receive USD in the Philippines" and "Payoneer
    dollar rate in Pakistan today". Note which pages are cited and close the gaps on ours.
-10. [ ] **Claude:** pillar section on receiving from clients in several countries (74 impressions at
-    about 45) and on tracking international payments (26 at 55).
-11. [ ] **Claude:** mine competitor reviews (Trustpilot for Payoneer and Wise, from PK, BD, NG and PH
-    users) for real complaints, and turn the best into fact-checked FAQs.
-12. [~] **Claude:** Bing again: pages indexed (12 on 2026-10-25), sitemap read date, and the chatbot-style
+   **Done 2026-10-30:** Google AI Overviews cite paidacross 0 times (OpenRush, US; Wise 150,409, Monito 4,144);
+   the sources AI cites for PK and NG are YouTube first, then providers' own pages, Facebook and Reddit
+   (detail in the outreach run directory and `docs/seo/outreach.md`). Bing is the opposite: 251 citations
+   (item 12). Gaps are closed by the December videos, community answers and outreach, all already planned.
+10. [x] **Claude:** pillar section on receiving from clients in several countries (74 impressions at
+    about 45) and on tracking international payments (26 at 55). **Shipped 2026-10-30:** H2s "Receiving payments
+    from clients in multiple countries" and "Keeping track of international payments", through verifier and
+    reviewer; the pillar read is a bundle with the redesign and PR #70/#71.
+11. [x] **Claude:** mine competitor reviews (Trustpilot for Payoneer and Wise, from PK, BD, NG and PH
+    users) for real complaints, and turn the best into fact-checked FAQs. **Done 2026-10-30:** about 150
+    reviews read; five FAQs shipped in PR #77 after verifier and reviewer, plus four live-page corrections.
+12. [x] **Claude:** Bing again: pages indexed (12 on 2026-10-25), sitemap read date, and the chatbot-style
     queries, now that the redesign is live. 2026-10-29 audit: crawl issues none, query stats read (53 rows,
     2026-09-11 to 2026-10-23); indexed count and sitemap read date not pulled yet. **You:** also open AI
     Performance in Bing Webmaster Tools and its Topics Portfolio tab (beta since 2026-10-13), which Bing
@@ -271,6 +280,8 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
   (2026-12-24 at the earliest), put it on a page outside the seven PR #72 corridors, or record that the
   read for that page is a bundle. First candidate (2026-10-29 audit): a USD salary question on Pakistan,
   from Bing "best way to receive usd salary in pakistan and convert to pkr" (position 2).
+  **2026-10-30: #1 shipped**, the USD salary FAQ on `/receive/usd-to-pkr` (researcher, verifier, reviewer; answer
+  first). The PK read is a bundle with PR #77.
 - [ ] **You:** one pitch or correction email a day (newsletters, PK and BD tech press, authors still
   quoting Payoneer "up to 2%"), plus two helpful Reddit or Quora answers a week from a branded account
   that says who you are. Never astroturf.
@@ -312,7 +323,7 @@ draw no conclusion.
 
 ### December 2026
 
-- [ ] **Claude:** one linkable data asset, "What freelancers lose getting paid in 17 countries", built
+- [~] **Claude:** one linkable data asset, "What freelancers lose getting paid in 17 countries", built
   from `calculate()` and the frozen-rate fixture, so every number is reproducible. This is also the
   thing to pitch in the daily emails and the Show HN post. Build it as the first edition of a dated index
   (KNOWLEDGE.md section 3b): a stated method, the rate date, a downloadable CSV, a "how to cite" line, and
@@ -320,6 +331,12 @@ draw no conclusion.
   through verifier and reviewer; any "cheapest in country X" claim is ranking-moving and goes to you.
   **You** decide after the first edition whether to repeat it quarterly (next would be 2027-03); each
   edition costs a full verification pass.
+  **First edition shipped early, 2026-10-30, at your request:** `/freelancer-payment-cost-index` with
+  `/freelancer-payment-cost-index/2026-10.csv`, CC BY 4.0, Dataset JSON-LD, footer and pillar links. Judge at about
+  2027-01-30 by editorial referring domains (target 3). You still decide whether to repeat it quarterly. Owner
+  decisions the same day: Wise PH row flagged estimated (PH best value badge removed; PH read is now titles plus
+  copy plus badge), MIT and CC BY 4.0 licences added. The sitewide footer link is template only, so the Portugal,
+  Thailand and Georgia reads stay clean.
 - [ ] **You + Claude:** a few 30-second corridor videos ("what $1,000 from a US client becomes in
   pesos") using your voice-memo answers, linking to each page. YouTube is the most-cited source in AI
   answers for this topic (46 citations). A handful done properly, not a daily stream. Open on the
@@ -329,6 +346,11 @@ draw no conclusion.
 - [ ] **You + Claude:** every corridor title carries "2026". Decide before 2027-01-01 whether to change the
   year (a title change on all 17 pages, several inside measurement windows) or drop it from titles. Route
   through REVIEW mode either way.
+  **Claude's recommendation (2026-10-30), for your decision:** keep a year in the titles and change it to
+  2027 in one release in the first week of January, after the PR #72 decision read (about 2026-12-25), not
+  before, so that read is not disturbed. A year is honest here because the weekly fact-check keeps each page
+  current; dropping it now would be a title change on 17 pages inside their measurement windows for no
+  measured gain. Fold in the held Pakistan title (63 characters) in the same release.
 
 ### Q1 2027, decisions rather than tasks
 

@@ -38,6 +38,10 @@ export function Footer() {
               how we make money
             </a>
             {' · '}
+            <a href="/freelancer-payment-cost-index" className={linkClass}>
+              freelancer payment cost index
+            </a>
+            {' · '}
             <a
               href="https://github.com/resmi360io/nomad-stack"
               target="_blank"

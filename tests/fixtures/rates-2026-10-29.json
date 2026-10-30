@@ -1,7 +1,7 @@
 {
   "source": "open.er-api.com/v6/latest/USD",
   "rateDate": "Thu, 29 Oct 2026 00:02:31 +0000",
-  "note": "Frozen copy for deterministic tests. Not used by the site.",
+  "note": "Frozen copy for deterministic tests, and the rate snapshot behind the 2026-10 cost index edition (data/cost-index/2026-10.json). Do not edit.",
   "rates": {
     "USD": 1,
     "EUR": 0.897215,
