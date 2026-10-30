@@ -1,0 +1,62 @@
+# Backlink gap, OpenRush compare_backlink_gap, 2026-10-30
+# paidacross.com vs exiap.com, statrys.com, monito.com, skydo.com, xflowpay.com
+# min_competitors 2, min_authority 100, max_spam 30. Top 60 of 257 gap rows (the run returned 60 inline).
+# Not an outreach list (KNOWLEDGE.md section 3b). Columns: domain, authority (0 to 1000), spam, competitors.
+grokipedia.com 549 8 5
+biyapay.com 413 3 5
+oppalerts.com 188 27 5
+bing.com 719 19 4
+alibaba.com 680 19 4
+ya.ru 677 13 4
+ctc.edu.za 549 5 4
+imagetou.com 498 11 4
+bye.fyi 306 16 4
+anchorurl.cloud 283 16 4
+pendium.ai 279 16 4
+ithy.com 273 16 4
+seotrends.pro 269 14 4
+screenshots.wiki 252 15 4
+jake.eu 242 26 4
+booksreadr.org 220 2 4
+globalecommerce.org 218 2 4
+topratingshub.com 216 2 4
+remote-expeditions.com 194 18 4
+expeditions-lointaines.fr 150 18 4
+read.org.in 119 21 4
+fundraisingfox.com 103 28 4
+zoominfo.com 614 6 3
+sitelike.org 588 11 3
+paybis.com 513 15 3
+craze.cl 510 0 3
+branchenbuch.ch 472 2 3
+techbullion.com 469 9 3
+businessabc.net 433 2 3
+beeinmotionri.org 406 25 3
+concejomunicipaldechinu.gov.co 388 10 3
+ayurvedacourse.org 366 15 3
+shouldiuse.io 326 22 3
+baywoodgrp.com 318 25 3
+grupafyi.pl 316 20 3
+drjack.world 310 15 3
+dailydealsfactory.com 309 16 3
+sfcla.com 298 15 3
+isores.rzeszow.pl 296 20 3
+paligroup.co.za 294 2 3
+gsmindustrial.cl 289 13 3
+laurelstreetsmiles.com 285 20 3
+keirseybooks.com 285 18 3
+creditosenusa.com 284 13 3
+pristinecleaningsvcs.com 274 15 3
+buzzshrink.website 273 15 3
+shivaycorp.in 263 14 3
+ikoujp.com 262 16 3
+ailternative.com 260 10 3
+prizedpcs.com.au 260 14 3
+bimocompany.com.br 257 15 3
+laundrytouch.com 252 17 3
+bariere-automate.ro 251 16 3
+pokeoasismmo.com 248 19 3
+shortenurls.eu 244 19 3
+seomuda.id 244 8 3
+# The other 4 of the top 60 were flagged earned=true (link farms that also link to paidacross.com):
+# theforbestimes.com 216 16 5; thcradar.com 215 18 5; thedocmag.com 154 16 5; quotesblom.com 123 19 5

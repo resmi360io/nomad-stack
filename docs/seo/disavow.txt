@@ -1,0 +1,30 @@
+# Disavow file for paidacross.com, prepared 2026-10-26
+# Source: backlink index read on 2026-10-26, 28 referring domains in total.
+# Kept (not disavowed): launchintel.pro (spam score 0), startuptile.com (20),
+# both startup directories that may be genuine listings.
+domain:seopxl-organic-boost-lab.shop
+domain:seolinkagency.shop
+domain:rank-seo-now.shop
+domain:dbike-us.com
+domain:thcradar.com
+domain:bureatag.com
+domain:techbumppy.com
+domain:clifflisting.com
+domain:sahammurah.com
+domain:bestnz-poker-casinoslot.com
+domain:archive-hu.com
+domain:thedocmag.com
+domain:dupurgeniefr.com
+domain:kernelpanicpodcast.com
+domain:cvillico.com
+domain:onvaxs.com
+domain:fashionclothingnews.com
+domain:uncledspizza.com
+domain:quotesblom.com
+domain:theforbestimes.com
+domain:betwinnermirror.com
+domain:betulcrime.com
+domain:homesforsaleoldgreenwichct.com
+domain:ggmap.us.com
+domain:m98ufa.com
+domain:plumeriamarketing.com

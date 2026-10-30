@@ -5,6 +5,7 @@ is the release identifier. Record each release here when it ships, with how it w
 
 | Date (UTC) | Commit on `main` | PR | What | Verified |
 |---|---|---|---|---|
+| 2026-10-30 | `4356e3a068c7e7e277cb838717ff6de0cca189fb` | #74 | Docs only: scheduled SEO host and trigger recorded, no-connector fallback in the seo-audit skill | Key routes 200 after deploy; no site code changed. |
 | 2026-10-30 | `f1ac6441064980e939ada656e0c83579a0de66d1` | #73 | SEO agent: seo-analyst, seo-audit skill, `scripts/seo/`, KNOWLEDGE.md, first audit. No site code changed | SEO diff of live vs the 2026-10-29 baseline: routes, statuses, robots, titles, canonicals, headings and links identical (only live-rate numbers differ); `npm run test:e2e` 14/14 against https://paidacross.com. |
 | 2026-10-29 | `9f06dcd9bfc1a9e2f9c59510448e94936ea571b2` | #72 | Title, meta and first-sentence pass on 7 page-1 corridors; SEO_PLAN refresh | Live HTML of all 24 URLs matched the tested build (0 differences); `npm run test:e2e` 14/14 against https://paidacross.com. Measure CTR at the 2026-11-23 checkpoint. |
 | 2026-10-29 | `97f5efba06cb6707020294f4708e39ac006a3e31` | #71 | Rate-page links in the footer and on the PK/BD guides; PKR rate FAQ reworded | Live HTML of all 24 URLs matched the tested build (0 differences); `npm run test:e2e` 14/14 against https://paidacross.com. |
@@ -13,7 +14,7 @@ is the release identifier. Record each release here when it ships, with how it w
 | 2026-10-29 | `bef6577c88298ff753254d3dd4d6162138511c71` | #68 | Passbook redesign, iteration 1 | Smoke test of key routes after deploy. |
 | 2026-10-29 | `5d869fc` | #67 | Last release before any redesign | n/a |
 
-**Current production: `f1ac644`. Rollback point: `9f06dcd`** (the release before it; `f1ac644` changed no site code, so `9f06dcd` serves identical pages). The next release must not merge until the owner approves it.
+**Current production: `4356e3a`. Rollback point: `9f06dcd`** (the last release that changed site code; `f1ac644` and `4356e3a` are tooling and docs only, so `9f06dcd` serves identical pages). The next release must not merge until the owner approves it.
 
 ## How to roll back
 
