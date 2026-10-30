@@ -1027,8 +1027,12 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 260,
         fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
-        typicalHours: 72,
+        typicalHours: 48,
         notes: '1% receiving fee plus a withdrawal conversion charge Payoneer publishes as 1.2% to 4%, modelled at the 2.6% midpoint. PKR withdrawal to local bank.',
+        // 1% to receive with a published minimum of 1.00; the conversion stays in fxMarkupBps.
+        feeComponents: [
+          { label: 'Receiving fee', percent: 0.01, min: 1 },
+        ],
       },
       // USD → Bangladeshi BDT bank account
       // Source: payoneer.com/legal/fees/ (last updated 1 January 2026, re-read 2026-10-27): 1% to
@@ -1041,14 +1045,18 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 260,
         fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
-        typicalHours: 72,
+        typicalHours: 48,
         notes: '1% receiving fee plus a withdrawal conversion charge Payoneer publishes as 1.2% to 4%, modelled at the 2.6% midpoint; bKash route ~3% + $1 instead',
+        // 1% to receive with a published minimum of 1.00; the conversion stays in fxMarkupBps.
+        feeComponents: [
+          { label: 'Receiving fee', percent: 0.01, min: 1 },
+        ],
       },
       // USD → Nigerian NGN bank account
       // Source: payoneer.com/legal/fees/ (re-read 2026-09-24): 1% receiving, plus a withdrawal
       // conversion charge published as 1.2% to 4%, not the "up to 2%" this row used to cite.
-      // Annual fee threshold: help center currently states $6,000/year received
-      // (it has published $2,000 elsewhere); verify per-account in the portal
+      // Annual fee threshold: 6,000 USD received in 12 months. payoneer.custhelp.com a_id 43738
+      // lists Nigeria at that figure from 23/02/2026, matching the fee schedule (read 2026-10-30).
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'NG', currency: 'NGN' },
@@ -1056,7 +1064,7 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.01,
         fxMarkupBps: 260,
         fxMarkupEstimated: true,  // published as a 1.2% to 4% range, not a rate; 2.6% is its midpoint
-        typicalHours: 72,
+        typicalHours: 48,
         notes: '1% receiving fee plus a withdrawal conversion charge published as 1.2% to 4%, modelled at 2.6%; $29.95/year if under the activity threshold (help center currently $6,000/year)',
       },
       // USD → Philippine PHP bank account, GCash, or GoTyme
