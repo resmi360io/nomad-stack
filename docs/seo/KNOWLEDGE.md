@@ -18,8 +18,8 @@ wins until someone updates both.
 | Last checked (WATCH) | 2026-10-29 | The agent, every run, to the run date |
 | Search Console property | paidacross.com (domain), OpenRush website_id `aab70b77-7a4d-4d6e-9f13-85584c82a534` | |
 | Bing property | `https://paidacross.com/`, read through the Hermoso MCP `call_tool` (read tools only) | |
-| Scheduled host session | to be recorded when created | Owner or an interactive session |
-| Scheduled trigger | to be recorded when created | Owner or an interactive session |
+| Scheduled host session | `session_01VKcrwYQyMXZjGMh7HhZDFH` ("SEO audit host (repo at start)"), created 2026-10-30 with `source_url`, Sonnet, pushes to `claude/seo-audit`. It has NO MCP connectors: Search Console, Bing and GitHub tools are absent, and neither `create_session` nor the trigger can attach them. Its runs read the crawl, checks, diff and update feeds only. | Owner or an interactive session |
+| Scheduled trigger | `trig_01VdcL1D26EfnJHZpAXHrsLB` "Weekly SEO audit (host-bound)", cron `23 14 * * 1` (Mondays 14:23 UTC), bound by `persistent_session_id`. Its prompt can be edited only from inside the host session. Test with a one-shot `run_once_at` trigger, never `fire_trigger`. | Owner or an interactive session |
 
 ### Update watchlist (WATCH mode)
 
