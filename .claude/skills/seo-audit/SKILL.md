@@ -37,7 +37,10 @@ export PW_CHROMIUM=/opt/pw-browsers/chromium   # cloud sessions only; omit local
 7. **Update sources.** `curl -s https://status.search.google.com/incidents.json > $RUN/google-incidents.json`
    and `curl -sL -A "Mozilla/5.0" https://blogs.bing.com/webmaster/feed/ > $RUN/bing-feed.xml`.
 8. If a connector or source is unavailable, write one line saying so into `$RUN/unavailable.txt` and
-   carry on. A partial audit is better than none; the report must say what it could not see.
+   carry on. A partial audit is better than none; the report must say what it could not see. The
+   scheduled host has no MCP connectors at all (see KNOWLEDGE.md section 0), so on a scheduled run
+   steps 5 and 6 are expected to be unavailable: check once with ToolSearch, record it, never fill
+   the gap with guessed numbers. An interactive session with the connectors can add them later.
 9. **Invoke `seo-analyst`** in AUDIT and WATCH modes (one call), giving it `$RUN` and today's date. It
    returns the report.
 10. **Write and commit**, in one commit:
@@ -47,7 +50,9 @@ export PW_CHROMIUM=/opt/pw-browsers/chromium   # cloud sessions only; omit local
       ONLY edits to those two files. Anything that changes page copy, data, fees or code becomes an
       action item, never an edit here.
 11. **Push and open a pull request** titled `SEO audit YYYY-MM-DD`, with the Summary and Action plan in
-    the body. Do NOT merge it: merging deploys, and the owner reviews the action plan. If the owner has
+    the body. If no GitHub pull request tool is available (the scheduled host has none), push the
+    branch and give https://github.com/resmi360io/nomad-stack/compare/main...claude/seo-audit
+    instead, so the owner can open it in one click. Do NOT merge it: merging deploys, and the owner reviews the action plan. If the owner has
     set `Auto-merge reports: yes` in KNOWLEDGE.md, merge only when the PR changes nothing outside
     `docs/seo/` and `SEO_PLAN.md`.
 12. **Report** in the session: the Summary, the action plan, the PR link, and anything unavailable.
