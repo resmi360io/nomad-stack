@@ -117,7 +117,7 @@ export default function CostIndexPage() {
                           href={`/receive/${r.slug}`}
                           className="font-semibold text-primary underline decoration-primary/30 underline-offset-[3px] hover:decoration-primary"
                         >
-                          {r.country}
+                          {r.country.replace(/^the /, '')}
                         </Link>
                       </td>
                       <td className="pa-figure px-4 py-2.5 text-right text-muted-foreground">{r.ranked.length}</td>
