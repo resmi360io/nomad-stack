@@ -47,7 +47,7 @@ const pillarJsonLd = {
       '@id': 'https://paidacross.com/receive-international-payments#article',
       headline: 'How freelancers receive international payments: real costs by country',
       datePublished: '2026-06-03T00:00:00+00:00',
-      dateModified: '2026-10-29T00:00:00+00:00',
+      dateModified: '2026-10-30T00:00:00+00:00',
       url: 'https://paidacross.com/receive-international-payments',
       image: 'https://paidacross.com/opengraph-image',
       author: {
@@ -114,7 +114,7 @@ export default async function ReceiveInternationalPaymentsPage() {
               George I.
             </Link>
             {' · '}
-            Last updated: October 29, 2026
+            Last updated: October 30, 2026
           </p>
         </header>
 
@@ -158,7 +158,7 @@ export default async function ReceiveInternationalPaymentsPage() {
             caption="Countries covered, how many receiving options we price in each, and which one tops the comparison at $1,000"
           />
           <p className="pa-meta mt-4 max-w-[75ch]">
-            Est. means part of that cost is published only as a range and we used the middle.
+            Est. means part of that cost is our estimate rather than a figure the provider publishes, for example the middle of a published range.
             Read the country page before you act on a top row. Ukraine&apos;s is a bank wire whose
             cost depends heavily on your client&apos;s bank, and Pakistan&apos;s page also shows a
             cheaper Western Union price that we list but do not rank, because it is meant for family
@@ -170,7 +170,7 @@ export default async function ReceiveInternationalPaymentsPage() {
           <h2 className="pa-h2">The two charges in every payment</h2>
           <p className={P}>
             Most services charge you twice. The first charge is the visible fee, a percentage, a
-            flat amount, or both. The second is inside the exchange rate. Every provider converts
+            flat amount, or both. The second is inside the exchange rate. Many providers convert
             at a rate a little worse than the mid-market rate you see on Google or Reuters, and the
             gap is money you pay without ever seeing a line for it.
           </p>
@@ -220,11 +220,32 @@ export default async function ReceiveInternationalPaymentsPage() {
           </p>
           <p className={P}>
             Two things are worth checking. First, the platform takes its own commission before
-            anything else, so Payoneer&apos;s 1% applies to what reaches Payoneer, not to what
-            the client was billed. Second, a platform&apos;s own direct-to-bank option converts at
+            anything else, so any Payoneer fee applies to what reaches Payoneer, not to what the
+            client was billed. Payoneer&apos;s fee schedule says its fee on marketplace payouts varies
+            by marketplace. The 1% in the example above is what it charges when a client pays into a
+            receiving account in a currency that is not your local one. Second, a platform&apos;s own direct-to-bank option converts at
             the platform&apos;s rate, so compare the local currency figure it quotes against the
             mid-market rate on the day before you assume it is cheaper. Our Pakistan page walks
             through that comparison for Upwork.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="pa-h2">Clients in more than one country</h2>
+          <p className={P}>
+            If your clients pay from the US, the UK and the euro area, the expensive habit is letting
+            every payment become dollars first. A UK client who sends you dollars converts at their
+            bank&apos;s rate, and you convert again at yours, so one payment carries two exchange
+            margins. Ask each client to pay in their own currency into account details in that
+            currency, and convert once, on your side, when you choose.
+          </p>
+          <p className={P}>
+            Wise and Payoneer both offer receiving account details in several currencies, including US
+            dollars, British pounds and euros, so a client in London can pay you the way they would pay
+            a local supplier. Which currencies you get, and whether you can open the account at all,
+            depend on the country you live in, so check what your own account shows before you send a
+            client any details. Our calculator lets you set the client in the United States, the United
+            Kingdom or the euro area.
           </p>
         </section>
 
@@ -265,6 +286,24 @@ export default async function ReceiveInternationalPaymentsPage() {
           </p>
         </section>
 
+        <section className="space-y-4">
+          <h2 className="pa-h2">Keeping track of international payments</h2>
+          <p className={P}>
+            Keep one line per payment: the date, what the client sent, what arrived, every fee taken on
+            the way, and the exchange rate you were given next to the mid-market rate on that day. That
+            last pair is how you see the conversion cost, because many providers fold it into the rate
+            instead of listing it.
+          </p>
+          <p className={P}>
+            Keep the paperwork your country cares about on the same line. In Pakistan that is the bank
+            record showing the payment came in as an export of services, which the 0.25% PSEB tax rate
+            depends on. In Bangladesh it is the Foreign Inward Remittance Certificate. In South Africa it
+            is the balance of payments category code your bank reported to the Reserve Bank for the
+            payment, so check that it matches the work you did. A spreadsheet is enough, as long as each
+            payment can be traced from the invoice to your bank account.
+          </p>
+        </section>
+
         <section className="space-y-5">
           <h2 className="pa-h2">The main providers, briefly</h2>
           <div className="space-y-7 pa-prose">
@@ -289,7 +328,7 @@ export default async function ReceiveInternationalPaymentsPage() {
             <div>
               <h3 className="pa-h3 mb-2">Payoneer</h3>
               <p>
-                1% on an incoming client payment, then a conversion cost on withdrawal that
+                1% when a client pays into your dollar receiving account, then a conversion cost on withdrawal that
                 Payoneer gives only as a range of 1.2% to 4%. It works in places Wise and Revolut
                 do not, and Upwork and Fiverr pay into it without any effort from you, which is
                 why so many freelancers in Pakistan, Bangladesh and elsewhere use it. For
@@ -430,7 +469,7 @@ export default async function ReceiveInternationalPaymentsPage() {
             >
               George I.
             </Link>{' '}
-            (20+ years in international payments). Last updated: October 29, 2026.
+            (20+ years in international payments). Last updated: October 30, 2026.
           </p>
           <p>
             Fees are estimates based on publicly available pricing. Verify with your provider

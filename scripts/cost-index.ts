@@ -27,7 +27,8 @@ const corridors = CORRIDORS.map((c) => ({
       totalCostPercent: round(q.totalCostPercent),
       totalCostUsd: round(q.totalCostInSource),
       received: round(q.netReceivedInDest),
-      marginEstimated: q.isEstimate,
+      // isEstimate: part of the cost (a fee, a margin or a range midpoint) is modelled, not published.
+      costEstimated: q.isEstimate,
     }));
     const unranked = quotes.filter((q) => !isComparable(q)).map((q) => ({ provider: q.provider.name, status: q.status }));
     const best = ranked[0];

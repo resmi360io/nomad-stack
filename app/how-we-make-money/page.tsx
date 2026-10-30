@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
 };
 
-const PAGE_UPDATED = '2026-08-13';
+const PAGE_UPDATED = '2026-10-30';
 
 const pageJsonLd = {
   '@context': 'https://schema.org',
@@ -37,7 +37,7 @@ const pageJsonLd = {
       '@id': 'https://paidacross.com/how-we-make-money#page',
       name: 'How we make money: Paid Across',
       datePublished: '2026-06-03T00:00:00+00:00',
-      dateModified: '2026-08-13T00:00:00+00:00',
+      dateModified: '2026-10-30T00:00:00+00:00',
       url: 'https://paidacross.com/how-we-make-money',
       description:
         'How Paid Across earns affiliate commissions, how provider rankings are decided by fee math alone, and how fee data is sourced and verified.',
@@ -221,9 +221,10 @@ export default function HowWeMakeMoney() {
         <section className="pa-section pa-prose">
           <h2 className="pa-h2">How we verify the data</h2>
           <p>
-            Every fee figure is sourced from the provider&apos;s own official pricing page or
-            help center before publishing. We do not use aggregators, press releases, or
-            estimates. Corridor-specific regulations (such as central-bank rules on receiving
+            Fee figures come from the provider&apos;s own official pricing page or help center
+            wherever the provider publishes one. Where it publishes only a range, or nothing at
+            all, we estimate the figure, label it as an estimate, and never give that route the
+            best value badge. Corridor-specific regulations (such as central-bank rules on receiving
             channels or mandatory local-currency conversion requirements) are checked against
             official primary sources where available.
           </p>

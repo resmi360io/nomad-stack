@@ -10,13 +10,13 @@ const cell = (v: string | number | boolean) => {
 
 export function GET() {
   const lines = [
-    ['edition', 'rate_date', 'country', 'currency', 'amount_usd', 'rank', 'provider', 'total_cost_percent', 'total_cost_usd', 'received', 'margin_estimated'].join(','),
+    ['edition', 'rate_date', 'country', 'currency', 'amount_usd', 'rank', 'provider', 'total_cost_percent', 'total_cost_usd', 'received', 'cost_estimated'].join(','),
   ];
   for (const c of edition.corridors) {
     for (const a of c.amounts) {
       a.ranked.forEach((r, i) => {
         lines.push(
-          [edition.edition, edition.rateDate, c.country, c.currency, a.amount, i + 1, r.provider, r.totalCostPercent, r.totalCostUsd, r.received, r.marginEstimated]
+          [edition.edition, edition.rateDate, c.country, c.currency, a.amount, i + 1, r.provider, r.totalCostPercent, r.totalCostUsd, r.received, r.costEstimated]
             .map(cell)
             .join(','),
         );

@@ -75,7 +75,7 @@ export default function CostIndexPage() {
         <header className="space-y-5">
           <h1 className="pa-h1">What freelancers lose getting paid: receiving 1,000 USD in {rows.length} countries</h1>
           <p className="pa-intro">
-            In {wide.length} of the {rows.length} countries we cover, the cheapest and the dearest way to
+            In {wide.length} of the {rows.length} countries we cover, the cheapest and the dearest ranked way to
             receive a 1,000 USD payment from a US client differ by {Math.floor(minWide)} to {Math.ceil(maxWide)} USD.{' '}
             {widest.country} has the widest gap, {usd(widest.gap!)}. These are the October 2026 figures,
             priced by our calculator at the exchange rates of {rateDay}, and every number below can be
@@ -123,11 +123,11 @@ export default function CostIndexPage() {
                       <td className="pa-figure px-4 py-2.5 text-right text-muted-foreground">{r.ranked.length}</td>
                       <td className="px-4 py-2.5 text-muted-foreground">
                         {best.provider}, {pct(best.totalCostPercent)}
-                        {best.marginEstimated ? ' (est.)' : ''}
+                        {best.costEstimated ? ' (est.)' : ''}
                       </td>
                       <td className="px-4 py-2.5 text-muted-foreground">
                         {worst.provider}, {pct(worst.totalCostPercent)}
-                        {worst.marginEstimated ? ' (est.)' : ''}
+                        {worst.costEstimated ? ' (est.)' : ''}
                       </td>
                       <td className="pa-figure px-4 py-2.5 text-right">{r.gap === null ? 'n/a' : usd(r.gap)}</td>
                     </tr>
@@ -138,8 +138,9 @@ export default function CostIndexPage() {
           </div>
           <p className="pa-meta">
             Cost is everything you lose on the way: the provider&apos;s fees plus the gap between the rate you
-            are given and the mid-market rate. &ldquo;(est.)&rdquo; marks a route whose exchange margin is our
-            estimate because the provider does not publish it.
+            are given and the mid-market rate. &ldquo;(est.)&rdquo; marks a route where part of the cost is our
+            estimate rather than a figure the provider publishes, for example the middle of a published range,
+            so that route&apos;s total, and any difference it feeds into, is an estimate too.
           </p>
         </section>
 
@@ -147,10 +148,9 @@ export default function CostIndexPage() {
           <h2 className="pa-h2">How to read it</h2>
           <p className={P}>
             The difference column is the money a freelancer keeps or loses on one 1,000 USD payment purely by
-            choosing a route. Where it is small, as in Uzbekistan, Bangladesh and Pakistan, we can rank only
-            two routes, so there is less to choose between rather than more competition. Each country
-            name opens its full page, which prices every route at any amount and explains the routes the table
-            leaves out.
+            choosing a route. In Uzbekistan, Bangladesh and Pakistan we can rank only two routes, so a small
+            gap there means less to choose between rather than more competition. Each country name opens its
+            full page, which prices these routes at any amount and explains the routes the table leaves out.
           </p>
           <p className={P}>
             A route is ranked only when its price is comparable. Routes that may not exist, that are priced as
@@ -163,7 +163,8 @@ export default function CostIndexPage() {
           <h2 className="pa-h2">Method</h2>
           <p className={P}>
             Every figure comes from the same calculator as the rest of this site, run once over each
-            provider&apos;s published fee schedule at a single set of mid-market exchange rates from{' '}
+            provider&apos;s fees, taken from its own pages where it publishes them and estimated where it does
+            not, at a single set of mid-market exchange rates from{' '}
             <a
               href="https://open.er-api.com"
               target="_blank"
@@ -194,7 +195,11 @@ export default function CostIndexPage() {
             <a href="/freelancer-payment-cost-index/data.csv" className="underline underline-offset-2 hover:text-foreground">
               data.csv
             </a>
-            . You are welcome to quote it. Please cite it as: Paid Across, Freelancer payment cost index,
+            . The data is licensed under{' '}
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground">
+              CC BY 4.0
+            </a>
+            , so you can quote and reuse it with credit. Please cite it as: Paid Across, Freelancer payment cost index,
             edition {edition.edition}, rates of {rateDay}, paidacross.com/freelancer-payment-cost-index.
           </p>
         </section>

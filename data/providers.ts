@@ -406,8 +406,11 @@ export const PROVIDERS: Provider[] = [
         fixedFee: 0,
         percentageFee: 0.0065,
         fxMarkupBps: 0,
+        // Owner decision 2026-10-30: no Wise page we could open confirms 0.65% for a PH resident
+        // converting a USD balance, so the row is flagged and barred from the badge.
+        fxMarkupEstimated: true,
         typicalHours: 24,
-        notes: 'Free USD ACH receiving into Wise USD balance; ~0.65% conversion fee at mid-market on USD to PHP (verify current)',
+        notes: 'Free USD ACH receiving into Wise USD balance; USD to PHP conversion modelled at 0.65%, which no Wise page we could open confirms. The nearest public figure, wise.com/us/send-money/send-money-to-philippines read 2026-10-30, prices a 500 USD send at 2.99 USD (about 0.60%) by the cheapest method, but that is a US sender paying pesos out, not a PH resident converting a balance. fxMarkupEstimated marks the estimated percentage, not a markup, and bars the badge.',
       },
       // USD → Georgian USD bank account via SWIFT (no FX conversion)
       // Source: wise.com help/articles/2946451 — USD SWIFT fee is $6.11
