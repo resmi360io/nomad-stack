@@ -140,12 +140,14 @@ watermark remover", and are ignored. What survives a sceptical read:
    hides almost every query on these pages. Left to do: you request indexing for the seven URLs (not
    done at the 2026-10-29 audit) in Search Console and in Bing URL Submission, and note the date here.
    The measurement clock starts at each URL's recrawl, not at the merge.
-2. [ ] **You:** apply to the Payoneer affiliate programme. Both rate pages and 7 corridors earn nothing,
+   **2026-10-30:** you requested indexing for 3 of the 7; the other 4 on 2026-10-31. Record which URL went
+   on which day here, because each page's clock starts at its own recrawl.
+2. [x] **You:** apply to the Payoneer affiliate programme (application sent 2026-10-30; awaiting reply). Both rate pages and 7 corridors earn nothing,
    and the rate pages are now linked from every page.
-3. [ ] **You:** decide the Payoneer Georgia question from PR #70: under about $300 the dollar table ranks
+3. [x] **You:** decided 2026-10-30: leave it as is (no minimum modelled). The Georgia question from PR #70: under about $300 the dollar table ranks
    Payoneer first on a model without its possible $15 or $20 minimum fee. Options: leave it (current),
    or model a minimum and let Wise rank first at small amounts.
-4. [ ] **You:** decide on the Payoneer minimum fee elsewhere: "warning only" (recommended, live) or
+4. [x] **You:** decided 2026-10-30: leave as is ("warning only" stays live). The Payoneer minimum fee elsewhere: "warning only" (recommended, live) or
    "model it" (now possible with fee components, but ranking-moving).
 5. [ ] **Claude:** add a calculator usage event in PostHog (`calc_run`, with corridor and amount band).
    Only `$pageview` and `affiliate_click` exist, so there is no way to see whether people use the tool.
@@ -154,7 +156,10 @@ watermark remover", and are ignored. What survives a sceptical read:
     `/about/author` (AGENTS.md no-dash rule; found by the 2026-10-29 audit). Humanizer pass, no claim change.
 14. [ ] **You:** decide how the weeks 2 to 3 copy work meets the PR #72 measurement window (see the note
     under Weeks 2 to 3).
-16. [ ] **You:** send Claude the current disavow file so it can be committed as `docs/seo/disavow.txt` (spam
+16. [~] **You:** disavow file received 2026-10-30 and committed as `docs/seo/disavow.txt` (26 domains,
+    prepared 2026-10-26). Of the 29 referring domains on 2026-10-30, only seopxl-ranking-boost-lab.shop (first
+    seen 2026-10-28) is not in it; adding it is optional (measurement rule 6). Still to do: the Manual actions
+    check below. Original item: send Claude the current disavow file so it can be committed as `docs/seo/disavow.txt` (spam
     domain names only). Without it nobody can tell which of the 29 referring domains are already disavowed.
     Also open Search Console's Manual actions report once and note the result here. Effort S.
 17. [x] **Claude:** AI-referral baseline from PostHog, read 2026-10-30 ($pageview on paidacross.com, 90 days,
@@ -163,7 +168,7 @@ watermark remover", and are ignored. What survives a sceptical read:
     (2026-09-17). For scale: $direct 351 pageviews (117 visitors), www.google.com 54 (49). Too few to measure;
     this is the baseline the monthly read (SKILL.md Mode 1, step 7b) compares against. AI apps often send no
     referrer, so the true number is at least three, not three.
-18. [ ] **You:** confirm that we leave Search Console's "Search generative AI control" (documented
+18. [x] **You:** confirmed 2026-10-30: default kept. Original item: confirm that we leave Search Console's "Search generative AI control" (documented
     2026-10-21) at its default, so the site stays eligible for AI Overviews and AI Mode. Our visible demand
     is chatbot-style queries. Effort S.
 
