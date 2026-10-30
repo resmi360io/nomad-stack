@@ -1,0 +1,1896 @@
+{
+  "edition": "2026-10",
+  "rateSource": "open.er-api.com/v6/latest/USD",
+  "rateDate": "Thu, 29 Oct 2026 00:02:31 +0000",
+  "sourceCountry": "US",
+  "sourceCurrency": "USD",
+  "method": "calculate() in lib/calculate.ts over data/providers.ts; ranked routes are those isComparable() accepts",
+  "corridors": [
+    {
+      "slug": "usd-to-pkr",
+      "country": "Pakistan",
+      "currency": "PKR",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 133508.63,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 10.26,
+              "totalCostUsd": 51.28,
+              "received": 124258.31,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [
+            {
+              "provider": "Western Union",
+              "status": "personal-only"
+            }
+          ],
+          "gapUsd": 33.41
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 267017.25,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 6.88,
+              "totalCostUsd": 68.78,
+              "received": 257869.4,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [
+            {
+              "provider": "Western Union",
+              "status": "personal-only"
+            }
+          ],
+          "gapUsd": 33.04
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 1335086.27,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 4.18,
+              "totalCostUsd": 208.78,
+              "received": 1326758.08,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [
+            {
+              "provider": "Western Union",
+              "status": "personal-only"
+            }
+          ],
+          "gapUsd": 30.08
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-bdt",
+      "country": "Bangladesh",
+      "currency": "BDT",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 59853.81,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 8.4,
+              "totalCostUsd": 41.98,
+              "received": 56861.3,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 24.11
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 119707.62,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 4.95,
+              "totalCostUsd": 49.48,
+              "received": 118002.49,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 13.74
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 2.19,
+              "totalCostUsd": 109.48,
+              "received": 607131.99,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 598538.09,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 69.22
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-ngn",
+      "country": "Nigeria",
+      "currency": "NGN",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Raenest",
+              "totalCostPercent": 0.5,
+              "totalCostUsd": 2.5,
+              "received": 669752.85,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Cleva",
+              "totalCostPercent": 0.6,
+              "totalCostUsd": 3,
+              "received": 669079.73,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Grey",
+              "totalCostPercent": 2.77,
+              "totalCostUsd": 13.87,
+              "received": 654445.6,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 649061.19,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 8.86,
+              "totalCostUsd": 44.3,
+              "received": 613480.15,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [
+            {
+              "provider": "PayPal",
+              "status": "incomplete"
+            }
+          ],
+          "gapUsd": 41.8
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Raenest",
+              "totalCostPercent": 0.27,
+              "totalCostUsd": 2.7,
+              "received": 1342602.05,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Cleva",
+              "totalCostPercent": 0.3,
+              "totalCostUsd": 3,
+              "received": 1342198.18,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Grey",
+              "totalCostPercent": 2.39,
+              "totalCostUsd": 23.86,
+              "received": 1314115.68,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 1298122.38,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 5.43,
+              "totalCostUsd": 54.3,
+              "received": 1273136.22,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [
+            {
+              "provider": "PayPal",
+              "status": "incomplete"
+            }
+          ],
+          "gapUsd": 51.6
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Raenest",
+              "totalCostPercent": 0.05,
+              "totalCostUsd": 2.7,
+              "received": 6727549.6,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Cleva",
+              "totalCostPercent": 0.06,
+              "totalCostUsd": 3,
+              "received": 6727145.73,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Grey",
+              "totalCostPercent": 1.32,
+              "totalCostUsd": 65.84,
+              "received": 6642548.2,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 2.69,
+              "totalCostUsd": 134.3,
+              "received": 6550384.83,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 6490611.91,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [
+            {
+              "provider": "PayPal",
+              "status": "incomplete"
+            }
+          ],
+          "gapUsd": 176
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-php",
+      "country": "the Philippines",
+      "currency": "PHP",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.65,
+              "totalCostUsd": 3.25,
+              "received": 31790.75,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 30855.1,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.8,
+              "totalCostUsd": 39.02,
+              "received": 29501.59,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 8.4,
+              "totalCostUsd": 41.98,
+              "received": 29312.44,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 38.73
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.65,
+              "totalCostUsd": 6.5,
+              "received": 63581.49,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 61710.21,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 4.95,
+              "totalCostUsd": 49.48,
+              "received": 60831.2,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.77,
+              "totalCostUsd": 77.75,
+              "received": 59021.7,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 71.25
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.65,
+              "totalCostUsd": 32.5,
+              "received": 317907.46,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 2.19,
+              "totalCostUsd": 109.48,
+              "received": 312981.25,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 308551.03,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.75,
+              "totalCostUsd": 387.59,
+              "received": 295182.63,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 355.09
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-gel",
+      "country": "Georgia",
+      "currency": "GEL",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 1.58,
+              "totalCostUsd": 7.89,
+              "received": 1276.48,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 5.95,
+              "totalCostUsd": 29.75,
+              "received": 1219.77,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 10.26,
+              "totalCostUsd": 51.28,
+              "received": 1163.94,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [
+            {
+              "provider": "Payoneer",
+              "status": "unverified"
+            }
+          ],
+          "gapUsd": 43.39
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 1.47,
+              "totalCostUsd": 14.74,
+              "received": 2555.65,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 5.48,
+              "totalCostUsd": 54.75,
+              "received": 2451.87,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 6.88,
+              "totalCostUsd": 68.78,
+              "received": 2415.49,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [
+            {
+              "provider": "Payoneer",
+              "status": "unverified"
+            }
+          ],
+          "gapUsd": 54.04
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 1.39,
+              "totalCostUsd": 69.54,
+              "received": 12789.04,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 4.18,
+              "totalCostUsd": 208.78,
+              "received": 12427.88,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 5.1,
+              "totalCostUsd": 254.75,
+              "received": 12308.62,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [
+            {
+              "provider": "Payoneer",
+              "status": "unverified"
+            }
+          ],
+          "gapUsd": 185.21
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-eur-portugal",
+      "country": "Portugal",
+      "currency": "EUR",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Revolut",
+              "totalCostPercent": 0.3,
+              "totalCostUsd": 1.5,
+              "received": 447.26,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.57,
+              "totalCostUsd": 2.84,
+              "received": 446.06,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 1.59,
+              "totalCostUsd": 7.97,
+              "received": 441.46,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 432.57,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.8,
+              "totalCostUsd": 39.02,
+              "received": 413.6,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 7.93,
+              "totalCostUsd": 39.65,
+              "received": 413.03,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 38.15
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Revolut",
+              "totalCostPercent": 0.3,
+              "totalCostUsd": 3,
+              "received": 894.52,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.5,
+              "totalCostUsd": 4.99,
+              "received": 892.74,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 1.3,
+              "totalCostUsd": 12.97,
+              "received": 885.58,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 865.15,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 4.47,
+              "totalCostUsd": 44.65,
+              "received": 857.15,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.77,
+              "totalCostUsd": 77.75,
+              "received": 827.46,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 74.75
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Revolut",
+              "totalCostPercent": 0.3,
+              "totalCostUsd": 15,
+              "received": 4472.62,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.44,
+              "totalCostUsd": 22.19,
+              "received": 4466.17,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 1.06,
+              "totalCostUsd": 52.97,
+              "received": 4438.55,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 1.69,
+              "totalCostUsd": 84.65,
+              "received": 4410.13,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 4325.74,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.75,
+              "totalCostUsd": 387.59,
+              "received": 4138.32,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 372.59
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-thb",
+      "country": "Thailand",
+      "currency": "THB",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.95,
+              "totalCostUsd": 4.77,
+              "received": 16724.95,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 2.49,
+              "totalCostUsd": 12.43,
+              "received": 16466.43,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 16282.54,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.33,
+              "totalCostUsd": 36.63,
+              "received": 15648.94,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 10.26,
+              "totalCostUsd": 51.28,
+              "received": 15154.38,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 46.51
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.77,
+              "totalCostUsd": 7.7,
+              "received": 33512.05,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 1.99,
+              "totalCostUsd": 19.92,
+              "received": 33099.19,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 32565.08,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 6.88,
+              "totalCostUsd": 68.78,
+              "received": 31449.42,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.3,
+              "totalCostUsd": 72.97,
+              "received": 31307.71,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 65.27
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.62,
+              "totalCostUsd": 31.18,
+              "received": 167807.46,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 1.6,
+              "totalCostUsd": 79.93,
+              "received": 166161.24,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 162825.4,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 4.18,
+              "totalCostUsd": 208.78,
+              "received": 161809.71,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.27,
+              "totalCostUsd": 363.69,
+              "received": 156577.87,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 332.51
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-idr",
+      "country": "Indonesia",
+      "currency": "IDR",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.75,
+              "totalCostUsd": 3.77,
+              "received": 9022262,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 2.73,
+              "totalCostUsd": 13.66,
+              "received": 8842400.39,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 8765901.25,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.8,
+              "totalCostUsd": 39.02,
+              "received": 8381369.22,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 10.26,
+              "totalCostUsd": 51.28,
+              "received": 8158544.45,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 47.51
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.64,
+              "totalCostUsd": 6.41,
+              "received": 18065069.21,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 2.24,
+              "totalCostUsd": 22.41,
+              "received": 17774117.95,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 17531802.49,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 6.88,
+              "totalCostUsd": 68.78,
+              "received": 16931172.9,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.77,
+              "totalCostUsd": 77.75,
+              "received": 16768002.01,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 71.34
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.55,
+              "totalCostUsd": 27.53,
+              "received": 90407526.96,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 1.85,
+              "totalCostUsd": 92.41,
+              "received": 89227858.43,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 87659012.47,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 4.18,
+              "totalCostUsd": 208.78,
+              "received": 87112200.45,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.75,
+              "totalCostUsd": 387.59,
+              "received": 83861064.35,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 360.06
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-mxn",
+      "country": "Mexico",
+      "currency": "MXN",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 2.49,
+              "totalCostUsd": 12.43,
+              "received": 9094.99,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 8993.42,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.8,
+              "totalCostUsd": 39.02,
+              "received": 8598.91,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 10.26,
+              "totalCostUsd": 51.28,
+              "received": 8370.3,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 38.85
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 1.99,
+              "totalCostUsd": 19.92,
+              "received": 18281.84,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 17986.84,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 6.88,
+              "totalCostUsd": 68.78,
+              "received": 17370.62,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.77,
+              "totalCostUsd": 77.75,
+              "received": 17203.21,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 57.83
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Western Union",
+              "totalCostPercent": 1.6,
+              "totalCostUsd": 79.93,
+              "received": 91776.68,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 89934.18,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 4.18,
+              "totalCostUsd": 208.78,
+              "received": 89373.17,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.75,
+              "totalCostUsd": 387.59,
+              "received": 86037.65,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 307.66
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-brl",
+      "country": "Brazil",
+      "currency": "BRL",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Higlobe",
+              "totalCostPercent": 0.2,
+              "totalCostUsd": 1,
+              "received": 2668.07,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.5,
+              "totalCostUsd": 2.5,
+              "received": 2660.05,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 2577.87,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 9.7,
+              "totalCostUsd": 48.5,
+              "received": 2414.12,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 10.26,
+              "totalCostUsd": 51.28,
+              "received": 2399.26,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 50.28
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Higlobe",
+              "totalCostPercent": 0.2,
+              "totalCostUsd": 2,
+              "received": 5336.14,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.5,
+              "totalCostUsd": 5,
+              "received": 5320.1,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 5155.74,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 6.88,
+              "totalCostUsd": 68.78,
+              "received": 4979.1,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 9.69,
+              "totalCostUsd": 96.88,
+              "received": 4828.85,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 94.88
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Higlobe",
+              "totalCostPercent": 0.2,
+              "totalCostUsd": 10,
+              "received": 26680.69,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.5,
+              "totalCostUsd": 25,
+              "received": 26600.48,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 25778.68,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 4.18,
+              "totalCostUsd": 208.78,
+              "received": 25617.87,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 9.68,
+              "totalCostUsd": 483.92,
+              "received": 24146.74,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 473.92
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-uzs",
+      "country": "Uzbekistan",
+      "currency": "UZS",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 5777727.01,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 7.4,
+              "totalCostUsd": 37,
+              "received": 5548483.8,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 19.13
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 11555454.02,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 3.91,
+              "totalCostUsd": 39.15,
+              "received": 11514595.41,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 3.41
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 1.13,
+              "totalCostUsd": 56.35,
+              "received": 59243488.32,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 57777270.11,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 122.35
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-inr",
+      "country": "India",
+      "currency": "INR",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.62,
+              "totalCostUsd": 3.08,
+              "received": 47354.56,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 45945.13,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.33,
+              "totalCostUsd": 36.63,
+              "received": 44157.28,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 8.86,
+              "totalCostUsd": 44.3,
+              "received": 43426.46,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 41.22
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.52,
+              "totalCostUsd": 5.17,
+              "received": 94803.47,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 91890.27,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 5.43,
+              "totalCostUsd": 54.3,
+              "received": 90121.57,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.3,
+              "totalCostUsd": 72.97,
+              "received": 88342.29,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 67.8
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.44,
+              "totalCostUsd": 21.89,
+              "received": 474394.72,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 2.69,
+              "totalCostUsd": 134.3,
+              "received": 463682.48,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 459451.33,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.27,
+              "totalCostUsd": 363.69,
+              "received": 441822.4,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 341.8
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-cop",
+      "country": "Colombia",
+      "currency": "COP",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 1.72,
+              "totalCostUsd": 8.6,
+              "received": 1546386.44,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 1517214.68,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 8.77,
+              "totalCostUsd": 43.84,
+              "received": 1435475.54,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 9.32,
+              "totalCostUsd": 46.63,
+              "received": 1426725.59,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 38.03
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 1.54,
+              "totalCostUsd": 15.4,
+              "received": 3098437.3,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 3034429.36,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 5.91,
+              "totalCostUsd": 59.13,
+              "received": 2960839.12,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 8.74,
+              "totalCostUsd": 87.4,
+              "received": 2871862.11,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 72
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 1.4,
+              "totalCostUsd": 69.84,
+              "received": 15514718.31,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 3.18,
+              "totalCostUsd": 159.13,
+              "received": 15233747.38,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 15172146.82,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 8.72,
+              "totalCostUsd": 435.84,
+              "received": 14362954.64,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 366
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-zar",
+      "country": "South Africa",
+      "currency": "ZAR",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.74,
+              "totalCostUsd": 3.72,
+              "received": 8255.08,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 8019.71,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 6.15,
+              "totalCostUsd": 30.77,
+              "received": 7805.11,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.33,
+              "totalCostUsd": 36.63,
+              "received": 7707.64,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 32.91
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.74,
+              "totalCostUsd": 7.43,
+              "received": 16510.33,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 16039.43,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 4.33,
+              "totalCostUsd": 43.27,
+              "received": 15914.15,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.3,
+              "totalCostUsd": 72.97,
+              "received": 15420.13,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 65.54
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.74,
+              "totalCostUsd": 37.15,
+              "received": 82551.66,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 2.87,
+              "totalCostUsd": 143.27,
+              "received": 80786.45,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 80197.13,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.27,
+              "totalCostUsd": 363.69,
+              "received": 77120.01,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 326.54
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-ars",
+      "country": "Argentina",
+      "currency": "ARS",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 2.98,
+              "totalCostUsd": 14.9,
+              "received": 746313.69,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 8.77,
+              "totalCostUsd": 43.84,
+              "received": 701783.33,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 10.26,
+              "totalCostUsd": 51.28,
+              "received": 690351.7,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 36.38
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 2.98,
+              "totalCostUsd": 29.8,
+              "received": 1492627.38,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 6.88,
+              "totalCostUsd": 68.78,
+              "received": 1432665.36,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 8.74,
+              "totalCostUsd": 87.4,
+              "received": 1404012.05,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 57.6
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 2.98,
+              "totalCostUsd": 149,
+              "received": 7463136.89,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 4.18,
+              "totalCostUsd": 208.78,
+              "received": 7371174.61,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 8.72,
+              "totalCostUsd": 435.84,
+              "received": 7021841.8,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 286.84
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-pln",
+      "country": "Poland",
+      "currency": "PLN",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.59,
+              "totalCostUsd": 2.94,
+              "received": 1964.36,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 1905.36,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.8,
+              "totalCostUsd": 39.01,
+              "received": 1821.83,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 9.32,
+              "totalCostUsd": 46.63,
+              "received": 1791.72,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 43.69
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.47,
+              "totalCostUsd": 4.69,
+              "received": 3933.43,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 3810.72,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 5.91,
+              "totalCostUsd": 59.13,
+              "received": 3718.31,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.77,
+              "totalCostUsd": 77.72,
+              "received": 3644.8,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 73.03
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Wise",
+              "totalCostPercent": 0.37,
+              "totalCostUsd": 18.69,
+              "received": 19685.96,
+              "marginEstimated": false
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 3.18,
+              "totalCostUsd": 159.13,
+              "received": 19130.97,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 19053.61,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.75,
+              "totalCostUsd": 387.46,
+              "received": 18228.61,
+              "marginEstimated": false
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 368.77
+        }
+      ]
+    },
+    {
+      "slug": "usd-to-uah",
+      "country": "Ukraine",
+      "currency": "UAH",
+      "amounts": [
+        {
+          "amount": 500,
+          "ranked": [
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 17.87,
+              "received": 21988.51,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 7,
+              "totalCostUsd": 35,
+              "received": 21207.26,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.33,
+              "totalCostUsd": 36.63,
+              "received": 21132.88,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 18.76
+        },
+        {
+          "amount": 1000,
+          "ranked": [
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 3.5,
+              "totalCostUsd": 35,
+              "received": 44010.77,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 35.74,
+              "received": 43977.02,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.3,
+              "totalCostUsd": 72.97,
+              "received": 42279.02,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 37.97
+        },
+        {
+          "amount": 5000,
+          "ranked": [
+            {
+              "provider": "Bank Wire",
+              "totalCostPercent": 0.7,
+              "totalCostUsd": 35,
+              "received": 226438.82,
+              "marginEstimated": true
+            },
+            {
+              "provider": "Payoneer",
+              "totalCostPercent": 3.57,
+              "totalCostUsd": 178.7,
+              "received": 219885.1,
+              "marginEstimated": true
+            },
+            {
+              "provider": "PayPal",
+              "totalCostPercent": 7.27,
+              "totalCostUsd": 363.69,
+              "received": 211448.21,
+              "marginEstimated": true
+            }
+          ],
+          "unranked": [],
+          "gapUsd": 328.69
+        }
+      ]
+    }
+  ]
+}
