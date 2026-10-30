@@ -151,9 +151,9 @@ watermark remover", and are ignored. What survives a sceptical read:
    "model it" (now possible with fee components, but ranking-moving).
 5. [~] **Claude:** add a calculator usage event in PostHog (`calc_run`, with corridor and amount band).
    **Go-ahead given 2026-10-30; built** (`lib/analytics.ts`, one event per Compare press, amount as a band,
-   corridor in the same format as `affiliate_click`). Live once its PR ships; then check PostHog for the
-   first real events, because PostHog sends nothing from an automated browser and it could not be watched
-   in testing.
+   corridor in the same format as `affiliate_click`). **Shipped in PR #76 (77674a1, 2026-10-30).** Left to
+   do: confirm the first real events in PostHog (it sends nothing from an automated browser, so it could
+   not be watched in testing).
    Only `$pageview` and `affiliate_click` exist, so there is no way to see whether people use the tool.
    Needs your go-ahead, since it changes analytics.
 13. [ ] **Claude:** remove the en dash between 3 and 8 in "lose 3 to 8% of every international invoice" on
@@ -161,10 +161,9 @@ watermark remover", and are ignored. What survives a sceptical read:
 14. [x] **You:** decided 2026-10-30: ship the weeks 2 to 3 copy when it is ready, including on Bangladesh,
     Nigeria, the Philippines and Indonesia. The PR #72 read for those four becomes a bundle (titles plus new
     copy), recorded as such; Portugal, Thailand and Georgia keep a clean read as long as no copy lands on them.
-16. [~] **You:** disavow file received 2026-10-30 and committed as `docs/seo/disavow.txt` (26 domains,
+16. [x] **You:** Manual actions report checked 2026-10-30: no issues. Disavow file received 2026-10-30 and committed as `docs/seo/disavow.txt` (26 domains,
     prepared 2026-10-26). Of the 29 referring domains on 2026-10-30, only seopxl-ranking-boost-lab.shop (first
-    seen 2026-10-28) is not in it; adding it is optional (measurement rule 6). Still to do: the Manual actions
-    check below. Original item: send Claude the current disavow file so it can be committed as `docs/seo/disavow.txt` (spam
+    seen 2026-10-28) is not in it; adding it is optional (measurement rule 6). Original item: send Claude the current disavow file so it can be committed as `docs/seo/disavow.txt` (spam
     domain names only). Without it nobody can tell which of the 29 referring domains are already disavowed.
     Also open Search Console's Manual actions report once and note the result here. Effort S.
 17. [x] **Claude:** AI-referral baseline from PostHog, read 2026-10-30 ($pageview on paidacross.com, 90 days,
