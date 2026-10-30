@@ -5,7 +5,7 @@ are done, and add the PR number or date, so the next session starts from the tru
 memory. Fact-checking rules for anything that touches page copy live in AGENTS.md and still apply:
 verifier, then reviewer, then humanizer, and ranking-moving changes go to the owner.
 
-Last updated: 2026-10-29 (third revision, after PR #72 and the first SEO agent audit).
+Last updated: 2026-10-30 (fourth revision, after the fourth video batch, rows 133 to 145, and the first backlink-gap run).
 
 Legend: `[x]` done, `[~]` in progress or partly done, `[ ]` not started. Owner is **You** (site owner)
 or **Claude** (a session in this repo).
@@ -51,6 +51,10 @@ Bing Webmaster (2026-09-07 to 2026-10-26): about 100 impressions and 1 click, ma
 chatbot-style questions where the site ranks 1 to 7. Crawl issues reported on 2026-10-29: none.
 
 Backlinks: 28 referring domains, 26 of them link-farm spam (disavowed). There are no editorial links yet.
+On 2026-10-30 OpenRush shows 29: 27 of the same link-farm pattern plus two startup-launch directories
+(launchintel.pro, startuptile.com). The newest three (seolinkagency.shop 2026-10-22, seopxl-organic-boost-lab.shop
+2026-10-26, seopxl-ranking-boost-lab.shop 2026-10-28) may not be in the disavow file, which is not in the repo,
+so nobody can check. Still no editorial links.
 
 The zero-impression country pages are indexed (owner checked India and Brazil on 2026-10-29). The cause
 is demand, not indexing: English searches for receiving money in India are tiny (about 40 a month), and
@@ -94,9 +98,11 @@ Brazil searches in Portuguese ("como receber dinheiro do exterior", about 1,000 
 - [x] **Bing Webmaster connected**, sitemap resubmitted and all 24 URLs submitted, 2026-10-29.
 - [x] **Search Console, Bing and OpenRush data pulled**; refreshed 2026-10-29 for the table above.
 - [x] **Corridor vs rate page cannibalization checked for Pakistan: none.**
-- [x] **Video research, three rounds**: 89 SEO reels, then 7 Facebook links and 6 Payoneer YouTube videos,
+- [x] **Video research, four rounds**: 89 SEO reels, then 7 Facebook links and 6 Payoneer YouTube videos,
   then 18 more Facebook reels on 2026-10-29 (reels ids 115 to 132). What the third round changed is in
-  the section below.
+  the section below. Fourth round, 13 reels on 2026-10-30 (ids 133 to 145; 143 and 144 had no speech):
+  classified in KNOWLEDGE.md (tactics 70 to 73, section 3b); its main finding is that FAQ rich results
+  ended for every site on 2026-05-07, which changes nothing on the site.
 - [x] **Releases are recorded** in `RELEASES.md` with the verification run and the rollback point.
 
 ## What the third video batch changed
@@ -148,6 +154,18 @@ watermark remover", and are ignored. What survives a sceptical read:
     `/about/author` (AGENTS.md no-dash rule; found by the 2026-10-29 audit). Humanizer pass, no claim change.
 14. [ ] **You:** decide how the weeks 2 to 3 copy work meets the PR #72 measurement window (see the note
     under Weeks 2 to 3).
+16. [ ] **You:** send Claude the current disavow file so it can be committed as `docs/seo/disavow.txt` (spam
+    domain names only). Without it nobody can tell which of the 29 referring domains are already disavowed.
+    Also open Search Console's Manual actions report once and note the result here. Effort S.
+17. [x] **Claude:** AI-referral baseline from PostHog, read 2026-10-30 ($pageview on paidacross.com, 90 days,
+    by referring domain). Three AI referrals: chatgpt.com to `/receive/usd-to-php` (2026-08-23),
+    copilot.microsoft.com to `/receive/usd-to-php` (2026-08-25), www.perplexity.ai to `/receive/usd-to-thb`
+    (2026-09-17). For scale: $direct 351 pageviews (117 visitors), www.google.com 54 (49). Too few to measure;
+    this is the baseline the monthly read (SKILL.md Mode 1, step 7b) compares against. AI apps often send no
+    referrer, so the true number is at least three, not three.
+18. [ ] **You:** confirm that we leave Search Console's "Search generative AI control" (documented
+    2026-10-21) at its default, so the site stays eligible for AI Overviews and AI Mode. Our visible demand
+    is chatbot-style queries. Effort S.
 
 ### Weeks 2 to 3 (2026-11-05 to 2026-11-19)
 
@@ -168,10 +186,17 @@ read for those pages is a bundle.
    Supadata pipeline used for these reels) and turns them into a short "from experience" paragraph per
    corridor, through the humanizer and with your approval of every line. This replaces the written
    20-minute interview.
-7. [ ] **Claude:** backlink gap against Skydo, Statrys and Xflowpay (OpenRush `compare_backlink_gap`), plus
+7. [~] **Claude:** backlink gap against Skydo, Statrys and Xflowpay (OpenRush `compare_backlink_gap`), plus
    their top pages by traffic. Output: an outreach list in this repo of places worth a link (fintech
    comparisons, freelancer resource lists, university and community guides), each with how to get
    listed. Directories that exist only to sell links stay off it.
+   **Gap run done 2026-10-30** (with exiap.com and monito.com added): 257 gap domains, not usable as an
+   outreach list. Its four "earned" rows are the link farms that also link to us, four of five competitor
+   lists hit the 1,000-row cap, and the top 60 are mostly scrapers, AI-summary sites, shorteners,
+   directories and unrelated or compromised sites. Left to do: pull the linking URLs for ctc.edu.za,
+   creditosenusa.com, globalecommerce.org, oppalerts.com, biyapay.com and grokipedia.com and open them by
+   hand; build the outreach list from the categories in KNOWLEDGE.md section 3b instead (career offices,
+   freelancer communities, regional tech press, journalist requests) as `docs/seo/outreach.md`. Effort M.
 8. [ ] **You:** launch the calculator where builders look, one per week rather than all at once: Show HN
    ("I priced what freelancers in 17 countries lose getting paid", with the data), r/SideProject,
    Product Hunt on a Tuesday to Thursday, Indie Hackers, Uneed. Claude drafts each post; you post from
@@ -201,11 +226,20 @@ read for those pages is a bundle.
   quoting Payoneer "up to 2%"), plus two helpful Reddit or Quora answers a week from a branded account
   that says who you are. Never astroturf.
 - [ ] **You:** sign up to Qwoted and Featured.com and answer journalist requests on international payments.
+- [ ] **You:** from mid-December 2026, if you belong to large public freelancer Discord servers for our
+  countries, answer there under the Reddit rules (branded name, say who you are, link only when the page
+  answers the exact question). No server of our own: Discord indexes only servers with at least 1,000
+  members that are at least eight weeks old. **Claude** checks in January 2027 whether Discord pages appear
+  in the SERP for corridor queries (KNOWLEDGE.md tactic 72).
 - [ ] **Claude (rotation):** the daily verification job keeps running. When it corrects a fact that the
   pillar, the sender page or a rate page repeats, carry the change there by hand. Check that main
   actually moves, not the trigger's "succeeded" status.
-- [ ] **You:** monthly, re-check Bing and Search Console for new spam domains and re-upload the full
-  disavow list if any appear.
+- [ ] **You:** monthly, open Search Console's Manual actions report. Re-upload the disavow list only if
+  there is a manual action, or if spam domains grow to the point where one looks likely (Google's test:
+  https://support.google.com/webmasters/answer/2648487, "most sites will not need to use this tool").
+  Adding the newest link-farm domains is optional and harmless; if you re-upload, upload the whole list,
+  because a new upload replaces the old one. Claude lists new referring domains in the first audit of each
+  month (SKILL.md Mode 1, step 7a) against `docs/seo/disavow.txt`.
 
 ### Checkpoint: 2026-11-30 (moved from 2026-11-23)
 
@@ -231,10 +265,17 @@ draw no conclusion.
 
 - [ ] **Claude:** one linkable data asset, "What freelancers lose getting paid in 17 countries", built
   from `calculate()` and the frozen-rate fixture, so every number is reproducible. This is also the
-  thing to pitch in the daily emails and the Show HN post.
+  thing to pitch in the daily emails and the Show HN post. Build it as the first edition of a dated index
+  (KNOWLEDGE.md section 3b): a stated method, the rate date, a downloadable CSV, a "how to cite" line, and
+  comparable rows only (`isComparable()`), with unranked rows shown separately and labelled. Every number
+  through verifier and reviewer; any "cheapest in country X" claim is ranking-moving and goes to you.
+  **You** decide after the first edition whether to repeat it quarterly (next would be 2027-03); each
+  edition costs a full verification pass.
 - [ ] **You + Claude:** a few 30-second corridor videos ("what $1,000 from a US client becomes in
   pesos") using your voice-memo answers, linking to each page. YouTube is the most-cited source in AI
-  answers for this topic (46 citations). A handful done properly, not a daily stream.
+  answers for this topic (46 citations). A handful done properly, not a daily stream. Open on the
+  number, on screen in the first second (the only usable point of reels 134 and 137); it must match the
+  page on the day it is posted, and the description links to the page with the rate date.
 
 ### Q1 2027, decisions rather than tasks
 
@@ -257,3 +298,7 @@ draw no conclusion.
   Business Profile, which this site does not have.
 - **"AI watermark removal" tools.** The humanizer pass is for readable copy, not for disguising anything.
 - **A high-volume AI video "content engine".** The bottleneck is trust and accuracy, not volume.
+- **Removing FAQPage JSON-LD because Google ended FAQ rich results (2026-05-07).** It matches visible
+  text, costs nothing, and removing it is a protected JSON-LD change with nothing to gain.
+- **Scholarship pages, paid "resource page" placements, keyword-anchored links in embeddable widgets, and
+  bought links on link marketplaces (PressWiz in reel 139).** Link spam under Google's policy.

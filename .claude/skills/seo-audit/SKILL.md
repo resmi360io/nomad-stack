@@ -34,12 +34,41 @@ export PW_CHROMIUM=/opt/pw-browsers/chromium   # cloud sessions only; omit local
    updates weekly; its long, chatbot-style queries are the best view we have of real wording.
    Use only these read tools. Never call a Hermoso tool that publishes, posts, spends or submits as part
    of an audit.
-7. **Update sources.** `curl -s https://status.search.google.com/incidents.json > $RUN/google-incidents.json`
-   and `curl -sL -A "Mozilla/5.0" https://blogs.bing.com/webmaster/feed/ > $RUN/bing-feed.xml`.
+7. **Update sources.** `curl -s https://status.search.google.com/incidents.json > $RUN/google-incidents.json`,
+   `curl -sL -A "Mozilla/5.0" https://blogs.bing.com/webmaster/feed/ > $RUN/bing-feed.xml` and
+   `curl -sL https://developers.google.com/search/updates > $RUN/google-doc-updates.html`. The last is Google's
+   documentation changelog: the end of FAQ rich results (2026-05-07) was posted there and never on the blog.
+7a. **New referring domains (first audit of each month).** OpenRush `inspect_backlinks` for `paidacross.com`,
+   views `referring_domains`, saved as `$RUN/backlinks.json`. Write every domain whose `first_seen` is after the
+   previous report's date and that is not in `docs/seo/disavow.txt` to `$RUN/new-referring-domains.txt` (domain,
+   first_seen, spam score). The analyst classifies each (link-farm pattern, editorial, unknown) and applies
+   KNOWLEDGE.md measurement rule 6. Never upload a disavow file from a session; that is the owner's job.
+7b. **AI referrals (first audit of each month; interactive sessions only).** PostHog is a separate MCP from
+   OpenRush and Hermoso, so the scheduled host cannot run this either. HogQL, saved as `$RUN/ai-referrals.json`:
+   ```sql
+   SELECT properties.$referring_domain AS source, properties.$pathname AS page,
+          count() AS pageviews, count(DISTINCT person_id) AS visitors
+   FROM events
+   WHERE event = '$pageview'
+     AND properties.$host = 'paidacross.com'
+     AND properties.$referring_domain IN ('chatgpt.com', 'www.perplexity.ai', 'perplexity.ai',
+                                          'copilot.microsoft.com', 'gemini.google.com', 'claude.ai')
+     AND timestamp >= now() - INTERVAL 28 DAY
+   GROUP BY source, page
+   ORDER BY pageviews DESC
+   ```
+   Record total `$pageview` count for the same 28 days and host as the denominator. Baseline (90 days to
+   2026-10-30): 3 AI referrals (SEO_PLAN item 17). The analyst reads it under measurement rule 13.
+7c. **Backlink gap (first audit of January, April, July and October; next 2027-01-04).** OpenRush
+   `compare_backlink_gap` for `paidacross.com` against exiap.com, statrys.com, monito.com, skydo.com and
+   xflowpay.com with `min_competitors 2`, `min_authority 100`, `max_spam 30`, saved as `$RUN/backlink-gap.json`.
+   Save a slim list (domain, authority, spam, competitor count) as `docs/seo/backlink-gap-latest.txt` in the step
+   10 commit and give the analyst the previous one. It reports only rows new since the last run and names at most
+   six to open by hand; the list itself is never an outreach list.
 8. If a connector or source is unavailable, write one line saying so into `$RUN/unavailable.txt` and
    carry on. A partial audit is better than none; the report must say what it could not see. The
    scheduled host has no MCP connectors at all (see KNOWLEDGE.md section 0), so on a scheduled run
-   steps 5 and 6 are expected to be unavailable: check once with ToolSearch, record it, never fill
+   steps 5, 6, 7a, 7b and 7c are expected to be unavailable: check once with ToolSearch, record it, never fill
    the gap with guessed numbers. An interactive session with the connectors can add them later.
 9. **Invoke `seo-analyst`** in AUDIT and WATCH modes (one call), giving it `$RUN` and today's date. It
    returns the report.
@@ -70,7 +99,10 @@ headings, page copy, internal links, `app/sitemap.ts`, `app/robots.ts` or JSON-L
    `node scripts/seo/checks.mjs $RUN/after/seo.json > $RUN/checks.txt`.
 5. `git diff origin/main...HEAD > $RUN/git-diff.patch`
 6. Invoke `seo-analyst` in REVIEW mode with `$RUN`. Put its verdict and the protected-items list in the
-   pull request body. HOLD means do not ship until fixed or the owner overrides in writing.
+   pull request body. HOLD means do not ship until fixed or the owner overrides in writing. The analyst
+   also checks that any outbound provider link the change adds carries `rel="sponsored"` when it is an
+   affiliate link (Google's link spam policy; today's links in `components/ResultsTable.tsx` and
+   `app/rates/[pair]/page.tsx` do).
 7. Stop the server: `fuser -k 3457/tcp`.
 
 ## Mode 3: new videos or articles from the owner
@@ -85,7 +117,8 @@ The point of KNOWLEDGE.md is that nobody re-watches anything. When the owner sen
 2. Give the transcripts (row ids and text) to `seo-analyst` in WATCH mode, asking it to classify each
    new tactic against the existing catalogue: already covered (add the row ids as more evidence), new
    (propose a catalogue row with a verdict), or contradicting a verdict (propose the change with
-   evidence, which needs a primary source to flip).
+   evidence, which needs a primary source to flip). Any "Google announced" claim in a video is checked
+   against https://developers.google.com/search/updates and the blog before it is classified.
 3. Apply its KNOWLEDGE.md edits, add the rows to the Source index, commit, open a PR.
 
 ## Rules that always hold
