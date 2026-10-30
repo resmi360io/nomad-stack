@@ -5,6 +5,8 @@ is the release identifier. Record each release here when it ships, with how it w
 
 | Date (UTC) | Commit on `main` | PR | What | Verified |
 |---|---|---|---|---|
+| 2026-10-30 | `df96bf48168d57c4e37e98011113ab502e0a39ae` | #78 | Rate pages: Payoneer fee wording aligned (item 19); Bing AI baseline | Live HTML of all 24 URLs matched the tested build (0 differences); `npm run test:e2e` 14/14 against https://paidacross.com. |
+| 2026-10-30 | `3b205c746298f8b747642f46a32928ef8b0759c8` | #77 | Titles and descriptions; five review-based FAQs and Payoneer corrections (PK, BD, NG, PH); Payoneer 1 USD minimum (owner-approved); outreach agent; launch drafts | Live HTML of all 24 URLs matched the tested build (0 differences); `npm run test:e2e` 14/14 against https://paidacross.com. |
 | 2026-10-30 | `77674a18c4272f35588718daf94f0b9a90c73528` | #76 | Calculator usage event `calc_run` (client analytics only); plan decisions | SEO diff of live vs the 2026-10-29 baseline: routes, statuses, robots, titles, canonicals, headings and links identical (only live-rate numbers differ); `npm run test:e2e` 14/14 against https://paidacross.com; `calc_run` present in the served bundle. |
 | 2026-10-30 | `f68a11a613be580b814c753858fb9d4326515046` | #75 | Docs only: fourth video batch in KNOWLEDGE.md, promotion and backlink plan, audit steps 7a to 7c, disavow file committed | Key routes 200 after deploy; no site code changed. |
 | 2026-10-30 | `4356e3a068c7e7e277cb838717ff6de0cca189fb` | #74 | Docs only: scheduled SEO host and trigger recorded, no-connector fallback in the seo-audit skill | Key routes 200 after deploy; no site code changed. |
@@ -16,7 +18,7 @@ is the release identifier. Record each release here when it ships, with how it w
 | 2026-10-29 | `bef6577c88298ff753254d3dd4d6162138511c71` | #68 | Passbook redesign, iteration 1 | Smoke test of key routes after deploy. |
 | 2026-10-29 | `5d869fc` | #67 | Last release before any redesign | n/a |
 
-**Current production: `77674a1`. Rollback point: `f68a11a`** (the release before it; it differs only by the `calc_run` event, so rolling back loses nothing a reader sees). The next release must not merge until the owner approves it.
+**Current production: `df96bf4`. Rollback point: `3b205c7`** (prose-only release before it). The last release before today's data and copy changes is `77674a1`.
 
 ## How to roll back
 
