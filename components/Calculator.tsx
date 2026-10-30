@@ -8,6 +8,8 @@ import { PROVIDERS } from '@/data/providers';
 import type { CountryCode, Currency } from '@/data/providers';
 import type { Quote } from '@/lib/calculate';
 import { useLiveRates } from '@/hooks/useLiveRates';
+import { calcRunProperties } from '@/lib/analytics';
+import posthog from 'posthog-js';
 
 interface Props {
   defaultSrc?: CountryCode;
@@ -39,6 +41,8 @@ export function Calculator({ defaultSrc, defaultDest }: Props = {}) {
     setResult({ quotes, src, dest, destCurrency, amount, rateDate: ratesState.rateDate });
     setStale(false);
     setAnnouncement(`Results updated. ${describeResults(quotes)}`);
+    // One event per Compare press (the form submits nothing on its own), with the amount as a band.
+    posthog.capture('calc_run', calcRunProperties(quotes, src, dest, destCurrency, amount));
   }
 
   function handleInputsChange() {

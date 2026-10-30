@@ -149,13 +149,18 @@ watermark remover", and are ignored. What survives a sceptical read:
    or model a minimum and let Wise rank first at small amounts.
 4. [x] **You:** decided 2026-10-30: leave as is ("warning only" stays live). The Payoneer minimum fee elsewhere: "warning only" (recommended, live) or
    "model it" (now possible with fee components, but ranking-moving).
-5. [ ] **Claude:** add a calculator usage event in PostHog (`calc_run`, with corridor and amount band).
+5. [~] **Claude:** add a calculator usage event in PostHog (`calc_run`, with corridor and amount band).
+   **Go-ahead given 2026-10-30; built** (`lib/analytics.ts`, one event per Compare press, amount as a band,
+   corridor in the same format as `affiliate_click`). Live once its PR ships; then check PostHog for the
+   first real events, because PostHog sends nothing from an automated browser and it could not be watched
+   in testing.
    Only `$pageview` and `affiliate_click` exist, so there is no way to see whether people use the tool.
    Needs your go-ahead, since it changes analytics.
 13. [ ] **Claude:** remove the en dash between 3 and 8 in "lose 3 to 8% of every international invoice" on
     `/about/author` (AGENTS.md no-dash rule; found by the 2026-10-29 audit). Humanizer pass, no claim change.
-14. [ ] **You:** decide how the weeks 2 to 3 copy work meets the PR #72 measurement window (see the note
-    under Weeks 2 to 3).
+14. [x] **You:** decided 2026-10-30: ship the weeks 2 to 3 copy when it is ready, including on Bangladesh,
+    Nigeria, the Philippines and Indonesia. The PR #72 read for those four becomes a bundle (titles plus new
+    copy), recorded as such; Portugal, Thailand and Georgia keep a clean read as long as no copy lands on them.
 16. [~] **You:** disavow file received 2026-10-30 and committed as `docs/seo/disavow.txt` (26 domains,
     prepared 2026-10-26). Of the 29 referring domains on 2026-10-30, only seopxl-ranking-boost-lab.shop (first
     seen 2026-10-28) is not in it; adding it is optional (measurement rule 6). Still to do: the Manual actions
@@ -179,7 +184,7 @@ Nigeria, the Philippines and Indonesia, four of the seven PR #72 pages, inside t
 breaks KNOWLEDGE.md measurement rule 4. Recommended: record the voice memos now, but hold new body
 copy on those four pages until the PR #72 decision read (2026-12-24 at the earliest), and work on
 Pakistan, the pillar and the corridors outside PR #72 first. If you would rather ship, record that the
-read for those pages is a bundle.
+read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pages are read as a bundle.**
 
 15. [ ] **Claude:** shorten the titles over 60 characters on the eight zero-impression corridors (MXN, BRL,
     UZS, COP, ZAR, ARS, PLN, UAH) and the ZAR (177) and homepage (164) descriptions. Pakistan's title (63),
