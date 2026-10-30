@@ -5,6 +5,7 @@ is the release identifier. Record each release here when it ships, with how it w
 
 | Date (UTC) | Commit on `main` | PR | What | Verified |
 |---|---|---|---|---|
+| 2026-10-30 | `3c39af9ccb360393364c1091a45b787853ba34c8` | #79 | Cost index page and CSV; pillar multi-country and tracking sections; PK salary FAQ; estimate policy; Wise PH flagged (owner); MIT and CC BY 4.0 licences (owner) | Live HTML of all 25 URLs matched the tested build (0 differences); CSV 200 text/csv; `npm run test:e2e` 14/14 against https://paidacross.com. |
 | 2026-10-30 | `df96bf48168d57c4e37e98011113ab502e0a39ae` | #78 | Rate pages: Payoneer fee wording aligned (item 19); Bing AI baseline | Live HTML of all 24 URLs matched the tested build (0 differences); `npm run test:e2e` 14/14 against https://paidacross.com. |
 | 2026-10-30 | `3b205c746298f8b747642f46a32928ef8b0759c8` | #77 | Titles and descriptions; five review-based FAQs and Payoneer corrections (PK, BD, NG, PH); Payoneer 1 USD minimum (owner-approved); outreach agent; launch drafts | Live HTML of all 24 URLs matched the tested build (0 differences); `npm run test:e2e` 14/14 against https://paidacross.com. |
 | 2026-10-30 | `77674a18c4272f35588718daf94f0b9a90c73528` | #76 | Calculator usage event `calc_run` (client analytics only); plan decisions | SEO diff of live vs the 2026-10-29 baseline: routes, statuses, robots, titles, canonicals, headings and links identical (only live-rate numbers differ); `npm run test:e2e` 14/14 against https://paidacross.com; `calc_run` present in the served bundle. |
@@ -18,7 +19,7 @@ is the release identifier. Record each release here when it ships, with how it w
 | 2026-10-29 | `bef6577c88298ff753254d3dd4d6162138511c71` | #68 | Passbook redesign, iteration 1 | Smoke test of key routes after deploy. |
 | 2026-10-29 | `5d869fc` | #67 | Last release before any redesign | n/a |
 
-**Current production: `df96bf4`. Rollback point: `3b205c7`** (prose-only release before it). The last release before today's data and copy changes is `77674a1`.
+**Current production: `3c39af9`. Rollback point: `df96bf4`** (the release before it). Rolling back removes the cost index page and its CSV, so check whether anyone has cited the CSV first.
 
 ## How to roll back
 
