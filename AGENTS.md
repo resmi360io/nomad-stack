@@ -237,6 +237,37 @@ Tests: `npm test` (engine, real-data scenarios, formatting; frozen rates in `tes
 sessions). `node --experimental-strip-types tests/snapshot-quotes.ts` prints every quote for every
 corridor and amount; diff it before and after a data change to see exactly what moved.
 
+## The SEO agent (since 2026-10-29)
+
+SEO has its own agent, `seo-analyst` (`.claude/agents/seo-analyst.md`, read-only, opus), its own
+procedure (`.claude/skills/seo-audit/SKILL.md`) and its own memory (`docs/seo/KNOWLEDGE.md`). The
+knowledge file holds every tactic from about 150 SEO videos with a verdict for this site, so nobody
+re-watches or re-transcribes them; new material is added to it once, through the skill's Mode 3.
+
+- **Before shipping any change that touches routes, metadata, titles, descriptions, headings, page copy,
+  internal links, the sitemap, robots or JSON-LD, run the skill's REVIEW mode** and put the verdict in
+  the pull request. It snapshots production and a local build of the change with
+  `scripts/seo/snapshot.mjs`, diffs them with `scripts/seo/diff.mjs` (exit code 1 means a protected
+  item regressed: a route, status, canonical, robots directive, heading, link or anchor id), and the
+  analyst returns SHIP, SHIP WITH CHANGES or HOLD. This is the gate every release since PR #68 went
+  through by hand; it is now a script.
+- **A weekly audit** runs on a schedule (see "The scheduled SEO audit" below): crawl, technical checks
+  (`scripts/seo/checks.mjs`), Search Console and Bing, the Google Search Status Dashboard and the Bing
+  webmaster feed. It writes `docs/seo/reports/YYYY-MM-DD.md`, updates `SEO_PLAN.md` and
+  `docs/seo/snapshots/latest.json`, and opens a pull request it does not merge.
+- **It adjusts itself only through sourced, dated edits** to `docs/seo/KNOWLEDGE.md` (its Changelog
+  records every one). A verdict changes only on a primary source: Google Search Central, the Search
+  Status Dashboard, or Bing's own documentation.
+- The analyst never edits files, and audits never call a publish, submit or spend tool on any MCP.
+
+### The scheduled SEO audit
+
+Runs weekly in its own persistent host session (created with `source_url` so the agent and the skill
+load, for the same reason the rotation needs one; see the rotation section). It is separate from the
+rotation host on purpose: the two would otherwise fight over one context window and one working tree.
+The trigger and host ids are recorded in `docs/seo/KNOWLEDGE.md` under "Operations". Check a run by
+reading the PR it opened, not the trigger's status.
+
 ## Provider rate pages (`/rates/[pair]`) are NOT in the rotation yet
 
 Added 2026-10-26. `data/ratePages.ts` holds provider-specific pages targeting the one query

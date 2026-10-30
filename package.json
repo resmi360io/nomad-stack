@@ -9,7 +9,10 @@
     "lint": "eslint",
     "test": "node --experimental-strip-types --no-warnings --test tests/*.test.ts",
     "typecheck": "tsc --noEmit -p .",
-    "test:e2e": "node --test tests/e2e/*.e2e.mjs"
+    "test:e2e": "node --test tests/e2e/*.e2e.mjs",
+    "seo:snapshot": "node scripts/seo/snapshot.mjs",
+    "seo:diff": "node scripts/seo/diff.mjs",
+    "seo:checks": "node scripts/seo/checks.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
