@@ -156,8 +156,9 @@ watermark remover", and are ignored. What survives a sceptical read:
    not be watched in testing).
    Only `$pageview` and `affiliate_click` exist, so there is no way to see whether people use the tool.
    Needs your go-ahead, since it changes analytics.
-13. [ ] **Claude:** remove the en dash between 3 and 8 in "lose 3 to 8% of every international invoice" on
+13. [x] **Claude:** remove the en dash between 3 and 8 in "lose 3 to 8% of every international invoice" on
     `/about/author` (AGENTS.md no-dash rule; found by the 2026-10-29 audit). Humanizer pass, no claim change.
+    **Done 2026-10-30** (same PR as item 15).
 14. [x] **You:** decided 2026-10-30: ship the weeks 2 to 3 copy when it is ready, including on Bangladesh,
     Nigeria, the Philippines and Indonesia. The PR #72 read for those four becomes a bundle (titles plus new
     copy), recorded as such; Portugal, Thailand and Georgia keep a clean read as long as no copy lands on them.
@@ -188,7 +189,14 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
 15. [ ] **Claude:** shorten the titles over 60 characters on the eight zero-impression corridors (MXN, BRL,
     UZS, COP, ZAR, ARS, PLN, UAH) and the ZAR (177) and homepage (164) descriptions. Pakistan's title (63),
     the pillar description (168) and the PKR rate page description (177) wait until after the checkpoint,
-    because those pages are inside a measurement window. Humanizer and `updatedDate` bump.
+    because those pages are inside a measurement window. Humanizer pass.
+    **Done 2026-10-30 (REVIEW: SHIP WITH CHANGES, applied):** titles now "Receive USD in {Country}: real
+    costs (2026)" (South Africa exactly 60), ZAR description 149, homepage description 157. `updatedDate`
+    deliberately NOT bumped: only head metadata changed, the page body did not, and the date feeds the
+    visible "Last updated" line, `dateModified` and the sitemap `<lastmod>` (Google uses lastmod only when it
+    is "consistently and verifiably" accurate). No further title edits on these 8 before 2026-12-25
+    (measurement rule 2). The homepage read for the redesign window is now a bundle with this description
+    change (rule 4).
 
 6. [ ] **You + Claude:** expert answers by voice. Claude sends five questions per corridor group (PK and
    BD, NG, PH and ID); you answer each in a 2-minute voice memo; Claude transcribes them (the same
@@ -285,6 +293,10 @@ draw no conclusion.
   answers for this topic (46 citations). A handful done properly, not a daily stream. Open on the
   number, on screen in the first second (the only usable point of reels 134 and 137); it must match the
   page on the day it is posted, and the description links to the page with the rate date.
+
+- [ ] **You + Claude:** every corridor title carries "2026". Decide before 2027-01-01 whether to change the
+  year (a title change on all 17 pages, several inside measurement windows) or drop it from titles. Route
+  through REVIEW mode either way.
 
 ### Q1 2027, decisions rather than tasks
 

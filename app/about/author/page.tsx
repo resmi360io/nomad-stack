@@ -71,7 +71,7 @@ export default function AuthorPage() {
           </p>
           <p>
             Paid Across started as a personal spreadsheet. I was watching colleagues and
-            friends (developers, designers, consultants) quietly lose 3–8% of every
+            friends (developers, designers, consultants) quietly lose 3 to 8% of every
             international invoice to fees and FX spread. Not because the providers were
             dishonest, but because the cost structure was opaque. Most people do not know the
             difference between a percentage fee and an FX markup, and they certainly do not

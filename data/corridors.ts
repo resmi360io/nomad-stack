@@ -926,7 +926,7 @@ export const CORRIDORS: Corridor[] = [
     destination: 'MXN',
     destCountry: 'MX',
     country: 'Mexico',
-    title: 'Receive USD in Mexico: real costs compared 2026',
+    title: 'Receive USD in Mexico: real costs (2026)',
     metaDescription:
       'Compare the real cost of receiving USD in Mexico. Wise does not sell residents its multi-currency account, and three of the best options publish no FX rate.',
     h1: 'How to receive USD in Mexico: what works, what the guides get wrong, and the IVA trap',
@@ -1045,7 +1045,7 @@ export const CORRIDORS: Corridor[] = [
     destination: 'BRL',
     destCountry: 'BR',
     country: 'Brazil',
-    title: 'Receive USD in Brazil: real costs compared 2026',
+    title: 'Receive USD in Brazil: real costs (2026)',
     metaDescription:
       'Compare the real cost of receiving USD in Brazil. The 3.5% IOF everyone quotes is outbound: export receipts are zero rated. Live rates and a worked example.',
     h1: 'How to receive USD in Brazil: the IOF myth, the Wise contradiction, and what it actually costs',
@@ -1182,7 +1182,7 @@ export const CORRIDORS: Corridor[] = [
     destination: 'UZS',
     destCountry: 'UZ',
     country: 'Uzbekistan',
-    title: 'Receive USD in Uzbekistan: real costs compared 2026',
+    title: 'Receive USD in Uzbekistan: real costs (2026)',
     metaDescription:
       'Compare the real cost of receiving USD in Uzbekistan. Wise cannot hold money there and the transfer apps bar business use. An Uzbek dollar account wins.',
     h1: 'How to receive USD in Uzbekistan: why IT Park is the wrong answer for freelancers',
@@ -1464,7 +1464,7 @@ export const CORRIDORS: Corridor[] = [
     destination: 'COP',
     destCountry: 'CO',
     country: 'Colombia',
-    title: 'Receive USD in Colombia: real costs compared 2026',
+    title: 'Receive USD in Colombia: real costs (2026)',
     metaDescription:
       'Compare the real cost of receiving USD in Colombia. No declaracion de cambio on service exports, but no dollar account either, and IVA has a checklist.',
     h1: 'How to receive USD in Colombia: free to arrive, hard to keep in dollars',
@@ -1598,9 +1598,9 @@ export const CORRIDORS: Corridor[] = [
     destination: 'ZAR',
     destCountry: 'ZA',
     country: 'South Africa',
-    title: 'Receive USD in South Africa: real costs compared 2026',
+    title: 'Receive USD in South Africa: real costs (2026)',
     metaDescription:
-      'Compare the real cost of receiving USD in South Africa. Bring it home in 30 days, then hold the dollars onshore rather than converting. Plus the BOP code your bank will ask for.',
+      'What receiving USD in South Africa really costs. Bring it home within 30 days, keep it in dollars if you want, and give your bank the right BOP code.',
     h1: 'How to receive USD in South Africa: repatriate, but do not convert',
     intro:
       'South Africa still runs exchange control, and almost everything written about what that means for a freelancer is wrong in the same direction. Here is the shape of it. You do have to bring the money home: the Reserve Bank\'s manual for authorised dealers says a resident holding foreign currency outside South Africa must, unless exempted elsewhere in the manual, offer to sell it to an authorised dealer within 30 days of becoming entitled to it. There is an exemption and it is worth knowing why it will not help you. The manual exempts a resident individual\'s foreign earned income, which it defines as income on approved foreign assets or income for services rendered to non-residents while physically abroad. A freelancer working from a desk in South Africa is not physically abroad, so the 30 day clock applies. What you do not have to do is convert. The manual provides for a plain foreign currency account for a resident individual, allows withdrawals from it through any authorised banking product, and says funds withdrawn may also be converted to rand, which reads as one option rather than a duty. And the 30 day obligation is written against currency held outside South Africa, which money in a South African bank account is not. Putting those together is our reading rather than a sentence the manual states about individual accounts. Repatriate, do not convert. There is a catch in the account you hold it in, and it is not the one people expect. A Customer Foreign Currency account, the instrument everyone names, is open only to South African entities that are legal persons, so a sole trader cannot have one. What a resident individual gets instead is the plain foreign currency account above, which the manual provides for separately and which does the job. Incorporate and the CFC opens up, and for a CFC the manual says outright that clients may retain funds without the obligation to convert into rand. The other thing to know before you read the table is that your bank will ask you for a balance of payments category code on every inbound payment, and it reports whatever it picks to the Reserve Bank and, by your own consent on the form, to SARS. Getting that code right is free. Getting it wrong tells the taxman you are employed by a foreign company.',
@@ -1716,7 +1716,7 @@ export const CORRIDORS: Corridor[] = [
     destination: 'ARS',
     destCountry: 'AR',
     country: 'Argentina',
-    title: 'Receive USD in Argentina: real costs compared 2026',
+    title: 'Receive USD in Argentina: real costs (2026)',
     metaDescription:
       'Compare the real cost of receiving USD in Argentina. You can keep every dollar, there is no annual cap, and your bank may not charge you to receive it.',
     h1: 'How to receive USD in Argentina: you can keep the dollars now',
@@ -1829,7 +1829,7 @@ export const CORRIDORS: Corridor[] = [
     destination: 'PLN',
     destCountry: 'PL',
     country: 'Poland',
-    title: 'Receive USD in Poland: real costs compared 2026',
+    title: 'Receive USD in Poland: real costs (2026)',
     metaDescription:
       'Compare the real cost of receiving USD in Poland. No exchange control, a transfer that costs well under 1%, and the e-invoicing rule that changed in April 2026.',
     h1: 'How to receive USD in Poland: the transfer is cheap, the tax choice is not',
@@ -1942,7 +1942,7 @@ export const CORRIDORS: Corridor[] = [
     destination: 'UAH',
     destCountry: 'UA',
     country: 'Ukraine',
-    title: 'Receive USD in Ukraine: real costs compared 2026',
+    title: 'Receive USD in Ukraine: real costs (2026)',
     metaDescription:
       'Compare the real cost of receiving USD in Ukraine. No forced conversion, your bank charges nothing to receive it, and Wise cannot give you an account.',
     h1: 'How to receive USD in Ukraine: nobody makes you convert, and Wise will not take you',
