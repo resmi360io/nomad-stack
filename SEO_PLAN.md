@@ -5,7 +5,7 @@ are done, and add the PR number or date, so the next session starts from the tru
 memory. Fact-checking rules for anything that touches page copy live in AGENTS.md and still apply:
 verifier, then reviewer, then humanizer, and ranking-moving changes go to the owner.
 
-Last updated: 2026-10-30 (fourth revision, after the fourth video batch, rows 133 to 145, and the first backlink-gap run).
+Last updated: 2026-11-01 (fifth revision, after the fifth video batch, rows 146 to 159).
 
 Legend: `[x]` done, `[~]` in progress or partly done, `[ ]` not started. Owner is **You** (site owner)
 or **Claude** (a session in this repo).
@@ -103,6 +103,10 @@ Brazil searches in Portuguese ("como receber dinheiro do exterior", about 1,000 
   the section below. Fourth round, 13 reels on 2026-10-30 (ids 133 to 145; 143 and 144 had no speech):
   classified in KNOWLEDGE.md (tactics 70 to 73, section 3b); its main finding is that FAQ rich results
   ended for every site on 2026-05-07, which changes nothing on the site.
+- [x] **Video research, fifth round, 2026-11-01**: rows 146 to 159 classified in KNOWLEDGE.md (tactics 74 to 78).
+  Main findings: Google's generative AI guide (updated 2026-10-01) asks for a manual fact-check of titles, meta
+  descriptions, structured data and alt text as well as body copy (items 24 and 25); the YouTube studies point
+  to long-form videos, not Shorts, for AI citations (item 28).
 - [x] **Releases are recorded** in `RELEASES.md` with the verification run and the rollback point.
 - [x] **Rotation host replaced, 2026-11-01** (old host's context 78% full). The new host works on its own
   branch, `claude/rotation`, and must finish each run in one turn. IDs are in AGENTS.md, "Host 2". Its first
@@ -154,6 +158,36 @@ watermark remover", and are ignored. What survives a sceptical read:
 21. [ ] **You, on 2026-11-02:** Search Console URL Inspection, Request indexing, for the two left over on 2026-11-01
     because of the daily quota: `https://paidacross.com/receive-international-payments` and
     `https://paidacross.com/how-we-make-money`. Note the date here. Effort S.
+22. [ ] **Claude, by 2026-11-05 (build), merge on or after 2026-11-30:** rate-page template: render the rate card
+    above the intro, add one estimated "through Payoneer, about X per dollar on a 1,000 dollar client payment"
+    line from the same `calculate()` row as the table, and shorten each intro's first sentence so it answers
+    rather than disclaims. Evidence: "payoneer usd to pkr rate today" 10 impressions at 11.7 and "today payoneer
+    dollar rate in pakistan" 5 at 10.2 (GSC, 90 days to 2026-11-01; the page is 6 days old in that window).
+    Pakistan results recorded 2026-11-01 (OpenRush `inspect_serp`, in `docs/seo/reports/2026-11-01-videos.md`,
+    section E): every top-10 result leads with a rupees-per-dollar figure (Xe, Dollar East, open-market pages,
+    r/pakistan, Facebook exchange groups); paidacross is not in the top 19 there. Google's AI Overview quotes a
+    Payoneer conversion fee "of up to 3.5%" from Payoneer help article 6118, while the page uses a 1.2% to 4%
+    band: the verifier must read that article before the new figure line is drafted. Referring domains of the
+    top five still to record (KNOWLEDGE.md tactics 12, 22). Copy through verifier, reviewer, humanizer; layout through REVIEW mode. Both
+    rate pages changed copy on 2026-10-30, so merge after the 2026-11-30 read, or **You** decide to merge earlier
+    and the read is recorded as a bundle. Optional in the same release: an FAQ "What does Payoneer charge in
+    Pakistan?" from Payoneer's own fee page. Effort S to M.
+23. [ ] **You, by 2026-11-19:** first voice-memo interview (item 6), question "How do freelancers receive
+    payments from clients in several countries?" (GSC: 38 impressions at 43.8 and 32 at 46.9 for its two
+    phrasings; the pillar read is already a bundle). Claude sends up to 10 questions one at a time. Second
+    interview only if you have first-hand Pakistan experience: receiving USD from a US client into a Pakistani
+    bank account (Bing AI grounding queries 57 and 29). Effort S.
+24. [ ] **Claude:** add title, metaDescription, FAQ JSON-LD text and image alt text to the claims
+    `corridor-verifier` extracts (Google's generative AI guide, updated 2026-10-01: the manual review "also applies
+    to metadata like title elements, meta description elements, structured data"). No page change. Effort S.
+25. [ ] **You decide, Claude proposes:** bring the two rate pages' intro, rate note, FAQs and meta descriptions
+    into the verification rotation (AGENTS.md says they are "verified by nobody"). Effort M.
+26. [ ] **You:** confirm whether the Google Analytics property behind OpenRush `get_website_analytics` receives
+    any data; the site code has no GA tag (checked 2026-11-01). Nothing to install either way. Effort S.
+27. [ ] **You, by 2026-11-05:** open Search Console, Indexing, Pages, and note here the indexed count and each
+    "Why pages aren't indexed" reason with its count, naming any corridor or rate page listed. Do not re-request
+    indexing for "Crawled - currently not indexed" pages (Google: "no need to resubmit this URL for crawling");
+    Claude treats any listed corridor as a content question for the pipeline. Effort S.
 2. [x] **You:** apply to the Payoneer affiliate programme (application sent 2026-10-30; awaiting reply). Both rate pages and 7 corridors earn nothing,
    and the rate pages are now linked from every page.
 3. [x] **You:** decided 2026-10-30: leave it as is (no minimum modelled). The Georgia question from PR #70: under about $300 the dollar table ranks
@@ -362,6 +396,12 @@ draw no conclusion.
   answers for this topic (46 citations). A handful done properly, not a daily stream. Open on the
   number, on screen in the first second (the only usable point of reels 134 and 137); it must match the
   page on the day it is posted, and the description links to the page with the rate date.
+28. [ ] **You decide, before scripting:** the format. Every YouTube citation study found on 2026-11-01 puts
+    Shorts at a small share of AI citations (5.7% to 8%) and long-form at most of them (KNOWLEDGE.md tactic 78;
+    the study in reel 156 could not be found, so treat the numbers as direction only). Recommended: one
+    walk-through of about 4 minutes or more per corridor group, with the query in the title, the number on screen
+    in the first seconds, and Shorts cut from it; not a daily cadence. Claude lists the top Payoneer and Wise
+    receive videos for PK, BD, NG and PH with titles and lengths first (tactic 16). Effort S to decide.
 
 - [ ] **You + Claude:** every corridor title carries "2026". Decide before 2027-01-01 whether to change the
   year (a title change on all 17 pages, several inside measurement windows) or drop it from titles. Route
@@ -397,3 +437,8 @@ draw no conclusion.
   text, costs nothing, and removing it is a protected JSON-LD change with nothing to gain.
 - **Scholarship pages, paid "resource page" placements, keyword-anchored links in embeddable widgets, and
   bought links on link marketplaces (PressWiz in reel 139).** Link spam under Google's policy.
+- **Asking people to Google "Paid Across" plus a keyword, or to search and click our result (reel 148).** Its
+  only purpose is to move a ranking; real brand demand from launch posts and videos is the honest version.
+- **Automated prospect scraping and emailing (reel 153); Manta, other business directories and Google Business
+  Profile Q&A (reels 149, 157); posting videos daily (reel 159).** The first breaks the outreach rules in
+  AGENTS.md, the second needs a local business we do not have, and the third outruns the fact-checking.
