@@ -104,6 +104,9 @@ Brazil searches in Portuguese ("como receber dinheiro do exterior", about 1,000 
   classified in KNOWLEDGE.md (tactics 70 to 73, section 3b); its main finding is that FAQ rich results
   ended for every site on 2026-05-07, which changes nothing on the site.
 - [x] **Releases are recorded** in `RELEASES.md` with the verification run and the rollback point.
+- [x] **Rotation host replaced, 2026-11-01** (old host's context 78% full). The new host works on its own
+  branch, `claude/rotation`, and must finish each run in one turn. IDs are in AGENTS.md, "Host 2". Its first
+  real run is 2026-11-02 09:07 UTC (usd-to-pkr, usd-to-idr, usd-to-ars).
 
 ## What the third video batch changed
 
