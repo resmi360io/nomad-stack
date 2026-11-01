@@ -175,8 +175,8 @@ export const PROVIDERS: Provider[] = [
       // South Africa, Argentina and Poland. PLN comes from wise.com/gateway/v1/price and agrees
       // with Wise's own send page at the one amount that page prices, across its funding methods.
       // ZAR DOES NOT agree: the endpoint gave 7.79 on 1,000 and 25.31 on 5,000 while the send page
-      // prices the cheapest route, money already in your Wise account, at 7.43 on 1,000 (read
-      // 2026-10-25), with direct debit 9.44 and bank transfer 13.84. Nothing public is 7.79 and nothing public
+      // prices the cheapest route, money already in your Wise account, at 7.40 on 1,000 (read
+      // 2026-11-01; was 7.43 on 2026-10-25), with direct debit 9.41 and bank transfer 13.81. Nothing public is 7.79 and nothing public
       // prices 5,000, so that pair is DISCARDED and the ZAR row is a flagged single-point model.
       // The USD rows use Wise's published per-destination SWIFT fee from help/articles/2946451,
       // read 2026-10-20 and again 2026-10-21, which REPLACES the 6.15 all-countries base; all
@@ -195,11 +195,11 @@ export const PROVIDERS: Provider[] = [
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'ZA', currency: 'ZAR' },
         fixedFee: 0,
-        percentageFee: 0.00743,
+        percentageFee: 0.0074,
         fxMarkupBps: 0,
         typicalHours: 24,
         fxMarkupEstimated: true,
-        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-south-africa states the cheapest route, money already in your Wise account, costs 7.43 USD on 1,000 USD, read 2026-10-25. Wise publishes no second amount at any URL we could find, so the fixed and percentage parts cannot be separated; this models the 1,000 USD price proportionally, which overstates at larger amounts rather than understating. The v1/price pair (7.79 on 1,000 and 25.31 on 5,000) matched NO figure on Wise\'s own page and is not used. fxMarkupEstimated marks the estimated PERCENTAGE, not the markup, same as the Payoneer GE/USD rows above; it bars the badge, which is correct while the cheapest row is unsourced.',
+        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-south-africa states the cheapest route, money already in your Wise account, costs 7.40 USD on 1,000 USD, read 2026-11-01 (direct debit 9.41, bank transfer 13.81). On that date v1/price returned the same three totals at 1,000 for BALANCE, DIRECT_DEBIT and BANK_TRANSFER pay-in, and 24.93 at 5,000 for BALANCE pay-in, but its labelled split (flat 3.04 plus a variable part it calls 0.44%) does not reproduce those totals when read literally, and no public page shows a second amount, so the split is not used. The same read priced RECEIVE_BANK_TRANSFER pay-in, the client-pushed ACH, at 7.73 on 1,000, which no public page shows either. Wise publishes no second amount at any URL we could find, so the fixed and percentage parts cannot be separated; this models the 1,000 USD price proportionally, which overstates at larger amounts rather than understating. The v1/price pair (7.79 on 1,000 and 25.31 on 5,000) matched NO figure on Wise\'s own page and is not used. fxMarkupEstimated marks the estimated PERCENTAGE, not the markup, same as the Payoneer GE/USD rows above; it bars the badge, which is correct while the cheapest row is unsourced.',
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -365,11 +365,11 @@ export const PROVIDERS: Provider[] = [
       // Wise is migrating Thai-address personal customers onto its Bank of Thailand licensed local
       // entity. After migration, third-party payments arriving into foreign-currency receiving
       // details are automatically converted to THB on arrival, so a Thai-resident freelancer can
-      // still be paid but can no longer hold the USD. Wise's text as read 2026-10-25: customers who
-      // signed up before 21 January 2026 see the changes from December 2026; those who signed up
-      // after are rolled out progressively and on them by September 2026. The same article says
-      // nothing changes until December 2026, which does not sit easily with the September date.
-      // Both reported. Both dates are later than the October and August read in September 2026.
+      // still be paid but can no longer hold the USD. Wise's text as read 2026-11-01: customers who
+      // signed up before 21 January 2026 see the changes from December 2026, and the article's
+      // no-changes-until-December line sits under that group only; those who signed up after
+      // are rolled out progressively and on them by September 2026, which has passed. Both dates
+      // are later than the October and August read in September 2026.
       //
       // REVIEWED 2026-09-24, ranking unchanged. Wise's eligibility page
       // (wise.com/help/articles/2813542) says under Additional restrictions: "Thailand - we've
@@ -1544,10 +1544,11 @@ export const PROVIDERS: Provider[] = [
       // explicitly rather than only carrying the structure. Checked 2026-10-21 that neither model
       // shape changes the ranking at 1,000 or 5,000. FNB's guide for 1 July 2026 to
       // 30 June 2027 charges 0.55% on a digital global receipt above R10,000, min R175, max R450.
-      // Capitec's 2026 personal fee schedule (valid from 1 March 2026) charges a fixed R50 to receive
-      // an international payment; its business forex schedule still returns 403. Neither publishes a
-      // margin. Rebasing this row on either moves bank wire above Payoneer at USD 1,000 (FNB 964.71,
-      // Capitec 972.06, against Payoneer 964.26), so it is held for the owner, read 2026-10-25.
+      // Capitec's personal fee schedule charges a fixed R100 to receive an international payment in
+      // the version printed 27/08/2026 (R50 in V.34.0, generated 17/04/2026); its business forex
+      // schedule returned 403 when last tried. Neither publishes a margin. Rebasing this row on
+      // either moves bank wire above Payoneer at USD 1,000 (FNB 964.71, Capitec about 969 at R100,
+      // against Payoneer 964.26), so it is held for the owner, Capitec re-read 2026-11-01.
       // AR: the Argentine side is free BY REGULATION. BCRA texto ordenado point 2.2.2.1: "Las
       // entidades no podran cobrar comisiones por estas operaciones", confirmed in CIRA's
       // reproduction of Com. A 8330. But the SAME sentence preserves pass-through of documented
