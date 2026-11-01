@@ -64,6 +64,11 @@ export function QuoteTable({
         </td>
         <td className="pa-figure px-4 py-3 text-right text-muted-foreground">
           {q.effectiveFeePercent.toFixed(2)}%
+          {/* A flagged row that converts at mid-market has nothing estimated in its rate, so the
+              estimate is the fee: mark it here rather than next to "Mid-market". */}
+          {q.isEstimate && q.fxMarkupBps === 0 && (
+            <span className="ml-1 not-italic text-muted-foreground/70">(est.)</span>
+          )}
         </td>
         <td className="px-4 py-3 text-muted-foreground whitespace-nowrap">
           {q.fxMarkupBps === 0
@@ -71,9 +76,9 @@ export function QuoteTable({
               ? 'No conversion'
               : 'Mid-market'
             : `+${(q.fxMarkupBps / 100).toFixed(1)}%`}
-          {/* In a hold-dollars table nothing converts, so "(est.)" next to "No conversion" would
-              read as doubt about whether a conversion happens; what is estimated there is the fee. */}
-          {q.isEstimate && !(holding && q.fxMarkupBps === 0) && (
+          {/* "(est.)" sits next to the rate only when the margin itself is estimated. With no margin
+              ("Mid-market" or "No conversion") the estimated part is the fee, marked in that column. */}
+          {q.isEstimate && q.fxMarkupBps !== 0 && (
             <span className="ml-1 not-italic text-muted-foreground/70">(est.)</span>
           )}
         </td>
