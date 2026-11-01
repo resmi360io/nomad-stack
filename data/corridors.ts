@@ -158,7 +158,7 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'To receive USD in Bangladesh, most freelancers use Payoneer (roughly 2.2% to 5% all-in for bank account withdrawal), and the most popular local step after that is Payoneer to bKash. Payoneer has a direct bKash integration that moves your balance to a bKash wallet typically within hours, though Payoneer charges a higher conversion fee for this route than for bank withdrawals (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal before withdrawing). Bank account withdrawal typically takes 1 to 3 business days, according to Payoneer, and generates the Foreign Inward Remittance Certificate (FIRC) required to claim the export cash incentive. PayPal cannot receive commercial payments in Bangladesh, and Wise offers no balance or USD account details to Bangladeshi residents (a foreign client can send BDT through Wise to your bank account, bKash wallet or Nagad wallet, but Wise says it cannot send business transfers to BDT). One thing to read the comparison with: this corridor has no best value badge. We only award it to the top row, and only when we can source the exchange rate margin behind it. Here the cheapest options price their conversion as a range rather than a rate, so there is nothing we can stand behind enough to label. Read the net amount column and treat every figure as indicative.',
     publishedDate: '2026-06-04',
-    updatedDate: '2026-11-01',
+    updatedDate: '2026-11-02',
     providers: [
       {
         slug: 'payoneer',

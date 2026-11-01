@@ -286,7 +286,7 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
   from Bing "best way to receive usd salary in pakistan and convert to pkr" (position 2).
   **2026-10-30: #1 shipped**, the USD salary FAQ on `/receive/usd-to-pkr` (researcher, verifier, reviewer; answer
   first). The PK read is a bundle with PR #77.
-  **2026-11-01: #2 drafted**, "Can I use Wise to receive USD in Bangladesh?" on `/receive/usd-to-bdt` (Bing: several
+  **2026-11-01: #2 drafted, to ship on or after 2026-11-02** (week of 2026-11-02, rule 8), "Can I use Wise to receive USD in Bangladesh?" on `/receive/usd-to-bdt` (Bing: several
   Wise-in-Bangladesh queries at positions 1 to 4; verifier, reviewer, humanizer). Note for the rotation and the BD
   incentive FAQ: Bangladesh's LDC graduation is still officially 2026-11-24, which the incentive FAQ hedges as a likely
   phase-out point for the 2.5% freelancer export cash incentive; re-check that FAQ after that date.

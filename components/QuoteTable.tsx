@@ -45,6 +45,12 @@ export function QuoteTable({
 
   const row = (q: Quote) => {
     const reason = notRankedReason(q);
+    // A zero margin is a fact only where nothing converts or the provider converts at its live mid
+    // and charges a separate fee (Wise). Elsewhere a zero is a placeholder (bank wire to UAH) or a
+    // cost we cannot price (Paga), so the rate keeps its own "(est.)".
+    const zeroIsFact = q.fxMarkupBps === 0 && (holding || q.provider.slug === 'wise');
+    const estOnFee = q.isEstimate && q.fxMarkupBps === 0 && q.missingCosts.length === 0;
+    const estOnRate = q.isEstimate && !zeroIsFact;
     return (
       <tr key={q.provider.slug} className={q.isBestValue ? 'bg-stamp-tint' : undefined}>
         <td className="px-4 py-3 font-semibold">
@@ -64,9 +70,9 @@ export function QuoteTable({
         </td>
         <td className="pa-figure px-4 py-3 text-right text-muted-foreground">
           {q.effectiveFeePercent.toFixed(2)}%
-          {/* A flagged row that converts at mid-market has nothing estimated in its rate, so the
-              estimate is the fee: mark it here rather than next to "Mid-market". */}
-          {q.isEstimate && q.fxMarkupBps === 0 && (
+          {/* With no margin the estimated part is (at least) the fee; a row with a cost we cannot
+              price carries its hedge on the rate instead. */}
+          {estOnFee && (
             <span className="ml-1 not-italic text-muted-foreground/70">(est.)</span>
           )}
         </td>
@@ -76,9 +82,9 @@ export function QuoteTable({
               ? 'No conversion'
               : 'Mid-market'
             : `+${(q.fxMarkupBps / 100).toFixed(1)}%`}
-          {/* "(est.)" sits next to the rate only when the margin itself is estimated. With no margin
-              ("Mid-market" or "No conversion") the estimated part is the fee, marked in that column. */}
-          {q.isEstimate && q.fxMarkupBps !== 0 && (
+          {/* The rate keeps "(est.)" unless its zero margin is a known fact (hold dollars, or Wise at
+              its live mid); see zeroIsFact above. */}
+          {estOnRate && (
             <span className="ml-1 not-italic text-muted-foreground/70">(est.)</span>
           )}
         </td>
