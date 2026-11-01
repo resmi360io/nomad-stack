@@ -451,7 +451,10 @@ following the procedure above:
 - Host 1's trigger is DISABLED and renamed "DISABLED 2026-11-01: corridor rotation (old host,
   context full)", not deleted. To roll back, re-enable it and disable host 2's.
 - Scheduler test: one-shot `trig_01EESk9JiquPhE2ZxyfvGmVf` (`run_once_at`, not
-  `fire_trigger`), result recorded below.
+  `fire_trigger`). It fired at 10:34:36 UTC on 2026-11-01 into the host itself (the run's
+  `session_id` is the host's, no new session was minted), and the host answered 12 seconds
+  later from `claude/rotation` at 7e8c151, having spent $0.07 on the turn. The trigger then
+  disabled itself with `ended_reason: run_once_fired`.
 
 When host 2's context nears its threshold (`get_session`, look at
 `external_metadata.context_usage` against `autocompact_state.threshold`), replace it the same
