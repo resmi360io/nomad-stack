@@ -39,7 +39,10 @@ export interface RatePage {
   metaDescription: string;
   h1: string;
   intro: string;
-  // Why we do not print a provider rate. Rendered under the live rate block.
+  // The line under the per-dollar estimate in the rate card: what the estimate is made of, in the
+  // provider's published terms. It is copy, so it goes through verifier, reviewer and humanizer.
+  estimateNote: string;
+  // Why we do not print a provider rate. Rendered under the intro, after the rate card.
   rateNote: string;
   faqs: RatePageFaq[];
   publishedDate: string;
@@ -59,9 +62,11 @@ export const RATE_PAGES: RatePage[] = [
       'Today\'s mid-market USD to PKR rate, what Payoneer\'s published fees take out of it, and what actually lands in your Pakistani bank account. Payoneer publishes no rate of its own.',
     h1: 'Payoneer USD to PKR rate today, and what you actually receive',
     intro:
-      'If you came here for a single number labelled the Payoneer rate, we have to start by telling you that no such number is published. Payoneer does not run a public rate feed. What it publishes is a fee structure: 1% on a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace), and then a conversion cost on withdrawal that it states as a range of 1.2% to 4% rather than a rate. Everything you will read quoting an exact Payoneer rate is either showing you the mid-market rate with Payoneer written next to it, or reporting one person\'s screenshot from one day. So here is the honest version instead. Below is today\'s mid-market USD to PKR rate from our rate source, with the date it was published, and then what Payoneer\'s own published fees do to a 500, 1,000 and 5,000 dollar payment on the way to your Pakistani bank account. The only rate that will ever be exactly right is the one quoted in your own Payoneer account at the moment you press withdraw, so the useful thing we can give you is the size of the gap to expect and the two numbers it is built from.',
+      'Payoneer does not publish a USD to PKR rate, so the two figures above are the ones that can be checked: today\'s mid-market rate, and what Payoneer\'s own published fees leave you per dollar. Those fees are 1% on a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace), then a conversion cost on withdrawal that Payoneer gives as a range of 1.2% to 4% rather than as a rate. A site quoting an exact Payoneer rate is showing either the mid-market rate with Payoneer written next to it, or one person\'s screenshot from one day. The table below applies the same fees to a 500, 1,000 and 5,000 dollar payment on the way to your Pakistani bank account. The only exact rate is the one in your own Payoneer account at the moment you press withdraw, so what we can tell you is how big the gap will be and the two numbers it comes from.',
+    estimateNote:
+      'This is our estimate. It takes today\'s mid-market rate and removes Payoneer\'s 1% fee on a client payment and 2.6%, the middle of the 1.2% to 4% conversion cost it publishes for a withdrawal. Your own withdrawal screen shows the exact figure.',
     rateNote:
-      'That is the interbank mid-market rate, which is the rate you would see on Google or Reuters and the rate nobody actually gives you. It is the correct starting point because it is the only rate with no margin in it, so every provider cost can be measured as a distance from it. Payoneer does not publish how far from the mid it converts. It publishes the cost as a band, 1.2% to 4%, and our figures below use the midpoint of that band, 2.6%, which is why they are flagged as an estimate rather than a price. If your own withdrawal screen shows a rate near the bottom of that band you will do better than our table says, and near the top you will do worse.',
+      'The mid-market rate is the interbank rate, the one you would see on Google or Reuters. It is the right starting point because it is the only rate with no margin in it, so every provider cost can be measured as a distance from it. Payoneer does not publish how far from the mid it converts. It gives the cost as a band, 1.2% to 4%, and both our estimate above and the table below use the midpoint, 2.6%, which is why they are flagged as an estimate rather than a price. If your own withdrawal screen shows a rate near the bottom of that band you will do better than our figures say, and near the top you will do worse.',
     faqs: [
       {
         q: 'What is the Payoneer USD to PKR rate today?',
@@ -105,7 +110,7 @@ export const RATE_PAGES: RatePage[] = [
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-10-30',
+    updatedDate: '2026-11-01',
   },
   // Second page, on the same evidence rule as the first. GSC for 2026-07-29 to 2026-10-26 shows
   // the BDT corridor page already ranking for "payoneer dollar rate in bangladesh today" around
@@ -124,9 +129,11 @@ export const RATE_PAGES: RatePage[] = [
       'Today\'s mid-market USD to BDT rate, what Payoneer\'s fees take out of it, and what reaches your Bangladeshi bank or bKash. Payoneer publishes no rate of its own.',
     h1: 'Payoneer USD to BDT rate today, and what you actually receive',
     intro:
-      'Search for the Payoneer dollar rate in Bangladesh and you will find a different number on every site. None of them comes from Payoneer, because Payoneer does not publish one. What it publishes is a fee structure: 1% on a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace), then a conversion cost on withdrawal that it gives as a range of 1.2% to 4%, with nothing to say where the taka sits in that range. So this page does the one thing that can be checked. It shows today\'s mid-market USD to BDT rate with the date it was published, then applies Payoneer\'s published fees to a 500, 1,000 and 5,000 dollar payment withdrawn to a Bangladeshi bank account. The exact rate is the one your Payoneer withdrawal screen shows when you press the button. What we can tell you is roughly how far below the mid it will be, and why.',
+      'Payoneer does not publish a dollar rate for Bangladesh, and the numbers other sites quote for it all differ. The two figures above are the ones that can be checked: today\'s mid-market USD to BDT rate, and what Payoneer\'s published fees leave you per dollar. Those fees are 1% on a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace), then a conversion cost on withdrawal that Payoneer gives as a range of 1.2% to 4%, with nothing to say where the taka sits in that range. The table below applies them to a 500, 1,000 and 5,000 dollar payment withdrawn to a Bangladeshi bank account. The exact rate is the one your Payoneer withdrawal screen shows when you press the button.',
+    estimateNote:
+      'This is our estimate. It takes today\'s mid-market rate and removes Payoneer\'s 1% fee on a client payment and 2.6%, the middle of the 1.2% to 4% conversion cost it publishes for a withdrawal. Your own withdrawal screen shows the exact figure.',
     rateNote:
-      'That is the interbank mid-market rate, the one Google shows and nobody actually pays out. It is the right yardstick because it has no margin in it, so any provider cost can be measured as a distance from it. Payoneer gives its conversion cost only as a band, 1.2% to 4%, and our figures below use 2.6%, the middle of the band, which is why they are marked as an estimate. If your withdrawal screen shows a rate near the mid you will do better than our table, and further away you will do worse.',
+      'The mid-market rate is the interbank rate Google shows. It is the right yardstick because it has no margin in it, so any provider cost can be measured as a distance from it. Payoneer gives its conversion cost only as a band, 1.2% to 4%, and both our estimate above and the table below use 2.6%, the middle of the band, which is why they are marked as an estimate. If your withdrawal screen shows a rate near the mid you will do better than our figures, and further away you will do worse.',
     faqs: [
       {
         q: 'What is the Payoneer USD to BDT rate today?',
@@ -160,6 +167,6 @@ export const RATE_PAGES: RatePage[] = [
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-10-30',
+    updatedDate: '2026-11-01',
   },
 ];
