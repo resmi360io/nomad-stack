@@ -353,6 +353,14 @@ Rules that hold regardless of what a scheduled prompt says:
   parentheses, or regular hyphens.
 - Anything not confirmable from a primary source is hedged in the copy ("verify
   current"), never stated as a bare number.
+- Metadata are claims (since 2026-11-01). A verifier checks a corridor's `title`,
+  `metaDescription`, every FAQ answer (it is emitted as FAQPage JSON-LD) and any
+  image alt text exactly like body copy, with a locator naming the field. Google's
+  generative AI guide (updated 2026-10-01) says the manual fact-check "also applies
+  to metadata like title elements, meta description elements, structured data".
+  `.claude/agents/corridor-verifier.md` says so too, but a host session that started
+  before that edit still runs the old definition, so the orchestrator puts this
+  instruction in every verifier brief until the host is replaced.
 - Page copy and the calculator fee model must agree. If a fee changes in one, change
   the other in the same commit.
 - Bump `updatedDate` on every corridor whose reader-facing copy you changed, in the

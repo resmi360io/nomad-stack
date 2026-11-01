@@ -177,9 +177,13 @@ watermark remover", and are ignored. What survives a sceptical read:
     phrasings; the pillar read is already a bundle). Claude sends up to 10 questions one at a time. Second
     interview only if you have first-hand Pakistan experience: receiving USD from a US client into a Pakistani
     bank account (Bing AI grounding queries 57 and 29). Effort S.
-24. [ ] **Claude:** add title, metaDescription, FAQ JSON-LD text and image alt text to the claims
+24. [x] **Claude:** add title, metaDescription, FAQ JSON-LD text and image alt text to the claims
     `corridor-verifier` extracts (Google's generative AI guide, updated 2026-10-01: the manual review "also applies
     to metadata like title elements, meta description elements, structured data"). No page change. Effort S.
+    Done 2026-11-01 in `.claude/agents/corridor-verifier.md` and as a rotation rule in AGENTS.md (the running
+    rotation host loaded the old definition at start, and its prompt can be edited only from inside it, so the
+    AGENTS.md rule is what reaches it, once on main). First used the same day on the rate-page change (item 22),
+    where it caught two meta descriptions that overclaimed.
 25. [ ] **You decide, Claude proposes:** bring the two rate pages' intro, rate note, FAQs and meta descriptions
     into the verification rotation (AGENTS.md says they are "verified by nobody"). Effort M.
 26. [ ] **You:** confirm whether the Google Analytics property behind OpenRush `get_website_analytics` receives
