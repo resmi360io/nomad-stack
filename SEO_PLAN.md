@@ -158,7 +158,7 @@ watermark remover", and are ignored. What survives a sceptical read:
 21. [ ] **You, on 2026-11-02:** Search Console URL Inspection, Request indexing, for the two left over on 2026-11-01
     because of the daily quota: `https://paidacross.com/receive-international-payments` and
     `https://paidacross.com/how-we-make-money`. Note the date here. Effort S.
-22. [ ] **Claude, by 2026-11-05 (build), merge on or after 2026-11-30:** rate-page template: render the rate card
+22. [x] **Claude, by 2026-11-05 (build), merge on or after 2026-11-30:** rate-page template: render the rate card
     above the intro, add one estimated "through Payoneer, about X per dollar on a 1,000 dollar client payment"
     line from the same `calculate()` row as the table, and shorten each intro's first sentence so it answers
     rather than disclaims. Evidence: "payoneer usd to pkr rate today" 10 impressions at 11.7 and "today payoneer
@@ -172,6 +172,22 @@ watermark remover", and are ignored. What survives a sceptical read:
     rate pages changed copy on 2026-10-30, so merge after the 2026-11-30 read, or **You** decide to merge earlier
     and the read is recorded as a bundle. Optional in the same release: an FAQ "What does Payoneer charge in
     Pakistan?" from Payoneer's own fee page. Effort S to M.
+    **Built, reviewed and merged 2026-11-01 (owner said "merge" the same day, so the read is a bundle):**
+    verifier (25 claims: 17 verified, 1 incorrect, 7 unverifiable), reviewer (15 copy items, `safe_to_apply`
+    true), humanizer twice; article 6118's 3.5% is the Payoneer card fee, not a bank withdrawal. REVIEW: SHIP WITH
+    CHANGES, protected regressions 0; both rate-page meta descriptions trimmed in the same release (PKR 159, BDT
+    151, deletions only), which also closes the PKR description hold in item 15. Held for **You**, not in this
+    release: the H1 and H2 "actually" wording (protected headings; decide soon, or a later heading change lands
+    inside this window and resets it), 2.6% versus Payoneer's "up to 2%" explainer (ranking-moving, every Payoneer
+    row), and Payoneer `lastVerified` 2026-06-02 printed in both footers.
+    Measurement: the 2026-11-30 checkpoint's rate-page line reads a bundle (launch 2026-10-26, copy 2026-10-30,
+    this release) and gives only the cannibalization check and a trend. Request indexing for both URLs on merge
+    day and log the date per URL. Baseline: PKR rate page 24 impressions at 15.8 and BDT rate page 12 at 10.3 (28
+    days to 2026-10-29); Pakistan SERP of 2026-11-01, not in the top 19. Equal windows are impossible because the
+    pages are younger than one window, so read a trend. Preliminary read about 4 weeks after recrawl (about
+    2026-12-07), decision read at 8 weeks (on or after 2027-01-04): page plus query for "payoneer usd to pkr rate
+    today", "today payoneer dollar rate in pakistan" and the BDT rate-page queries, plus OpenRush `inspect_serp`
+    in Pakistan and Bangladesh on the same days. Under about 100 impressions per query, direction only (rule 1).
 23. [ ] **You, by 2026-11-19:** first voice-memo interview (item 6), question "How do freelancers receive
     payments from clients in several countries?" (GSC: 38 impressions at 43.8 and 32 at 46.9 for its two
     phrasings; the pillar read is already a bundle). Claude sends up to 10 questions one at a time. Second
