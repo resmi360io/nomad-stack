@@ -37,6 +37,9 @@ export async function generateMetadata({
 // amounts, and this query is typed by people moving anything from a small marketplace payout to a
 // month of invoices, so a single modelled amount would mislead most of them.
 const AMOUNTS = [500, 1000, 5000];
+// The amount behind the per-dollar estimate in the rate card. It must be one of AMOUNTS, so the
+// card reads off the table rather than computing anything of its own.
+const ESTIMATE_AMOUNT = 1000;
 
 function fmt(n: number, currency: string): string {
   if (!isFinite(n)) return 'n/a';
@@ -82,6 +85,8 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
         return { amount, q, allInPct };
       }).filter((r): r is { amount: number; q: NonNullable<ReturnType<typeof calculate>[number]>; allInPct: number } => r !== null)
     : [];
+
+  const estimateRow = rows.find((r) => r.amount === ESTIMATE_AMOUNT);
 
   const ctaHref = provider.affiliateLink || provider.signupUrl || provider.website;
   const isAffiliate = !!provider.affiliateLink;
@@ -149,12 +154,12 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
 
           <h1 className="pa-h1">{page.h1}</h1>
 
-          <div className="pa-intro mt-5 space-y-3">
-            {splitParagraphs(page.intro).map((t, i) => <p key={i}>{t}</p>)}
-          </div>
-
-          {/* The one figure this page exists to show, on the raised surface. */}
-          <section className="pa-card mt-8">
+          {/* The figures this page exists to show come first, straight under the H1. Searchers for
+              "<provider> rate today" are answered with a number by every other result on the page,
+              so the explanation follows the numbers rather than standing in front of them. The
+              per-dollar estimate is the 1,000 row of the same calculate() table below, never a
+              separate calculation, so the card and the table cannot disagree. */}
+          <section className="pa-card mt-6">
             <div className="px-5 py-5 sm:px-6">
               <h2 className="text-[0.9375rem] font-semibold text-muted-foreground">
                 Mid-market rate today
@@ -173,11 +178,27 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
                   Live rate unavailable right now. The fee structure below does not depend on it.
                 </p>
               )}
-              <div className="mt-4 max-w-[65ch] space-y-3 text-[0.9375rem] leading-relaxed">
-                {splitParagraphs(page.rateNote).map((t, i) => <p key={i}>{t}</p>)}
-              </div>
+              {estimateRow && (
+                <div className="mt-5 border-t border-rule pt-4">
+                  <h2 className="text-[0.9375rem] font-semibold text-muted-foreground">
+                    Through {provider.name}, on a {ESTIMATE_AMOUNT.toLocaleString('en-US')} {page.source} client payment
+                  </h2>
+                  <p className="pa-figure-display mt-2 text-[clamp(1.5rem,1.2rem+1.2vw,2.125rem)] leading-tight">
+                    about {(estimateRow.q.netReceivedInDest / ESTIMATE_AMOUNT).toFixed(2)} {page.destination} per {page.source}
+                  </p>
+                  <p className="pa-meta mt-2 max-w-[65ch]">{page.estimateNote}</p>
+                </div>
+              )}
             </div>
           </section>
+
+          <div className="pa-intro mt-8 space-y-3">
+            {splitParagraphs(page.intro).map((t, i) => <p key={i}>{t}</p>)}
+          </div>
+
+          <div className="pa-prose mt-6 space-y-3">
+            {splitParagraphs(page.rateNote).map((t, i) => <p key={i}>{t}</p>)}
+          </div>
 
           {rows.length > 0 && (
             <section className="mt-14">

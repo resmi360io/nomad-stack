@@ -353,6 +353,14 @@ Rules that hold regardless of what a scheduled prompt says:
   parentheses, or regular hyphens.
 - Anything not confirmable from a primary source is hedged in the copy ("verify
   current"), never stated as a bare number.
+- Metadata are claims (since 2026-11-01). A verifier checks a corridor's `title`,
+  `metaDescription`, every FAQ answer (it is emitted as FAQPage JSON-LD) and any
+  image alt text exactly like body copy, with a locator naming the field. Google's
+  generative AI guide (updated 2026-10-01) says the manual fact-check "also applies
+  to metadata like title elements, meta description elements, structured data".
+  `.claude/agents/corridor-verifier.md` says so too, but a host session that started
+  before that edit still runs the old definition, so the orchestrator puts this
+  instruction in every verifier brief until the host is replaced.
 - Page copy and the calculator fee model must agree. If a fee changes in one, change
   the other in the same commit.
 - Bump `updatedDate` on every corridor whose reader-facing copy you changed, in the
@@ -427,9 +435,38 @@ Four things about this shape that will bite if you forget them:
 - CONTEXT ACCUMULATES in the host across runs and will compact. If its work degrades, create
   a NEW host session with `source_url` and a new trigger bound to it: `update_trigger` cannot
   move `persistent_session_id`, so repointing means a new trigger and disabling the old one.
-- THE HOST SHARES THE BRANCH with interactive sessions, so pushes can collide. The prompt
-  tells it to do its git work in one go and to rebase its single commit rather than force-push
-  over anyone.
+- THE HOST NO LONGER SHARES THE BRANCH. Host 1 pushed to `claude/pre-launch-fixes-R9U7D`, the
+  same branch interactive sessions use, and the two collided. Host 2 works on `claude/rotation`
+  and its prompt forbids pushing to the interactive branch.
+- IT MUST FINISH IN ONE TURN. On 2026-10-30 host 1 called `send_later` on its own initiative,
+  which raised a permission prompt that nobody was there to answer, and the run sat stalled
+  until the owner approved it by hand. Host 2's prompt forbids scheduling any follow-up.
+
+### Host 2, since 2026-11-01
+
+Host 1 (`session_01GTr6t48CH2m87ngeg5JKKi`, trigger `trig_01DKLm7N4ZuCBgbLpEA2K9oH`) ran
+from 2026-10-23 to 2026-11-01. It shipped PR #80 by itself on the last day, and by then its
+context held 781k of 1M tokens, close to the compaction threshold. It was replaced
+following the procedure above:
+
+- Host: `session_01VKcrwYovysdYH6KuVU78u6`, created with `source_url`, Sonnet,
+  `outcome_branch: claude/rotation`, tagged `rotation-host`. On creation it confirmed the
+  checkout at 7e8c151 and computed Monday's set as `usd-to-pkr`, `usd-to-idr` and
+  `usd-to-ars` without being told.
+- Trigger: `trig_019NEr5ut7wkhm3KwMvxTyG5`, daily at 09:07 UTC, bound by
+  `persistent_session_id`. Its prompt is host 1's with three changes: the `claude/rotation`
+  branch, the one-turn rule, and `npm test` plus the quote snapshot diff added to stage 3.
+- Host 1's trigger is DISABLED and renamed "DISABLED 2026-11-01: corridor rotation (old host,
+  context full)", not deleted. To roll back, re-enable it and disable host 2's.
+- Scheduler test: one-shot `trig_01EESk9JiquPhE2ZxyfvGmVf` (`run_once_at`, not
+  `fire_trigger`). It fired at 10:34:36 UTC on 2026-11-01 into the host itself (the run's
+  `session_id` is the host's, no new session was minted), and the host answered 12 seconds
+  later from `claude/rotation` at 7e8c151, having spent $0.07 on the turn. The trigger then
+  disabled itself with `ended_reason: run_once_fired`.
+
+When host 2's context nears its threshold (`get_session`, look at
+`external_metadata.context_usage` against `autocompact_state.threshold`), replace it the same
+way and add a host 3 entry here.
 
 The tidier fix is still product-side and still needs the owner: attach `resmi360io/nomad-stack`
 to a Routine or to its environment, which would let the rotation go back to a fresh session per
