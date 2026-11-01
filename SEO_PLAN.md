@@ -219,7 +219,7 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
    Supadata pipeline used for these reels) and turns them into a short "from experience" paragraph per
    corridor, through the humanizer and with your approval of every line. This replaces the written
    20-minute interview.
-7. [~] **Claude:** backlink gap against Skydo, Statrys and Xflowpay (OpenRush `compare_backlink_gap`), plus
+7. [x] **Claude:** backlink gap against Skydo, Statrys and Xflowpay (OpenRush `compare_backlink_gap`), plus
    their top pages by traffic. Output: an outreach list in this repo of places worth a link (fintech
    comparisons, freelancer resource lists, university and community guides), each with how to get
    listed. Directories that exist only to sell links stay off it.
@@ -232,6 +232,10 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
    freelancer communities, regional tech press, journalist requests) as `docs/seo/outreach.md`. Effort M.
    **2026-10-30:** the `outreach-analyst` agent and `outreach` skill now do this weekly (AGENTS.md). First run
    on 2026-10-30; its board is `docs/seo/outreach.md` and its drafts wait for you in `docs/seo/outreach/drafts/`.
+   **Closed 2026-10-30:** the six gap rows were opened: oppalerts.com (auto-generated pages, nofollow),
+   globalecommerce.org (link farm), grokipedia.com (AI encyclopedia, nobody to pitch) dropped; ctc.edu.za,
+   creditosenusa.com and biyapay.com have no link rows in the index after eight lookups. Outreach continues weekly
+   by category through the outreach agent. First monthly links read: `docs/seo/links/2026-11.md`.
 8. [~] **You:** launch the calculator where builders look, one per week rather than all at once: Show HN
    ("I priced what freelancers in 17 countries lose getting paid", with the data), r/SideProject,
    Product Hunt on a Tuesday to Thursday, Indie Hackers, Uneed. Claude drafts each post; you post from
@@ -282,6 +286,10 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
   from Bing "best way to receive usd salary in pakistan and convert to pkr" (position 2).
   **2026-10-30: #1 shipped**, the USD salary FAQ on `/receive/usd-to-pkr` (researcher, verifier, reviewer; answer
   first). The PK read is a bundle with PR #77.
+  **2026-11-01: #2 shipped the same day by owner decision**, a deliberate exception to rule 8 (second FAQ in the week of 2026-10-26, on a different page from #1), "Can I use Wise to receive USD in Bangladesh?" on `/receive/usd-to-bdt` (Bing: several
+  Wise-in-Bangladesh queries at positions 1 to 4; verifier, reviewer, humanizer). Note for the rotation and the BD
+  incentive FAQ: Bangladesh's LDC graduation is still officially 2026-11-24, which the incentive FAQ hedges as a likely
+  phase-out point for the 2.5% freelancer export cash incentive; re-check that FAQ after that date.
 - [ ] **You:** one pitch or correction email a day (newsletters, PK and BD tech press, authors still
   quoting Payoneer "up to 2%"), plus two helpful Reddit or Quora answers a week from a branded account
   that says who you are. Never astroturf.

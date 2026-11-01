@@ -23,13 +23,17 @@ each thread.
 
 ## The numbers you can use (2026-10-29 rates, $1,000 payment, ranked routes only)
 
+These now match the published cost index, edition 2026-10 (https://paidacross.com/freelancer-payment-cost-index,
+CSV at /freelancer-payment-cost-index/2026-10.csv, CC BY 4.0). Link the index rather than restating a table: it
+is the "data" the HN post promises, and its numbers are frozen, so they cannot drift from what you post.
+
 | Corridor | Cheapest ranked route | Dearest ranked route | Gap on $1,000 |
 |---|---|---|---|
 | Brazil | Higlobe 0.20% | PayPal 9.69% | $95 |
 | Portugal (EUR) | Revolut 0.30% | PayPal 7.77% | $75 |
 | Poland | Wise 0.47% | PayPal 7.77% | $73 |
 | Colombia | Wise 1.54% | PayPal 8.74% | $72 |
-| Philippines | Wise 0.65% | PayPal 7.77% | $71 |
+| Philippines | Wise 0.65% (estimated since 2026-10-30) | PayPal 7.77% | $71 |
 | India | Wise 0.52% | PayPal 7.30% | $68 |
 | South Africa | Wise 0.74% (margin estimated) | PayPal 7.30% | $66 |
 | Thailand | Wise 0.77% | PayPal 7.30% | $65 |
@@ -38,7 +42,7 @@ each thread.
 | Georgia | Wise 1.47% | Bank wire 6.88% (estimated) | $54 |
 | Nigeria | Raenest 0.27% | Bank wire 5.43% (estimated) | $52 |
 
-The safe headline: **"In 13 of the 17 countries, the cheapest and dearest way to receive a $1,000 client
+The safe headline (the index's own first sentence): **"In 13 of the 17 countries, the cheapest and dearest ranked way to receive a $1,000 client
 payment differ by $50 to $95."** (The 13th is Indonesia, $71, where Wise's margin is estimated.) Pakistan,
 Bangladesh, Uzbekistan and Ukraine have fewer ranked routes and smaller gaps, so leave them out of a
 headline. Where a row says "estimated", say so if you quote it.

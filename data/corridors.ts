@@ -158,7 +158,7 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'To receive USD in Bangladesh, most freelancers use Payoneer (roughly 2.2% to 5% all-in for bank account withdrawal), and the most popular local step after that is Payoneer to bKash. Payoneer has a direct bKash integration that moves your balance to a bKash wallet typically within hours, though Payoneer charges a higher conversion fee for this route than for bank withdrawals (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal before withdrawing). Bank account withdrawal typically takes 1 to 3 business days, according to Payoneer, and generates the Foreign Inward Remittance Certificate (FIRC) required to claim the export cash incentive. PayPal cannot receive commercial payments in Bangladesh, and Wise offers no balance or USD account details to Bangladeshi residents (a foreign client can send BDT through Wise to your bank account, bKash wallet or Nagad wallet, but Wise says it cannot send business transfers to BDT). One thing to read the comparison with: this corridor has no best value badge. We only award it to the top row, and only when we can source the exchange rate margin behind it. Here the cheapest options price their conversion as a range rather than a rate, so there is nothing we can stand behind enough to label. Read the net amount column and treat every figure as indicative.',
     publishedDate: '2026-06-04',
-    updatedDate: '2026-10-30',
+    updatedDate: '2026-11-01',
     providers: [
       {
         slug: 'payoneer',
@@ -246,6 +246,10 @@ export const CORRIDORS: Corridor[] = [
       {
         q: 'Why does Payoneer keep rejecting my documents, and how do I get through verification faster?',
         a: 'The Payoneer document verification FAQ lists the usual reasons a document is rejected: a low-resolution image, a document not shown in full, one that does not match the document type you selected, one that is expired or not recent, or a password-protected file. It also says that uploading one of its recommended ID types shortens the review, and a non-recommended one makes it take longer. Register with exactly the name and address shown on the ID you will upload, and withdraw to a bank account in that same name, which Payoneer requires for an individual account. If you are tempted to close the account in frustration, withdraw first: Payoneer says any balance left when you confirm a closure is lost, and a closed account cannot be reopened.',
+      },
+      {
+        q: 'Can I use Wise to receive USD in Bangladesh?',
+        a: 'Not into a Wise account of your own. Wise does not offer balances or USD account details to people living in Bangladesh, so there are no Wise account details to give a client. A client abroad can still use Wise to send taka to your bank account, bKash wallet or Nagad wallet, but the rules on their side narrow it. Wise says it cannot send business transfers to BDT, and that sending on behalf of a company needs a Wise Business account, so a client paying as a company cannot use this route. Wise does not say whether an individual paying you for work counts as a business transfer, so ask the client to check with Wise before you rely on it. It does not help with Upwork or Fiverr work either, because there the client pays the platform, not you. For regular client income, Payoneer and a bank wire are the routes our table prices. If you use Payoneer, withdraw to a bank account rather than to bKash: a bank withdrawal, like a bank wire, produces the Foreign Inward Remittance Certificate (FIRC) the freelancer export cash incentive needs (see the incentive question above for its rate and current status). That is a different scheme from the 2.5% remittance incentive in Wise\'s own BDT guide, which is for Bangladeshis working abroad.',
       },
     ],
     siblingCorridors: ['usd-to-pkr', 'usd-to-ngn', 'usd-to-php', 'usd-to-inr'],
