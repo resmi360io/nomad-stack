@@ -142,6 +142,15 @@ watermark remover", and are ignored. What survives a sceptical read:
    The measurement clock starts at each URL's recrawl, not at the merge.
    **2026-10-30:** you requested indexing for 3 of the 7; the other 4 on 2026-10-31. Record which URL went
    on which day here, because each page's clock starts at its own recrawl.
+   **2026-11-01 indexing log:**
+   - Search Console (you): requested 2026-11-01 for the cost index, `/receive/usd-to-pkr`, `-php`, `-bdt`, `-ngn`,
+     both rate pages and the remaining PR #72 corridors (`-idr`, `-eur-portugal`, `-thb`, `-gel`). Daily quota ran
+     out before the last two.
+   - Bing (Claude, URL Submission API): all 25 sitemap URLs submitted 2026-11-01 (quota 100 a day, 25 used).
+     Bing's sitemap read was still dated 2026-06-12, so this is the faster route there.
+21. [ ] **You, on 2026-11-02:** Search Console URL Inspection, Request indexing, for the two left over on 2026-11-01
+    because of the daily quota: `https://paidacross.com/receive-international-payments` and
+    `https://paidacross.com/how-we-make-money`. Note the date here. Effort S.
 2. [x] **You:** apply to the Payoneer affiliate programme (application sent 2026-10-30; awaiting reply). Both rate pages and 7 corridors earn nothing,
    and the rate pages are now linked from every page.
 3. [x] **You:** decided 2026-10-30: leave it as is (no minimum modelled). The Georgia question from PR #70: under about $300 the dollar table ranks
