@@ -1,10 +1,11 @@
 {
  "base": "https://paidacross.com",
- "takenAt": "2026-10-29T19:29:49.818Z",
+ "takenAt": "2026-11-04T12:04:28.309Z",
  "paths": [
   "/",
   "/receive-international-payments",
   "/pay-freelancers-internationally",
+  "/freelancer-payment-cost-index",
   "/how-we-make-money",
   "/about/author",
   "/receive/usd-to-pkr",
@@ -36,7 +37,7 @@
  "pages": {
   "/": {
    "title": "Paid Across: what receiving USD really costs, by country",
-   "description": "What Wise, Payoneer, Western Union, PayPal and bank wire leave you after fees and the exchange rate margin, in 17 countries. Live mid-market rates, no paid ranking.",
+   "description": "What Wise, Payoneer, Western Union, PayPal and bank wire leave you after fees and the FX margin, in 17 countries. Live mid-market rates; nobody pays to rank.",
    "canonical": "https://paidacross.com",
    "robots": null,
    "og": {
@@ -240,6 +241,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -259,8 +265,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 997,
-   "mainTextHash": "fde970306023"
+   "wordCount": 998,
+   "mainTextHash": "159a148a1588"
   },
   "/receive-international-payments": {
    "title": "Receive international payments: real costs by country",
@@ -307,7 +313,7 @@
        "@id": "https://paidacross.com/receive-international-payments#article",
        "headline": "How freelancers receive international payments: real costs by country",
        "datePublished": "2026-06-03T00:00:00+00:00",
-       "dateModified": "2026-10-29T00:00:00+00:00",
+       "dateModified": "2026-10-30T00:00:00+00:00",
        "url": "https://paidacross.com/receive-international-payments",
        "image": "https://paidacross.com/opengraph-image",
        "author": {
@@ -347,8 +353,10 @@
     "H2 The two charges in every payment",
     "H2 Account details matter more than fees",
     "H2 Upwork, Fiverr and other marketplaces",
+    "H2 Receiving payments from clients in multiple countries",
     "H2 You do not always have to convert",
     "H2 Paperwork can outweigh the fee",
+    "H2 Keeping track of international payments",
     "H2 The main providers, briefly",
     "H3 Wise",
     "H3 Payoneer",
@@ -473,6 +481,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://wise.prf.hn/click/camref:1101l5KKgS",
      "text": "Open Wise account (AD) →",
      "rel": "sponsored nofollow noopener"
@@ -528,6 +541,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -546,8 +564,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 2129,
-   "mainTextHash": "70241feb63a6"
+   "wordCount": 2524,
+   "mainTextHash": "cd15225d2b33"
   },
   "/pay-freelancers-internationally": {
    "title": "How to pay freelancers internationally: real costs",
@@ -784,6 +802,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -801,8 +824,277 @@
     }
    ],
    "status": 200,
-   "wordCount": 1139,
-   "mainTextHash": "5d86b1f42bc0"
+   "wordCount": 1140,
+   "mainTextHash": "aba20831e03b"
+  },
+  "/freelancer-payment-cost-index": {
+   "title": "Freelancer payment cost index: 17 countries (Oct 2026)",
+   "description": "Receiving 1,000 USD in 17 countries: the cheapest and dearest ranked routes differ by up to 94.88 USD. Priced at 29 October 2026 rates; CSV free to cite.",
+   "canonical": "https://paidacross.com/freelancer-payment-cost-index",
+   "robots": null,
+   "og": {
+    "og:title": "What freelancers lose getting paid: the cost index",
+    "og:description": "Receiving 1,000 USD in 17 countries: the cheapest and dearest ranked routes differ by up to 94.88 USD. Priced at 29 October 2026 rates; CSV free to cite.",
+    "og:url": "https://paidacross.com/freelancer-payment-cost-index",
+    "og:type": "article"
+   },
+   "twitter": {
+    "twitter:card": "summary_large_image",
+    "twitter:title": "What freelancers lose getting paid: the cost index",
+    "twitter:description": "Receiving 1,000 USD in 17 countries: the cheapest and dearest ranked routes differ by up to 94.88 USD. Priced at 29 October 2026 rates; CSV free to cite."
+   },
+   "jsonld": [
+    {
+     "@context": "https://schema.org",
+     "@graph": [
+      {
+       "@type": "Organization",
+       "@id": "https://paidacross.com/#organization",
+       "name": "Paid Across",
+       "url": "https://paidacross.com"
+      },
+      {
+       "@type": "WebSite",
+       "@id": "https://paidacross.com/#website",
+       "url": "https://paidacross.com",
+       "name": "Paid Across",
+       "publisher": {
+        "@id": "https://paidacross.com/#organization"
+       }
+      }
+     ]
+    },
+    {
+     "@context": "https://schema.org",
+     "@graph": [
+      {
+       "@type": "Dataset",
+       "@id": "https://paidacross.com/freelancer-payment-cost-index#dataset",
+       "name": "Freelancer payment cost index, 2026-10 edition",
+       "description": "Receiving 1,000 USD in 17 countries: the cheapest and dearest ranked routes differ by up to 94.88 USD. Priced at 29 October 2026 rates; CSV free to cite.",
+       "url": "https://paidacross.com/freelancer-payment-cost-index",
+       "temporalCoverage": "2026-10-29",
+       "datePublished": "2026-10-30T00:00:00+00:00",
+       "isAccessibleForFree": true,
+       "license": "https://creativecommons.org/licenses/by/4.0/",
+       "version": "2026-10",
+       "creator": {
+        "@type": "Person",
+        "name": "George I.",
+        "url": "https://paidacross.com/about/author"
+       },
+       "publisher": {
+        "@id": "https://paidacross.com/#organization"
+       },
+       "distribution": {
+        "@type": "DataDownload",
+        "encodingFormat": "text/csv",
+        "contentUrl": "https://paidacross.com/freelancer-payment-cost-index/2026-10.csv"
+       }
+      },
+      {
+       "@type": "BreadcrumbList",
+       "itemListElement": [
+        {
+         "@type": "ListItem",
+         "position": 1,
+         "name": "Home",
+         "item": "https://paidacross.com"
+        },
+        {
+         "@type": "ListItem",
+         "position": 2,
+         "name": "Freelancer payment cost index",
+         "item": "https://paidacross.com/freelancer-payment-cost-index"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "headings": [
+    "H1 What freelancers lose getting paid: receiving 1,000 USD in 17 countries",
+    "H2 1,000 USD from a US client, country by country",
+    "H2 How to read it",
+    "H2 Method",
+    "H2 Use the data"
+   ],
+   "links": [
+    {
+     "href": "#main-content",
+     "text": "Skip to main content",
+     "rel": null
+    },
+    {
+     "href": "/",
+     "text": "Paid Across",
+     "rel": null
+    },
+    {
+     "href": "/receive-international-payments",
+     "text": "Country guides",
+     "rel": null
+    },
+    {
+     "href": "/how-we-make-money",
+     "text": "How we make money",
+     "rel": null
+    },
+    {
+     "href": "/about/author",
+     "text": "George I.",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-pkr",
+     "text": "Pakistan",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-bdt",
+     "text": "Bangladesh",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-ngn",
+     "text": "Nigeria",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-php",
+     "text": "Philippines",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-gel",
+     "text": "Georgia",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-eur-portugal",
+     "text": "Portugal",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-thb",
+     "text": "Thailand",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-idr",
+     "text": "Indonesia",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-mxn",
+     "text": "Mexico",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-brl",
+     "text": "Brazil",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-uzs",
+     "text": "Uzbekistan",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-inr",
+     "text": "India",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-cop",
+     "text": "Colombia",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-zar",
+     "text": "South Africa",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-ars",
+     "text": "Argentina",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-pln",
+     "text": "Poland",
+     "rel": null
+    },
+    {
+     "href": "/receive/usd-to-uah",
+     "text": "Ukraine",
+     "rel": null
+    },
+    {
+     "href": "https://open.er-api.com",
+     "text": "open.er-api.com",
+     "rel": "noopener noreferrer"
+    },
+    {
+     "href": "https://github.com/resmi360io/nomad-stack",
+     "text": "open source",
+     "rel": "noopener noreferrer"
+    },
+    {
+     "href": "/freelancer-payment-cost-index/2026-10.csv",
+     "text": "2026-10.csv",
+     "rel": null
+    },
+    {
+     "href": "https://creativecommons.org/licenses/by/4.0/",
+     "text": "CC BY 4.0",
+     "rel": "noopener noreferrer"
+    },
+    {
+     "href": "/how-we-make-money",
+     "text": "how we make money",
+     "rel": null
+    },
+    {
+     "href": "/rates/payoneer-usd-to-pkr",
+     "text": "Payoneer USD to PKR rate",
+     "rel": null
+    },
+    {
+     "href": "/rates/payoneer-usd-to-bdt",
+     "text": "Payoneer USD to BDT rate",
+     "rel": null
+    },
+    {
+     "href": "/how-we-make-money",
+     "text": "how we make money",
+     "rel": null
+    },
+    {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
+     "href": "https://github.com/resmi360io/nomad-stack",
+     "text": "fee data on GitHub",
+     "rel": "noopener noreferrer"
+    }
+   ],
+   "ids": [
+    "main-content"
+   ],
+   "breadcrumb": "",
+   "imgs": [],
+   "tables": [
+    {
+     "caption": "Cheapest and dearest ranked way to receive 1,000 USD in each country, and the difference in US dollars",
+     "rows": 18
+    }
+   ],
+   "status": 200,
+   "wordCount": 667,
+   "mainTextHash": "18f19b0a816c"
   },
   "/how-we-make-money": {
    "title": "How we make money | Paid Across",
@@ -849,7 +1141,7 @@
        "@id": "https://paidacross.com/how-we-make-money#page",
        "name": "How we make money: Paid Across",
        "datePublished": "2026-06-03T00:00:00+00:00",
-       "dateModified": "2026-08-13T00:00:00+00:00",
+       "dateModified": "2026-10-30T00:00:00+00:00",
        "url": "https://paidacross.com/how-we-make-money",
        "description": "How Paid Across earns affiliate commissions, how provider rankings are decided by fee math alone, and how fee data is sourced and verified.",
        "author": {
@@ -972,6 +1264,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -990,8 +1287,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 1049,
-   "mainTextHash": "1dfd5d8a6f4a"
+   "wordCount": 1069,
+   "mainTextHash": "4654349f3748"
   },
   "/about/author": {
    "title": "About the author: George I. | Paid Across",
@@ -1121,6 +1418,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -1133,8 +1435,8 @@
    "imgs": [],
    "tables": [],
    "status": 200,
-   "wordCount": 449,
-   "mainTextHash": "f86cfa2434fa"
+   "wordCount": 451,
+   "mainTextHash": "104950a2a5dc"
   },
   "/receive/usd-to-pkr": {
    "title": "Receive USD in Pakistan: real costs compared 2026 | Paid Across",
@@ -1181,7 +1483,7 @@
        "@id": "https://paidacross.com/receive/usd-to-pkr#article",
        "headline": "How to receive USD in Pakistan: fees, FX spread, and what you actually net",
        "datePublished": "2026-06-03T00:00:00+00:00",
-       "dateModified": "2026-10-29T00:00:00+00:00",
+       "dateModified": "2026-10-30T00:00:00+00:00",
        "url": "https://paidacross.com/receive/usd-to-pkr",
        "image": "https://paidacross.com/opengraph-image",
        "author": {
@@ -1251,7 +1553,7 @@
          "name": "What is the cheapest way to receive USD in Pakistan?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "For Pakistani residents, Payoneer is still the most practical option, at roughly 3.6% all in on our model: a 1% receiving fee plus 2.6% on the withdrawal. Be aware that second number is our estimate, not a quote. Payoneer publishes a range of 1.2% to 4% for a withdrawal involving conversion and does not say where the rupee sits in it, so we model the midpoint and flag it. Do not plan on Wise as a cheaper workaround for client invoices: Wise says it is currently unable to send business payments to PKR, and a PKR transfer must go to a private individual. If you earn on Upwork specifically, price its own Direct to Local Bank withdrawal before defaulting to Payoneer: it pays PKR into a Pakistani bank account for a flat fee widely reported at $0.99, arriving within about four business days. We could not open Upwork's own fee page to confirm that figure. The catch is the rate, not the fee: Upwork states that its payment partners set the exchange rate and may add a markup, and it does not publish what that markup is, so a $0.99 flat fee on its own does not make this cheaper than Payoneer. Compare the PKR figure Upwork quotes you against the mid-market rate on the day, and if you claim the 0.25% PSEB rate, ask your bank how a Direct to Local Bank deposit is classified before switching."
+          "text": "For Pakistani residents, Payoneer is still the most practical option, at roughly 3.6% all in on our model: a 1% receiving fee plus 2.6% on the withdrawal. Be aware that second number is our estimate, not a quote. Payoneer publishes a range of 1.2% to 4% for a withdrawal involving conversion and does not say where the rupee sits in it, so we model the midpoint and flag it. You can measure your own figure. Payoneer shows the fees for each withdrawal on the withdrawal summary page, but the rate matters as much, so multiply the dollars you are withdrawing by the mid-market USD to PKR rate at that moment and compare the result with the rupees that arrive. The gap, as a share of the mid-market figure, is what the withdrawal cost you, fees and rate together. Do not plan on Wise as a cheaper workaround for client invoices: Wise says it is currently unable to send business payments to PKR, and a PKR transfer must go to a private individual. If you earn on Upwork specifically, price its own Direct to Local Bank withdrawal before defaulting to Payoneer: it pays PKR into a Pakistani bank account for a flat fee widely reported at $0.99, arriving within about four business days. We could not open Upwork's own fee page to confirm that figure. The catch is the rate, not the fee: Upwork states that its payment partners set the exchange rate and may add a markup, and it does not publish what that markup is, so a $0.99 flat fee on its own does not make this cheaper than Payoneer. Compare the PKR figure Upwork quotes you against the mid-market rate on the day, and if you claim the 0.25% PSEB rate, ask your bank how a Direct to Local Bank deposit is classified before switching."
          }
         },
         {
@@ -1259,7 +1561,7 @@
          "name": "How long does it take to receive international payments in Pakistan?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Payoneer to a local PKR bank account: within minutes via the real-time HBL or Meezan Bank app integrations, or typically 1--3 business days for a standard bank withdrawal, sometimes longer; Payoneer does not publish a guaranteed time for Pakistan, so treat any figure as indicative. Payoneer balance to balance is near-instant. Western Union bank deposit: 1--3 business days. SWIFT wire from a US bank to a Pakistani bank: 3--7 business days, sometimes longer if intermediate correspondent banks add delays. The Pakistan banking system adds no unusual delays compared to other developing-country corridors."
+          "text": "Payoneer to a local PKR bank account: within minutes via the real-time HBL or Meezan Bank app integrations. For a standard bank withdrawal Payoneer gives two figures: its withdrawals page says one to three business days, and its help centre says most withdrawals land the same day and some take up to 2 business days once you receive the withdrawal confirmation email, which gives a more exact arrival time. Neither is specific to Pakistan, so treat them as indicative. Payoneer balance to balance is near-instant. Western Union bank deposit: 1 to 3 business days. SWIFT wire from a US bank to a Pakistani bank: 3 to 7 business days, sometimes longer if intermediate correspondent banks add delays. The Pakistan banking system adds no unusual delays compared to other developing-country corridors."
          }
         },
         {
@@ -1267,7 +1569,7 @@
          "name": "Do I need to declare international freelance income to FBR?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Income received from foreign clients is taxable in Pakistan and must be declared to the Federal Board of Revenue (FBR). Under Section 154A of the Income Tax Ordinance, IT and IT-enabled services export proceeds are subject to a 0.25% final withholding tax for exporters registered with the Pakistan Software Export Board (PSEB), versus roughly 1% if unregistered, conditional on receiving proceeds through banking channels. The Finance Act 2026 extended the 0.25% rate through Tax Year 2029. Rules change with each annual budget. Consult a Pakistani tax professional -- this site covers fees, not tax, and the regulatory landscape changes too frequently to summarize reliably."
+          "text": "Yes. Income received from foreign clients is taxable in Pakistan and must be declared to the Federal Board of Revenue (FBR). Under Section 154A of the Income Tax Ordinance, IT and IT-enabled services export proceeds are subject to a 0.25% final withholding tax for exporters registered with the Pakistan Software Export Board (PSEB), versus roughly 1% if unregistered, conditional on receiving proceeds through banking channels. The Finance Act 2026 extended the 0.25% rate through Tax Year 2029. Rules change with each annual budget. Consult a Pakistani tax professional. This site covers fees, not tax, and the regulatory landscape changes too frequently to summarize reliably."
          }
         },
         {
@@ -1276,6 +1578,22 @@
          "acceptedAnswer": {
           "@type": "Answer",
           "text": "HBL, UBL, MCB, Meezan Bank, and Bank Alfalah are the most commonly reported to work without issues; Faysal Bank is also frequently mentioned. HBL and Meezan Bank have official real-time withdrawal integrations with Payoneer, making them the fastest routes. The main requirement is that the account is in your legal name exactly as it appears in your Payoneer verification documents (CNIC or passport). Joint accounts or accounts with name mismatches can cause delays or rejections."
+         }
+        },
+        {
+         "@type": "Question",
+         "name": "Why did Payoneer take $29.95 from my balance?",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "That is Payoneer's annual account fee. Payoneer's help article on the fee lists Pakistan under a 6,000 USD rule effective 23 February 2026: the fee is charged if 12 months pass without the account receiving 6,000 USD or equivalent in payments. It can only be charged once you have been registered with Payoneer for 12 months, and after one charge it will not be charged again for another 12 months. Payoneer takes it straight from your balance, and if the balance is smaller than the fee it takes whatever is there, down to zero. Our comparison table cannot show a yearly fee, so if you receive less than 6,000 USD a year through Payoneer, add 29.95 USD a year to the cost of that row."
+         }
+        },
+        {
+         "@type": "Question",
+         "name": "I get a monthly salary in dollars from a company abroad. What is the best way to receive it in Pakistan and convert it to PKR?",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A wire into an account in your own name at a Pakistani bank leaves the clearest record. A salary is not treated like freelance export income, though, and that changes both the tax and the route compared with freelance payments. Under Pakistan's Income Tax Ordinance it is taxed under the head \"Salary\", and section 101 says salary for a job you do in Pakistan is Pakistan-source income wherever it is paid from. The section 102 exemption covers only foreign-source salary that was taxed abroad, so on its plain wording it does not fit a remote job done from home here. The 0.25% PSEB rate under section 154A is written for export proceeds and says nothing about employment income, so do not assume either one applies to you, and take your tax position to a Pakistani tax adviser. State Bank rules let resident Pakistanis keep foreign currency accounts funded by remittances from abroad, but those accounts cannot take payment for services rendered in or from Pakistan, and otherwise dollars received for a resident have to be converted to rupees unless the State Bank has given permission to keep them, so ask your bank whether your salary can stay in dollars before you send your employer the details. Payoneer's terms allow for salary payments but make you responsible for knowing whether a payment is salary or a contractor fee, and Payoneer can ask for proof. Wise does not issue USD account details to an address in Pakistan. If your employer hires you through an employer of record such as Deel, ask before you sign which currency your salary will be paid in and, if it is converted, at what rate."
          }
         }
        ]
@@ -1299,6 +1617,8 @@
     "H3 How long does it take to receive international payments in Pakistan?",
     "H3 Do I need to declare international freelance income to FBR?",
     "H3 Which Pakistani banks work best with Payoneer?",
+    "H3 Why did Payoneer take $29.95 from my balance?",
+    "H3 I get a monthly salary in dollars from a company abroad. What is the best way to receive it in Pakistan and convert it to PKR?",
     "H2 Related guides"
    ],
    "links": [
@@ -1508,6 +1828,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -1534,8 +1859,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 2413,
-   "mainTextHash": "97e116e7cadb"
+   "wordCount": 2980,
+   "mainTextHash": "b7772a61ed05"
   },
   "/receive/usd-to-bdt": {
    "title": "Receive USD in Bangladesh: fees compared 2026 | Paid Across",
@@ -1582,7 +1907,7 @@
        "@id": "https://paidacross.com/receive/usd-to-bdt#article",
        "headline": "How to receive USD in Bangladesh: fees, FX spread, and what you actually net",
        "datePublished": "2026-06-04T00:00:00+00:00",
-       "dateModified": "2026-10-29T00:00:00+00:00",
+       "dateModified": "2026-11-01T00:00:00+00:00",
        "url": "https://paidacross.com/receive/usd-to-bdt",
        "image": "https://paidacross.com/opengraph-image",
        "author": {
@@ -1686,6 +2011,22 @@
           "@type": "Answer",
           "text": "The bank account route is cheaper for most transfers. The 1% receiving fee applies either way; after it, Payoneer charges approximately 3% plus $1 to convert for the bKash route, against a 1.2% to 4% conversion charge for a bank withdrawal (2.2% to 5% all-in, about 3.6% at the 2.6% midpoint our table uses). The bKash side adds a cash-out charge on top: 18.50 Taka per 1,000 (1.85%) at a standard agent, or 7 Taka per 1,000 (0.70%) if you withdraw Payoneer-received funds at a BRAC Bank, City Bank or participating Q-Cash ATM. On a $1,000 payment, even at the cheaper ATM rate the bank route comes out ahead at the 2.6% midpoint (about 3.6% all-in against about 4.7% for bKash plus ATM cash-out), and the bKash route only catches up if your Payoneer conversion charge lands at about 3.8%, near the top of its 1.2% to 4% range. If you do use bKash, cash out at one of those ATMs rather than at an agent, but check the ATM cash-out limits in the app first: bKash's own pages, which we could not open, appear to cap ATM withdrawals per transaction, per day and per month well below the size of a typical client payment. The bKash route is faster, typically settling within hours rather than 1-3 business days. For claiming the export cash incentive or funding an ERQ account, you must use the bank route: bKash withdrawals do not generate a Foreign Inward Remittance Certificate (FIRC). A practical split: use the bKash route for small, urgent withdrawals when you need cash quickly; route your main income through a bank account for savings, incentive claims, and ERQ."
          }
+        },
+        {
+         "@type": "Question",
+         "name": "Why does Payoneer keep rejecting my documents, and how do I get through verification faster?",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Payoneer document verification FAQ lists the usual reasons a document is rejected: a low-resolution image, a document not shown in full, one that does not match the document type you selected, one that is expired or not recent, or a password-protected file. It also says that uploading one of its recommended ID types shortens the review, and a non-recommended one makes it take longer. Register with exactly the name and address shown on the ID you will upload, and withdraw to a bank account in that same name, which Payoneer requires for an individual account. If you are tempted to close the account in frustration, withdraw first: Payoneer says any balance left when you confirm a closure is lost, and a closed account cannot be reopened."
+         }
+        },
+        {
+         "@type": "Question",
+         "name": "Can I use Wise to receive USD in Bangladesh?",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not into a Wise account of your own. Wise does not offer balances or USD account details to people living in Bangladesh, so there are no Wise account details to give a client. A client abroad can still use Wise to send taka to your bank account, bKash wallet or Nagad wallet, but the rules on their side narrow it. Wise says it cannot send business transfers to BDT, and that sending on behalf of a company needs a Wise Business account, so a client paying as a company cannot use this route. Wise does not say whether an individual paying you for work counts as a business transfer, so ask the client to check with Wise before you rely on it. It does not help with Upwork or Fiverr work either, because there the client pays the platform, not you. For regular client income, Payoneer and a bank wire are the routes our table prices. If you use Payoneer, withdraw to a bank account rather than to bKash: a bank withdrawal, like a bank wire, produces the Foreign Inward Remittance Certificate (FIRC) the freelancer export cash incentive needs (see the incentive question above for its rate and current status). That is a different scheme from the 2.5% remittance incentive in Wise's own BDT guide, which is for Bangladeshis working abroad."
+         }
         }
        ]
       }
@@ -1711,6 +2052,8 @@
     "H3 Do I have to pay income tax on foreign freelance earnings?",
     "H3 Can I receive Payoneer payments directly into bKash or Nagad?",
     "H3 Which is better: Payoneer to bank account or to bKash?",
+    "H3 Why does Payoneer keep rejecting my documents, and how do I get through verification faster?",
+    "H3 Can I use Wise to receive USD in Bangladesh?",
     "H2 Related guides"
    ],
    "links": [
@@ -1930,6 +2273,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -1958,8 +2306,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 3894,
-   "mainTextHash": "2205ccf79241"
+   "wordCount": 4272,
+   "mainTextHash": "b99c907f3c49"
   },
   "/receive/usd-to-ngn": {
    "title": "Receive USD in Nigeria: cheapest apps, 2026 | Paid Across",
@@ -2006,7 +2354,7 @@
        "@id": "https://paidacross.com/receive/usd-to-ngn#article",
        "headline": "How to receive USD in Nigeria: fees, FX spread, and what you actually net",
        "datePublished": "2026-06-14T00:00:00+00:00",
-       "dateModified": "2026-10-29T00:00:00+00:00",
+       "dateModified": "2026-10-30T00:00:00+00:00",
        "url": "https://paidacross.com/receive/usd-to-ngn",
        "image": "https://paidacross.com/opengraph-image",
        "author": {
@@ -2092,7 +2440,7 @@
          "name": "How long does it take to receive USD in Nigeria?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Cleva: typically within 24 hours once the US ACH credit clears (the ACH from your client takes 1-2 business days on their side). Grey: typically 24 hours. LemFi: 1-2 business days. Raenest: typically 24 hours. Payoneer to local NGN bank: typically 2-4 business days after the payment clears. SWIFT bank wire: 2-5 business days. PayPal via Paga: Paga says withdrawals are usually processed instantly or within a few minutes, though PayPal may review a transaction, which can delay it."
+          "text": "Cleva: typically within 24 hours once the US ACH credit clears (the ACH from your client takes 1-2 business days on their side). Grey: typically 24 hours. LemFi: 1-2 business days. Raenest: typically 24 hours. Payoneer to local NGN bank: typically 1 to 3 business days on the Payoneer withdrawals page, and often the same day according to its help center once the withdrawal confirmation email arrives. Neither figure is specific to Nigeria. SWIFT bank wire: 2-5 business days. PayPal via Paga: Paga says withdrawals are usually processed instantly or within a few minutes, though PayPal may review a transaction, which can delay it."
          }
         },
         {
@@ -2100,7 +2448,7 @@
          "name": "Is Payoneer still worth using for Nigerian freelancers?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Payoneer's main advantage is platform compatibility: if you work on Upwork or Fiverr, Payoneer is often the default and cheapest withdrawal method from the platform balance. If you are billing direct clients, Cleva, LemFi, or Raenest give better rates. Watch the annual fee threshold: if your Payoneer account receives less than the minimum activity threshold in any 12-month period, you are charged $29.95 in annual fees. Payoneer's help center currently puts that threshold at $6,000, though it has published $2,000 elsewhere, so confirm the figure for your account in the portal. For low-volume freelancers with direct clients, a lower-cost option like Cleva, Raenest, or LemFi is clearly better."
+          "text": "Payoneer's main advantage is platform compatibility: if you work on Upwork or Fiverr, Payoneer is often the default and cheapest withdrawal method from the platform balance. If you are billing direct clients, Cleva, LemFi, or Raenest give better rates. Watch the annual fee threshold: if your Payoneer account receives less than the minimum activity threshold in any 12-month period, you are charged $29.95 in annual fees. Payoneer's annual fee help article puts that threshold for Nigeria at 6,000 USD received in 12 months, effective 23 February 2026, and its fee schedule gives the same figure. For low-volume freelancers with direct clients, a lower-cost option like Cleva, Raenest, or LemFi is clearly better."
          }
         },
         {
@@ -2109,6 +2457,14 @@
          "acceptedAnswer": {
           "@type": "Answer",
           "text": "Yes. Income from foreign clients is taxable in Nigeria and filing is required. The statutory basis changed recently: Nigeria consolidated its main tax laws into a single statute, the Nigeria Tax Act, which took effect on 1 January 2026 and replaced the separate Personal Income Tax Act and Companies Income Tax Act framework that previously applied. The individual rate bands were revised at the same time. We could not open a Nigerian government source to confirm the current band table, so we are not publishing rate figures here. Check your current band, the reliefs available to you, and how income earned abroad is treated with FIRS or a Nigerian tax professional. Nigeria does not have a blanket income tax exemption for IT freelancers comparable to some other countries. Consult a Nigerian tax professional: this site covers transfer fees, not tax advice."
+         }
+        },
+        {
+         "@type": "Question",
+         "name": "My Payoneer withdrawal says completed but the naira has not reached my bank. What now?",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Give it two business days first: Payoneer says that once you receive the withdrawal confirmation email, most bank withdrawals land the same day and some take up to 2 business days, and that email gives a more exact arrival time. If the bank details were wrong, Payoneer says the bank rejects the transfer and the money comes back to your Payoneer balance, which can take up to 14 business days. For an individual account the bank account holder's name must match the name on your Payoneer account, so a mismatch is the first thing to check. Payoneer also sets minimum and maximum withdrawal amounts for each user and shows them under the amount field, so trust the figure in your own account over one quoted online."
          }
         }
        ]
@@ -2138,6 +2494,7 @@
     "H3 How long does it take to receive USD in Nigeria?",
     "H3 Is Payoneer still worth using for Nigerian freelancers?",
     "H3 Do I have to pay tax on freelance income in Nigeria?",
+    "H3 My Payoneer withdrawal says completed but the naira has not reached my bank. What now?",
     "H2 Related guides"
    ],
    "links": [
@@ -2377,6 +2734,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -2408,8 +2770,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 3684,
-   "mainTextHash": "632d79a44f3b"
+   "wordCount": 3881,
+   "mainTextHash": "9d1a04a05592"
   },
   "/receive/usd-to-php": {
    "title": "How to receive USD in the Philippines, 2026 | Paid Across",
@@ -2456,7 +2818,7 @@
        "@id": "https://paidacross.com/receive/usd-to-php#article",
        "headline": "How to receive USD in the Philippines: fees, FX spread, and what you actually net",
        "datePublished": "2026-07-05T00:00:00+00:00",
-       "dateModified": "2026-10-29T00:00:00+00:00",
+       "dateModified": "2026-10-30T00:00:00+00:00",
        "url": "https://paidacross.com/receive/usd-to-php",
        "image": "https://paidacross.com/opengraph-image",
        "author": {
@@ -2510,7 +2872,7 @@
          "name": "Is Wise available in the Philippines, and can I get USD account details?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, and this is what sets the Philippines apart from markets like Pakistan or Nigeria. Philippine residents can open a full Wise account with a local ID and proof of address. The account includes US ACH receiving details (routing and account number) you can hand to clients or connect to platforms; receiving USD by ACH is free, and an incoming wire costs $6.11. You hold the dollars in your Wise balance and convert to PHP at the mid-market rate whenever you like, paying a conversion fee that typically comes in under 1%. On limits, Wise is reported to cap conversions and transfers at $10,000 or equivalent each and $50,000 or equivalent per calendar month, and to cap what a personal account receives or tops up at 10,000,000 PHP per calendar month, with no cap on the balance you hold. Wise scopes those caps to four situations, one of which is adding PHP to your account from another currency such as USD or GBP, so a USD to PHP conversion does count against them. We could not open Wise's help pages, so verify current limits in the app."
+          "text": "Yes, and this is what sets the Philippines apart from markets like Pakistan or Nigeria. Philippine residents can open a full Wise account with a local ID and proof of address. The account includes US ACH receiving details (routing and account number) you can hand to clients or connect to platforms; receiving USD by ACH is free, and an incoming wire costs $6.11. You hold the dollars in your Wise balance and convert to PHP at the mid-market rate whenever you like, paying a conversion fee that typically comes in under 1%. On limits, Wise caps conversions and transfers at $10,000 or equivalent each and $50,000 or equivalent per calendar month, and caps what a personal account receives or tops up at 10,000,000 PHP per calendar month, with no cap on the balance you hold. Wise scopes the conversion and transfer caps to four situations, one of which is adding PHP to your account from another currency such as USD or GBP, so a USD to PHP conversion does count against them. These figures are from the Wise help article on limits for Philippine accounts, read on 30 October 2026, so verify current limits in the app."
          }
         },
         {
@@ -2518,7 +2880,7 @@
          "name": "What is the cheapest way to receive USD in the Philippines?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Wise, for most people, most of the time. Free ACH receiving plus a sub-1% conversion fee at the true mid-market rate beats everything else we can verify on this corridor. The GCash Virtual US Account also receives ACH for free and might be comparable overall, but GCash does not publish its USD-to-PHP conversion spread, so we cannot rank it honestly; check the app's quoted rate against mid-market before converting. Payoneer runs roughly 3% all-in and earns its keep mainly as the default platform payout. PayPal is the most expensive at roughly 8% once the receiving fee and the FX spread stack. For a single large payment, a SWIFT wire into a bank USD account can be cheapest of all, since the flat fees stop mattering and you control when to convert."
+          "text": "Wise, for most people, most of the time. Free ACH receiving plus a sub-1% conversion fee at the true mid-market rate beats everything else we can verify on this corridor. The GCash Virtual US Account also receives ACH for free and might be comparable overall, but GCash does not publish its USD-to-PHP conversion spread, so we cannot rank it honestly; check the app's quoted rate against mid-market before converting. Payoneer runs roughly 3.6% all-in on our model (1% to receive plus a withdrawal conversion Payoneer publishes as 1.2% to 4%) and earns its keep mainly as the default platform payout. PayPal is the most expensive at roughly 8% once the receiving fee and the FX spread stack. For a single large payment, a SWIFT wire into a bank USD account can be cheapest of all, since the flat fees stop mattering and you control when to convert."
          }
         },
         {
@@ -2568,6 +2930,22 @@
           "@type": "Answer",
           "text": "In dollars, in most cases, and then you decide when and where they become pesos. Every conversion has a price, and the only question is who does it. If your client sends pesos from the US, their bank or app converts at its own rate, and you never see how far that rate was from the mid. If they send dollars to your Wise USD account details, you convert yourself at the mid-market rate for a fee Wise shows you first, typically under 1%, or keep the dollars until the rate suits you. Two exceptions. A client who already uses Wise can send pesos at the same mid-market rate, with the fee shown up front, so the cost can be similar. What you give up is choosing when to convert. And Maya is not a way to receive dollars: we found no US dollar receiving details on Maya's own pages, and Remitly and Western Union both pay into Maya in pesos, so sending to Maya means pesos arriving through a remittance service. There is also a tax angle if you are VAT-registered. Services to a client doing business outside the Philippines can be zero-rated for VAT under Section 108(B)(2) of the Tax Code, but only when you are paid in acceptable foreign currency accounted for under BSP rules. Being paid in pesos may put that at risk, and we could not confirm whether a Wise balance meets the BSP condition, so check with your accountant before agreeing to be paid in pesos."
          }
+        },
+        {
+         "@type": "Question",
+         "name": "Which IDs does Payoneer accept in the Philippines? Can I use my national ID or ePhilID?",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Payoneer's three most recommended IDs in the Philippines are the PhilSys national ID, a passport with an MRZ code and a driver's license. For the national ID and the license it accepts only the physical PVC card, not the digital version. Send both sides of the license, and both sides of the national ID if it has information on the back. Its Philippines guide says only physical PVC cards are accepted for identity verification and does not mention the ePhilID by name, so a printed ePhilID or a screenshot may be rejected, and another ID from the list is the safer choice. It also accepts UMID, Postal ID, Voter's ID, OFW/OWWA ID, Seaman's Book or MARINA ID and an Alien Certificate of Registration, but not barangay residence cards, police clearances, student IDs or disability cards. For proof of address it takes a government ID of a different type from the one you verified with, a bank statement or utility bill issued in the last six months, a signed rental agreement or a barangay certificate, showing your full name and the exact address you entered at registration."
+         }
+        },
+        {
+         "@type": "Question",
+         "name": "How much can I send from Wise to GCash, and why can a transfer take days?",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wise caps each transfer to a mobile wallet such as GCash or Maya at 50,000 PHP, and warns that wallet providers can have their own receiving or account limits, which can get a payment rejected, so check your GCash limit in the app too. Wise says transfers to PHP are instant up to 50,000 PHP, that larger amounts usually take 1 to 2 working days to reach a bank account, and that converting your money can itself take up to 2 working days, so a transfer that includes a conversion can take days even when it goes to a wallet. For a large invoice, sending it to your own bank account avoids splitting it into 50,000 PHP wallet transfers, though the Wise limit of 10,000 USD or equivalent per conversion or transfer for Philippine accounts still applies."
+         }
         }
        ]
       }
@@ -2597,6 +2975,8 @@
     "H3 Do I need to register with the BIR as a freelancer, and how much tax will I pay?",
     "H3 Can I receive USD directly into GCash or Maya?",
     "H3 Should my client pay me in US dollars or in pesos?",
+    "H3 Which IDs does Payoneer accept in the Philippines? Can I use my national ID or ePhilID?",
+    "H3 How much can I send from Wise to GCash, and why can a transfer take days?",
     "H2 Related guides"
    ],
    "links": [
@@ -2846,6 +3226,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -2880,8 +3265,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 4349,
-   "mainTextHash": "6477b9d0e023"
+   "wordCount": 4829,
+   "mainTextHash": "a41ac5a38662"
   },
   "/receive/usd-to-gel": {
    "title": "Receive USD in Georgia: hold dollars or lari? | Paid Across",
@@ -3310,6 +3695,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -3343,7 +3733,7 @@
    ],
    "status": 200,
    "wordCount": 4487,
-   "mainTextHash": "13a28abbf330"
+   "mainTextHash": "7091bc7ce1ec"
   },
   "/receive/usd-to-eur-portugal": {
    "title": "Receive USD in Portugal: cheapest way, 2026 | Paid Across",
@@ -3762,6 +4152,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -3792,7 +4187,7 @@
    ],
    "status": 200,
    "wordCount": 3946,
-   "mainTextHash": "6349cc02af77"
+   "mainTextHash": "5c3ea0a9a83e"
   },
   "/receive/usd-to-thb": {
    "title": "Receive USD in Thailand after the Wise change | Paid Across",
@@ -3839,7 +4234,7 @@
        "@id": "https://paidacross.com/receive/usd-to-thb#article",
        "headline": "How to receive USD in Thailand: what the Wise change means and what still works",
        "datePublished": "2026-08-28T00:00:00+00:00",
-       "dateModified": "2026-10-29T00:00:00+00:00",
+       "dateModified": "2026-11-01T00:00:00+00:00",
        "url": "https://paidacross.com/receive/usd-to-thb",
        "image": "https://paidacross.com/opengraph-image",
        "author": {
@@ -3893,7 +4288,7 @@
          "name": "Can I still hold USD in my Wise account in Thailand?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Two separate things are going on, and you should know about both. The first is that Wise's own eligibility page currently says, under additional restrictions, that it has temporarily stopped issuing currencies and account details for customers in Thailand. Wise gives no date for that, does not say whether it covers new customers only or everyone, and no Thailand specific Wise article explains it, while wise.com/th still advertises the account and the details. We cannot resolve that from the outside, so if you do not already hold USD receiving details, find out whether you can get them before you rely on anything else here. The second is the migration. Wise is moving personal customers with a Thai registered address onto a locally incorporated entity licensed by the Bank of Thailand, and Wise says that once you are moved, payments arriving from someone else into your foreign currency receiving details are converted to baht on arrival and charged a conversion fee. Money you add yourself from your own overseas bank account is described as working as before, so the restriction targets client payments specifically. On timing, Wise's current article says customers who signed up before 21 January 2026 see the changes from December 2026, and customers who signed up after 21 January 2026 are being rolled out progressively and will be on them by September 2026. The same article also says that from now until December 2026 there will be no changes to your Wise account and you can continue using it as usual, which does not sit comfortably alongside the September date, and we are reporting both rather than choosing. We previously described a 3 August 2026 date pushed back at the end of July, and that is not in Wise's current text, so treat it as withdrawn. The move is keyed to the registered address on your account rather than your nationality, which is worth knowing if you are a foreign resident, and Wise says non-immigrant visas such as the Destination Thailand Visa and Education visas are accepted for the verification it is asking Thai customers to complete. Check your own account rather than planning around a date you read here."
+          "text": "Two separate things are going on, and you should know about both. The first is that Wise's own eligibility page currently says, under additional restrictions, that it has temporarily stopped issuing currencies and account details for customers in Thailand. Wise gives no date for that, does not say whether it covers new customers only or everyone, and no Thailand specific Wise article explains it, while wise.com/th still advertises the account and the details. We cannot resolve that from the outside, so if you do not already hold USD receiving details, find out whether you can get them before you rely on anything else here. The second is the migration. Wise is moving personal customers with a Thai registered address onto a locally incorporated entity licensed by the Bank of Thailand, and Wise says that once you are moved, payments arriving from someone else into your foreign currency receiving details are converted to baht on arrival and charged a conversion fee. Money you add yourself from your own overseas bank account is described as working as before, so the restriction targets client payments specifically. On timing, Wise's current article says customers who signed up before 21 January 2026 see the changes from December 2026, with no changes to their accounts until then. For customers who signed up after 21 January 2026 the changes are rolled out progressively and take effect by September 2026, which has now passed, so if that is you, assume they may already apply. We previously described a 3 August 2026 date pushed back at the end of July, and that is not in Wise's current text, so treat it as withdrawn. The move is keyed to the registered address on your account rather than your nationality, which is worth knowing if you are a foreign resident, and Wise says non-immigrant visas such as the Destination Thailand Visa and Education visas are accepted for the verification it is asking Thai customers to complete. Check your own account rather than planning around a date you read here."
          }
         },
         {
@@ -4189,6 +4584,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -4222,8 +4622,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 5613,
-   "mainTextHash": "5bd39387f3f4"
+   "wordCount": 5583,
+   "mainTextHash": "36fa373d6d49"
   },
   "/receive/usd-to-idr": {
    "title": "Best way to receive USD in Indonesia, 2026 | Paid Across",
@@ -4615,6 +5015,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -4649,22 +5054,22 @@
    ],
    "status": 200,
    "wordCount": 3828,
-   "mainTextHash": "7ad12e1cfdaa"
+   "mainTextHash": "c4fee1f51ccd"
   },
   "/receive/usd-to-mxn": {
-   "title": "Receive USD in Mexico: real costs compared 2026 | Paid Across",
+   "title": "Receive USD in Mexico: real costs (2026) | Paid Across",
    "description": "Compare the real cost of receiving USD in Mexico. Wise does not sell residents its multi-currency account, and three of the best options publish no FX rate.",
    "canonical": "https://paidacross.com/receive/usd-to-mxn",
    "robots": null,
    "og": {
-    "og:title": "Receive USD in Mexico: real costs compared 2026",
+    "og:title": "Receive USD in Mexico: real costs (2026)",
     "og:description": "Compare the real cost of receiving USD in Mexico. Wise does not sell residents its multi-currency account, and three of the best options publish no FX rate.",
     "og:url": "https://paidacross.com/receive/usd-to-mxn",
     "og:type": "article"
    },
    "twitter": {
     "twitter:card": "summary_large_image",
-    "twitter:title": "Receive USD in Mexico: real costs compared 2026",
+    "twitter:title": "Receive USD in Mexico: real costs (2026)",
     "twitter:description": "Compare the real cost of receiving USD in Mexico. Wise does not sell residents its multi-currency account, and three of the best options publish no FX rate."
    },
    "jsonld": [
@@ -5071,6 +5476,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -5102,22 +5512,22 @@
    ],
    "status": 200,
    "wordCount": 4214,
-   "mainTextHash": "b2156254708c"
+   "mainTextHash": "bf6a7b8b1b9b"
   },
   "/receive/usd-to-brl": {
-   "title": "Receive USD in Brazil: real costs compared 2026 | Paid Across",
+   "title": "Receive USD in Brazil: real costs (2026) | Paid Across",
    "description": "Compare the real cost of receiving USD in Brazil. The 3.5% IOF everyone quotes is outbound: export receipts are zero rated. Live rates and a worked example.",
    "canonical": "https://paidacross.com/receive/usd-to-brl",
    "robots": null,
    "og": {
-    "og:title": "Receive USD in Brazil: real costs compared 2026",
+    "og:title": "Receive USD in Brazil: real costs (2026)",
     "og:description": "Compare the real cost of receiving USD in Brazil. The 3.5% IOF everyone quotes is outbound: export receipts are zero rated. Live rates and a worked example.",
     "og:url": "https://paidacross.com/receive/usd-to-brl",
     "og:type": "article"
    },
    "twitter": {
     "twitter:card": "summary_large_image",
-    "twitter:title": "Receive USD in Brazil: real costs compared 2026",
+    "twitter:title": "Receive USD in Brazil: real costs (2026)",
     "twitter:description": "Compare the real cost of receiving USD in Brazil. The 3.5% IOF everyone quotes is outbound: export receipts are zero rated. Live rates and a worked example."
    },
    "jsonld": [
@@ -5543,6 +5953,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -5575,22 +5990,22 @@
    ],
    "status": 200,
    "wordCount": 4357,
-   "mainTextHash": "d6ea515d14aa"
+   "mainTextHash": "dfd2e949aeb9"
   },
   "/receive/usd-to-uzs": {
-   "title": "Receive USD in Uzbekistan: real costs compared 2026 | Paid Across",
+   "title": "Receive USD in Uzbekistan: real costs (2026) | Paid Across",
    "description": "Compare the real cost of receiving USD in Uzbekistan. Wise cannot hold money there and the transfer apps bar business use. An Uzbek dollar account wins.",
    "canonical": "https://paidacross.com/receive/usd-to-uzs",
    "robots": null,
    "og": {
-    "og:title": "Receive USD in Uzbekistan: real costs compared 2026",
+    "og:title": "Receive USD in Uzbekistan: real costs (2026)",
     "og:description": "Compare the real cost of receiving USD in Uzbekistan. Wise cannot hold money there and the transfer apps bar business use. An Uzbek dollar account wins.",
     "og:url": "https://paidacross.com/receive/usd-to-uzs",
     "og:type": "article"
    },
    "twitter": {
     "twitter:card": "summary_large_image",
-    "twitter:title": "Receive USD in Uzbekistan: real costs compared 2026",
+    "twitter:title": "Receive USD in Uzbekistan: real costs (2026)",
     "twitter:description": "Compare the real cost of receiving USD in Uzbekistan. Wise cannot hold money there and the transfer apps bar business use. An Uzbek dollar account wins."
    },
    "jsonld": [
@@ -6046,6 +6461,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -6081,7 +6501,7 @@
    ],
    "status": 200,
    "wordCount": 7647,
-   "mainTextHash": "e74dcb38873d"
+   "mainTextHash": "7cb151545c8c"
   },
   "/receive/usd-to-inr": {
    "title": "Receive USD in India: real costs compared 2026 | Paid Across",
@@ -6501,6 +6921,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -6532,22 +6957,22 @@
    ],
    "status": 200,
    "wordCount": 4922,
-   "mainTextHash": "20ec9d307c92"
+   "mainTextHash": "aa9224f04ef8"
   },
   "/receive/usd-to-cop": {
-   "title": "Receive USD in Colombia: real costs compared 2026 | Paid Across",
+   "title": "Receive USD in Colombia: real costs (2026) | Paid Across",
    "description": "Compare the real cost of receiving USD in Colombia. No declaracion de cambio on service exports, but no dollar account either, and IVA has a checklist.",
    "canonical": "https://paidacross.com/receive/usd-to-cop",
    "robots": null,
    "og": {
-    "og:title": "Receive USD in Colombia: real costs compared 2026",
+    "og:title": "Receive USD in Colombia: real costs (2026)",
     "og:description": "Compare the real cost of receiving USD in Colombia. No declaracion de cambio on service exports, but no dollar account either, and IVA has a checklist.",
     "og:url": "https://paidacross.com/receive/usd-to-cop",
     "og:type": "article"
    },
    "twitter": {
     "twitter:card": "summary_large_image",
-    "twitter:title": "Receive USD in Colombia: real costs compared 2026",
+    "twitter:title": "Receive USD in Colombia: real costs (2026)",
     "twitter:description": "Compare the real cost of receiving USD in Colombia. No declaracion de cambio on service exports, but no dollar account either, and IVA has a checklist."
    },
    "jsonld": [
@@ -6964,6 +7389,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -6994,23 +7424,23 @@
    ],
    "status": 200,
    "wordCount": 4712,
-   "mainTextHash": "5971e6918a88"
+   "mainTextHash": "e23971ebf4ed"
   },
   "/receive/usd-to-zar": {
-   "title": "Receive USD in South Africa: real costs compared 2026 | Paid Across",
-   "description": "Compare the real cost of receiving USD in South Africa. Bring it home in 30 days, then hold the dollars onshore rather than converting. Plus the BOP code your bank will ask for.",
+   "title": "Receive USD in South Africa: real costs (2026) | Paid Across",
+   "description": "What receiving USD in South Africa really costs. Bring it home within 30 days, keep it in dollars if you want, and give your bank the right BOP code.",
    "canonical": "https://paidacross.com/receive/usd-to-zar",
    "robots": null,
    "og": {
-    "og:title": "Receive USD in South Africa: real costs compared 2026",
-    "og:description": "Compare the real cost of receiving USD in South Africa. Bring it home in 30 days, then hold the dollars onshore rather than converting. Plus the BOP code your bank will ask for.",
+    "og:title": "Receive USD in South Africa: real costs (2026)",
+    "og:description": "What receiving USD in South Africa really costs. Bring it home within 30 days, keep it in dollars if you want, and give your bank the right BOP code.",
     "og:url": "https://paidacross.com/receive/usd-to-zar",
     "og:type": "article"
    },
    "twitter": {
     "twitter:card": "summary_large_image",
-    "twitter:title": "Receive USD in South Africa: real costs compared 2026",
-    "twitter:description": "Compare the real cost of receiving USD in South Africa. Bring it home in 30 days, then hold the dollars onshore rather than converting. Plus the BOP code your bank will ask for."
+    "twitter:title": "Receive USD in South Africa: real costs (2026)",
+    "twitter:description": "What receiving USD in South Africa really costs. Bring it home within 30 days, keep it in dollars if you want, and give your bank the right BOP code."
    },
    "jsonld": [
     {
@@ -7041,7 +7471,7 @@
        "@id": "https://paidacross.com/receive/usd-to-zar#article",
        "headline": "How to receive USD in South Africa: repatriate, but do not convert",
        "datePublished": "2026-10-23T00:00:00+00:00",
-       "dateModified": "2026-10-25T00:00:00+00:00",
+       "dateModified": "2026-11-01T00:00:00+00:00",
        "url": "https://paidacross.com/receive/usd-to-zar",
        "image": "https://paidacross.com/opengraph-image",
        "author": {
@@ -7414,6 +7844,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -7447,23 +7882,23 @@
     }
    ],
    "status": 200,
-   "wordCount": 4538,
-   "mainTextHash": "6bf317a766c9"
+   "wordCount": 4591,
+   "mainTextHash": "9b12b843c76a"
   },
   "/receive/usd-to-ars": {
-   "title": "Receive USD in Argentina: real costs compared 2026 | Paid Across",
+   "title": "Receive USD in Argentina: real costs (2026) | Paid Across",
    "description": "Compare the real cost of receiving USD in Argentina. You can keep every dollar, there is no annual cap, and your bank may not charge you to receive it.",
    "canonical": "https://paidacross.com/receive/usd-to-ars",
    "robots": null,
    "og": {
-    "og:title": "Receive USD in Argentina: real costs compared 2026",
+    "og:title": "Receive USD in Argentina: real costs (2026)",
     "og:description": "Compare the real cost of receiving USD in Argentina. You can keep every dollar, there is no annual cap, and your bank may not charge you to receive it.",
     "og:url": "https://paidacross.com/receive/usd-to-ars",
     "og:type": "article"
    },
    "twitter": {
     "twitter:card": "summary_large_image",
-    "twitter:title": "Receive USD in Argentina: real costs compared 2026",
+    "twitter:title": "Receive USD in Argentina: real costs (2026)",
     "twitter:description": "Compare the real cost of receiving USD in Argentina. You can keep every dollar, there is no annual cap, and your bank may not charge you to receive it."
    },
    "jsonld": [
@@ -7849,6 +8284,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -7883,22 +8323,22 @@
    ],
    "status": 200,
    "wordCount": 3972,
-   "mainTextHash": "edf747d53dfc"
+   "mainTextHash": "921d6c8aa9a1"
   },
   "/receive/usd-to-pln": {
-   "title": "Receive USD in Poland: real costs compared 2026 | Paid Across",
+   "title": "Receive USD in Poland: real costs (2026) | Paid Across",
    "description": "Compare the real cost of receiving USD in Poland. No exchange control, a transfer that costs well under 1%, and the e-invoicing rule that changed in April 2026.",
    "canonical": "https://paidacross.com/receive/usd-to-pln",
    "robots": null,
    "og": {
-    "og:title": "Receive USD in Poland: real costs compared 2026",
+    "og:title": "Receive USD in Poland: real costs (2026)",
     "og:description": "Compare the real cost of receiving USD in Poland. No exchange control, a transfer that costs well under 1%, and the e-invoicing rule that changed in April 2026.",
     "og:url": "https://paidacross.com/receive/usd-to-pln",
     "og:type": "article"
    },
    "twitter": {
     "twitter:card": "summary_large_image",
-    "twitter:title": "Receive USD in Poland: real costs compared 2026",
+    "twitter:title": "Receive USD in Poland: real costs (2026)",
     "twitter:description": "Compare the real cost of receiving USD in Poland. No exchange control, a transfer that costs well under 1%, and the e-invoicing rule that changed in April 2026."
    },
    "jsonld": [
@@ -8289,6 +8729,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -8323,22 +8768,22 @@
    ],
    "status": 200,
    "wordCount": 4201,
-   "mainTextHash": "f31885c599ba"
+   "mainTextHash": "30d6926dbc9f"
   },
   "/receive/usd-to-uah": {
-   "title": "Receive USD in Ukraine: real costs compared 2026 | Paid Across",
+   "title": "Receive USD in Ukraine: real costs (2026) | Paid Across",
    "description": "Compare the real cost of receiving USD in Ukraine. No forced conversion, your bank charges nothing to receive it, and Wise cannot give you an account.",
    "canonical": "https://paidacross.com/receive/usd-to-uah",
    "robots": null,
    "og": {
-    "og:title": "Receive USD in Ukraine: real costs compared 2026",
+    "og:title": "Receive USD in Ukraine: real costs (2026)",
     "og:description": "Compare the real cost of receiving USD in Ukraine. No forced conversion, your bank charges nothing to receive it, and Wise cannot give you an account.",
     "og:url": "https://paidacross.com/receive/usd-to-uah",
     "og:type": "article"
    },
    "twitter": {
     "twitter:card": "summary_large_image",
-    "twitter:title": "Receive USD in Ukraine: real costs compared 2026",
+    "twitter:title": "Receive USD in Ukraine: real costs (2026)",
     "twitter:description": "Compare the real cost of receiving USD in Ukraine. No forced conversion, your bank charges nothing to receive it, and Wise cannot give you an account."
    },
    "jsonld": [
@@ -8776,6 +9221,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -8811,11 +9261,11 @@
    ],
    "status": 200,
    "wordCount": 5056,
-   "mainTextHash": "8a43e3201c3f"
+   "mainTextHash": "4081686713ca"
   },
   "/rates/payoneer-usd-to-pkr": {
    "title": "Payoneer USD to PKR rate today: what you net | Paid Across",
-   "description": "Today's mid-market USD to PKR rate, what Payoneer's published fees take out of it, and what actually lands in your Pakistani bank account. Payoneer publishes no rate of its own.",
+   "description": "Today's mid-market USD to PKR rate, what Payoneer's published fees take out, and roughly what lands in your Pakistani bank account. Payoneer publishes no rate.",
    "canonical": "https://paidacross.com/rates/payoneer-usd-to-pkr",
    "robots": null,
    "og": {
@@ -8865,9 +9315,9 @@
       {
        "@type": "Article",
        "headline": "Payoneer USD to PKR rate today, and what you actually receive",
-       "description": "Today's mid-market USD to PKR rate, what Payoneer's published fees take out of it, and what actually lands in your Pakistani bank account. Payoneer publishes no rate of its own.",
+       "description": "Today's mid-market USD to PKR rate, what Payoneer's published fees take out, and roughly what lands in your Pakistani bank account. Payoneer publishes no rate.",
        "datePublished": "2026-10-26T00:00:00+00:00",
-       "dateModified": "2026-10-29T00:00:00+00:00",
+       "dateModified": "2026-11-01T00:00:00+00:00",
        "author": {
         "@type": "Person",
         "name": "George I.",
@@ -8914,7 +9364,7 @@
          "name": "What is the Payoneer USD to PKR rate today?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Payoneer does not publish one, and that is a real answer rather than a dodge. It publishes 1% to receive a commercial payment and a withdrawal conversion cost given as a range of 1.2% to 4%, with no public rate feed behind it. So the only exact rate is the one shown in your account at the moment you withdraw. What you can plan with is the gap: start from today's mid-market rate above, then expect to lose roughly 2.2% to 5% of the payment across the two Payoneer charges together, and possibly more on a small payment, because the Payoneer fee schedule says that in some countries a minimum fee of up to 20.00 USD or equivalent may apply, and it does not say which. Our table models the midpoint of the published band because a range is not a price, and we flag it as an estimate for that reason."
+          "text": "Payoneer does not publish one, and that is a real answer rather than a dodge. It charges 1% to receive a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace) and its fee schedule gives a withdrawal conversion cost as a range of 1.2% to 4%, with no public rate feed behind it. So the only exact rate is the one shown in your account at the moment you withdraw. What you can plan with is the gap: start from today's mid-market rate above, then, on a client payment, expect to lose roughly 2.2% to 5% of the payment across the two Payoneer charges together, and possibly more on a small payment, because the Payoneer fee schedule says that in some countries a minimum fee of up to 20.00 USD or equivalent may apply, and it does not say which. Our table models the midpoint of the published band because a range is not a price, and we flag it as an estimate for that reason."
          }
         },
         {
@@ -8922,7 +9372,7 @@
          "name": "Why is the Payoneer exchange rate lower than the rate on Google?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Because the rate on Google is the mid-market rate, which has no margin in it and is not offered to retail customers by anyone. Payoneer takes its conversion cost inside the rate it gives you rather than showing it as a separate line, which is why the two numbers never match and why the difference is easy to miss. That is also why we price everything on this site as a distance from the mid rather than quoting rates: a rate quoted without the mid next to it tells you nothing about what it costs."
+          "text": "Because the rate on Google is the mid-market rate, which has no margin in it. Some providers, Wise among them, convert at that rate and show their fee separately. Payoneer takes its conversion cost inside the rate it gives you rather than showing it as a separate line, which is why the two numbers never match and why the difference is easy to miss. That is also why we price everything on this site as a distance from the mid rather than quoting rates: a rate quoted without the mid next to it tells you nothing about what it costs."
          }
         },
         {
@@ -8930,7 +9380,7 @@
          "name": "What exchange rate does Payoneer use?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Its own. Payoneer converts at a rate it sets, which sits some distance below the mid-market rate, and it describes that distance only as a band of 1.2% to 4% for a withdrawal that involves conversion. It does not say where Pakistani rupees fall inside the band, and it does not publish the rate itself anywhere outside your account. The closest you can get to checking it is what this page does: take the mid-market rate at the moment you withdraw, compare it with the rate on your withdrawal screen, and the difference is what the conversion cost you."
+          "text": "Its own. Payoneer converts at a rate it sets, which sits some distance below the mid-market rate, and its fee schedule describes that distance as a band of 1.2% to 4% for a withdrawal, while a separate Payoneer explainer says up to 2% for a withdrawal to a local bank account in a different currency. Neither page says where Pakistani rupees fall, and Payoneer does not publish the rate itself anywhere outside your account. The closest you can get to checking it is what this page does: take the mid-market rate at the moment you withdraw, compare it with the rate on your withdrawal screen, and the difference is what the conversion cost you."
          }
         },
         {
@@ -8938,7 +9388,7 @@
          "name": "Is Payoneer the cheapest way to get USD into a Pakistani bank account?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "For a client payment, yes, at every amount on this page. Payoneer is the cheapest of the routes we rank for Pakistan. Our Pakistan page does show one lower price, from Western Union, but lists it without ranking it: that number is Pakistan Remittance Initiative pricing, a home remittance scheme, and both Western Union's terms and the scheme itself describe it as being for personal transfers rather than client payments. Western Union publishes no commercial rate for this corridor. Its 1% receive fee is reasonable and the undisclosed withdrawal conversion is what costs you. What keeps most Pakistani freelancers on it anyway is that Upwork, Fiverr and many direct US clients pay into it with no effort from the client, and a cheaper route you cannot persuade a client to use is not cheaper in practice."
+          "text": "For a client payment, yes, at every amount on this page. Payoneer is the cheapest of the routes we rank for Pakistan. Our Pakistan page does show one lower price, from Western Union, but lists it without ranking it: that number is Pakistan Remittance Initiative pricing, a home remittance scheme, and both Western Union's terms and the scheme itself describe it as being for personal transfers rather than client payments. Western Union publishes no commercial rate for this corridor. Payoneer's 1% fee on a client payment is reasonable, and its withdrawal conversion, which its fee schedule gives only as a 1.2% to 4% band and never as a rate, is what costs you. What keeps most Pakistani freelancers on it anyway is that Upwork, Fiverr and many direct US clients pay into it with no effort from the client, and a cheaper route you cannot persuade a client to use is not cheaper in practice."
          }
         },
         {
@@ -8946,7 +9396,7 @@
          "name": "Does the 1% receiving fee apply to Upwork and Fiverr payments?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Payoneer's charge of 1% is on incoming commercial payments, which is what a marketplace payout is. The thing to watch is that the marketplace usually takes its own cut first, so the 1% applies to what reaches Payoneer rather than to what your client was invoiced, and the two can be a long way apart. Check what your Upwork or Fiverr statement says left the platform, not what the client paid, and apply the figures below to that."
+          "text": "Not necessarily. Payoneer's 1% (minimum 1 USD) is its fee for a client payment into your USD receiving account. For payouts from a marketplace such as Upwork or Fiverr, its fee schedule says only that the fee varies by marketplace, so check what Payoneer actually charged on one of your own payouts rather than assuming 1%. The marketplace also takes its own cut first, so any Payoneer fee comes out of what left the platform, not what your client was invoiced. The table on this page assumes the 1% client payment fee. For a marketplace payout, read the row closest to what your Upwork or Fiverr statement says left the platform, then adjust: if Payoneer charged less than 1%, you keep a little more than the table shows, and if it charged more, a little less."
          }
         },
         {
@@ -8981,6 +9431,7 @@
    "headings": [
     "H1 Payoneer USD to PKR rate today, and what you actually receive",
     "H2 Mid-market rate today",
+    "H2 Through Payoneer, on a 1,000 USD client payment",
     "H2 What Payoneer actually pays into a Pakistan bank account",
     "H2 Questions people ask about this rate"
    ],
@@ -9046,6 +9497,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -9063,12 +9519,12 @@
     }
    ],
    "status": 200,
-   "wordCount": 1541,
-   "mainTextHash": "5e962b54cb71"
+   "wordCount": 1728,
+   "mainTextHash": "1e66c772ce2c"
   },
   "/rates/payoneer-usd-to-bdt": {
    "title": "Payoneer dollar rate in Bangladesh today | Paid Across",
-   "description": "Today's mid-market USD to BDT rate, what Payoneer's fees take out of it, and what reaches your Bangladeshi bank or bKash. Payoneer publishes no rate of its own.",
+   "description": "Today's mid-market USD to BDT rate, what Payoneer's fees take out, and roughly what reaches your Bangladeshi bank or bKash. Payoneer publishes no rate.",
    "canonical": "https://paidacross.com/rates/payoneer-usd-to-bdt",
    "robots": null,
    "og": {
@@ -9118,9 +9574,9 @@
       {
        "@type": "Article",
        "headline": "Payoneer USD to BDT rate today, and what you actually receive",
-       "description": "Today's mid-market USD to BDT rate, what Payoneer's fees take out of it, and what reaches your Bangladeshi bank or bKash. Payoneer publishes no rate of its own.",
+       "description": "Today's mid-market USD to BDT rate, what Payoneer's fees take out, and roughly what reaches your Bangladeshi bank or bKash. Payoneer publishes no rate.",
        "datePublished": "2026-10-26T00:00:00+00:00",
-       "dateModified": "2026-10-29T00:00:00+00:00",
+       "dateModified": "2026-11-01T00:00:00+00:00",
        "author": {
         "@type": "Person",
         "name": "George I.",
@@ -9167,7 +9623,7 @@
          "name": "What is the Payoneer USD to BDT rate today?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Payoneer does not publish one. It charges 1% to receive a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace) and gives its withdrawal conversion cost as a range of 1.2% to 4%, and the only exact rate is the one in your account at the moment you withdraw. To plan, start from today's mid-market rate above and expect to lose somewhere around 2.2% to 5% of the payment across the two charges, and possibly more on a small payment, because the Payoneer fee schedule says that in some countries a minimum fee of up to 20.00 USD or equivalent may apply, and it does not say which. Our table uses the middle of the published band and labels it an estimate, because a range is not a price."
+          "text": "Payoneer does not publish one. It charges 1% to receive a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace) and its fee schedule gives the withdrawal conversion cost as a range of 1.2% to 4%. The only exact rate is the one in your account at the moment you withdraw. To plan, start from today's mid-market rate above and, on a client payment, expect to lose somewhere around 2.2% to 5% of the payment across the two charges, and possibly more on a small payment, because the Payoneer fee schedule says that in some countries a minimum fee of up to 20.00 USD or equivalent may apply, and it does not say which. Our table uses the middle of the published band and labels it an estimate, because a range is not a price."
          }
         },
         {
@@ -9175,7 +9631,7 @@
          "name": "Why is the Payoneer dollar rate lower than the bank rate?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Usually because it is further from the mid-market rate. Bangladeshi banks convert an incoming wire at their TT buying rate, which banks do not usually publish as a distance from the mid (our Bangladesh table assumes about 1.5% below it), and Payoneer's conversion cost is given as 1.2% to 4%. But a bank rate is not the whole cost of a wire. Your client's US bank usually charges $25 to $45 to send it and an intermediary bank can take a cut, so on a $500 payment the wire can still lose more in total. On payments of a few thousand dollars the bank route often wins. Our Bangladesh page compares the two at different amounts."
+          "text": "Usually because it is further from the mid-market rate. Bangladeshi banks convert an incoming wire at their TT buying rate, which banks do not usually publish as a distance from the mid (our Bangladesh table assumes about 1.5% below it), and Payoneer's fee schedule gives its conversion cost as 1.2% to 4%. But a bank rate is not the whole cost of a wire. Your client's US bank usually charges $25 to $45 to send it and an intermediary bank can take a cut, so on a $500 payment the wire can still lose more in total. On payments of a few thousand dollars the bank route often wins. Our Bangladesh page compares the two at different amounts."
          }
         },
         {
@@ -9218,6 +9674,7 @@
    "headings": [
     "H1 Payoneer USD to BDT rate today, and what you actually receive",
     "H2 Mid-market rate today",
+    "H2 Through Payoneer, on a 1,000 USD client payment",
     "H2 What Payoneer actually pays into a Bangladesh bank account",
     "H2 Questions people ask about this rate"
    ],
@@ -9283,6 +9740,11 @@
      "rel": null
     },
     {
+     "href": "/freelancer-payment-cost-index",
+     "text": "freelancer payment cost index",
+     "rel": null
+    },
+    {
      "href": "https://github.com/resmi360io/nomad-stack",
      "text": "fee data on GitHub",
      "rel": "noopener noreferrer"
@@ -9300,8 +9762,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 1206,
-   "mainTextHash": "0aa443e87ca5"
+   "wordCount": 1276,
+   "mainTextHash": "1999fa7315d9"
   }
  }
 }
