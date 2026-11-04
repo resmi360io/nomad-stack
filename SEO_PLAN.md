@@ -5,7 +5,7 @@ are done, and add the PR number or date, so the next session starts from the tru
 memory. Fact-checking rules for anything that touches page copy live in AGENTS.md and still apply:
 verifier, then reviewer, then humanizer, and ranking-moving changes go to the owner.
 
-Last updated: 2026-11-01 (fifth revision, after the fifth video batch, rows 146 to 159).
+Last updated: 2026-11-04 (weekly audit, `docs/seo/reports/2026-11-04.md`).
 
 Legend: `[x]` done, `[~]` in progress or partly done, `[ ]` not started. Owner is **You** (site owner)
 or **Claude** (a session in this repo).
@@ -46,6 +46,15 @@ picture is thin. Do not change pages in response to one month of this. Two more 
 2026-10-08), and the drop sits on three pages (pillar 81, Bangladesh 62, Georgia 31). The Bangladesh
 rate page was live for only the last four days of the window, so a shift between our own pages can
 explain at most a small part of the Bangladesh fall; the checkpoint tests it.
+
+Latest 28 days, 2026-10-08 to 2026-11-04 (weekly audit, read 2026-11-04; last 3 days preliminary): 2 clicks,
+583 impressions (up 195 on 2026-09-10 to 2026-10-07), average position 34.6 (42.3). Not attributable: the
+comparison window overlaps the September 2026 spam update rollout for 14 of its 28 days, and the gain is mostly a
+change of mix. The two rate pages took 171 impressions (BDT 86 at 7.9, PKR 85 at 14.1); the pillar fell to 168 at
+67.3 (29% of the total, from 61%); the homepage picked up 71 at 80.6, mostly "payoneer currency conversion fee".
+Eight of the nine zero-impression corridors showed for the first time (42 impressions between them; Poland still
+none); INR, whose title did not change, is among them, so this is not evidence for the 2026-10-30 titles.
+`/pay-freelancers-internationally` had no impressions in its first 9 days (preliminary read 2026-11-23).
 
 Bing Webmaster (2026-09-07 to 2026-10-26): about 100 impressions and 1 click, many from long,
 chatbot-style questions where the site ranks 1 to 7. Crawl issues reported on 2026-10-29: none.
@@ -158,6 +167,10 @@ watermark remover", and are ignored. What survives a sceptical read:
 21. [ ] **You, on 2026-11-02:** Search Console URL Inspection, Request indexing, for the two left over on 2026-11-01
     because of the daily quota: `https://paidacross.com/receive-international-payments` and
     `https://paidacross.com/how-we-make-money`. Note the date here. Effort S.
+    **2026-11-04 audit: overdue, not logged.** The pillar's 2026-10-30 sections (multi-country queries at 44 to 54)
+    have no measurement clock until this is done. In the same session, record each PR #72 URL's last-crawl date in
+    item 1 (the 2026-11-30 read uses only URLs recrawled by 2026-11-02) and URL-inspect
+    `/pay-freelancers-internationally` (0 impressions in 28 days).
 22. [x] **Claude, by 2026-11-05 (build), merge on or after 2026-11-30:** rate-page template: render the rate card
     above the intro, add one estimated "through Payoneer, about X per dollar on a 1,000 dollar client payment"
     line from the same `calculate()` row as the table, and shorten each intro's first sentence so it answers
@@ -202,12 +215,27 @@ watermark remover", and are ignored. What survives a sceptical read:
     where it caught two meta descriptions that overclaimed.
 25. [ ] **You decide, Claude proposes:** bring the two rate pages' intro, rate note, FAQs and meta descriptions
     into the verification rotation (AGENTS.md says they are "verified by nobody"). Effort M.
+    **2026-11-04 audit: priority up.** The rate pages took 171 of 583 Google impressions in the 28 days to
+    2026-11-04 (29%), more than any corridor and level with the pillar.
 26. [ ] **You:** confirm whether the Google Analytics property behind OpenRush `get_website_analytics` receives
     any data; the site code has no GA tag (checked 2026-11-01). Nothing to install either way. Effort S.
 27. [ ] **You, by 2026-11-05:** open Search Console, Indexing, Pages, and note here the indexed count and each
     "Why pages aren't indexed" reason with its count, naming any corridor or rate page listed. Do not re-request
     indexing for "Crawled - currently not indexed" pages (Google: "no need to resubmit this URL for crawling");
     Claude treats any listed corridor as a content question for the pipeline. Effort S.
+29. [ ] **You decide (held from item 22):** (a) keep or change the "actually" wording in the rate-page H1 and H2
+    (a change resets the window that started 2026-11-01, so decide early); (b) 2.6% versus Payoneer's "up to 2%"
+    (ranking-moving on every Payoneer row; verifier, reviewer; a "payoneer currency conversion fee" FAQ depends on
+    it: 70 impressions at about 90 over 90 days to 2026-11-04, on the homepage and pillar, direction only);
+    (c) Payoneer `lastVerified` 2026-06-02 printed in both rate-page footers on pages answering "rate today":
+    either a full Payoneer re-read, then bump (AGENTS.md), or a per-page verified date (code, REVIEW mode).
+    Effort S to decide.
+30. [ ] **Claude, on or after 2026-11-25:** re-check the Bangladesh 2.5% incentive FAQ against the LDC graduation
+    of 2026-11-24, through verifier and reviewer. Effort S.
+31. [ ] **Claude:** add the missing `RELEASES.md` row(s): `origin/main` was `6905862` on 2026-11-04 while the file
+    names `7e8c151` (#81) as production, and the item 22 rate-page release has no row. Also record what the
+    rotation runs of 2026-11-02 to 2026-11-04 did (no live corridor `dateModified` is later than 2026-11-01).
+    Effort S.
 2. [x] **You:** apply to the Payoneer affiliate programme (application sent 2026-10-30; awaiting reply). Both rate pages and 7 corridors earn nothing,
    and the rate pages are now linked from every page.
 3. [x] **You:** decided 2026-10-30: leave it as is (no minimum modelled). The Georgia question from PR #70: under about $300 the dollar table ranks
@@ -236,6 +264,8 @@ watermark remover", and are ignored. What survives a sceptical read:
     salary FAQ is still open. Owner: request indexing for the four URLs after deploy and note the date per URL.
     Questions came from Trustpilot complaint themes (item 11): PK annual fee, BD document rejection, NG
     withdrawal not arrived, PH Payoneer IDs, PH Wise to GCash.
+    **2026-11-04 audit:** Thailand's read is now a bundle too: the rotation's PR #80 (2026-11-01) changed THB FAQ
+    copy. Portugal and Georgia remain clean (only the template footer link changed).
 19. [x] **Claude:** (done 2026-10-30, reviewer-approved; BDT rate page scoped the same way) align the rest of `/rates/payoneer-usd-to-pkr` (intro line "1% on an incoming commercial
     payment", FAQ 1 "1% to receive a commercial payment", cheapest-route FAQ "Its 1% receive fee") with the
     corridor wording "1% (minimum 1 USD) on a client payment into a USD receiving account; marketplace payouts
@@ -355,7 +385,10 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
   **2026-11-01: #2 shipped the same day by owner decision**, a deliberate exception to rule 8 (second FAQ in the week of 2026-10-26, on a different page from #1), "Can I use Wise to receive USD in Bangladesh?" on `/receive/usd-to-bdt` (Bing: several
   Wise-in-Bangladesh queries at positions 1 to 4; verifier, reviewer, humanizer). Note for the rotation and the BD
   incentive FAQ: Bangladesh's LDC graduation is still officially 2026-11-24, which the incentive FAQ hedges as a likely
-  phase-out point for the 2.5% freelancer export cash incentive; re-check that FAQ after that date.
+  phase-out point for the 2.5% freelancer export cash incentive; re-check that FAQ after that date (item 30).
+  **#3 candidate (2026-11-04 audit), week of 2026-11-02:** a USD salary question on `/receive/usd-to-bdt` (GSC
+  "receive salary in usd" 5 at 23.2; Bing "to receive usd and sending it back home to bangladesh to a local bank.
+  does it cost too." at 3). The BD read is already a bundle.
 - [ ] **You:** one pitch or correction email a day (newsletters, PK and BD tech press, authors still
   quoting Payoneer "up to 2%"), plus two helpful Reddit or Quora answers a week from a branded account
   that says who you are. Never astroturf.

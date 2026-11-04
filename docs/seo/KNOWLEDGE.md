@@ -15,10 +15,10 @@ wins until someone updates both.
 |---|---|---|
 | Auto-merge reports | no | Owner only. When `yes`, the weekly audit may merge its own PR if it touches nothing outside `docs/seo/` and `SEO_PLAN.md`. |
 | Audit cadence | weekly | Owner |
-| Last checked (WATCH) | 2026-11-01 | The agent, every run, to the run date |
+| Last checked (WATCH) | 2026-11-04 | The agent, every run, to the run date |
 | Search Console property | paidacross.com (domain), OpenRush website_id `aab70b77-7a4d-4d6e-9f13-85584c82a534` | |
 | Bing property | `https://paidacross.com/`, read through the Hermoso MCP `call_tool` (read tools only) | |
-| Scheduled host session | `session_01VKcrwYQyMXZjGMh7HhZDFH` ("SEO audit host (repo at start)"), created 2026-10-30 with `source_url`, Sonnet, pushes to `claude/seo-audit`. It has NO MCP connectors: Search Console, Bing and GitHub tools are absent, and neither `create_session` nor the trigger can attach them. Its runs read the crawl, checks, diff and update feeds only. | Owner or an interactive session |
+| Scheduled host session | `session_01VKcrwYQyMXZjGMh7HhZDFH` ("SEO audit host (repo at start)"), created 2026-10-30 with `source_url`, Sonnet, pushes to `claude/seo-audit`. Recorded at creation as having no MCP connectors, but its 2026-11-04 run read Search Console through OpenRush and Bing through Hermoso, and listed a PostHog MCP. Check the tool list at the start of each run instead of assuming either way; when the tools are present, SKILL.md steps 7a and 7b are due in the first audit of the month. | Owner or an interactive session |
 | Scheduled trigger | `trig_01VdcL1D26EfnJHZpAXHrsLB` "Weekly SEO audit (host-bound)", cron `23 14 * * 1` (Mondays 14:23 UTC), bound by `persistent_session_id`. Its prompt can be edited only from inside the host session. Test with a one-shot `run_once_at` trigger, never `fire_trigger`. | Owner or an interactive session |
 
 ### Update watchlist (WATCH mode)
@@ -146,7 +146,7 @@ Count = number of distinct row ids that make the tactic. Rows are cited by `reel
 | 38 | Add the site to Bing Webmaster Tools by importing from GSC and submitting the sitemap | 1 | 4 | "Double your traffic" | Already done | Connected 2026-10-29; Bing is our best source of visible query text | Read Bing monthly (SEO_PLAN item 12) |
 | 39 | Descriptive link and button text; no layout shift while loading | 1 | 32 | Framed as "Google's new update checks the accessibility tree, CLS and llms.txt" | Adopt | Descriptive anchors are in Google's link guidance and CLS is a Core Web Vital; the "update" framing is false and llms.txt is not a Google requirement | Playwright check for empty or generic link text ("click here", "learn more"); watch CWV in GSC |
 | 40 | Page speed only matters when the site is slow | 1 | 112 | Rated 2/10 unless the site is really slow | Already done | Static Next.js pages | Check the GSC Core Web Vitals report quarterly; act only on "Poor" URLs |
-| 41 | Publish an llms.txt file | 2 | 29, 32 | Makes it easy for AI to read your site; "your competitors don't know yet" | Rejected | Google's own AI guidance (row 73) says it is not needed; already in "Decided against" | Do not add. Revisit only if a major AI engine documents that it uses it |
+| 41 | Publish an llms.txt file | 2 | 29, 32 | Makes it easy for AI to read your site; "your competitors don't know yet" | Rejected | Google's own AI guidance (row 73) says it is not needed; already in "Decided against". Primary source: Google documentation update of 2026-06-15, "Clarifying guidance on llms.txt files" (https://developers.google.com/search/updates): the files "aren't needed for Google Search (and won't negatively or positively impact your visibility or rankings)", and "it's fine if you want to maintain these files for other services or systems that use them" | Do not add as an SEO measure. Revisit only if a major AI engine documents that it uses it |
 
 ### E. Measurement and automation
 
@@ -699,3 +699,13 @@ Every edit the agent proposes to this file and the orchestrator applies gets one
   `app/robots.ts` sets no AI token and should not without REVIEW mode. No documentation update after 2026-10-26,
   no Status Dashboard incident since 2026-10-08, nothing new on the Bing feed since 2026-10-13. Last checked set to
   2026-11-01.
+- 2026-11-04: Weekly WATCH, window 2026-11-02 to 2026-11-04. Status Dashboard (`incidents.json`): newest incident
+  is still the September 2026 spam update, ended 2026-10-08. Documentation updates: newest entry 2026-10-26
+  (already recorded). Search Central blog: newest posts are October 2026 (AI training control, SEO learning paths;
+  both recorded). Bing feed: newest item 2026-10-13. No verdict change. Two out-of-window primary sources read to
+  close open questions: (1) documentation update 2026-06-15 on llms.txt, cited in tactic 41 (verdict unchanged);
+  (2) documentation update 2026-08-28, "Updated the site reputation policy", an EEA enforcement change
+  (https://developers.google.com/search/docs/essentials/spam-policies#site-reputation), closing the question from
+  2026-10-29: the policy concerns third-party content hosted to exploit a site's ranking signals, and this site
+  hosts none, so nothing applies. Operations row corrected: the host's 2026-11-04 run had OpenRush, Hermoso and a
+  PostHog MCP. Last checked set to 2026-11-04.
