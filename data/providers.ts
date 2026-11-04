@@ -684,7 +684,9 @@ export const PROVIDERS: Provider[] = [
   },
 
   // FX MARKUP, ALL ROWS, revised 2026-09-25. Every row here used to carry 200 bps, sourced
-  // from an "up to 2%" line on payoneer.com/withdraw-funds. That wording is GONE. The fee
+  // from an "up to 2%" line on payoneer.com/withdraw-funds. That wording is gone from that page,
+  // but "up to 2%" is still live on Payoneer's withdrawal-fee explainer (last modified 2026-09-23)
+  // and its Argentina page; the owner decided on 2026-11-04 to stay on the fee schedule below. The fee
   // schedule (payoneer.com/pricing and /legal/fees, last updated 1 January 2026) publishes
   // a RANGE instead: 1.2% to 4% to withdraw to a bank account, with or without conversion.
   // A range is not a rate, so no row here can be sourced. Confirmed independently by three
