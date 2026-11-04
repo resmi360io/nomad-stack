@@ -60,7 +60,7 @@ export const RATE_PAGES: RatePage[] = [
     title: 'Payoneer USD to PKR rate today: what you net',
     metaDescription:
       'Today\'s mid-market USD to PKR rate, what Payoneer\'s published fees take out, and roughly what lands in your Pakistani bank account. Payoneer publishes no rate.',
-    h1: 'Payoneer USD to PKR rate today, and what you actually receive',
+    h1: 'Payoneer USD to PKR rate today, and what you can expect to receive',
     intro:
       'Payoneer does not publish a USD to PKR rate, so the two figures above are the ones that can be checked: today\'s mid-market rate, and what Payoneer\'s own published fees leave you per dollar. Those fees are 1% on a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace), then a conversion cost on withdrawal that Payoneer\'s fee schedule gives as a range of 1.2% to 4% rather than as a rate. A site quoting an exact Payoneer rate is usually showing the mid-market rate with Payoneer written next to it, or one person\'s screenshot from one day. Even the currency converter on Payoneer\'s own site says its rates do not represent Payoneer\'s exchange rates. The table below applies the same fees to a 500, 1,000 and 5,000 dollar payment on the way to your Pakistani bank account. The only exact rate is the one in your own Payoneer account at the moment you press withdraw, so what we can tell you is how big the gap will be and the two numbers it comes from.',
     estimateNote:
@@ -132,7 +132,7 @@ export const RATE_PAGES: RatePage[] = [
     title: 'Payoneer dollar rate in Bangladesh today',
     metaDescription:
       'Today\'s mid-market USD to BDT rate, what Payoneer\'s fees take out, and roughly what reaches your Bangladeshi bank or bKash. Payoneer publishes no rate.',
-    h1: 'Payoneer USD to BDT rate today, and what you actually receive',
+    h1: 'Payoneer USD to BDT rate today, and what you can expect to receive',
     intro:
       'Payoneer does not publish a dollar rate for Bangladesh, and the numbers other sites quote for it tend to differ. The two figures above are the ones that can be checked: today\'s mid-market USD to BDT rate, and what Payoneer\'s published fees leave you per dollar. Those fees are 1% on a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace), then a conversion cost on withdrawal that Payoneer\'s fee schedule gives as a range of 1.2% to 4%, with nothing to say where the taka sits in that range. The table below applies them to a 500, 1,000 and 5,000 dollar payment withdrawn to a Bangladeshi bank account. The exact rate is the one your Payoneer withdrawal screen shows when you press the button.',
     estimateNote:

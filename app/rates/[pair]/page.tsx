@@ -203,7 +203,7 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
           {rows.length > 0 && (
             <section className="mt-14">
               <h2 className="pa-h2">
-                What {provider.name} actually pays into a {page.country} bank account
+                What {provider.name} is likely to pay into a {page.country} bank account
               </h2>
               <div className="pa-table-wrap mt-5">
                 <table className="w-full border-collapse text-[0.9375rem]">

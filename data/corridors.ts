@@ -53,7 +53,7 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'Pakistani freelancers have fewer options than most. PayPal has never launched in Pakistan and Pakistani residents cannot open a Wise account for receiving. Payoneer is the dominant choice at roughly 3.6% all in (1% fee plus the 2.6% we model on the PKR withdrawal, the midpoint of the 1.2% to 4% range Payoneer publishes). Western Union advertises a $0 online fee for transfers over $200 to bank accounts or mobile wallets, and third-party comparisons put its exchange rate margin at roughly 2%, but that pricing runs through the Pakistan Remittance Initiative, a home remittance scheme aimed at personal transfers rather than business payments, so it is not a like-for-like price for client invoices. Payoneer remains the standard for recurring freelance income. One thing to read the comparison with: this corridor has no best value badge. We only award it to the top row, and only when we can source the exchange rate margin behind it. Here the cheapest options price their conversion as a range rather than a rate, so there is nothing we can stand behind enough to label. Read the net amount column and treat every figure as indicative.',
     publishedDate: '2026-06-03',
-    updatedDate: '2026-10-30',
+    updatedDate: '2026-11-04',
     providers: [
       {
         slug: 'payoneer',
@@ -158,7 +158,7 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'To receive USD in Bangladesh, most freelancers use Payoneer (roughly 2.2% to 5% all-in for bank account withdrawal), and the most popular local step after that is Payoneer to bKash. Payoneer has a direct bKash integration that moves your balance to a bKash wallet typically within hours, though Payoneer charges a higher conversion fee for this route than for bank withdrawals (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal before withdrawing). Bank account withdrawal typically takes 1 to 3 business days, according to Payoneer, and generates the Foreign Inward Remittance Certificate (FIRC) required to claim the export cash incentive. PayPal cannot receive commercial payments in Bangladesh, and Wise offers no balance or USD account details to Bangladeshi residents (a foreign client can send BDT through Wise to your bank account, bKash wallet or Nagad wallet, but Wise says it cannot send business transfers to BDT). One thing to read the comparison with: this corridor has no best value badge. We only award it to the top row, and only when we can source the exchange rate margin behind it. Here the cheapest options price their conversion as a range rather than a rate, so there is nothing we can stand behind enough to label. Read the net amount column and treat every figure as indicative.',
     publishedDate: '2026-06-04',
-    updatedDate: '2026-11-01',
+    updatedDate: '2026-11-04',
     providers: [
       {
         slug: 'payoneer',
