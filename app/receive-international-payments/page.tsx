@@ -47,7 +47,7 @@ const pillarJsonLd = {
       '@id': 'https://paidacross.com/receive-international-payments#article',
       headline: 'How freelancers receive international payments: real costs by country',
       datePublished: '2026-06-03T00:00:00+00:00',
-      dateModified: '2026-10-30T00:00:00+00:00',
+      dateModified: '2026-11-04T00:00:00+00:00',
       url: 'https://paidacross.com/receive-international-payments',
       image: 'https://paidacross.com/opengraph-image',
       author: {
@@ -114,7 +114,7 @@ export default async function ReceiveInternationalPaymentsPage() {
               George I.
             </Link>
             {' · '}
-            Last updated: October 30, 2026
+            Last updated: November 4, 2026
           </p>
         </header>
 
@@ -334,7 +334,7 @@ export default async function ReceiveInternationalPaymentsPage() {
               <h3 className="pa-h3 mb-2">Payoneer</h3>
               <p>
                 1% when a client pays into your dollar receiving account, then a conversion cost on withdrawal that
-                Payoneer gives only as a range of 1.2% to 4%. It works in places Wise and Revolut
+                Payoneer&apos;s fee schedule gives only as a range of 1.2% to 4%. It works in places Wise and Revolut
                 do not, and Upwork and Fiverr pay into it without any effort from you, which is
                 why so many freelancers in Pakistan, Bangladesh and elsewhere use it. For
                 today&apos;s numbers, see our{' '}
@@ -474,7 +474,7 @@ export default async function ReceiveInternationalPaymentsPage() {
             >
               George I.
             </Link>{' '}
-            (20+ years in international payments). Last updated: October 30, 2026.
+            (20+ years in international payments). Last updated: November 4, 2026.
           </p>
           <p>
             Fees are estimates based on publicly available pricing. Verify with your provider

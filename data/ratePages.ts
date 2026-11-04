@@ -74,6 +74,11 @@ export const RATE_PAGES: RatePage[] = [
           'Payoneer does not publish one, and that is a real answer rather than a dodge. It charges 1% to receive a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace) and its fee schedule gives a withdrawal conversion cost as a range of 1.2% to 4%, with no public rate feed behind it. So the only exact rate is the one shown in your account at the moment you withdraw. What you can plan with is the gap: start from today\'s mid-market rate above, then, on a client payment, expect to lose roughly 2.2% to 5% of the payment across the two Payoneer charges together, and possibly more on a small payment, because the Payoneer fee schedule says that in some countries a minimum fee of up to 20.00 USD or equivalent may apply, and it does not say which. Our table models the midpoint of the published band because a range is not a price, and we flag it as an estimate for that reason.',
       },
       {
+        q: 'What does Payoneer charge in Pakistan?',
+        a:
+          'On a client payment withdrawn to a Pakistani bank account, expect to lose roughly 2.2% to 5% in total, which our table models at about 3.6%. That is two charges. Receiving a client payment into your USD receiving account costs 1%, with a minimum of 1 USD. Withdrawing it as rupees costs what Payoneer\'s fee schedule, last updated 1 January 2026, gives as a range of 1.2% to 4%, and a separate Payoneer explainer says up to 2% for the same kind of withdrawal. A payout from Upwork, Fiverr or another marketplace is not priced at 1%: the schedule says only that it varies by marketplace. If a client pays a Payoneer payment request by credit card, the schedule lists up to 3.99% plus 0.49 USD. Pakistan is not on the list of countries that get Payoneer\'s flat 1.50 USD withdrawal. Two smaller charges can apply: an annual account fee of 29.95 USD if your account receives less than 6,000 USD in any 12 consecutive months, and a minimum withdrawal fee of up to 20 USD that the schedule says applies in some countries without naming them. The Fees section inside your own Payoneer account shows what applies to you.',
+      },
+      {
         q: 'Why is the Payoneer exchange rate lower than the rate on Google?',
         a:
           'Because the rate on Google is the mid-market rate, which has no margin in it. Some providers, Wise among them, convert at that rate and show their fee separately. Payoneer takes its conversion cost inside the rate it gives you rather than showing it as a separate line, which is why the two numbers never match and why the difference is easy to miss. That is also why we price everything on this site as a distance from the mid rather than quoting rates: a rate quoted without the mid next to it tells you nothing about what it costs.',
@@ -110,7 +115,7 @@ export const RATE_PAGES: RatePage[] = [
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-11-01',
+    updatedDate: '2026-11-04',
   },
   // Second page, on the same evidence rule as the first. GSC for 2026-07-29 to 2026-10-26 shows
   // the BDT corridor page already ranking for "payoneer dollar rate in bangladesh today" around
