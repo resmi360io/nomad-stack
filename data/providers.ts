@@ -347,7 +347,10 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.005,
         fxMarkupBps: 0,
         typicalHours: 24,
-        notes: 'USD received by ACH is free. 0.5% to convert USD to BRL at the mid-market rate. Payout to a Brazilian account by Pix or TED.',
+        // The 0.5% is from the v1/price endpoint only. Wise's public Brazil send page shows no balance
+        // conversion fee and no second amount, so it is flagged as an estimate (2026-11-04 review).
+        fxMarkupEstimated: true,
+        notes: 'USD received by ACH is free. About 0.5% to convert USD to BRL, read from the Wise quote endpoint on 2026-09-24 and not shown on any public Wise page, so estimated. No spread: Wise converts at the mid rate and charges a separate fee. Payout to a Brazilian account by Pix or TED.',
       },
       // THB fee REDERIVED 2026-09-24 from Wise's own quote endpoint, payIn BALANCE and payOut
       // BANK_TRANSFER, which is the case this corridor prices: a freelancer already holding client
@@ -1186,14 +1189,15 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 24,
       },
       // BR: paypal.com/br/webapps/mpp/merchant-fees. Commercial payment 4.79%, plus a further
-      // 1.61% because the payer is international, plus a fixed 0.60 BRL, plus 3.50% above the base
+      // 1.61% because the payer is international, plus a fixed fee by currency received (0.30 USD here), plus 3.50% above the base
       // exchange rate when the payment arrives in another currency. Withdrawal to a linked
       // Brazilian bank by standard transfer is free. Modelled as 6.40% (4.79 + 1.61) and 350 bps.
-      // The 0.60 BRL fixed fee is about 0.12 USD and is modelled as such.
+      // The fixed fee follows the currency received: 0.30 USD on a USD payment, which is this row.
+      // 0.60 BRL applies only to BRL receipts.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'BR', currency: 'BRL' },
-        fixedFee: 0.12,
+        fixedFee: 0.30,
         percentageFee: 0.064,
         fxMarkupBps: 350,
         typicalHours: 24,
