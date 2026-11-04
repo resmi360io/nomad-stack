@@ -200,10 +200,28 @@ watermark remover", and are ignored. What survives a sceptical read:
     rotation host loaded the old definition at start, and its prompt can be edited only from inside it, so the
     AGENTS.md rule is what reaches it, once on main). First used the same day on the rate-page change (item 22),
     where it caught two meta descriptions that overclaimed.
-25. [ ] **You decide, Claude proposes:** bring the two rate pages' intro, rate note, FAQs and meta descriptions
+25. [x] **You decide, Claude proposes:** bring the two rate pages' intro, rate note, FAQs and meta descriptions
     into the verification rotation (AGENTS.md says they are "verified by nobody"). Effort M.
-26. [ ] **You:** confirm whether the Google Analytics property behind OpenRush `get_website_analytics` receives
+    **Approved and done 2026-11-04:** a rate page now rides with its corridor (AGENTS.md, "Rate pages ride with
+    their corridor"): the PKR rate page is verified on the Pakistan day (Monday), the BDT one on the Bangladesh day
+    (Tuesday), by the same verifier and reviewer, with its own `updatedDate`. `corridor-verifier.md` says the same.
+    It reaches the scheduled host once merged to main, because the host reads AGENTS.md from main on every run.
+    **Owner decision 2026-11-04: Payoneer withdrawals stay at 2.6%** (the midpoint of the 1 January 2026 fee
+    schedule's 1.2% to 4%), not the "up to 2%" in Payoneer's explainer. Computed consequence of the 2% option,
+    for the record: 21 corridor and amount combinations would have reordered across 11 corridors and Mexico would
+    have lost its badge at 250 to 300 USD. Reader-facing "only as 1.2% to 4%" claims are scoped to the fee schedule
+    instead (2026-11-04 wording pass).
+26. [x] **You:** confirm whether the Google Analytics property behind OpenRush `get_website_analytics` receives
     any data; the site code has no GA tag (checked 2026-11-01). Nothing to install either way. Effort S.
+    Answered by Claude 2026-11-01: OpenRush returns `binding_required` (no GA property is bound to the site), and
+    the code has no tag, so GA receives nothing. PostHog is the only analytics source; the tools table in
+    KNOWLEDGE.md should read "Not connected" for GA. PostHog, 30 days to 2026-11-01: 212 pageviews, of which 148
+    are from Georgia (the owner's own visits; 0 from search); outside Georgia about 45 visitors, 20 search visits
+    (Google 18, Bing 1, Yahoo 1), mostly to the pillar and `/receive/usd-to-bdt`; first search visit to a rate page
+    on 2026-10-29 (`/rates/payoneer-usd-to-bdt`, Google, Bangladesh). `calc_run`: 9 events, all from Georgia, so
+    no real calculator use is recorded yet; read it again at the 2026-11-30 checkpoint. Two 404s from real
+    visitors: `/th` (Thailand, direct) and `/receive-usd-to-bdt` (Bangladesh, direct, a dash instead of a slash),
+    one visit each; not worth a redirect at this volume, recheck at the checkpoint.
 27. [ ] **You, by 2026-11-05:** open Search Console, Indexing, Pages, and note here the indexed count and each
     "Why pages aren't indexed" reason with its count, naming any corridor or rate page listed. Do not re-request
     indexing for "Crawled - currently not indexed" pages (Google: "no need to resubmit this URL for crawling");
@@ -356,6 +374,13 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
   Wise-in-Bangladesh queries at positions 1 to 4; verifier, reviewer, humanizer). Note for the rotation and the BD
   incentive FAQ: Bangladesh's LDC graduation is still officially 2026-11-24, which the incentive FAQ hedges as a likely
   phase-out point for the 2.5% freelancer export cash incentive; re-check that FAQ after that date.
+  **2026-11-04: #3 shipped**, "What does Payoneer charge in Pakistan?" on `/rates/payoneer-usd-to-pkr` (verifier 28
+  claims: 24 verified, 3 incorrect, 1 unverifiable; reviewer `safe_to_apply` true; humanizer; REVIEW: SHIP WITH
+  CHANGES, applied). The rate-page read is a bundle (item 22). Next FAQ no earlier than 2026-11-09. Same release: the
+  "only as 1.2% to 4%" wording scoped to Payoneer's fee schedule on the homepage, pillar, NGN FAQ and the rate-table
+  note; `/receive/usd-to-ngn` drops out of the 2026-11-30 preliminary read (its decision read moves to 8 weeks after
+  its next recrawl, 2026-12-30 at the earliest). Follow-up for the rotation: the homepage "est." legend may be wrong
+  where an estimate is our own assumption rather than a published range (reviewer flag, 2026-11-04).
 - [ ] **You:** one pitch or correction email a day (newsletters, PK and BD tech press, authors still
   quoting Payoneer "up to 2%"), plus two helpful Reddit or Quora answers a week from a branded account
   that says who you are. Never astroturf.

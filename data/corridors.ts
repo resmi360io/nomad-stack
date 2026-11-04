@@ -53,7 +53,7 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'Pakistani freelancers have fewer options than most. PayPal has never launched in Pakistan and Pakistani residents cannot open a Wise account for receiving. Payoneer is the dominant choice at roughly 3.6% all in (1% fee plus the 2.6% we model on the PKR withdrawal, the midpoint of the 1.2% to 4% range Payoneer publishes). Western Union advertises a $0 online fee for transfers over $200 to bank accounts or mobile wallets, and third-party comparisons put its exchange rate margin at roughly 2%, but that pricing runs through the Pakistan Remittance Initiative, a home remittance scheme aimed at personal transfers rather than business payments, so it is not a like-for-like price for client invoices. Payoneer remains the standard for recurring freelance income. One thing to read the comparison with: this corridor has no best value badge. We only award it to the top row, and only when we can source the exchange rate margin behind it. Here the cheapest options price their conversion as a range rather than a rate, so there is nothing we can stand behind enough to label. Read the net amount column and treat every figure as indicative.',
     publishedDate: '2026-06-03',
-    updatedDate: '2026-10-30',
+    updatedDate: '2026-11-04',
     providers: [
       {
         slug: 'payoneer',
@@ -158,7 +158,7 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'To receive USD in Bangladesh, most freelancers use Payoneer (roughly 2.2% to 5% all-in for bank account withdrawal), and the most popular local step after that is Payoneer to bKash. Payoneer has a direct bKash integration that moves your balance to a bKash wallet typically within hours, though Payoneer charges a higher conversion fee for this route than for bank withdrawals (approximately 3% plus $1 per transaction as of mid-2026; verify in the Payoneer portal before withdrawing). Bank account withdrawal typically takes 1 to 3 business days, according to Payoneer, and generates the Foreign Inward Remittance Certificate (FIRC) required to claim the export cash incentive. PayPal cannot receive commercial payments in Bangladesh, and Wise offers no balance or USD account details to Bangladeshi residents (a foreign client can send BDT through Wise to your bank account, bKash wallet or Nagad wallet, but Wise says it cannot send business transfers to BDT). One thing to read the comparison with: this corridor has no best value badge. We only award it to the top row, and only when we can source the exchange rate margin behind it. Here the cheapest options price their conversion as a range rather than a rate, so there is nothing we can stand behind enough to label. Read the net amount column and treat every figure as indicative.',
     publishedDate: '2026-06-04',
-    updatedDate: '2026-11-01',
+    updatedDate: '2026-11-04',
     providers: [
       {
         slug: 'payoneer',
@@ -270,7 +270,7 @@ export const CORRIDORS: Corridor[] = [
     intro:
       'To receive USD in Nigeria, freelancers now have strong specialist options: Cleva, Grey, LemFi and Raenest all issue virtual US bank accounts, and the ones we can price convert at near mid-market rates, about 0.3% to 2.4% all-in on published fees. One thing to read the comparison with: eight providers are covered on this page, and five are ranked in the table. PayPal is priced but shown under the ranked rows, because the rate on its Paga payout is unpublished. LemFi and GrabrFi are real options and are described below, but neither publishes the mark-up inside its exchange rate, and we will not rank a provider at zero cost when we know its real cost is above zero. Payoneer works but costs roughly 3.6% all-in and carries a minimum activity threshold (currently $6,000/year per Payoneer\'s help center) below which an annual fee applies. PayPal returned to Nigeria in January 2026 via a Paga partnership, but stacked fees make it roughly 8% or more all-in and the most expensive widely-available option.',
     publishedDate: '2026-06-14',
-    updatedDate: '2026-10-30',
+    updatedDate: '2026-11-04',
     providers: [
       {
         slug: 'lemfi',
@@ -350,7 +350,7 @@ export const CORRIDORS: Corridor[] = [
     faqs: [
       {
         q: 'What is the cheapest way to receive USD in Nigeria?',
-        a: 'Cleva and Raenest are the cheapest options we can actually verify. Cleva charges a $1 deposit fee under $300 or $3 at $300 or more, then converts at mid-market for free, so roughly 0.3% on $1,000. Raenest gives 4 free deposits a month, then $1 flat, plus a 0.5% conversion fee capped at $2.70, so roughly 0.27% on $1,000. LemFi charges no flat or percentage fee, but its terms of service say the exchange rate carries a mark-up on the wholesale rate and it does not publish the size, which is why we no longer rank it in the table above at all. Compare the rate it quotes in the app against a mid-market reference before assuming it wins. Grey (0.8% deposit fee plus 1% conversion fee capped at $6, plus about 1% FX, roughly 2.4% all-in on $1,000) is more expensive but well-established and supports GBP and EUR too. Payoneer (1% plus a withdrawal conversion Payoneer publishes only as a 1.2% to 4% range, which we model at 2.6%) and PayPal via Paga (roughly 8% or more all-in) are significantly more expensive and should be reserved for situations where you have no other option.',
+        a: 'Cleva and Raenest are the cheapest options we can actually verify. Cleva charges a $1 deposit fee under $300 or $3 at $300 or more, then converts at mid-market for free, so roughly 0.3% on $1,000. Raenest gives 4 free deposits a month, then $1 flat, plus a 0.5% conversion fee capped at $2.70, so roughly 0.27% on $1,000. LemFi charges no flat or percentage fee, but its terms of service say the exchange rate carries a mark-up on the wholesale rate and it does not publish the size, which is why we no longer rank it in the table above at all. Compare the rate it quotes in the app against a mid-market reference before assuming it wins. Grey (0.8% deposit fee plus 1% conversion fee capped at $6, plus about 1% FX, roughly 2.4% all-in on $1,000) is more expensive but well-established and supports GBP and EUR too. Payoneer (1% plus a withdrawal conversion its fee schedule gives only as a 1.2% to 4% range, which we model at 2.6%) and PayPal via Paga (roughly 8% or more all-in) are significantly more expensive and should be reserved for situations where you have no other option.',
       },
       {
         q: 'What ID do I need to open a virtual USD account in Nigeria?',

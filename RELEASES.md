@@ -5,6 +5,7 @@ is the release identifier. Record each release here when it ships, with how it w
 
 | Date (UTC) | Commit on `main` | PR | What | Verified |
 |---|---|---|---|---|
+| 2026-11-01 | `69058624333eeebfe4e752f63b9f9245dcb82087` | #82 | Rate pages figure first (rate card and per-dollar estimate above the intro, reviewer-approved copy corrections, meta descriptions trimmed); verifier checks metadata; video batch 5 docs; rotation host 2 recorded | Main tree identical to the tested tree; live HTML of all 25 URLs matched the local build (0 differences, protected regressions 0); `npm run test:e2e` all pass against https://paidacross.com; card shows "about 266.85 PKR per USD" live. |
 | 2026-11-01 | `7e8c1513084f56c07b0deac932570edcddad415d` | #81 | BD Wise FAQ (weekly FAQ #2, owner exception to the cadence); estimate marker on the fee where a zero margin is a fact; monthly links read | Live HTML of all 25 URLs matched a local build of main (0 differences); `npm run test:e2e` 14/14 against https://paidacross.com. |
 | 2026-11-01 | `9e2bf01` | #80 | Rotation: usd-to-thb and usd-to-zar reviewer-approved corrections (merged by the scheduled job) | Verified by the rotation; included in the 2026-11-01 live check above. |
 | 2026-10-30 | `3c39af9ccb360393364c1091a45b787853ba34c8` | #79 | Cost index page and CSV; pillar multi-country and tracking sections; PK salary FAQ; estimate policy; Wise PH flagged (owner); MIT and CC BY 4.0 licences (owner) | Live HTML of all 25 URLs matched the tested build (0 differences); CSV 200 text/csv; `npm run test:e2e` 14/14 against https://paidacross.com. |
@@ -21,7 +22,7 @@ is the release identifier. Record each release here when it ships, with how it w
 | 2026-10-29 | `bef6577c88298ff753254d3dd4d6162138511c71` | #68 | Passbook redesign, iteration 1 | Smoke test of key routes after deploy. |
 | 2026-10-29 | `5d869fc` | #67 | Last release before any redesign | n/a |
 
-**Current production: `7e8c151`. Rollback point: `9e2bf01`** (the rotation's release before it; rolling further back to `3c39af9` would also undo the rotation's THB and ZAR corrections).
+**Current production: `6905862`. Rollback point: `7e8c151`** (PR #81; rolling further back to `9e2bf01` or `3c39af9` would also undo later corrections).
 
 ## How to roll back
 

@@ -684,7 +684,9 @@ export const PROVIDERS: Provider[] = [
   },
 
   // FX MARKUP, ALL ROWS, revised 2026-09-25. Every row here used to carry 200 bps, sourced
-  // from an "up to 2%" line on payoneer.com/withdraw-funds. That wording is GONE. The fee
+  // from an "up to 2%" line on payoneer.com/withdraw-funds. That wording is gone from that page,
+  // but "up to 2%" is still live on Payoneer's withdrawal-fee explainer (last modified 2026-09-23)
+  // and its Argentina page; the owner decided on 2026-11-04 to stay on the fee schedule below. The fee
   // schedule (payoneer.com/pricing and /legal/fees, last updated 1 January 2026) publishes
   // a RANGE instead: 1.2% to 4% to withdraw to a bank account, with or without conversion.
   // A range is not a rate, so no row here can be sourced. Confirmed independently by three
@@ -791,7 +793,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 260,
         typicalHours: 72,
         fxMarkupEstimated: true,  // Payoneer's published conversion currency list does not include GEL, so this lari withdrawal may not exist at all
-        notes: '1% receiving fee plus a withdrawal conversion charge Payoneer publishes only as a 1.2% to 4% range, modelled at its 2.6% midpoint. The $1.50 flat rate does not apply on two grounds: the Payoneer fee schedule limits it to a named list of countries and Georgia is not on it (the South Georgia on that list is a British South Atlantic territory), and the Payoneer withdrawal-fee explainer offers the fixed fee only for USD, EUR or GBP withdrawn to an account in that same currency, which a lari withdrawal from a dollar balance is not. The Payoneer Manage Currencies list does not include GEL, and no Payoneer page we opened confirms a lari withdrawal, so this route may not exist at all.',
+        notes: '1% receiving fee plus a withdrawal conversion charge Payoneer\'s fee schedule gives only as a 1.2% to 4% range, modelled at its 2.6% midpoint. The $1.50 flat rate does not apply on two grounds: the Payoneer fee schedule limits it to a named list of countries and Georgia is not on it (the South Georgia on that list is a British South Atlantic territory), and the Payoneer withdrawal-fee explainer offers the fixed fee only for USD, EUR or GBP withdrawn to an account in that same currency, which a lari withdrawal from a dollar balance is not. The Payoneer Manage Currencies list does not include GEL, and no Payoneer page we opened confirms a lari withdrawal, so this route may not exist at all.',
         // The guide says a lari withdrawal has not been confirmed to exist (Manage Currencies does
         // not list GEL). Priced so the model is visible, never ranked until it is confirmed.
         availability: 'unverified',
@@ -991,7 +993,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 72,
         fxMarkupEstimated: true,
-        notes: '1% receiving fee plus a withdrawal charge Payoneer publishes only as a 1.2% to 4% range, modelled at its 2.6% midpoint. A Georgian USD account is not eligible for the $1.50 flat rate: Georgia is not on Payoneer\'s flat-rate country list, and the US dollar is not Georgia\'s local currency. No FX conversion, so no spread.',
+        notes: '1% receiving fee plus a withdrawal charge Payoneer\'s fee schedule gives only as a 1.2% to 4% range, modelled at its 2.6% midpoint. A Georgian USD account is not eligible for the $1.50 flat rate: Georgia is not on Payoneer\'s flat-rate country list, and the US dollar is not Georgia\'s local currency. No FX conversion, so no spread.',
         // 1% to receive (published minimum 1.00 USD) plus the 2.6% midpoint of the 1.2% to 4% withdrawal
         // range, both on the amount sent, so the 1,000 USD figure stays 36.00. Only amounts under 100 change.
         feeComponents: [
@@ -1011,7 +1013,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 72,
         fxMarkupEstimated: true,
-        notes: '1% receiving fee plus a withdrawal charge Payoneer publishes only as a 1.2% to 4% range, modelled at its 2.6% midpoint. A Georgian EUR account is not eligible for the flat same-currency rate: Georgia is not on Payoneer\'s flat-rate country list, and the euro is not Georgia\'s local currency. No FX conversion, so no spread.',
+        notes: '1% receiving fee plus a withdrawal charge Payoneer\'s fee schedule gives only as a 1.2% to 4% range, modelled at its 2.6% midpoint. A Georgian EUR account is not eligible for the flat same-currency rate: Georgia is not on Payoneer\'s flat-rate country list, and the euro is not Georgia\'s local currency. No FX conversion, so no spread.',
       },
       // EUR → Portuguese EUR (SEPA, no FX — 1% receiving fee)
       {
