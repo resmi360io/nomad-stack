@@ -286,7 +286,7 @@ policy line). It finds pages worth contacting, scores them, drafts one-to-one em
 - A session that started before the agent existed cannot load it; the skill says how to run its body through a
   general-purpose agent with an explicit read-only instruction.
 
-## Provider rate pages (`/rates/[pair]`) are NOT in the rotation yet
+## Provider rate pages (`/rates/[pair]`), in the rotation since 2026-11-04
 
 Added 2026-10-26. `data/ratePages.ts` holds provider-specific pages targeting the one query
 pattern this project has measured demand for: the 2026-06-14 GSC read found USD to PKR already
@@ -307,10 +307,19 @@ Two things to know before touching them.
 - THE FEE NUMBERS LOOK AFTER THEMSELVES, the prose does not. The table on a rate page calls
   `calculate()` against the same `data/providers.ts` row the corridor page uses, so when the
   rotation corrects a provider's fee row the rate page moves with it in the same commit, with no
-  second edit. That is deliberate. But the rotation selects work from `CORRIDORS` only, so the
-  INTRO, the rate note and the FAQs on a rate page are currently verified by nobody, and they
-  carry claims (what a provider does and does not publish, which banks a withdrawal reaches).
-  Until the rotation covers them, treat a rate page's prose as going stale silently.
+  second edit. That is deliberate. The prose (intro, `estimateNote`, rate note, FAQs, title,
+  meta description and the headings in `app/rates/[pair]/page.tsx`) carries claims of its own,
+  and until 2026-11-04 nobody verified it.
+- RATE PAGES RIDE WITH THEIR CORRIDOR (owner decision, 2026-11-04, SEO_PLAN item 25). When a
+  corridor is in today's rotation, every entry in `RATE_PAGES` whose `corridorSlug` is that
+  corridor is verified in the same run: the same `corridor-verifier` gets the rate page in its
+  brief alongside the corridor, every rate-page item goes through the same `corridor-reviewer`,
+  the humanizer runs on whatever is applied, and the rate page's own `updatedDate` is bumped when
+  its reader-facing copy changes. Today that puts `/rates/payoneer-usd-to-pkr` on the Pakistan day
+  and `/rates/payoneer-usd-to-bdt` on the Bangladesh day (indexes 0 and 1 in `CORRIDORS`, so
+  Monday and Tuesday). A correction to the corridor that the rate page restates is carried over in
+  the same commit, never left for next week. A rate page whose `corridorSlug` changes moves day
+  with it automatically; a rate page added for a new corridor is in from its first day.
 - DO NOT MULTIPLY THEM YET. One hand-written page against a measured query is not programmatic
   SEO; twenty generated ones are, and the pSEO gate in this file still fails on three of its four
   conditions (no editorial backlinks, no top-30 rankings, no 8-week impression trend). Add the

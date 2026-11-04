@@ -200,8 +200,17 @@ watermark remover", and are ignored. What survives a sceptical read:
     rotation host loaded the old definition at start, and its prompt can be edited only from inside it, so the
     AGENTS.md rule is what reaches it, once on main). First used the same day on the rate-page change (item 22),
     where it caught two meta descriptions that overclaimed.
-25. [ ] **You decide, Claude proposes:** bring the two rate pages' intro, rate note, FAQs and meta descriptions
+25. [x] **You decide, Claude proposes:** bring the two rate pages' intro, rate note, FAQs and meta descriptions
     into the verification rotation (AGENTS.md says they are "verified by nobody"). Effort M.
+    **Approved and done 2026-11-04:** a rate page now rides with its corridor (AGENTS.md, "Rate pages ride with
+    their corridor"): the PKR rate page is verified on the Pakistan day (Monday), the BDT one on the Bangladesh day
+    (Tuesday), by the same verifier and reviewer, with its own `updatedDate`. `corridor-verifier.md` says the same.
+    It reaches the scheduled host once merged to main, because the host reads AGENTS.md from main on every run.
+    **Owner decision 2026-11-04: Payoneer withdrawals stay at 2.6%** (the midpoint of the 1 January 2026 fee
+    schedule's 1.2% to 4%), not the "up to 2%" in Payoneer's explainer. Computed consequence of the 2% option,
+    for the record: 21 corridor and amount combinations would have reordered across 11 corridors and Mexico would
+    have lost its badge at 250 to 300 USD. Reader-facing "only as 1.2% to 4%" claims are scoped to the fee schedule
+    instead (2026-11-04 wording pass).
 26. [x] **You:** confirm whether the Google Analytics property behind OpenRush `get_website_analytics` receives
     any data; the site code has no GA tag (checked 2026-11-01). Nothing to install either way. Effort S.
     Answered by Claude 2026-11-01: OpenRush returns `binding_required` (no GA property is bound to the site), and
