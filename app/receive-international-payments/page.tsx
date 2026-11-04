@@ -182,7 +182,7 @@ export default async function ReceiveInternationalPaymentsPage() {
           <p className={P}>
             Here is how that works on a $1,000 payment through Payoneer to a local bank account.
             Payoneer takes 1% when the payment arrives, leaving $990. It then converts at a rate
-            it describes as 1.2% to 4% away from the mid. At the middle of that range, 2.6%, you
+            its fee schedule describes as 1.2% to 4% away from the mid. At the middle of that range, 2.6%, you
             lose about another $26. The total is roughly $36, or 3.6%, and only the first $10 of it
             appears as a fee.
           </p>

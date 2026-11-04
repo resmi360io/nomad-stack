@@ -76,7 +76,7 @@ export const RATE_PAGES: RatePage[] = [
       {
         q: 'What does Payoneer charge in Pakistan?',
         a:
-          'On a client payment withdrawn to a Pakistani bank account, expect to lose roughly 2.2% to 5% in total, which our table models at about 3.6%. That is two charges. Receiving a client payment into your USD receiving account costs 1%, with a minimum of 1 USD. Withdrawing it as rupees costs what Payoneer\'s fee schedule, last updated 1 January 2026, gives as a range of 1.2% to 4%, and a separate Payoneer explainer says up to 2% for the same kind of withdrawal. A payout from Upwork, Fiverr or another marketplace is not priced at 1%: the schedule says only that it varies by marketplace. If a client pays a Payoneer payment request by credit card, the schedule lists up to 3.99% plus 0.49 USD. Pakistan is not on the list of countries that get Payoneer\'s flat 1.50 USD withdrawal. Two smaller charges can apply: an annual account fee of 29.95 USD if your account receives less than 6,000 USD in any 12 consecutive months, and a minimum withdrawal fee of up to 20 USD that the schedule says applies in some countries without naming them. The Fees section inside your own Payoneer account shows what applies to you.',
+          'On a client payment into your USD receiving account, withdrawn to a Pakistani bank account, expect to lose roughly 2.2% to 5% in total, which our table models at about 3.6%. That is two charges. Receiving the payment costs 1%, with a minimum of 1 USD. Withdrawing it as rupees costs what Payoneer\'s fee schedule, last updated 1 January 2026, gives as a range of 1.2% to 4%, and a separate Payoneer explainer says up to 2% for the same kind of withdrawal. A payout from Upwork, Fiverr or another marketplace is not necessarily priced at 1%: the schedule says only that it varies by marketplace. If a client pays a Payoneer payment request by credit card, the schedule lists up to 3.99% plus 0.49 USD, and Payoneer\'s help centre says the client can choose who pays that fee. Pakistan is not on the list of countries that get Payoneer\'s flat 1.50 USD withdrawal. Two other charges can apply: an annual account fee of 29.95 USD if your account receives less than 6,000 USD in any 12 consecutive months, and a minimum withdrawal fee of up to 20 USD, which the schedule says may apply in some countries without naming them. The Fees section inside your own Payoneer account shows what applies to you.',
       },
       {
         q: 'Why is the Payoneer exchange rate lower than the rate on Google?',
@@ -172,6 +172,6 @@ export const RATE_PAGES: RatePage[] = [
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-11-01',
+    updatedDate: '2026-11-04',
   },
 ];

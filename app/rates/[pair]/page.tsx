@@ -243,9 +243,8 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
               <p className="pa-meta mt-4 max-w-[75ch]">
                 All-in cost is measured against the mid rate above, so it includes both the explicit
                 fee and the margin taken inside the conversion. Your rate per {page.source} is the
-                same figure expressed the way your bank statement will show it. Rows marked est. use
-                the midpoint of a cost {provider.name} publishes only as a range, so treat them as
-                the middle of a band rather than a quote.
+                same figure expressed the way your bank statement will show it. Rows marked est. use the midpoint of the range in the{' '}
+                {provider.name} fee schedule, so treat them as the middle of a band rather than a quote.
               </p>
             </section>
           )}
