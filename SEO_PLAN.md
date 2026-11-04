@@ -222,10 +222,24 @@ watermark remover", and are ignored. What survives a sceptical read:
     no real calculator use is recorded yet; read it again at the 2026-11-30 checkpoint. Two 404s from real
     visitors: `/th` (Thailand, direct) and `/receive-usd-to-bdt` (Bangladesh, direct, a dash instead of a slash),
     one visit each; not worth a redirect at this volume, recheck at the checkpoint.
-27. [ ] **You, by 2026-11-05:** open Search Console, Indexing, Pages, and note here the indexed count and each
+27. [~] **You, by 2026-11-05:** open Search Console, Indexing, Pages, and note here the indexed count and each
     "Why pages aren't indexed" reason with its count, naming any corridor or rate page listed. Do not re-request
     indexing for "Crawled - currently not indexed" pages (Google: "no need to resubmit this URL for crawling");
     Claude treats any listed corridor as a content question for the pipeline. Effort S.
+    **Read 2026-11-04 (owner screenshot plus the "Valid" export; Google's data dated 2026-10-23):** 15 known
+    pages, **11 indexed**, 4 not indexed for 2 reasons (reasons not yet read). Indexed, with last crawl: `/how-we-make-money`
+    (2026-10-21), `/` (2026-10-09), the pillar and seven corridors PHP, PKR, BDT, EUR-PT, GEL, IDR, THB (all
+    2026-09-02), NGN (2026-07-23). **Not in the indexed list, 14 of the 25 sitemap URLs:** nine corridors (INR, MXN,
+    BRL, UZS, COP, ZAR, ARS, PLN, UAH), both rate pages, the cost index, `/about/author` and
+    `/pay-freelancers-internationally`; Google knew only 15 URLs on 2026-10-23, so about 10 of these were not yet
+    discovered at all. Consequences: (a) the PR #72 corridors had not been recrawled since 2026-09-02, so the
+    2026-10-29 title changes were not yet seen on 2026-10-23 and each page's clock starts at its next recrawl, as
+    planned; (b) the nine zero-impression corridors have zero impressions because they are not indexed, not because
+    they rank badly, so title work on them waits until they are indexed. Still to do (**You**): open the "Not
+    indexed" card and note the two reasons and their URLs; open Indexing, Sitemaps and note the sitemap's last read
+    date and "discovered pages" count; request indexing for the 14 (about 10 a day within the quota), starting with
+    INR, BRL, MXN, both rate pages and the cost index. Bing has all 25 (API, 2026-11-01, plus 8 changed pages
+    2026-11-04).
 2. [x] **You:** apply to the Payoneer affiliate programme (application sent 2026-10-30; awaiting reply). Both rate pages and 7 corridors earn nothing,
    and the rate pages are now linked from every page.
 3. [x] **You:** decided 2026-10-30: leave it as is (no minimum modelled). The Georgia question from PR #70: under about $300 the dollar table ranks
