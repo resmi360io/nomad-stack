@@ -483,7 +483,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 96,
         fxMarkupEstimated: true,
-        notes: 'Your client is the Wise customer here, not you. Wise sends dollars by SWIFT into a USD account at an Uzbek bank; you supply an account number and a SWIFT code and need nothing from Wise. 13.79 is Wise\'s published Uzbekistan SWIFT fee. Wise cannot pay out som at all, which is why it appears only on the dollar table.',
+        notes: 'Your client is the Wise customer here, not you. Wise sends dollars by SWIFT into a USD account at an Uzbek bank; you supply an account number and a SWIFT code and need nothing from Wise. 13.79 is Wise\'s published Uzbekistan SWIFT fee. Wise\'s own send pages say it cannot yet send som to Uzbekistan, which is why it appears only on the dollar table.',
       },
       {
         source: { country: 'US', currency: 'USD' },
