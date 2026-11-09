@@ -35,15 +35,16 @@ test('US to Pakistan, USD 1,000: Western Union personal price shown but unranked
 });
 
 for (const amount of [500, 1000]) {
-  test(`US to Georgia in lari, USD ${amount}: Payoneer lari route unverified and unranked; Wise badged`, () => {
+  test(`US to Georgia in lari, USD ${amount}: Payoneer lari route unverified and unranked; Wise first, estimated, no badge`, () => {
     const qs = run('US', 'GE', 'GEL', amount);
     const p = by(qs, 'payoneer');
     assert.equal(p.status, 'unverified');
     assert.equal(p.isBestValue, false);
-    // Wise US to GEL: 1.04 fixed + 1.37% of the amount sent.
-    near(by(qs, 'wise').totalFeeInSource, Math.round((1.04 + 0.0137 * amount) * 100) / 100);
+    // Wise US to GEL: Wise publishes one amount only (14.69 USD on 1,000 from a balance), so the row is
+    // modelled proportionally at 1.469% and flagged as an estimate (owner approved 2026-11-09).
+    near(by(qs, 'wise').totalFeeInSource, Math.round(0.01469 * amount * 100) / 100);
     assert.equal(qs[0].provider.slug, 'wise');
-    assert.equal(qs[0].isBestValue, true);
+    assert.equal(qs[0].isBestValue, false, 'estimated row cannot take the badge');
   });
 }
 
@@ -64,15 +65,15 @@ test('UK to Georgia, GBP 10,000 in lari: Wise 0.87 + 0.67%; Payoneer unverified'
 test('US to Nigeria, USD 200: minimums and tiers apply', () => {
   const qs = run('US', 'NG', 'NGN', 200);
   assert.deepEqual(fees(qs, 'grey'), [2, 1.98]);  // deposit 0.8% min 2; conversion 1% of 198
-  assert.deepEqual(fees(qs, 'cleva'), [1]);       // under 300: $1 tier
-  assert.deepEqual(fees(qs, 'raenest'), [1]);     // 0.5% of 200, inside min 0.25 / max 2.70
+  assert.deepEqual(fees(qs, 'cleva'), [2]);       // 0.8% = 1.60, minimum 2
+  assert.deepEqual(fees(qs, 'raenest'), [2]);     // ACH deposit under 500: $2
 });
 
 test('US to Nigeria, USD 1,000: caps start to bind', () => {
   const qs = run('US', 'NG', 'NGN', 1000);
   assert.deepEqual(fees(qs, 'grey'), [8, 6]);     // conversion 1% of 992 capped at 6
-  assert.deepEqual(fees(qs, 'cleva'), [3]);       // 300 and over: $3 tier
-  assert.deepEqual(fees(qs, 'raenest'), [2.7]);   // 0.5% = 5, capped at 2.70
+  assert.deepEqual(fees(qs, 'cleva'), [5]);       // 0.8% = 8, capped at 5
+  assert.deepEqual(fees(qs, 'raenest'), [4]);     // ACH deposit 500 and over: $4
 });
 
 test('US to Nigeria, USD 5,000: Grey both caps, 16 in fees (the reported 46 was the uncapped model)', () => {

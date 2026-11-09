@@ -253,15 +253,22 @@ export const PROVIDERS: Provider[] = [
         fxMarkupEstimated: true,
         notes: 'Wise\'s published Poland SWIFT fee, and it is dear: 27.24 against 1.19 to take zloty. Here taking dollars costs more than converting at almost any invoice size, which inverts the usual shape of these corridors.',
       },
-      // Verified: ~$14.74 fee on $1,000 send (wise.com/us/send-money/send-money-to-georgia)
+      // wise.com/us/send-money/send-money-to-georgia, read 2026-11-06: 14.69 USD on 1,000 USD from a
+      // Wise balance (direct debit 16.69, bank transfer 21.08, debit card 30.07). Balance funding is the
+      // right leg: the reader converts dollars already received into their own Wise balance. The page
+      // prices one amount only, so the old 1.04 + 1.37% split (14.74) had no public second point and is
+      // withdrawn. Modelled proportionally on the one public point, exactly as the ZA row is, and
+      // flagged, which bars the badge. RANKING: Wise stays first on the lari table at 200, 1,000 and
+      // 5,000; the badge leaves the lari table. Approved by the owner 2026-11-09.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'GE', currency: 'GEL' },
-        fixedFee: 1.04,
-        percentageFee: 0.0137,
+        fixedFee: 0,
+        percentageFee: 0.01469,
         fxMarkupBps: 0,
-        typicalHours: 48,
-        notes: '~1 to 2 business days for GEL',
+        typicalHours: 24,
+        fxMarkupEstimated: true,
+        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-georgia read 2026-11-06 prices 1,000 USD to GEL at 14.69 USD from a Wise balance (direct debit 16.69, bank transfer 21.08) and states it converts at the mid-market rate. No second amount is published, so the fixed and percentage parts cannot be separated; this models the 1,000 USD price proportionally. fxMarkupEstimated marks the estimated percentage, not a markup, same as the ZA row, and bars the badge. Delivery: direct debit in 2 hours, card in 5 hours, and the page says 95% of transfers arrive in less than a day.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -279,13 +286,17 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 2,
       },
-      // Verified 2026-06-02: ~$5 fee on $1,000 USD send ($0.69 fixed + 0.43%)
-      // Source: wise.com/us/pricing/send-money — range 0.43–0.57%; ~0.5% typical
+      // wise.com/us/send-money/send-money-to-portugal, read 2026-11-07: 3.42 USD to send 1,000 USD
+      // from a Wise balance (5.47 direct debit, 9.87 bank transfer). That is the only amount the page
+      // shows, so the fixed and percentage split is unknown and this row is that one reading expressed
+      // as a pure percentage. Zero markup is structural: Wise converts at its mid and charges the fee
+      // separately, so fxMarkupEstimated stays off. Do not add a fixed fee without a second published
+      // amount: any fixed part reorders this table at larger amounts on a split nobody published.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PT', currency: 'EUR' },
-        fixedFee: 0.69,
-        percentageFee: 0.0043,
+        fixedFee: 0,
+        percentageFee: 0.00342,
         fxMarkupBps: 0,
         typicalHours: 1,
       },
@@ -314,17 +325,19 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.00418,
         fxMarkupBps: 0,
         typicalHours: 24,
-        notes: 'USD received by ACH is free. Conversion to INR at the mid-market rate. 18% GST lands on the conversion fee and on the eFIRC fee, which this row does not include.',
+        notes: 'USD received by ACH is free. Conversion to INR at the mid-market rate. 18% GST lands on Wise fees. The Wise help centre prices the eFIRC at about 2 USD while its India pricing page calls it free. None of that is in this row.',
       },
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'CO', currency: 'COP' },
-        // Re-queried 2026-09-27: RECEIVE_BANK_TRANSFER pay-in to BANK_TRANSFER payout, which is
-        // exactly this corridor, totals 15.38 on 1,000 as 13.59 variable plus 1.79 fixed, against a
-        // midRate of 3304.97. Balance to balance is 13.61 flat, confirming 1.361% exactly. The fixed
-        // leg was 1.90; 1.79 is what the endpoint returns now.
-        fixedFee: 1.79,
-        percentageFee: 0.01361,
+        // Re-read 2026-11-07 from Wise's public US send page, using the balance-funded figure in
+        // its "cheapest way" sentence: 8.76 on 500, 15.57 on 1,000, 29.17 on 2,000 USD, at a mid
+        // of 3,243.00. Fit 1.97 + 1.36% (8.77 / 15.57 / 29.17). The earlier 1.79 + 1.361% came from
+        // the v1/price endpoint and is not what the public page shows. The same page's FAQ says COP
+        // cannot be paid from a Wise balance while help article 2932355 says it can; see the
+        // corridor copy. Approved by the owner 2026-11-09.
+        fixedFee: 1.97,
+        percentageFee: 0.0136,
         fxMarkupBps: 0,
         typicalHours: 24,
         notes: 'USD received by ACH is free. Conversion to COP at the mid-market rate, but the conversion fee is far higher than Wise charges on most corridors.',
@@ -362,15 +375,15 @@ export const PROVIDERS: Provider[] = [
       // 0.69 + 0.41%, gave 4.79 on 1,000 and understated the real cost by about 60%. It had been
       // recorded as "verified ~$4.80 on $1,000" and no longer reconciled with anything Wise
       // publishes. Raised at review on 2026-09-24, which declined to write a number from a single
-      // data point; this row comes from three. Ranking-neutral: Wise keeps the badge on this
-      // corridor either way, ahead of Western Union.
+      // data point; this row comes from three. Ranking-neutral at the time: Wise stayed rank 1 ahead of
+      // Western Union. Flagged as an estimate on 2026-11-09 (owner approved), so the badge is off.
       //
       // Wise is migrating Thai-address personal customers onto its Bank of Thailand licensed local
       // entity. After migration, third-party payments arriving into foreign-currency receiving
       // details are automatically converted to THB on arrival, so a Thai-resident freelancer can
       // still be paid but can no longer hold the USD. Wise's text as read 2026-11-01: customers who
-      // signed up before 21 January 2026 see the changes from December 2026, and the article's
-      // no-changes-until-December line sits under that group only; those who signed up after
+      // signed up before 21 January 2026 see the changes from January 2027 (re-read 2026-11-08), and the article's
+      // no-changes-until-January-2027 line sits under that group only; those who signed up after
       // are rolled out progressively and on them by September 2026, which has passed. Both dates
       // are later than the October and August read in September 2026.
       //
@@ -390,7 +403,11 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.00587,
         fxMarkupBps: 0,
         typicalHours: 36,
-        notes: 'Typically 1 to 2 business days for THB. Wise\'s eligibility page says it has temporarily stopped issuing currencies and account details for customers in Thailand, with no date given. Once your account moves to Wise Thailand, non-THB client payments are auto-converted to THB on arrival, and payments or transfers out are capped at 10,000 THB per transaction and 30,000 THB per day. Verify current.',
+        // The 1.83 + 0.587% split is fitted to three v1/price reads. Wise's public US send page prices only 350 USD
+        // (3.87 from balance, read 2026-11-08), so the percentage part has no public check: flagged estimated,
+        // which bars the badge (same basis as US/BR/BRL, 2026-11-04). No Wise page states a markup; Wise converts at mid.
+        fxMarkupEstimated: true,
+        notes: 'Typically 1 to 2 business days for THB. Wise\'s eligibility page says it has temporarily stopped issuing currencies and account details for customers in Thailand, with no date given. Once your account moves to Wise Thailand, non-THB client payments are auto-converted to THB on arrival, and payments or transfers out are capped at 10,000 THB per transaction and 30,000 THB per day. Wise publishes a price for one amount only, 350 USD, so the fee at other amounts is estimated. Verify current.',
       },
       {
         source: { country: 'GB', currency: 'GBP' },
@@ -413,7 +430,7 @@ export const PROVIDERS: Provider[] = [
         // converting a USD balance, so the row is flagged and barred from the badge.
         fxMarkupEstimated: true,
         typicalHours: 24,
-        notes: 'Free USD ACH receiving into Wise USD balance; USD to PHP conversion modelled at 0.65%, which no Wise page we could open confirms. The nearest public figure, wise.com/us/send-money/send-money-to-philippines read 2026-10-30, prices a 500 USD send at 2.99 USD (about 0.60%) by the cheapest method, but that is a US sender paying pesos out, not a PH resident converting a balance. fxMarkupEstimated marks the estimated percentage, not a markup, and bars the badge.',
+        notes: 'Free USD ACH receiving into Wise USD balance; USD to PHP conversion modelled at 0.65%, which no Wise page we could open confirms. The nearest public figure, wise.com/us/send-money/send-money-to-philippines read 2026-10-30, prices a 500 USD send at 2.99 USD by the cheapest method, under a promotion that reads Send up to 500 USD for just 2.99 USD, so it is a flat promotional price rather than a percentage, but that is a US sender paying pesos out, not a PH resident converting a balance. fxMarkupEstimated marks the estimated percentage, not a markup, and bars the badge.',
       },
       // USD → Georgian USD bank account via SWIFT (no FX conversion)
       // Source: wise.com help/articles/2946451 — USD SWIFT fee is $6.11
@@ -427,7 +444,7 @@ export const PROVIDERS: Provider[] = [
       //   2026-09-27), from its table of destinations where it predicts correspondent fees. It
       //   REPLACES the 6.15 "all countries" base rather than adding to it. The Philippines appears
       //   on help/articles/2974947, Wise's list of countries it can send USD to via SWIFT.
-      //   0.0017 is the US ACH pay-in fee, and it is the DEARER of the two Wise publishes. The grid
+      //   0.0017 is the US ACH pay-in fee, published as ACH Direct Debit 0.17% in the Wise US Long Form Disclosure (September 2026). The grid
       //   offers NORTHAM_DIRECT_DEBIT_STANDARD at 0.069% and DIRECT_DEBIT at 0.168% at the same
       //   amount, and a client does not get to choose which one Wise offers them, so the honest
       //   model is the worse leg. Using 0.069% here would also contradict the ID/IDR row below,
@@ -452,7 +469,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 72,
         fxMarkupEstimated: true,
-        notes: 'Your client is the Wise customer on this route, not you. Wise sends dollars by SWIFT into an ordinary USD (FCDU) account at a Philippine bank: you give your client an account number and a SWIFT code and you need nothing from Wise. $9.39 is Wise\'s own published Philippines SWIFT fee, plus about 0.07% if your client pays by US bank debit. Funding it with a domestic wire into Wise costs about $6 more, and a card costs far more again. This is the opposite direction from Wise\'s peso route, which pays out in PHP.',
+        notes: 'Your client is the Wise customer on this route, not you. Wise sends dollars by SWIFT into an ordinary USD (FCDU) account at a Philippine bank: you give your client an account number and a SWIFT code and you need nothing from Wise. $9.39 is the Philippines SWIFT fee Wise publishes, plus 0.17% if your client pays by US bank debit (ACH direct debit, from the Wise US fee disclosure dated September 2026). Funding it with a domestic wire into Wise costs $6.11 more, and a card can cost more again depending on the card (Wise lists debit cards at 0.19% to 7.80%). This is the opposite direction from Wise\'s peso route, which pays out in PHP.',
       },
       // ── USD SWIFT sends into a foreign-currency account abroad ──────────────────────────────
       // These three rows price the same product as the PH/USD row above: the reader's US client
@@ -545,14 +562,17 @@ export const PROVIDERS: Provider[] = [
       //   replaces it. 6.11 was never a Georgia figure and that article never supported it. An
       //   earlier version of this comment called it "the base in an older form", which was a guess
       //   dressed as an explanation; the correction to 10.31 was right, the reason was not.
-      //   0.0007 replaces 0.003, which reconciled with nothing published. The US ACH pay-in leg
+      //   0.0017 is the US bank pay-in, the dearer of the endpoint's two direct debit legs, matching the
+      //   PH, UZ, ID and TH rows. It replaced 0.0007 (the cheaper leg), which replaced 0.003. No public
+      //   page shows either leg; the Georgia lari send page, read 2026-11-06, charges 2.00 more for direct
+      //   debit than balance funding on 1,000 (about 0.20%). The US ACH pay-in leg
       //   derives at 0.0700% / 0.0695% / 0.0698% on 500 / 2,000 / 5,000 from the price endpoint,
       //   whose pay-in leg is destination-independent even though its SWIFT constant is not.
       //   ESTIMATED, newly. The other four USD SWIFT rows (UZ, ID, TH, PH) all carry the flag for
       //   the same two reasons: one row must assume one funding method out of several that cost
       //   materially more, and Wise contradicts itself on correspondent deductions between
       //   article 2946451 and help/articles/5Fwvk7KFzbTBohJiUu0Ryd. Georgia was the odd one out.
-      //   CONSEQUENCE: at the hardcoded 1,000 comparison amount this moves Wise from 9.11 to 11.01
+      //   CONSEQUENCE: at the hardcoded 1,000 comparison amount this moved Wise from 9.11 to 12.01
       //   and, because rank 1 must be unflagged to take the badge, removes the badge from the
       //   Georgian dollar table entirely. Wise still ranks first there, ahead of a 35 wire and a
       //   36 Payoneer. Wise is this site's affiliate, so both halves of this run against us.
@@ -564,7 +584,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 48,
         fxMarkupEstimated: true,
-        notes: 'USD SWIFT into a Georgian USD account, no conversion. 10.31 is Wise\'s published Georgia SWIFT fee, plus about 0.07% if your client pays by US bank debit. The EUR row below is not covered by that article, which is about sending US dollars, so its 3.00 is unverified.',
+        notes: 'USD SWIFT into a Georgian USD account, no conversion. 10.31 is Wise\'s published Georgia SWIFT fee (help/articles/2946451, re-read 2026-11-06). The 0.17% is an assumed pay-in for a client funding from a US bank, the dearer of two direct debit legs on Wise\'s price endpoint, matching the PH, UZ, ID and TH rows; no public page shows it, but on the Georgia lari send page direct debit costs 2.00 more than balance funding on 1,000 (about 0.20%), so it does not overstate. The EUR row below is not covered by that article, which is about sending US dollars, so its 3.00 is unverified.',
       },
       // EUR → Georgian EUR bank account via SWIFT (non-SEPA, no FX conversion)
       {
@@ -630,16 +650,28 @@ export const PROVIDERS: Provider[] = [
     // priced. Source country retained; a Mexican resident can hold the account and send.
     supportedDestinationCountries: ['US', 'GB', 'EU', 'PT'],
     corridors: [
-      // EUR via SEPA local network — 0.3% fee, near mid-market FX weekdays
-      // Verified 2026-06-02: revolut.com/en-US/legal/standard-fees/
-      // Shown: weekday within $1,000/month FX allowance. Out-of-allowance +0.5%; weekend +1%.
+      // EUR via SEPA local network, near mid-market FX on weekdays
+      // US to PT, re-sourced 2026-11-07. The 0.3% this row used to carry is Revolut's International
+      // Payments Pricing Sheet fee for SENDING a payment in the recipient's local currency (European base
+      // currencies only; EUR min 0.30, max 5), and the sheet itself says other fees, for example for
+      // foreign exchange, may apply. It is not a receive or conversion cost and has no US or USD base.
+      // Revolut's fee pages (en-PT, en-US) returned 403 on 2026-11-07. Kept priced but unranked: fee
+      // fields are zero because nothing receivable is published, and missingCosts names what we cannot
+      // price, so the quote is an upper bound shown separately. Do NOT delete this row while PT stays in
+      // supportedDestinationCountries: fallbackFee (3 flat, estimated) would then price US to PT, rank
+      // first at 1,000 and 5,000 USD, and remove the best value badge from the page.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PT', currency: 'EUR' },
         fixedFee: 0,
-        percentageFee: 0.003,
+        percentageFee: 0,
         fxMarkupBps: 0,
+        fxMarkupEstimated: true,
         typicalHours: 24,
+        missingCosts: [
+          'Any fee to receive US dollars into a Portugal-resident account (not published)',
+          'Exchange charge above the monthly allowance and at weekends',
+        ],
       },
       // MXN: no priced row, deliberately. Revolut Bank S.A., Institucion de Banca Multiple
       // launched full banking operations in Mexico on 27 January 2026 under a CNBV licence,
@@ -1174,10 +1206,10 @@ export const PROVIDERS: Provider[] = [
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PT', currency: 'EUR' },
         fixedFee: 0.30,
-        percentageFee: 0.044,
-        fxMarkupBps: 350,
+        percentageFee: 0.0489,
+        fxMarkupBps: 300,
         typicalHours: 24,
-        notes: '4.4% + $0.30 cross-border receiving fee; instant to PayPal balance, 1 to 3 days to bank',
+        notes: '2.90% plus 0.30 USD, plus 1.99% for a payer outside the EEA and UK, so 4.89%; 3.0% above base rate to convert. paypal.com/pt merchant fees, updated 4 November 2026.',
       },
       // IN: paypal.com/in business fees, 4.40% plus a fixed fee (0.30 USD on USD received,
       // 3.00 INR on INR), and 3.0% above the base exchange rate. CO deliberately absent:
@@ -1247,8 +1279,8 @@ export const PROVIDERS: Provider[] = [
         // base rate, not 3.50%. The old note was also FACTUALLY WRONG and is replaced. Personal
         // accounts CAN receive goods and services payments; the 2022 relaunch removed friends and
         // family and Payouts (Mass Pay), not commercial receiving. Confirmed from the relaunch FAQ
-        // and, post-relaunch, from the PayPal (Thailand) Limited user agreement effective
-        // 20 February 2024. The 11.00 THB fixed fee applies to amounts received IN BAHT, so the
+        // and, post-relaunch, from the PayPal (Thailand) Limited user agreement (search index labels it
+        // 'Last updated on 1 July 2024'; a 20 February 2024 version could not be found, 2026-11-08). The 11.00 THB fixed fee applies to amounts received IN BAHT, so the
         // 0.30 USD stays on this row, which prices a USD receipt.
         notes: 'PayPal Thailand publishes 4.40% plus a fixed fee for cross-border commercial payments, 3.90% domestic, an 11.00 THB fixed fee on amounts received in baht, and 3.00% currency conversion above its base rate, rising to 4.00% on conversions when sending a payment and on refunds received more than a day after the original payment. Personal accounts CAN receive goods and services payments. Verification needs a 13-digit Thai national ID, so foreign residents of Thailand are unlikely to be approved for a personal account. Withdrawal to a Thai bank is free at 5,000 THB or more. PayPal Thai fee pages still carry 2021 effective dates. Verify current.',
       },
@@ -1312,8 +1344,8 @@ export const PROVIDERS: Provider[] = [
         ],
         missingCosts: ["Paga's exchange rate on the naira payout"],
       },
-      // USD → Philippine PHP: widely used in PH; ~4.4% + $0.30 cross-border receiving
-      // + ~3.5% FX on USD→PHP conversion. GCash charges a cash-in fee on the PayPal-to-GCash
+      // USD → Philippine PHP: widely used in PH; 4.4% + $0.30 cross-border receiving
+      // + 3.0% currency conversion, both from paypal.com/ph/webapps/mpp/merchant-fees (updated 28 Oct 2026). GCash charges a cash-in fee on the PayPal-to-GCash
       // step and prices it by funding source (PayPal vs Payoneer vs linked bank vs OTC).
       // help.gcash.com is egress-blocked for our agents and the blog figures conflict, so we
       // publish no number for it; not modeled below.
@@ -1322,9 +1354,9 @@ export const PROVIDERS: Provider[] = [
         destination: { country: 'PH', currency: 'PHP' },
         fixedFee: 0.30,
         percentageFee: 0.044,
-        fxMarkupBps: 350,
+        fxMarkupBps: 300,
         typicalHours: 48,
-        notes: '4.4% + $0.30 cross-border receiving + ~3.5% FX markup; GCash adds a cash-in fee on the PayPal-to-GCash step, priced by funding source and reported at about 1% for PayPal-funded cash-ins on ordinary amounts (not confirmed from a GCash primary source; large-amount behaviour unclear; verify in app; not modeled here)',
+        notes: '4.4% + $0.30 cross-border receiving + 3.0% currency conversion (PayPal Philippines fees page, last updated 28 Oct 2026); GCash adds a cash-in fee on the PayPal-to-GCash step, priced by funding source and reported at about 1% for PayPal-funded cash-ins on ordinary amounts (not confirmed from a GCash primary source; large-amount behaviour unclear; verify in app; not modeled here)',
       },
     ],
     fallbackFee: {
@@ -1438,6 +1470,9 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 100,
         typicalHours: 24,
+        // 100 bps from bestexchangerates.com only; westernunion.com's Portugal page showed unfilled placeholders
+        // and a free-first-transfer promotion on 2026-11-07, so the markup is an estimate.
+        fxMarkupEstimated: true,
       },
       // Confirmed ~150 bps FX spread, strong US→MX network (bestexchangerates.com)
       {
@@ -1600,7 +1635,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 48,
         fxMarkupEstimated: true,
-        notes: 'The RECIPIENT side is free, which is unusual. monobank: "Відправлення та отримання SWIFT-переказів тепер за 0 грн", with SWIFT in USD, EUR, PLN, GBP, CAD and CHF "протягом 1-2 робочих днів", which is what typicalHours 48 rests on. PrivatBank: free on a personal current account or premium card, 1% on payout and internet cards, no commission of its own, correspondent banks may still deduct. Its IT FOP package prices opening and the monthly RKO fee at nothing, verbatim on privatbank.ua/package-propositions-for-it-specialists. Same-day FX crediting is NOT a property of the inbound payment: the bank\'s December 2024 announcement of the package says it as a property of an extended currency TRADING SESSION, while the IT companies page credits incoming payments до 17:00 and says the larger the exchange volume the better the rate and the lower the commission. So the 35 here is the CLIENT\'s US sending bank, carried from other corridors and unsourced, hence the flag. The spread is set to ZERO because nothing published supports a number: on 2026-10-23 PrivatBank\'s own pages showed USD buy 44.95 in the header ticker and 45.05 in the branch table against an NBU official rate of 45.051, so the observable gap was between nothing and about 22bps, and an earlier 44.8 against 45.07 reading did not reproduce. PrivatBank\'s own FAQ also says the branch rate is the cash desk rate while the card rate is the one used for online payments and transfers to your own currency card, so a branch board is not the rate a bank applies to an inbound non-cash credit. fxMarkupEstimated stays TRUE because the 35 remains an unsourced placeholder. Neither bank publishes an exchange margin, and neither publishes an inbound commission for a FOP FX account specifically, so the free figure is read off personal and package schedules.',
+        notes: 'The RECIPIENT side is free, which is unusual. monobank: "Відправлення та отримання SWIFT-переказів тепер за 0 грн", with SWIFT in USD, EUR, PLN, GBP, CAD and CHF "протягом 1-2 робочих днів", which is what typicalHours 48 rests on. PrivatBank: free on a personal current account or premium card, 1% on payout and internet cards, no commission of its own, correspondent banks may still deduct. Its IT FOP package prices opening and the monthly RKO fee at nothing, verbatim on privatbank.ua/package-propositions-for-it-specialists. Same-day FX crediting is NOT a property of the inbound payment: the bank\'s December 2024 announcement of the package says it as a property of an extended currency TRADING SESSION, while the IT companies page, re-read 2026-11-04, lists "Зарахування іноземної валюти - день у день" under its currency operations heading next to the extended trading session, prices "Купівля/продаж валюти" at "Не тарифікується" on IT Expert, and puts Payoneer credits to FOP accounts at 08:00 to 20:00 on working days. Neither the earlier 17:00 cutoff nor the volume wording is on it any more. So the 35 here is the CLIENT\'s US sending bank, carried from other corridors and unsourced, hence the flag. The spread is set to ZERO because nothing published supports a number: on 2026-10-23 PrivatBank\'s own pages showed USD buy 44.95 in the header ticker and 45.05 in the branch table against an NBU official rate of 45.051, so the observable gap was between nothing and about 22bps, and an earlier 44.8 against 45.07 reading did not reproduce. PrivatBank\'s own FAQ also says the branch rate is the cash desk rate while the card rate is the one used for online payments and transfers to your own currency card, so a branch board is not the rate a bank applies to an inbound non-cash credit. fxMarkupEstimated stays TRUE because the 35 remains an unsourced placeholder. Neither bank publishes an exchange margin, and neither publishes an inbound commission for a FOP FX account specifically, so the free figure is read off personal and package schedules.',
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -1890,8 +1925,9 @@ export const PROVIDERS: Provider[] = [
       },
       // USD → Nigerian NGN bank account via SWIFT
       // Nigerian banks (GTBank, Access Bank, Zenith) convert at NFEM window rate + ~2% spread
-      // IMTO naira-only rule (CBN Mar 24 2026, effective May 1 2026) applies to licensed IMTO operators,
-      // NOT to SWIFT client-to-business wires — SWIFT USD wires are unaffected
+      // IMTO naira-only rule (CBN Mar 24 2026, effective May 1 2026) is addressed to licensed IMTOs, but
+      // FX Manual 4th ed. Memo 5 s.4.1 says ALL inbound FX transfers are disbursed in naira or any
+      // currency the CBN determines. No source exempts SWIFT wires; the copy tells readers to ask their bank.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'NG', currency: 'NGN' },
@@ -1900,7 +1936,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 200,
         fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 72,
-        notes: '$35 flat + ~2% bank FX spread above NFEM rate; SWIFT wires exempt from IMTO naira-only rule.',
+        notes: '$35 flat + ~2% estimated bank FX spread; the CBN naira-only rule targets IMTOs, but check with your bank how it treats an inbound USD wire.',
       },
       // USD → Philippine PHP or USD (FCDU) bank account via SWIFT
       // No forced conversion: FCDU USD accounts at BDO, BPI, Metrobank, RCBC hold dollars.
@@ -1937,7 +1973,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 150,
         fxMarkupEstimated: true,  // no bank publishes its inbound spread; this is an assumption
         typicalHours: 96,
-        notes: '$25-45 sending fee + bank inward remittance fees; no forced conversion (FCDU USD accounts); spread applies only on conversion to PHP',
+        notes: 'US sending fee set by the sender\'s bank, modelled at $35 as an estimate + bank inward remittance fees; no forced conversion (FCDU USD accounts); spread applies only on conversion to PHP',
       },
     ],
     fallbackFee: {
@@ -2000,10 +2036,11 @@ export const PROVIDERS: Provider[] = [
   },
 
   // ─── Cleva ─────────────────────────────────────────────────────────────────
-  // Source: https://www.getcleva.com/pricing (2026-06-14)
+  // Source: https://www.getcleva.com/pricing (2026-11-04) and help.getcleva.com article 10106575
+  // (new ACH pricing from 2026-08-07).
   // Nigerian-focused fintech issuing virtual US bank accounts (routing + account number).
-  // Fee model: two-tier ACH deposit fee ($1 under $300, $3 at $300 or more); no percentage fee;
-  // conversion and NGN withdrawal free at Cleva's quoted rate.
+  // Fee model: ACH or FedNow deposit 0.8% (min $2, max $5), wire $10, Upwork deposits free;
+  // no conversion or withdrawal fee, and Cleva says there is no conversion markup.
   // CBN-regulated. Deposits up to $10,000 eligible for NDIC protection via partner bank.
   {
     slug: 'cleva',
@@ -2013,33 +2050,32 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://www.getcleva.com',
     affiliateLink: '',
     hasAffiliateProgram: false,
-    lastVerified: '2026-07-05',
+    lastVerified: '2026-11-04',
     supportedSourceCountries: ['US'],
     supportedDestinationCountries: ['NG'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'NG', currency: 'NGN' },
-        fixedFee: 3,
+        fixedFee: 5,
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 24,
-        notes: 'Two-tier ACH deposit fee: $1 under $300, $3 at $300 or more; conversion/withdrawal free at mid-market; modeled at $3 for the $1,000 example',
-        // Two-tier ACH deposit fee, both tiers modelled rather than the $1,000 reading only.
+        notes: 'ACH or FedNow deposit 0.8% (min $2, max $5) since 7 Aug 2026; wire $10; Upwork deposits free; conversion and withdrawal free, Cleva says no conversion markup; modeled at $5 for the $1,000 example',
+        // ACH deposit fee 0.8%, minimum $2, maximum $5 (getcleva.com/pricing, read 2026-11-04).
         feeComponents: [
-          { label: 'Deposit fee', fixed: 1, appliesBelow: 300 },
-          { label: 'Deposit fee', fixed: 3, appliesFrom: 300 },
+          { label: 'Deposit fee', percent: 0.008, min: 2, max: 5 },
         ],
       },
     ],
     fallbackFee: {
-      fixedFee: 3,
+      fixedFee: 5,
       percentageFee: 0,
       fxMarkupBps: 0,
       typicalHours: 24,
       fxMarkupEstimated: true,
     },
-    notes: 'Cleva issues a US virtual bank account for Nigerian freelancers. Clients send a domestic ACH or wire; Cleva charges a deposit fee on the incoming ACH ($1 for deposits under $300, $3 for deposits of $300 or more), then converts at mid-market and credits your Nigerian account with no separate withdrawal fee. CBN-regulated.',
+    notes: 'Cleva issues a US virtual bank account for Nigerian freelancers. Clients send a domestic ACH or wire; Cleva charges a deposit fee on the incoming ACH of 0.8%, at least $2 and at most $5 ($10 for a wire, free from Upwork), then converts at mid-market and credits your Nigerian account with no separate withdrawal fee. CBN-regulated.',
   },
 
   // ─── Grey ──────────────────────────────────────────────────────────────────
@@ -2131,15 +2167,15 @@ export const PROVIDERS: Provider[] = [
   },
 
   // ─── Raenest ───────────────────────────────────────────────────────────────
-  // Source: help.raenest.com fees collection (verified 2026-07-30)
+  // Source: help.raenest.com article 16163732 (Nigeria fees, updated 2026-09-20), the Raenest
+  // pricing update post (free deposits ended 2026-10-06) and article 13285320 (conversion fees),
+  // read 2026-11-04.
   // African freelancer-focused fintech issuing virtual USD and GBP accounts.
-  // Fee model: 4 free deposits/month shared across USD/GBP/EUR/USDT/USDC (since
-  // 2026-01-06), then $1 flat per ACH or stablecoin deposit. Conversion is a
-  // 0.5% fee CAPPED between $0.25 and $2.70 per conversion, not an uncapped spread.
-  // Modeled below as a $2.70 fixed fee (the cap, which binds at and above ~$540)
-  // with 0 bps markup, assuming a deposit within the free monthly allowance.
-  // Overstates cost below ~$540, where the real fee is 0.5% of the amount
-  // (floor $0.25), which is less than the modeled $2.70.
+  // Fee model: every deposit carries a fee since 2026-10-06: USD ACH $2 under $500 and $4 at
+  // $500 or more, USD wire $10. The USD to NGN conversion fee used to be published as 0.5%
+  // capped at $2.70 (min $0.25) but is now "Varies per transfer" and shown only on the
+  // conversion screen, so it is a MISSING cost: the row is priced on the deposit fee alone and
+  // kept out of the ranking (missingCosts). Owner approved 2026-11-09.
   // CBN-licensed IMTO.
   {
     slug: 'raenest',
@@ -2149,34 +2185,36 @@ export const PROVIDERS: Provider[] = [
     signupUrl: 'https://raenest.com',
     affiliateLink: '',
     hasAffiliateProgram: false,
-    lastVerified: '2026-07-30',
+    lastVerified: '2026-11-04',
     supportedSourceCountries: ['US', 'GB'],
     supportedDestinationCountries: ['NG'],
     corridors: [
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'NG', currency: 'NGN' },
-        fixedFee: 2.70,
+        fixedFee: 4,
         percentageFee: 0,
         fxMarkupBps: 0,
         typicalHours: 24,
-        notes: '0.5% conversion fee capped at $2.70 (min $0.25); 4 free deposits/month, then $1 flat each; CBN-licensed IMTO',
-        // 0.5% conversion fee, minimum $0.25, capped at $2.70. Deposits are modelled inside the
-        // 4-a-month free allowance; past it each deposit adds $1, which the caveat says.
+        notes: 'ACH deposit $2 under $500, $4 at $500 or more (no free allowance since 6 Oct 2026); wire $10; USD to NGN conversion fee no longer published; CBN-licensed IMTO',
+        // ACH deposit fee tiers from help.raenest.com article 16163732 (updated 2026-09-20). The
+        // conversion fee is 'Varies per transfer' since 2026-10-06, so it is a missing cost.
         feeComponents: [
-          { label: 'Conversion fee', percent: 0.005, min: 0.25, max: 2.7 },
+          { label: 'Deposit fee', fixed: 2, appliesBelow: 500 },
+          { label: 'Deposit fee', fixed: 4, appliesFrom: 500 },
         ],
+        missingCosts: ['Raenest USD to NGN conversion fee, which it no longer publishes'],
       },
     ],
     fallbackFee: {
-      fixedFee: 2.70,
+      fixedFee: 4,
       percentageFee: 0,
       fxMarkupBps: 0,
       typicalHours: 24,
       fxMarkupEstimated: true,
     },
-    notes: 'Raenest issues virtual USD and GBP accounts for African freelancers and remote workers. Since January 2026: 4 free deposits per month shared across USD, GBP, EUR, USDT and USDC, then $1 flat per ACH or stablecoin deposit. The USD-to-NGN conversion fee is 0.5% capped between $0.25 and $2.70 per conversion, so cost does not scale with transfer size above about $540. Verify the current allowance at raenest.com/pricing. No annual account fee. CBN-licensed IMTO.',
-    caveat: 'Conversion fee is 0.5%, at least $0.25 and at most $2.70. Priced inside the 4 free deposits a month; after those, each deposit costs $1.',
+    notes: 'Raenest issues virtual USD and GBP accounts for African freelancers and remote workers. Since 6 October 2026 every deposit carries a fee: USD ACH $2 under $500 and $4 at $500 or more, USD wire $10. Raenest no longer publishes its USD to NGN conversion fee and shows it on the conversion screen before you confirm. No annual account fee. CBN-licensed IMTO.',
+    caveat: 'Priced on the ACH deposit fee only ($2 under $500, $4 at $500 or more). The conversion fee is not published, so the real cost is higher by an amount shown only in the app.',
   },
   // ─── Higlobe ───────────────────────────────────────────────────────────────
   // Source: https://higlobe.com/pt-br/pricing (2026-09-24)
