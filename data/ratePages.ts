@@ -146,6 +146,11 @@ export const RATE_PAGES: RatePage[] = [
           'Payoneer does not publish one. It charges 1% to receive a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace) and its fee schedule gives the withdrawal conversion cost as a range of 1.2% to 4%. The only exact rate is the one in your account at the moment you withdraw. To plan, start from today\'s mid-market rate above and, on a client payment, expect to lose somewhere around 2.2% to 5% of the payment across the two charges, and possibly more on a small payment, because the Payoneer fee schedule says that in some countries a minimum fee of up to 20.00 USD or equivalent may apply, and it does not say which. Our table uses the middle of the published band and labels it an estimate, because a range is not a price.',
       },
       {
+        q: 'What is Payoneer\'s currency conversion fee?',
+        a:
+          'Payoneer has three, and the 0.5% that many fee guides quote is not the one you pay when you withdraw to taka. Converting between your own Payoneer balances, say dollars to euros, costs 0.5% on Payoneer\'s fee schedule, last updated 1 January 2026. Withdrawing dollars to a Bangladeshi bank account as taka is priced separately: the schedule gives it as a range of 1.2% to 4%, and a separate Payoneer explainer says up to 2%, so our table uses 2.6%, the middle of the schedule\'s range. A purchase or cash withdrawal on a Payoneer card in a different currency costs up to 3.5%. If you are paid in dollars and spend in taka, the bank withdrawal charge is the one that matters, on top of the 1% Payoneer takes when a client pays into your USD receiving account.',
+      },
+      {
         q: 'Why is the Payoneer dollar rate lower than the bank rate?',
         a:
           'Usually because it is further from the mid-market rate. Bangladeshi banks convert an incoming wire at their TT buying rate, which banks do not usually publish as a distance from the mid (our Bangladesh table assumes about 1.5% below it), and Payoneer\'s fee schedule gives its conversion cost as 1.2% to 4%. But a bank rate is not the whole cost of a wire. Your client\'s US bank usually charges $25 to $45 to send it and an intermediary bank can take a cut, so on a $500 payment the wire can still lose more in total. On payments of a few thousand dollars the bank route often wins. Our Bangladesh page compares the two at different amounts.',
@@ -172,6 +177,6 @@ export const RATE_PAGES: RatePage[] = [
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-11-04',
+    updatedDate: '2026-11-09',
   },
 ];
