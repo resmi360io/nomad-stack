@@ -430,7 +430,12 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
   answers the exact question). No server of our own: Discord indexes only servers with at least 1,000
   members that are at least eight weeks old. **Claude** checks in January 2027 whether Discord pages appear
   in the SERP for corridor queries (KNOWLEDGE.md tactic 72).
-- [ ] **Claude (rotation):** the daily verification job keeps running. When it corrects a fact that the
+- [ ] **Claude (rotation):** the daily verification job keeps running. **2026-11-09:** host 2 shipped #85 (BRL),
+  #87 (UZS) and #88 (ZAR) by itself, then failed on the five-hour limit and was replaced by host 3 (AGENTS.md); a
+  make-up run covers Monday's corridors. Measurement note from the 2026-11-04 audit (report now in
+  `docs/seo/reports/2026-11-04.md`; its PR was never opened because its host has no GitHub tools): the rotation's PR
+  #80 changed a Thailand FAQ on 2026-11-01, so `/receive/usd-to-thb` is read as a bundle too.
+  The daily verification job (original wording follows). When it corrects a fact that the
   pillar, the sender page or a rate page repeats, carry the change there by hand. Check that main
   actually moves, not the trigger's "succeeded" status.
 - [ ] **You:** monthly, open Search Console's Manual actions report. Re-upload the disavow list only if

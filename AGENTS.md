@@ -477,6 +477,28 @@ When host 2's context nears its threshold (`get_session`, look at
 `external_metadata.context_usage` against `autocompact_state.threshold`), replace it the same
 way and add a host 3 entry here.
 
+### Host 3, since 2026-11-09
+
+Host 2 ran from 2026-11-01 to 2026-11-09 and shipped four PRs by itself (#80 is host 1's; host 2 shipped #85
+Brazil, #87 Uzbekistan, #88 South Africa). On 2026-11-09 its 09:07 run FAILED before doing any work: "You've hit
+your 5-hour limit", because a long interactive session had spent the shared five-hour window that morning (see
+"Interactive work and the scheduled job share one weekly budget"; the five-hour window bites the same way). Its
+context had also reached 759k of the 784k compaction threshold, so it was replaced the same day:
+
+- Host: `session_01VKcrwXJNwyPuCvXLpNaPoc`, created with `source_url`, Sonnet, `outcome_branch: claude/rotation`,
+  tagged `rotation-host`. On creation it confirmed main at 5803719 and the three agents and the humanizer present.
+- Trigger: `trig_014cREe8ht3bu367QiZZetcj`, daily at 09:07 UTC. Its prompt is host 2's plus the 2026-11-04 rules:
+  rate pages ride with their corridor (stage 0 and stage 1), metadata are claims (stage 1), unrendered fee-row
+  notes bump no date, and Payoneer stays at 2.6%.
+- Host 2's trigger `trig_019NEr5ut7wkhm3KwMvxTyG5` is DISABLED and renamed, not deleted.
+- Make-up run: one-shot `trig_01TZ6221MAVp3KrsULtZsDes` at 16:30 UTC on 2026-11-09 (after the 14:23 SEO audit,
+  so the two do not share a five-hour window), covering Monday's missed corridors and the PKR rate page. It is also
+  host 3's scheduler test.
+
+Lesson: on a rotation morning, keep heavy interactive work out of the hours before 09:07 UTC, or schedule a
+make-up one-shot the same day as soon as a failed run is seen. Check with `get_session` on the host, not the
+trigger's `last_run`.
+
 The tidier fix is still product-side and still needs the owner: attach `resmi360io/nomad-stack`
 to a Routine or to its environment, which would let the rotation go back to a fresh session per
 run AND keep notifications. It cannot be done from here. `create_trigger` has no sources field,
