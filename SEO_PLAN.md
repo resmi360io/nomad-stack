@@ -222,7 +222,7 @@ watermark remover", and are ignored. What survives a sceptical read:
     no real calculator use is recorded yet; read it again at the 2026-11-30 checkpoint. Two 404s from real
     visitors: `/th` (Thailand, direct) and `/receive-usd-to-bdt` (Bangladesh, direct, a dash instead of a slash),
     one visit each; not worth a redirect at this volume, recheck at the checkpoint.
-27. [~] **You, by 2026-11-05:** open Search Console, Indexing, Pages, and note here the indexed count and each
+27. [x] **You, by 2026-11-05:** open Search Console, Indexing, Pages, and note here the indexed count and each
     "Why pages aren't indexed" reason with its count, naming any corridor or rate page listed. Do not re-request
     indexing for "Crawled - currently not indexed" pages (Google: "no need to resubmit this URL for crawling");
     Claude treats any listed corridor as a content question for the pipeline. Effort S.
@@ -240,6 +240,16 @@ watermark remover", and are ignored. What survives a sceptical read:
     date and "discovered pages" count; request indexing for the 14 (about 10 a day within the quota), starting with
     INR, BRL, MXN, both rate pages and the cost index. Bing has all 25 (API, 2026-11-01, plus 8 changed pages
     2026-11-04).
+    **Closed 2026-11-09.** Owner requested indexing for the 14; Sitemaps shows the sitemap submitted 2026-11-03, last
+    read 2026-11-09, 25 discovered. Page indexing now lists only `/about/author` as "Crawled - currently not indexed"
+    and still shows the 11 older pages. That report lags: Search Console Performance (OpenRush, page view, 28 days to
+    2026-11-08) shows impressions for **24 of the 25 sitemap URLs**, which needs them indexed, including all nine
+    "missing" corridors, both rate pages and the cost index. Site totals 853 impressions against 321 in the previous
+    28 days; `/rates/payoneer-usd-to-bdt` 149 at 7.4 and `/rates/payoneer-usd-to-pkr` 131 at 23.6 in their first
+    two weeks. The one URL with no impressions is `/pay-freelancers-internationally` (**You**: URL Inspection on it
+    once). `/about/author`: leave it; Google says not every URL will be indexed and resubmitting does not help
+    (KNOWLEDGE.md tactic 37). Every page checked 2026-11-09 answers 200 with a self canonical, no noindex, and
+    robots.txt allows all. Next indexing look: the 2026-11-30 checkpoint, from Performance, not Page indexing.
 2. [x] **You:** apply to the Payoneer affiliate programme (application sent 2026-10-30; awaiting reply). Both rate pages and 7 corridors earn nothing,
    and the rate pages are now linked from every page.
 3. [x] **You:** decided 2026-10-30: leave it as is (no minimum modelled). The Georgia question from PR #70: under about $300 the dollar table ranks
