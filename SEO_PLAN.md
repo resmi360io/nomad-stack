@@ -405,6 +405,22 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
   note; `/receive/usd-to-ngn` drops out of the 2026-11-30 preliminary read (its decision read moves to 8 weeks after
   its next recrawl, 2026-12-30 at the earliest). Follow-up for the rotation: the homepage "est." legend may be wrong
   where an estimate is our own assumption rather than a published range (reviewer flag, 2026-11-04).
+  **2026-11-09: #4 shipped**, "What is Payoneer's currency conversion fee?" as the second FAQ on
+  `/rates/payoneer-usd-to-bdt` (also FAQPage JSON-LD; `updatedDate` 2026-11-09). Evidence: GSC, 28 days to 2026-11-08,
+  95 impressions at about position 90 (75 on `/`, 20 on the pillar); the rise sits inside the site-wide indexing jump
+  (853 impressions against 321). Top results read first (OpenRush `inspect_serp`, US, 2026-11-09): believe-group,
+  Payoneer's checkout calculator, rates.fm ("0.5%, 3.5% with the Mastercard"), Wise, Payoneer's help centre ("a low,
+  flat fee of 0.5%"); none separates the balance conversion from the bank withdrawal, which is the gap the answer fills.
+  Referring domains of the top five not recorded (tactic 12; optional). Placed on the BDT rate page because it is the
+  site's best-placed Payoneer page (149 at 7.4); no other page carries this question. Verifier 14 claims (9 verified,
+  3 incorrect, 2 unverifiable), reviewer 1 approve, 3 amend, 1 additional, `safe_to_apply` true, humanizer twice;
+  REVIEW: SHIP WITH CHANGES (answer made answer-first, tactic 17, reviewer re-confirmed). Rule 8: first FAQ in the week
+  of 2026-11-09; #5 no earlier than 2026-11-16. Measurement: the rate-page read stays a bundle (item 22); preliminary
+  about 4 weeks after the next recrawl (2026-12-07 at the earliest), decision at 8 weeks (on or after 2027-01-04). Read
+  GSC page plus query for "payoneer currency conversion fee" and its Bangladesh or taka variants: the signal is
+  impressions attributing to the rate page rather than `/` and the pillar. Guard: the page's own Bangladesh rate
+  queries hold near 7.4. Under about 100 impressions per query, direction only (rule 1). **You:** request indexing for
+  the URL on merge day.
 - [ ] **You:** one pitch or correction email a day (newsletters, PK and BD tech press, authors still
   quoting Payoneer "up to 2%"), plus two helpful Reddit or Quora answers a week from a branded account
   that says who you are. Never astroturf.
