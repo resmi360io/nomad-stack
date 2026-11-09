@@ -1,6 +1,6 @@
 {
  "base": "https://paidacross.com",
- "takenAt": "2026-11-04T12:04:28.309Z",
+ "takenAt": "2026-11-09T14:26:14.629Z",
  "paths": [
   "/",
   "/receive-international-payments",
@@ -265,8 +265,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 998,
-   "mainTextHash": "159a148a1588"
+   "wordCount": 1000,
+   "mainTextHash": "fe1af2644976"
   },
   "/receive-international-payments": {
    "title": "Receive international payments: real costs by country",
@@ -313,7 +313,7 @@
        "@id": "https://paidacross.com/receive-international-payments#article",
        "headline": "How freelancers receive international payments: real costs by country",
        "datePublished": "2026-06-03T00:00:00+00:00",
-       "dateModified": "2026-10-30T00:00:00+00:00",
+       "dateModified": "2026-11-04T00:00:00+00:00",
        "url": "https://paidacross.com/receive-international-payments",
        "image": "https://paidacross.com/opengraph-image",
        "author": {
@@ -564,8 +564,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 2524,
-   "mainTextHash": "cd15225d2b33"
+   "wordCount": 2528,
+   "mainTextHash": "1ebd8307b951"
   },
   "/pay-freelancers-internationally": {
    "title": "How to pay freelancers internationally: real costs",
@@ -1483,7 +1483,7 @@
        "@id": "https://paidacross.com/receive/usd-to-pkr#article",
        "headline": "How to receive USD in Pakistan: fees, FX spread, and what you actually net",
        "datePublished": "2026-06-03T00:00:00+00:00",
-       "dateModified": "2026-10-30T00:00:00+00:00",
+       "dateModified": "2026-11-04T00:00:00+00:00",
        "url": "https://paidacross.com/receive/usd-to-pkr",
        "image": "https://paidacross.com/opengraph-image",
        "author": {
@@ -1739,7 +1739,7 @@
     },
     {
      "href": "/rates/payoneer-usd-to-pkr",
-     "text": "Payoneer USD to PKR rate today, and what you actually receive",
+     "text": "Payoneer USD to PKR rate today, and what you can expect to receive",
      "rel": null
     },
     {
@@ -1859,8 +1859,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 2980,
-   "mainTextHash": "b7772a61ed05"
+   "wordCount": 2982,
+   "mainTextHash": "3016caa9034d"
   },
   "/receive/usd-to-bdt": {
    "title": "Receive USD in Bangladesh: fees compared 2026 | Paid Across",
@@ -1907,7 +1907,7 @@
        "@id": "https://paidacross.com/receive/usd-to-bdt#article",
        "headline": "How to receive USD in Bangladesh: fees, FX spread, and what you actually net",
        "datePublished": "2026-06-04T00:00:00+00:00",
-       "dateModified": "2026-11-01T00:00:00+00:00",
+       "dateModified": "2026-11-04T00:00:00+00:00",
        "url": "https://paidacross.com/receive/usd-to-bdt",
        "image": "https://paidacross.com/opengraph-image",
        "author": {
@@ -2184,7 +2184,7 @@
     },
     {
      "href": "/rates/payoneer-usd-to-bdt",
-     "text": "Payoneer USD to BDT rate today, and what you actually receive",
+     "text": "Payoneer USD to BDT rate today, and what you can expect to receive",
      "rel": null
     },
     {
@@ -2306,8 +2306,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 4272,
-   "mainTextHash": "b99c907f3c49"
+   "wordCount": 4274,
+   "mainTextHash": "51d6698ee956"
   },
   "/receive/usd-to-ngn": {
    "title": "Receive USD in Nigeria: cheapest apps, 2026 | Paid Across",
@@ -2354,7 +2354,7 @@
        "@id": "https://paidacross.com/receive/usd-to-ngn#article",
        "headline": "How to receive USD in Nigeria: fees, FX spread, and what you actually net",
        "datePublished": "2026-06-14T00:00:00+00:00",
-       "dateModified": "2026-10-30T00:00:00+00:00",
+       "dateModified": "2026-11-04T00:00:00+00:00",
        "url": "https://paidacross.com/receive/usd-to-ngn",
        "image": "https://paidacross.com/opengraph-image",
        "author": {
@@ -2408,7 +2408,7 @@
          "name": "What is the cheapest way to receive USD in Nigeria?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Cleva and Raenest are the cheapest options we can actually verify. Cleva charges a $1 deposit fee under $300 or $3 at $300 or more, then converts at mid-market for free, so roughly 0.3% on $1,000. Raenest gives 4 free deposits a month, then $1 flat, plus a 0.5% conversion fee capped at $2.70, so roughly 0.27% on $1,000. LemFi charges no flat or percentage fee, but its terms of service say the exchange rate carries a mark-up on the wholesale rate and it does not publish the size, which is why we no longer rank it in the table above at all. Compare the rate it quotes in the app against a mid-market reference before assuming it wins. Grey (0.8% deposit fee plus 1% conversion fee capped at $6, plus about 1% FX, roughly 2.4% all-in on $1,000) is more expensive but well-established and supports GBP and EUR too. Payoneer (1% plus a withdrawal conversion Payoneer publishes only as a 1.2% to 4% range, which we model at 2.6%) and PayPal via Paga (roughly 8% or more all-in) are significantly more expensive and should be reserved for situations where you have no other option."
+          "text": "Cleva and Raenest are the cheapest options we can actually verify. Cleva charges a $1 deposit fee under $300 or $3 at $300 or more, then converts at mid-market for free, so roughly 0.3% on $1,000. Raenest gives 4 free deposits a month, then $1 flat, plus a 0.5% conversion fee capped at $2.70, so roughly 0.27% on $1,000. LemFi charges no flat or percentage fee, but its terms of service say the exchange rate carries a mark-up on the wholesale rate and it does not publish the size, which is why we no longer rank it in the table above at all. Compare the rate it quotes in the app against a mid-market reference before assuming it wins. Grey (0.8% deposit fee plus 1% conversion fee capped at $6, plus about 1% FX, roughly 2.4% all-in on $1,000) is more expensive but well-established and supports GBP and EUR too. Payoneer (1% plus a withdrawal conversion its fee schedule gives only as a 1.2% to 4% range, which we model at 2.6%) and PayPal via Paga (roughly 8% or more all-in) are significantly more expensive and should be reserved for situations where you have no other option."
          }
         },
         {
@@ -2770,8 +2770,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 3881,
-   "mainTextHash": "9d1a04a05592"
+   "wordCount": 3883,
+   "mainTextHash": "44fbc16adf65"
   },
   "/receive/usd-to-php": {
    "title": "How to receive USD in the Philippines, 2026 | Paid Across",
@@ -3266,7 +3266,7 @@
    ],
    "status": 200,
    "wordCount": 4829,
-   "mainTextHash": "a41ac5a38662"
+   "mainTextHash": "f979c636c4ae"
   },
   "/receive/usd-to-gel": {
    "title": "Receive USD in Georgia: hold dollars or lari? | Paid Across",
@@ -3733,7 +3733,7 @@
    ],
    "status": 200,
    "wordCount": 4487,
-   "mainTextHash": "7091bc7ce1ec"
+   "mainTextHash": "9a29bda05632"
   },
   "/receive/usd-to-eur-portugal": {
    "title": "Receive USD in Portugal: cheapest way, 2026 | Paid Across",
@@ -4187,7 +4187,7 @@
    ],
    "status": 200,
    "wordCount": 3946,
-   "mainTextHash": "5c3ea0a9a83e"
+   "mainTextHash": "e72527bc90c2"
   },
   "/receive/usd-to-thb": {
    "title": "Receive USD in Thailand after the Wise change | Paid Across",
@@ -4623,7 +4623,7 @@
    ],
    "status": 200,
    "wordCount": 5583,
-   "mainTextHash": "36fa373d6d49"
+   "mainTextHash": "0995158fb4c2"
   },
   "/receive/usd-to-idr": {
    "title": "Best way to receive USD in Indonesia, 2026 | Paid Across",
@@ -5054,7 +5054,7 @@
    ],
    "status": 200,
    "wordCount": 3828,
-   "mainTextHash": "c4fee1f51ccd"
+   "mainTextHash": "7a9f8825aafe"
   },
   "/receive/usd-to-mxn": {
    "title": "Receive USD in Mexico: real costs (2026) | Paid Across",
@@ -5512,7 +5512,7 @@
    ],
    "status": 200,
    "wordCount": 4214,
-   "mainTextHash": "bf6a7b8b1b9b"
+   "mainTextHash": "b5c9985a6bf0"
   },
   "/receive/usd-to-brl": {
    "title": "Receive USD in Brazil: real costs (2026) | Paid Across",
@@ -5559,7 +5559,7 @@
        "@id": "https://paidacross.com/receive/usd-to-brl#article",
        "headline": "How to receive USD in Brazil: the IOF myth, the Wise contradiction, and what it actually costs",
        "datePublished": "2026-09-24T00:00:00+00:00",
-       "dateModified": "2026-09-25T00:00:00+00:00",
+       "dateModified": "2026-11-04T00:00:00+00:00",
        "url": "https://paidacross.com/receive/usd-to-brl",
        "image": "https://paidacross.com/opengraph-image",
        "author": {
@@ -5613,7 +5613,7 @@
          "name": "Do I pay IOF when a foreign client pays me?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Probably not, and the 3.5% you have read about is the wrong number. Decreto 6.306 of 2007, article 15-B, first item, sets the rate at zero for foreign exchange operations relating to the entry into Brazil of revenue from the export of goods and services. Paragraph 4 of the same article adds a limit for services: the zero rate covers exports of services classified in sections I to V of the NBS, the Brazilian services nomenclature. We could not open a reliable list of what each section covers, so which section your work sits in is a question for your accountant. The rate itself has been in place since Decreto 7.412 of 2010, which set it out as article 15-A, second item, in the same words, before Decreto 8.325 of 2014 moved it to article 15-B. The 2025 decrees did reach money coming in, not only credit and outbound operations: Decreto 12.499 of 2025 rewrote the article and added a 0.38% catch-all for inbound entries that no other item covers. It did not touch the export zero rate. Which wording is in force now is contested, because Congress suspended the 2025 text, a Supreme Court decision in July 2025 restored most of it, and Planalto still publishes several competing versions of the article. The answer here is the same either way: zero on an export of services receipt, 0.38% on a generic entry. Now the honest complication. When we pulled a live quote from Wise for dollars into reais on 24 September 2026, it added a line labelled IOF at 0.377%. That is the residual inbound rate for an operation that is not booked as export revenue, and providers book it differently: Higlobe says its 0.2% is the total cost with no IOF, and the Husky pricing page says the rate is zero on receipts booked as Brazilian service exports. So the question that decides your bill is how the institution classifies the operation it closes for you, and that does depend on who you pick. Ask them directly, and ask before you sign up rather than after."
+          "text": "Probably not, and the 3.5% you have read about is the wrong number. Decreto 6.306 of 2007, article 15-B, first item, sets the rate at zero for foreign exchange operations relating to the entry into Brazil of revenue from the export of goods and services. Paragraph 4 of the same article adds a limit for services: the zero rate covers exports of services classified in sections I to V of the NBS, the Brazilian services nomenclature. We could not open a reliable list of what each section covers, so which section your work sits in is a question for your accountant. As far as we can trace it, the rate itself has been in place since Decreto 6.391 of 2008, which set it out as article 15, paragraph 1, fifth item, in the same words. Decreto 7.412 of 2010 moved it to article 15-A, second item, and Decreto 8.325 of 2014 moved it to article 15-B. The 2025 decrees did reach money coming in, not only credit and outbound operations: Decreto 12.499 of 2025 rewrote the article and added a 0.38% catch-all for inbound entries that no other item covers. It did not touch the export zero rate. Which wording is in force now is contested, because Congress suspended the 2025 text, a Supreme Court decision in July 2025 restored most of it, and Planalto still publishes several competing versions of the article. The answer here is the same either way: zero on an export of services receipt, 0.38% on a generic entry. Now the honest complication. When we pulled a live quote from Wise for dollars into reais on 24 September 2026, it added a line labelled IOF at 0.377%. That is the residual inbound rate for an operation that is not booked as export revenue, and providers book it differently: Higlobe says its 0.2% is the total cost with no IOF, and the Husky pricing page says the rate is zero on receipts booked as Brazilian service exports. So the question that decides your bill is how the institution classifies the operation it closes for you, and that does depend on who you pick. Ask them directly, and ask before you sign up rather than after."
          }
         },
         {
@@ -5637,7 +5637,7 @@
          "name": "Can I keep the dollars, or does Brazil make me convert?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "In practice you convert, and a domestic dollar account is not on the menu. Resolucao BCB 277 of 2022, article 70, lists who may own a foreign currency deposit account in Brazil, and it is a closed list: travel agencies and tourist service providers, embassies and recognised international organisations, postal service companies, issuers of cards for international use, foreigners temporarily in Brazil and non-resident Brazilians, government bodies, companies running energy sector projects, insurers and reinsurers and reinsurance brokers, non-resident carriers, institutions licensed to operate in the exchange market, and holders of oil and gas rights. A freelancer invoicing a US client is not on it, and article 69 restricts these accounts to banking institutions licensed in the exchange market in the first place. Receiving the dollars is not the problem, incidentally: article 46 of the same resolution says export revenue may be received in reais or in foreign currency. Where you may keep them is the problem. What you can do is hold the dollars offshore first, in a Wise, Payoneer or Higlobe balance, and convert when the rate suits you instead of on the day your client pays. That is not the same as a domestic dollar account and we are not going to pretend it is. If a domestic dollar account is the thing you actually want, ask a bank, and expect no unless you fall into one of the categories above."
+          "text": "In practice you convert, and a domestic dollar account is not on the menu. Resolucao BCB 277 of 2022, article 70, lists who may own a foreign currency deposit account in Brazil, and it is a closed list: travel agencies and tourist service providers, embassies and recognised international organisations, postal service companies, issuers of cards for international use, foreigners temporarily in Brazil and non-resident Brazilians, government bodies, companies running energy sector projects, insurers and reinsurers and reinsurance brokers, non-resident carriers, institutions licensed to operate in the exchange market, and holders of oil and gas rights. Resolucao BCB 575 of 2026, in force since 1 October 2026, added exporters of goods, resident companies that owe external credit, Brazilian companies with a direct non-resident shareholder, and two kinds of non-resident company. Exporting services is not one of the categories, so as a rule a freelancer invoicing a US client is still not on it, and article 69 restricts these accounts to banking institutions licensed in the exchange market in the first place. Receiving the dollars is not the problem, incidentally: article 46 of the same resolution says export revenue may be received in reais or in foreign currency. Where you may keep them is the problem. What you can do is hold the dollars offshore first, in a Wise, Payoneer or Higlobe balance, and convert when the rate suits you instead of on the day your client pays. That is not the same as a domestic dollar account and we are not going to pretend it is. If a domestic dollar account is the thing you actually want, ask a bank, and expect no unless you fall into one of the categories above."
          }
         },
         {
@@ -5653,7 +5653,7 @@
          "name": "Can I do this as a MEI?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "You can invoice a foreign client as a MEI, and Wise will open a business account for one. The ceiling is the real constraint: R$81,000 a year, prorated by month if you registered part way through the year, and dollar invoices count towards it converted at the central bank rate. Two steady American clients will take you past that, and then you are looking at an ME under Simples Nacional instead. There is a bill proposing to raise the MEI ceiling from 2027, but it is not law and we would not plan around it. Which Simples Nacional annex applies to exported technology and professional services is something we could not verify, and it changes what you pay, so that one is genuinely for an accountant."
+          "text": "You can invoice a foreign client as a MEI, and Wise will open a business account for one. The ceiling is the real constraint: R$81,000 a year, prorated by month if you registered part way through the year, and dollar invoices count towards it converted at the central bank rate. Two steady American clients will take you past that, and then you are looking at an ME under Simples Nacional instead. That ceiling is going up. Lei Complementar 238 of 2026, published on 21 October 2026, raises it to R$110,000 in 2027 and R$140,000 in 2028, so R$81,000 still applies to revenue earned in 2026. Press reports say the increase depends on the budget laws for those years allowing for the lost revenue, and we could not open the text of the law itself, so confirm the ceiling for your year with your accountant. Which Simples Nacional annex applies to exported technology and professional services is something we could not verify, and it changes what you pay, so that one is genuinely for an accountant."
          }
         },
         {
@@ -5669,7 +5669,7 @@
          "name": "Can my client just send me a Pix?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. Pix moves reais inside Brazil and cannot carry an international payment. What actually happens is that the provider receives your dollars abroad, closes the currency exchange, and then pays you reais domestically, often over Pix. Higlobe and Wise both do that, and the Pix leg is the part that takes seconds. The dollars arriving is the slow part: Wise puts a US ACH payment at 0 to 3 working days, so plan on a few days rather than the same afternoon."
+          "text": "No. Pix moves reais inside Brazil and cannot carry an international payment. What actually happens is that the provider receives your dollars abroad, closes the currency exchange, and then pays you reais domestically, often over Pix. Higlobe and Wise both do that, and the Pix leg is the part that takes seconds. The dollars arriving is the slow part: Wise says a US ACH payment usually arrives within hours and can take up to 4 working days, and the same help page also says 1 to 3 working days for it to reach Wise, so plan on a few days rather than the same afternoon."
          }
         },
         {
@@ -5677,7 +5677,7 @@
          "name": "What is the cheapest way to receive dollars in Brazil?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "On published numbers, Higlobe, and it is not close. A flat 0.2% spread with no transfer fee beats the roughly 0.5% Wise charges to convert, and both are far below what PayPal costs. We want to be straightforward about two things though. Higlobe is not our affiliate and Wise is, so the ranking runs against our commercial interest rather than with it. And Higlobe is the option we know least about: we could not confirm whether it onboards you on a CPF or wants a CNPJ, or what onboarding asks for, while Wise publishes all of that. On IOF it is clearer, because Higlobe states on its Brazilian site that 0.2% is the total cost and that there is no IOF, which is what you would expect for a receipt booked as an export of services. Our practical suggestion is to open both, run a real quote for your actual invoice size on the same afternoon, and compare the reais that land rather than the percentages quoted. You can also look up the Banco Central VET ranking, which compares institutions on an all-in effective rate including the taxes and fees on the operation, bearing in mind that it reports monthly averages for months already past and that institutions are not obliged to repeat those values today."
+          "text": "On published numbers, Higlobe, and it is not close. A flat 0.2% spread with no transfer fee beats the roughly 0.5% we estimate Wise charges to convert, and both are far below what PayPal costs. We want to be straightforward about two things though. Higlobe is not our affiliate and Wise is, so the ranking runs against our commercial interest rather than with it. And Higlobe is the option we know least about: we could not confirm whether it onboards you on a CPF or wants a CNPJ, or what onboarding asks for, while Wise publishes all of that. On IOF it is clearer, because Higlobe states on its Brazilian site that 0.2% is the total cost and that there is no IOF, which is what you would expect for a receipt booked as an export of services. Our practical suggestion is to open both, run a real quote for your actual invoice size on the same afternoon, and compare the reais that land rather than the percentages quoted. You can also look up the Banco Central VET ranking, which compares institutions on an all-in effective rate including the taxes and fees on the operation, bearing in mind that it reports monthly averages for months already past and that institutions are not obliged to repeat those values today."
          }
         }
        ]
@@ -5989,8 +5989,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 4357,
-   "mainTextHash": "dfd2e949aeb9"
+   "wordCount": 4586,
+   "mainTextHash": "f3c555b01ab1"
   },
   "/receive/usd-to-uzs": {
    "title": "Receive USD in Uzbekistan: real costs (2026) | Paid Across",
@@ -6037,7 +6037,7 @@
        "@id": "https://paidacross.com/receive/usd-to-uzs#article",
        "headline": "How to receive USD in Uzbekistan: why IT Park is the wrong answer for freelancers",
        "datePublished": "2026-09-25T00:00:00+00:00",
-       "dateModified": "2026-09-28T00:00:00+00:00",
+       "dateModified": "2026-11-05T00:00:00+00:00",
        "url": "https://paidacross.com/receive/usd-to-uzs",
        "image": "https://paidacross.com/opengraph-image",
        "author": {
@@ -6099,7 +6099,7 @@
          "name": "Does Wise work in Uzbekistan at all?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, in one direction, and it is the direction worth using. Uzbekistan is not on Wise's list of countries where it does not operate, so you can register and send. And Uzbekistan is on the list of countries Wise can send US dollars to over SWIFT. What that adds up to is that Wise is the right tool for your client rather than for you: ask them to send dollars through Wise to your dollar account at an Uzbek bank. Wise cannot pay out sum at all, so the money arrives as dollars, which on this corridor is what you want anyway."
+          "text": "Yes, in one direction, and it is the direction worth using. Uzbekistan is not on Wise's list of countries where it does not operate, so you can register and send. And Uzbekistan is on the list of countries Wise can send US dollars to over SWIFT. What that adds up to is that Wise is the right tool for your client rather than for you: ask them to send dollars through Wise to your dollar account at an Uzbek bank. Wise's own send pages for the US, the UK and Singapore all say it cannot yet send sum to Uzbekistan, so the money arrives as dollars, which on this corridor is what you want anyway."
          }
         },
         {
@@ -6115,7 +6115,7 @@
          "name": "Can I keep dollars in an Uzbek bank, or do I have to convert to sum?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "You can keep them. There is no mandatory sale rule anywhere in the currency law, which is the single most useful fact on this page, because the assumption that one exists is what pushes people into bad workarounds. The spread is deferred, not avoided: you pay it whenever you decide to sell. One caution does apply, and you should hear it from us rather than from your bank. Article 11 of the same law requires residents to ensure repatriation of assets from foreign trade operations, and past 180 days the operation is reclassified. The penalties live in a separate article, 11-1, and they start at 5% of the unrepatriated amount and climb with how late you are. We could not find an authority applying that article specifically to a self-employed individual as opposed to a business, and the article itself just says resident, which is broad. The practical reading is that money sitting in an offshore balance indefinitely is not obviously safe, so bring it home and hold your dollars here rather than there."
+          "text": "You can keep them. There is no mandatory sale rule: a 2017 presidential decree, UP-5177, abolished the requirement for exporters to sell their foreign currency earnings, and we know of nothing since that brings it back, which is the single most useful fact on this page, because the assumption that one exists is what pushes people into bad workarounds. The spread is deferred, not avoided: you pay it whenever you decide to sell. One caution does apply, and you should hear it from us rather than from your bank. Article 11 of the same law requires residents to ensure repatriation of assets from foreign trade operations, and past 180 days the operation is reclassified. The penalties live in a separate article, 11-1, and they start at 5% of the unrepatriated amount and climb with how late you are. We could not find an authority applying that article specifically to a self-employed individual as opposed to a business, and the article itself just says resident, which is broad. The practical reading is that money sitting in an offshore balance indefinitely is not obviously safe, so bring it home and hold your dollars here rather than there."
          }
         },
         {
@@ -6123,7 +6123,7 @@
          "name": "Can a client just pay me through Western Union or Remitly? It looks much cheaper.",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "It reaches Uzbekistan, it can even pay you in dollars, and you should still not use it. What it is not, once you check, is cheaper. Western Union advertises dollars to dollars into Uzbek bank accounts. Remitly charges $0.99 to send dollars for som, and between $5.99 and $24.99 depending on size to send dollars as dollars. But Wise is itself a SWIFT wire on this corridor, and it publishes an Uzbekistan fee of $13.79 a transfer, plus roughly 0.07% to 0.17% if your client pays from a US bank account, depending which pay-in Wise offers them. That is roughly $14 to $15 on a $500 invoice and about $15 to $17 on a $2,000 one, and our table prices the dearer end. So it depends on your invoice size, and we would rather split the answer than round it in our own favour. At $2,000 Wise beats Remitly, about $15 against $24.99. At $500 Remitly wins, $8.99 against about $14, because Wise charges per transfer and Remitly charges by band. What does not change is the part that actually decides it: Remitly bars the transaction and Wise does not. The $35 in our table is a generic correspondent wire from your client's own bank, not the price of a wire as such, and quoting the apps against it flattered them. Xoom, PayPal's, sends there too. The problem is that all of them are consumer services and they say so in writing. Western Union: we only accept payments and send money to Accounts used for personal, not business, purposes. Remitly, clause 3.3 of its current User Agreement: only made available to consumers, meaning for use by individuals for personal, family, or household purposes, and using it for business purposes puts you in breach. Paysend, at 5.1(a): your account may be used only for personal, family, or household purposes and cannot be used for business related activities unless specifically authorized by us, with business to business settlement transactions given as an example of a business purpose. Note the wording, because it matters: that is a conditional bar rather than a flat prohibition, and Paysend's separate prohibited activities list at 5.1(c) does not mention business settlement at all. Somebody paying your invoice is a business purpose, and the risk sits on your side of the transfer, because what these services reserve is the right to claw the money back and shut the account. Losing access to a $3,000 payment costs more than any fee you might have saved, and on these numbers you were not saving one. The honest caveat is that Remitly and Paysend both sell business products built for precisely this, and Remitly Business says it exists for US businesses paying freelancers and contractors overseas. Neither publishes the list of countries its business product covers, so we cannot tell you Uzbekistan is on it. Ask your client to check, and use a wire or Payoneer until they have."
+          "text": "It reaches Uzbekistan, it can even pay you in dollars, and you should still not use it. What it is not, once you check, is cheaper. Western Union advertises dollars to dollars into Uzbek bank accounts. Remitly charges $0.99 to send dollars for som, and between $5.99 and $24.99 depending on size to send dollars as dollars. But Wise is itself a SWIFT wire on this corridor, and it publishes an Uzbekistan fee of $13.79 a transfer, plus roughly 0.07% to 0.17% if your client pays from a US bank account, depending which pay-in Wise offers them, a figure from Wise's pricing system that its public Uzbekistan page does not show. That is roughly $14 to $15 on a $500 invoice and about $15 to $17 on a $2,000 one, and our table prices the dearer end. So it depends on your invoice size, and we would rather split the answer than round it in our own favour. At $2,000 Wise beats Remitly, about $15 to $17 against $24.99. At $500 Remitly wins, $8.99 against about $14 to $15, because Wise charges per transfer and Remitly charges by band. What does not change is the part that actually decides it: Remitly bars the transaction and Wise does not. The $35 in our table is a generic correspondent wire from your client's own bank, not the price of a wire as such, and quoting the apps against it flattered them. Xoom, PayPal's, sends there too. The problem is that all of them are consumer services and they say so in writing. Western Union: we only accept payments and send money to Accounts used for personal, not business, purposes. Remitly, clause 3.3 of its current User Agreement: only made available to consumers, meaning for use by individuals for personal, family, or household purposes, and using it for business purposes puts you in breach. Paysend, at 5.1(a): your account may be used only for personal, family, or household purposes and cannot be used for business related activities unless specifically authorized by us, with business to business settlement transactions given as an example of a business purpose. Note the wording, because it matters: that is a conditional bar rather than a flat prohibition, and Paysend's separate prohibited activities list at 5.1(c) does not mention business settlement at all. Somebody paying your invoice is a business purpose, and the risk sits on your side of the transfer, because what these services reserve is the right to claw the money back and shut the account. Losing access to a $3,000 payment costs more than any fee you might have saved, and on these numbers you were not saving one. The honest caveat is that Remitly and Paysend both sell business products built for precisely this, and Remitly Business says it exists for US businesses paying freelancers and contractors overseas. Neither publishes the list of countries its business product covers, so we cannot tell you Uzbekistan is on it. Ask your client to check, and use a wire or Payoneer until they have."
          }
         },
         {
@@ -6147,7 +6147,7 @@
          "name": "Self-employed or individual entrepreneur, which should a freelancer register as?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Self-employed, for almost anyone reading this. It is free to register through the tax app, your income from registered activity is excluded from aggregate personal income, you pay social tax of about one reference value a year, and you are outside the foreign trade registration system entirely. The limits are real but narrow: you cannot hire anyone, and you cannot be self-employed and a registered individual entrepreneur at the same time. Whether you can be self-employed while also holding a salaried job is genuinely unsettled in what we could read. The resolution that governs self-employment, Cabinet of Ministers resolution 806 of 2020, is reported as ruling it out, and several current practitioner guides say the opposite, that it is fine as long as the activities differ. On lex.uz only the metadata for 806 renders, not the operative text, so we cannot settle it from the source. If you have a job and want to register, ask the tax office rather than taking either answer from a guide, ours included. An individual entrepreneur is a business entity, which means contract registration and more filing. Note that the government page describing entrepreneur registration still quotes an old reference value and still describes the fixed income tax regime that was abolished for 2026, so read it for structure and not for numbers."
+          "text": "Self-employed, for almost anyone reading this. It is free to register through the tax app, your income from registered activity is excluded from aggregate personal income, you can pay a voluntary social tax of at least one base reference value a year to count the time toward your work record, which is the tax authority's reading, though one news report on a February 2026 amendment says a month, so confirm it with the tax office, and you are outside the foreign trade registration system entirely. The limits are real but narrow: you cannot hire anyone, and you cannot be self-employed and a registered individual entrepreneur at the same time. Whether you can be self-employed while also holding a salaried job is genuinely unsettled in what we could read. The resolution that governs self-employment, Cabinet of Ministers resolution 806 of 2020, is reported as ruling it out, and several current practitioner guides say the opposite, that it is fine as long as the activities differ. On lex.uz only the metadata for 806 renders, not the operative text, so we cannot settle it from the source. If you have a job and want to register, ask the tax office rather than taking either answer from a guide, ours included. An individual entrepreneur is a business entity, which means contract registration and more filing. Note that the government page describing entrepreneur registration still quotes an old reference value and still describes the fixed income tax regime that was abolished for 2026, so read it for structure and not for numbers."
          }
         },
         {
@@ -6155,7 +6155,7 @@
          "name": "How much tax do I pay on money from foreign clients in 2026?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "About 1% of turnover, plus a small annual social tax. Presidential resolution PP-247 of August 2025 sets turnover tax for individual entrepreneurs and self-employed persons with annual turnover up to 1 billion sum at 1%, effective 1 January 2026. The same act removed the exemption that had kept self-employed people under 100 million sum out of turnover tax altogether, and abolished the fixed income tax regime for entrepreneurs. It also runs to 31 December 2030, so treat 1% as the rate for this period rather than a permanent feature. Above the ceiling you move to standard treatment from the day you cross, and check the ceiling itself before planning around it: the threshold for being pushed onto the general tax regime was raised with effect from 1 June 2026 by a later decree, PF-100, and we could not read the text that would tell us whether the 1 billion figure in PP-247 moved with it. We read the resolution text itself and it is unambiguous, though one major accounting firm's 2026 summary confirms the surrounding law without restating the rate, so confirm the rate applies to you before you plan around it."
+          "text": "About 1% of turnover, plus an optional social tax of at least one base reference value a year, which you should confirm with the tax office. Presidential resolution PP-247 of August 2025 sets turnover tax for individual entrepreneurs and self-employed persons with annual turnover up to 1 billion sum at 1%, effective 1 January 2026. The same act removed the exemption that had kept self-employed people under 100 million sum out of turnover tax altogether, and abolished the fixed income tax regime for entrepreneurs. It also runs to 31 December 2030, so treat 1% as the rate for this period rather than a permanent feature. Above the ceiling you move to standard treatment from the day you cross, and check the ceiling itself before planning around it: the threshold for being pushed onto the general tax regime was raised with effect from 1 June 2026 by a later decree, PF-100, and we could not read the text that would tell us whether the 1 billion figure in PP-247 moved with it. We read the resolution text itself and it is unambiguous, though one major accounting firm's 2026 summary confirms the surrounding law without restating the rate, so confirm the rate applies to you before you plan around it."
          }
         },
         {
@@ -6500,8 +6500,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 7647,
-   "mainTextHash": "7cb151545c8c"
+   "wordCount": 7879,
+   "mainTextHash": "68b5b3ad8e83"
   },
   "/receive/usd-to-inr": {
    "title": "Receive USD in India: real costs compared 2026 | Paid Across",
@@ -6957,7 +6957,7 @@
    ],
    "status": 200,
    "wordCount": 4922,
-   "mainTextHash": "aa9224f04ef8"
+   "mainTextHash": "b45be2b3d45d"
   },
   "/receive/usd-to-cop": {
    "title": "Receive USD in Colombia: real costs (2026) | Paid Across",
@@ -7424,7 +7424,7 @@
    ],
    "status": 200,
    "wordCount": 4712,
-   "mainTextHash": "e23971ebf4ed"
+   "mainTextHash": "7a8c64cf00d4"
   },
   "/receive/usd-to-zar": {
    "title": "Receive USD in South Africa: real costs (2026) | Paid Across",
@@ -7471,7 +7471,7 @@
        "@id": "https://paidacross.com/receive/usd-to-zar#article",
        "headline": "How to receive USD in South Africa: repatriate, but do not convert",
        "datePublished": "2026-10-23T00:00:00+00:00",
-       "dateModified": "2026-11-01T00:00:00+00:00",
+       "dateModified": "2026-11-08T00:00:00+00:00",
        "url": "https://paidacross.com/receive/usd-to-zar",
        "image": "https://paidacross.com/opengraph-image",
        "author": {
@@ -7565,7 +7565,7 @@
          "name": "Do I need to register as a provisional taxpayer, and when do I pay?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Almost certainly yes. SARS says any person who receives income other than remuneration is a provisional taxpayer, and the exemption for a natural person below the tax threshold applies only to someone with no business income at all. Client invoices are business income, so a freelancer is a provisional taxpayer regardless of size. There are two compulsory payments: the first within six months of the start of the tax year, which for a February year end means the end of August, and the second by the last working day of the tax year at the end of February. A third voluntary top-up is available at the end of September. The practical trap is cash flow rather than the rule: nobody withholds anything on the way in, so the whole bill arrives at once. SARS warns that underestimating can attract penalties and interest without publishing a rate, so we are not printing one."
+          "text": "In practice you are one already. SARS's interpretation note on provisional tax says there is no separate requirement to register as a provisional taxpayer: if you fall within the definition, you submit the IRP6 return and pay. SARS says any person who receives income other than remuneration is a provisional taxpayer, and the exemption for a natural person below the tax threshold applies only to someone with no business income at all. Client invoices are business income, so a freelancer is a provisional taxpayer regardless of size. There are two compulsory payments: the first within six months of the start of the tax year, which for a February year end means the end of August, and the second by the last working day of the tax year at the end of February. A third voluntary top-up is available at the end of September. The practical trap is cash flow rather than the rule: nobody withholds anything on the way in, so the whole bill arrives at once. SARS warns that underestimating can attract penalties and interest. Its interpretation note on provisional tax puts the underestimation penalty at 20% of the shortfall, measured against a target the Income Tax Act sets (broadly the tax on 80% or 90% of your actual taxable income, depending on its size) less what you paid during the year, and SARS can reduce it if your estimate was seriously calculated. Check the current rules with SARS or a tax practitioner before relying on the detail."
          }
         },
         {
@@ -7573,7 +7573,7 @@
          "name": "Do I charge VAT to a US client, and when do I have to register?",
          "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The registration number moved this year and most pages you find will be stale. From 1 April 2026 the compulsory VAT registration threshold rose from R1 million to R2.3 million of turnover, and the voluntary threshold from R50,000 to R120,000. One honest caveat: that change rides on a bill still marked draft and SARS describes the figures as subject to Parliament, while applying them anyway. The practical effect is that most freelancers are nowhere near it and have no VAT obligation, which means the zero-rating question below never engages for them. If you are registered, services supplied to a non-resident are zero-rated, and SARS wants specific proof: a tax invoice, written confirmation from the client that it is not a resident, proof of payment, and one of three further documents. There is a 90 day clock from the earlier of invoice or payment to hold that proof, and if you miss it you must account for output tax and can reverse it later if the documents turn up within five years. Zero-rating is also denied if the client is physically in South Africa when the work is done."
+          "text": "The registration number moved this year and most pages you find will be stale. From 1 April 2026 the compulsory VAT registration threshold rose from R1 million to R2.3 million of turnover, and the voluntary threshold from R50,000 to R120,000. One honest caveat: the change is not yet law. SARS says the amendment has not yet been promulgated and that the figures are subject to Parliament's legislative process, while it applies them from 1 April 2026 anyway. The practical effect is that most freelancers are nowhere near it and have no VAT obligation, which means the zero-rating question below never engages for them. If you are registered, services supplied to a non-resident are zero-rated, and SARS wants specific proof: a tax invoice, written confirmation from the client that it is not a resident, proof of payment, and one of three further documents. There is a 90 day clock from the earlier of invoice or payment to hold that proof, and if you miss it you must account for output tax and can reverse it later if the documents turn up within five years. Zero-rating is also denied if the client is physically in South Africa when the work is done."
          }
         },
         {
@@ -7882,8 +7882,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 4591,
-   "mainTextHash": "9b12b843c76a"
+   "wordCount": 4778,
+   "mainTextHash": "64870fcfc213"
   },
   "/receive/usd-to-ars": {
    "title": "Receive USD in Argentina: real costs (2026) | Paid Across",
@@ -8323,7 +8323,7 @@
    ],
    "status": 200,
    "wordCount": 3972,
-   "mainTextHash": "921d6c8aa9a1"
+   "mainTextHash": "6e07fbd0b28e"
   },
   "/receive/usd-to-pln": {
    "title": "Receive USD in Poland: real costs (2026) | Paid Across",
@@ -8768,7 +8768,7 @@
    ],
    "status": 200,
    "wordCount": 4201,
-   "mainTextHash": "30d6926dbc9f"
+   "mainTextHash": "67414970e9af"
   },
   "/receive/usd-to-uah": {
    "title": "Receive USD in Ukraine: real costs (2026) | Paid Across",
@@ -9261,7 +9261,7 @@
    ],
    "status": 200,
    "wordCount": 5056,
-   "mainTextHash": "4081686713ca"
+   "mainTextHash": "dd0957c3a51f"
   },
   "/rates/payoneer-usd-to-pkr": {
    "title": "Payoneer USD to PKR rate today: what you net | Paid Across",
@@ -9314,10 +9314,10 @@
      "@graph": [
       {
        "@type": "Article",
-       "headline": "Payoneer USD to PKR rate today, and what you actually receive",
+       "headline": "Payoneer USD to PKR rate today, and what you can expect to receive",
        "description": "Today's mid-market USD to PKR rate, what Payoneer's published fees take out, and roughly what lands in your Pakistani bank account. Payoneer publishes no rate.",
        "datePublished": "2026-10-26T00:00:00+00:00",
-       "dateModified": "2026-11-01T00:00:00+00:00",
+       "dateModified": "2026-11-04T00:00:00+00:00",
        "author": {
         "@type": "Person",
         "name": "George I.",
@@ -9351,7 +9351,7 @@
         {
          "@type": "ListItem",
          "position": 3,
-         "name": "Payoneer USD to PKR rate today, and what you actually receive",
+         "name": "Payoneer USD to PKR rate today, and what you can expect to receive",
          "item": "https://paidacross.com/rates/payoneer-usd-to-pkr"
         }
        ]
@@ -9365,6 +9365,14 @@
          "acceptedAnswer": {
           "@type": "Answer",
           "text": "Payoneer does not publish one, and that is a real answer rather than a dodge. It charges 1% to receive a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace) and its fee schedule gives a withdrawal conversion cost as a range of 1.2% to 4%, with no public rate feed behind it. So the only exact rate is the one shown in your account at the moment you withdraw. What you can plan with is the gap: start from today's mid-market rate above, then, on a client payment, expect to lose roughly 2.2% to 5% of the payment across the two Payoneer charges together, and possibly more on a small payment, because the Payoneer fee schedule says that in some countries a minimum fee of up to 20.00 USD or equivalent may apply, and it does not say which. Our table models the midpoint of the published band because a range is not a price, and we flag it as an estimate for that reason."
+         }
+        },
+        {
+         "@type": "Question",
+         "name": "What does Payoneer charge in Pakistan?",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "On a client payment into your USD receiving account, withdrawn to a Pakistani bank account, expect to lose roughly 2.2% to 5% in total, which our table models at about 3.6%. That is two charges. Receiving the payment costs 1%, with a minimum of 1 USD. Withdrawing it as rupees costs what Payoneer's fee schedule, last updated 1 January 2026, gives as a range of 1.2% to 4%, and a separate Payoneer explainer says up to 2% for the same kind of withdrawal. A payout from Upwork, Fiverr or another marketplace is not necessarily priced at 1%: the schedule says only that it varies by marketplace. If a client pays a Payoneer payment request by credit card, the schedule lists up to 3.99% plus 0.49 USD, and Payoneer's help centre says the client can choose who pays that fee. Pakistan is not on the list of countries that get Payoneer's flat 1.50 USD withdrawal. Two other charges can apply: an annual account fee of 29.95 USD if your account receives less than 6,000 USD in any 12 consecutive months, and a minimum withdrawal fee of up to 20 USD, which the schedule says may apply in some countries without naming them. The Fees section inside your own Payoneer account shows what applies to you."
          }
         },
         {
@@ -9429,10 +9437,10 @@
     }
    ],
    "headings": [
-    "H1 Payoneer USD to PKR rate today, and what you actually receive",
+    "H1 Payoneer USD to PKR rate today, and what you can expect to receive",
     "H2 Mid-market rate today",
     "H2 Through Payoneer, on a 1,000 USD client payment",
-    "H2 What Payoneer actually pays into a Pakistan bank account",
+    "H2 What Payoneer is likely to pay into a Pakistan bank account",
     "H2 Questions people ask about this rate"
    ],
    "links": [
@@ -9519,8 +9527,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 1728,
-   "mainTextHash": "1e66c772ce2c"
+   "wordCount": 1951,
+   "mainTextHash": "342c1cdb9c40"
   },
   "/rates/payoneer-usd-to-bdt": {
    "title": "Payoneer dollar rate in Bangladesh today | Paid Across",
@@ -9573,10 +9581,10 @@
      "@graph": [
       {
        "@type": "Article",
-       "headline": "Payoneer USD to BDT rate today, and what you actually receive",
+       "headline": "Payoneer USD to BDT rate today, and what you can expect to receive",
        "description": "Today's mid-market USD to BDT rate, what Payoneer's fees take out, and roughly what reaches your Bangladeshi bank or bKash. Payoneer publishes no rate.",
        "datePublished": "2026-10-26T00:00:00+00:00",
-       "dateModified": "2026-11-01T00:00:00+00:00",
+       "dateModified": "2026-11-09T00:00:00+00:00",
        "author": {
         "@type": "Person",
         "name": "George I.",
@@ -9610,7 +9618,7 @@
         {
          "@type": "ListItem",
          "position": 3,
-         "name": "Payoneer USD to BDT rate today, and what you actually receive",
+         "name": "Payoneer USD to BDT rate today, and what you can expect to receive",
          "item": "https://paidacross.com/rates/payoneer-usd-to-bdt"
         }
        ]
@@ -9624,6 +9632,14 @@
          "acceptedAnswer": {
           "@type": "Answer",
           "text": "Payoneer does not publish one. It charges 1% to receive a client payment into a USD receiving account (fees on marketplace payouts vary by marketplace) and its fee schedule gives the withdrawal conversion cost as a range of 1.2% to 4%. The only exact rate is the one in your account at the moment you withdraw. To plan, start from today's mid-market rate above and, on a client payment, expect to lose somewhere around 2.2% to 5% of the payment across the two charges, and possibly more on a small payment, because the Payoneer fee schedule says that in some countries a minimum fee of up to 20.00 USD or equivalent may apply, and it does not say which. Our table uses the middle of the published band and labels it an estimate, because a range is not a price."
+         }
+        },
+        {
+         "@type": "Question",
+         "name": "What is Payoneer's currency conversion fee?",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Withdrawing dollars to a Bangladeshi bank account as taka costs 1.2% to 4% on Payoneer's fee schedule (last updated 1 January 2026), not the 0.5% you often see quoted. That 0.5% is the schedule's charge for converting between your own Payoneer balances, say dollars to euros. A separate Payoneer explainer says up to 2% for the bank withdrawal; our table uses 2.6%, the middle of the schedule's range, on top of the 1% Payoneer takes when a client pays into your USD receiving account. A Payoneer card, if your account is eligible for one, charges up to 3.5% on a purchase that needs a currency conversion, and 3.15 USD plus up to 3.5% on a cash withdrawal that does."
          }
         },
         {
@@ -9672,10 +9688,10 @@
     }
    ],
    "headings": [
-    "H1 Payoneer USD to BDT rate today, and what you actually receive",
+    "H1 Payoneer USD to BDT rate today, and what you can expect to receive",
     "H2 Mid-market rate today",
     "H2 Through Payoneer, on a 1,000 USD client payment",
-    "H2 What Payoneer actually pays into a Bangladesh bank account",
+    "H2 What Payoneer is likely to pay into a Bangladesh bank account",
     "H2 Questions people ask about this rate"
    ],
    "links": [
@@ -9762,8 +9778,8 @@
     }
    ],
    "status": 200,
-   "wordCount": 1276,
-   "mainTextHash": "1999fa7315d9"
+   "wordCount": 1404,
+   "mainTextHash": "e6b05938d483"
   }
  }
 }
