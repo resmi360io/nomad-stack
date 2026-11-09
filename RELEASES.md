@@ -5,6 +5,9 @@ is the release identifier. Record each release here when it ships, with how it w
 
 | Date (UTC) | Commit on `main` | PR | What | Verified |
 |---|---|---|---|---|
+| 2026-11-09 | `580371976db34e1c7b53cc8abce023a71b46d83b` | #89 | Weekly FAQ #4 "What is Payoneer's currency conversion fee?" on the BDT rate page; SEO_PLAN item 27 closed | Main tree identical to the tested tree; live HTML of all 25 URLs matched the tested build (0 differences); `npm run test:e2e` 14/14 against https://paidacross.com; submitted to Bing. |
+| 2026-11-08 | `4100394` | #88 | Rotation: usd-to-zar corrections (scheduled job) | Verified by the rotation; included in the live check above. |
+| 2026-11-05 | `60fb71a` | #87 | Rotation: usd-to-uzs corrections (scheduled job) | Verified by the rotation; included in the live check above. |
 | 2026-11-04 | `c1358c0fe9978d63137beb0f2e0be97983c6eed5` | #86 | Weekly FAQ #3 (Payoneer charges in Pakistan); Payoneer "only 1.2% to 4%" wording scoped to the fee schedule; rate-page H1/H2 "what you can expect to receive" (owner-approved); rate pages in the rotation; 2.6% decision | Main tree identical to the tested tree; live HTML matched the tested build (23 of 25 identical, the other 2 differ only by the live rotation date already on main); `npm run test:e2e` 14/14 against https://paidacross.com. |
 | 2026-11-04 | `deeab8c` | #85 | Rotation: usd-to-brl corrections (merged by the scheduled job, host 2's first ship) | Verified by the rotation; included in the live check above. |
 | 2026-11-01 | `69058624333eeebfe4e752f63b9f9245dcb82087` | #82 | Rate pages figure first (rate card and per-dollar estimate above the intro, reviewer-approved copy corrections, meta descriptions trimmed); verifier checks metadata; video batch 5 docs; rotation host 2 recorded | Main tree identical to the tested tree; live HTML of all 25 URLs matched the local build (0 differences, protected regressions 0); `npm run test:e2e` all pass against https://paidacross.com; card shows "about 266.85 PKR per USD" live. |
@@ -24,7 +27,7 @@ is the release identifier. Record each release here when it ships, with how it w
 | 2026-10-29 | `bef6577c88298ff753254d3dd4d6162138511c71` | #68 | Passbook redesign, iteration 1 | Smoke test of key routes after deploy. |
 | 2026-10-29 | `5d869fc` | #67 | Last release before any redesign | n/a |
 
-**Current production: `c1358c0`. Rollback point: `deeab8c`** (PR #85, the rotation's Brazil release; rolling further back to `6905862` would also undo the Brazil corrections).
+**Current production: `5803719`. Rollback point: `4100394`** (PR #88, the rotation's South Africa release; rolling further back would also undo the rotation's UZS and ZAR corrections).
 
 ## How to roll back
 
