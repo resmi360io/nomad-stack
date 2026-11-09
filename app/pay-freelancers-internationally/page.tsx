@@ -108,8 +108,8 @@ export default async function PayFreelancersPage() {
             If all they have is a local bank account, send money in their currency, not in
             dollars. A service like Wise lets you pay in dollars and deliver naira or Philippine pesos
             straight into their local bank account at the mid-market rate. You pay
-            a fee you can see before you confirm, and nothing comes off on their side. Check the details for each country, though. Wise says it is currently unable to send
-            business payments to Pakistani rupees and cannot send business transfers to Bangladeshi
+            a fee you can see before you confirm, and nothing comes off on their side. Check the details for each country, though. Wise says it cannot send to a business
+            account in Pakistan and cannot send business transfers to Bangladeshi
             taka, so a company paying a freelancer in Pakistan or Bangladesh cannot use it there,
             and our Pakistan and Bangladesh pages cover what to do instead.
           </p>

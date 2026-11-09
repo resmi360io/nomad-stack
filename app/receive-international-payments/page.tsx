@@ -318,7 +318,7 @@ export default async function ReceiveInternationalPaymentsPage() {
                 Converts at the mid-market rate and charges a separate fee you can see before you
                 accept. It tops most of the tables where residents can open an account. Where they cannot, a client can sometimes still use Wise to send local currency
                 straight to your bank account. Pakistan and Bangladesh are the exceptions to check:
-                Wise says it is currently unable to send business payments to Pakistani rupees and
+                Wise says it cannot send to a business account in Pakistan, that the recipient must be a private individual, and that it
                 cannot send business transfers to Bangladeshi taka.
               </p>
               <a

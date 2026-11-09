@@ -157,12 +157,13 @@ export const PROVIDERS: Provider[] = [
     // "We're working hard to allow customers to send UZS to Uzbekistan from the US, but we're not
     // quite there yet." Without this the UZ entry above would make calculate() price a som quote
     // off fallbackFee for a route Wise says does not exist.
-    // ARS joins UZS here for a DIFFERENT and more alarming reason. Wise cannot pay out Uzbek som
-    // and says so plainly. For Argentina its v1/price grid cheerfully returns 61
-    // deliverable-looking USD to ARS options at mid 1,524.25 with fees from 16.33, while
-    // wise.com/us/send-money/send-money-to-argentina says "We're working hard to allow customers
-    // to send ARS to Argentina from the US - but we're not quite there yet" and offers a waiting
-    // list. The grid prices a product that does not exist.
+    // ARS joins UZS here for a DIFFERENT reason. Wise cannot pay out Uzbek som at all. It CAN pay
+    // out pesos (help/articles/2962718: "You can send ARS to any bank account in Argentina"), but
+    // only from ARS converted inside a Wise account, capped at the equivalent of 18,000 USD per
+    // transfer per calendar month, while wise.com/us/send-money/send-money-to-argentina says US to
+    // ARS sending is "not quite there yet" and offers a waiting list. On 2026-10-20 the v1/price
+    // grid returned 61 priced USD to ARS options at mid 1,524.25 with fees from 16.33 without
+    // saying which pay-in legs can reach them, and no public Wise page shows those prices.
     // That is the THIRD way this endpoint has misled this project, after being destination-blind
     // for USD to USD and after the Georgia base-fee confusion, and it breaks the rule this file
     // used to state: a cross-currency pair is NOT automatically safe. Always cross-check the grid
@@ -510,7 +511,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 96,
         fxMarkupEstimated: true,
-        notes: 'Wise\'s published Indonesia SWIFT fee is 32.90, the second dearest on its whole list, which makes a dollar send here barely cheaper than a generic correspondent wire. Indonesian residents cannot hold a Wise balance, so this is the client-sends route into a local USD account.',
+        notes: 'Wise\'s published Indonesia SWIFT fee is 32.90, the third dearest on its whole list behind Peru and South Korea, which makes a dollar send here barely cheaper than a generic correspondent wire. Indonesian residents cannot hold a Wise balance, so this is the client-sends route into a local USD account.',
       },
       {
         source: { country: 'US', currency: 'USD' },
