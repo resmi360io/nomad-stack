@@ -195,11 +195,11 @@ export const PROVIDERS: Provider[] = [
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'ZA', currency: 'ZAR' },
         fixedFee: 0,
-        percentageFee: 0.0074,
+        percentageFee: 0.00744,
         fxMarkupBps: 0,
         typicalHours: 24,
         fxMarkupEstimated: true,
-        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-south-africa states the cheapest route, money already in your Wise account, costs 7.40 USD on 1,000 USD, read 2026-11-01 (direct debit 9.41, bank transfer 13.81). On that date v1/price returned the same three totals at 1,000 for BALANCE, DIRECT_DEBIT and BANK_TRANSFER pay-in, and 24.93 at 5,000 for BALANCE pay-in, but its labelled split (flat 3.04 plus a variable part it calls 0.44%) does not reproduce those totals when read literally, and no public page shows a second amount, so the split is not used. The same read priced RECEIVE_BANK_TRANSFER pay-in, the client-pushed ACH, at 7.73 on 1,000, which no public page shows either. Wise publishes no second amount at any URL we could find, so the fixed and percentage parts cannot be separated; this models the 1,000 USD price proportionally, which overstates at larger amounts rather than understating. The v1/price pair (7.79 on 1,000 and 25.31 on 5,000) matched NO figure on Wise\'s own page and is not used. fxMarkupEstimated marks the estimated PERCENTAGE, not the markup, same as the Payoneer GE/USD rows above; it bars the badge, which is correct while the cheapest row is unsourced.',
+        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-south-africa states the cheapest route, money already in your Wise account, costs 7.44 USD on 1,000 USD, read 2026-11-08 (direct debit 9.45, bank transfer 13.85), which is what percentageFee models. It read 7.40 on 2026-11-01 (direct debit 9.41, bank transfer 13.81). On that date v1/price returned the same three totals at 1,000 for BALANCE, DIRECT_DEBIT and BANK_TRANSFER pay-in, and 24.93 at 5,000 for BALANCE pay-in, but its labelled split (flat 3.04 plus a variable part it calls 0.44%) does not reproduce those totals when read literally, and no public page shows a second amount, so the split is not used. The same read priced RECEIVE_BANK_TRANSFER pay-in, the client-pushed ACH, at 7.73 on 1,000, which no public page shows either. Wise publishes no second amount at any URL we could find, so the fixed and percentage parts cannot be separated; this models the 1,000 USD price proportionally, which overstates at larger amounts rather than understating. The v1/price pair (7.79 on 1,000 and 25.31 on 5,000) matched NO figure on Wise\'s own page and is not used. fxMarkupEstimated marks the estimated PERCENTAGE, not the markup, same as the Payoneer GE/USD rows above; it bars the badge, which is correct while the cheapest row is unsourced.',
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -347,7 +347,10 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.005,
         fxMarkupBps: 0,
         typicalHours: 24,
-        notes: 'USD received by ACH is free. 0.5% to convert USD to BRL at the mid-market rate. Payout to a Brazilian account by Pix or TED.',
+        // The 0.5% is from the v1/price endpoint only. Wise's public Brazil send page shows no balance
+        // conversion fee and no second amount, so it is flagged as an estimate (2026-11-04 review).
+        fxMarkupEstimated: true,
+        notes: 'USD received by ACH is free. About 0.5% to convert USD to BRL, read from the Wise quote endpoint on 2026-09-24 and not shown on any public Wise page, so estimated. No spread: Wise converts at the mid rate and charges a separate fee. Payout to a Brazilian account by Pix or TED.',
       },
       // THB fee REDERIVED 2026-09-24 from Wise's own quote endpoint, payIn BALANCE and payOut
       // BANK_TRANSFER, which is the case this corridor prices: a freelancer already holding client
@@ -480,7 +483,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 96,
         fxMarkupEstimated: true,
-        notes: 'Your client is the Wise customer here, not you. Wise sends dollars by SWIFT into a USD account at an Uzbek bank; you supply an account number and a SWIFT code and need nothing from Wise. 13.79 is Wise\'s published Uzbekistan SWIFT fee. Wise cannot pay out som at all, which is why it appears only on the dollar table.',
+        notes: 'Your client is the Wise customer here, not you. Wise sends dollars by SWIFT into a USD account at an Uzbek bank; you supply an account number and a SWIFT code and need nothing from Wise. 13.79 is Wise\'s published Uzbekistan SWIFT fee. Wise\'s own send pages say it cannot yet send som to Uzbekistan, which is why it appears only on the dollar table.',
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -681,7 +684,9 @@ export const PROVIDERS: Provider[] = [
   },
 
   // FX MARKUP, ALL ROWS, revised 2026-09-25. Every row here used to carry 200 bps, sourced
-  // from an "up to 2%" line on payoneer.com/withdraw-funds. That wording is GONE. The fee
+  // from an "up to 2%" line on payoneer.com/withdraw-funds. That wording is gone from that page,
+  // but "up to 2%" is still live on Payoneer's withdrawal-fee explainer (last modified 2026-09-23)
+  // and its Argentina page; the owner decided on 2026-11-04 to stay on the fee schedule below. The fee
   // schedule (payoneer.com/pricing and /legal/fees, last updated 1 January 2026) publishes
   // a RANGE instead: 1.2% to 4% to withdraw to a bank account, with or without conversion.
   // A range is not a rate, so no row here can be sourced. Confirmed independently by three
@@ -788,7 +793,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 260,
         typicalHours: 72,
         fxMarkupEstimated: true,  // Payoneer's published conversion currency list does not include GEL, so this lari withdrawal may not exist at all
-        notes: '1% receiving fee plus a withdrawal conversion charge Payoneer publishes only as a 1.2% to 4% range, modelled at its 2.6% midpoint. The $1.50 flat rate does not apply on two grounds: the Payoneer fee schedule limits it to a named list of countries and Georgia is not on it (the South Georgia on that list is a British South Atlantic territory), and the Payoneer withdrawal-fee explainer offers the fixed fee only for USD, EUR or GBP withdrawn to an account in that same currency, which a lari withdrawal from a dollar balance is not. The Payoneer Manage Currencies list does not include GEL, and no Payoneer page we opened confirms a lari withdrawal, so this route may not exist at all.',
+        notes: '1% receiving fee plus a withdrawal conversion charge Payoneer\'s fee schedule gives only as a 1.2% to 4% range, modelled at its 2.6% midpoint. The $1.50 flat rate does not apply on two grounds: the Payoneer fee schedule limits it to a named list of countries and Georgia is not on it (the South Georgia on that list is a British South Atlantic territory), and the Payoneer withdrawal-fee explainer offers the fixed fee only for USD, EUR or GBP withdrawn to an account in that same currency, which a lari withdrawal from a dollar balance is not. The Payoneer Manage Currencies list does not include GEL, and no Payoneer page we opened confirms a lari withdrawal, so this route may not exist at all.',
         // The guide says a lari withdrawal has not been confirmed to exist (Manage Currencies does
         // not list GEL). Priced so the model is visible, never ranked until it is confirmed.
         availability: 'unverified',
@@ -988,7 +993,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 72,
         fxMarkupEstimated: true,
-        notes: '1% receiving fee plus a withdrawal charge Payoneer publishes only as a 1.2% to 4% range, modelled at its 2.6% midpoint. A Georgian USD account is not eligible for the $1.50 flat rate: Georgia is not on Payoneer\'s flat-rate country list, and the US dollar is not Georgia\'s local currency. No FX conversion, so no spread.',
+        notes: '1% receiving fee plus a withdrawal charge Payoneer\'s fee schedule gives only as a 1.2% to 4% range, modelled at its 2.6% midpoint. A Georgian USD account is not eligible for the $1.50 flat rate: Georgia is not on Payoneer\'s flat-rate country list, and the US dollar is not Georgia\'s local currency. No FX conversion, so no spread.',
         // 1% to receive (published minimum 1.00 USD) plus the 2.6% midpoint of the 1.2% to 4% withdrawal
         // range, both on the amount sent, so the 1,000 USD figure stays 36.00. Only amounts under 100 change.
         feeComponents: [
@@ -1008,7 +1013,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 72,
         fxMarkupEstimated: true,
-        notes: '1% receiving fee plus a withdrawal charge Payoneer publishes only as a 1.2% to 4% range, modelled at its 2.6% midpoint. A Georgian EUR account is not eligible for the flat same-currency rate: Georgia is not on Payoneer\'s flat-rate country list, and the euro is not Georgia\'s local currency. No FX conversion, so no spread.',
+        notes: '1% receiving fee plus a withdrawal charge Payoneer\'s fee schedule gives only as a 1.2% to 4% range, modelled at its 2.6% midpoint. A Georgian EUR account is not eligible for the flat same-currency rate: Georgia is not on Payoneer\'s flat-rate country list, and the euro is not Georgia\'s local currency. No FX conversion, so no spread.',
       },
       // EUR → Portuguese EUR (SEPA, no FX — 1% receiving fee)
       {
@@ -1186,14 +1191,15 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 24,
       },
       // BR: paypal.com/br/webapps/mpp/merchant-fees. Commercial payment 4.79%, plus a further
-      // 1.61% because the payer is international, plus a fixed 0.60 BRL, plus 3.50% above the base
+      // 1.61% because the payer is international, plus a fixed fee by currency received (0.30 USD here), plus 3.50% above the base
       // exchange rate when the payment arrives in another currency. Withdrawal to a linked
       // Brazilian bank by standard transfer is free. Modelled as 6.40% (4.79 + 1.61) and 350 bps.
-      // The 0.60 BRL fixed fee is about 0.12 USD and is modelled as such.
+      // The fixed fee follows the currency received: 0.30 USD on a USD payment, which is this row.
+      // 0.60 BRL applies only to BRL receipts.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'BR', currency: 'BRL' },
-        fixedFee: 0.12,
+        fixedFee: 0.30,
         percentageFee: 0.064,
         fxMarkupBps: 350,
         typicalHours: 24,

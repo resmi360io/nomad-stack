@@ -90,7 +90,7 @@ export default async function Home() {
             <p className="pa-prose">
               The second part is often the bigger one. Payoneer charges 1% on an incoming client
               payment, which sounds cheap. Then it converts your dollars to local currency at a rate
-              it describes only as 1.2% to 4% away from the mid. Take the middle of that and a $1,000
+              its fee schedule describes only as 1.2% to 4% away from the mid. Take the middle of that and a $1,000
               payment loses about $36 in total, most of it in the conversion. Wise works the other
               way round: it converts at the mid-market rate and charges a separate fee you can read
               before you send. Neither model is automatically cheaper. You only find out by adding

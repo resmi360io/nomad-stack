@@ -231,7 +231,7 @@ Distinct tactics: 78. Section 3b (promotion playbook) is the analyst's own strat
 | linkgap.io, the backlink-gap site in row 18 | 18, 27 | Backlink gap | OpenRush `compare_backlink_gap` | Not needed |
 | unlinked.io | 33 | Unlinked brand mentions | Web search for the brand | Later, when mentions exist |
 | Google Search Console | 5, 13, 21, 36, 74, 94, 95, 108, 121, 126 | Request indexing, cannibalization, page-2 queries, links report, regex filters, title rewrites | GSC via OpenRush `get_search_performance` plus the owner's UI | Have |
-| Google Analytics 4 | 110, 150 | Sessions by hour; "AI Assistant" default channel (since 2026-05-13) | GA via OpenRush `get_website_analytics`; PostHog is primary | Unclear: no GA tag in the site code on 2026-11-01; owner to confirm whether the GA property receives data |
+| Google Analytics 4 | 110, 150 | Sessions by hour; "AI Assistant" default channel (since 2026-05-13) | GA via OpenRush `get_website_analytics`; PostHog is primary | Not connected: OpenRush returns `binding_required` and the site has no GA tag (2026-11-01); PostHog is the only source |
 | Looker Studio | 22 | Monthly SEO dashboard | Checkpoint tables in SEO_PLAN | Not needed |
 | Bing Webmaster Tools | 4 | Import from GSC, sitemap | Hermoso MCP | Have |
 | PageSpeed Insights | 32 | CLS and speed | Playwright; GSC Core Web Vitals report | Have equivalent |

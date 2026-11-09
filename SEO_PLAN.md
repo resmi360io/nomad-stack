@@ -213,29 +213,58 @@ watermark remover", and are ignored. What survives a sceptical read:
     rotation host loaded the old definition at start, and its prompt can be edited only from inside it, so the
     AGENTS.md rule is what reaches it, once on main). First used the same day on the rate-page change (item 22),
     where it caught two meta descriptions that overclaimed.
-25. [ ] **You decide, Claude proposes:** bring the two rate pages' intro, rate note, FAQs and meta descriptions
+25. [x] **You decide, Claude proposes:** bring the two rate pages' intro, rate note, FAQs and meta descriptions
     into the verification rotation (AGENTS.md says they are "verified by nobody"). Effort M.
-    **2026-11-04 audit: priority up.** The rate pages took 171 of 583 Google impressions in the 28 days to
-    2026-11-04 (29%), more than any corridor and level with the pillar.
-26. [ ] **You:** confirm whether the Google Analytics property behind OpenRush `get_website_analytics` receives
+    **Approved and done 2026-11-04:** a rate page now rides with its corridor (AGENTS.md, "Rate pages ride with
+    their corridor"): the PKR rate page is verified on the Pakistan day (Monday), the BDT one on the Bangladesh day
+    (Tuesday), by the same verifier and reviewer, with its own `updatedDate`. `corridor-verifier.md` says the same.
+    It reaches the scheduled host once merged to main, because the host reads AGENTS.md from main on every run.
+    **Owner decision 2026-11-04: Payoneer withdrawals stay at 2.6%** (the midpoint of the 1 January 2026 fee
+    schedule's 1.2% to 4%), not the "up to 2%" in Payoneer's explainer. Computed consequence of the 2% option,
+    for the record: 21 corridor and amount combinations would have reordered across 11 corridors and Mexico would
+    have lost its badge at 250 to 300 USD. Reader-facing "only as 1.2% to 4%" claims are scoped to the fee schedule
+    instead (2026-11-04 wording pass).
+26. [x] **You:** confirm whether the Google Analytics property behind OpenRush `get_website_analytics` receives
     any data; the site code has no GA tag (checked 2026-11-01). Nothing to install either way. Effort S.
-27. [ ] **You, by 2026-11-05:** open Search Console, Indexing, Pages, and note here the indexed count and each
+    Answered by Claude 2026-11-01: OpenRush returns `binding_required` (no GA property is bound to the site), and
+    the code has no tag, so GA receives nothing. PostHog is the only analytics source; the tools table in
+    KNOWLEDGE.md should read "Not connected" for GA. PostHog, 30 days to 2026-11-01: 212 pageviews, of which 148
+    are from Georgia (the owner's own visits; 0 from search); outside Georgia about 45 visitors, 20 search visits
+    (Google 18, Bing 1, Yahoo 1), mostly to the pillar and `/receive/usd-to-bdt`; first search visit to a rate page
+    on 2026-10-29 (`/rates/payoneer-usd-to-bdt`, Google, Bangladesh). `calc_run`: 9 events, all from Georgia, so
+    no real calculator use is recorded yet; read it again at the 2026-11-30 checkpoint. Two 404s from real
+    visitors: `/th` (Thailand, direct) and `/receive-usd-to-bdt` (Bangladesh, direct, a dash instead of a slash),
+    one visit each; not worth a redirect at this volume, recheck at the checkpoint.
+27. [x] **You, by 2026-11-05:** open Search Console, Indexing, Pages, and note here the indexed count and each
     "Why pages aren't indexed" reason with its count, naming any corridor or rate page listed. Do not re-request
     indexing for "Crawled - currently not indexed" pages (Google: "no need to resubmit this URL for crawling");
     Claude treats any listed corridor as a content question for the pipeline. Effort S.
-29. [ ] **You decide (held from item 22):** (a) keep or change the "actually" wording in the rate-page H1 and H2
-    (a change resets the window that started 2026-11-01, so decide early); (b) 2.6% versus Payoneer's "up to 2%"
-    (ranking-moving on every Payoneer row; verifier, reviewer; a "payoneer currency conversion fee" FAQ depends on
-    it: 70 impressions at about 90 over 90 days to 2026-11-04, on the homepage and pillar, direction only);
-    (c) Payoneer `lastVerified` 2026-06-02 printed in both rate-page footers on pages answering "rate today":
-    either a full Payoneer re-read, then bump (AGENTS.md), or a per-page verified date (code, REVIEW mode).
-    Effort S to decide.
+    **Read 2026-11-04 (owner screenshot plus the "Valid" export; Google's data dated 2026-10-23):** 15 known
+    pages, **11 indexed**, 4 not indexed for 2 reasons (reasons not yet read). Indexed, with last crawl: `/how-we-make-money`
+    (2026-10-21), `/` (2026-10-09), the pillar and seven corridors PHP, PKR, BDT, EUR-PT, GEL, IDR, THB (all
+    2026-09-02), NGN (2026-07-23). **Not in the indexed list, 14 of the 25 sitemap URLs:** nine corridors (INR, MXN,
+    BRL, UZS, COP, ZAR, ARS, PLN, UAH), both rate pages, the cost index, `/about/author` and
+    `/pay-freelancers-internationally`; Google knew only 15 URLs on 2026-10-23, so about 10 of these were not yet
+    discovered at all. Consequences: (a) the PR #72 corridors had not been recrawled since 2026-09-02, so the
+    2026-10-29 title changes were not yet seen on 2026-10-23 and each page's clock starts at its next recrawl, as
+    planned; (b) the nine zero-impression corridors have zero impressions because they are not indexed, not because
+    they rank badly, so title work on them waits until they are indexed. Still to do (**You**): open the "Not
+    indexed" card and note the two reasons and their URLs; open Indexing, Sitemaps and note the sitemap's last read
+    date and "discovered pages" count; request indexing for the 14 (about 10 a day within the quota), starting with
+    INR, BRL, MXN, both rate pages and the cost index. Bing has all 25 (API, 2026-11-01, plus 8 changed pages
+    2026-11-04).
+    **Closed 2026-11-09.** Owner requested indexing for the 14; Sitemaps shows the sitemap submitted 2026-11-03, last
+    read 2026-11-09, 25 discovered. Page indexing now lists only `/about/author` as "Crawled - currently not indexed"
+    and still shows the 11 older pages. That report lags: Search Console Performance (OpenRush, page view, 28 days to
+    2026-11-08) shows impressions for **24 of the 25 sitemap URLs**, which needs them indexed, including all nine
+    "missing" corridors, both rate pages and the cost index. Site totals 853 impressions against 321 in the previous
+    28 days; `/rates/payoneer-usd-to-bdt` 149 at 7.4 and `/rates/payoneer-usd-to-pkr` 131 at 23.6 in their first
+    two weeks. The one URL with no impressions is `/pay-freelancers-internationally` (**You**: URL Inspection on it
+    once). `/about/author`: leave it; Google says not every URL will be indexed and resubmitting does not help
+    (KNOWLEDGE.md tactic 37). Every page checked 2026-11-09 answers 200 with a self canonical, no noindex, and
+    robots.txt allows all. Next indexing look: the 2026-11-30 checkpoint, from Performance, not Page indexing.
 30. [ ] **Claude, on or after 2026-11-25:** re-check the Bangladesh 2.5% incentive FAQ against the LDC graduation
     of 2026-11-24, through verifier and reviewer. Effort S.
-31. [ ] **Claude:** add the missing `RELEASES.md` row(s): `origin/main` was `6905862` on 2026-11-04 while the file
-    names `7e8c151` (#81) as production, and the item 22 rate-page release has no row. Also record what the
-    rotation runs of 2026-11-02 to 2026-11-04 did (no live corridor `dateModified` is later than 2026-11-01).
-    Effort S.
 2. [x] **You:** apply to the Payoneer affiliate programme (application sent 2026-10-30; awaiting reply). Both rate pages and 7 corridors earn nothing,
    and the rate pages are now linked from every page.
 3. [x] **You:** decided 2026-10-30: leave it as is (no minimum modelled). The Georgia question from PR #70: under about $300 the dollar table ranks
@@ -385,10 +414,30 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
   **2026-11-01: #2 shipped the same day by owner decision**, a deliberate exception to rule 8 (second FAQ in the week of 2026-10-26, on a different page from #1), "Can I use Wise to receive USD in Bangladesh?" on `/receive/usd-to-bdt` (Bing: several
   Wise-in-Bangladesh queries at positions 1 to 4; verifier, reviewer, humanizer). Note for the rotation and the BD
   incentive FAQ: Bangladesh's LDC graduation is still officially 2026-11-24, which the incentive FAQ hedges as a likely
-  phase-out point for the 2.5% freelancer export cash incentive; re-check that FAQ after that date (item 30).
-  **#3 candidate (2026-11-04 audit), week of 2026-11-02:** a USD salary question on `/receive/usd-to-bdt` (GSC
-  "receive salary in usd" 5 at 23.2; Bing "to receive usd and sending it back home to bangladesh to a local bank.
-  does it cost too." at 3). The BD read is already a bundle.
+  phase-out point for the 2.5% freelancer export cash incentive; re-check that FAQ after that date.
+  **2026-11-04: #3 shipped**, "What does Payoneer charge in Pakistan?" on `/rates/payoneer-usd-to-pkr` (verifier 28
+  claims: 24 verified, 3 incorrect, 1 unverifiable; reviewer `safe_to_apply` true; humanizer; REVIEW: SHIP WITH
+  CHANGES, applied). The rate-page read is a bundle (item 22). Next FAQ no earlier than 2026-11-09. Same release: the
+  "only as 1.2% to 4%" wording scoped to Payoneer's fee schedule on the homepage, pillar, NGN FAQ and the rate-table
+  note; `/receive/usd-to-ngn` drops out of the 2026-11-30 preliminary read (its decision read moves to 8 weeks after
+  its next recrawl, 2026-12-30 at the earliest). Follow-up for the rotation: the homepage "est." legend may be wrong
+  where an estimate is our own assumption rather than a published range (reviewer flag, 2026-11-04).
+  **2026-11-09: #4 shipped**, "What is Payoneer's currency conversion fee?" as the second FAQ on
+  `/rates/payoneer-usd-to-bdt` (also FAQPage JSON-LD; `updatedDate` 2026-11-09). Evidence: GSC, 28 days to 2026-11-08,
+  95 impressions at about position 90 (75 on `/`, 20 on the pillar); the rise sits inside the site-wide indexing jump
+  (853 impressions against 321). Top results read first (OpenRush `inspect_serp`, US, 2026-11-09): believe-group,
+  Payoneer's checkout calculator, rates.fm ("0.5%, 3.5% with the Mastercard"), Wise, Payoneer's help centre ("a low,
+  flat fee of 0.5%"); none separates the balance conversion from the bank withdrawal, which is the gap the answer fills.
+  Referring domains of the top five not recorded (tactic 12; optional). Placed on the BDT rate page because it is the
+  site's best-placed Payoneer page (149 at 7.4); no other page carries this question. Verifier 14 claims (9 verified,
+  3 incorrect, 2 unverifiable), reviewer 1 approve, 3 amend, 1 additional, `safe_to_apply` true, humanizer twice;
+  REVIEW: SHIP WITH CHANGES (answer made answer-first, tactic 17, reviewer re-confirmed). Rule 8: first FAQ in the week
+  of 2026-11-09; #5 no earlier than 2026-11-16. Measurement: the rate-page read stays a bundle (item 22); preliminary
+  about 4 weeks after the next recrawl (2026-12-07 at the earliest), decision at 8 weeks (on or after 2027-01-04). Read
+  GSC page plus query for "payoneer currency conversion fee" and its Bangladesh or taka variants: the signal is
+  impressions attributing to the rate page rather than `/` and the pillar. Guard: the page's own Bangladesh rate
+  queries hold near 7.4. Under about 100 impressions per query, direction only (rule 1). **You:** request indexing for
+  the URL on merge day.
 - [ ] **You:** one pitch or correction email a day (newsletters, PK and BD tech press, authors still
   quoting Payoneer "up to 2%"), plus two helpful Reddit or Quora answers a week from a branded account
   that says who you are. Never astroturf.
