@@ -169,12 +169,13 @@ export const PROVIDERS: Provider[] = [
     // used to state: a cross-currency pair is NOT automatically safe. Always cross-check the grid
     // against Wise's own send page for that corridor. A FOURTH way followed immediately: the
     // grid's ZAR pair matched nothing on Wise's own South Africa send page, so it was discarded
-    // and that row is now a flagged single-point model. Poland is the nearest thing to a pass,
-    // and only at the one amount its send page prices.
+    // and that row is now a flagged single-point model. Poland, once the nearest thing to a pass, failed too
+    // on 2026-11-10: the grid's 4.69 on 1,000 against 4.38 on the send page.
     unsupportedDestinationCurrencies: { UZ: ['UZS'], AR: ['ARS'], UA: ['UAH', 'USD'] },
     corridors: [
-      // South Africa, Argentina and Poland. PLN comes from wise.com/gateway/v1/price and agrees
-      // with Wise's own send page at the one amount that page prices, across its funding methods.
+      // South Africa, Argentina and Poland. Neither ZAR nor PLN comes from wise.com/gateway/v1/price any more.
+      // PLN's grid split (1.19 plus 0.35%, 4.69 on 1,000) did NOT agree with Wise's own send page, which
+      // read 4.38 from a Wise balance on 2026-11-10, so PLN is a flagged single-point model like ZAR.
       // ZAR DOES NOT agree: the endpoint gave 7.79 on 1,000 and 25.31 on 5,000 while the send page
       // prices the cheapest route, money already in your Wise account, at 7.40 on 1,000 (read
       // 2026-11-01; was 7.43 on 2026-10-25), with direct debit 9.41 and bank transfer 13.81. Nothing public is 7.79 and nothing public
@@ -224,11 +225,12 @@ export const PROVIDERS: Provider[] = [
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PL', currency: 'PLN' },
-        fixedFee: 1.19,
-        percentageFee: 0.0035,
+        fixedFee: 0,
+        percentageFee: 0.00438,
         fxMarkupBps: 0,
         typicalHours: 24,
-        notes: 'Fixed and percentage parts separated at $1,000 and $5,000 on Wise\'s price grid: $1.19 flat plus about 0.35%, giving $4.68 and $18.62. Every route at both amounts quoted the same rate, and Wise\'s own send page displayed that rate and states it converts at the mid-market rate with the fee charged separately, which is why the zero spread is sourced rather than assumed. It does NOT match NBP table A to four decimals and cannot: table A is a once-daily fixing, Wise quotes a live rate. Send page cross-checked at $1,000 across funding methods only.',
+        fxMarkupEstimated: true,
+        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-poland read 2026-11-10 prices 1,000 USD to PLN at 4.38 USD from a Wise balance (direct debit 6.35, bank transfer 10.76, debit card 20.01) and states it uses the mid-market rate. No second amount is published, so the old price-grid split (1.19 plus 0.35%, 4.69 on 1,000 and 18.69 on 5,000) has no public basis and is withdrawn; this models the 1,000 USD price proportionally, as the ZA and GE rows do. fxMarkupEstimated marks the estimated percentage, not a markup, and bars the badge.',
       },
       // NO US to UA row, in either currency, and that is deliberate. Wise has not launched
       // sending to Ukraine from the United States: wise.com/us/send-money/send-money-to-ukraine
@@ -252,7 +254,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 96,
         fxMarkupEstimated: true,
-        notes: 'Wise\'s published Poland SWIFT fee, and it is dear: 27.24 against 1.19 to take zloty. Here taking dollars costs more than converting at almost any invoice size, which inverts the usual shape of these corridors.',
+        notes: 'Wise\'s published Poland SWIFT fee, and it is dear: 27.24 before what Wise charges for how the transfer is paid, against 4.38 on 1,000 to take zloty. Here taking dollars costs more than converting at almost any invoice size, which inverts the usual shape of these corridors.',
       },
       // wise.com/us/send-money/send-money-to-georgia, read 2026-11-06: 14.69 USD on 1,000 USD from a
       // Wise balance (direct debit 16.69, bank transfer 21.08, debit card 30.07). Balance funding is the
@@ -1388,17 +1390,15 @@ export const PROVIDERS: Provider[] = [
     hasAffiliateProgram: true,
     lastVerified: '2026-08-27',
     supportedSourceCountries: ['US'],
-    // MX removed from DESTINATIONS 2026-09-24. The Mexico withdrawal fee is UNRESOLVED and the
-    // three readings are mutually exclusive, not merely unsourced: a flat US$2, a per-country
-    // table that does not list Mexico at all, and 0.3% with a US$1 minimum and US$5 maximum.
-    // help.grabrfi.com was unreachable until 2026-10-29; its fee schedule (effective 3 Sep 2026) then
-    // read Mexico $2 and Nigeria $1 for a local-currency withdrawal. Mexico not re-added here. The spread is
+    // MX removed from DESTINATIONS 2026-09-24. The Mexico withdrawal fee is $2 per help.grabrfi.com's
+    // full schedule of fees (effective 2026-09-03, written for global account holders), read 2026-11-10.
+    // Earlier readings of 0.3% or a per-country table without Mexico were secondary sources.
+    // Mexico not re-added here because the spread is unpublished. The spread is
     // confirmed ABSENT: GrabrFi publishes none, the rate is shown in-app and locked at
     // confirmation with the margin embedded. Two unknowns on the one provider this site earns
     // a referral commission from is not something to print a price for, so GrabrFi is unranked
-    // and appears as prose only on the corridor page. Separately confirmed across three runs:
-    // the US$10 charge is the bank REJECTION fee, deducted from the refund when the receiving
-    // bank bounces a payout, not a withdrawal charge.
+    // and appears as prose only on the corridor page. The US$10 bank rejection fee that other sources
+    // describe is NOT on the 2026-09-03 schedule (only a $1 misdirected ACH return fee); unconfirmed.
     supportedDestinationCountries: ['US', 'GB', 'EU'],
     corridors: [],
     fallbackFee: {
@@ -1475,14 +1475,18 @@ export const PROVIDERS: Provider[] = [
         // and a free-first-transfer promotion on 2026-11-07, so the markup is an estimate.
         fxMarkupEstimated: true,
       },
-      // Confirmed ~150 bps FX spread, strong US→MX network (bestexchangerates.com)
+      // ~150 bps FX spread from bestexchangerates.com only (third party, 403 to us on 2026-11-10), hence
+      // flagged estimated. westernunion.com/us/en/send-money-to-mexico.html showed no rate and no standard
+      // fee on 2026-11-10, plus a first-transfer promotion (no fee to bank accounts and mobile wallets until 15 Dec).
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'MX', currency: 'MXN' },
         fixedFee: 5,
         percentageFee: 0,
         fxMarkupBps: 150,
-        typicalHours: 1,
+        // westernunion.com says bank account transfers take one to five business days, real time at several major banks (2026-11-10)
+        typicalHours: 24,
+        fxMarkupEstimated: true,
         notes: 'Strong US→MX network; near-instant cash pickup available',
       },
       // ~150 bps FX spread from bestexchangerates.com only, hence flagged estimated. westernunion.com/us/en/send-money-to-thailand.html showed fee and rate placeholders only on 2026-10-25, plus a first digital transfer promo (no fee, promo rate up to 2,500 USD, limited time).

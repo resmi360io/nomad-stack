@@ -111,11 +111,11 @@ export const RATE_PAGES: RatePage[] = [
       {
         q: 'How often does this page update?',
         a:
-          'The mid-market rate on it refreshes hourly from our rate source, and the date and time of the rate publication are printed next to it so you can see how fresh it is rather than trusting us. The Payoneer fee figures change far less often and are re-checked on a weekly rotation against Payoneer\'s own published pricing, with the last check date shown at the foot of the page. If you spot a figure that no longer matches Payoneer\'s own page, that is worth more to us than a compliment.',
+          'The mid-market rate on it refreshes hourly from our rate source, and the date and time of the rate publication are printed next to it so you can see how fresh it is rather than trusting us. The Payoneer fee figures change far less often and are re-checked on a weekly rotation against Payoneer\'s own published pricing, with the date at the foot of the page showing when Payoneer\'s figures for every country we cover were last re-read in full, which can be older than this page\'s own update date. If you spot a figure that no longer matches Payoneer\'s own page, that is worth more to us than a compliment.',
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-11-04',
+    updatedDate: '2026-11-10',
   },
   // Second page, on the same evidence rule as the first. GSC for 2026-07-29 to 2026-10-26 shows
   // the BDT corridor page already ranking for "payoneer dollar rate in bangladesh today" around
