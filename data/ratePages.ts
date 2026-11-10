@@ -111,11 +111,11 @@ export const RATE_PAGES: RatePage[] = [
       {
         q: 'How often does this page update?',
         a:
-          'The mid-market rate on it refreshes hourly from our rate source, and the date and time of the rate publication are printed next to it so you can see how fresh it is rather than trusting us. The Payoneer fee figures change far less often and are re-checked on a weekly rotation against Payoneer\'s own published pricing, with the last check date shown at the foot of the page. If you spot a figure that no longer matches Payoneer\'s own page, that is worth more to us than a compliment.',
+          'The mid-market rate on it refreshes hourly from our rate source, and the date and time of the rate publication are printed next to it so you can see how fresh it is rather than trusting us. The Payoneer fee figures change far less often and are re-checked on a weekly rotation against Payoneer\'s own published pricing, with the date at the foot of the page showing when Payoneer\'s figures for every country we cover were last re-read in full, which can be older than this page\'s own update date. If you spot a figure that no longer matches Payoneer\'s own page, that is worth more to us than a compliment.',
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-11-04',
+    updatedDate: '2026-11-10',
   },
   // Second page, on the same evidence rule as the first. GSC for 2026-07-29 to 2026-10-26 shows
   // the BDT corridor page already ranking for "payoneer dollar rate in bangladesh today" around
@@ -158,7 +158,7 @@ export const RATE_PAGES: RatePage[] = [
       {
         q: 'Is Payoneer to bKash cheaper than Payoneer to a bank account?',
         a:
-          'Usually not. The 1% receiving fee applies either way. After it, Payoneer charges roughly 3% plus $1 per transfer to convert for the bKash route as of mid 2026, against 1.2% to 4% for a bank withdrawal. Then bKash charges to cash out: 18.50 Taka per 1,000 at a standard agent, or 7 Taka per 1,000 if you cash out Payoneer money at a BRAC Bank, City Bank or participating Q-Cash ATM. On a $1,000 payment the bank route comes out about a percentage point ahead at the middle of Payoneer\'s range (about 3.6% against about 4.7% with the ATM cash-out), and the two only draw level if your Payoneer conversion lands at about 3.8%, near the top of the range. The bKash route is faster, usually a few hours instead of one to three business days. Check both fees in the Payoneer portal and the bKash app before you rely on these figures.',
+          'Usually not. The 1% receiving fee applies either way. After it, Payoneer charges a conversion fee for the bKash route that its own fee schedule does not list, put at 3% plus $1 per transfer on bKash\'s Payoneer page, against 1.2% to 4% for a bank withdrawal. Then bKash charges to cash out: 18.50 Taka per 1,000 at a standard agent, or 7 Taka per 1,000 if you cash out Payoneer money at a BRAC Bank, City Bank or participating Q-Cash ATM. On a $1,000 payment the bank route comes out about a percentage point ahead at the middle of Payoneer\'s range (about 3.6% against about 4.7% with the ATM cash-out), and the two only draw level if your Payoneer conversion lands at about 3.8%, near the top of the range. The bKash route usually takes a few hours. A bank withdrawal can be close behind: Payoneer\'s help centre says most land the same day and some take up to 2 business days, while its withdrawal page says one to three business days. Check both fees in the Payoneer portal and the bKash app before you rely on these figures.',
       },
       {
         q: 'Does a Payoneer withdrawal count for the 2.5% freelancer incentive?',
@@ -173,10 +173,10 @@ export const RATE_PAGES: RatePage[] = [
       {
         q: 'How often does this page update?',
         a:
-          'The mid-market rate refreshes hourly, with the publication date printed next to it. The Payoneer fees change far less often and come from the same data as our Bangladesh page, which is re-checked against Payoneer\'s published pricing on a weekly rotation. The last check date is at the foot of this page. If a figure here no longer matches what Payoneer shows you, tell us and we will fix it.',
+          'The mid-market rate refreshes hourly, with the publication date printed next to it. The Payoneer fees change far less often and come from the same data as our Bangladesh page, which is re-checked against Payoneer\'s published pricing on a weekly rotation. The fee check date at the foot of this page is the last time we re-read Payoneer\'s figures for every country we cover at once, so it can be months older than our latest check of the Bangladesh figures, and older than this page\'s own update date. If a figure here no longer matches what Payoneer shows you, tell us and we will fix it.',
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-11-09',
+    updatedDate: '2026-11-10',
   },
 ];
