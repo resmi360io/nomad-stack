@@ -363,10 +363,11 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.005,
         fxMarkupBps: 0,
         typicalHours: 24,
-        // The 0.5% is from the v1/price endpoint only. Wise's public Brazil send page shows no balance
-        // conversion fee and no second amount, so it is flagged as an estimate (2026-11-04 review).
+        // The 0.5% is from the v1/price endpoint only. Wise's public Brazil send page shows one balance figure,
+        // 2.09 USD on 200 USD (read 2026-11-11), with no IOF split and no second amount, so it cannot confirm the
+        // percentage. Flagged as an estimate (2026-11-04 review).
         fxMarkupEstimated: true,
-        notes: 'USD received by ACH is free. About 0.5% to convert USD to BRL, read from the Wise quote endpoint on 2026-09-24 and not shown on any public Wise page, so estimated. No spread: Wise converts at the mid rate and charges a separate fee. Payout to a Brazilian account by Pix or TED.',
+        notes: 'USD received by ACH is free. About 0.5% to convert USD to BRL, read from the Wise quote endpoint on 2026-09-24; the public send page shows only 2.09 USD on 200 USD (read 2026-11-11), so the percentage is estimated. No spread: Wise converts at the mid rate and charges a separate fee. Payout to a Brazilian account by Pix or TED.',
       },
       // THB fee REDERIVED 2026-09-24 from Wise's own quote endpoint, payIn BALANCE and payOut
       // BANK_TRANSFER, which is the case this corridor prices: a freelancer already holding client
@@ -925,9 +926,9 @@ export const PROVIDERS: Provider[] = [
       // reading a USD receipt is exactly that case, but NO Payoneer page we opened states the
       // Brazil case explicitly. Withdrawal to a bank account is published as a RANGE, 1.2% to 4%
       // (payoneer.com/pricing, read 2026-09-24). The older "up to 2%" wording is no longer on the
-      // fee schedule and survives only in a Payoneer resources article, so do not cite it. 200 bps
-      // is kept as a working figure near the bottom of that range, pending one cross-corridor
-      // decision covering every Payoneer row. Both halves are assumptions, so this row is flagged
+      // fee schedule and survives only in a Payoneer resources article, so do not cite it. 260 bps
+      // is the working figure, the midpoint of that range, per the owner's cross-corridor decision
+      // of 2026-11-04 covering every Payoneer row. Both halves are assumptions, so this row is flagged
       // estimated and barred from the best value badge.
       {
         source: { country: 'US', currency: 'USD' },
@@ -2138,8 +2139,8 @@ export const PROVIDERS: Provider[] = [
   // Source: https://lemfi.com/pricing (2026-06-14)
   // Formerly Lemonade Finance. Issues virtual US accounts for Nigerian freelancers and diaspora.
   // Fee model: zero flat fee, zero percentage fee. Modeled at 0 bps FX markup, but the
-  // LemFi terms of service describe the quoted rate as a mark-up on the wholesale rate
-  // and do not publish its size, so 0 bps is a floor rather than a verified figure
+  // LemFi's UK terms (s6.11) describe the quoted rate as a mark-up on the wholesale rate; its Nigeria
+  // terms, which cover the USD account, do not use that wording. Neither publishes a size, so 0 bps is a floor rather than a verified figure
   // (flagged 2026-08-04, needs a human decision on unranking or modeling a spread).
   // FCA-licensed (UK), FINTRAC MBO (Canada), CBN-approved for Nigeria.
   {
@@ -2153,7 +2154,7 @@ export const PROVIDERS: Provider[] = [
     lastVerified: '2026-06-14',
     supportedSourceCountries: ['US'],
     // LemFi is deliberately NOT priced. Three verification passes failed to source its
-    // FX markup, and its own terms say the rate carries a mark-up on the wholesale rate,
+    // FX markup, and its UK terms say the rate carries a mark-up on the wholesale rate,
     // so modelling it at 0 bps put an impossible free option at the top of the Nigeria
     // table. Emptying this list is what actually removes it: calculate() filters on
     // supportedDestinationCountries, and LemFi's fallbackFee is an identical 0/0/0, so
@@ -2168,7 +2169,7 @@ export const PROVIDERS: Provider[] = [
       typicalHours: 48,
       fxMarkupEstimated: true,
     },
-    notes: 'LemFi (formerly Lemonade Finance) issues a virtual US account for Nigerian freelancers. No flat fee and no percentage fee on this corridor, but the LemFi terms of service say the exchange rate is a mark-up on the wholesale rate and the size of that mark-up is not published, so the zero-cost fee model here understates the real cost by an unknown amount. FCA-licensed (UK), FINTRAC-registered Money Service Business (Canada), CBN-approved. Compare the in-app rate against a mid-market reference, and verify current withdrawal limits before relying on it for large amounts.',
+    notes: 'LemFi (formerly Lemonade Finance) issues a virtual US account for Nigerian freelancers. No flat fee and no percentage fee on this corridor, but LemFi\'s UK terms say the exchange rate is a mark-up on the wholesale rate (its Nigeria terms, which cover the USD account, only say the rate is shown and locked in at authorisation) and the size of any mark-up is not published, so the zero-cost fee model here understates the real cost by an unknown amount. FCA-licensed (UK), FINTRAC-registered Money Service Business (Canada), CBN-approved. Compare the in-app rate against a mid-market reference, and verify current withdrawal limits before relying on it for large amounts.',
   },
 
   // ─── Raenest ───────────────────────────────────────────────────────────────
