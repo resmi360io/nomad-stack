@@ -6,6 +6,7 @@ import { CorridorTable } from '@/components/CorridorTable';
 import { fetchRatesServer } from '@/lib/fetchRates';
 import { CORRIDORS } from '@/data/corridors';
 import { PROVIDERS } from '@/data/providers';
+import { OutboundProviderLink } from '@/components/OutboundProviderLink';
 
 export const revalidate = 3600;
 
@@ -321,14 +322,16 @@ export default async function ReceiveInternationalPaymentsPage() {
                 Wise says it cannot send to a business account in Pakistan, that the recipient must be a private individual, and that it
                 cannot send business transfers to Bangladeshi taka.
               </p>
-              <a
+              <OutboundProviderLink
                 href={wiseLink}
-                target="_blank"
                 rel="sponsored nofollow noopener"
                 className="mt-1.5 inline-block text-xs underline underline-offset-2 hover:text-foreground"
+                placement="pillar"
+                provider={{ slug: 'wise', name: 'Wise' }}
+                isAffiliate={!!wiseProvider?.affiliateLink}
               >
                 Open Wise account (AD) →
-              </a>
+              </OutboundProviderLink>
             </div>
             <div>
               <h3 className="pa-h3 mb-2">Payoneer</h3>

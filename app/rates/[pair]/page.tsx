@@ -9,6 +9,7 @@ import { PROVIDERS } from '@/data/providers';
 import { fetchRatesServer } from '@/lib/fetchRates';
 import { calculate } from '@/lib/calculate';
 import type { CountryCode, Currency } from '@/data/providers';
+import { OutboundProviderLink } from '@/components/OutboundProviderLink';
 
 export const revalidate = 3600;
 
@@ -261,11 +262,14 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
               </Link>
               . It shows where {provider.name} places against every alternative we could price.
             </p>
-            <a
+            <OutboundProviderLink
               href={ctaHref}
-              target="_blank"
               rel={isAffiliate ? 'sponsored nofollow noopener' : 'nofollow noopener'}
               className="mt-5 inline-flex h-11 items-center gap-2 rounded border border-primary bg-primary px-5 text-[0.9375rem] font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+              placement="rate_page"
+              provider={provider}
+              isAffiliate={isAffiliate}
+              corridor={`${page.source}→${page.destination}`}
             >
               Open {provider.name}
               {isAffiliate && (
@@ -277,7 +281,7 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
                   AD
                 </span>
               )}
-            </a>
+            </OutboundProviderLink>
             {!isAffiliate && (
               <p className="pa-meta mt-3">
                 We earn nothing if you open {provider.name}. We have no affiliate relationship with
