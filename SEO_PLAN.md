@@ -5,10 +5,36 @@ are done, and add the PR number or date, so the next session starts from the tru
 memory. Fact-checking rules for anything that touches page copy live in AGENTS.md and still apply:
 verifier, then reviewer, then humanizer, and ranking-moving changes go to the owner.
 
-Last updated: 2026-11-09 (weekly audit, `docs/seo/reports/2026-11-09.md`).
+Last updated: 2026-11-12 (quarter targets added; last weekly audit `docs/seo/reports/2026-11-09.md`).
 
 Legend: `[x]` done, `[~]` in progress or partly done, `[ ]` not started. Owner is **You** (site owner)
 or **Claude** (a session in this repo).
+
+## Targets for the quarter to about 2027-02-15 (proposed 2026-11-12, accepted by the owner)
+
+Set from the 2026-11-09 read. Search volume in this niche is small, so each target has a floor to clear and a stretch.
+These are judgment, not forecasts: the jump to 848 impressions was mostly pages being indexed, so further gains have
+to come from rankings, which are slower. Judge them on the 28-day Google window unless stated.
+
+| Metric | Now (2026-11-09) | Floor | Stretch |
+|---|---|---|---|
+| Impressions | 848 | 2,000 | 4,000 |
+| Clicks | 3 | 25 | 60 |
+| Average position | 32 | 25 | 18 |
+| Pages with impressions | 24 of 25 | 25 of 25 | 25 of 25 |
+| Pages in the top 10 for at least one query | about 8 | 12 | 16 |
+| Editorial referring domains (not link farms) | 0 | 3 | 8 |
+| Bing clicks per month | about 1 | 8 | 20 |
+| Calculator runs per month, excluding the owner's own traffic | 0 | 40 | 150 |
+| AI-assistant referrals per 28 days | 3 per 90 days | 5 | 15 |
+| Pages cited by Google's AI features (Search Console report) | unknown | baseline recorded | 5 pages |
+
+Practice targets: zero known stale or false fee claims, every corridor re-verified weekly; one fact-checked FAQ a
+week (12 in the quarter) and one or two new rate pages only where search data supports them; about 25 one-to-one
+outreach emails sent by the owner (2 to 4 links is a typical result, and the least certain number here); PostHog
+pointed at the paidacross.com project before the 2026-11-30 checkpoint (item 31), without which the AI-referral and
+calculator targets cannot be measured. The editorial links floor depends on the owner's outreach; the SEO work alone
+will not move it. Review these numbers at the 2026-11-30 checkpoint and at the 2027-01-04 decision read.
 
 ## Baseline to measure against
 
