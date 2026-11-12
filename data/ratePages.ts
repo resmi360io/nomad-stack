@@ -81,7 +81,7 @@ export const RATE_PAGES: RatePage[] = [
       {
         q: 'Did Payoneer add a 3% withdrawal fee in Pakistan?',
         a:
-          'Pakistani press reported one in May 2025, but Payoneer has not confirmed it and we cannot find it on any Payoneer page. The reports, which cited The Express Tribune, said withdrawals to a bank account in dollars, euros or pounds, and transfers to third-party accounts, now carry a flat 3%, with rupee conversion unchanged. Each outlet we read said Payoneer had issued no statement. A 3% charge would sit inside the 1.2% to 4% band in Payoneer\'s fee schedule, last updated 1 January 2026, so it does not contradict the 2.6% midpoint our table uses. It is not a tax. If you withdraw dollars to a dollar account, read the fee on the withdrawal screen before you confirm.',
+          'Possibly, but we cannot confirm it for Pakistan. Pakistani press reported a 3% withdrawal fee in May 2025, and Payoneer\'s help centre has a fee update article that lists 3% of the transaction amount for a withdrawal to a bank account in a different currency, or in a currency that is not your local one. That article\'s table changes by country and shows no dates, and we could not see which of its rows, if any, apply to Pakistan. The reports said withdrawals to a bank account in a foreign currency, such as dollars, euros or pounds, and transfers to third-party bank accounts, now carry a flat 3%. Profit, citing The Express Tribune, added that Payoneer\'s currency conversion fees stayed in place with the new charges on top, and none of the reports we read said the 3% applies to a withdrawal converted to rupees. Profit also reported that Payoneer had not issued a statement, and none of the other outlets we read quoted Payoneer at all. A 3% charge would sit inside the 1.2% to 4% band in Payoneer\'s fee schedule, last updated 1 January 2026, and at the top of the 0.5% to 3% range in Payoneer\'s Pakistan article dated 30 June 2026, but it is 0.4 points above the 2.6% our table uses, so if it applies to your rupee withdrawals you will net a little less than the table shows. If you withdraw dollars to a dollar account, read the fee on the withdrawal screen before you confirm.',
       },
       {
         q: 'Why is the Payoneer exchange rate lower than the rate on Google?',
@@ -120,7 +120,7 @@ export const RATE_PAGES: RatePage[] = [
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-11-10',
+    updatedDate: '2026-11-12',
   },
   // Second page, on the same evidence rule as the first. GSC for 2026-07-29 to 2026-10-26 shows
   // the BDT corridor page already ranking for "payoneer dollar rate in bangladesh today" around
