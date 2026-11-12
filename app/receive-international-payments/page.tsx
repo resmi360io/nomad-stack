@@ -47,7 +47,7 @@ const pillarJsonLd = {
       '@id': 'https://paidacross.com/receive-international-payments#article',
       headline: 'How freelancers receive international payments: real costs by country',
       datePublished: '2026-06-03T00:00:00+00:00',
-      dateModified: '2026-11-04T00:00:00+00:00',
+      dateModified: '2026-11-09T00:00:00+00:00',
       url: 'https://paidacross.com/receive-international-payments',
       image: 'https://paidacross.com/opengraph-image',
       author: {
@@ -102,7 +102,7 @@ export default async function ReceiveInternationalPaymentsPage() {
             account with US account details, where your country allows one: your client pays
             you like a local supplier and Wise converts at the mid-market rate. Where Wise is
             closed to residents, as in Pakistan and Bangladesh, Payoneer is the usual route at
-            roughly 3.6% all in. In Nigeria and Brazil, local services such as Raenest and
+            roughly 3.6% all in. In Nigeria and Brazil, local services such as Cleva and
             Higlobe come out cheaper than either. The choice matters more than it looks. The
             cost runs from a fraction of a percent to almost 9% of every invoice, and on $3,000 a
             month that is the difference between losing about $15 and losing over $250. Below is
@@ -114,7 +114,7 @@ export default async function ReceiveInternationalPaymentsPage() {
               George I.
             </Link>
             {' · '}
-            Last updated: November 4, 2026
+            Last updated: November 9, 2026
           </p>
         </header>
 
@@ -139,8 +139,8 @@ export default async function ReceiveInternationalPaymentsPage() {
             and that figure rests on the middle of a range Payoneer publishes rather than a rate.
           </p>
           <p className={P}>
-            The surprise is how often a local service beats both. In Nigeria, Raenest and Cleva
-            issue US account numbers and come out cheapest in our comparison. In Brazil it is
+            The surprise is how often a local service beats both. In Nigeria, Cleva issues US
+            account numbers and comes out cheapest in our comparison. In Brazil it is
             Higlobe. These names rarely show up in global comparison articles, which is one reason
             the country pages exist.
           </p>
@@ -318,7 +318,7 @@ export default async function ReceiveInternationalPaymentsPage() {
                 Converts at the mid-market rate and charges a separate fee you can see before you
                 accept. It tops most of the tables where residents can open an account. Where they cannot, a client can sometimes still use Wise to send local currency
                 straight to your bank account. Pakistan and Bangladesh are the exceptions to check:
-                Wise says it is currently unable to send business payments to Pakistani rupees and
+                Wise says it cannot send to a business account in Pakistan, that the recipient must be a private individual, and that it
                 cannot send business transfers to Bangladeshi taka.
               </p>
               <a
@@ -351,8 +351,9 @@ export default async function ReceiveInternationalPaymentsPage() {
             <div>
               <h3 className="pa-h3 mb-2">Revolut</h3>
               <p>
-                Cheap where it is licensed. In Portugal, the one country on our list where we can
-                price it, it comes out at the top. Residents of most of the other countries we
+                Cheap where it is licensed. Portugal is the one country on our list where
+                residents can use it, and we could not open Revolut&apos;s own pricing for it, so
+                it is shown there but not ranked. Residents of most of the other countries we
                 cover cannot use it, including Pakistan, Georgia, Thailand and Indonesia, and we
                 could not confirm it for Bangladesh.
               </p>
@@ -474,7 +475,7 @@ export default async function ReceiveInternationalPaymentsPage() {
             >
               George I.
             </Link>{' '}
-            (20+ years in international payments). Last updated: November 4, 2026.
+            (20+ years in international payments). Last updated: November 9, 2026.
           </p>
           <p>
             Fees are estimates based on publicly available pricing. Verify with your provider

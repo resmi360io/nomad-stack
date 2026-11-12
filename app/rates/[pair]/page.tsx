@@ -302,7 +302,7 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
 
           <footer className="pa-meta mt-12 border-t border-rule pt-5">
             <p>
-              Fee figures last checked {provider.lastVerified}. Page updated {page.updatedDate}. Our{' '}
+              {provider.name} figures for every country we cover were last re-read in full {provider.lastVerified}. Page updated {page.updatedDate}. Our{' '}
               <Link href="/how-we-make-money" className="underline underline-offset-2">
                 methodology and how we make money
               </Link>{' '}
