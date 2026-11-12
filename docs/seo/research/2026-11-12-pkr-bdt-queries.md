@@ -117,6 +117,26 @@ withdrawals to bKash; other pages quote 2% or a flat $1.50), so a sourced, dated
    page).
 9. Payoneer-to-Payoneer transfer fee and minimums (260 a month in Pakistan). Adjacent, not a paidacross topic yet.
 
+## 5a. Correction after checking existing page coverage (2026-11-12, same day)
+
+Section 5 below was written before comparing each idea with the FAQs already live. Checked against `data/corridors.ts`
+and `data/ratePages.ts`, four of the seven are already answered, so they are NOT gaps:
+
+- Item 1 (Payoneer to bKash): the Bangladesh corridor already has "Can I receive Payoneer payments directly into bKash or
+  Nagad?", "Which is better: Payoneer to bank account or to bKash?", a long "How the Payoneer-to-bKash withdrawal works"
+  section, and the BDT rate page has two bKash FAQs. The live SERP for "payoneer to bkash" (Bangladesh) is dedicated
+  single-topic guides, several Bengali videos and bKash's own page (which Google's AI Overview cites). Our position 55
+  reflects authority and page focus, not missing content. A fourth bKash FAQ would duplicate; a dedicated page conflicts
+  with the do-not-multiply-pages rule. Decision: no new copy; revisit if the corridor page's bKash section is ever split.
+- Item 4 (JazzCash): the PKR rate page already has "What is the Payoneer to JazzCash dollar rate today?".
+- Item 5 (official rate vs Payoneer rate): both rate pages already have "Why is the Payoneer exchange rate lower than the
+  rate on Google?" and "Why is the Payoneer dollar rate lower than the bank rate?".
+- Item 6 (PayPal in Pakistan): the PKR corridor already has "Is PayPal available for freelancers in Pakistan?".
+
+Still real: item 2 (Bangladesh USD salary FAQ, no equivalent exists), item 3 (verify the reported 3% Pakistan withdrawal
+fee against primary sources; it affects existing copy, not a new FAQ), and item 7 (Payoneer-to-Payoneer transfer fee,
+not covered, low priority, borderline on-concept).
+
 ## 5. Gaps and candidate actions, in priority order
 
 Each item is a proposal. Anything touching page copy goes through researcher or verifier, reviewer and humanizer; none
