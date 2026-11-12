@@ -28,3 +28,13 @@ test('calc_run carries the corridor in the affiliate_click format and never the 
   assert.ok(p.quotes_ranked <= p.quotes_shown);
   assert.equal(p.top_provider, quotes[0].provider.slug);
 });
+
+test('outbound clicks outside the results table carry a placement and join on the corridor format', async () => {
+  const { outboundClickProperties } = await import('../lib/analytics.ts');
+  assert.deepEqual(
+    outboundClickProperties('rate_page', { slug: 'payoneer', name: 'Payoneer' }, true, 'USD→PKR'),
+    { provider: 'payoneer', provider_name: 'Payoneer', corridor: 'USD→PKR', is_affiliate: true, placement: 'rate_page' },
+  );
+  // A link that is not tied to one corridor reports null, never an empty string.
+  assert.equal(outboundClickProperties('pillar', { slug: 'wise', name: 'Wise' }, false).corridor, null);
+});

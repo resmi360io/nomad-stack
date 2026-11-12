@@ -255,6 +255,9 @@ watermark remover", and are ignored. What survives a sceptical read:
     week-over-week diff flags the changed H1, H2 and corridor anchors as 4 protected regressions, accepted as reviewed.
     2.6%: kept (item 25). Still open: "Fee figures last checked 2026-06-02" on both rate pages (item 32). The bundle now
     also holds the heading change (both pages) and FAQ #4 (BDT); the decision read stays on or after 2027-01-04.
+    **2026-11-12:** the PKR rate page's bundle also holds FAQ #6 and the reworded rate note, so its own dates move to
+    2026-12-10 (preliminary) and 2027-01-07 (decision), each at the earliest and counted from its recrawl; the BDT rate
+    page did not change and keeps 2026-12-07 and 2027-01-04.
 23. [ ] **You, by 2026-11-19:** first voice-memo interview (item 6), question "How do freelancers receive
     payments from clients in several countries?" (GSC: 38 impressions at 43.8 and 32 at 46.9 for its two
     phrasings; the pillar read is already a bundle). Claude sends up to 10 questions one at a time. Second
@@ -317,8 +320,15 @@ watermark remover", and are ignored. What survives a sceptical read:
     once). `/about/author`: leave it; Google says not every URL will be indexed and resubmitting does not help
     (KNOWLEDGE.md tactic 37). Every page checked 2026-11-09 answers 200 with a self canonical, no noindex, and
     robots.txt allows all. Next indexing look: the 2026-11-30 checkpoint, from Performance, not Page indexing.
-30. [ ] **Claude, on or after 2026-11-25:** re-check the Bangladesh 2.5% incentive FAQ against the LDC graduation
-    of 2026-11-24, through verifier and reviewer. Effort S.
+30. [x] **Claude:** re-check the Bangladesh 2.5% incentive FAQ against the LDC graduation. **Closed 2026-11-12 as
+    superseded, not done:** the date it waited for no longer applies. The live incentive FAQ on `/receive/usd-to-bdt`
+    already says the UN General Assembly extended Bangladesh's preparatory period on 2026-10-29 and that the UN LDC
+    portal gives graduation as 24 November 2029, so a check on 2026-11-25 would test nothing. The FAQ stays in the
+    Tuesday rotation like every BDT claim. Two follow-ups belong to the rotation, not to this item: (a)
+    `/rates/payoneer-usd-to-bdt` says only that the incentives are expected to be phased out "around the country's
+    graduation", with no date; carry the 2029 date there on a Bangladesh day if the reviewer confirms it; (b) the same
+    FAQ says Bangladesh Bank confirmed 2.5% for the year from 1 July 2026, so the next real check is the rate for the
+    year from 1 July 2027.
 31. [ ] **Claude, before the 2026-11-30 checkpoint:** point the host's PostHog MCP at the paidacross.com project. On
     2026-11-09 the active project held no paidacross.com events in the 28 days to 2026-11-09, although the 2026-11-01
     read found paidacross.com pageviews inside that window, so the connector is on another project rather than the site
@@ -331,7 +341,8 @@ watermark remover", and are ignored. What survives a sceptical read:
     in which each corridor's Payoneer row was re-read, bump `lastVerified` to the earliest of those dates; (b) a code
     change that prints the rate page's own verification date, through REVIEW mode. Effort S to decide, M to do.
 33. [ ] **Claude:** records and tooling. (a) RELEASES.md: rows for the live changes of 2026-11-05 (`usd-to-uzs`),
-    2026-11-08 (`usd-to-zar`) and 2026-11-09 (weekly FAQ #4), and "Current production" set to `main`. (b)
+    2026-11-08 (`usd-to-zar`), 2026-11-09 (weekly FAQ #4) and 2026-11-12 (FAQs #5 and #6, three answer corrections,
+    `affiliate_click` on the rate-page, pillar and sender-page provider links), and "Current production" set to `main`. (b)
     `scripts/seo/diff.mjs`: when a link's href survives with new text, report "link text changed" instead of a protected
     removal. (c) seo-audit SKILL.md step 10: also copy `$RUN/sitemap.xml` to `docs/seo/snapshots/`, so the weekly diff
     stops printing "sitemap URLs identical: null". Effort S.
@@ -486,7 +497,8 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
   **2026-11-01: #2 shipped the same day by owner decision**, a deliberate exception to rule 8 (second FAQ in the week of 2026-10-26, on a different page from #1), "Can I use Wise to receive USD in Bangladesh?" on `/receive/usd-to-bdt` (Bing: several
   Wise-in-Bangladesh queries at positions 1 to 4; verifier, reviewer, humanizer). Note for the rotation and the BD
   incentive FAQ: Bangladesh's LDC graduation is still officially 2026-11-24, which the incentive FAQ hedges as a likely
-  phase-out point for the 2.5% freelancer export cash incentive; re-check that FAQ after that date.
+  phase-out point for the 2.5% freelancer export cash incentive; re-check that FAQ after that date. **Superseded
+  2026-11-12:** the live FAQ already gives the extension to 24 November 2029 (item 30, closed).
   **2026-11-04: #3 shipped**, "What does Payoneer charge in Pakistan?" on `/rates/payoneer-usd-to-pkr` (verifier 28
   claims: 24 verified, 3 incorrect, 1 unverifiable; reviewer `safe_to_apply` true; humanizer; REVIEW: SHIP WITH
   CHANGES, applied). The rate-page read is a bundle (item 22). Next FAQ no earlier than 2026-11-09. Same release: the
@@ -516,6 +528,25 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
   freelance-export treatment is a compliance claim that needs a primary source. Next in line: PayPal USD to PHP
   conversion on `/receive/usd-to-php` (Bing week of 2026-11-06: three PayPal-to-peso questions at 6 to 7); check the
   page's existing FAQs first.
+  **2026-11-12: #5 and #6 shipped the same day by owner request**, a second deliberate exception to rule 8 (the week of
+  2026-11-09 now holds #4, #5 and #6). #5: "I get a monthly salary in dollars from a company abroad. What is the best
+  way to receive it in Bangladesh and convert it to taka?" on `/receive/usd-to-bdt` (the candidate above: Google
+  "receive salary in usd" 5 at 23.2; Bing at 3). #6: "Did Payoneer add a 3% withdrawal fee in Pakistan?" on
+  `/rates/payoneer-usd-to-pkr` (owner's question, from the May 2025 Pakistani press reports; no Search Console or Bing
+  query for it yet, so record the first one that appears). Same release, corrections rather than new FAQs: the PKR FBR
+  tax answer (Section 154B creator withholding; "roughly 1%" now "1%"), the BDT ERQ answer's Form-C sentence, and the
+  PKR rate page's rate note and "What exchange rate does Payoneer use?" answer (Payoneer's Pakistan article of 30 June
+  2026). Researcher, verifier, reviewer (`safe_to_apply` true), humanizer; `updatedDate` 2026-11-12 on all three.
+  REVIEW: SHIP, protected regressions 0, titles and descriptions unchanged. Measurement cost: the three page-level reads
+  are bundles; page plus query reads stay attributable because each new FAQ targets a different query on a different
+  page. `/receive/usd-to-bdt` (a PR #72 page) drops out of the 2026-11-30 preliminary read, as Nigeria did on
+  2026-11-04, and its decision read moves to 8 weeks after its first recrawl on or after 2026-11-12 (2027-01-07 at the
+  earliest). `/rates/payoneer-usd-to-pkr`: preliminary about 4 weeks after that recrawl (2026-12-10 at the earliest),
+  decision on or after 2027-01-07. Read "receive salary in usd" and Bangladesh salary variants on `-bdt`, and any
+  "payoneer 3%" or "payoneer withdrawal fee" Pakistan query on the PKR rate page; guard: "payoneer usd to pkr rate
+  today" holds near 11.7. Under about 100 impressions per query, direction only (rule 1). #7 no earlier than
+  2026-11-23, and not on a PR #72 corridor before the 2026-11-30 read is taken, so the PayPal PHP candidate waits
+  until after it. **You:** request indexing for the three URLs on merge day and log the date per URL.
 - [ ] **You:** one pitch or correction email a day (newsletters, PK and BD tech press, authors still
   quoting Payoneer "up to 2%"), plus two helpful Reddit or Quora answers a week from a branded account
   that says who you are. Never astroturf.
@@ -545,7 +576,9 @@ draw no conclusion.
 - [ ] **Claude:** read Search Console again and compare with both baselines above:
   - Did CTR move on the pages from this week's title pass? Preliminary only, and only for URLs recrawled
     by 2026-11-02. Georgia, Nigeria and Thailand had 4 to 6 impressions in 28 days, so expect no readable
-    result for them before the decision read (2026-12-24 at the earliest).
+    result for them before the decision read (2026-12-24 at the earliest). Nigeria and Bangladesh are out of this read:
+    their copy changed inside the window (2026-11-04 and 2026-11-12), and each decision read is 8 weeks after its own
+    recrawl (2026-12-30 and 2027-01-07 at the earliest).
   - Have the sender queries moved from the pillar to `/pay-freelancers-internationally`?
   - Do the rate pages hold or improve on 9 to 16? Any cannibalization with the corridor pages? Check
     Bangladesh as well as Pakistan, with dates restricted to after 2026-10-26: over the 90 days to

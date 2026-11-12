@@ -388,7 +388,10 @@ Reconciled rules for a site with about 355 impressions and 2 clicks a month:
    https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports). Google says "This data is included in
    the overall performance report", so a page's impressions and average position there also move with AI feature
    appearances (rule 5). Where OpenRush's AI Overview count and Search Console disagree, Search Console wins for Google.
-8. **Cadences.** Daily: the verification rotation (AGENTS.md). Weekly: at most one fact-checked FAQ. Monthly: GSC
+8. **Cadences.** Daily: the verification rotation (AGENTS.md). Weekly: at most one fact-checked FAQ. An owner
+   exception (2026-11-01; 2026-11-12, two FAQs) is read as follows: each extra FAQ must sit on a different page with
+   its own target query, every touched page's read becomes a bundle (rule 4), only page plus query reads stay
+   attributable, and a touched PR #72 page leaves the 2026-11-30 preliminary read. Monthly: GSC
    and Bing read, spam-domain check, any automated GSC candidate report. Checkpoints: 2026-11-30 (see rule 3),
    then every 4 to 8 weeks. Quarterly: AI visibility, Core Web Vitals, keyword gap refresh.
 9. **Do not react to one month.** Already the SEO_PLAN rule. The 28-day drop of 173 impressions read on 2026-10-29
@@ -730,3 +733,7 @@ Every edit the agent proposes to this file and the orchestrator applies gets one
   for Lens, Circle to Search, image uploads and Chrome image search; not relevant to a text and numbers site, no change.
   Site evidence recorded: tactic 37 (the Page indexing report lagged Performance on 2026-11-09); Operations row and
   rule 13 (the host's PostHog MCP was on a project with no paidacross.com events). Last checked set to 2026-11-09.
+- 2026-11-12: REVIEW of weekly FAQs #5 (`/receive/usd-to-bdt`) and #6 (`/rates/payoneer-usd-to-pkr`), shipped by owner
+  request in the same week as #4: the second exception to rule 8. Rule 8 now says how an exception is read (bundled
+  page reads, attributable page plus query reads, PR #72 pages leave the preliminary read). Site evidence, no verdict
+  change. Last checked unchanged (not a WATCH run).

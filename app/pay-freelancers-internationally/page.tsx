@@ -4,6 +4,7 @@ import { cache } from 'react';
 import { CorridorTable } from '@/components/CorridorTable';
 import { PROVIDERS } from '@/data/providers';
 import { fetchRatesServer } from '@/lib/fetchRates';
+import { OutboundProviderLink } from '@/components/OutboundProviderLink';
 
 export const revalidate = 3600;
 
@@ -140,15 +141,17 @@ export default async function PayFreelancersPage() {
                 often the best deal for both sides, and it is the route we point clients to on
                 several of our country pages.
               </p>
-              <a
+              <OutboundProviderLink
                 href={wiseLink}
-                target="_blank"
                 rel="sponsored nofollow noopener"
                 className="mt-3 inline-flex h-10 items-center gap-2 rounded border border-input bg-sheet px-4 text-sm font-semibold text-foreground transition-colors hover:border-foreground"
+                placement="sender_page"
+                provider={{ slug: 'wise', name: 'Wise' }}
+                isAffiliate={!!wise?.affiliateLink}
               >
                 Pay with Wise
                 <span className="rounded-[2px] border border-current px-1 text-[10px] leading-4 opacity-70" aria-label="Affiliate link">AD</span>
-              </a>
+              </OutboundProviderLink>
               <p className="pa-meta mt-2">
                 We earn a commission if you sign up through this link. It never changes the order
                 of any table on this site.

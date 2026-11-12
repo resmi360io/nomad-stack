@@ -44,3 +44,25 @@ export function calcRunProperties(
     has_best_value: quotes.some((q) => q.isBestValue),
   };
 }
+
+// Properties for an `affiliate_click` fired from a provider link outside the results table: the
+// rate-page button and the Wise links on the pillar and the sender page. `placement` says which,
+// so the clicks can be told apart from the table's, which carry `rank` and `is_best_value` instead.
+export type OutboundPlacement = 'rate_page' | 'pillar' | 'sender_page';
+
+export function outboundClickProperties(
+  placement: OutboundPlacement,
+  provider: { slug: string; name: string },
+  isAffiliate: boolean,
+  corridor?: string,
+) {
+  return {
+    provider: provider.slug,
+    provider_name: provider.name,
+    // Same format as the table's `corridor`, so the events join on it. Null where a link is not
+    // tied to one corridor (the Wise links on the pillar and the sender page).
+    corridor: corridor ?? null,
+    is_affiliate: isAffiliate,
+    placement,
+  };
+}
