@@ -22,8 +22,11 @@ const a = JSON.parse(fs.readFileSync(afterPath, 'utf8'));
 
 const maskNumbers = (t) => t.replace(/\d[\d,.]*/g, '#');
 const stripLastmod = (x) => x.replace(/<lastmod>[^<]*<\/lastmod>/g, '');
-const beforeDir = beforePath.replace(/seo\.json$/, '');
-const afterDir = afterPath.replace(/seo\.json$/, '');
+// Side files (robots.txt, sitemap.xml) sit next to the snapshot, whatever it is called
+// (seo.json in a review run, seo.slim.json in an audit run, latest.json in docs/seo/snapshots).
+const dirOf = (f) => (f.includes('/') ? f.slice(0, f.lastIndexOf('/') + 1) : './');
+const beforeDir = dirOf(beforePath);
+const afterDir = dirOf(afterPath);
 const readIf = (p) => (fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : null);
 
 function flatten(o, pre = '', out = {}) {
@@ -96,9 +99,16 @@ for (const p of b.paths) {
   if (hAdded.length) d.headingsAdded = hAdded;
   const key = (l) => `${l.href}\u0000${l.text}\u0000${l.rel}`;
   const lb = new Set(x.links.map(key)), la = new Set(y.links.map(key));
-  const lRemoved = [...lb].filter((k) => !la.has(k)).map((k) => k.split('\u0000').slice(0, 2).join(' :: '));
-  const lAdded = [...la].filter((k) => !lb.has(k)).map((k) => k.split('\u0000').slice(0, 2).join(' :: '));
+  const show = (k) => k.split('\u0000').slice(0, 2).join(' :: ');
+  const hrefsAfter = new Set(y.links.map((l) => l.href)), hrefsBefore = new Set(x.links.map((l) => l.href));
+  const lGone = [...lb].filter((k) => !la.has(k));
+  const lNew = [...la].filter((k) => !lb.has(k));
+  // A href that survives with new anchor text or rel is a wording change, not a lost link.
+  const lRemoved = lGone.filter((k) => !hrefsAfter.has(k.split('\u0000')[0])).map(show);
+  const lChanged = lGone.filter((k) => hrefsAfter.has(k.split('\u0000')[0])).map(show);
+  const lAdded = lNew.filter((k) => !hrefsBefore.has(k.split('\u0000')[0])).map(show);
   if (lRemoved.length) { d.linksRemoved = lRemoved; report.protectedRegressions.push(`${p}: links removed: ${lRemoved.slice(0, 5).join(' | ')}`); }
+  if (lChanged.length) d.linkTextChanged = lChanged;
   if (lAdded.length) d.linksAdded = lAdded;
   const ib = new Set(x.ids ?? []), ia = new Set(y.ids ?? []);
   const idRemoved = [...ib].filter((i) => !ia.has(i));

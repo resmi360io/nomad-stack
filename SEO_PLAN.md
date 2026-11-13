@@ -198,6 +198,7 @@ watermark remover", and are ignored. What survives a sceptical read:
    The measurement clock starts at each URL's recrawl, not at the merge.
    **2026-10-30:** you requested indexing for 3 of the 7; the other 4 on 2026-10-31. Record which URL went
    on which day here, because each page's clock starts at its own recrawl.
+   **2026-11-13 (owner-reported, date approximate):** you requested indexing for the three URLs shipped in PR #93: `/rates/payoneer-usd-to-pkr`, `/receive/usd-to-bdt`, `/receive/usd-to-pkr`. Read each page's last-crawl date at the 2026-11-30 checkpoint, not before.
    **2026-11-01 indexing log:**
    - Search Console (you): requested 2026-11-01 for the cost index, `/receive/usd-to-pkr`, `-php`, `-bdt`, `-ngn`,
      both rate pages and the remaining PR #72 corridors (`-idr`, `-eur-portugal`, `-thb`, `-gel`). Daily quota ran
@@ -340,7 +341,7 @@ watermark remover", and are ignored. What survives a sceptical read:
     AGENTS.md allows the bump only when every Payoneer row has been re-read. Options: (a) after one full rotation week
     in which each corridor's Payoneer row was re-read, bump `lastVerified` to the earliest of those dates; (b) a code
     change that prints the rate page's own verification date, through REVIEW mode. Effort S to decide, M to do.
-33. [ ] **Claude:** records and tooling. (a) RELEASES.md: rows for the live changes of 2026-11-05 (`usd-to-uzs`),
+33. [x] **Claude:** records and tooling (done 2026-11-13: RELEASES.md rows #84 to #93 and "Current production" set to `02d79ad`; `diff.mjs` now reports "linkTextChanged" for a surviving href and, because its side-file path was wrong for `latest.json` and `seo.slim.json`, now finds the saved sitemap; SKILL.md step 10 saves `sitemap.xml` too. The first weekly run after this needs `cp` of the current sitemap once to seed it). (a) RELEASES.md: rows for the live changes of 2026-11-05 (`usd-to-uzs`),
     2026-11-08 (`usd-to-zar`), 2026-11-09 (weekly FAQ #4) and 2026-11-12 (FAQs #5 and #6, three answer corrections,
     `affiliate_click` on the rate-page, pillar and sender-page provider links), and "Current production" set to `main`. (b)
     `scripts/seo/diff.mjs`: when a link's href survives with new text, report "link text changed" instead of a protected
