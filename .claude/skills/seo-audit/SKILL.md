@@ -74,7 +74,9 @@ export PW_CHROMIUM=/opt/pw-browsers/chromium   # cloud sessions only; omit local
    returns the report.
 10. **Write and commit**, in one commit:
     - the report to `docs/seo/reports/YYYY-MM-DD.md`, verbatim except for removing any em or en dashes;
-    - `cp $RUN/seo.slim.json docs/seo/snapshots/latest.json` (next week's baseline);
+    - `cp $RUN/seo.slim.json docs/seo/snapshots/latest.json` (next week's baseline) and
+      `cp $RUN/sitemap.xml docs/seo/snapshots/sitemap.xml` (`diff.mjs` reads the sitemap next to each
+      snapshot, so without this step 4 prints "sitemap URLs identical: null");
     - the analyst's proposed edits to `SEO_PLAN.md` and `docs/seo/KNOWLEDGE.md`, applied exactly, but
       ONLY edits to those two files. Anything that changes page copy, data, fees or code becomes an
       action item, never an edit here.

@@ -5,6 +5,14 @@ is the release identifier. Record each release here when it ships, with how it w
 
 | Date (UTC) | Commit on `main` | PR | What | Verified |
 |---|---|---|---|---|
+| 2026-11-12 | `02d79ad` | #93 | Weekly FAQs #5 and #6 (owner exceptions to the cadence), Pakistan tax and Bangladesh ERQ answer corrections, Payoneer 3% Pakistan answer hedged, `affiliate_click` with `placement` on the rate-page, pillar and sender-page provider links | Reviewer-approved copy; `npm test` and `npm run build` pass; live check after deploy (owner and Claude). Production `affiliate_click` with `placement` still to confirm in PostHog. |
+| 2026-11-12 | `9d88798` | #84 | SEO audits 2026-11-04 and 2026-11-09, quarter targets in SEO_PLAN | Docs only, no page change. |
+| 2026-11-12 | `1fb967d` | #92 | Rotation: usd-to-php and usd-to-uzs (merged by the scheduled job) | Verified by the rotation. |
+| 2026-11-11 | `6b4a767` | #91 | Rotation: usd-to-ngn, usd-to-brl and usd-to-uah (merged by the scheduled job) | Verified by the rotation. |
+| 2026-11-10 | `908a38a` | #90 | Rotation holds approved: NGN, PHP, UAH, GEL, INR, PT, COP, THB, PKR, IDR, ARS, BDT, MXN, PLN | Owner-approved held items; verified by the rotation. |
+| 2026-11-09 | `5803719` | #89 | Weekly FAQ #4: Payoneer's currency conversion fee on the BDT rate page | Reviewer-approved copy. |
+| 2026-11-08 | `4100394` | #88 | Rotation: usd-to-zar corrections (merged by the scheduled job) | Verified by the rotation. |
+| 2026-11-05 | `60fb71a` | #87 | Rotation: usd-to-uzs corrections (merged by the scheduled job) | Verified by the rotation. |
 | 2026-11-04 | `c1358c0fe9978d63137beb0f2e0be97983c6eed5` | #86 | Weekly FAQ #3 (Payoneer charges in Pakistan); Payoneer "only 1.2% to 4%" wording scoped to the fee schedule; rate-page H1/H2 "what you can expect to receive" (owner-approved); rate pages in the rotation; 2.6% decision | Main tree identical to the tested tree; live HTML matched the tested build (23 of 25 identical, the other 2 differ only by the live rotation date already on main); `npm run test:e2e` 14/14 against https://paidacross.com. |
 | 2026-11-04 | `deeab8c` | #85 | Rotation: usd-to-brl corrections (merged by the scheduled job, host 2's first ship) | Verified by the rotation; included in the live check above. |
 | 2026-11-01 | `69058624333eeebfe4e752f63b9f9245dcb82087` | #82 | Rate pages figure first (rate card and per-dollar estimate above the intro, reviewer-approved copy corrections, meta descriptions trimmed); verifier checks metadata; video batch 5 docs; rotation host 2 recorded | Main tree identical to the tested tree; live HTML of all 25 URLs matched the local build (0 differences, protected regressions 0); `npm run test:e2e` all pass against https://paidacross.com; card shows "about 266.85 PKR per USD" live. |
@@ -24,7 +32,7 @@ is the release identifier. Record each release here when it ships, with how it w
 | 2026-10-29 | `bef6577c88298ff753254d3dd4d6162138511c71` | #68 | Passbook redesign, iteration 1 | Smoke test of key routes after deploy. |
 | 2026-10-29 | `5d869fc` | #67 | Last release before any redesign | n/a |
 
-**Current production: `c1358c0`. Rollback point: `deeab8c`** (PR #85, the rotation's Brazil release; rolling further back to `6905862` would also undo the Brazil corrections).
+**Current production: `02d79ad` (PR #93). Rollback point: `1fb967d`** (PR #92, the rotation's 2026-11-12 release; rolling back to it undoes only the PR #93 FAQs, corrections and click tracking).
 
 ## How to roll back
 
