@@ -177,8 +177,8 @@ export const PROVIDERS: Provider[] = [
       // PLN's grid split (1.19 plus 0.35%, 4.69 on 1,000) did NOT agree with Wise's own send page, which
       // read 4.38 from a Wise balance on 2026-11-10, so PLN is a flagged single-point model like ZAR.
       // ZAR DOES NOT agree: the endpoint gave 7.79 on 1,000 and 25.31 on 5,000 while the send page
-      // prices the cheapest route, money already in your Wise account, at 7.40 on 1,000 (read
-      // 2026-11-01; was 7.43 on 2026-10-25), with direct debit 9.41 and bank transfer 13.81. Nothing public is 7.79 and nothing public
+      // prices the cheapest route, money already in your Wise account, at 7.36 on 1,000 (read
+      // 2026-11-15; 7.44 on 2026-11-08, 7.40 on 2026-11-01, 7.43 on 2026-10-25), with direct debit 9.38 and bank transfer 13.78. Nothing public is 7.79 and nothing public
       // prices 5,000, so that pair is DISCARDED and the ZAR row is a flagged single-point model.
       // The USD rows use Wise's published per-destination SWIFT fee from help/articles/2946451,
       // read 2026-10-20 and again 2026-10-21, which REPLACES the 6.15 all-countries base; all
@@ -197,11 +197,11 @@ export const PROVIDERS: Provider[] = [
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'ZA', currency: 'ZAR' },
         fixedFee: 0,
-        percentageFee: 0.00744,
+        percentageFee: 0.00736,
         fxMarkupBps: 0,
         typicalHours: 24,
         fxMarkupEstimated: true,
-        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-south-africa states the cheapest route, money already in your Wise account, costs 7.44 USD on 1,000 USD, read 2026-11-08 (direct debit 9.45, bank transfer 13.85), which is what percentageFee models. It read 7.40 on 2026-11-01 (direct debit 9.41, bank transfer 13.81). On that date v1/price returned the same three totals at 1,000 for BALANCE, DIRECT_DEBIT and BANK_TRANSFER pay-in, and 24.93 at 5,000 for BALANCE pay-in, but its labelled split (flat 3.04 plus a variable part it calls 0.44%) does not reproduce those totals when read literally, and no public page shows a second amount, so the split is not used. The same read priced RECEIVE_BANK_TRANSFER pay-in, the client-pushed ACH, at 7.73 on 1,000, which no public page shows either. Wise publishes no second amount at any URL we could find, so the fixed and percentage parts cannot be separated; this models the 1,000 USD price proportionally, which overstates at larger amounts rather than understating. The v1/price pair (7.79 on 1,000 and 25.31 on 5,000) matched NO figure on Wise\'s own page and is not used. fxMarkupEstimated marks the estimated PERCENTAGE, not the markup, same as the Payoneer GE/USD rows above; it bars the badge, which is correct while the cheapest row is unsourced.',
+        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-south-africa states the cheapest route, money already in your Wise account, costs 7.36 USD on 1,000 USD, read 2026-11-15 (direct debit 9.38, bank transfer 13.78), which is what percentageFee models. Earlier reads: 7.44 on 2026-11-08 (direct debit 9.45, bank transfer 13.85) and 7.40 on 2026-11-01 (direct debit 9.41, bank transfer 13.81). On 2026-11-01 v1/price returned the same three totals at 1,000 for BALANCE, DIRECT_DEBIT and BANK_TRANSFER pay-in, and 24.93 at 5,000 for BALANCE pay-in, but its labelled split (flat 3.04 plus a variable part it calls 0.44%) does not reproduce those totals when read literally, and no public page shows a second amount, so the split is not used. The same read priced RECEIVE_BANK_TRANSFER pay-in, the client-pushed ACH, at 7.73 on 1,000, which no public page shows either. Wise publishes no second amount at any URL we could find, so the fixed and percentage parts cannot be separated; this models the 1,000 USD price proportionally, which overstates at larger amounts rather than understating. The v1/price pair (7.79 on 1,000 and 25.31 on 5,000) matched NO figure on Wise\'s own page and is not used. fxMarkupEstimated marks the estimated PERCENTAGE, not the markup, same as the Payoneer GE/USD rows above; it bars the badge, which is correct while the cheapest row is unsourced.',
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -408,7 +408,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 36,
         // The 1.83 + 0.587% split is fitted to three v1/price reads. Wise's public US send page prices only 350 USD
-        // (3.87 from balance, read 2026-11-08), so the percentage part has no public check: flagged estimated,
+        // (3.85 from balance, read 2026-11-15), so the percentage part has no public check: flagged estimated,
         // which bars the badge (same basis as US/BR/BRL, 2026-11-04). No Wise page states a markup; Wise converts at mid.
         fxMarkupEstimated: true,
         notes: 'Typically 1 to 2 business days for THB. Wise\'s eligibility page says it has temporarily stopped issuing currencies and account details for customers in Thailand, with no date given. Once your account moves to Wise Thailand, non-THB client payments are auto-converted to THB on arrival, and payments or transfers out are capped at 10,000 THB per transaction and 30,000 THB per day. Wise publishes a price for one amount only, 350 USD, so the fee at other amounts is estimated. Verify current.',
@@ -1490,7 +1490,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupEstimated: true,
         notes: 'Strong US→MX network; near-instant cash pickup available',
       },
-      // ~150 bps FX spread from bestexchangerates.com only, hence flagged estimated. westernunion.com/us/en/send-money-to-thailand.html showed fee and rate placeholders only on 2026-10-25, plus a first digital transfer promo (no fee, promo rate up to 2,500 USD, limited time).
+      // ~150 bps FX spread from bestexchangerates.com only, hence flagged estimated. westernunion.com/us/en/send-money-to-thailand.html showed fee and rate placeholders only on 2026-10-25 and again on 2026-11-15, plus a first digital transfer promo (no fee, promo rate up to 2,500 USD, limited time). It says delivery typically takes up to two banking days; typicalHours 24 sits inside that.
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'TH', currency: 'THB' },
