@@ -15,7 +15,7 @@ wins until someone updates both.
 |---|---|---|
 | Auto-merge reports | no | Owner only. When `yes`, the weekly audit may merge its own PR if it touches nothing outside `docs/seo/` and `SEO_PLAN.md`. |
 | Audit cadence | weekly | Owner |
-| Last checked (WATCH) | 2026-11-09 | The agent, every run, to the run date |
+| Last checked (WATCH) | 2026-11-16 | The agent, every run, to the run date |
 | Search Console property | paidacross.com (domain), OpenRush website_id `aab70b77-7a4d-4d6e-9f13-85584c82a534` | |
 | Bing property | `https://paidacross.com/`, read through the Hermoso MCP `call_tool` (read tools only) | |
 | Scheduled host session | `session_01VKcrwYQyMXZjGMh7HhZDFH` ("SEO audit host (repo at start)"), created 2026-10-30 with `source_url`, Sonnet, pushes to `claude/seo-audit`. Recorded at creation as having no MCP connectors, but its 2026-11-04 run read Search Console through OpenRush and Bing through Hermoso, and listed a PostHog MCP. Check the tool list at the start of each run instead of assuming either way; when the tools are present, SKILL.md steps 7a and 7b are due in the first audit of the month. On 2026-11-09 its PostHog MCP was connected to a project with no paidacross.com events at all (the 2026-11-01 read had found them in the same window): select the paidacross.com project before step 7b, and treat a zero with a zero denominator as unmeasured, never as zero. | Owner or an interactive session |
@@ -163,7 +163,7 @@ Count = number of distinct row ids that make the tactic. Rows are cited by `reel
 | # | Tactic | n | Row ids | Claim as the videos state it | Verdict | Reason | How to apply here |
 |---|---|---|---|---|---|---|---|
 | 46 | Backlink gap: list where competitors have links (directories, lists, PR, guest posts) and get listed too | 3 | 27, 119, 123 | "If you have all their links, only content differs"; register in every directory they use | Adopt with limits | The gap list is useful; "register everywhere" and "whatever they are paying for" lead to link schemes | SEO_PLAN item 7 with OpenRush `compare_backlink_gap`. Keep only places a person would read (fintech comparisons, freelancer resource lists, university or community guides). No paid placements, no link-only directories |
-| 47 | Find unlinked brand mentions and ask for a link | 2 | 24, 33 | People already mention you, so ask them to link | Not applicable | Almost no mentions exist yet | Revisit after the launch posts and the December data asset; search the brand name and "paidacross" quarterly |
+| 47 | Find unlinked brand mentions and ask for a link | 2 | 24, 33 | People already mention you, so ask them to link | Not applicable | Almost no mentions exist yet | Revisit after the launch posts and the December data asset; search the brand name and "paidacross" quarterly. For brand queries, the Search Analytics API can now group or filter by `brandedClassification` (https://developers.google.com/search/blog/2026/11/search-analytics-api-update, 2026-11-16), but only for eligible properties ("For other properties, the response won't include any rows"); try it once at the quarterly read and fall back to the manual search |
 | 48 | Linkable assets: free tools, data, studies, templates | 3 | 24, 28, 112 | People link to tools and original data | Adopt | Earned links, fully within guidelines | The calculator and the December data asset; pitch them in the daily emails and the Show HN post |
 | 49 | Link quality over quantity; 10 to 40 links is typical on page 1; spammy links hurt; links take 1 to 3 months; nofollow links are still worth having | 3 | 112, 114, 158 | Four links a month is enough; Fiverr link packs get sites penalised; a natural profile mixes follow and nofollow. 158: a PDF-editing site linked and described in many ways since 2012 ranks its homepage for 233,000 keywords; "the best shortcut is the long cut" | Adopt | Consistent with Google's link spam policy. 158 is one survivor anecdote with third-party tool figures, but its point (links and how others describe you accumulate slowly) matches measurement rule 6 | Count only editorial links as progress; judge link work at 2 to 3 months; welcome nofollow mentions (Reddit, news, Wikipedia) for traffic. Never suggest anchor text (AGENTS.md); the honest lever is an accurate description writers can use in their own words, the cost index's "how to cite" line |
 | 50 | Digital PR and genuine guest features | 1 | 123 | "If it's PR, get PR; if it's a guest post, ask to be featured" | Adopt with limits | Fine when earned; paid guest posts with followed links are link spam | Qwoted and Featured.com answers, correction emails to authors quoting stale Payoneer fees (SEO_PLAN ongoing items) |
@@ -370,7 +370,11 @@ Reconciled rules for a site with about 355 impressions and 2 clicks a month:
    last crawl is on or before 2026-11-02. The decision read is 8 weeks after each URL's recrawl, so 2026-12-24
    at the earliest. The redesign (PRs #68, #69), PR #70 and PR #71 shipped the same day and share these dates.
 4. **One change per page per cycle.** Title, intro and FAQ changes on the same page in the same window cannot be
-   attributed. Stagger them, or accept that the read is for the bundle.
+   attributed. Stagger them, or accept that the read is for the bundle. Rotation copy counts (site evidence,
+   2026-11-16): between the 2026-11-09 and 2026-11-16 crawls, reader-facing copy changed on all 17 corridors and both
+   rate pages (rotation PRs, the PR #90 owner-approved holds and PR #93), including 7 meta descriptions and 2 H2s. Treat
+   every corridor and rate page as a standing bundle: read them at page plus query level (rule 5) and at site level,
+   never as a clean page-level before and after.
 5. **Position needs query context.** Average position on a low-volume page moves when a new query starts
    triggering it. Read page plus query in GSC; because GSC hides most query text here, use Bing's query report
    for wording and trend.
@@ -392,13 +396,17 @@ Reconciled rules for a site with about 355 impressions and 2 clicks a month:
    exception (2026-11-01; 2026-11-12, two FAQs) is read as follows: each extra FAQ must sit on a different page with
    its own target query, every touched page's read becomes a bundle (rule 4), only page plus query reads stay
    attributable, and a touched PR #72 page leaves the 2026-11-30 preliminary read. Monthly: GSC
-   and Bing read, spam-domain check, any automated GSC candidate report. Checkpoints: 2026-11-30 (see rule 3),
+   and Bing read, spam-domain check, any automated GSC candidate report. Checkpoints: 2026-11-30 (see rule 3; its
+   ranking part waits for the core-update week in rule 9),
    then every 4 to 8 weeks. Quarterly: AI visibility, Core Web Vitals, keyword gap refresh.
 9. **Do not react to one month.** Already the SEO_PLAN rule. The 28-day drop of 173 impressions read on 2026-10-29
    is not attributable: both windows (2026-09-04 to 2026-10-01 and 2026-10-02 to 2026-10-29) overlap the September
    2026 spam update rollout (2026-09-24 to 2026-10-08), the newer window ends on days Search Console still marks
    preliminary, and the drop sits on three pages (pillar 81, Bangladesh 62, Georgia 31). Any read whose window
-   overlaps a ranking or spam update rollout on the Status Dashboard says so and draws no conclusion from it.
+   overlaps a ranking or spam update rollout on the Status Dashboard says so and draws no conclusion from it. After a
+   core update, a ranking read also waits until a full week after the dashboard marks the rollout complete (rule 12).
+   The November 2026 core update began 2026-11-10 (incident WLxcJyC6jMWMfryxsKMc, "may take up to 2 weeks"); on
+   2026-11-16 both 28-day windows were contaminated, the earlier one by the September 2026 spam update.
 10. **Engagement.** Ranking claims about user signals are unproven (row 18), but whether people use the
     calculator is the product question. Add the PostHog `calc_run` event (SEO_PLAN item 5, needs owner go-ahead)
     and read it monthly.
@@ -431,7 +439,12 @@ Reconciled rules for a site with about 355 impressions and 2 clicks a month:
     (https://support.google.com/analytics/answer/9164320) that "excludes Google's AI Overviews and AI Mode"
     (https://support.google.com/analytics/answer/9756891). The site has no GA4 tag (code checked 2026-11-01), so
     PostHog stays the source; if GA4 is ever added, read that channel as a cross-check with the same caveats,
-    never as a citation count.
+    never as a citation count. Google's page on identifying Google Search traffic (documentation update 2026-11-12,
+    https://developers.google.com/search/docs/monitor-debug/identify-google-search-traffic): the Referer carries only
+    scheme and host; the Google app on Android can send
+    `android-app://com.google.android.googlequicksearchbox/https/www.google.com`; Discover uses the same values as the
+    surface where it was viewed; and private browsing, some new-tab opens and native search widgets can omit the header.
+    Count that android-app value as Google search, and expect some Google visits in $direct, as with AI apps.
 
 ## 5. Rejected and why
 
@@ -737,3 +750,16 @@ Every edit the agent proposes to this file and the orchestrator applies gets one
   request in the same week as #4: the second exception to rule 8. Rule 8 now says how an exception is read (bundled
   page reads, attributable page plus query reads, PR #72 pages leave the preliminary read). Site evidence, no verdict
   change. Last checked unchanged (not a WATCH run).
+- 2026-11-16: Weekly WATCH, window 2026-11-10 to 2026-11-16. Status Dashboard (`incidents.json`): November 2026 core
+  update, incident WLxcJyC6jMWMfryxsKMc, began 2026-11-10 18:06 UTC, "may take up to 2 weeks", not complete at the run;
+  recorded in rules 8 and 9 (ranking reads wait a full week after completion, per
+  https://developers.google.com/search/docs/appearance/core-updates). Documentation updates: one new entry, 2026-11-12,
+  identifying Google Search traffic by Referer (https://developers.google.com/search/docs/monitor-debug/identify-google-search-traffic);
+  recorded in rule 13. Search Central blog: "Moving to a CDN without overwhelming your origin (or blocking Googlebot)"
+  (2026-11-11, https://developers.google.com/search/blog/2026/11/crawling-cdn): exempt verified crawlers from bot
+  protection; no change, because crawl, Bing crawl issues (0) and impressions on 24 of 25 URLs show crawlers reach the
+  site. "New filtering and reporting capabilities in the Search Analytics API" (2026-11-16,
+  https://developers.google.com/search/blog/2026/11/search-analytics-api-update): `brandedClassification` (eligible
+  properties only), `webMultimodal`, multi-country `filterLists`; added to tactic 47. Bing feed: newest item still
+  2026-10-13. No verdict change. Site evidence: rule 4 (all 17 corridors and both rate pages changed copy in one week).
+  Last checked set to 2026-11-16.

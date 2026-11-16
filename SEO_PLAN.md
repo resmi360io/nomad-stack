@@ -5,7 +5,7 @@ are done, and add the PR number or date, so the next session starts from the tru
 memory. Fact-checking rules for anything that touches page copy live in AGENTS.md and still apply:
 verifier, then reviewer, then humanizer, and ranking-moving changes go to the owner.
 
-Last updated: 2026-11-12 (quarter targets added; last weekly audit `docs/seo/reports/2026-11-09.md`).
+Last updated: 2026-11-16 (weekly audit `docs/seo/reports/2026-11-16.md`; November 2026 core update rolling out since 2026-11-10).
 
 Legend: `[x]` done, `[~]` in progress or partly done, `[ ]` not started. Owner is **You** (site owner)
 or **Claude** (a session in this repo).
@@ -91,6 +91,14 @@ ranking (24 of 25 sitemap URLs now have impressions after the item 27 requests).
 108 at 77.8; `/receive/usd-to-idr` 64 at 16.8 (1 click). Poland showed for the first time (1).
 `/pay-freelancers-internationally` still has none after 14 days. 90 days to 2026-11-09: 4 clicks, 2,068 impressions,
 position 42.9, about 60% of impressions attributable to a query.
+
+Latest 28 days, 2026-10-20 to 2026-11-16 (weekly audit, read 2026-11-16; last 3 days preliminary): 4 clicks, 1,084
+impressions (306 in 2026-09-22 to 2026-10-19), average position 29.2. Not attributable: the comparison window holds 15
+days of the September 2026 spam update and the latest window holds the first 7 days of the November 2026 core update
+(began 2026-11-10, not yet complete), so neither side is clean (KNOWLEDGE.md rule 9). `/rates/payoneer-usd-to-bdt` 223
+at 7.8 (1 click), `/rates/payoneer-usd-to-pkr` 165 at 22.3, `/` 161 at 75.9, pillar 147 at 60.2, `/receive/usd-to-idr`
+83 at 14.8 (1 click); first clicks on `-brl` (11 at 5.9) and `-pln` (6 at 4.5), one each. `/pay-freelancers-internationally`
+still 0 after 21 days.
 
 Bing Webmaster (2026-09-07 to 2026-10-26): about 100 impressions and 1 click, many from long,
 chatbot-style questions where the site ranks 1 to 7. Crawl issues reported on 2026-10-29: none.
@@ -207,6 +215,11 @@ watermark remover", and are ignored. What survives a sceptical read:
      Bing's sitemap read was still dated 2026-06-12, so this is the faster route there.
    **2026-11-09 audit:** last-crawl dates for the seven URLs are still not recorded, so the 2026-11-30 preliminary read
    cannot yet choose its URLs. The URL Inspection step is in item 21.
+   **2026-11-16 audit: no clean PR #72 page is left.** The rotation changed reader-facing copy on all seven after the
+   title pass: `-ngn` and `-bdt` (already out), `-php` (description and FAQ, 2026-11-12), `-gel` (FAQ, 2026-11-13),
+   `-eur-portugal` (FAQ and an eighth table row, 2026-11-14), `-thb` (description and FAQ, 2026-11-15) and `-idr` (FAQ,
+   2026-11-16). The 2026-11-30 preliminary CTR read is dropped. The decision read (2026-12-24 at the earliest) is recorded
+   as a bundle per page, read at page plus query level only, and states that its windows hold the November 2026 core update.
 21. [ ] **You, on 2026-11-02:** Search Console URL Inspection, Request indexing, for the two left over on 2026-11-01
     because of the daily quota: `https://paidacross.com/receive-international-payments` and
     `https://paidacross.com/how-we-make-money`. Note the date here. Effort S.
@@ -221,6 +234,10 @@ watermark remover", and are ignored. What survives a sceptical read:
     last-crawl dates for `/receive/usd-to-idr`, `-php`, `-eur-portugal`, `-bdt`, `-thb`, `-ngn`, `-gel` and
     `/pay-freelancers-internationally`; Performance, Search Generative AI, last 3 months, impressions by page; Manual
     actions.
+    **2026-11-16 audit: still not logged (14 days overdue).** Inspect `/pay-freelancers-internationally` first: 0
+    impressions in 21 days while the pillar takes "pay freelancers internationally" (284 at 64.1, 90 days). Note whether
+    it is indexed and which canonical Google chose; its 2026-11-23 preliminary read can only report 0 without this. Do not
+    request indexing for the PR #72 corridors: all seven took rotation copy after 2026-11-09 (item 1).
 22. [x] **Claude, by 2026-11-05 (build), merge on or after 2026-11-30:** rate-page template: render the rate card
     above the intro, add one estimated "through Payoneer, about X per dollar on a 1,000 dollar client payment"
     line from the same `calculate()` row as the table, and shorten each intro's first sentence so it answers
@@ -259,6 +276,10 @@ watermark remover", and are ignored. What survives a sceptical read:
     **2026-11-12:** the PKR rate page's bundle also holds FAQ #6 and the reworded rate note, so its own dates move to
     2026-12-10 (preliminary) and 2027-01-07 (decision), each at the earliest and counted from its recrawl; the BDT rate
     page did not change and keeps 2026-12-07 and 2027-01-04.
+    **2026-11-16 audit:** both rate pages have taken rotation copy since (BDT `updatedDate` 2026-11-10, PKR 2026-11-16).
+    Because each rides with its corridor (item 25), its page-level read is a standing bundle. The dates above stay as
+    earliest dates, the reads are at page plus query level, and each says whether its window overlaps the November 2026
+    core update.
 23. [ ] **You, by 2026-11-19:** first voice-memo interview (item 6), question "How do freelancers receive
     payments from clients in several countries?" (GSC: 38 impressions at 43.8 and 32 at 46.9 for its two
     phrasings; the pillar read is already a bundle). Claude sends up to 10 questions one at a time. Second
@@ -336,17 +357,37 @@ watermark remover", and are ignored. What survives a sceptical read:
     being at zero. List the projects, select the one with `$host = 'paidacross.com'`, re-run audit step 7b with its
     denominator and the `calc_run` count, and record the newest paidacross.com event: if it is before 2026-11-02,
     tracking broke and the code needs a look. The checkpoint's `calc_run` read depends on this. Effort S.
+    **2026-11-16 audit: not done.** The PostHog connector dropped during the scheduled run, so step 7b is unmeasured for a
+    second week. Do it in an interactive session before 2026-11-30, and in the same sitting confirm the first production
+    `affiliate_click` with `placement` (RELEASES.md, PR #93).
 32. [ ] **You decide, Claude proposes:** both rate pages print "Fee figures last checked 2026-06-02" (Payoneer
     `lastVerified`) on pages answering "rate today", which held 280 of 848 impressions in the 28 days to 2026-11-09.
     AGENTS.md allows the bump only when every Payoneer row has been re-read. Options: (a) after one full rotation week
     in which each corridor's Payoneer row was re-read, bump `lastVerified` to the earliest of those dates; (b) a code
     change that prints the rate page's own verification date, through REVIEW mode. Effort S to decide, M to do.
+    **2026-11-16 audit:** Payoneer `lastVerified` is still 2026-06-02. A full rotation week has passed since this item
+    opened (2026-11-10 to 2026-11-16). Claude reads that week's verifier briefs to confirm whether each corridor's Payoneer
+    row was re-read; if so, option (a) is ready for your decision with a proposed date.
 33. [x] **Claude:** records and tooling (done 2026-11-13: RELEASES.md rows #84 to #93 and "Current production" set to `02d79ad`; `diff.mjs` now reports "linkTextChanged" for a surviving href and, because its side-file path was wrong for `latest.json` and `seo.slim.json`, now finds the saved sitemap; SKILL.md step 10 saves `sitemap.xml` too. The first weekly run after this needs `cp` of the current sitemap once to seed it). (a) RELEASES.md: rows for the live changes of 2026-11-05 (`usd-to-uzs`),
     2026-11-08 (`usd-to-zar`), 2026-11-09 (weekly FAQ #4) and 2026-11-12 (FAQs #5 and #6, three answer corrections,
     `affiliate_click` on the rate-page, pillar and sender-page provider links), and "Current production" set to `main`. (b)
     `scripts/seo/diff.mjs`: when a link's href survives with new text, report "link text changed" instead of a protected
     removal. (c) seo-audit SKILL.md step 10: also copy `$RUN/sitemap.xml` to `docs/seo/snapshots/`, so the weekly diff
     stops printing "sitemap URLs identical: null". Effort S.
+    **2026-11-16 audit:** the commit (`a66b172`, 2026-11-13) never reached `main`; it is cherry-picked into the
+    2026-11-16 audit branch and lands when that PR merges. The sitemap fix works ("sitemap URLs identical: true").
+34. [ ] **Claude:** records and tooling, second pass. (a) RELEASES.md rows for #94 to #97 from `git log origin/main`, and
+    "Current production" set to `97212b9` or later. (b) `scripts/seo/diff.mjs`: when a heading's anchor id survives with
+    new text, report "heading text changed" instead of a protected "headings removed" (the 2026-11-16 diff flagged the
+    `-mxn` GrabrFi and `-ars` Payoneer H2s, both intended rewrites on surviving anchors). (c) seo-audit SKILL.md step 10:
+    also copy `$RUN/robots.txt` to `docs/seo/snapshots/`; without it the diff prints "robots.txt identical: false" for an
+    unchanged file. Effort S.
+35. [ ] **You decide, Claude proposes:** the rotation's metadata and heading changes through the SEO diff. In the week to
+    2026-11-16 it changed 7 meta descriptions and 2 H2s with no REVIEW verdict recorded, which AGENTS.md requires for
+    "metadata, titles, descriptions, headings". Proposal: the rotation's stage 3 snapshots its local build, runs
+    `scripts/seo/diff.mjs` against production and pastes the summary into its PR; the analyst's REVIEW is needed only when
+    the exit code is 1 or a title changes. It records, it does not block a reviewer-approved correction. Changing the
+    rotation prompt is done from inside the host or through AGENTS.md. Effort S to M.
 2. [x] **You:** apply to the Payoneer affiliate programme (application sent 2026-10-30; awaiting reply). Both rate pages and 7 corridors earn nothing,
    and the rate pages are now linked from every page.
 3. [x] **You:** decided 2026-10-30: leave it as is (no minimum modelled). The Georgia question from PR #70: under about $300 the dollar table ranks
@@ -548,6 +589,12 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
   today" holds near 11.7. Under about 100 impressions per query, direction only (rule 1). #7 no earlier than
   2026-11-23, and not on a PR #72 corridor before the 2026-11-30 read is taken, so the PayPal PHP candidate waits
   until after it. **You:** request indexing for the three URLs on merge day and log the date per URL.
+  **2026-11-16 audit, #7:** the reason for keeping it off PR #72 corridors is gone (item 1: no clean PR #72 page is left).
+  Candidate: the PayPal USD to pesos question on `/receive/usd-to-php`, on or after 2026-11-23 and after the Status
+  Dashboard marks the November 2026 core update complete. Evidence (Bing): three PayPal-to-peso questions at 6 to 7 (week
+  of 2026-11-06), and "upwork to gcash/paypal/payoneer exchange rate differences" and "can you receive usd in paypal/wise"
+  (week of 2026-11-13). Check the page's existing FAQs first. Baselines: "receive salary in usd" on `-bdt` 4 at 20.3 (#5,
+  90 days to 2026-11-16); no "payoneer 3%" query yet (#6).
 - [ ] **You:** one pitch or correction email a day (newsletters, PK and BD tech press, authors still
   quoting Payoneer "up to 2%"), plus two helpful Reddit or Quora answers a week from a branded account
   that says who you are. Never astroturf.
@@ -573,6 +620,14 @@ Moved by the 2026-10-29 audit: 2026-11-23 is 25 days after PRs #68 to #72 shippe
 weeks after recrawl that KNOWLEDGE.md measurement rule 3 requires, and Search Console's last two or
 three days are preliminary. If a Google ranking or spam update rolls out inside the window, say so and
 draw no conclusion.
+
+**2026-11-16 audit: one is rolling out.** The November 2026 core update began 2026-11-10 and "may take up to 2 weeks"
+(Search Status Dashboard incident WLxcJyC6jMWMfryxsKMc). Google asks for "at least a full week after a core update
+completes before analyzing your site in Search Console" (https://developers.google.com/search/docs/appearance/core-updates).
+On 2026-11-30 do the non-ranking parts only: crawl dates (item 21), PostHog (item 31), indexing from Performance, and
+the cannibalization check restricted to dates after 2026-10-26. Ranking and CTR comparisons move to 7 days after the
+dashboard marks the rollout complete (2026-12-01 at the earliest), and any window that includes 2026-11-10 onward says
+so. The PR #72 CTR question below is dropped (item 1).
 
 - [ ] **Claude:** read Search Console again and compare with both baselines above:
   - Did CTR move on the pages from this week's title pass? Preliminary only, and only for URLs recrawled
