@@ -185,8 +185,10 @@ export const PROVIDERS: Provider[] = [
       // three are on the list where Wise pre-funds predicted intermediary deductions so the
       // recipient gets the full amount. That article labels the figure a "Swift fee per transfer"
       // and its worked example adds a separate 1.13 USD Wise fee on a BALANCE-funded send, so
-      // these fixed components may be short by 1.13 on that funding path. Left unresolved: two
-      // reviewers could not reproduce the example consistently.
+      // these fixed components may be short by 1.13 on that funding path. Reproduced 2026-11-16:
+      // the example is a China send of 4,000 USD funded "from USD in your Wise account", 6.15 Swift
+      // payout fee + 1.13 Wise fee = 7.28 (7.65 + 1.13 = 8.78 with correspondent fees predicted).
+      // The article does not say how the Wise fee is set, so it is not added to these rows.
       // The pay-in percentage is 0, decided by the owner on 2026-10-23. The flow every one of
       // these pages describes is the client PUSHING a domestic ACH into your Wise receiving
       // details, which the grid prices as RECEIVE_BANK_TRANSFER at 0% variable. The 0.17% belongs
@@ -1525,6 +1527,8 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0,
         fxMarkupBps: 175,
         typicalHours: 24,
+        // fixedFee is not published: WU's US send page for Indonesia (read 2026-11-16) shows no standard fee, only $0 on a
+        // first online transfer, and no markup. Our assumption; the row is fxMarkupEstimated, which bars it from the badge.
         fxMarkupEstimated: true,  // no Indonesia-specific rate or spread found from any source
       },
       // EUR → Portuguese EUR via WU (SEPA-zone, no FX conversion)
