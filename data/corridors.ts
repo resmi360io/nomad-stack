@@ -153,12 +153,12 @@ export const CORRIDORS: Corridor[] = [
     country: 'Bangladesh',
     title: 'Receive USD in Bangladesh: fees compared 2026',
     metaDescription:
-      'Receive USD in Bangladesh as a freelancer: Payoneer runs about 2 to 5% all in, PayPal cannot receive, and we explain the Payoneer to bKash step. Live FX.',
+      'Receive USD in Bangladesh as a freelancer: Payoneer runs about 2.2% to 5% all in, PayPal cannot receive, and we explain the Payoneer to bKash step. Live FX.',
     h1: 'How to receive USD in Bangladesh: fees, FX spread, and what you actually net',
     intro:
       'To receive USD in Bangladesh, most freelancers use Payoneer (roughly 2.2% to 5% all-in for bank account withdrawal), and the most popular local step after that is Payoneer to bKash. Payoneer has a direct bKash integration that moves your balance to a bKash wallet typically within hours. Payoneer\'s own fee schedule does not list a fee for that route, but bKash\'s Payoneer page says Payoneer charges 3% plus $1 per transaction, which is more than the 2.6% our table models for a bank withdrawal, so check the withdrawal screen before you confirm. For a bank withdrawal, Payoneer\'s help centre says most land the same day and some take up to 2 business days, while its withdrawal page says one to three business days, and a bank withdrawal generates the Foreign Inward Remittance Certificate (FIRC) required to claim the export cash incentive. PayPal cannot receive commercial payments in Bangladesh, and Wise offers no balance or USD account details to Bangladeshi residents (a foreign client can send BDT through Wise to your bank account, bKash wallet or Nagad wallet, but Wise says it cannot send business transfers to BDT). One thing to read the comparison with: this corridor has no best value badge. We only award it to the top row, and only when we can source the exchange rate margin behind it. Here the cheapest options price their conversion as a range rather than a rate, so there is nothing we can stand behind enough to label. Read the net amount column and treat every figure as indicative.',
     publishedDate: '2026-06-04',
-    updatedDate: '2026-11-12',
+    updatedDate: '2026-11-17',
     providers: [
       {
         slug: 'payoneer',
@@ -233,7 +233,7 @@ export const CORRIDORS: Corridor[] = [
       },
       {
         q: 'Do I have to pay income tax on foreign freelance earnings?',
-        a: 'IT and ITES freelance and business income is income-tax exempt through 30 June 2027 under the Finance Act 2024 / Income Tax Act 2023, Schedule 6. This exemption has two conditions: (a) filing an income tax return even if no tax is owed, and (b) operating cashless: all business income, expenses, and investments must move through bank transfer. Important: this covers independent freelance and business income from IT/ITES work; it does NOT apply to a salaried remote employee of a foreign employer. Rules change with each annual Finance Act. The Finance Act 2026 took effect on 1 July 2026 and, on the reporting we can see, left the 30 June 2027 end date in place; confirm the position for your own filing year. Consult a Bangladeshi tax professional; this site covers transfer fees, not tax.',
+        a: 'Probably not, if you work as an independent freelancer and meet the condition attached to the exemption. The Income Tax Act 2023 exempts income from the businesses listed in paragraph 21 of Part 1 of its Sixth Schedule. The Finance Act 2026, in force from 1 July 2026, rewrote the freelancing entry in that list to read "freelancing and content creation", so the exemption is no longer limited to IT and ITES work. The condition attached to that paragraph, as rewritten earlier in 2026, is that all of the income from the business arrives by bank transfer. It does not mention mobile wallets such as bKash, so if some of your income reaches you that way, ask a tax adviser whether that puts the exemption at risk. The Finance Act 2026 did not change the period the paragraph covers, which tax guides give as income earned from 1 July 2024 to 30 June 2027. We could not open the paragraph\'s own wording to confirm that end date, so verify current before relying on it, and check whether a later Finance Act extends it. Tax guides also say to file a return and show the exempt income in it, even when no tax is due. Important: this covers independent freelance and business income; it does NOT apply to a salaried remote employee of a foreign employer. Consult a Bangladeshi tax professional; this site covers transfer fees, not tax.',
       },
       {
         q: 'Can I receive Payoneer payments directly into bKash or Nagad?',

@@ -178,10 +178,10 @@ export const RATE_PAGES: RatePage[] = [
       {
         q: 'How often does this page update?',
         a:
-          'The mid-market rate refreshes hourly, with the publication date printed next to it. The Payoneer fees change far less often and come from the same data as our Bangladesh page, which is re-checked against Payoneer\'s published pricing on a weekly rotation. The fee check date at the foot of this page is the last time we re-read Payoneer\'s figures for every country we cover at once, so it can be months older than our latest check of the Bangladesh figures, and older than this page\'s own update date. If a figure here no longer matches what Payoneer shows you, tell us and we will fix it.',
+          'The page checks our rate source for a new mid-market rate up to once an hour, but that source publishes a new rate only once a day, so the rate shown can be up to a day old. The date it was published is printed next to it, so you can see how fresh it is rather than trusting us. The Payoneer fees change far less often and come from the same data as our Bangladesh page, which is re-checked against Payoneer\'s published pricing on a weekly rotation. The fee check date at the foot of this page is the last time we re-read Payoneer\'s figures for every country we cover at once, so it can be months older than our latest check of the Bangladesh figures, and older than this page\'s own update date. If a figure here no longer matches what Payoneer shows you, tell us and we will fix it.',
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-11-10',
+    updatedDate: '2026-11-17',
   },
 ];
