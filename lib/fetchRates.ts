@@ -43,9 +43,10 @@ export async function fetchRatesServer(): Promise<RatesResult | null> {
     // "Mon, 02 Jun 2026 00:00:02 +0000" → "2026-06-02"
     const raw: string = data.time_last_update_utc ?? '';
     const parts = raw.match(/(\d{2}) (\w{3}) (\d{4})/);
-    const rateDate = parts
-      ? `${parts[3]}-${MONTHS[parts[2]]}-${parts[1]}`
-      : new Date().toISOString().slice(0, 10);
+    // No parseable publication date means we cannot say how old the rate is, so the rates count as
+    // unavailable rather than being stamped with today's date.
+    if (!parts || !MONTHS[parts[2]]) return null;
+    const rateDate = `${parts[3]}-${MONTHS[parts[2]]}-${parts[1]}`;
     return { rates, rateDate };
   } catch {
     return null;

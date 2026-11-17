@@ -171,6 +171,36 @@ test('statuses: comparable, personal-only, unverified, incomplete', () => {
   );
 });
 
+test('transfer cap: a send above maxAmount is priced as one transfer but unranked and badge-less', () => {
+  const capped = provider('wu', { maxAmount: 2750, fxMarkupBps: 100 });
+  const open = provider('pay', { fxMarkupBps: 300 });
+  const at = (a: number) => calculate('US', 'NG', 'NGN', a, [capped, open], RATES);
+  // at the cap exactly it is still in one transfer
+  const atCap = at(2750).find((q) => q.provider.slug === 'wu')!;
+  assert.equal(atCap.status, 'comparable');
+  assert.equal(atCap.transferCap, 2750);
+  // above it: still priced as a single transfer, but out of the ranking
+  const over = at(5000);
+  const wu = over.find((q) => q.provider.slug === 'wu')!;
+  assert.equal(wu.status, 'over-cap');
+  assert.equal(wu.rank, null);
+  assert.equal(wu.isBestValue, false);
+  assert.ok(wu.netReceivedInDest > over.find((q) => q.provider.slug === 'pay')!.netReceivedInDest);
+  assert.equal(over[0].provider.slug, 'pay');
+  assert.equal(over[0].rank, 1);
+  assert.deepEqual(over.filter(isComparable).map((q) => q.provider.slug), ['pay']);
+  // no cap on the row means no cap
+  assert.equal(quote(provider('a', {}), 1_000_000).transferCap, null);
+  assert.equal(quote(provider('a', {}), 1_000_000).status, 'comparable');
+});
+
+test('transfer cap precedence: unverified beats over-cap beats personal-only beats incomplete', () => {
+  const row = { maxAmount: 100, personalRemittancePricing: true, missingCosts: ['x'] };
+  assert.equal(quote(provider('a', row), 1000).status, 'over-cap');
+  assert.equal(quote(provider('a', { ...row, availability: 'unverified' }), 1000).status, 'unverified');
+  assert.equal(quote(provider('a', row), 50).status, 'personal-only');
+});
+
 test('route type defaults to recipient account and can be set per provider or per row', () => {
   assert.equal(quote(provider('a', {}), 1000).routeType, 'recipient-account');
   assert.equal(quote(provider('a', {}, { routeType: 'sender-transfer' }), 1000).routeType, 'sender-transfer');

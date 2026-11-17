@@ -66,9 +66,9 @@ export function useLiveRates(): RatesState {
           Jan:'01',Feb:'02',Mar:'03',Apr:'04',May:'05',Jun:'06',
           Jul:'07',Aug:'08',Sep:'09',Oct:'10',Nov:'11',Dec:'12',
         };
-        const rateDate = parts
-          ? `${parts[3]}-${MONTHS[parts[2]]}-${parts[1]}`
-          : new Date().toISOString().slice(0, 10);
+        // No parseable publication date: treat the rates as unavailable instead of printing today.
+        if (!parts || !MONTHS[parts[2]]) throw new Error('No rate publication date');
+        const rateDate = `${parts[3]}-${MONTHS[parts[2]]}-${parts[1]}`;
         try {
           sessionStorage.setItem(CACHE_KEY, JSON.stringify({ rates, rateDate, timestamp: Date.now() }));
         } catch {}

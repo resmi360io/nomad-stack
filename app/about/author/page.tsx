@@ -106,7 +106,7 @@ export default function AuthorPage() {
             people&apos;s actual income, a wrong number is worse than a missing one.
           </p>
           <p className="text-muted-foreground">
-            The exchange rates used in calculations are live mid-market rates from{' '}
+            The exchange rates used in calculations are mid-market rates from{' '}
             <a
               href="https://open.er-api.com"
               target="_blank"
@@ -115,7 +115,7 @@ export default function AuthorPage() {
             >
               open.er-api.com
             </a>
-            , refreshed hourly on each page. There are no hardcoded rates. Provider ranking is
+            , which publishes a new set once a day; each page checks for it up to once an hour. There are no hardcoded rates. Provider ranking is
             determined entirely by net received amount after all fees and FX markup.
           </p>
           <p className="text-muted-foreground">

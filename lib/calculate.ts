@@ -7,8 +7,9 @@ export interface FeeLine {
 
 // Why a quote is or is not in the definitive ranking. Order of precedence when several apply:
 // a route we cannot confirm exists says nothing useful about price, so 'unverified' wins; then a
-// price that is not on offer to a client payment; then a price we know is missing a component.
-export type QuoteStatus = 'comparable' | 'unverified' | 'personal-only' | 'incomplete';
+// send that is larger than the provider takes in one transfer; then a price that is not on offer to
+// a client payment; then a price we know is missing a component.
+export type QuoteStatus = 'comparable' | 'unverified' | 'over-cap' | 'personal-only' | 'incomplete';
 
 export interface Quote {
   provider: Provider;
@@ -35,6 +36,11 @@ export interface Quote {
   totalCostPercent: number;       // totalCostInSource / amount; equals 1 - net / (amount x mid)
   availability: 'confirmed' | 'unverified';
   missingCosts: string[];         // known charges not in the number; non-empty = partial quote
+  // The most the provider takes in one transfer on this route, in source currency, or null when we
+  // know of no ceiling. A send above it is still priced as one transfer, but it is not ranked,
+  // because the client could not make it in one go and the sum of several transfers is a
+  // different quote (see status 'over-cap').
+  transferCap: number | null;
   routeType: RouteType;
   matchedCorridorRow: boolean;    // false when priced from the provider's generic fallbackFee
   status: QuoteStatus;
@@ -224,8 +230,9 @@ export function isComparable(q: Pick<Quote, 'status'>): boolean {
   return q.status === 'comparable';
 }
 
-function statusOf(availability: Quote['availability'], personal: boolean, missing: string[]): QuoteStatus {
+function statusOf(availability: Quote['availability'], overCap: boolean, personal: boolean, missing: string[]): QuoteStatus {
   if (availability === 'unverified') return 'unverified';
+  if (overCap) return 'over-cap';
   if (personal) return 'personal-only';
   if (missing.length > 0) return 'incomplete';
   return 'comparable';
@@ -276,6 +283,8 @@ export function calculate(
     const missingCosts = corridor.missingCosts ?? [];
     const availability = corridor.availability ?? 'confirmed';
     const personal = corridor.personalRemittancePricing === true;
+    const transferCap = corridor.maxAmount ?? null;
+    const overCap = transferCap !== null && amount > transferCap;
 
     quotes.push({
       provider,
@@ -298,9 +307,10 @@ export function calculate(
       totalCostPercent: ((totalFee + fxMargin) / amount) * 100,
       availability,
       missingCosts,
+      transferCap,
       routeType: corridor.routeType ?? provider.routeType ?? 'recipient-account',
       matchedCorridorRow: !!matched,
-      status: statusOf(availability, personal, missingCosts),
+      status: statusOf(availability, overCap, personal, missingCosts),
       rank: null,
     });
   }

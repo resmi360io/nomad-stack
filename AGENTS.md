@@ -223,6 +223,16 @@ all three.
   homepage directory, key facts, the screen-reader announcement) goes through `isComparable()` in
   `lib/calculate.ts`; do not reimplement the rule anywhere else. Setting or clearing one of these flags
   on the top row is ranking-moving and goes to the owner like any other.
+- **A per-transfer ceiling is `maxAmount` on the row, and it unranks, it does not hide** (since 2026-11-17). A send
+  larger than the provider's own published single-transfer limit is still priced as one transfer, but the quote
+  gets status `over-cap`: no rank, no badge, listed with the reason. Set it only from the provider's own page,
+  and say the cap in the corridor copy (Western Union US to Mexico, $2,750). The same `isComparable()` predicate
+  covers it everywhere, so do not special-case it in a table.
+- **Exchange rates are a once-a-day source.** `open.er-api.com` publishes one set a day (ExchangeRate-API docs,
+  "Updates Once Per Day"). Pages check it up to once an hour (`revalidate: 3600`) but only on a visit, so never write
+  "live", "refreshed hourly" or "up to a day old". Say the rate is the one published on the date shown. The mid is
+  the same for every provider on a table, so it cannot change the order, only the amount received. A keyless hourly
+  source for these 19 currencies does not exist; Open Exchange Rates is hourly on its free plan but needs a key.
 - **`data/routes.ts` records routes we describe but do not price** (`unpriced`, `unverified`, `sender`,
   `unavailable`), and is what labels them in the calculator and in "Providers not available". When a
   corridor entry's `available` changes, check that file in the same commit, or the calculator and the page

@@ -365,7 +365,7 @@ export default async function CorridorPage({
               </h2>
               {ratesResult && (
                 <p className="pa-meta mb-5">
-                  Using live mid-market rate as of {ratesResult.rateDate} ·{' '}
+                  Using the mid-market rate published {ratesResult.rateDate} ·{' '}
                   <a
                     href="https://open.er-api.com"
                     target="_blank"
@@ -434,7 +434,7 @@ export default async function CorridorPage({
                   We could not reach our exchange-rate source when this page was last generated, so
                   the ranked comparison is not shown. The provider fees below are unaffected and
                   still current. Use the calculator above, which fetches rates in your browser, or
-                  reload in a little while: this page refreshes hourly.
+                  reload in a little while: this page checks for a new rate up to once an hour.
                 </p>
               </div>
             </section>
@@ -482,7 +482,7 @@ export default async function CorridorPage({
             <h2 id="methodology" className="pa-h3 mb-3">How we calculate these figures</h2>
             <p className="max-w-[65ch] text-[0.9375rem] text-muted-foreground leading-relaxed">
               The net received figure deducts the provider&apos;s published flat fee and percentage
-              fee from the send amount, then converts at the live mid-market rate from{' '}
+              fee from the send amount, then converts at the mid-market rate from{' '}
               <a
                 href="https://open.er-api.com"
                 target="_blank"
@@ -491,8 +491,9 @@ export default async function CorridorPage({
               >
                 open.er-api.com
               </a>{' '}
-              minus the provider&apos;s FX markup in basis points. Rates on this page refresh hourly
-              (ISR). Fee data is sourced from each provider&apos;s public pricing page and verified
+              minus the provider&apos;s FX markup in basis points. The rate source publishes once a day and this page checks it up to once an
+              hour (ISR), so the rate is the one published on the date shown above the table, not a live price. It is the same for every provider,
+              so it changes what you receive in the local currency but not the order of the table. Fee data is sourced from each provider&apos;s public pricing page and verified
               periodically. Not every provider publishes an FX spread. Where one does not, we
               estimate it, mark the row &ldquo;est.&rdquo; in the FX margin column, and exclude it
               from the best-value badge, so the option we highlight is always one whose spread we

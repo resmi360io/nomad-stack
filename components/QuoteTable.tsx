@@ -1,6 +1,6 @@
 import { isComparable } from '@/lib/calculate';
 import type { Quote } from '@/lib/calculate';
-import { formatAmountNumber, formatPercent } from '@/lib/format';
+import { formatAmountNumber, formatMoney, formatPercent } from '@/lib/format';
 import { BestValueBadge } from './BestValueBadge';
 
 // The server-rendered comparison on a corridor page. One component for the local-currency table and
@@ -21,6 +21,8 @@ export function notRankedReason(q: Quote): string | null {
       return 'Personal remittance price, not for client payments';
     case 'unverified':
       return 'Route not confirmed';
+    case 'over-cap':
+      return `Over its ${formatMoney(q.transferCap ?? 0, q.sourceCurrency)} single transfer limit, so it would be split`;
     case 'incomplete':
       return `Partial price, excludes ${q.missingCosts.join(' and ')}`;
     default:

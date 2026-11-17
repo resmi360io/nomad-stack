@@ -442,8 +442,8 @@ export default async function ReceiveInternationalPaymentsPage() {
             the source linked. FX spreads are different: several providers do not publish one
             at all, so where we could not source a figure we estimate it, mark that row
             &ldquo;FX estimated&rdquo;, and bar it from the best-value badge, which only ever
-            sits on a provider whose spread we can point at. Exchange rates are live mid-market
-            from{' '}
+            sits on a provider whose spread we can point at. Exchange rates are mid-market, published
+            once a day, from{' '}
             <a
               href="https://open.er-api.com"
               target="_blank"

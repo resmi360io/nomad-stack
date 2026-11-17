@@ -41,6 +41,10 @@ export interface CorridorFee {
   fxMarkupBps: number;    // basis points above mid-market (0 = true mid-market rate)
   typicalHours: number;   // time to arrive
   minAmount?: number;
+  // The most the provider takes in ONE transfer on this route, in source currency, from its own
+  // published limit. calculate() prices a larger send as a single transfer, flags it 'over-cap'
+  // and keeps it out of the ranking and off the badge, so a row cannot win a table at an amount
+  // the client could not send in one go. Set it only from the provider's own page.
   maxAmount?: number;
   notes?: string;
   // True when this row's COST is not fully traceable to a cited source: an assumption, a
@@ -128,11 +132,10 @@ export const PROVIDERS: Provider[] = [
     lastVerified: '2026-08-27',
     supportedSourceCountries: ['US', 'GB', 'EU', 'GE', 'PT', 'MX', 'TH', 'ID'],
     // Wise balance availability excludes Indonesia (receiving/holding ended 23 May 2024)
-    // and Mexico. Both removed as destinations. On Mexico the evidence is absence of product,
-    // NOT a published eligibility rule: wise.com/mx on 2026-09-24 offered only outbound
-    // transfers (personal and large amount) plus Wise Platform, with no multi-currency
-    // account, no account details and no card in the product menu. Do not restate that as
-    // a rule saying Mexican residents cannot hold a balance.
+    // and Mexico. Both removed as destinations. On Mexico: wise.com/mx on 2026-09-24 offered only
+    // outbound transfers plus Wise Platform, and on 2026-11-17 Mexico was absent from the hold-money
+    // country list (wise.com/help/articles/2813542) and wise.com/mx/receive-money was headed
+    // 'Aun no ofrecemos datos de cuenta en Mexico'. The copy cites both; keep it to what they say.
     // MX stays in supportedSourceCountries: the same capture showed a live outbound quote
     // (MXN 10,000 to USD 561.38, 125.78 MXN in fees), so Mexican residents can still send.
     // MX stays in supportedSourceCountries: Mexican residents can still send, not hold.
@@ -175,7 +178,7 @@ export const PROVIDERS: Provider[] = [
     corridors: [
       // South Africa, Argentina and Poland. Neither ZAR nor PLN comes from wise.com/gateway/v1/price any more.
       // PLN's grid split (1.19 plus 0.35%, 4.69 on 1,000) did NOT agree with Wise's own send page, which
-      // read 4.38 from a Wise balance on 2026-11-10, so PLN is a flagged single-point model like ZAR.
+      // read 4.38 from a Wise balance on 2026-11-10 and 4.36 on 2026-11-17, so PLN is a flagged single-point model like ZAR.
       // ZAR DOES NOT agree: the endpoint gave 7.79 on 1,000 and 25.31 on 5,000 while the send page
       // prices the cheapest route, money already in your Wise account, at 7.36 on 1,000 (read
       // 2026-11-15; 7.44 on 2026-11-08, 7.40 on 2026-11-01, 7.43 on 2026-10-25), with direct debit 9.38 and bank transfer 13.78. Nothing public is 7.79 and nothing public
@@ -228,11 +231,11 @@ export const PROVIDERS: Provider[] = [
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PL', currency: 'PLN' },
         fixedFee: 0,
-        percentageFee: 0.00438,
+        percentageFee: 0.00436,
         fxMarkupBps: 0,
         typicalHours: 24,
         fxMarkupEstimated: true,
-        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-poland read 2026-11-10 prices 1,000 USD to PLN at 4.38 USD from a Wise balance (direct debit 6.35, bank transfer 10.76, debit card 20.01) and states it uses the mid-market rate. No second amount is published, so the old price-grid split (1.19 plus 0.35%, 4.69 on 1,000 and 18.69 on 5,000) has no public basis and is withdrawn; this models the 1,000 USD price proportionally, as the ZA and GE rows do. fxMarkupEstimated marks the estimated percentage, not a markup, and bars the badge.',
+        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-poland read 2026-11-17 prices 1,000 USD to PLN at 4.36 USD from a Wise balance (direct debit 6.35, bank transfer 10.76, debit card 20.01; 4.38 on 2026-11-10) and states it uses the mid-market rate. No second amount is published, so the old price-grid split (1.19 plus 0.35%, 4.69 on 1,000 and 18.69 on 5,000) has no public basis and is withdrawn; this models the 1,000 USD price proportionally, as the ZA and GE rows do. fxMarkupEstimated marks the estimated percentage, not a markup, and bars the badge.',
       },
       // NO US to UA row, in either currency, and that is deliberate. Wise has not launched
       // sending to Ukraine from the United States: wise.com/us/send-money/send-money-to-ukraine
@@ -256,7 +259,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 96,
         fxMarkupEstimated: true,
-        notes: 'Wise\'s published Poland SWIFT fee, and it is dear: 27.24 before what Wise charges for how the transfer is paid, against 4.38 on 1,000 to take zloty. Here taking dollars costs more than converting at almost any invoice size, which inverts the usual shape of these corridors.',
+        notes: 'Wise\'s published Poland SWIFT fee, and it is dear: 27.24 before what Wise charges for how the transfer is paid, against 4.36 on 1,000 to take zloty. Here taking dollars costs more than converting at almost any invoice size, which inverts the usual shape of these corridors.',
       },
       // wise.com/us/send-money/send-money-to-georgia, read 2026-11-06: 14.69 USD on 1,000 USD from a
       // Wise balance (direct debit 16.69, bank transfer 21.08, debit card 30.07). Balance funding is the
@@ -1263,10 +1266,15 @@ export const PROVIDERS: Provider[] = [
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'MX', currency: 'MXN' },
         fixedFee: 0.30,
-        percentageFee: 0.044,
+        percentageFee: 0.0445,
         fxMarkupBps: 350,
         typicalHours: 24,
-        fxMarkupEstimated: true,  // 3.5% is PayPal's general cross-border spread, not a Mexico figure; the corridor copy calls it an estimate
+        // paypal.com/mx/webapps/mpp/merchant-fees, updated 13 Oct 2026, read 2026-11-17: 3.95% to receive a commercial
+        // payment plus 0.50% for a payer outside Mexico, 0.30 USD fixed on a USD payment, 3.50% above base rate to
+        // convert a payment received in another currency. Every component published, so not flagged estimated.
+        // The page says all amounts and percentages are subject to IVA. Not folded in (it would reach the spread too,
+        // and how is not stated) and not in missingCosts (that would unrank the row and reorder the $100 table, which
+        // is an owner decision). The corridor copy says the figures exclude IVA.
       },
       // Thailand: the 2022 relaunch removed friends and family and Payouts, NOT commercial receiving
       // (see the corrected note on this row). Personal-account identity verification runs through
@@ -1394,7 +1402,7 @@ export const PROVIDERS: Provider[] = [
     lastVerified: '2026-08-27',
     supportedSourceCountries: ['US'],
     // MX removed from DESTINATIONS 2026-09-24. The Mexico withdrawal fee is $2 per help.grabrfi.com's
-    // full schedule of fees (effective 2026-09-03, written for global account holders), read 2026-11-10.
+    // full schedule of fees (effective 2026-11-06), read 2026-11-17.
     // Earlier readings of 0.3% or a per-country table without Mexico were secondary sources.
     // Mexico not re-added here because the spread is unpublished. The spread is
     // confirmed ABSENT: GrabrFi publishes none, the rate is shown in-app and locked at
@@ -1489,6 +1497,10 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 150,
         // westernunion.com says bank account transfers take one to five business days, real time at several major banks (2026-11-10)
         typicalHours: 24,
+        // westernunion.com/us/en/send-money-to-mexico.html, read 2026-11-17: "$2,750 for receiving in a bank account, or the
+        // equivalent in Mexican pesos, by person, transaction or day". calculate() prices a larger send as one transfer but
+        // leaves it unranked (status 'over-cap'). The first-transfer promotion on the page runs through 15 December.
+        maxAmount: 2750,
         fxMarkupEstimated: true,
         notes: 'Strong US→MX network; near-instant cash pickup available',
       },

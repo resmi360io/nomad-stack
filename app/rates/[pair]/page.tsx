@@ -171,12 +171,12 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
                     1 {page.source} = {mid.toFixed(2)} {page.destination}
                   </p>
                   <p className="pa-meta mt-2">
-                    Published {ratesResult.rateDate} by open.er-api.com. This page refreshes hourly.
+                    Published {ratesResult.rateDate} by open.er-api.com, which publishes a new rate once a day. This page checks for a new one up to once an hour.
                   </p>
                 </>
               ) : (
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Live rate unavailable right now. The fee structure below does not depend on it.
+                  The rate is unavailable right now. The fee structure below does not depend on it.
                 </p>
               )}
               {estimateRow && (
