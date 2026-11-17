@@ -201,7 +201,7 @@ export default function HowWeMakeMoney() {
           </p>
           <p>
             &ldquo;Best value&rdquo; on any corridor is the provider with the highest net
-            received amount at the time of calculation, using a live mid-market rate from{' '}
+            received amount at the time of calculation, using the mid-market rate from{' '}
             <a
               href="https://open.er-api.com"
               target="_blank"
@@ -209,8 +209,8 @@ export default function HowWeMakeMoney() {
               className="underline underline-offset-2 hover:text-foreground"
             >
               open.er-api.com
-            </a>{' '}
-            refreshed hourly. Commercial relationships do not enter the calculation. Where a
+            </a>
+            , which publishes a new rate once a day. Commercial relationships do not enter the calculation. Where a
             provider with no affiliate deal gives you more money than one that pays us a
             commission, the non-affiliate provider ranks first. On most corridors we cover, the
             cheapest option currently has no affiliate relationship with us.

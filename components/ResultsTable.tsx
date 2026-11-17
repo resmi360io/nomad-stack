@@ -17,6 +17,11 @@ const NOT_RANKED_REASON: Record<Exclude<Quote['status'], 'comparable'>, { title:
     body: () =>
       'This price is published for family transfers, not business payments, so a client invoice may not get it.',
   },
+  'over-cap': {
+    title: 'Over the single transfer limit',
+    body: (q) =>
+      `${q.provider.name} takes up to ${formatMoney(q.transferCap ?? 0, q.sourceCurrency)} in one transfer on this route, so a send of this size would have to be split. The figures price it as one transfer.`,
+  },
   unverified: {
     title: 'Route not confirmed',
     body: (q) =>

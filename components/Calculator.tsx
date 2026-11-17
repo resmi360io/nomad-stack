@@ -61,9 +61,9 @@ export function Calculator({ defaultSrc, defaultDest }: Props = {}) {
   }
 
   const rateLabel = ratesState.status === 'ready'
-    ? `Live mid-market rates as of ${ratesState.rateDate} · open.er-api.com`
+    ? `Mid-market rates published ${ratesState.rateDate} · open.er-api.com`
     : ratesState.status === 'loading'
-    ? 'Loading live exchange rates…'
+    ? 'Loading exchange rates…'
     : null;
 
   const sourceLabel = (c: CountryCode) => SOURCE_OPTIONS.find((o) => o.code === c)?.label ?? c;
@@ -76,7 +76,7 @@ export function Calculator({ defaultSrc, defaultDest }: Props = {}) {
           role="alert"
           className="rounded border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm font-medium text-destructive"
         >
-          Could not load live exchange rates. Please refresh and try again.
+          Could not load exchange rates. Please refresh and try again.
         </p>
       )}
       <CalculatorForm
