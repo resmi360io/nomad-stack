@@ -239,7 +239,9 @@ all three.
   (`revalidate: 3600`) but only on a visit, so never write "live" or "refreshed hourly" as a fact: use
   `rateStamp()` and `rateCadence()` from `lib/rates.ts`, which are true of the feed actually used, and in static
   copy name both feeds. The browser calculator reads `/api/rates`, never a rate provider, so the key stays on the
-  server. The mid is the same for every provider on a table, so it cannot change the order, only the amount received.
+  server. Owner confirmations of 2026-11-18: FastForex's `updated` field is a datetime that is UTC when it carries no
+  offset (so the parser's UTC reading is right), re-serving the rates through `/api/rates` is allowed, and the key is
+  set in Vercel Production (`/api/rates` returned `source: fastforex` the same day). The mid is the same for every provider on a table, so it cannot change the order, only the amount received.
 - **`data/routes.ts` records routes we describe but do not price** (`unpriced`, `unverified`, `sender`,
   `unavailable`), and is what labels them in the calculator and in "Providers not available". When a
   corridor entry's `available` changes, check that file in the same commit, or the calculator and the page

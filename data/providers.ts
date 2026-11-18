@@ -368,11 +368,11 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.005,
         fxMarkupBps: 0,
         typicalHours: 24,
-        // The 0.5% is from the v1/price endpoint only. Wise's public Brazil send page shows one balance figure,
-        // 2.09 USD on 200 USD (read 2026-11-11), with no IOF split and no second amount, so it cannot confirm the
+        // The 0.5% is from the v1/price endpoint only. Wise's public Brazil send page shows 2.08 USD on 200 USD from a balance
+        // and 2.85 by direct debit (read 2026-11-18), with no IOF split and no second amount, so it cannot confirm the
         // percentage. Flagged as an estimate (2026-11-04 review).
         fxMarkupEstimated: true,
-        notes: 'USD received by ACH is free. About 0.5% to convert USD to BRL, read from the Wise quote endpoint on 2026-09-24; the public send page shows only 2.09 USD on 200 USD (read 2026-11-11), so the percentage is estimated. No spread: Wise converts at the mid rate and charges a separate fee. Payout to a Brazilian account by Pix or TED.',
+        notes: 'USD received by ACH is free. About 0.5% to convert USD to BRL, read from the Wise quote endpoint on 2026-09-24; the public send page shows 2.08 USD on 200 USD from a balance (read 2026-11-18) and no larger amount, so the percentage is estimated. No spread: Wise converts at the mid rate and charges a separate fee. Payout to a Brazilian account by Pix or TED.',
       },
       // THB fee REDERIVED 2026-09-24 from Wise's own quote endpoint, payIn BALANCE and payOut
       // BANK_TRANSFER, which is the case this corridor prices: a freelancer already holding client
@@ -1201,7 +1201,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 300,
         typicalHours: 48,
         fxMarkupEstimated: true,
-        notes: 'Two PayPal documents point different ways and the copy reports the conflict rather than resolving it. The Ukrainian CONSUMER schedule frames Ukraine as temporary humanitarian relief for PERSONAL accounts, "up to and including December 31, 2026 until further notice", prices personal transactions only, and has no bank-withdrawal row for Ukraine at all. The MERCHANT schedule lists Ukraine and puts it in "all other markets" for receiving international transactions at 4.40% plus a fixed fee, 0.30 on USD, which is what this row prices. We could NOT confirm that commercial receiving can actually be enabled on a Ukrainian account: PayPal\'s own Ukrainian help article served a security interstitial, and the loudest third party asserting it cannot sells a workaround. Do not read this row as proof it works. The 300bps markup is PUBLISHED, not assumed: PayPal\'s Ukrainian merchant fee page puts Ukraine under South East Europe at 3.0% above the base exchange rate for conversions when receiving payments, adding funds, withdrawing and moving money between balances, and at 4.0% for conversions when making payments or on refunds beyond a day, so 3.0% is the leg this row needs. Read 2026-10-23. fxMarkupEstimated stays TRUE, because what we still cannot confirm is whether commercial receiving can be switched on for a Ukrainian account at all.',
+        notes: 'Two PayPal documents point different ways and the copy reports the conflict rather than resolving it. The Ukrainian CONSUMER schedule frames Ukraine as temporary humanitarian relief for PERSONAL accounts, "up to and including December 31, 2026 until further notice", prices personal transactions and conversions only, and has no bank-withdrawal row for Ukraine at all. The MERCHANT schedule lists Ukraine and puts it in "all other markets" for receiving international transactions at 4.40% plus a fixed fee, 0.30 on USD, which is what this row prices. We could NOT confirm that commercial receiving can actually be enabled on a Ukrainian account: PayPal\'s own Ukrainian help article served a security interstitial, and the loudest third party asserting it cannot sells a workaround. Do not read this row as proof it works. The 300bps markup is PUBLISHED, not assumed: PayPal\'s Ukrainian merchant fee page puts Ukraine under South East Europe at 3.0% above the base exchange rate for conversions when receiving payments, adding funds, withdrawing and moving money between balances, and at 4.0% for conversions when making payments or on refunds beyond a day, so 3.0% is the leg this row needs. Read 2026-10-23. CONFLICT on that leg, read 2026-11-18: the Ukrainian personal schedule PDF (Ukraine-paypal-fees-31-Dec-2026.pdf, file dated 2026-08-19) lists Ukraine at "No Fee" for "Converting balance, transfers, and payments received into another currency", while the general consumer page (last updated 28 October 2026) says 3.0%. Kept at 3.0% because the merchant page prices commercial receiving; the corridor copy reports the conflict. fxMarkupEstimated stays TRUE, because what we still cannot confirm is whether commercial receiving can be switched on for a Ukrainian account at all.',
       },
       {
         source: { country: 'US', currency: 'USD' },
@@ -1947,8 +1947,9 @@ export const PROVIDERS: Provider[] = [
       },
       // USD → Nigerian NGN bank account via SWIFT
       // Nigerian banks (GTBank, Access Bank, Zenith) convert at NFEM window rate + ~2% spread
-      // IMTO naira-only rule (CBN Mar 24 2026, effective May 1 2026) is addressed to licensed IMTOs, but
-      // FX Manual 4th ed. Memo 5 s.4.1 says ALL inbound FX transfers are disbursed in naira or any
+      // IMTO naira-only payout rule (CBN revised IMTO guidelines, January 2024) is addressed to licensed IMTOs; the
+      // CBN circular of Mar 24 2026 (effective May 1 2026) added naira settlement accounts. FX Manual 4th ed. Memo 5 s.4.1
+      // says ALL inbound FX transfers are disbursed in naira or any
       // currency the CBN determines. No source exempts SWIFT wires; the copy tells readers to ask their bank.
       {
         source: { country: 'US', currency: 'USD' },
@@ -2097,7 +2098,7 @@ export const PROVIDERS: Provider[] = [
       typicalHours: 24,
       fxMarkupEstimated: true,
     },
-    notes: 'Cleva issues a US virtual bank account for Nigerian freelancers. Clients send a domestic ACH or wire; Cleva charges a deposit fee on the incoming ACH of 0.8%, at least $2 and at most $5 ($10 for a wire, free from Upwork), then converts at mid-market and credits your Nigerian account with no separate withdrawal fee. CBN-regulated.',
+    notes: 'Cleva issues a US virtual bank account for Nigerian freelancers. Clients send a domestic ACH or wire; Cleva charges a deposit fee on the incoming ACH of 0.8%, at least $2 and at most $5 ($10 for a wire, free from Upwork), then converts with no separate fee at a rate Cleva says carries no conversion markup, and credits your Nigerian account with no separate withdrawal fee. CBN-regulated.',
   },
 
   // ─── Grey ──────────────────────────────────────────────────────────────────
@@ -2108,7 +2109,8 @@ export const PROVIDERS: Provider[] = [
   // Modelled below with feeComponents (deposit 0.8% min 2 max 10, then conversion 1% capped at 6 on
   // the remainder) + 100 bps estimated margin. Re-verified 2026-10-29 against support.grey.co
   // articles 9235188, 10600451, 5450108 and 6498738 (N35 naira withdrawal, too small to model).
-  // Nigeria regulatory status not established. A previous 'CBN-regulated (license 10151)'
+  // Nigeria regulatory status: press on 2 to 3 Nov 2026 reports CBN approval to operate as an IMTO (CEO quoted
+  // by Technext); no Grey or CBN publication found. A previous 'CBN-regulated (license 10151)'
   // claim was removed on 2026-08-04 after it could not be traced to any source.
   {
     slug: 'grey',
@@ -2185,7 +2187,7 @@ export const PROVIDERS: Provider[] = [
       typicalHours: 48,
       fxMarkupEstimated: true,
     },
-    notes: 'LemFi (formerly Lemonade Finance) issues a virtual US account for Nigerian freelancers. No flat fee and no percentage fee on this corridor, but LemFi\'s UK terms say the exchange rate is a mark-up on the wholesale rate (its Nigeria terms, which cover the USD account, only say the rate is shown and locked in at authorisation) and the size of any mark-up is not published, so the zero-cost fee model here understates the real cost by an unknown amount. FCA-licensed (UK), FINTRAC-registered Money Service Business (Canada), CBN-approved. Compare the in-app rate against a mid-market reference, and verify current withdrawal limits before relying on it for large amounts.',
+    notes: 'LemFi (formerly Lemonade Finance) issues a virtual US account for Nigerian freelancers. No flat fee and no percentage fee on this corridor, but LemFi\'s UK terms say the exchange rate is a mark-up on the wholesale rate (its Nigeria terms, which cover the USD account, only say the rate is shown and locked in at authorisation) and the size of any mark-up is not published, so the zero-cost fee model here understates the real cost by an unknown amount. FCA-licensed (UK), FINTRAC-registered Money Service Business (Canada), reported to operate under CBN approval. Compare the in-app rate against a mid-market reference, and verify current withdrawal limits before relying on it for large amounts.',
   },
 
   // ─── Raenest ───────────────────────────────────────────────────────────────
