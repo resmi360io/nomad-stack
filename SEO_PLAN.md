@@ -689,8 +689,10 @@ so. The PR #72 CTR question below is dropped (item 1).
     in the first seconds, and Shorts cut from it; not a daily cadence. Claude lists the top Payoneer and Wise
     receive videos for PK, BD, NG and PH with titles and lengths first (tactic 16). Effort S to decide.
     **Decided 2026-11-18 (owner): the recommended format**, a walk-through of about 4 minutes or more per corridor
-    group with Shorts cut from it. Next: Claude lists the top Payoneer and Wise receive videos (tactic 16) before
-    scripting starts.
+    group with Shorts cut from it. **Competitor list done 2026-11-18:** `docs/seo/videos/competitor-videos-2026-11-18.md`
+    (35 videos across PK, BD, NG, PH). Almost all are 1 to 6 minute "how to withdraw" tutorials with no cost figure;
+    the gap is the same task with the number on screen. Formats worth copying: the live withdrawal and the side-by-side
+    test of several apps. Next: **You + Claude** script the first walk-through (Pakistan, Payoneer to a bank).
 
 - [ ] **You + Claude:** every corridor title carries "2026". Decide before 2027-01-01 whether to change the
   year (a title change on all 17 pages, several inside measurement windows) or drop it from titles. Route
