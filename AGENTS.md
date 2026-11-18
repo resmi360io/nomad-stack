@@ -186,12 +186,14 @@ has been missed at least once:
 - `DEST_CURRENCIES_MAP` in `lib/calculate.ts`, if the destination lets a recipient
   hold foreign currency instead of converting. Without it the page can only price
   conversion, which on some corridors is the option the page argues against.
-- A NEW CURRENCY breaks the build in two places that no amount of `tsc` on the data
-  files will catch, because both live outside them: the `Record<Currency, number>`
-  literals in `hooks/useLiveRates.ts` and in `lib/fetchRates.ts`. Both are exhaustive,
-  so adding a member to the `Currency` union without adding the currency to both is a
-  hard type error. Brazil shipped to production with this broken on 2026-09-25 and the
-  Vercel build caught it, not us.
+- A NEW CURRENCY breaks the build in a place that no amount of `tsc` on the data
+  files will catch, because it lives outside them: the exhaustive `PRICED` record in
+  `lib/rates.ts` (the rate parsers and the calculator hook both read the list from it,
+  so there is one place to edit, not two). Adding a member to the `Currency` union
+  without adding the currency there is a hard type error, and a feed that lacks the new
+  currency is rejected as incomplete. Check that FastForex lists it. Brazil shipped to
+  production with the old two-place version broken on 2026-09-25 and the Vercel build
+  caught it, not us.
 - `CURRENCY_LABELS` in `components/CalculatorForm.tsx` is the third exhaustive record
   over `Currency`, and it renders to readers, so it must be free of em and en dashes.
 
@@ -228,11 +230,16 @@ all three.
   gets status `over-cap`: no rank, no badge, listed with the reason. Set it only from the provider's own page,
   and say the cap in the corridor copy (Western Union US to Mexico, $2,750). The same `isComparable()` predicate
   covers it everywhere, so do not special-case it in a table.
-- **Exchange rates are a once-a-day source.** `open.er-api.com` publishes one set a day (ExchangeRate-API docs,
-  "Updates Once Per Day"). Pages check it up to once an hour (`revalidate: 3600`) but only on a visit, so never write
-  "live", "refreshed hourly" or "up to a day old". Say the rate is the one published on the date shown. The mid is
-  the same for every provider on a table, so it cannot change the order, only the amount received. A keyless hourly
-  source for these 19 currencies does not exist; Open Exchange Rates is hourly on its free plan but needs a key.
+- **Exchange rates come from two feeds, and the copy must say which one it used** (since 2026-11-18).
+  `lib/fetchRates.ts` tries FastForex first when `FASTFOREX_API_KEY` is set (server-only; midpoints update every
+  minute on the cheapest plan, with a 7-day free trial then from $18 a month), and falls back to `open.er-api.com`,
+  which publishes once a day (ExchangeRate-API docs, "Updates Once Per Day"). A FastForex reply that is incomplete,
+  has no readable timestamp or is more than 3 hours old is rejected, so a stuck feed is never shown as hourly.
+  A 401 (trial over, wrong key) falls back silently and leaves a `console.warn`. Pages check up to once an hour
+  (`revalidate: 3600`) but only on a visit, so never write "live" or "refreshed hourly" as a fact: use
+  `rateStamp()` and `rateCadence()` from `lib/rates.ts`, which are true of the feed actually used, and in static
+  copy name both feeds. The browser calculator reads `/api/rates`, never a rate provider, so the key stays on the
+  server. The mid is the same for every provider on a table, so it cannot change the order, only the amount received.
 - **`data/routes.ts` records routes we describe but do not price** (`unpriced`, `unverified`, `sender`,
   `unavailable`), and is what labels them in the calculator and in "Providers not available". When a
   corridor entry's `available` changes, check that file in the same commit, or the calculator and the page

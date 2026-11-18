@@ -8,6 +8,7 @@ import { PROVIDERS } from '@/data/providers';
 import type { CountryCode, Currency } from '@/data/providers';
 import type { Quote } from '@/lib/calculate';
 import { useLiveRates } from '@/hooks/useLiveRates';
+import { RATE_SOURCE_NAME, rateStamp } from '@/lib/rates';
 import { calcRunProperties } from '@/lib/analytics';
 import posthog from 'posthog-js';
 
@@ -24,7 +25,7 @@ interface Result {
   dest: CountryCode;
   destCurrency: Currency;
   amount: number;
-  rateDate: string;
+  rateStamp: string;
 }
 
 export function Calculator({ defaultSrc, defaultDest }: Props = {}) {
@@ -38,7 +39,7 @@ export function Calculator({ defaultSrc, defaultDest }: Props = {}) {
   function handleSubmit(src: CountryCode, dest: CountryCode, destCurrency: Currency, amount: number) {
     if (ratesState.status !== 'ready') return;
     const quotes = calculate(src, dest, destCurrency, amount, PROVIDERS, ratesState.rates);
-    setResult({ quotes, src, dest, destCurrency, amount, rateDate: ratesState.rateDate });
+    setResult({ quotes, src, dest, destCurrency, amount, rateStamp: rateStamp(ratesState) });
     setStale(false);
     setAnnouncement(`Results updated. ${describeResults(quotes)}`);
     // One event per Compare press (the form submits nothing on its own), with the amount as a band.
@@ -61,7 +62,7 @@ export function Calculator({ defaultSrc, defaultDest }: Props = {}) {
   }
 
   const rateLabel = ratesState.status === 'ready'
-    ? `Mid-market rates published ${ratesState.rateDate} · open.er-api.com`
+    ? `Mid-market rates ${rateStamp(ratesState)} · ${RATE_SOURCE_NAME[ratesState.source]}`
     : ratesState.status === 'loading'
     ? 'Loading exchange rates…'
     : null;
@@ -97,7 +98,7 @@ export function Calculator({ defaultSrc, defaultDest }: Props = {}) {
       {result && (
         <ResultsTable
           quotes={result.quotes}
-          rateDate={result.rateDate}
+          rateStamp={result.rateStamp}
           amount={result.amount}
           stale={stale}
           destCountry={result.dest}

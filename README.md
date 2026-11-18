@@ -22,7 +22,7 @@ Corridors not explicitly listed fall back to the provider's `fallbackFee`, which
 
 ## How the numbers work
 
-Fees are stored as plain numbers -- no hidden multipliers, no assumptions baked in. The live mid-market FX rate is fetched client-side from [open.er-api.com](https://open.er-api.com), which is free, requires no API key, and covers GEL, THB, and IDR (currencies the ECB's Frankfurter API does not publish). The rate is cached in `sessionStorage` for 4 hours so it doesn't fire on every page load.
+Fees are stored as plain numbers -- no hidden multipliers, no assumptions baked in. The mid-market FX rate comes from [FastForex](https://fastforex.io) when `FASTFOREX_API_KEY` is set (midpoints update every minute; the 7-day trial is free, then from $18 a month) and from [open.er-api.com](https://open.er-api.com) otherwise (free, no key, published once a day, and it covers GEL, THB, and IDR, which the ECB's Frankfurter API does not publish). Pages check for a new rate up to once an hour and say which source they used. The browser calculator reads our own `/api/rates` route, so the key never reaches the client, and caches the result in `sessionStorage` for an hour.
 
 The destination amount is calculated by deducting the flat and percentage fees from the send amount, then converting at mid-market adjusted by the provider's FX markup. A provider with `fxMarkupBps: 0` (like Wise) passes through the real mid-market rate; one with `fxMarkupBps: 200` (like Payoneer on cross-currency corridors) costs an extra 2% in FX on top of their percentage fee.
 

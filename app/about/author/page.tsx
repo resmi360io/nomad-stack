@@ -108,14 +108,22 @@ export default function AuthorPage() {
           <p className="text-muted-foreground">
             The exchange rates used in calculations are mid-market rates from{' '}
             <a
+              href="https://fastforex.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:text-foreground"
+            >
+              FastForex
+            </a>, or from{' '}
+            <a
               href="https://open.er-api.com"
               target="_blank"
               rel="noopener noreferrer"
               className="underline underline-offset-2 hover:text-foreground"
             >
               open.er-api.com
-            </a>
-            , which publishes a new set once a day; each page checks for it up to once an hour. There are no hardcoded rates. Provider ranking is
+            </a>{' '}
+            when FastForex is unavailable. FastForex updates every minute and open.er-api.com once a day; each page checks for a new rate up to once an hour and says which source it used. There are no hardcoded rates. Provider ranking is
             determined entirely by net received amount after all fees and FX markup.
           </p>
           <p className="text-muted-foreground">

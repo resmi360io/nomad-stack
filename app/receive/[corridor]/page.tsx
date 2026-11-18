@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { CORRIDORS } from '@/data/corridors';
 import { RATE_PAGES } from '@/data/ratePages';
 import { fetchRatesServer } from '@/lib/fetchRates';
+import { RATE_SOURCE_NAME, RATE_SOURCE_URL, rateStamp } from '@/lib/rates';
 import { PROVIDERS } from '@/data/providers';
 import { calculate, getDestCurrencies, isComparable } from '@/lib/calculate';
 import type { CountryCode, Currency } from '@/data/providers';
@@ -117,6 +118,14 @@ export default async function CorridorPage({
     rankedNow.length > 1 && rankedLarger.length > 1 &&
     rankedNow[0].provider.slug !== rankedLarger[0].provider.slug
       ? { small: rankedNow[0].provider.name, large: rankedLarger[0].provider.name }
+      : null;
+  // The leader at the smaller amount may drop out at the larger one because it takes less than that
+  // in a single transfer, which is a different reason from fee shape and the note says so.
+  const smallLeaderCap =
+    cheapestSwitchesAt
+      ? quotesAtLarger?.find(
+          (q) => q.status === 'over-cap' && q.provider.slug === rankedNow[0].provider.slug,
+        ) ?? null
       : null;
 
   // Some destinations let you hold foreign currency instead of converting on arrival.
@@ -365,14 +374,14 @@ export default async function CorridorPage({
               </h2>
               {ratesResult && (
                 <p className="pa-meta mb-5">
-                  Using the mid-market rate published {ratesResult.rateDate} ·{' '}
+                  Using the mid-market rate {rateStamp(ratesResult)} ·{' '}
                   <a
-                    href="https://open.er-api.com"
+                    href={RATE_SOURCE_URL[ratesResult.source]}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline underline-offset-2"
                   >
-                    open.er-api.com
+                    {RATE_SOURCE_NAME[ratesResult.source]}
                   </a>
                   . A fixed ${COMPARISON_AMOUNT.toLocaleString()} example: for your own amount, use the
                   calculator above.
@@ -382,9 +391,11 @@ export default async function CorridorPage({
                 <p className="pa-note mb-5 px-4 py-3 text-[0.9375rem] leading-relaxed text-muted-foreground">
                   This ranking is for a ${COMPARISON_AMOUNT.toLocaleString()} invoice, and it does not
                   hold at every size. {cheapestSwitchesAt.small} is cheapest here, but at $
-                  {RANK_CHECK_AMOUNT.toLocaleString()} it is {cheapestSwitchesAt.large}, because some
-                  providers charge a flat fee per transfer and others a percentage of it. Put your own
-                  invoice amount into the calculator above rather than reading the order off this table.
+                  {RANK_CHECK_AMOUNT.toLocaleString()} it is {cheapestSwitchesAt.large},{' '}
+                  {smallLeaderCap?.transferCap
+                    ? `because ${cheapestSwitchesAt.small} takes up to $${smallLeaderCap.transferCap.toLocaleString()} in one transfer, so a payment that size would have to be split.`
+                    : 'because some providers charge a flat fee per transfer and others a percentage of it.'}{' '}
+                  Put your own invoice amount into the calculator above rather than reading the order off this table.
                 </p>
               )}
               <QuoteTable
@@ -484,6 +495,15 @@ export default async function CorridorPage({
               The net received figure deducts the provider&apos;s published flat fee and percentage
               fee from the send amount, then converts at the mid-market rate from{' '}
               <a
+                href="https://fastforex.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-foreground"
+              >
+                FastForex
+              </a>
+              , or from{' '}
+              <a
                 href="https://open.er-api.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -491,9 +511,10 @@ export default async function CorridorPage({
               >
                 open.er-api.com
               </a>{' '}
-              minus the provider&apos;s FX markup in basis points. The rate source publishes once a day and this page checks it up to once an
-              hour (ISR), so the rate is the one published on the date shown above the table, not a live price. It is the same for every provider,
-              so it changes what you receive in the local currency but not the order of the table. Fee data is sourced from each provider&apos;s public pricing page and verified
+              when FastForex is unavailable (the line above the comparison table says which one this page used), minus the
+              provider&apos;s FX markup in basis points. FastForex updates every minute and open.er-api.com once a day; this
+              page checks for a new rate up to once an hour (ISR), so the rate is the one shown above the table, not a live
+              price. It is the same for every provider, so it changes what you receive in the local currency but not the order of the table. Fee data is sourced from each provider&apos;s public pricing page and verified
               periodically. Not every provider publishes an FX spread. Where one does not, we
               estimate it, mark the row &ldquo;est.&rdquo; in the FX margin column, and exclude it
               from the best-value badge, so the option we highlight is always one whose spread we

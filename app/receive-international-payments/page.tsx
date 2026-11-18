@@ -442,8 +442,15 @@ export default async function ReceiveInternationalPaymentsPage() {
             the source linked. FX spreads are different: several providers do not publish one
             at all, so where we could not source a figure we estimate it, mark that row
             &ldquo;FX estimated&rdquo;, and bar it from the best-value badge, which only ever
-            sits on a provider whose spread we can point at. Exchange rates are mid-market, published
-            once a day, from{' '}
+            sits on a provider whose spread we can point at. Exchange rates are mid-market, from{' '}
+            <a
+              href="https://fastforex.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:text-foreground"
+            >
+              FastForex
+            </a>, or from{' '}
             <a
               href="https://open.er-api.com"
               target="_blank"
@@ -452,7 +459,7 @@ export default async function ReceiveInternationalPaymentsPage() {
             >
               open.er-api.com
             </a>{' '}
-            with no bank rates. Provider ranking is determined entirely by net received
+            when FastForex is unavailable, with no bank rates. FastForex updates every minute and open.er-api.com once a day, and each page says which one it used. Provider ranking is determined entirely by net received
             amount after all fees and FX markup. There is no paid placement.
           </p>
           <p className="pa-meta mt-4">
