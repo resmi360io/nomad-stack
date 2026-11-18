@@ -1,54 +1,46 @@
-import type { Currency } from '@/data/providers';
+import { PRICED_CURRENCIES, parseFastForex, parseOpenEr } from './rates.ts';
+import type { RatesResult } from './rates.ts';
 
-export interface RatesResult {
-  rates: Record<Currency, number>;
-  rateDate: string;
+export type { RatesResult, RateSource } from './rates.ts';
+
+const NON_USD = PRICED_CURRENCIES.filter((c) => c !== 'USD');
+
+const FASTFOREX_URL = 'https://api.fastforex.io/fetch-multi';
+const OPEN_ER_URL = 'https://open.er-api.com/v6/latest/USD';
+
+async function fromFastForex(): Promise<RatesResult | null> {
+  // Server-only. The key is never sent to the browser: the calculator reads /api/rates instead.
+  const key = process.env.FASTFOREX_API_KEY;
+  if (!key) return null;
+  try {
+    const url = `${FASTFOREX_URL}?from=USD&to=${NON_USD.join(',')}&api_key=${encodeURIComponent(key)}`;
+    const res = await fetch(url, { next: { revalidate: 3600 }, signal: AbortSignal.timeout(6000) });
+    if (!res.ok) {
+      // 401 once the trial ends or the key is wrong: fall back quietly, but leave a trace in the logs.
+      console.warn(`fetchRates: FastForex responded ${res.status}, falling back to open.er-api.com`);
+      return null;
+    }
+    const parsed = parseFastForex(await res.json());
+    if (!parsed) console.warn('fetchRates: FastForex response rejected (incomplete or stale), falling back');
+    return parsed;
+  } catch {
+    console.warn('fetchRates: FastForex unreachable, falling back to open.er-api.com');
+    return null;
+  }
 }
 
-const MONTHS: Record<string, string> = {
-  Jan: '01', Feb: '02', Mar: '03', Apr: '04', May: '05', Jun: '06',
-  Jul: '07', Aug: '08', Sep: '09', Oct: '10', Nov: '11', Dec: '12',
-};
-
-export async function fetchRatesServer(): Promise<RatesResult | null> {
+async function fromOpenEr(): Promise<RatesResult | null> {
   try {
-    const res = await fetch('https://open.er-api.com/v6/latest/USD', {
-      next: { revalidate: 3600 },
-    });
+    const res = await fetch(OPEN_ER_URL, { next: { revalidate: 3600 }, signal: AbortSignal.timeout(6000) });
     if (!res.ok) return null;
-    const data = await res.json();
-    if (data.result !== 'success') return null;
-    const r = data.rates as Record<string, number>;
-    const rates: Record<Currency, number> = {
-      USD: 1,
-      EUR: r.EUR,
-      GBP: r.GBP,
-      GEL: r.GEL,
-      MXN: r.MXN,
-      THB: r.THB,
-      IDR: r.IDR,
-      PKR: r.PKR,
-      BDT: r.BDT,
-      NGN: r.NGN,
-      PHP: r.PHP,
-      BRL: r.BRL,
-      INR: r.INR,
-      COP: r.COP,
-      UZS: r.UZS,
-      ZAR: r.ZAR,
-      ARS: r.ARS,
-      PLN: r.PLN,
-      UAH: r.UAH,
-    };
-    // "Mon, 02 Jun 2026 00:00:02 +0000" → "2026-06-02"
-    const raw: string = data.time_last_update_utc ?? '';
-    const parts = raw.match(/(\d{2}) (\w{3}) (\d{4})/);
-    // No parseable publication date means we cannot say how old the rate is, so the rates count as
-    // unavailable rather than being stamped with today's date.
-    if (!parts || !MONTHS[parts[2]]) return null;
-    const rateDate = `${parts[3]}-${MONTHS[parts[2]]}-${parts[1]}`;
-    return { rates, rateDate };
+    return parseOpenEr(await res.json());
   } catch {
     return null;
   }
+}
+
+// FastForex first when a key is configured, then open.er-api.com. Null only when both fail, which the
+// pages already render as "rate unavailable".
+export async function fetchRatesServer(): Promise<RatesResult | null> {
+  return (await fromFastForex()) ?? (await fromOpenEr());
 }

@@ -7,6 +7,7 @@ import { RATE_PAGES } from '@/data/ratePages';
 import { CORRIDORS } from '@/data/corridors';
 import { PROVIDERS } from '@/data/providers';
 import { fetchRatesServer } from '@/lib/fetchRates';
+import { RATE_SOURCE_NAME, rateCadence, rateStamp } from '@/lib/rates';
 import { calculate } from '@/lib/calculate';
 import type { CountryCode, Currency } from '@/data/providers';
 import { OutboundProviderLink } from '@/components/OutboundProviderLink';
@@ -171,7 +172,7 @@ export default async function RatePage({ params }: { params: Promise<{ pair: str
                     1 {page.source} = {mid.toFixed(2)} {page.destination}
                   </p>
                   <p className="pa-meta mt-2">
-                    Published {ratesResult.rateDate} by open.er-api.com, which publishes a new rate once a day. This page checks for a new one up to once an hour.
+                    Rate {rateStamp(ratesResult)} from {RATE_SOURCE_NAME[ratesResult.source]}. {rateCadence(ratesResult.source)}
                   </p>
                 </>
               ) : (

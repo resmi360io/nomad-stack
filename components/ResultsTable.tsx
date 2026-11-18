@@ -36,7 +36,7 @@ const NOT_RANKED_REASON: Record<Exclude<Quote['status'], 'comparable'>, { title:
 
 interface Props {
   quotes: Quote[];
-  rateDate: string;
+  rateStamp: string;
   amount: number;
   stale: boolean;
   destCountry: CountryCode;
@@ -190,7 +190,7 @@ function QuoteCard({ q, index }: { q: Quote; index: number }) {
   );
 }
 
-export function ResultsTable({ quotes, rateDate, amount, stale, destCountry, context }: Props) {
+export function ResultsTable({ quotes, rateStamp, amount, stale, destCountry, context }: Props) {
   const ranked = quotes.filter(isComparable);
   const others = quotes.filter((q) => !isComparable(q));
   const listed = listedRoutesFor(destCountry).filter((r) => !quotes.some((q) => q.provider.slug === r.provider));
@@ -200,13 +200,13 @@ export function ResultsTable({ quotes, rateDate, amount, stale, destCountry, con
       <div className="space-y-1.5">
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
           <h2 id="results-heading" className="pa-h3">Results: ranked by net received</h2>
-          <span className="pa-meta whitespace-nowrap">Rate: {rateDate}</span>
+          <span className="pa-meta whitespace-nowrap">Rate {rateStamp}</span>
         </div>
         {/* What these numbers are FOR, frozen at the moment they were computed. */}
         <p className="text-[0.8125rem] leading-snug text-muted-foreground">
           <span className="font-semibold text-foreground">{formatMoney(amount, quotes[0]?.sourceCurrency ?? '')}</span>{' '}
-          from {context.from} to {context.to}, received in {context.currency}, priced at the mid-market rate of{' '}
-          {rateDate}. Fees and margins are modelled from published schedules, and estimates are marked.
+          from {context.from} to {context.to}, received in {context.currency}, priced at the mid-market rate{' '}
+          {rateStamp}. Fees and margins are modelled from published schedules, and estimates are marked.
         </p>
       </div>
 

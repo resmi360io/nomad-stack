@@ -1,19 +1,28 @@
 'use client';
 import { useState, useEffect } from 'react';
-import type { Currency } from '@/data/providers';
+import { buildRates } from '@/lib/rates';
+import type { RatesResult } from '@/lib/rates';
 
 export type RatesState =
   | { status: 'loading' }
-  | { status: 'ready'; rates: Record<Currency, number>; rateDate: string }
+  | ({ status: 'ready' } & RatesResult)
   | { status: 'error' };
 
-const CACHE_KEY = 'paidacross_fx_rates_v2';
-const CACHE_TTL_MS = 4 * 60 * 60 * 1000; // 4 hours
+const CACHE_KEY = 'paidacross_fx_rates_v3';
+const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour, the same cadence the server pages use
 
-const REQUIRED_CURRENCIES: Currency[] = [
-  'USD', 'EUR', 'GBP', 'GEL', 'MXN', 'THB', 'IDR', 'PKR', 'BDT', 'NGN', 'PHP',
-];
+function isRatesResult(d: any): d is RatesResult {
+  return (
+    !!d &&
+    typeof d.rateDate === 'string' &&
+    (d.source === 'fastforex' || d.source === 'open.er-api.com') &&
+    (d.rateTime === null || typeof d.rateTime === 'string') &&
+    buildRates(d.rates) !== null
+  );
+}
 
+// Reads rates from our own /api/rates route (FastForex when configured, open.er-api.com otherwise).
+// A response that is incomplete or has no readable date counts as an error, never as today's rate.
 export function useLiveRates(): RatesState {
   const [state, setState] = useState<RatesState>({ status: 'loading' });
 
@@ -21,58 +30,25 @@ export function useLiveRates(): RatesState {
     try {
       const cached = sessionStorage.getItem(CACHE_KEY);
       if (cached) {
-        const { rates, rateDate, timestamp } = JSON.parse(cached);
-        const isComplete = REQUIRED_CURRENCIES.every(c => typeof rates[c] === 'number');
-        if (isComplete && Date.now() - timestamp < CACHE_TTL_MS) {
-          setState({ status: 'ready', rates, rateDate });
+        const { data, timestamp } = JSON.parse(cached);
+        if (isRatesResult(data) && Date.now() - timestamp < CACHE_TTL_MS) {
+          setState({ status: 'ready', ...data });
           return;
         }
       }
     } catch {}
 
-    fetch('https://open.er-api.com/v6/latest/USD')
-      .then(res => {
+    fetch('/api/rates')
+      .then((res) => {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return res.json();
       })
-      .then(data => {
-        if (data.result !== 'success') throw new Error('API error');
-        const r = data.rates as Record<string, number>;
-        const rates: Record<Currency, number> = {
-          USD: 1,
-          EUR: r.EUR,
-          GBP: r.GBP,
-          GEL: r.GEL,
-          MXN: r.MXN,
-          THB: r.THB,
-          IDR: r.IDR,
-          PKR: r.PKR,
-          BDT: r.BDT,
-          NGN: r.NGN,
-          PHP: r.PHP,
-          BRL: r.BRL,
-          INR: r.INR,
-          COP: r.COP,
-          UZS: r.UZS,
-          ZAR: r.ZAR,
-          ARS: r.ARS,
-          PLN: r.PLN,
-          UAH: r.UAH,
-        };
-        // "Mon, 02 Jun 2026 00:00:02 +0000" → "2026-06-02"
-        const raw: string = data.time_last_update_utc ?? '';
-        const parts = raw.match(/(\d{2}) (\w{3}) (\d{4})/);
-        const MONTHS: Record<string, string> = {
-          Jan:'01',Feb:'02',Mar:'03',Apr:'04',May:'05',Jun:'06',
-          Jul:'07',Aug:'08',Sep:'09',Oct:'10',Nov:'11',Dec:'12',
-        };
-        // No parseable publication date: treat the rates as unavailable instead of printing today.
-        if (!parts || !MONTHS[parts[2]]) throw new Error('No rate publication date');
-        const rateDate = `${parts[3]}-${MONTHS[parts[2]]}-${parts[1]}`;
+      .then((data) => {
+        if (!isRatesResult(data)) throw new Error('Incomplete rates');
         try {
-          sessionStorage.setItem(CACHE_KEY, JSON.stringify({ rates, rateDate, timestamp: Date.now() }));
+          sessionStorage.setItem(CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() }));
         } catch {}
-        setState({ status: 'ready', rates, rateDate });
+        setState({ status: 'ready', ...data });
       })
       .catch(() => setState({ status: 'error' }));
   }, []);
