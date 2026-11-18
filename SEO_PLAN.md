@@ -494,6 +494,10 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
    Product Hunt on a Tuesday to Thursday, Indie Hackers, Uneed. Claude drafts each post; you post from
    your own account and answer comments. **Drafts done 2026-10-30:** `docs/seo/launch-posts.md` (one post
    per channel, with the rules and the numbers to refresh on the day). Posting is yours.
+   **Timing researched 2026-11-18** (`docs/seo/launch-posts.md`, "When to post"): Show HN on Sunday 22 November at
+   02:00 UTC (06:00 in Tbilisi), backup Sunday 29 November; outreach emails on weekday mornings in the recipient's
+   time zone (`docs/seo/outreach.md`): abroadmate.me Thursday 19 or Tuesday 24 November, brands.ng Tuesday 24 or
+   Wednesday 25 November. Both drafts re-checked and updated 2026-11-18.
 9. [x] **Claude:** check AI-answer citations with OpenRush (`discover_ai_citations`,
    `inspect_ai_visibility`) for questions like "cost to receive USD in the Philippines" and "Payoneer
    dollar rate in Pakistan today". Note which pages are cited and close the gaps on ours.
@@ -678,12 +682,15 @@ so. The PR #72 CTR question below is dropped (item 1).
   answers for this topic (46 citations). A handful done properly, not a daily stream. Open on the
   number, on screen in the first second (the only usable point of reels 134 and 137); it must match the
   page on the day it is posted, and the description links to the page with the rate date.
-28. [ ] **You decide, before scripting:** the format. Every YouTube citation study found on 2026-11-01 puts
+28. [x] **You decide, before scripting:** the format. Every YouTube citation study found on 2026-11-01 puts
     Shorts at a small share of AI citations (5.7% to 8%) and long-form at most of them (KNOWLEDGE.md tactic 78;
     the study in reel 156 could not be found, so treat the numbers as direction only). Recommended: one
     walk-through of about 4 minutes or more per corridor group, with the query in the title, the number on screen
     in the first seconds, and Shorts cut from it; not a daily cadence. Claude lists the top Payoneer and Wise
     receive videos for PK, BD, NG and PH with titles and lengths first (tactic 16). Effort S to decide.
+    **Decided 2026-11-18 (owner): the recommended format**, a walk-through of about 4 minutes or more per corridor
+    group with Shorts cut from it. The competitor-video list (tactic 16) is **on hold** at the owner's request; pick
+    it up before scripting starts.
 
 - [ ] **You + Claude:** every corridor title carries "2026". Decide before 2027-01-01 whether to change the
   year (a title change on all 17 pages, several inside measurement windows) or drop it from titles. Route

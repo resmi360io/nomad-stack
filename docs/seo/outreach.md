@@ -15,6 +15,17 @@ Last run: 2026-10-30 (first run). 15 candidates, 2 drafted, 2 monitor, 10 droppe
 
 Ceiling: one email a day. One follow-up at most, 7 to 10 days later, only if it adds something new.
 
+**When to send (researched 2026-11-18).** Send on a weekday morning in the recipient's time zone. Day of week
+matters less than that: Backlinko and Pitchbox's study of 12 million outreach emails found Wednesday best and
+Saturday worst, with only a small gap (Wednesday about 22% above Sunday in relative reply rate;
+https://backlinko.com/email-outreach-study). Siege Media's BuzzStream data favours Monday and Tuesday mornings.
+Avoid Friday midday for Pakistan (Friday prayers) and weekends everywhere.
+- abroadmate.me (Pakistan, UTC+5): Thursday 19 November or Tuesday 24 November, 09:00 to 10:00 PKT
+  (08:00 to 09:00 in Tbilisi).
+- brands.ng (Nigeria, UTC+1): Tuesday 24 or Wednesday 25 November, 09:00 to 10:00 WAT (12:00 to 13:00 in
+  Tbilisi), via https://brands.ng/contact-us/.
+Both drafts were re-checked and updated on 2026-11-18 (see each draft's header).
+
 ## Monitor (60 to 74)
 
 - itsourcecode.com, Philippines guide: says Payoneer withdrawal is a flat USD 1.50. Confirm whether the flat

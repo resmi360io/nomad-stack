@@ -49,6 +49,23 @@ headline. Where a row says "estimated", say so if you quote it.
 
 ---
 
+## When to post (researched 2026-11-18)
+
+Timing helps a little and the post itself matters more, so pick a slot you can stay awake for and answer comments.
+- **Show HN:** the largest recent analysis (188,085 Show HN posts, 2021 onward data for timing;
+  https://danfking.github.io/blog/2026/04/23/show-hn-by-the-numbers/) found the best slots in the quiet hours when
+  the US audience has not arrived yet: Monday 00:00 UTC (10.8% of posts reach 50 points), Sunday 02:00 UTC (9.8%),
+  Saturday 19:00 UTC (9.2%); the worst was Thursday 06:00 UTC (2.6%). Effects are modest and untested for
+  significance, and an older 4-million-story study found hour of day not significant. **Recommended: Sunday
+  22 November at 02:00 UTC (06:00 in Tbilisi)**, then stay for three hours. Backup: Sunday 29 November at the same
+  time (the US Thanksgiving weekend, so expect a quieter audience either way). Avoid weekday mornings US time.
+- **r/SideProject (week 2):** weak evidence only; one devtool-subreddit analysis points to Tuesday 14:00 to 17:00
+  UTC (18:00 to 21:00 in Tbilisi). Read the subreddit's rules on the day.
+- **Product Hunt (week 4):** launches run on a Pacific-time day from 00:01 PT; Tuesday to Thursday is the
+  conventional advice, and weekends are quieter with less competition. Either is defensible.
+- **On the morning of any post:** ask Claude to refresh the numbers. The HN text says "At yesterday's rates": either
+  re-run them or change it to "At 29 October rates" so it matches the frozen cost index edition it links.
+
 ## Week 1: Show HN (Hacker News)
 
 **Where:** https://news.ycombinator.com/submit. Title must start with "Show HN:". Link to the homepage
