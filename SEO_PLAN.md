@@ -280,7 +280,7 @@ watermark remover", and are ignored. What survives a sceptical read:
     Because each rides with its corridor (item 25), its page-level read is a standing bundle. The dates above stay as
     earliest dates, the reads are at page plus query level, and each says whether its window overlaps the November 2026
     core update.
-23. [ ] **You, by 2026-11-19:** first voice-memo interview (item 6), question "How do freelancers receive
+23. [ ] **On hold (owner, 2026-11-18). You:** first voice-memo interview (item 6), question "How do freelancers receive
     payments from clients in several countries?" (GSC: 38 impressions at 43.8 and 32 at 46.9 for its two
     phrasings; the pillar read is already a bundle). Claude sends up to 10 questions one at a time. Second
     interview only if you have first-hand Pakistan experience: receiving USD from a US client into a Pakistani
@@ -607,7 +607,7 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
 - [ ] **You:** one pitch or correction email a day (newsletters, PK and BD tech press, authors still
   quoting Payoneer "up to 2%"), plus two helpful Reddit or Quora answers a week from a branded account
   that says who you are. Never astroturf.
-- [ ] **You:** sign up to Qwoted and Featured.com and answer journalist requests on international payments.
+- [ ] **On hold (owner, 2026-11-18). You:** sign up to Qwoted and Featured.com and answer journalist requests on international payments.
 - [ ] **You:** from mid-December 2026, if you belong to large public freelancer Discord servers for our
   countries, answer there under the Reddit rules (branded name, say who you are, link only when the page
   answers the exact question). No server of our own: Discord indexes only servers with at least 1,000
@@ -689,8 +689,8 @@ so. The PR #72 CTR question below is dropped (item 1).
     in the first seconds, and Shorts cut from it; not a daily cadence. Claude lists the top Payoneer and Wise
     receive videos for PK, BD, NG and PH with titles and lengths first (tactic 16). Effort S to decide.
     **Decided 2026-11-18 (owner): the recommended format**, a walk-through of about 4 minutes or more per corridor
-    group with Shorts cut from it. The competitor-video list (tactic 16) is **on hold** at the owner's request; pick
-    it up before scripting starts.
+    group with Shorts cut from it. Next: Claude lists the top Payoneer and Wise receive videos (tactic 16) before
+    scripting starts.
 
 - [ ] **You + Claude:** every corridor title carries "2026". Decide before 2027-01-01 whether to change the
   year (a title change on all 17 pages, several inside measurement windows) or drop it from titles. Route
