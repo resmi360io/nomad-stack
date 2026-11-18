@@ -338,16 +338,25 @@ export const PROVIDERS: Provider[] = [
       {
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'CO', currency: 'COP' },
-        // Re-read 2026-11-07 from Wise's public US send page, using the balance-funded figure in
-        // its "cheapest way" sentence: 8.76 on 500, 15.57 on 1,000, 29.17 on 2,000 USD, at a mid
-        // of 3,243.00. Fit 1.97 + 1.36% (8.77 / 15.57 / 29.17). The earlier 1.79 + 1.361% came from
-        // the v1/price endpoint and is not what the public page shows. The same page's FAQ says COP
-        // cannot be paid from a Wise balance while help article 2932355 says it can; see the
-        // corridor copy. Approved by the owner 2026-11-09.
-        fixedFee: 1.97,
-        percentageFee: 0.0136,
+        // Re-read 2026-11-18 from Wise's public US send page with ?sourceAmount=N&sourceCurrency=USD&targetCurrency=COP,
+        // using the balance-funded figure in its "cheapest way" sentence: 8.73 on 500, 15.54 on 1,000,
+        // 29.14 on 2,000, 41.40 on 2,900 and 69.99 on 5,000 USD, at a mid of 3,303.40. Fit 1.93 + 1.361%
+        // (8.74 / 15.54 / 29.15 / 41.40 / 69.98), within a cent at every point. The 2026-11-07 read
+        // (8.76 / 15.57 / 29.17) fitted 1.97 + 1.36%. Without the query the page shows one unlabelled
+        // figure and cannot be used. The earlier 1.79 + 1.361% came from the v1/price endpoint and is not
+        // what the public page shows. The same page's FAQ says COP cannot be paid from a Wise balance while
+        // help article 2932355 says COP can only be added by converting a balance; see the corridor copy.
+        // Fixed fee recalibrated to 1.93 by owner decision 2026-11-18.
+        fixedFee: 1.93,
+        percentageFee: 0.01361,
         fxMarkupBps: 0,
         typicalHours: 24,
+        // Per-transfer cap. Wise's US send page: "You can send up to 2,900 US dollar (USD) (equivalent in
+        // Colombian peso (COP)) per transfer." Help article 2932355: "You can send up to 24,000 USD
+        // (equivalent in COP) per transfer." Both read 2026-11-18, neither dated, neither says which pay-in
+        // it covers. The lower figure is used until Wise reconciles them (owner decision 2026-11-18, who
+        // approved 2,900 by name: Wise leaves the ranking above it and the badge goes with it).
+        maxAmount: 2900,
         notes: 'USD received by ACH is free. Conversion to COP at the mid-market rate, but the conversion fee is far higher than Wise charges on most corridors.',
       },
       // BRL: read from Wise's own quote endpoint on 2026-09-24, payIn BALANCE, which is the case
@@ -2244,21 +2253,23 @@ export const PROVIDERS: Provider[] = [
   // Source: https://higlobe.com/pt-br/pricing (2026-09-24)
   // Source: https://higlobe.com/pt-br/how-it-works (2026-09-24)
 
-  // Scoped to BR only on purpose. Higlobe also serves Mexico, and its Mexican spread is
-  // reported at zero, but adding MX here would change the ranking on a live page that was
-  // reviewed on 2026-09-24 with Higlobe deliberately out of the priced table. That is a
-  // separate, ranking-moving decision and needs its own verifier and reviewer pass.
+  // MX added 2026-11-18 by owner decision as an UNRANKED row: the pricing page lists Mexico at
+  // $0 and 0 bps, but the terms (23 October 2026, sections 1.9 and 2.3) say a spread is charged,
+  // so the row carries missingCosts and never ranks or takes the badge. Removing missingCosts
+  // would put Higlobe first at every amount on usd-to-mxn: that is ranking-moving and goes to the owner.
+  // Source: https://higlobe.com/pricing (2026-11-18)
+  // Source: https://higlobe.com/terms-and-conditions (2026-11-18)
   {
     slug: 'higlobe',
     name: 'Higlobe',
     logoUrl: '/logos/higlobe.svg',
     website: 'https://higlobe.com',
-    signupUrl: 'https://higlobe.com/pt-br',
+    signupUrl: 'https://higlobe.com',
     affiliateLink: '',
     hasAffiliateProgram: false,
     lastVerified: '2026-09-24',
     supportedSourceCountries: ['US'],
-    supportedDestinationCountries: ['BR'],
+    supportedDestinationCountries: ['BR', 'MX'],
     corridors: [
       // Higlobe publishes a flat 0.2% spread for BRL, no transfer fee and no maintenance fee,
       // with volume described as unlimited and the quoted amount guaranteed before you confirm:
@@ -2275,6 +2286,24 @@ export const PROVIDERS: Provider[] = [
         typicalHours: 24,
         notes: '0.2% spread, no transfer fee, no monthly fee. US account number and routing number for ACH; payout to Brazil by Pix.',
       },
+      // Pricing page (2026-11-18): "Mexico (MXN) | MXN | $0 | 0 bps (0.00%) | No limits"; the Spanish pricing
+      // page shows maintenance fee "$0" and spread "Gratis". No hours are published there. Terms 4.1: "In the vast
+      // majority of cases, you will receive your withdrawal within seconds or minutes, though in some cases it may
+      // take up to two days." 48 is that upper case, not a typical time, so it understates speed; speed has no
+      // effect on rank. The 4.1 two-business-day guarantee covers when the partner sends, not when funds arrive.
+      // Terms 1.9: "you will be charged a spread when you use our Services"; 2.3: "The local financial institution
+      // that we work with will charge you a conversion spread when you make a withdrawal." Hence missingCosts:
+      // priced, never ranked, never the badge. Account and routing number and ACH: higlobe.com/how-it-works.
+      {
+        source: { country: 'US', currency: 'USD' },
+        destination: { country: 'MX', currency: 'MXN' },
+        fixedFee: 0,
+        percentageFee: 0,
+        fxMarkupBps: 0,
+        typicalHours: 48,
+        notes: 'Pricing page lists Mexico at a $0 transaction fee and 0 bps FX markup with no volume limit, but the terms say a spread is charged. US account number and routing number for ACH; payout to a Mexican bank account.',
+        missingCosts: ['the exchange spread the Higlobe terms say is charged, which its pricing page lists at zero for Mexico'],
+      },
     ],
     fallbackFee: {
       fixedFee: 0,
@@ -2284,6 +2313,6 @@ export const PROVIDERS: Provider[] = [
       fxMarkupEstimated: true,
     },
     notes: 'Higlobe gives a Brazilian resident their own US receiving account, an account number and a routing number to hand a US client, so the client pays by ordinary domestic ACH. Payout to Brazil goes out over Pix. It publishes a flat 0.2% spread for BRL with no transfer fee and no monthly fee, and states that the amount shown before you confirm is the amount you receive. That makes it the cheapest published number on this corridor by a clear margin. What we could not confirm: whether it onboards individuals on a CPF or requires a CNPJ, what onboarding asks for, and how it handles IOF and the contrato de câmbio. Check those before you move real volume.',
-    caveat: 'Spread published at 0.2% for BRL. Eligibility and onboarding requirements not verified.',
+    caveat: 'Higlobe publishes its spread per country on its pricing page, and its terms also say a spread is charged. Eligibility and onboarding requirements not verified.',
   },
 ];
