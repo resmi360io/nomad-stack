@@ -27,3 +27,10 @@ liveinph.com # competitor (remittance cost comparator)
 bitdegree.org # money-transfer review site with a partner
 nsave.com # provider (USD accounts)
 walllet.com # provider
+# Scaled content network (pages.dev, "autopilot" and "_parked" paths), outreach run 2026-11-18
+freelancedhaka.pages.dev # scaled network
+earnfromnigeria.pages.dev # scaled network
+earnfrompakistan.pages.dev # scaled network
+earnfromhomeindia.pages.dev # scaled network
+trabahongonline.pages.dev # scaled network
+dapatkerjaonline.pages.dev # scaled network
