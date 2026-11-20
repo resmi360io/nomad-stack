@@ -5,7 +5,7 @@ are done, and add the PR number or date, so the next session starts from the tru
 memory. Fact-checking rules for anything that touches page copy live in AGENTS.md and still apply:
 verifier, then reviewer, then humanizer, and ranking-moving changes go to the owner.
 
-Last updated: 2026-11-16 (weekly audit `docs/seo/reports/2026-11-16.md`; November 2026 core update rolling out since 2026-11-10).
+Last updated: 2026-11-20 (day-by-day Pareto plan in `docs/seo/DAILY_PLAN.md`; PostHog baseline, item 31; weekly audit of 2026-11-16 in `docs/seo/reports/2026-11-16.md`).
 
 Legend: `[x]` done, `[~]` in progress or partly done, `[ ]` not started. Owner is **You** (site owner)
 or **Claude** (a session in this repo).
@@ -280,7 +280,7 @@ watermark remover", and are ignored. What survives a sceptical read:
     Because each rides with its corridor (item 25), its page-level read is a standing bundle. The dates above stay as
     earliest dates, the reads are at page plus query level, and each says whether its window overlaps the November 2026
     core update.
-23. [ ] **You, by 2026-11-19:** first voice-memo interview (item 6), question "How do freelancers receive
+23. [ ] **On hold (owner, 2026-11-18). You:** first voice-memo interview (item 6), question "How do freelancers receive
     payments from clients in several countries?" (GSC: 38 impressions at 43.8 and 32 at 46.9 for its two
     phrasings; the pillar read is already a bundle). Claude sends up to 10 questions one at a time. Second
     interview only if you have first-hand Pakistan experience: receiving USD from a US client into a Pakistani
@@ -351,7 +351,7 @@ watermark remover", and are ignored. What survives a sceptical read:
     graduation", with no date; carry the 2029 date there on a Bangladesh day if the reviewer confirms it; (b) the same
     FAQ says Bangladesh Bank confirmed 2.5% for the year from 1 July 2026, so the next real check is the rate for the
     year from 1 July 2027.
-31. [ ] **Claude, before the 2026-11-30 checkpoint:** point the host's PostHog MCP at the paidacross.com project. On
+31. [x] **Claude, before the 2026-11-30 checkpoint:** point the host's PostHog MCP at the paidacross.com project. On
     2026-11-09 the active project held no paidacross.com events in the 28 days to 2026-11-09, although the 2026-11-01
     read found paidacross.com pageviews inside that window, so the connector is on another project rather than the site
     being at zero. List the projects, select the one with `$host = 'paidacross.com'`, re-run audit step 7b with its
@@ -360,6 +360,11 @@ watermark remover", and are ignored. What survives a sceptical read:
     **2026-11-16 audit: not done.** The PostHog connector dropped during the scheduled run, so step 7b is unmeasured for a
     second week. Do it in an interactive session before 2026-11-30, and in the same sitting confirm the first production
     `affiliate_click` with `placement` (RELEASES.md, PR #93).
+    **Closed 2026-11-20 (interactive session):** PostHog's default project (id 430719, the only project) does receive
+    paidacross.com: 361 events in the 30 days to 2026-11-20, newest 2026-11-20 08:43 UTC, so tracking works; the audits
+    saw nothing because the scheduled host has no PostHog connector. Baseline excluding the owner's country (GE): 70
+    people and 109 pageviews; Google 27 people, Bing 3; `calc_run` 2 (2 people, last 2026-11-11); `affiliate_click` 0
+    (the 3 recorded are the owner's, 2026-10-29, so the first production click with `placement` is still to come).
 32. [ ] **You decide, Claude proposes:** both rate pages print "Fee figures last checked 2026-06-02" (Payoneer
     `lastVerified`) on pages answering "rate today", which held 280 of 848 impressions in the 28 days to 2026-11-09.
     AGENTS.md allows the bump only when every Payoneer row has been re-read. Options: (a) after one full rotation week
@@ -382,6 +387,13 @@ watermark remover", and are ignored. What survives a sceptical read:
     `-mxn` GrabrFi and `-ars` Payoneer H2s, both intended rewrites on surviving anchors). (c) seo-audit SKILL.md step 10:
     also copy `$RUN/robots.txt` to `docs/seo/snapshots/`; without it the diff prints "robots.txt identical: false" for an
     unchanged file. Effort S.
+36. [ ] **You decide (raised 2026-11-20 by the rate-page reviewer):** ExchangeRate-API's free-tier terms. When the site
+    falls back to open.er-api.com (only when FastForex fails), its pages print "from open.er-api.com" without the required
+    link text "Rates By Exchange Rate API" (https://www.exchangerate-api.com/docs/free), and `/api/rates` re-serves that
+    data while its Terms (https://www.exchangerate-api.com/terms) forbid redistribution and programmatic access. Options:
+    (a) Claude adds the attribution link whenever the fallback is used and `/api/rates` stops serving fallback data (the
+    browser calculator would then show "rates unavailable" in a FastForex outage); (b) you ask ExchangeRate-API in
+    writing. Recommended: (a), through REVIEW. Effort S.
 35. [ ] **You decide, Claude proposes:** the rotation's metadata and heading changes through the SEO diff. In the week to
     2026-11-16 it changed 7 meta descriptions and 2 H2s with no REVIEW verdict recorded, which AGENTS.md requires for
     "metadata, titles, descriptions, headings". Proposal: the rotation's stage 3 snapshots its local build, runs
@@ -489,6 +501,10 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
    Product Hunt on a Tuesday to Thursday, Indie Hackers, Uneed. Claude drafts each post; you post from
    your own account and answer comments. **Drafts done 2026-10-30:** `docs/seo/launch-posts.md` (one post
    per channel, with the rules and the numbers to refresh on the day). Posting is yours.
+   **Timing researched 2026-11-18** (`docs/seo/launch-posts.md`, "When to post"): Show HN on Sunday 22 November at
+   02:00 UTC (06:00 in Tbilisi), backup Sunday 29 November; outreach emails on weekday mornings in the recipient's
+   time zone (`docs/seo/outreach.md`): abroadmate.me Thursday 19 or Tuesday 24 November, brands.ng Tuesday 24 or
+   Wednesday 25 November. Both drafts re-checked and updated 2026-11-18.
 9. [x] **Claude:** check AI-answer citations with OpenRush (`discover_ai_citations`,
    `inspect_ai_visibility`) for questions like "cost to receive USD in the Philippines" and "Payoneer
    dollar rate in Pakistan today". Note which pages are cited and close the gaps on ours.
@@ -598,7 +614,7 @@ read for those pages is a bundle. **Decided 2026-10-30 (item 14): ship; those pa
 - [ ] **You:** one pitch or correction email a day (newsletters, PK and BD tech press, authors still
   quoting Payoneer "up to 2%"), plus two helpful Reddit or Quora answers a week from a branded account
   that says who you are. Never astroturf.
-- [ ] **You:** sign up to Qwoted and Featured.com and answer journalist requests on international payments.
+- [ ] **On hold (owner, 2026-11-18). You:** sign up to Qwoted and Featured.com and answer journalist requests on international payments.
 - [ ] **You:** from mid-December 2026, if you belong to large public freelancer Discord servers for our
   countries, answer there under the Reddit rules (branded name, say who you are, link only when the page
   answers the exact question). No server of our own: Discord indexes only servers with at least 1,000
@@ -646,9 +662,17 @@ so. The PR #72 CTR question below is dropped (item 1).
   **2026-11-09 audit, input:** Payoneer USD to PHP is the only new pair with query evidence, and it is thin: "payoneer
   usd to php" 3 at 57, "payoneer exchange rate usd to php" 2 at 59 and two single-impression rate queries, all on
   `/receive/usd-to-php`, plus "payoneer fees philippines" 5 on the pillar and homepage (90 days to 2026-11-09).
-- [ ] **Claude:** `/rates/payoneer-usd-to-bdt` meets the rule 2 title trigger on the 28-day read (149 impressions at
-  7.4, 1 click, 0.67%), but 1 click in 149 cannot show a low CTR (rule 1) and the page is inside the item 22 bundle.
-  No title change before its decision read (on or after 2027-01-04); re-test the trigger then on 90 days.
+- [x] **Claude:** `/rates/payoneer-usd-to-bdt` title trigger. Superseded 2026-11-20 by owner decision (DAILY_PLAN, Fri
+  20 Nov): both rate pages serve a live title and description with today's estimate (the 2026-11-20 rate-page snippet
+  release), ahead of the 2027-01-04 decision read this item had set. Baseline: 447 impressions, 1 click on the two pages,
+  28 days to 2026-11-20. Both reads are bundles (rule 4: title, description and the "How often does this page update?"
+  FAQ together, on top of PR #93 on the PKR page). Read page plus query, CTR only where the query stays within 2 places
+  of its baseline ("payoneer usd to pkr rate today" 12.9, "today payoneer dollar rate in pakistan" 12.7, "payoneer
+  dollar rate in bangladesh" 8.6): early signal 14 days after each URL's recrawl, preliminary at 4 weeks, decision at 8
+  weeks (rule 3), no ranking conclusion until 7 days after the November 2026 core update is marked complete (rule 9).
+  Leave both title templates alone until the decision read (rule 2). After recrawl, record whether Google shows our
+  number in the title link or rewrites it (Google's title-link guidance says it will likely not show fast-changing
+  prices for flight pages; the title is rounded to a whole number to stay stable between crawls).
 - [ ] **Claude:** this checkpoint needs the item 21 crawl dates and the item 31 PostHog fix. Without them, read only the
   cannibalization check and Search Console trends, and say so.
 
@@ -673,12 +697,17 @@ so. The PR #72 CTR question below is dropped (item 1).
   answers for this topic (46 citations). A handful done properly, not a daily stream. Open on the
   number, on screen in the first second (the only usable point of reels 134 and 137); it must match the
   page on the day it is posted, and the description links to the page with the rate date.
-28. [ ] **You decide, before scripting:** the format. Every YouTube citation study found on 2026-11-01 puts
+28. [x] **You decide, before scripting:** the format. Every YouTube citation study found on 2026-11-01 puts
     Shorts at a small share of AI citations (5.7% to 8%) and long-form at most of them (KNOWLEDGE.md tactic 78;
     the study in reel 156 could not be found, so treat the numbers as direction only). Recommended: one
     walk-through of about 4 minutes or more per corridor group, with the query in the title, the number on screen
     in the first seconds, and Shorts cut from it; not a daily cadence. Claude lists the top Payoneer and Wise
     receive videos for PK, BD, NG and PH with titles and lengths first (tactic 16). Effort S to decide.
+    **Decided 2026-11-18 (owner): the recommended format**, a walk-through of about 4 minutes or more per corridor
+    group with Shorts cut from it. **Competitor list done 2026-11-18:** `docs/seo/videos/competitor-videos-2026-11-18.md`
+    (35 videos across PK, BD, NG, PH). Almost all are 1 to 6 minute "how to withdraw" tutorials with no cost figure;
+    the gap is the same task with the number on screen. Formats worth copying: the live withdrawal and the side-by-side
+    test of several apps. Next: **You + Claude** script the first walk-through (Pakistan, Payoneer to a bank).
 
 - [ ] **You + Claude:** every corridor title carries "2026". Decide before 2027-01-01 whether to change the
   year (a title change on all 17 pages, several inside measurement windows) or drop it from titles. Route

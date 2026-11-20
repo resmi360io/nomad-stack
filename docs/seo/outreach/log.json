@@ -26,11 +26,12 @@
     "domain": "itsourcecode.com",
     "source": "stale_fee",
     "found": "2026-10-30",
-    "score": 68,
-    "state": "monitor",
-    "contact_route": "itsourcecode.com author page (not opened)",
+    "score": 59,
+    "state": "dropped",
+    "contact_route": "https://itsourcecode.com/contact-us/",
     "our_url": "https://paidacross.com/receive/usd-to-php",
-    "notes": "Says USD 1.50 flat withdrawal to PH bank; Payoneer's flat fee applies to local-currency withdrawals in listed countries, PH status unconfirmed. New finance section on a source-code site: watch for scaled content."
+    "notes": "Says USD 1.50 flat withdrawal to PH bank; Payoneer's flat fee applies to local-currency withdrawals in listed countries, PH status unconfirmed. New finance section on a source-code site: watch for scaled content. RE-CHECK 2026-11-18: dropped. UPDATE to the existing row (was monitor 68). Authors Joken E. Villanueva and Leah Whynett Dela Pena; 'Published Aug 12, Updated Aug 11, 2026'. Affiliate disclosed. Sister pages say the same thing. payoneer.com/legal/fees lists the Philippines for the 1.50 USD same-country local-currency withdrawal, so the flat fee claim is not clearly wrong.",
+    "checked": "2026-11-18"
   },
   {
     "url": "https://blog.onlinejobs.ph/online-workers-guide-getting-payments/",
@@ -163,5 +164,394 @@
     "contact_route": "",
     "our_url": "",
     "notes": "Policy op-ed. Revisit for the data index pitch to regional press."
+  },
+  {
+    "url": "https://worldngayon.com/paypal-vs-payoneer-vs-wise/",
+    "domain": "worldngayon.com",
+    "source": "stale_fee",
+    "found": "2026-11-18",
+    "found_how": "WebSearch 'PayPal vs Payoneer vs Wise fee comparison for Philippine freelancers 2026', page opened with WebFetch",
+    "relevance_quote": "carries a fixed fee (around $1.50, for accounts under the $50,000 monthly band) ... a withdrawal involving currency conversion can run up to 3% of the transaction",
+    "our_url": "https://paidacross.com/receive/usd-to-php",
+    "gates": {
+      "G1": "pass",
+      "G2": "pass with caution: site sells labeled sponsored articles (/advertise/, seen via search snippet only); one author across many topics",
+      "G3": "pass: free contact form",
+      "G4": "pass: $50,000 band is for certain US customers per payoneer.com/pricing; schedule 1.2% to 4%; annual fee rule (a_id 43738, PH at 6,000 USD from 23 Feb 2026) missing",
+      "G5": "pass"
+    },
+    "score": 78,
+    "score_breakdown": {
+      "topic": 25,
+      "click": 16,
+      "readership": 9,
+      "editorial": 12,
+      "outbound": 6,
+      "reach": 10,
+      "ai": 0
+    },
+    "state": "drafted",
+    "contact_route": "https://worldngayon.com/contact-us/",
+    "notes": "Named author Edmon Agron, published 13 Nov 2026, no update date. Links payoneer.com/pricing, wise.com/ph/pricing/send-money, PayPal PH fees. Contact page invites 'correction'. No annual fee mentioned anywhere in the piece. Recipient in the Philippines (UTC+8)."
+  },
+  {
+    "url": "https://www.techjuice.pk/upwork-local-wallet-jazzcash-easypaisa-pakistan/",
+    "domain": "techjuice.pk",
+    "source": "press",
+    "found": "2026-11-18",
+    "found_how": "WebSearch 'Pakistan freelancer Payoneer withdrawal fee 2026'",
+    "relevance_quote": "Payoneer works but adds its own conversion fees on top.",
+    "our_url": "https://paidacross.com/receive/usd-to-pkr",
+    "gates": {
+      "G1": "pass",
+      "G2": "pass",
+      "G3": "pass",
+      "G4": "pass (a number where the piece has none)",
+      "G5": "pass"
+    },
+    "score": 73,
+    "score_breakdown": {
+      "topic": 25,
+      "click": 16,
+      "readership": 15,
+      "editorial": 9,
+      "outbound": 2,
+      "reach": 6,
+      "ai": 0
+    },
+    "state": "monitor",
+    "contact_route": "https://www.techjuice.pk/contact/",
+    "notes": "Author Abdul Wasay, about 2 weeks old. Reports Upwork direct withdrawals to JazzCash, Easypaisa, NayaPay, SadaPay and Finja at a flat $1.99, sourced to an in-app popup. Press: hold for the $1,000 index pitch (Mode 0). Our usd-to-pkr page may not cover Upwork's wallet route; that is a corridor-pipeline question, not outreach."
+  },
+  {
+    "url": "https://thecondia.com/money-transfer-payment-apps-freelancer-nigeria/",
+    "domain": "thecondia.com",
+    "source": "resource_page",
+    "found": "2026-11-18",
+    "found_how": "WebSearch 'Nigeria freelancers receive USD Payoneer Grey Cleva fees comparison 2026'",
+    "relevance_quote": "Withdrawal fees may apply.",
+    "our_url": "https://paidacross.com/receive/usd-to-ngn",
+    "gates": {
+      "G1": "pass",
+      "G2": "pass",
+      "G3": "pass",
+      "G4": "pass (no numbers on page)",
+      "G5": "pass"
+    },
+    "score": 69,
+    "score_breakdown": {
+      "topic": 25,
+      "click": 16,
+      "readership": 12,
+      "editorial": 6,
+      "outbound": 4,
+      "reach": 6,
+      "ai": 0
+    },
+    "state": "monitor",
+    "contact_route": "https://thecondia.com/author/havilah/ (author page, not opened)",
+    "notes": "Author Havilah Mbah; published 20 Oct 2025, 'Last updated: August 24, 2026'; body still says 2025. Grey link carries undisclosed ?r=0. No corrections route. Draft only if it is updated with figures or the index exists."
+  },
+  {
+    "url": "https://www.fueler.io/blog/getting-paid-by-international-clients-from-india-fees-compared",
+    "domain": "fueler.io",
+    "source": "resource_page",
+    "found": "2026-11-18",
+    "found_how": "WebSearch (Indonesian-language query surfaced it)",
+    "relevance_quote": "How Much Does It Cost to Receive $1,000 From an International Client? ... Your spreadsheet should have five columns: client payment, transaction fee, conversion cost,",
+    "our_url": "https://paidacross.com/receive/usd-to-inr",
+    "gates": {
+      "G1": "pass",
+      "G2": "pass with caution: footer 'Write for us' (fueler.io/blog/write-for-fueler), unrelated listicles",
+      "G3": "pass",
+      "G4": "pass: our page computes exactly the four routes it names",
+      "G5": "pass (portfolio platform, not a payments provider)"
+    },
+    "score": 67,
+    "score_breakdown": {
+      "topic": 25,
+      "click": 20,
+      "readership": 6,
+      "editorial": 6,
+      "outbound": 2,
+      "reach": 8,
+      "ai": 0
+    },
+    "state": "monitor",
+    "contact_route": "https://www.fueler.io/contact (footer link, not opened)",
+    "notes": "Author Riten Debnath (founder), 2 Oct 2026. No primary-source links in the whole piece, so a link is unlikely. Best reader fit of the run."
+  },
+  {
+    "url": "https://thecondia.com/exploring-options-to-receive-usd-payments/",
+    "domain": "thecondia.com",
+    "source": "resource_page",
+    "found": "2026-11-18",
+    "found_how": "WebSearch 'how to receive dollars Nigeria freelancers'",
+    "relevance_quote": "with fees generally under 2%",
+    "our_url": "https://paidacross.com/receive/usd-to-ngn",
+    "gates": {
+      "G1": "pass",
+      "G2": "pass",
+      "G3": "pass",
+      "G4": "weak: our only conflicting figure (Grey 2.39%) is an estimate",
+      "G5": "pass"
+    },
+    "score": 63,
+    "score_breakdown": {
+      "topic": 20,
+      "click": 12,
+      "readership": 12,
+      "editorial": 9,
+      "outbound": 6,
+      "reach": 4,
+      "ai": 0
+    },
+    "state": "monitor",
+    "contact_route": "https://thecondia.com/author/michael-nduokeke/ (not opened)",
+    "notes": "Michael Ndu-okeke, 12 Mar 2026. Same domain as the row above: one email per domain at most."
+  },
+  {
+    "url": "https://gauravtiwari.org/payoneer-india-review/",
+    "domain": "gauravtiwari.org",
+    "source": "stale_fee",
+    "found": "2026-11-18",
+    "found_how": "WebSearch 'Payoneer fees India freelancers 2026'",
+    "relevance_quote": "$29.95 when receipts are below $6,000 in 12 consecutive months",
+    "our_url": "https://paidacross.com/receive/usd-to-inr",
+    "gates": {
+      "G1": "pass",
+      "G2": "pass",
+      "G3": "pass",
+      "G4": "fail: already correct",
+      "G5": "pass"
+    },
+    "score": 59,
+    "score_breakdown": {
+      "topic": 25,
+      "click": 8,
+      "readership": 9,
+      "editorial": 9,
+      "outbound": 4,
+      "reach": 4,
+      "ai": 0
+    },
+    "state": "dropped",
+    "contact_route": "",
+    "notes": "Updated 2026-08-24. Undisclosed /go/payoneer/ redirect. No contact page found."
+  },
+  {
+    "url": "https://tribune.com.pk/story/2543768/payoneer-imposes-3-withdrawal-fee-on-pakistani-users-raising-concerns-among-freelancers",
+    "domain": "tribune.com.pk",
+    "source": "press",
+    "found": "2026-11-18",
+    "found_how": "WebSearch",
+    "relevance_quote": "subject to a flat 3% fee, representing a 50% hike from previous rates",
+    "our_url": "",
+    "gates": {
+      "G1": "pass",
+      "G2": "pass",
+      "G3": "pass",
+      "G4": "fail: 2025 news report, nothing to correct",
+      "G5": "pass"
+    },
+    "score": 63,
+    "score_breakdown": {
+      "topic": 25,
+      "click": 8,
+      "readership": 15,
+      "editorial": 9,
+      "outbound": 2,
+      "reach": 4,
+      "ai": 0
+    },
+    "state": "dropped",
+    "contact_route": "",
+    "notes": "News Desk, 3 May 2025, no links. Revisit for the index pitch."
+  },
+  {
+    "url": "https://digitalpakistan.pk/payoneer-revises-fee-structure-for-pakistani-users/",
+    "domain": "digitalpakistan.pk",
+    "source": "press",
+    "found": "2026-11-18",
+    "found_how": "WebSearch",
+    "relevance_quote": "Bank withdrawals in foreign currencies—such as USD to EUR—will now cost 3%, up from the previous 2%",
+    "our_url": "",
+    "gates": {
+      "G1": "pass",
+      "G2": "pass",
+      "G3": "pass",
+      "G4": "fail",
+      "G5": "pass"
+    },
+    "score": 56,
+    "score_breakdown": {
+      "topic": 25,
+      "click": 8,
+      "readership": 9,
+      "editorial": 6,
+      "outbound": 2,
+      "reach": 6,
+      "ai": 0
+    },
+    "state": "dropped",
+    "contact_route": "https://digitalpakistan.pk/contact-us/",
+    "notes": "Varda Shamshad, 5 May 2025; cites no sources. (The quote contains their dash, reproduced verbatim.)"
+  },
+  {
+    "url": "https://www.sunstar.com.ph/davao/business/fees-delays-cut-into-freelancers-overseas-pay",
+    "domain": "sunstar.com.ph",
+    "source": "press",
+    "found": "2026-11-18",
+    "found_how": "WebSearch",
+    "relevance_quote": "receive less than what they are paid after fees, currency conversion charges, and processing delays take their toll",
+    "our_url": "",
+    "gates": {
+      "G1": "pass",
+      "G2": "pass",
+      "G3": "pass",
+      "G4": "fail: no figures",
+      "G5": "pass"
+    },
+    "score": 57,
+    "score_breakdown": {
+      "topic": 20,
+      "click": 8,
+      "readership": 12,
+      "editorial": 9,
+      "outbound": 2,
+      "reach": 6,
+      "ai": 0
+    },
+    "state": "dropped",
+    "contact_route": "https://www.sunstar.com.ph/contact-us",
+    "notes": "19 Jan 2026, GCash launch story. Revisit for the index."
+  },
+  {
+    "url": "https://we.workforimpact.com/help/what-fees-am-i-charged-when-getting-paid-through-payoneer",
+    "domain": "we.workforimpact.com",
+    "source": "resource_page",
+    "found": "2026-11-18",
+    "found_how": "WebSearch",
+    "relevance_quote": "Payoneer fees may apply for any withdrawals you make from your Payoneer account.",
+    "our_url": "",
+    "gates": {
+      "G1": "pass",
+      "G2": "pass",
+      "G3": "pass",
+      "G4": "fail: defers to payoneer.com/pricing by design",
+      "G5": "pass"
+    },
+    "score": 48,
+    "score_breakdown": {
+      "topic": 20,
+      "click": 8,
+      "readership": 6,
+      "editorial": 6,
+      "outbound": 6,
+      "reach": 2,
+      "ai": 0
+    },
+    "state": "dropped",
+    "contact_route": "",
+    "notes": "Platform help centre, undated."
+  },
+  {
+    "url": "https://www.lilachbullock.com/payoneer-in-bangladesh/",
+    "domain": "lilachbullock.com",
+    "source": "stale_fee",
+    "found": "2026-11-18",
+    "found_how": "WebSearch",
+    "relevance_quote": "Withdrawals to a bank account in the recipient's local currency, with no conversion, are listed at 1.2% to 4%",
+    "our_url": "",
+    "gates": {
+      "G1": "fail: off-topic marketing site",
+      "G2": "fail: per-country Payoneer page series",
+      "G3": "pass",
+      "G4": "fail: already correct",
+      "G5": "pass"
+    },
+    "score": 48,
+    "score_breakdown": {
+      "topic": 20,
+      "click": 8,
+      "readership": 6,
+      "editorial": 6,
+      "outbound": 4,
+      "reach": 4,
+      "ai": 0
+    },
+    "state": "dropped",
+    "contact_route": "",
+    "notes": "Undated."
+  },
+  {
+    "url": "https://freelancedhaka.pages.dev/en/36-payoneer-vs-wise-fee-calculator-bangladesh-2026/",
+    "domain": "pages.dev (freelancedhaka, earnfromnigeria, earnfrompakistan, earnfromhomeindia, trabahongonline, dapatkerjaonline)",
+    "source": "stale_fee",
+    "found": "2026-11-18",
+    "found_how": "WebSearch, every corridor",
+    "relevance_quote": "(not opened)",
+    "our_url": "",
+    "gates": {
+      "G2": "fail: scaled network, 'autopilot' and '_parked' paths, contradictory figures"
+    },
+    "score": 34,
+    "score_breakdown": {
+      "topic": 25,
+      "click": 4,
+      "readership": 3,
+      "editorial": 0,
+      "outbound": 2,
+      "reach": 0,
+      "ai": 0
+    },
+    "state": "dropped",
+    "contact_route": "",
+    "notes": "Never contact. Consider adding the six subdomains to suppression.txt."
+  },
+  {
+    "url": "https://www.jobbers.io/best-ways-to-receive-international-payments-in-pakistan-beyond-paypal/",
+    "domain": "jobbers.io",
+    "source": "resource_page",
+    "found": "2026-11-18",
+    "found_how": "WebSearch",
+    "relevance_quote": "(snippet) withdrawal fees of 2% (varies by bank)",
+    "our_url": "https://paidacross.com/receive/usd-to-pkr",
+    "gates": {},
+    "score": null,
+    "score_breakdown": {},
+    "state": "could_not_open",
+    "contact_route": "",
+    "notes": "WebFetch 403. Jobbers is a freelance marketplace with very high content volume; check G2 if captured."
+  },
+  {
+    "url": "https://www.techlist.pk/?p=15918",
+    "domain": "techlist.pk",
+    "source": "press",
+    "found": "2026-11-18",
+    "found_how": "WebSearch",
+    "relevance_quote": "(title) Payoneer Announces 50% Fee Increase for Pakistani Freelancers",
+    "our_url": "",
+    "gates": {},
+    "score": null,
+    "score_breakdown": {},
+    "state": "could_not_open",
+    "contact_route": "",
+    "notes": "WebFetch 403."
+  },
+  {
+    "url": "https://www.dhakatribune.com/business/139470/the-cost-of-getting-paid",
+    "domain": "dhakatribune.com",
+    "source": "press",
+    "found": "2026-11-18",
+    "found_how": "WebSearch",
+    "relevance_quote": "(snippet) Payoneer charges $29.95 annually for card activation and $3.15 per ATM withdrawal",
+    "our_url": "https://paidacross.com/receive/usd-to-bdt",
+    "gates": {},
+    "score": null,
+    "score_breakdown": {},
+    "state": "could_not_open",
+    "contact_route": "",
+    "notes": "WebFetch 403; probably an old article. Only Bangladesh lead of any quality this run."
   }
 ]

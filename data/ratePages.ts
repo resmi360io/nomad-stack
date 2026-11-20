@@ -37,6 +37,13 @@ export interface RatePage {
   country: string;
   title: string;             // <title>, under 60 chars where possible
   metaDescription: string;
+  // Search-result title and description with today's estimate filled in by the page, from the same
+  // calculate() row as its rate card: {net0} and {net2} are the estimated amount received per source
+  // unit on a 1,000 client payment (0 and 2 decimals), {mid2} is the mid-market rate. Used only when a
+  // rate is available; otherwise `title` and `metaDescription` above are served. They are claims like
+  // any copy (verifier, reviewer, humanizer), and the title is served as absolute, without the suffix.
+  liveTitle: string;
+  liveDescription: string;
   h1: string;
   intro: string;
   // The line under the per-dollar estimate in the rate card: what the estimate is made of, in the
@@ -58,6 +65,9 @@ export const RATE_PAGES: RatePage[] = [
     destination: 'PKR',
     country: 'Pakistan',
     title: 'Payoneer USD to PKR rate today: what you net',
+    liveTitle: 'Payoneer USD to PKR rate today: est. {net0} rupees net',
+    liveDescription:
+      'Our estimate: about {net2} PKR per dollar through Payoneer on a 1,000 USD client payment, at the middle of its withdrawal fee range. Mid-market rate: {mid2}.',
     metaDescription:
       'Today\'s mid-market USD to PKR rate, what Payoneer\'s published fees take out, and roughly what lands in your Pakistani bank account. Payoneer publishes no rate.',
     h1: 'Payoneer USD to PKR rate today, and what you can expect to receive',
@@ -116,11 +126,11 @@ export const RATE_PAGES: RatePage[] = [
       {
         q: 'How often does this page update?',
         a:
-          'The page checks our rate source for a new mid-market rate up to once an hour, but that source publishes a new rate only once a day, so the rate shown can be up to a day old. The date it was published is printed next to it, so you can see how fresh it is rather than trusting us. The Payoneer fee figures change far less often and are re-checked on a weekly rotation against Payoneer\'s own published pricing, with the date at the foot of the page showing when Payoneer\'s figures for every country we cover were last re-read in full, which can be older than this page\'s own update date. If you spot a figure that no longer matches Payoneer\'s own page, that is worth more to us than a compliment.',
+          'The page checks for a new mid-market rate up to once an hour, and only when someone opens it. The rate comes from FastForex, which updates at least once a minute, or, if FastForex is unavailable, from open.er-api.com, which updates once a day, so the rate can then be up to a day old. The source and the time or date of the rate are printed next to it, so you can see how fresh it is rather than trusting us. The Payoneer fee figures change far less often and are re-checked on a weekly rotation against Payoneer\'s own published pricing, with the date at the foot of the page showing when Payoneer\'s figures for every country we cover were last re-read in full, which can be older than this page\'s own update date. If you spot a figure that no longer matches Payoneer\'s own page, that is worth more to us than a compliment.',
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-11-16',
+    updatedDate: '2026-11-20',
   },
   // Second page, on the same evidence rule as the first. GSC for 2026-07-29 to 2026-10-26 shows
   // the BDT corridor page already ranking for "payoneer dollar rate in bangladesh today" around
@@ -135,6 +145,9 @@ export const RATE_PAGES: RatePage[] = [
     destination: 'BDT',
     country: 'Bangladesh',
     title: 'Payoneer dollar rate in Bangladesh today',
+    liveTitle: 'Payoneer dollar rate in Bangladesh today: est. {net0} taka net',
+    liveDescription:
+      'Our estimate: about {net2} BDT per dollar through Payoneer on a 1,000 USD client payment, at the middle of its withdrawal fee range. Mid-market rate: {mid2}.',
     metaDescription:
       'Today\'s mid-market USD to BDT rate, what Payoneer\'s fees take out, and roughly what reaches your Bangladeshi bank or bKash. Payoneer publishes no rate.',
     h1: 'Payoneer USD to BDT rate today, and what you can expect to receive',
@@ -178,10 +191,10 @@ export const RATE_PAGES: RatePage[] = [
       {
         q: 'How often does this page update?',
         a:
-          'The page checks our rate source for a new mid-market rate up to once an hour, but that source publishes a new rate only once a day, so the rate shown can be up to a day old. The date it was published is printed next to it, so you can see how fresh it is rather than trusting us. The Payoneer fees change far less often and come from the same data as our Bangladesh page, which is re-checked against Payoneer\'s published pricing on a weekly rotation. The fee check date at the foot of this page is the last time we re-read Payoneer\'s figures for every country we cover at once, so it can be months older than our latest check of the Bangladesh figures, and older than this page\'s own update date. If a figure here no longer matches what Payoneer shows you, tell us and we will fix it.',
+          'The page checks for a new mid-market rate up to once an hour, and only when someone opens it. The rate comes from FastForex, which updates at least once a minute, or, if FastForex is unavailable, from open.er-api.com, which updates once a day, so the rate can then be up to a day old. The source and the time or date of the rate are printed next to it, so you can see how fresh it is rather than trusting us. The Payoneer fees change far less often and come from the same data as our Bangladesh page, which is re-checked against Payoneer\'s published pricing on a weekly rotation. The fee check date at the foot of this page is the last time we re-read Payoneer\'s figures for every country we cover at once, so it can be months older than our latest check of the Bangladesh figures, and older than this page\'s own update date. If a figure here no longer matches what Payoneer shows you, tell us and we will fix it.',
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-11-17',
+    updatedDate: '2026-11-20',
   },
 ];
