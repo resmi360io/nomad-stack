@@ -311,9 +311,9 @@ export const PROVIDERS: Provider[] = [
       // INR and COP read from Wise's own quote endpoint on 2026-09-25, payIn BALANCE and
       // payOut BANK_TRANSFER, which is the case these corridors price. Wise does NOT publish
       // a USD to INR conversion fee anywhere: wise.com/in/pricing/business/receive says only
-      // "Our conversion fee depends on the currency", and the 0.25% on its India business page
-      // is a GBP to EUR volume-discount example that must not be reused. The endpoint is the
-      // only honest source for it.
+      // "Our conversion fee depends on the currency". No 0.25% appears on wise.com/in/business,
+      // /in/pricing/business or /in/pricing/receive as of 2026-11-20. The endpoint is the only
+      // source for this figure, and per AGENTS.md an endpoint figure is not a published price.
       //   INR RE-DERIVED 2026-09-25 with the INDIA BUSINESS PROFILE, which is the parameter set
       //   this corridor actually uses. wise.com/gateway/v1/price with profileCountry=IN and
       //   profileType=BUSINESS returns priceSetId 5346 and an explicit flatFee field of 0.99 at
