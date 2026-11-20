@@ -662,9 +662,17 @@ so. The PR #72 CTR question below is dropped (item 1).
   **2026-11-09 audit, input:** Payoneer USD to PHP is the only new pair with query evidence, and it is thin: "payoneer
   usd to php" 3 at 57, "payoneer exchange rate usd to php" 2 at 59 and two single-impression rate queries, all on
   `/receive/usd-to-php`, plus "payoneer fees philippines" 5 on the pillar and homepage (90 days to 2026-11-09).
-- [ ] **Claude:** `/rates/payoneer-usd-to-bdt` meets the rule 2 title trigger on the 28-day read (149 impressions at
-  7.4, 1 click, 0.67%), but 1 click in 149 cannot show a low CTR (rule 1) and the page is inside the item 22 bundle.
-  No title change before its decision read (on or after 2027-01-04); re-test the trigger then on 90 days.
+- [x] **Claude:** `/rates/payoneer-usd-to-bdt` title trigger. Superseded 2026-11-20 by owner decision (DAILY_PLAN, Fri
+  20 Nov): both rate pages serve a live title and description with today's estimate (the 2026-11-20 rate-page snippet
+  release), ahead of the 2027-01-04 decision read this item had set. Baseline: 447 impressions, 1 click on the two pages,
+  28 days to 2026-11-20. Both reads are bundles (rule 4: title, description and the "How often does this page update?"
+  FAQ together, on top of PR #93 on the PKR page). Read page plus query, CTR only where the query stays within 2 places
+  of its baseline ("payoneer usd to pkr rate today" 12.9, "today payoneer dollar rate in pakistan" 12.7, "payoneer
+  dollar rate in bangladesh" 8.6): early signal 14 days after each URL's recrawl, preliminary at 4 weeks, decision at 8
+  weeks (rule 3), no ranking conclusion until 7 days after the November 2026 core update is marked complete (rule 9).
+  Leave both title templates alone until the decision read (rule 2). After recrawl, record whether Google shows our
+  number in the title link or rewrites it (Google's title-link guidance says it will likely not show fast-changing
+  prices for flight pages; the title is rounded to a whole number to stay stable between crawls).
 - [ ] **Claude:** this checkpoint needs the item 21 crawl dates and the item 31 PostHog fix. Without them, read only the
   cannibalization check and Search Console trends, and say so.
 

@@ -43,7 +43,7 @@ that produces the remaining 20%. It continues, but it never displaces the three 
 
 | Target | Success | Measure |
 |---|---|---|
-| Rate-page CTR | at least 1.5% on the two rate pages, from 0.2% | Search Console page view, 14 days after the snippet ships, against the 447/1 baseline |
+| Rate-page CTR | early signal: 3 or more clicks on the two rate pages in the 14 days after each URL's recrawl (about 220 impressions; at the old 0.2% that is about a 1% chance); 1.5% is the 8-week aim | Search Console page plus query against the 447/1 baseline, recrawl date from URL Inspection, November 2026 core update named; no decision before the rule 3 reads |
 | Clicks | at least 10 Google clicks in the 28 days to 2026-12-04, from 3 | Search Console site total |
 | Calculator runs, excluding the owner | at least 15 in the 14 days to 2026-12-04, from 2 in 30 days | PostHog `calc_run`, country not GE |
 | Editorial referring domains | at least 1 new (stretch 2) | OpenRush `inspect_backlinks` new domains, link-farm pattern excluded; verified by opening the page |
@@ -66,7 +66,7 @@ that produces the remaining 20%. It continues, but it never displaces the three 
   1. Measurement baseline (item 31). Success: real-visitor numbers known. Done: the table above, written into
      `SEO_PLAN.md` item 31. Measure: PostHog SQL on project 430719 with `$host = 'paidacross.com'`.
   2. Rate-page snippet release: the title and meta description of both rate pages carry the estimated per-dollar
-     figure and date, computed by `calculate()` from the same row as the page's card; verifier, reviewer, humanizer,
+     figure, computed by `calculate()` from the same row as the page's card; verifier, reviewer, humanizer,
      SEO REVIEW. Success: SEO REVIEW SHIP or SHIP WITH CHANGES, 0 protected regressions, tests and build pass. Done: PR
      open and reported to you. Measure: `diff.mjs` exit code, `npm test`, `npm run build`, rendered `<title>`.
   3. This plan. Done: `docs/seo/DAILY_PLAN.md` on the branch.
