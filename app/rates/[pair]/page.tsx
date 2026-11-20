@@ -28,11 +28,45 @@ export async function generateMetadata({
   const { pair } = await params;
   const page = RATE_PAGES.find((p) => p.slug === pair);
   if (!page) return {};
+  // Searchers for "<provider> rate today" are shown a number by every other result, so the snippet
+  // carries today's estimate when there is one. It is the same calculate() row as the rate card.
+  const live = estimateFor(page, await getRates());
+  if (!live) {
+    return { title: page.title, description: page.metaDescription, alternates: { canonical: `/rates/${page.slug}` } };
+  }
+  const fill = (t: string) =>
+    t
+      .replace('{net0}', Math.round(live.perUnit).toLocaleString('en-US'))
+      .replace('{net2}', live.perUnit.toFixed(2))
+      .replace('{mid2}', live.mid.toFixed(2));
   return {
-    title: page.title,
-    description: page.metaDescription,
+    title: { absolute: fill(page.liveTitle) },
+    description: fill(page.liveDescription),
     alternates: { canonical: `/rates/${page.slug}` },
   };
+}
+
+// The estimate in the rate card and in the search snippet: what the provider leaves per source unit on
+// an ESTIMATE_AMOUNT client payment, from the corridor's own fee row. Null when there is no rate or no
+// quote, so the caller falls back to static copy rather than printing a wrong number.
+function estimateFor(
+  page: (typeof RATE_PAGES)[number],
+  ratesResult: Awaited<ReturnType<typeof fetchRatesServer>>,
+): { perUnit: number; mid: number } | null {
+  if (!ratesResult) return null;
+  const corridor = CORRIDORS.find((c) => c.slug === page.corridorSlug);
+  if (!corridor) return null;
+  const mid = ratesResult.rates[page.destination] / ratesResult.rates[page.source];
+  const q = calculate(
+    corridor.sourceCountry as CountryCode,
+    corridor.destCountry as CountryCode,
+    page.destination,
+    ESTIMATE_AMOUNT,
+    PROVIDERS,
+    ratesResult.rates,
+  ).find((x) => x.provider.slug === page.providerSlug);
+  if (!q || !isFinite(mid) || mid <= 0) return null;
+  return { perUnit: q.netReceivedInDest / ESTIMATE_AMOUNT, mid };
 }
 
 // Three sizes rather than one. A percentage fee and a flat fee rank differently at different

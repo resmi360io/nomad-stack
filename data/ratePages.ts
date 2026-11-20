@@ -37,6 +37,13 @@ export interface RatePage {
   country: string;
   title: string;             // <title>, under 60 chars where possible
   metaDescription: string;
+  // Search-result title and description with today's estimate filled in by the page, from the same
+  // calculate() row as its rate card: {net0} and {net2} are the estimated amount received per source
+  // unit on a 1,000 client payment (0 and 2 decimals), {mid2} is the mid-market rate. Used only when a
+  // rate is available; otherwise `title` and `metaDescription` above are served. They are claims like
+  // any copy (verifier, reviewer, humanizer), and the title is served as absolute, without the suffix.
+  liveTitle: string;
+  liveDescription: string;
   h1: string;
   intro: string;
   // The line under the per-dollar estimate in the rate card: what the estimate is made of, in the
@@ -58,6 +65,9 @@ export const RATE_PAGES: RatePage[] = [
     destination: 'PKR',
     country: 'Pakistan',
     title: 'Payoneer USD to PKR rate today: what you net',
+    liveTitle: 'Payoneer USD to PKR rate today: about {net0} rupees',
+    liveDescription:
+      'About {net2} PKR per dollar through Payoneer on a 1,000 USD client payment, our estimate after its published fees, against a mid-market rate of {mid2}.',
     metaDescription:
       'Today\'s mid-market USD to PKR rate, what Payoneer\'s published fees take out, and roughly what lands in your Pakistani bank account. Payoneer publishes no rate.',
     h1: 'Payoneer USD to PKR rate today, and what you can expect to receive',
@@ -135,6 +145,9 @@ export const RATE_PAGES: RatePage[] = [
     destination: 'BDT',
     country: 'Bangladesh',
     title: 'Payoneer dollar rate in Bangladesh today',
+    liveTitle: 'Payoneer dollar rate in Bangladesh today: about {net0} taka',
+    liveDescription:
+      'About {net2} BDT per dollar through Payoneer on a 1,000 USD client payment, our estimate after its published fees, against a mid-market rate of {mid2}.',
     metaDescription:
       'Today\'s mid-market USD to BDT rate, what Payoneer\'s fees take out, and roughly what reaches your Bangladeshi bank or bKash. Payoneer publishes no rate.',
     h1: 'Payoneer USD to BDT rate today, and what you can expect to receive',
