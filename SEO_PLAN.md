@@ -5,7 +5,7 @@ are done, and add the PR number or date, so the next session starts from the tru
 memory. Fact-checking rules for anything that touches page copy live in AGENTS.md and still apply:
 verifier, then reviewer, then humanizer, and ranking-moving changes go to the owner.
 
-Last updated: 2026-11-16 (weekly audit `docs/seo/reports/2026-11-16.md`; November 2026 core update rolling out since 2026-11-10).
+Last updated: 2026-11-20 (day-by-day Pareto plan in `docs/seo/DAILY_PLAN.md`; PostHog baseline, item 31; weekly audit of 2026-11-16 in `docs/seo/reports/2026-11-16.md`).
 
 Legend: `[x]` done, `[~]` in progress or partly done, `[ ]` not started. Owner is **You** (site owner)
 or **Claude** (a session in this repo).
@@ -351,7 +351,7 @@ watermark remover", and are ignored. What survives a sceptical read:
     graduation", with no date; carry the 2029 date there on a Bangladesh day if the reviewer confirms it; (b) the same
     FAQ says Bangladesh Bank confirmed 2.5% for the year from 1 July 2026, so the next real check is the rate for the
     year from 1 July 2027.
-31. [ ] **Claude, before the 2026-11-30 checkpoint:** point the host's PostHog MCP at the paidacross.com project. On
+31. [x] **Claude, before the 2026-11-30 checkpoint:** point the host's PostHog MCP at the paidacross.com project. On
     2026-11-09 the active project held no paidacross.com events in the 28 days to 2026-11-09, although the 2026-11-01
     read found paidacross.com pageviews inside that window, so the connector is on another project rather than the site
     being at zero. List the projects, select the one with `$host = 'paidacross.com'`, re-run audit step 7b with its
@@ -360,6 +360,11 @@ watermark remover", and are ignored. What survives a sceptical read:
     **2026-11-16 audit: not done.** The PostHog connector dropped during the scheduled run, so step 7b is unmeasured for a
     second week. Do it in an interactive session before 2026-11-30, and in the same sitting confirm the first production
     `affiliate_click` with `placement` (RELEASES.md, PR #93).
+    **Closed 2026-11-20 (interactive session):** PostHog's default project (id 430719, the only project) does receive
+    paidacross.com: 361 events in the 30 days to 2026-11-20, newest 2026-11-20 08:43 UTC, so tracking works; the audits
+    saw nothing because the scheduled host has no PostHog connector. Baseline excluding the owner's country (GE): 70
+    people and 109 pageviews; Google 27 people, Bing 3; `calc_run` 2 (2 people, last 2026-11-11); `affiliate_click` 0
+    (the 3 recorded are the owner's, 2026-10-29, so the first production click with `placement` is still to come).
 32. [ ] **You decide, Claude proposes:** both rate pages print "Fee figures last checked 2026-06-02" (Payoneer
     `lastVerified`) on pages answering "rate today", which held 280 of 848 impressions in the 28 days to 2026-11-09.
     AGENTS.md allows the bump only when every Payoneer row has been re-read. Options: (a) after one full rotation week
