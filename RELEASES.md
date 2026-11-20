@@ -5,6 +5,7 @@ is the release identifier. Record each release here when it ships, with how it w
 
 | Date (UTC) | Commit on `main` | PR | What | Verified |
 |---|---|---|---|---|
+| 2026-11-20 | `6e6b59af6c33b55451c2618bbd60d3834a22feda` | #106 | Rate pages: today's estimate in the search title and description, FastForex FAQ fix; daily Pareto plan, outreach and video docs | Live titles and descriptions match each page's rate card (266.70 PKR, 120.50 BDT per USD on FastForex); `npm run test:e2e` 14/14 against https://paidacross.com; both URLs submitted to Bing. |
 | 2026-11-12 | `02d79ad` | #93 | Weekly FAQs #5 and #6 (owner exceptions to the cadence), Pakistan tax and Bangladesh ERQ answer corrections, Payoneer 3% Pakistan answer hedged, `affiliate_click` with `placement` on the rate-page, pillar and sender-page provider links | Reviewer-approved copy; `npm test` and `npm run build` pass; live check after deploy (owner and Claude). Production `affiliate_click` with `placement` still to confirm in PostHog. |
 | 2026-11-12 | `9d88798` | #84 | SEO audits 2026-11-04 and 2026-11-09, quarter targets in SEO_PLAN | Docs only, no page change. |
 | 2026-11-12 | `1fb967d` | #92 | Rotation: usd-to-php and usd-to-uzs (merged by the scheduled job) | Verified by the rotation. |
