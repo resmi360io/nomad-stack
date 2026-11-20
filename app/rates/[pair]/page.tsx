@@ -36,9 +36,9 @@ export async function generateMetadata({
   }
   const fill = (t: string) =>
     t
-      .replace('{net0}', Math.round(live.perUnit).toLocaleString('en-US'))
-      .replace('{net2}', live.perUnit.toFixed(2))
-      .replace('{mid2}', live.mid.toFixed(2));
+      .replaceAll('{net0}', Math.round(live.perUnit).toLocaleString('en-US'))
+      .replaceAll('{net2}', live.perUnit.toFixed(2))
+      .replaceAll('{mid2}', live.mid.toFixed(2));
   return {
     title: { absolute: fill(page.liveTitle) },
     description: fill(page.liveDescription),

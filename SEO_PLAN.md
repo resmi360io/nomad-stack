@@ -387,6 +387,13 @@ watermark remover", and are ignored. What survives a sceptical read:
     `-mxn` GrabrFi and `-ars` Payoneer H2s, both intended rewrites on surviving anchors). (c) seo-audit SKILL.md step 10:
     also copy `$RUN/robots.txt` to `docs/seo/snapshots/`; without it the diff prints "robots.txt identical: false" for an
     unchanged file. Effort S.
+36. [ ] **You decide (raised 2026-11-20 by the rate-page reviewer):** ExchangeRate-API's free-tier terms. When the site
+    falls back to open.er-api.com (only when FastForex fails), its pages print "from open.er-api.com" without the required
+    link text "Rates By Exchange Rate API" (https://www.exchangerate-api.com/docs/free), and `/api/rates` re-serves that
+    data while its Terms (https://www.exchangerate-api.com/terms) forbid redistribution and programmatic access. Options:
+    (a) Claude adds the attribution link whenever the fallback is used and `/api/rates` stops serving fallback data (the
+    browser calculator would then show "rates unavailable" in a FastForex outage); (b) you ask ExchangeRate-API in
+    writing. Recommended: (a), through REVIEW. Effort S.
 35. [ ] **You decide, Claude proposes:** the rotation's metadata and heading changes through the SEO diff. In the week to
     2026-11-16 it changed 7 meta descriptions and 2 H2s with no REVIEW verdict recorded, which AGENTS.md requires for
     "metadata, titles, descriptions, headings". Proposal: the rotation's stage 3 snapshots its local build, runs
