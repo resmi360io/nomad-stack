@@ -352,9 +352,9 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 24,
         // Per-transfer cap. Wise's US send page: "You can send up to 2,900 US dollar (USD) (equivalent in
-        // Colombian peso (COP)) per transfer." Help article 2932355: "You can send up to 24,000 USD
-        // (equivalent in COP) per transfer." Both read 2026-11-18, neither dated, neither says which pay-in
-        // it covers. The lower figure is used until Wise reconciles them (owner decision 2026-11-18, who
+        // Colombian peso (COP)) per transfer." Help article 2932355: "You can send up to 56,000 USD
+        // (equivalent in COP) per transfer." (read 2026-11-21; it said 24,000 on 2026-11-18). Send page read
+        // 2026-11-18 and 2026-11-21, neither dated, neither says which pay-in it covers. The lower figure is used until Wise reconciles them (owner decision 2026-11-18, who
         // approved 2,900 by name: Wise leaves the ranking above it and the badge goes with it).
         maxAmount: 2900,
         notes: 'USD received by ACH is free. Conversion to COP at the mid-market rate, but the conversion fee is far higher than Wise charges on most corridors.',
