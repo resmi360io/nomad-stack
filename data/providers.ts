@@ -538,7 +538,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 96,
         fxMarkupEstimated: true,
-        notes: 'Wise\'s published Thailand SWIFT fee is 31.38, so on a dollar send into a Thai FCD account it saves very little against a generic wire. Converting to baht through Wise is a different and much cheaper product, priced on its own row.',
+        notes: 'Wise\'s published Thailand SWIFT fee is 31.38, so on a dollar send into a Thai FCD account it saves very little against a generic wire, and once the 0.17% that Wise\'s US fee disclosure charges for a US bank debit pay-in is added, as this row does, it costs more than our assumed 35 dollar wire above about 2,130 dollars. Converting to baht through Wise is a different and much cheaper product, priced on its own row.',
       },
       // USD -> Indonesian rupiah, into a local bank account. Indonesian residents cannot hold a
       // Wise balance or get receiving details (Wise ended that for Indonesia-registered customers
