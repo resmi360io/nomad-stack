@@ -225,7 +225,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 96,
         fxMarkupEstimated: true,
-        notes: 'Dollars by SWIFT into an Argentine foreign currency account. The 13.47 is Wise\'s published Argentina Swift payout fee, from help/articles/2946451, and Argentina is in the group where predicted correspondent deductions are pre-funded. Wise CAN pay pesos out to a CBU, but only from ARS converted inside a Wise account, with no external peso funding and a cap of the equivalent USD 18,000 per transfer per calendar month, and its US send page still says US to ARS sending is not launched. So there is no ARS row here, and the 2.13% the price grid quotes for USD to ARS is not shippable under the rule at the top of this file.',
+        notes: 'Dollars by SWIFT into an Argentine foreign currency account. The 13.47 is Wise\'s published Argentina Swift payout fee, from help/articles/2946451, and Argentina is in the group where predicted correspondent deductions are pre-funded. Wise CAN pay pesos out to a CBU, but only from ARS converted inside a Wise account, with no external peso funding and a cap of the equivalent of USD 18,000 per transfer per calendar month, and a lower limit of 600,000 ARS per transfer when sending ARS already held in the account, and its US send page still says US to ARS sending is not launched. So there is no ARS row here, and the 2.13% the price grid quotes for USD to ARS is not shippable under the rule at the top of this file.',
       },
       {
         source: { country: 'US', currency: 'USD' },
