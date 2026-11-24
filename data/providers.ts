@@ -178,7 +178,7 @@ export const PROVIDERS: Provider[] = [
     corridors: [
       // South Africa, Argentina and Poland. Neither ZAR nor PLN comes from wise.com/gateway/v1/price any more.
       // PLN's grid split (1.19 plus 0.35%, 4.69 on 1,000) did NOT agree with Wise's own send page, which
-      // read 4.38 from a Wise balance on 2026-11-10 and 4.36 on 2026-11-17, so PLN is a flagged single-point model like ZAR.
+      // read 4.38 from a Wise balance on 2026-11-10, 4.36 on 2026-11-17 and 4.35 on 2026-11-24, so PLN is a flagged single-point model like ZAR.
       // ZAR DOES NOT agree: the endpoint gave 7.79 on 1,000 and 25.31 on 5,000 while the send page
       // prices the cheapest route, money already in your Wise account, at 7.36 on 1,000 (read
       // 2026-11-15; 7.44 on 2026-11-08, 7.40 on 2026-11-01, 7.43 on 2026-10-25), with direct debit 9.38 and bank transfer 13.78. Nothing public is 7.79 and nothing public
@@ -231,11 +231,11 @@ export const PROVIDERS: Provider[] = [
         source: { country: 'US', currency: 'USD' },
         destination: { country: 'PL', currency: 'PLN' },
         fixedFee: 0,
-        percentageFee: 0.00436,
+        percentageFee: 0.00435,
         fxMarkupBps: 0,
         typicalHours: 24,
         fxMarkupEstimated: true,
-        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-poland read 2026-11-17 prices 1,000 USD to PLN at 4.36 USD from a Wise balance (direct debit 6.35, bank transfer 10.76, debit card 20.01; 4.38 on 2026-11-10) and states it uses the mid-market rate. No second amount is published, so the old price-grid split (1.19 plus 0.35%, 4.69 on 1,000 and 18.69 on 5,000) has no public basis and is withdrawn; this models the 1,000 USD price proportionally, as the ZA and GE rows do. fxMarkupEstimated marks the estimated percentage, not a markup, and bars the badge.',
+        notes: 'Single public data point only. wise.com/us/send-money/send-money-to-poland read 2026-11-24 prices 1,000 USD to PLN at 4.35 USD from a Wise balance (direct debit 6.35, bank transfer 10.76, debit card 16.92; 4.36 on 2026-11-17, 4.38 on 2026-11-10) and states it uses the mid-market rate. No second amount is published, so the old price-grid split (1.19 plus 0.35%, 4.69 on 1,000 and 18.69 on 5,000) has no public basis and is withdrawn; this models the 1,000 USD price proportionally, as the ZA and GE rows do. fxMarkupEstimated marks the estimated percentage, not a markup, and bars the badge.',
       },
       // NO US to UA row, in either currency, and that is deliberate. Wise has not launched
       // sending to Ukraine from the United States: wise.com/us/send-money/send-money-to-ukraine
@@ -259,7 +259,7 @@ export const PROVIDERS: Provider[] = [
         fxMarkupBps: 0,
         typicalHours: 96,
         fxMarkupEstimated: true,
-        notes: 'Wise\'s published Poland SWIFT fee, and it is dear: 27.24 before what Wise charges for how the transfer is paid, against 4.36 on 1,000 to take zloty. Here taking dollars costs more than converting at almost any invoice size, which inverts the usual shape of these corridors.',
+        notes: 'Wise\'s published Poland SWIFT fee, and it is dear: 27.24 before what Wise charges for how the transfer is paid, against 4.35 on 1,000 to take zloty. Here taking dollars costs more than converting at almost any invoice size, which inverts the usual shape of these corridors.',
       },
       // wise.com/us/send-money/send-money-to-georgia, read 2026-11-06: 14.69 USD on 1,000 USD from a
       // Wise balance (direct debit 16.69, bank transfer 21.08, debit card 30.07). Balance funding is the
