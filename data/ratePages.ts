@@ -181,7 +181,7 @@ export const RATE_PAGES: RatePage[] = [
       {
         q: 'Does a Payoneer withdrawal count for the 2.5% freelancer incentive?',
         a:
-          'Only a withdrawal to a bank account can, because the incentive needs a Foreign Inward Remittance Certificate and only a bank issues one. Payoneer to bKash produces no certificate, and bKash\'s own Payoneer page says the government incentive does not apply to that service. Bangladesh Bank confirmed the 2.5% rate for individual freelancers for the year from 1 July 2026, and these incentives are expected to be phased out around the country\'s graduation from least developed country status, so check the current position with your bank before counting on it.',
+          'Only a withdrawal to a bank account can, because the incentive needs a Foreign Inward Remittance Certificate and only a bank issues one. Payoneer to bKash produces no certificate, and bKash\'s own Payoneer page says the government incentive does not apply to that service. Bangladesh Bank confirmed the 2.5% rate for individual freelancers for the year from 1 July 2026. These incentives are expected to be phased out around the country\'s graduation from least developed country status. That graduation had been due on 24 November 2026, but on 29 October 2026 the UN General Assembly extended Bangladesh\'s preparatory period, and press reports of the decision put the new date at 24 November 2029. Check the current position with your bank before counting on it.',
       },
       {
         q: 'How much can I send from Payoneer to bKash at once?',
@@ -195,6 +195,6 @@ export const RATE_PAGES: RatePage[] = [
       },
     ],
     publishedDate: '2026-10-26',
-    updatedDate: '2026-11-20',
+    updatedDate: '2026-11-24',
   },
 ];
