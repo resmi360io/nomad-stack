@@ -249,7 +249,7 @@ export const PROVIDERS: Provider[] = [
       // this site's source country is always US. Separately the reader cannot hold a Wise balance
       // at all: Ukraine is absent from the hold-money list and NAMED on the USD-details exclusion
       // list. UAH side for the record: a non-PrivatBank account takes at most 29,999 UAH per
-      // transfer, about 666 USD. See unsupportedDestinationCurrencies above: UA is opted out in
+      // transfer, roughly 650 to 680 USD (about 662 at open.er-api.com on 2026-11-25). See unsupportedDestinationCurrencies above: UA is opted out in
       // BOTH currencies, so nobody re-adds a row from a price endpoint later.
       {
         source: { country: 'US', currency: 'USD' },
@@ -377,11 +377,12 @@ export const PROVIDERS: Provider[] = [
         percentageFee: 0.005,
         fxMarkupBps: 0,
         typicalHours: 24,
-        // The 0.5% is from the v1/price endpoint only. Wise's public Brazil send page shows 2.08 USD on 200 USD from a balance
-        // and 2.85 by direct debit (read 2026-11-18), with no IOF split and no second amount, so it cannot confirm the
-        // percentage. Flagged as an estimate (2026-11-04 review).
+        // The 0.5% is from the Wise endpoint read on 2026-09-24 only. Wise's public Brazil send page (read 2026-11-25) shows,
+        // from a balance, 2.07 USD on 200, 8.98 on 1,000 and 43.48 on 5,000, and by direct debit 2.85 on 200 and 11.07 on
+        // 1,000. Its calculator labels its figure 'total fees and taxes' and the page shows no IOF line, so the totals fit
+        // 0.5% plus 0.38% IOF but never state the split. Flagged as an estimate (2026-11-04 review).
         fxMarkupEstimated: true,
-        notes: 'USD received by ACH is free. About 0.5% to convert USD to BRL, read from the Wise quote endpoint on 2026-09-24; the public send page shows 2.08 USD on 200 USD from a balance (read 2026-11-18) and no larger amount, so the percentage is estimated. No spread: Wise converts at the mid rate and charges a separate fee. Payout to a Brazilian account by Pix or TED.',
+        notes: 'USD received by ACH is free. About 0.5% to convert USD to BRL, read from the Wise quote endpoint on 2026-09-24; the public send page (read 2026-11-25) shows 2.07 USD on 200, 8.98 USD on 1,000 and 43.48 USD on 5,000 from a Wise balance, with no separate IOF line, which fits about 0.5% plus the 0.38% IOF but does not state the split, so the percentage is estimated. No spread: Wise converts at the mid rate and charges a separate fee. Payout to a Brazilian account by Pix or TED.',
       },
       // THB fee REDERIVED 2026-09-24 from Wise's own quote endpoint, payIn BALANCE and payOut
       // BANK_TRANSFER, which is the case this corridor prices: a freelancer already holding client
