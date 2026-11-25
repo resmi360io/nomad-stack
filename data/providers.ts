@@ -249,7 +249,7 @@ export const PROVIDERS: Provider[] = [
       // this site's source country is always US. Separately the reader cannot hold a Wise balance
       // at all: Ukraine is absent from the hold-money list and NAMED on the USD-details exclusion
       // list. UAH side for the record: a non-PrivatBank account takes at most 29,999 UAH per
-      // transfer, about 666 USD. See unsupportedDestinationCurrencies above: UA is opted out in
+      // transfer, roughly 650 to 680 USD (about 662 at open.er-api.com on 2026-11-25). See unsupportedDestinationCurrencies above: UA is opted out in
       // BOTH currencies, so nobody re-adds a row from a price endpoint later.
       {
         source: { country: 'US', currency: 'USD' },
