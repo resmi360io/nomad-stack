@@ -1973,7 +1973,7 @@ export const PROVIDERS: Provider[] = [
       },
       // USD → Philippine PHP or USD (FCDU) bank account via SWIFT
       // No forced conversion: FCDU USD accounts at BDO, BPI, Metrobank, RCBC hold dollars.
-      // Inward remittance fees vary by bank (~$6-35 + possible correspondent deduction);
+      // Inward remittance fees vary by bank (to a dollar account: BPI USD 6.50 minimum, Security Bank USD 5.50; plus possible correspondent deduction);
       // bank FX spread applies only when converting to PHP (estimate, not published)
       // USD -> a USD (FCDU) account at a Philippine bank by ordinary correspondent wire. Nothing
       // converts, so there is no spread. The 35 is a generic US SENDING fee, carried from the other
