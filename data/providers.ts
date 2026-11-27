@@ -1801,7 +1801,7 @@ export const PROVIDERS: Provider[] = [
         // The 35 is carried from the other wire corridors with no published schedule behind it,
         // same as UZ/UZS which was already flagged. This row was not, which was an oversight.
         fxMarkupEstimated: true,
-        notes: 'Holding dollars in an Uzbek bank account converts nothing, so there is no spread. SQB publishes free account opening and shows no tariff line charging for inbound non-cash foreign currency, which is an absence of a charge rather than a stated zero. Correspondent deductions still apply and nobody publishes those.',
+        notes: 'Holding dollars in an Uzbek bank account converts nothing, so there is no spread. SQB publishes free account opening and lists putting cash and non-cash funds into an individual\'s accounts as free, which we read as covering an inbound wire, though its general schedule has no line written specifically for an incoming SWIFT transfer. Correspondent deductions still apply and nobody publishes those.',
       },
       // BR: no Brazilian bank tariff could be opened (itau.com.br and bb.com.br both 403). The
       // structure is a US sending fee plus the receiving bank's own spread, which Brazilian banks
@@ -1973,7 +1973,7 @@ export const PROVIDERS: Provider[] = [
       },
       // USD → Philippine PHP or USD (FCDU) bank account via SWIFT
       // No forced conversion: FCDU USD accounts at BDO, BPI, Metrobank, RCBC hold dollars.
-      // Inward remittance fees vary by bank (~$6-35 + possible correspondent deduction);
+      // Inward remittance fees vary by bank (to a dollar account: BPI USD 6.50 minimum, Security Bank USD 5.50; plus possible correspondent deduction);
       // bank FX spread applies only when converting to PHP (estimate, not published)
       // USD -> a USD (FCDU) account at a Philippine bank by ordinary correspondent wire. Nothing
       // converts, so there is no spread. The 35 is a generic US SENDING fee, carried from the other
